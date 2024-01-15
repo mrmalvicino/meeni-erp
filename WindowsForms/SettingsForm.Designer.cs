@@ -29,56 +29,47 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsForm));
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.currencyLabel = new System.Windows.Forms.Label();
+            this.currencyTextBox = new System.Windows.Forms.TextBox();
+            this.organizationCoverLabel = new System.Windows.Forms.Label();
+            this.organizationLogoLabel = new System.Windows.Forms.Label();
             this.applyButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label1
+            // currencyLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(37, 37);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(102, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Cotización del dólar:";
+            this.currencyLabel.AutoSize = true;
+            this.currencyLabel.Location = new System.Drawing.Point(37, 37);
+            this.currencyLabel.Name = "currencyLabel";
+            this.currencyLabel.Size = new System.Drawing.Size(102, 13);
+            this.currencyLabel.TabIndex = 0;
+            this.currencyLabel.Text = "Cotización del dólar:";
             // 
-            // textBox1
+            // currencyTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(145, 34);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 1;
+            this.currencyTextBox.Location = new System.Drawing.Point(145, 34);
+            this.currencyTextBox.Name = "currencyTextBox";
+            this.currencyTextBox.Size = new System.Drawing.Size(100, 20);
+            this.currencyTextBox.TabIndex = 1;
+            this.currencyTextBox.Text = "1000";
             // 
-            // label2
+            // organizationCoverLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(37, 82);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(105, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Portada de empresa:";
+            this.organizationCoverLabel.AutoSize = true;
+            this.organizationCoverLabel.Location = new System.Drawing.Point(37, 70);
+            this.organizationCoverLabel.Name = "organizationCoverLabel";
+            this.organizationCoverLabel.Size = new System.Drawing.Size(125, 13);
+            this.organizationCoverLabel.TabIndex = 2;
+            this.organizationCoverLabel.Text = "Portada de organización:";
             // 
-            // label3
+            // organizationLogoLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(37, 114);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(92, 13);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Logo de empresa:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(37, 148);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(92, 13);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Logo de empresa:";
+            this.organizationLogoLabel.AutoSize = true;
+            this.organizationLogoLabel.Location = new System.Drawing.Point(37, 102);
+            this.organizationLogoLabel.Name = "organizationLogoLabel";
+            this.organizationLogoLabel.Size = new System.Drawing.Size(112, 13);
+            this.organizationLogoLabel.TabIndex = 3;
+            this.organizationLogoLabel.Text = "Logo de organización:";
             // 
             // applyButton
             // 
@@ -88,22 +79,22 @@
             this.applyButton.TabIndex = 5;
             this.applyButton.Text = "Aplicar";
             this.applyButton.UseVisualStyleBackColor = true;
+            this.applyButton.Click += new System.EventHandler(this.applyButton_Click);
             // 
-            // Settings
+            // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 321);
             this.Controls.Add(this.applyButton);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.organizationLogoLabel);
+            this.Controls.Add(this.organizationCoverLabel);
+            this.Controls.Add(this.currencyTextBox);
+            this.Controls.Add(this.currencyLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "Settings";
+            this.Name = "SettingsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Configuraciones";
             this.ResumeLayout(false);
@@ -113,11 +104,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label currencyLabel;
+        private System.Windows.Forms.TextBox currencyTextBox;
+        private System.Windows.Forms.Label organizationCoverLabel;
+        private System.Windows.Forms.Label organizationLogoLabel;
         private System.Windows.Forms.Button applyButton;
     }
 }

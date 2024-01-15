@@ -16,5 +16,10 @@ namespace WindowsForms
         {
             InitializeComponent();
         }
+
+        private void applyButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
