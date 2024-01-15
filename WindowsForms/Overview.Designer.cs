@@ -81,7 +81,7 @@
             // settingsLabel
             // 
             this.settingsLabel.AutoSize = true;
-            this.settingsLabel.Location = new System.Drawing.Point(1103, 27);
+            this.settingsLabel.Location = new System.Drawing.Point(1113, 20);
             this.settingsLabel.Name = "settingsLabel";
             this.settingsLabel.Size = new System.Drawing.Size(83, 13);
             this.settingsLabel.TabIndex = 30;
@@ -90,7 +90,7 @@
             // transactionsLabel
             // 
             this.transactionsLabel.AutoSize = true;
-            this.transactionsLabel.Location = new System.Drawing.Point(923, 27);
+            this.transactionsLabel.Location = new System.Drawing.Point(933, 20);
             this.transactionsLabel.Name = "transactionsLabel";
             this.transactionsLabel.Size = new System.Drawing.Size(77, 13);
             this.transactionsLabel.TabIndex = 29;
@@ -99,7 +99,7 @@
             // servicesLabel
             // 
             this.servicesLabel.AutoSize = true;
-            this.servicesLabel.Location = new System.Drawing.Point(816, 27);
+            this.servicesLabel.Location = new System.Drawing.Point(826, 20);
             this.servicesLabel.Name = "servicesLabel";
             this.servicesLabel.Size = new System.Drawing.Size(50, 13);
             this.servicesLabel.TabIndex = 28;
@@ -108,7 +108,7 @@
             // productsLabel
             // 
             this.productsLabel.AutoSize = true;
-            this.productsLabel.Location = new System.Drawing.Point(685, 27);
+            this.productsLabel.Location = new System.Drawing.Point(695, 20);
             this.productsLabel.Name = "productsLabel";
             this.productsLabel.Size = new System.Drawing.Size(55, 13);
             this.productsLabel.TabIndex = 27;
@@ -117,7 +117,7 @@
             // warehousesLabel
             // 
             this.warehousesLabel.AutoSize = true;
-            this.warehousesLabel.Location = new System.Drawing.Point(557, 27);
+            this.warehousesLabel.Location = new System.Drawing.Point(567, 20);
             this.warehousesLabel.Name = "warehousesLabel";
             this.warehousesLabel.Size = new System.Drawing.Size(54, 13);
             this.warehousesLabel.TabIndex = 26;
@@ -126,7 +126,7 @@
             // employeesLabel
             // 
             this.employeesLabel.AutoSize = true;
-            this.employeesLabel.Location = new System.Drawing.Point(427, 27);
+            this.employeesLabel.Location = new System.Drawing.Point(437, 20);
             this.employeesLabel.Name = "employeesLabel";
             this.employeesLabel.Size = new System.Drawing.Size(59, 13);
             this.employeesLabel.TabIndex = 25;
@@ -135,7 +135,7 @@
             // suppliersLabel
             // 
             this.suppliersLabel.AutoSize = true;
-            this.suppliersLabel.Location = new System.Drawing.Point(294, 27);
+            this.suppliersLabel.Location = new System.Drawing.Point(304, 20);
             this.suppliersLabel.Name = "suppliersLabel";
             this.suppliersLabel.Size = new System.Drawing.Size(67, 13);
             this.suppliersLabel.TabIndex = 24;
@@ -144,7 +144,7 @@
             // customersLabel
             // 
             this.customersLabel.AutoSize = true;
-            this.customersLabel.Location = new System.Drawing.Point(180, 27);
+            this.customersLabel.Location = new System.Drawing.Point(190, 20);
             this.customersLabel.Name = "customersLabel";
             this.customersLabel.Size = new System.Drawing.Size(44, 13);
             this.customersLabel.TabIndex = 23;
@@ -153,7 +153,7 @@
             // quoteLabel
             // 
             this.quoteLabel.AutoSize = true;
-            this.quoteLabel.Location = new System.Drawing.Point(56, 27);
+            this.quoteLabel.Location = new System.Drawing.Point(56, 20);
             this.quoteLabel.Name = "quoteLabel";
             this.quoteLabel.Size = new System.Drawing.Size(39, 13);
             this.quoteLabel.TabIndex = 22;
@@ -162,7 +162,8 @@
             // employeesButton
             // 
             this.employeesButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.employeesButton.Location = new System.Drawing.Point(404, 60);
+            this.employeesButton.Image = ((System.Drawing.Image)(resources.GetObject("employeesButton.Image")));
+            this.employeesButton.Location = new System.Drawing.Point(404, 40);
             this.employeesButton.Margin = new System.Windows.Forms.Padding(4);
             this.employeesButton.Name = "employeesButton";
             this.employeesButton.Size = new System.Drawing.Size(120, 120);
@@ -172,7 +173,8 @@
             // customersButton
             // 
             this.customersButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customersButton.Location = new System.Drawing.Point(148, 60);
+            this.customersButton.Image = ((System.Drawing.Image)(resources.GetObject("customersButton.Image")));
+            this.customersButton.Location = new System.Drawing.Point(148, 40);
             this.customersButton.Margin = new System.Windows.Forms.Padding(4);
             this.customersButton.Name = "customersButton";
             this.customersButton.Size = new System.Drawing.Size(120, 120);
@@ -182,7 +184,8 @@
             // suppliersButton
             // 
             this.suppliersButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.suppliersButton.Location = new System.Drawing.Point(276, 60);
+            this.suppliersButton.Image = ((System.Drawing.Image)(resources.GetObject("suppliersButton.Image")));
+            this.suppliersButton.Location = new System.Drawing.Point(276, 40);
             this.suppliersButton.Margin = new System.Windows.Forms.Padding(4);
             this.suppliersButton.Name = "suppliersButton";
             this.suppliersButton.Size = new System.Drawing.Size(120, 120);
@@ -192,7 +195,8 @@
             // transactionsButton
             // 
             this.transactionsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.transactionsButton.Location = new System.Drawing.Point(916, 60);
+            this.transactionsButton.Image = ((System.Drawing.Image)(resources.GetObject("transactionsButton.Image")));
+            this.transactionsButton.Location = new System.Drawing.Point(916, 40);
             this.transactionsButton.Margin = new System.Windows.Forms.Padding(4);
             this.transactionsButton.Name = "transactionsButton";
             this.transactionsButton.Size = new System.Drawing.Size(120, 120);
@@ -202,7 +206,8 @@
             // settingsButton
             // 
             this.settingsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.settingsButton.Location = new System.Drawing.Point(1091, 60);
+            this.settingsButton.Image = ((System.Drawing.Image)(resources.GetObject("settingsButton.Image")));
+            this.settingsButton.Location = new System.Drawing.Point(1091, 40);
             this.settingsButton.Margin = new System.Windows.Forms.Padding(4);
             this.settingsButton.Name = "settingsButton";
             this.settingsButton.Size = new System.Drawing.Size(120, 120);
@@ -212,7 +217,7 @@
             // quoteButton
             // 
             this.quoteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.quoteButton.Location = new System.Drawing.Point(20, 60);
+            this.quoteButton.Location = new System.Drawing.Point(20, 40);
             this.quoteButton.Margin = new System.Windows.Forms.Padding(4);
             this.quoteButton.Name = "quoteButton";
             this.quoteButton.Size = new System.Drawing.Size(120, 120);
@@ -222,7 +227,8 @@
             // servicesButton
             // 
             this.servicesButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.servicesButton.Location = new System.Drawing.Point(788, 60);
+            this.servicesButton.Image = ((System.Drawing.Image)(resources.GetObject("servicesButton.Image")));
+            this.servicesButton.Location = new System.Drawing.Point(788, 40);
             this.servicesButton.Margin = new System.Windows.Forms.Padding(4);
             this.servicesButton.Name = "servicesButton";
             this.servicesButton.Size = new System.Drawing.Size(120, 120);
@@ -232,7 +238,8 @@
             // warehousesButton
             // 
             this.warehousesButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.warehousesButton.Location = new System.Drawing.Point(532, 60);
+            this.warehousesButton.Image = ((System.Drawing.Image)(resources.GetObject("warehousesButton.Image")));
+            this.warehousesButton.Location = new System.Drawing.Point(532, 40);
             this.warehousesButton.Margin = new System.Windows.Forms.Padding(4);
             this.warehousesButton.Name = "warehousesButton";
             this.warehousesButton.Size = new System.Drawing.Size(120, 120);
@@ -242,7 +249,8 @@
             // productsButton
             // 
             this.productsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productsButton.Location = new System.Drawing.Point(660, 60);
+            this.productsButton.Image = ((System.Drawing.Image)(resources.GetObject("productsButton.Image")));
+            this.productsButton.Location = new System.Drawing.Point(660, 40);
             this.productsButton.Margin = new System.Windows.Forms.Padding(4);
             this.productsButton.Name = "productsButton";
             this.productsButton.Size = new System.Drawing.Size(120, 120);
@@ -287,9 +295,10 @@
             // 
             // userPictureBox
             // 
-            this.userPictureBox.Location = new System.Drawing.Point(20, 20);
+            this.userPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("userPictureBox.Image")));
+            this.userPictureBox.Location = new System.Drawing.Point(15, 15);
             this.userPictureBox.Name = "userPictureBox";
-            this.userPictureBox.Size = new System.Drawing.Size(150, 150);
+            this.userPictureBox.Size = new System.Drawing.Size(160, 160);
             this.userPictureBox.TabIndex = 20;
             this.userPictureBox.TabStop = false;
             // 
