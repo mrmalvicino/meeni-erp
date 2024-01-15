@@ -16,5 +16,24 @@ namespace WindowsForms
         {
             InitializeComponent();
         }
+
+        private void toolStripSplitButton1_ButtonClick(object sender, EventArgs e)
+        {
+            Overview overviewWin = new Overview();
+            overviewWin.MdiParent = this;
+            overviewWin.Show();
+        }
+
+        private void overviewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (var item in Application.OpenForms)
+            {
+                if (item.GetType() == typeof(Overview)) return;
+            }
+
+            Overview overviewWin = new Overview();
+            overviewWin.MdiParent = this;
+            overviewWin.Show();
+        }
     }
 }
