@@ -1,6 +1,6 @@
 ﻿namespace WindowsForms
 {
-    partial class Overview
+    partial class OverviewForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Overview));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OverviewForm));
             this.settingsLabel = new System.Windows.Forms.Label();
             this.transactionsLabel = new System.Windows.Forms.Label();
             this.servicesLabel = new System.Windows.Forms.Label();
@@ -169,6 +169,7 @@
             this.employeesButton.Size = new System.Drawing.Size(120, 120);
             this.employeesButton.TabIndex = 17;
             this.employeesButton.UseVisualStyleBackColor = true;
+            this.employeesButton.Click += new System.EventHandler(this.employeesButton_Click);
             // 
             // customersButton
             // 
@@ -180,6 +181,7 @@
             this.customersButton.Size = new System.Drawing.Size(120, 120);
             this.customersButton.TabIndex = 7;
             this.customersButton.UseVisualStyleBackColor = true;
+            this.customersButton.Click += new System.EventHandler(this.customersButton_Click);
             // 
             // suppliersButton
             // 
@@ -191,6 +193,7 @@
             this.suppliersButton.Size = new System.Drawing.Size(120, 120);
             this.suppliersButton.TabIndex = 8;
             this.suppliersButton.UseVisualStyleBackColor = true;
+            this.suppliersButton.Click += new System.EventHandler(this.suppliersButton_Click);
             // 
             // transactionsButton
             // 
@@ -202,6 +205,7 @@
             this.transactionsButton.Size = new System.Drawing.Size(120, 120);
             this.transactionsButton.TabIndex = 16;
             this.transactionsButton.UseVisualStyleBackColor = true;
+            this.transactionsButton.Click += new System.EventHandler(this.transactionsButton_Click);
             // 
             // settingsButton
             // 
@@ -213,6 +217,7 @@
             this.settingsButton.Size = new System.Drawing.Size(120, 120);
             this.settingsButton.TabIndex = 2;
             this.settingsButton.UseVisualStyleBackColor = true;
+            this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click);
             // 
             // quoteButton
             // 
@@ -224,6 +229,7 @@
             this.quoteButton.Size = new System.Drawing.Size(120, 120);
             this.quoteButton.TabIndex = 9;
             this.quoteButton.UseVisualStyleBackColor = true;
+            this.quoteButton.Click += new System.EventHandler(this.quoteButton_Click);
             // 
             // servicesButton
             // 
@@ -235,6 +241,7 @@
             this.servicesButton.Size = new System.Drawing.Size(120, 120);
             this.servicesButton.TabIndex = 15;
             this.servicesButton.UseVisualStyleBackColor = true;
+            this.servicesButton.Click += new System.EventHandler(this.servicesButton_Click);
             // 
             // warehousesButton
             // 
@@ -246,6 +253,7 @@
             this.warehousesButton.Size = new System.Drawing.Size(120, 120);
             this.warehousesButton.TabIndex = 10;
             this.warehousesButton.UseVisualStyleBackColor = true;
+            this.warehousesButton.Click += new System.EventHandler(this.warehousesButton_Click);
             // 
             // productsButton
             // 
@@ -257,6 +265,7 @@
             this.productsButton.Size = new System.Drawing.Size(120, 120);
             this.productsButton.TabIndex = 11;
             this.productsButton.UseVisualStyleBackColor = true;
+            this.productsButton.Click += new System.EventHandler(this.productsButton_Click);
             // 
             // userRoleLabel
             // 
@@ -313,6 +322,7 @@
             this.newSessionButton.TabIndex = 19;
             this.newSessionButton.Text = "Nueva Sesión";
             this.newSessionButton.UseVisualStyleBackColor = true;
+            this.newSessionButton.Click += new System.EventHandler(this.newSessionButton_Click);
             // 
             // currencyLabel
             // 
@@ -511,7 +521,7 @@
             this.modulesPanel.Size = new System.Drawing.Size(1230, 200);
             this.modulesPanel.TabIndex = 26;
             // 
-            // Overview
+            // OverviewForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -525,7 +535,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Overview";
+            this.Name = "OverviewForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             ((System.ComponentModel.ISupportInitialize)(this.userPictureBox)).EndInit();

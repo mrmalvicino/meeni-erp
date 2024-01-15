@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace WindowsForms
 {
-    public partial class Overview : Form
+    public partial class QuoteForm : Form
     {
-        public Overview()
+        public QuoteForm()
         {
             InitializeComponent();
         }
