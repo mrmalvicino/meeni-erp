@@ -217,6 +217,7 @@
             // quoteButton
             // 
             this.quoteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.quoteButton.Image = ((System.Drawing.Image)(resources.GetObject("quoteButton.Image")));
             this.quoteButton.Location = new System.Drawing.Point(20, 40);
             this.quoteButton.Margin = new System.Windows.Forms.Padding(4);
             this.quoteButton.Name = "quoteButton";
