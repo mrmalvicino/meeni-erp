@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace WindowsForms
 {
-    public partial class QuoteForm : Form
+    public partial class CustomersForm : Form
     {
-        public QuoteForm()
+        public CustomersForm()
         {
             InitializeComponent();
-        }
-
-        private void addButton_Click(object sender, EventArgs e)
-        {
-            listBox1.Items.Add(textBox1.Text);
         }
     }
 }

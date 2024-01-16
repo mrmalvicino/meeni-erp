@@ -12,26 +12,28 @@ namespace WindowsForms
 {
     public partial class OverviewForm : Form
     {
-        public OverviewForm()
+        // ATTRIBUTES
+
+        private MainForm _mainForm;
+
+        // CONSTRUCT
+
+        public OverviewForm(MainForm mainForm)
         {
             InitializeComponent();
+            _mainForm = mainForm;
         }
+
+        // AUTO GENERATED
 
         private void quoteButton_Click(object sender, EventArgs e)
         {
-            foreach (var item in Application.OpenForms)
-            {
-                if (item.GetType() == typeof(QuoteForm)) return;
-            }
-
-            QuoteForm quoteForm = new QuoteForm();
-            quoteForm.MdiParent = this.MdiParent;
-            quoteForm.Show();
+            _mainForm.loadQuoteForm();
         }
 
         private void customersButton_Click(object sender, EventArgs e)
         {
-
+            _mainForm.loadCustomersForm();
         }
 
         private void suppliersButton_Click(object sender, EventArgs e)
@@ -66,13 +68,12 @@ namespace WindowsForms
 
         private void settingsButton_Click(object sender, EventArgs e)
         {
-            SettingsForm settingsWin = new SettingsForm();
-            settingsWin.ShowDialog();
+            _mainForm.loadSettingsForm();
         }
 
         private void newSessionButton_Click(object sender, EventArgs e)
         {
-
+            _mainForm.loadNewSessionForm();
         }
     }
 }
