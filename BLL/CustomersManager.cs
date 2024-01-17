@@ -19,7 +19,7 @@ namespace BLL
 
             try
             {
-                connection.ConnectionString = "server=.\\SQLEXPRESS; database=meeni_erp_db; integrated security=true";
+                connection.ConnectionString = "server=BANGHO\\SQLEXPRESS; database=meeni_erp_db; integrated security=true";
                 command.CommandType = System.Data.CommandType.Text;
                 command.CommandText = "SELECT Id, RegName FROM customers";
                 command.Connection = connection;
