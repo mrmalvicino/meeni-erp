@@ -46,6 +46,7 @@
             this.logginButton.TabIndex = 0;
             this.logginButton.Text = "Iniciar sesión";
             this.logginButton.UseVisualStyleBackColor = true;
+            this.logginButton.Click += new System.EventHandler(this.logginButton_Click);
             // 
             // userLabel
             // 

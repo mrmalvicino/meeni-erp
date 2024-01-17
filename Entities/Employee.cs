@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public abstract class BusinessPartner : Individual
+    public class Employee : Individual
     {
-        public string PaymentMethod { get; set; }
-        public char InvoiceCategory { get; set; }
+        public int RoleId { get; set; }
     }
 }
