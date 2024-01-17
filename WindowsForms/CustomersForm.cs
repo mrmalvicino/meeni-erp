@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,12 @@ namespace WindowsForms
         public CustomersForm()
         {
             InitializeComponent();
+        }
+
+        private void CustomersForm_Load(object sender, EventArgs e)
+        {
+            CustomersManager customersManager = new CustomersManager();
+            dataGridView.DataSource = customersManager.list();
         }
     }
 }
