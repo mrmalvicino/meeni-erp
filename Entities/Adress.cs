@@ -16,7 +16,7 @@ namespace Entities
         public int StreetNumber { get; set; }
         public string Flat {  get; set; }
 
-        public string toShortString()
+        public override string ToString()
         {
             return $"{Street} {StreetNumber}, {City}";
         }

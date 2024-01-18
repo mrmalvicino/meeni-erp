@@ -44,6 +44,7 @@
     <Compile Include="Adress.cs" />
     <Compile Include="BusinessPartner.cs" />
     <Compile Include="Employee.cs" />
+    <Compile Include="LegalId.cs" />
     <Compile Include="Phone.cs" />
     <Compile Include="Supplier.cs" />
     <Compile Include="Customer.cs" />

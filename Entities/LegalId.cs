@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public sealed class Phone
+    public sealed class LegalId
     {
-        public int Country { get; set; }
-        public int Area { get; set; }
-        public int Number {  get; set; }
+        public string XX { get; set; }
+        public int DNI { get; set; }
+        public string Y { get; set; }
 
         public override string ToString()
         {
-            return $"+{Country} ({Area}) {Number}";
+            return $"{XX}-{DNI}-{Y}";
         }
     }
 }

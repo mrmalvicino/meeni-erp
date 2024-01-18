@@ -15,10 +15,10 @@ namespace Entities
         public string LastName { get; set; }
         public string BusinessName { get; set; }
         public string BusinessDescription { get; set; }
-        public long LegalId { get; set; }
+        public string ImageUrl { get; set; }
         public string Email { get; set; }
         public Phone Phone { get; set; }
         public Adress Adress { get; set; }
-        public string ImageUrl { get; set; }
+        public LegalId LegalId { get; set; }
     }
 }

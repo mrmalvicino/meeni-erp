@@ -16,7 +16,7 @@ namespace WindowsForms
     {
         // ATTRIBUTES
 
-        private List<Customer> customersList;
+        private List<Customer> customersTable;
 
         // CONSTRUCT
 
@@ -26,6 +26,20 @@ namespace WindowsForms
         }
 
         //METHODS
+
+        private void applyStyle()
+        {
+            this.BackColor = Palette.darkBackground();
+            dataPanel.BackColor = Palette.lightBackground();
+            actionsPanel.BackColor = Palette.lightBackground();
+            dataGridView.BackgroundColor = Palette.lightBackground();
+            idTextBox.ForeColor = Palette.font();
+            nameTextBox.ForeColor = Palette.font();
+            descriptionTextBox.ForeColor = Palette.font();
+            phoneTextBox.ForeColor = Palette.font();
+            emailTextBox.ForeColor = Palette.font();
+            adressTextBox.ForeColor = Palette.font();
+        }
 
         private void loadImage(string imageUrl)
         {
@@ -43,20 +57,11 @@ namespace WindowsForms
 
         private void CustomersForm_Load(object sender, EventArgs e)
         {
-            this.BackColor = Palette.darkBackground();
-            dataPanel.BackColor = Palette.lightBackground();
-            actionsPanel.BackColor = Palette.lightBackground();
-            dataGridView.BackgroundColor = Palette.lightBackground();
-            idTextBox.ForeColor = Palette.font();
-            nameTextBox.ForeColor = Palette.font();
-            descriptionTextBox.ForeColor = Palette.font();
-            phoneTextBox.ForeColor = Palette.font();
-            emailTextBox.ForeColor = Palette.font();
-            adressTextBox.ForeColor = Palette.font();
+            applyStyle();
 
             CustomersManager customersManager = new CustomersManager();
-            customersList = customersManager.list();
-            dataGridView.DataSource = customersList;
+            customersTable = customersManager.list();
+            dataGridView.DataSource = customersTable;
         }
 
         private void dataGridView_SelectionChanged(object sender, EventArgs e)
