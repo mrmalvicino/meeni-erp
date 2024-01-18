@@ -57,6 +57,7 @@
             this.pictureBox.Location = new System.Drawing.Point(10, 10);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(160, 160);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox.TabIndex = 22;
             this.pictureBox.TabStop = false;
             // 
@@ -70,6 +71,7 @@
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.Size = new System.Drawing.Size(1230, 405);
             this.dataGridView.TabIndex = 23;
+            this.dataGridView.SelectionChanged += new System.EventHandler(this.dataGridView_SelectionChanged);
             // 
             // nameTextBox
             // 

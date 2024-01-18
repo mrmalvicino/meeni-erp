@@ -449,6 +449,7 @@
             this.logoPictureBox.Location = new System.Drawing.Point(480, 100);
             this.logoPictureBox.Name = "logoPictureBox";
             this.logoPictureBox.Size = new System.Drawing.Size(300, 300);
+            this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.logoPictureBox.TabIndex = 22;
             this.logoPictureBox.TabStop = false;
             // 
@@ -459,6 +460,7 @@
             this.coverPictureBox.Location = new System.Drawing.Point(0, 0);
             this.coverPictureBox.Name = "coverPictureBox";
             this.coverPictureBox.Size = new System.Drawing.Size(1260, 200);
+            this.coverPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.coverPictureBox.TabIndex = 21;
             this.coverPictureBox.TabStop = false;
             // 

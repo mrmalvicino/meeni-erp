@@ -19,5 +19,6 @@ namespace Entities
         public string Email { get; set; }
         public Phone Phone { get; set; }
         public Adress Adress { get; set; }
+        public string imageUrl { get; set; }
     }
 }
