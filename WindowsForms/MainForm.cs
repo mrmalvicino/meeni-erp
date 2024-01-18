@@ -105,9 +105,9 @@ namespace WindowsForms
 
         private void setFileToOverview()
         {
-            newToolStripMenuItem.Text = "Nuevo...";
-            openToolStripMenuItem.Text = "Abrir...";
-            saveToolStripMenuItem.Text = "Guardar...";
+            newToolStripMenuItem.Text = "Nuevo";
+            openToolStripMenuItem.Text = "Abrir";
+            saveToolStripMenuItem.Text = "Guardar";
             newToolStripMenuItem.Enabled = false;
             openToolStripMenuItem.Enabled = false;
             saveToolStripMenuItem.Enabled = false;
@@ -126,7 +126,7 @@ namespace WindowsForms
         private void setFileToCustomers()
         {
             newToolStripMenuItem.Text = "Nuevo cliente";
-            openToolStripMenuItem.Text = "Abrir...";
+            openToolStripMenuItem.Text = "Abrir";
             saveToolStripMenuItem.Text = "Guardar cliente";
             newToolStripMenuItem.Enabled = true;
             openToolStripMenuItem.Enabled = false;

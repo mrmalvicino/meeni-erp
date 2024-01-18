@@ -185,6 +185,7 @@
             // 
             // suppliersButton
             // 
+            this.suppliersButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.suppliersButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.suppliersButton.Image = ((System.Drawing.Image)(resources.GetObject("suppliersButton.Image")));
             this.suppliersButton.Location = new System.Drawing.Point(276, 40);
@@ -463,7 +464,7 @@
             // 
             // userPanel
             // 
-            this.userPanel.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.userPanel.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.userPanel.Controls.Add(this.userRoleLabel);
             this.userPanel.Controls.Add(this.userPictureBox);
             this.userPanel.Controls.Add(this.userNameLabel);
@@ -477,7 +478,7 @@
             // 
             // metricsPanel
             // 
-            this.metricsPanel.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.metricsPanel.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.metricsPanel.Controls.Add(this.currencyLabel);
             this.metricsPanel.Controls.Add(this.quotesLabel);
             this.metricsPanel.Controls.Add(this.periodLabel);
@@ -497,7 +498,7 @@
             // 
             // modulesPanel
             // 
-            this.modulesPanel.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.modulesPanel.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.modulesPanel.Controls.Add(this.settingsLabel);
             this.modulesPanel.Controls.Add(this.quoteLabel);
             this.modulesPanel.Controls.Add(this.transactionsLabel);
@@ -525,7 +526,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(1260, 631);
             this.Controls.Add(this.modulesPanel);
             this.Controls.Add(this.metricsPanel);
@@ -538,6 +539,7 @@
             this.Name = "OverviewForm";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.OverviewForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.userPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.coverPictureBox)).EndInit();

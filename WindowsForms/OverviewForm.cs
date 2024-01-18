@@ -75,5 +75,13 @@ namespace WindowsForms
         {
             _mainForm.loadNewSessionForm();
         }
+
+        private void OverviewForm_Load(object sender, EventArgs e)
+        {
+            this.BackColor = Palette.darkBackground();
+            userPanel.BackColor = Palette.lightBackground();
+            metricsPanel.BackColor = Palette.lightBackground();
+            modulesPanel.BackColor = Palette.lightBackground();
+        }
     }
 }

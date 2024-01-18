@@ -20,8 +20,19 @@ namespace WindowsForms
 
         private void CustomersForm_Load(object sender, EventArgs e)
         {
-            CustomersManager customersManager = new CustomersManager();
-            dataGridView.DataSource = customersManager.list();
+            this.BackColor = Palette.darkBackground();
+            dataPanel.BackColor = Palette.lightBackground();
+            actionsPanel.BackColor = Palette.lightBackground();
+            dataGridView.BackgroundColor = Palette.lightBackground();
+            idTextBox.ForeColor = Palette.font();
+            nameTextBox.ForeColor = Palette.font();
+            descriptionTextBox.ForeColor = Palette.font();
+            phoneTextBox.ForeColor = Palette.font();
+            emailTextBox.ForeColor = Palette.font();
+            adressTextBox.ForeColor = Palette.font();
+
+            //CustomersManager customersManager = new CustomersManager();
+            //dataGridView.DataSource = customersManager.list();
         }
     }
 }
