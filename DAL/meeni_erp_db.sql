@@ -1,36 +1,40 @@
-/*CREATE DATABASE meeni_erp_db
-GO*/
+CREATE DATABASE meeni_erp_db
+GO
 
 USE meeni_erp_db
 GO
 
-/*CREATE TABLE customers(
-RegStatus bit,
+CREATE TABLE customers(
 Id int primary key identity,
-RegName varchar(50),
-RegDescription varchar(50),
-LegalId varchar(50),
-Phone int,
+ActiveStatus bit,
+IsPerson bit,
+FirstName varchar(50),
+LastName varchar(50),
+BusinessName varchar(50),
+BusinessDescription varchar(50),
+LegalId bigint,
+PhoneCountry int,
+PhoneArea int,
+PhoneNumber int,
 Email varchar(50),
 Country varchar(50),
 Province varchar(50),
 City varchar(50),
+ZipCode varchar(10),
 Street varchar(50),
 StreetNumber int,
 Flat varchar(50),
-ZipCode varchar(50),
 PaymentMethod varchar(50),
 InvoiceCategory char,
 SalesAmount int
 )
 
 INSERT INTO customers
-(RegStatus, RegName, RegDescription, LegalId, Phone, Email, Country, Province, City, Street, StreetNumber, Flat, ZipCode, PaymentMethod, InvoiceCategory, SalesAmount) VALUES
-('True', 'Johnson Construction', 'Residential Contractor', '20374567769', '1157863846', 'info@johnsonconstruction.com', 'Argentina', 'Buenos Aires', 'CABA', '9 de Julio', '1290', 'NULL', 'C1000', 'Crédito', 'A', '15'),
-('True', 'Smith Commercial', 'Comercial Developer', '20203788463', '1157873654', 'contact@smithcommercial.com', 'Argentina', 'Buenos Aires', 'CABA', 'Córdoba', '2345', '9B', 'C1000', 'Débito', 'B', '5'),
-('True', 'Greenfield Builders', 'Eco Friendly Construction', '30347684959', '1158994786', 'info@greenfield.com', 'Argentina', 'Buenos Aires', 'San Fernando', 'Perón', '345', 'NULL', 'B1646', 'Efectivo', 'C', '26'),
-('True', 'Urban Renovations', 'Urban Renewal Experts', '23293348579', '1158897263', 'info@urbanrenovations.com', 'Argentina', 'Buenos Aires', 'Tigre', 'Cazón', '768', 'NULL', 'B1648', 'Cheque', 'A', '2');*/
+(ActiveStatus, IsPerson, FirstName, LastName, BusinessName, BusinessDescription, LegalId, PhoneCountry, PhoneArea, PhoneNumber, Email, Country, Province, City, ZipCode, Street, StreetNumber, Flat, PaymentMethod, InvoiceCategory, SalesAmount) VALUES
+('True', 'False', NULL, NULL, 'Johnson Construction', 'Residential Contractor', '20374567769', '54', '911', '1527863846', 'info@johnsonconstruction.com', 'Argentina', 'Buenos Aires', 'CABA', 'C1000', '9 de Julio', '1290', NULL, 'Crédito', 'A', '5'),
+('False', 'False', NULL, NULL, 'Smith Commercial', 'Comercial Developer', '20203788463', '54', '911', '1547873654', 'contact@smithcommercial.com', 'Argentina', 'Buenos Aires', 'CABA', 'C1000', 'Córdoba', '2345', '9B', 'Débito', 'B', '5'),
+('False', 'False', NULL, NULL, 'Greenfield Builders', 'Eco Friendly Construction', '30347684959', '54', '911', '1568994786', 'info@greenfield.com', 'Argentina', 'Buenos Aires', 'San Fernando', 'B1646', 'Perón', '345', NULL, 'Efectivo', 'C', '6'),
+('True', 'False', NULL, NULL, 'Urban Renovations', 'Urban Renewal Experts', '23293348579', '54', '911', '1558897263', 'info@urbanrenovations.com', 'Argentina', 'Buenos Aires', 'Tigre', 'B1648', 'Cazón', '768', NULL, 'Cheque', 'A', '2'),
+('True', 'True', 'Carlos', 'Berlinguieri', NULL, NULL, '38274478', '54', '911', '1557736789', 'berlinguieric@gmail.com', 'Argentina', 'Buenos Aires', 'Pacheco', 'B1617', 'Santa Fé', '1290', NULL, 'Efectivo', 'C', '1');
 
 SELECT * FROM customers
-
---SELECT Id, RegName FROM customers
