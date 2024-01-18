@@ -14,6 +14,10 @@ namespace WindowsForms
 {
     public partial class CustomersForm : Form
     {
+        // ATTRIBUTES
+
+        private List<Customer> customersList;
+
         // CONSTRUCT
 
         public CustomersForm()
@@ -51,13 +55,14 @@ namespace WindowsForms
             adressTextBox.ForeColor = Palette.font();
 
             CustomersManager customersManager = new CustomersManager();
-            dataGridView.DataSource = customersManager.list();
+            customersList = customersManager.list();
+            dataGridView.DataSource = customersList;
         }
 
         private void dataGridView_SelectionChanged(object sender, EventArgs e)
         {
             Customer customer = (Customer)dataGridView.CurrentRow.DataBoundItem;
-            loadImage(customer.imageUrl);
+            loadImage(customer.ImageUrl);
         }
     }
 }
