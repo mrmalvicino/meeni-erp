@@ -35,7 +35,7 @@ namespace WindowsForms
             }
             catch (Exception)
             {
-                pictureBox.Load("https://github.com/mrmalvicino/meeni-erp/blob/main/images/profile.png");
+                pictureBox.Load(".\\..\\..\\..\\images\\profile.png");
             }
         }
 
