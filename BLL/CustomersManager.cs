@@ -21,7 +21,7 @@ namespace BLL
             {
                 connection.ConnectionString = "server=BANGHO\\SQLEXPRESS; database=meeni_erp_db; integrated security=true";
                 command.CommandType = System.Data.CommandType.Text;
-                command.CommandText = "SELECT Id, RegName FROM customers";
+                command.CommandText = "SELECT Id, BusinessName FROM customers";
                 command.Connection = connection;
                 connection.Open();
                 reader = command.ExecuteReader();
@@ -30,7 +30,7 @@ namespace BLL
                 {
                     Customer customer = new Customer();
                     customer.Id = (int)reader["Id"];
-                    customer.Name = (string)reader["RegName"];
+                    customer.BusinessName = (string)reader["BusinessName"];
                     list.Add(customer);
                 }
 

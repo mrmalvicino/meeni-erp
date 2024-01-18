@@ -8,13 +8,16 @@ namespace Entities
 {
     public abstract class Individual
     {
-        public bool Status { get; set; }
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public int LegalId { get; set; }
-        public int Phone {  get; set; }
+        public bool ActiveStatus { get; set; }
+        public bool IsPerson { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string BusinessName { get; set; }
+        public string BusinessDescription { get; set; }
+        public long LegalId { get; set; }
         public string Email { get; set; }
+        public Phone Phone { get; set; }
         public Adress Adress { get; set; }
     }
 }
