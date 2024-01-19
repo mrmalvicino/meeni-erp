@@ -81,6 +81,7 @@
             this.nameTextBox.ForeColor = System.Drawing.SystemColors.WindowText;
             this.nameTextBox.Location = new System.Drawing.Point(197, 39);
             this.nameTextBox.Name = "nameTextBox";
+            this.nameTextBox.ReadOnly = true;
             this.nameTextBox.Size = new System.Drawing.Size(300, 23);
             this.nameTextBox.TabIndex = 43;
             this.nameTextBox.Text = "Nombre";
@@ -92,6 +93,7 @@
             this.descriptionTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.descriptionTextBox.Location = new System.Drawing.Point(197, 68);
             this.descriptionTextBox.Name = "descriptionTextBox";
+            this.descriptionTextBox.ReadOnly = true;
             this.descriptionTextBox.Size = new System.Drawing.Size(300, 19);
             this.descriptionTextBox.TabIndex = 55;
             this.descriptionTextBox.Text = "Descripción";
@@ -101,8 +103,9 @@
             this.phoneTextBox.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.phoneTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.phoneTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.phoneTextBox.Location = new System.Drawing.Point(197, 93);
+            this.phoneTextBox.Location = new System.Drawing.Point(197, 118);
             this.phoneTextBox.Name = "phoneTextBox";
+            this.phoneTextBox.ReadOnly = true;
             this.phoneTextBox.Size = new System.Drawing.Size(300, 19);
             this.phoneTextBox.TabIndex = 57;
             this.phoneTextBox.Text = "1512345678";
@@ -112,8 +115,9 @@
             this.emailTextBox.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.emailTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.emailTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emailTextBox.Location = new System.Drawing.Point(197, 118);
+            this.emailTextBox.Location = new System.Drawing.Point(197, 93);
             this.emailTextBox.Name = "emailTextBox";
+            this.emailTextBox.ReadOnly = true;
             this.emailTextBox.Size = new System.Drawing.Size(300, 19);
             this.emailTextBox.TabIndex = 58;
             this.emailTextBox.Text = "mail@gmail.com";
@@ -167,6 +171,7 @@
             this.idTextBox.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.idTextBox.Location = new System.Drawing.Point(197, 10);
             this.idTextBox.Name = "idTextBox";
+            this.idTextBox.ReadOnly = true;
             this.idTextBox.Size = new System.Drawing.Size(300, 23);
             this.idTextBox.TabIndex = 64;
             this.idTextBox.Text = "1";

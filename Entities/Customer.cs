@@ -14,5 +14,13 @@ namespace Entities
         }
 
         public int SalesAmount { get; set; }
+
+        public override string ToString()
+        {
+            if (this.IsPerson)
+                return $"{this.LastName}, {this.FirstName}";
+            else
+                return this.BusinessName;
+        }
     }
 }

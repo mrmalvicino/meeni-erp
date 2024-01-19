@@ -53,21 +53,32 @@ namespace WindowsForms
             }
         }
 
+        private void loadProfile(int id, string name, string description, string phone, string email, string adress)
+        {
+            idTextBox.Text = id.ToString();
+            nameTextBox.Text = name;
+            descriptionTextBox.Text = description;
+            phoneTextBox.Text = phone;
+            emailTextBox.Text = email;
+            adressTextBox.Text = adress;
+        }
+
         //AUTO GENERATED
 
         private void CustomersForm_Load(object sender, EventArgs e)
         {
             applyStyle();
-
             CustomersManager customersManager = new CustomersManager();
             customersTable = customersManager.list();
             dataGridView.DataSource = customersTable;
+            dataGridView.Columns["ImageUrl"].Visible = false;
         }
 
         private void dataGridView_SelectionChanged(object sender, EventArgs e)
         {
             Customer customer = (Customer)dataGridView.CurrentRow.DataBoundItem;
             loadImage(customer.ImageUrl);
+            loadProfile(customer.Id, customer.ToString(), customer.BusinessDescription, customer.Phone.ToString(), customer.Email.ToString(), customer.Adress.ToString());
         }
     }
 }
