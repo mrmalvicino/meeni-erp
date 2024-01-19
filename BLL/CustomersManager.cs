@@ -21,7 +21,7 @@ namespace BLL
             {
                 connection.ConnectionString = "server=BANGHO\\SQLEXPRESS; database=meeni_erp_db; integrated security=true";
                 command.CommandType = System.Data.CommandType.Text;
-                command.CommandText = "SELECT Id, ActiveStatus, IsPerson, FirstName, LastName, BusinessName, BusinessDescription, ImageUrl, Email, PhoneCountry, PhoneArea, PhoneNumber, AdressCountry, AdressProvince, AdressCity, AdressZipCode, AdressStreet, AdressStreetNumber, AdressFlat, LegalIdXX, LegalIdDNI, LegalIdY FROM customers";
+                command.CommandText = "SELECT Id, ActiveStatus, IsPerson, FirstName, LastName, BusinessName, BusinessDescription, ImageUrl, Email, PhoneCountry, PhoneArea, PhoneNumber, AdressCountry, AdressProvince, AdressCity, AdressZipCode, AdressStreet, AdressStreetNumber, AdressFlat, LegalIdXX, LegalIdDNI, LegalIdY, PaymentMethod, InvoiceCategory, SalesAmount FROM customers";
                 command.Connection = connection;
                 connection.Open();
                 reader = command.ExecuteReader();
@@ -57,7 +57,7 @@ namespace BLL
                     customer.LegalId.Y = (string)reader["LegalIdY"];
 
                     customer.PaymentMethod = (string)reader["PaymentMethod"];
-                    customer.InvoiceCategory = (char)reader["InvoiceCategory"];
+                    customer.InvoiceCategory = (string)reader["InvoiceCategory"];
                     customer.SalesAmount = (int)reader["SalesAmount"];
 
                     list.Add(customer);

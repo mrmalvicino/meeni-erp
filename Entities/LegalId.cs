@@ -8,6 +8,13 @@ namespace Entities
 {
     public sealed class LegalId
     {
+        public LegalId()
+        {
+            XX = "XX";
+            DNI = 0;
+            Y = "Y";
+        }
+
         public string XX { get; set; }
         public int DNI { get; set; }
         public string Y { get; set; }

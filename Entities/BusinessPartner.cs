@@ -8,7 +8,13 @@ namespace Entities
 {
     public abstract class BusinessPartner : Individual
     {
+        public BusinessPartner()
+        {
+            PaymentMethod = "0";
+            InvoiceCategory = "0";
+        }
+
         public string PaymentMethod { get; set; }
-        public char InvoiceCategory { get; set; }
+        public string InvoiceCategory { get; set; }
     }
 }

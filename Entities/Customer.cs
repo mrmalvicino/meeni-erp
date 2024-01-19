@@ -8,6 +8,11 @@ namespace Entities
 {
     public class Customer : BusinessPartner
     {
+        public Customer()
+        {
+            SalesAmount = 0;
+        }
+
         public int SalesAmount { get; set; }
     }
 }

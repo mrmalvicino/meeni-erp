@@ -8,6 +8,17 @@ namespace Entities
 {
     public sealed class Adress
     {
+        public Adress()
+        {
+            Country = "Argentina";
+            Province = "Buenos Aires";
+            City = "";
+            ZipCode = "";
+            Street = "";
+            StreetNumber = 0;
+            Flat = "";
+        }
+
         public string Country { get; set; }
         public string Province { get; set; }
         public string City { get; set; }

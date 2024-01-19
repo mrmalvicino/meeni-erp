@@ -8,6 +8,13 @@ namespace Entities
 {
     public abstract class Individual
     {
+        public Individual()
+        {
+            Phone = new Phone();
+            Adress = new Adress();
+            LegalId = new LegalId();
+        }
+
         public int Id { get; set; }
         public bool ActiveStatus { get; set; }
         public bool IsPerson { get; set; }
