@@ -71,6 +71,7 @@ namespace WindowsForms
             CustomersManager customersManager = new CustomersManager();
             customersTable = customersManager.list();
             dataGridView.DataSource = customersTable;
+            dataGridView.Columns["Id"].Visible = false;
             dataGridView.Columns["ImageUrl"].Visible = false;
         }
 
