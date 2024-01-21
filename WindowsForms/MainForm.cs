@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace WindowsForms
 {
@@ -17,7 +18,6 @@ namespace WindowsForms
         public MainForm()
         {
             InitializeComponent();
-            loadOverviewForm();
         }
 
         // METHODS
@@ -46,7 +46,6 @@ namespace WindowsForms
                     }
 
                     form.BringToFront();
-                    setFileToOverview();
                     return;
                 };
             }
@@ -54,7 +53,6 @@ namespace WindowsForms
             OverviewForm overviewWin = new OverviewForm(this);
             overviewWin.MdiParent = this;
             overviewWin.Show();
-            setFileToOverview();
         }
 
         public void loadQuoteForm()
@@ -69,7 +67,6 @@ namespace WindowsForms
                     }
 
                     form.BringToFront();
-                    setFileToQuote();
                     return;
                 };
             }
@@ -77,7 +74,6 @@ namespace WindowsForms
             QuoteForm quoteForm = new QuoteForm();
             quoteForm.MdiParent = this;
             quoteForm.Show();
-            setFileToQuote();
         }
 
         public void loadCustomersForm()
@@ -92,7 +88,6 @@ namespace WindowsForms
                     }
 
                     form.BringToFront();
-                    setFileToCustomers();
                     return;
                 };
             }
@@ -100,54 +95,34 @@ namespace WindowsForms
             CustomersForm customersForm = new CustomersForm();
             customersForm.MdiParent = this;
             customersForm.Show();
-            setFileToCustomers();
         }
 
-        private void setFileToOverview()
+        public void loadTransactionsForm()
         {
-            newToolStripMenuItem.Text = "Nuevo";
-            openToolStripMenuItem.Text = "Abrir";
-            saveToolStripMenuItem.Text = "Guardar";
-            newToolStripMenuItem.Enabled = false;
-            openToolStripMenuItem.Enabled = false;
-            saveToolStripMenuItem.Enabled = false;
-        }
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.GetType() == typeof(TransactionsForm))
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
 
-        private void setFileToQuote()
-        {
-            newToolStripMenuItem.Text = "Nueva cotización";
-            openToolStripMenuItem.Text = "Abrir cotización";
-            saveToolStripMenuItem.Text = "Guardar cotización";
-            newToolStripMenuItem.Enabled = true;
-            openToolStripMenuItem.Enabled = true;
-            saveToolStripMenuItem.Enabled = true;
-        }
+                    form.BringToFront();
+                    return;
+                };
+            }
 
-        private void setFileToCustomers()
-        {
-            newToolStripMenuItem.Text = "Nuevo cliente";
-            openToolStripMenuItem.Text = "Abrir";
-            saveToolStripMenuItem.Text = "Guardar cliente";
-            newToolStripMenuItem.Enabled = true;
-            openToolStripMenuItem.Enabled = false;
-            saveToolStripMenuItem.Enabled = true;
+            TransactionsForm transactionsForm = new TransactionsForm();
+            transactionsForm.MdiParent = this;
+            transactionsForm.Show();
         }
 
         // EVENTS
 
-        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
-
-        }
-
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
+            loadOverviewForm();
         }
 
         private void newSessionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -202,12 +177,12 @@ namespace WindowsForms
 
         private void transactionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            loadTransactionsForm();
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Process.Start("https://github.com/mrmalvicino/meeni-erp");
         }
     }
 }

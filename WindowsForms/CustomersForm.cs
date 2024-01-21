@@ -44,7 +44,11 @@ namespace WindowsForms
         private void setupDataGridView()
         {
             dataGridView.Columns["Id"].Visible = false;
+            dataGridView.Columns["ActiveStatus"].Visible = false;
             dataGridView.Columns["ImageUrl"].Visible = false;
+            dataGridView.Columns["SalesAmount"].DisplayIndex = dataGridView.ColumnCount - 1;
+            dataGridView.Columns["PaymentMethod"].DisplayIndex = dataGridView.ColumnCount - 2;
+            dataGridView.Columns["InvoiceCategory"].DisplayIndex = dataGridView.ColumnCount - 3;
         }
 
         private void loadImage(string imageUrl)

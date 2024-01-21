@@ -63,7 +63,7 @@ namespace WindowsForms
 
         private void transactionsButton_Click(object sender, EventArgs e)
         {
-
+            _mainForm.loadTransactionsForm();
         }
 
         private void settingsButton_Click(object sender, EventArgs e)
