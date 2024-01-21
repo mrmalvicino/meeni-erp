@@ -12,10 +12,14 @@ namespace WindowsForms
 {
     public partial class QuoteForm : Form
     {
+        // CONSTRUCT
+
         public QuoteForm()
         {
             InitializeComponent();
         }
+
+        // EVENTS
 
         private void addButton_Click(object sender, EventArgs e)
         {

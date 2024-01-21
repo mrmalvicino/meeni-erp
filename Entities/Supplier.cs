@@ -8,6 +8,8 @@ namespace Entities
 {
     public class Supplier : BusinessPartner
     {
+        // PROPERTIES
+
         public bool IsIndispensable { get; set; }
     }
 }

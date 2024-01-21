@@ -8,6 +8,18 @@ namespace Entities
 {
     public sealed class Adress
     {
+        // PROPERTIES
+
+        public string Country { get; set; }
+        public string Province { get; set; }
+        public string City { get; set; }
+        public string ZipCode { get; set; }
+        public string Street { get; set; }
+        public int StreetNumber { get; set; }
+        public string Flat {  get; set; }
+
+        // CONSTRUCT
+
         public Adress()
         {
             Country = "Argentina";
@@ -19,13 +31,7 @@ namespace Entities
             Flat = "";
         }
 
-        public string Country { get; set; }
-        public string Province { get; set; }
-        public string City { get; set; }
-        public string ZipCode { get; set; }
-        public string Street { get; set; }
-        public int StreetNumber { get; set; }
-        public string Flat {  get; set; }
+        // METHODS
 
         public override string ToString()
         {

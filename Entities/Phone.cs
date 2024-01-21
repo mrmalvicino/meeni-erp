@@ -8,6 +8,14 @@ namespace Entities
 {
     public sealed class Phone
     {
+        // PROPERTIES
+
+        public int Country { get; set; }
+        public int Area { get; set; }
+        public int Number {  get; set; }
+
+        // CONSTRUCT
+
         public Phone()
         {
             Country = 54;
@@ -15,9 +23,7 @@ namespace Entities
             Number = 0;
         }
 
-        public int Country { get; set; }
-        public int Area { get; set; }
-        public int Number {  get; set; }
+        // METHODS
 
         public override string ToString()
         {

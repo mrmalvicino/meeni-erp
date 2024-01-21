@@ -10,6 +10,8 @@ namespace BLL
 {
     public class CustomersManager
     {
+        // METHODS
+
         public List<Customer> list()
         {
             List<Customer> list = new List<Customer>();

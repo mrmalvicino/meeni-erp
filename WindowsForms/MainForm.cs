@@ -133,7 +133,7 @@ namespace WindowsForms
             saveToolStripMenuItem.Enabled = true;
         }
 
-        // AUTO GENERATED
+        // EVENTS
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {

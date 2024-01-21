@@ -8,6 +8,14 @@ namespace Entities
 {
     public sealed class LegalId
     {
+        // PROPERTIES
+
+        public string XX { get; set; }
+        public int DNI { get; set; }
+        public string Y { get; set; }
+
+        // CONSTRUCT
+
         public LegalId()
         {
             XX = "XX";
@@ -15,9 +23,7 @@ namespace Entities
             Y = "Y";
         }
 
-        public string XX { get; set; }
-        public int DNI { get; set; }
-        public string Y { get; set; }
+        // METHODS
 
         public override string ToString()
         {

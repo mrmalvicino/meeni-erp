@@ -12,10 +12,14 @@ namespace WindowsForms
 {
     public partial class newSessionForm : Form
     {
+        // CONSTRUCT
+
         public newSessionForm()
         {
             InitializeComponent();
         }
+
+        // EVENTS
 
         private void logginButton_Click(object sender, EventArgs e)
         {

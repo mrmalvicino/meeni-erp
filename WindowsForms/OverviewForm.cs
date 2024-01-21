@@ -24,7 +24,7 @@ namespace WindowsForms
             _mainForm = mainForm;
         }
 
-        // AUTO GENERATED
+        // EVENTS
 
         private void quoteButton_Click(object sender, EventArgs e)
         {

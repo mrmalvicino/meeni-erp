@@ -12,10 +12,14 @@ namespace WindowsForms
 {
     public partial class SettingsForm : Form
     {
+        // CONSTRUCT
+
         public SettingsForm()
         {
             InitializeComponent();
         }
+
+        // EVENTS
 
         private void applyButton_Click(object sender, EventArgs e)
         {

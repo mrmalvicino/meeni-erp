@@ -9,6 +9,8 @@ namespace WindowsForms
 {
     public static class Palette
     {
+        // METHODS
+
         public static Color darkBackground()
         {
             return Color.FromArgb(30, 100, 140);

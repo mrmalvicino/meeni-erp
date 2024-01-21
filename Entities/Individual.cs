@@ -8,12 +8,7 @@ namespace Entities
 {
     public abstract class Individual
     {
-        public Individual()
-        {
-            Phone = new Phone();
-            Adress = new Adress();
-            LegalId = new LegalId();
-        }
+        // PROPERTIES
 
         public int Id { get; set; }
         public bool ActiveStatus { get; set; }
@@ -27,5 +22,14 @@ namespace Entities
         public Phone Phone { get; set; }
         public Adress Adress { get; set; }
         public LegalId LegalId { get; set; }
+
+        // CONSTRUCT
+
+        public Individual()
+        {
+            Phone = new Phone();
+            Adress = new Adress();
+            LegalId = new LegalId();
+        }
     }
 }

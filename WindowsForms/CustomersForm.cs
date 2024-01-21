@@ -1,6 +1,4 @@
-﻿using Entities;
-using BLL;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Entities;
+using BLL;
 
 namespace WindowsForms
 {
@@ -25,7 +25,7 @@ namespace WindowsForms
             InitializeComponent();
         }
 
-        //METHODS
+        // METHODS
 
         private void applyStyle()
         {
@@ -39,6 +39,12 @@ namespace WindowsForms
             phoneTextBox.ForeColor = Palette.font();
             emailTextBox.ForeColor = Palette.font();
             adressTextBox.ForeColor = Palette.font();
+        }
+
+        private void setupDataGridView()
+        {
+            dataGridView.Columns["Id"].Visible = false;
+            dataGridView.Columns["ImageUrl"].Visible = false;
         }
 
         private void loadImage(string imageUrl)
@@ -63,7 +69,7 @@ namespace WindowsForms
             adressTextBox.Text = adress;
         }
 
-        //AUTO GENERATED
+        // EVENTS
 
         private void CustomersForm_Load(object sender, EventArgs e)
         {
@@ -71,8 +77,7 @@ namespace WindowsForms
             CustomersManager customersManager = new CustomersManager();
             customersTable = customersManager.list();
             dataGridView.DataSource = customersTable;
-            dataGridView.Columns["Id"].Visible = false;
-            dataGridView.Columns["ImageUrl"].Visible = false;
+            setupDataGridView();
         }
 
         private void dataGridView_SelectionChanged(object sender, EventArgs e)

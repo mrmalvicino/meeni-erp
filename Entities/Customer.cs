@@ -8,12 +8,18 @@ namespace Entities
 {
     public class Customer : BusinessPartner
     {
+        // PROPERTIES
+
+        public int SalesAmount { get; set; }
+
+        // CONSTRUCT
+
         public Customer()
         {
             SalesAmount = 0;
         }
 
-        public int SalesAmount { get; set; }
+        // METHODS
 
         public override string ToString()
         {

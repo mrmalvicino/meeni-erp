@@ -8,11 +8,15 @@ namespace Entities
 {
     public class Employee : Individual
     {
+        // PROPERTIES
+
+        public int RoleId { get; set; }
+
+        // CONSTRUCT
+
         Employee()
         {
             IsPerson = true;
         }
-
-        public int RoleId { get; set; }
     }
 }
