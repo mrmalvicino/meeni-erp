@@ -110,6 +110,10 @@ namespace BLL
             {
                 throw ex;
             }
+            finally
+            {
+                _database.closeConnection();
+            }
         }
 
         public void edit(Individual reg)
@@ -140,10 +144,16 @@ namespace BLL
                 _database.setParameter("@LegalIdXX", reg.LegalId.XX);
                 _database.setParameter("@LegalIdDNI", reg.LegalId.DNI);
                 _database.setParameter("@LegalIdY", reg.LegalId.Y);
+
+                _database.executeAction();
             }
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                _database.closeConnection();
             }
         }
     }
