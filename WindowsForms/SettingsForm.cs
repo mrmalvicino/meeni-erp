@@ -23,7 +23,7 @@ namespace WindowsForms
 
         private void applyButton_Click(object sender, EventArgs e)
         {
-
+            Close();
         }
     }
 }

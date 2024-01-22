@@ -23,7 +23,7 @@ namespace WindowsForms
 
         private void logginButton_Click(object sender, EventArgs e)
         {
-
+            Close();
         }
     }
 }

@@ -40,7 +40,7 @@
             // 
             // logginButton
             // 
-            this.logginButton.Location = new System.Drawing.Point(112, 279);
+            this.logginButton.Location = new System.Drawing.Point(112, 275);
             this.logginButton.Name = "logginButton";
             this.logginButton.Size = new System.Drawing.Size(80, 30);
             this.logginButton.TabIndex = 0;
@@ -51,7 +51,7 @@
             // userLabel
             // 
             this.userLabel.AutoSize = true;
-            this.userLabel.Location = new System.Drawing.Point(49, 182);
+            this.userLabel.Location = new System.Drawing.Point(49, 184);
             this.userLabel.Name = "userLabel";
             this.userLabel.Size = new System.Drawing.Size(46, 13);
             this.userLabel.TabIndex = 1;
@@ -60,7 +60,7 @@
             // passwordLabel
             // 
             this.passwordLabel.AutoSize = true;
-            this.passwordLabel.Location = new System.Drawing.Point(49, 221);
+            this.passwordLabel.Location = new System.Drawing.Point(49, 224);
             this.passwordLabel.Name = "passwordLabel";
             this.passwordLabel.Size = new System.Drawing.Size(64, 13);
             this.passwordLabel.TabIndex = 2;
@@ -68,14 +68,14 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(52, 198);
+            this.textBox1.Location = new System.Drawing.Point(52, 200);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(200, 20);
             this.textBox1.TabIndex = 3;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(52, 237);
+            this.textBox2.Location = new System.Drawing.Point(52, 240);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(200, 20);
             this.textBox2.TabIndex = 4;
@@ -83,9 +83,10 @@
             // userPictureBox
             // 
             this.userPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("userPictureBox.Image")));
-            this.userPictureBox.Location = new System.Drawing.Point(72, 12);
+            this.userPictureBox.Location = new System.Drawing.Point(72, 15);
             this.userPictureBox.Name = "userPictureBox";
             this.userPictureBox.Size = new System.Drawing.Size(160, 160);
+            this.userPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.userPictureBox.TabIndex = 21;
             this.userPictureBox.TabStop = false;
             // 

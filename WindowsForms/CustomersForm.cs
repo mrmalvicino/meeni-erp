@@ -17,6 +17,7 @@ namespace WindowsForms
         // ATTRIBUTES
 
         private List<Customer> customersTable;
+        CustomersManager _customersManager = new CustomersManager();
 
         // CONSTRUCT
 
@@ -27,8 +28,9 @@ namespace WindowsForms
 
         // METHODS
 
-        private void applyStyle()
+        private void setupStyle()
         {
+            filterComboBox.SelectedIndex = 0;
             this.BackColor = Palette.darkBackground();
             dataPanel.BackColor = Palette.lightBackground();
             actionsPanel.BackColor = Palette.lightBackground();
@@ -39,6 +41,12 @@ namespace WindowsForms
             phoneTextBox.ForeColor = Palette.font();
             emailTextBox.ForeColor = Palette.font();
             adressTextBox.ForeColor = Palette.font();
+            idTextBox.BackColor = Palette.lightBackground();
+            nameTextBox.BackColor = Palette.lightBackground();
+            descriptionTextBox.BackColor = Palette.lightBackground();
+            emailTextBox.BackColor = Palette.lightBackground();
+            phoneTextBox.BackColor = Palette.lightBackground();
+            adressTextBox.BackColor = Palette.lightBackground();
         }
 
         private void setupDataGridView()
@@ -49,6 +57,8 @@ namespace WindowsForms
             dataGridView.Columns["SalesAmount"].DisplayIndex = dataGridView.ColumnCount - 1;
             dataGridView.Columns["PaymentMethod"].DisplayIndex = dataGridView.ColumnCount - 2;
             dataGridView.Columns["InvoiceCategory"].DisplayIndex = dataGridView.ColumnCount - 3;
+            dataGridView.Columns["IsPerson"].Width = 50;
+            dataGridView.Columns["InvoiceCategory"].Width = 50;
         }
 
         private void loadImage(string imageUrl)
@@ -73,14 +83,25 @@ namespace WindowsForms
             adressTextBox.Text = adress;
         }
 
+        private void refreshTable()
+        {
+            try
+            {
+                customersTable = _customersManager.list();
+                dataGridView.DataSource = customersTable;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
         // EVENTS
 
         private void CustomersForm_Load(object sender, EventArgs e)
         {
-            applyStyle();
-            CustomersManager customersManager = new CustomersManager();
-            customersTable = customersManager.list();
-            dataGridView.DataSource = customersTable;
+            setupStyle();
+            refreshTable();
             setupDataGridView();
         }
 
@@ -89,6 +110,44 @@ namespace WindowsForms
             Customer customer = (Customer)dataGridView.CurrentRow.DataBoundItem;
             loadImage(customer.ImageUrl);
             loadProfile(customer.Id, customer.ToString(), customer.BusinessDescription, customer.Phone.ToString(), customer.Email.ToString(), customer.Adress.ToString());
+        }
+
+        private void newButton_Click(object sender, EventArgs e)
+        {
+            RegisterForm registerForm = new RegisterForm();
+            registerForm.ShowDialog();
+            refreshTable();
+        }
+
+        private void editButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void activeStatusButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void exportCSVButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void filterButton_Click(object sender, EventArgs e)
+        {
+            filterTextBox.Text = "";
+            filterComboBox.SelectedIndex = 0;
+        }
+
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

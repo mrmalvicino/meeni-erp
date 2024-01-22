@@ -24,7 +24,22 @@ namespace WindowsForms
             _mainForm = mainForm;
         }
 
+        // METHODS
+
+        private void setupStyle()
+        {
+            this.BackColor = Palette.darkBackground();
+            userPanel.BackColor = Palette.lightBackground();
+            metricsPanel.BackColor = Palette.lightBackground();
+            modulesPanel.BackColor = Palette.lightBackground();
+        }
+
         // EVENTS
+
+        private void OverviewForm_Load(object sender, EventArgs e)
+        {
+            setupStyle();
+        }
 
         private void quoteButton_Click(object sender, EventArgs e)
         {
@@ -74,14 +89,6 @@ namespace WindowsForms
         private void newSessionButton_Click(object sender, EventArgs e)
         {
             _mainForm.loadNewSessionForm();
-        }
-
-        private void OverviewForm_Load(object sender, EventArgs e)
-        {
-            this.BackColor = Palette.darkBackground();
-            userPanel.BackColor = Palette.lightBackground();
-            metricsPanel.BackColor = Palette.lightBackground();
-            modulesPanel.BackColor = Palette.lightBackground();
         }
     }
 }

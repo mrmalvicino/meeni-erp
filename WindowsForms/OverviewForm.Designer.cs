@@ -310,6 +310,7 @@
             this.userPictureBox.Location = new System.Drawing.Point(15, 15);
             this.userPictureBox.Name = "userPictureBox";
             this.userPictureBox.Size = new System.Drawing.Size(160, 160);
+            this.userPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.userPictureBox.TabIndex = 20;
             this.userPictureBox.TabStop = false;
             // 
@@ -466,7 +467,7 @@
             // 
             // userPanel
             // 
-            this.userPanel.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.userPanel.BackColor = System.Drawing.SystemColors.Control;
             this.userPanel.Controls.Add(this.userRoleLabel);
             this.userPanel.Controls.Add(this.userPictureBox);
             this.userPanel.Controls.Add(this.userNameLabel);
@@ -480,7 +481,7 @@
             // 
             // metricsPanel
             // 
-            this.metricsPanel.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.metricsPanel.BackColor = System.Drawing.SystemColors.Control;
             this.metricsPanel.Controls.Add(this.currencyLabel);
             this.metricsPanel.Controls.Add(this.quotesLabel);
             this.metricsPanel.Controls.Add(this.periodLabel);
@@ -500,7 +501,7 @@
             // 
             // modulesPanel
             // 
-            this.modulesPanel.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.modulesPanel.BackColor = System.Drawing.SystemColors.Control;
             this.modulesPanel.Controls.Add(this.settingsLabel);
             this.modulesPanel.Controls.Add(this.quoteLabel);
             this.modulesPanel.Controls.Add(this.transactionsLabel);
@@ -528,7 +529,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1260, 631);
             this.Controls.Add(this.modulesPanel);
             this.Controls.Add(this.metricsPanel);

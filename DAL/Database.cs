@@ -37,6 +37,11 @@ namespace DAL
             _command.CommandText = query;
         }
 
+        public void setParameter(string key, object value)
+        {
+            _command.Parameters.AddWithValue(key, value);
+        }
+
         public void executeReader()
         {
             _command.Connection = _connection;
@@ -48,7 +53,21 @@ namespace DAL
             }
             catch (Exception ex)
             {
+                throw ex;
+            }
+        }
 
+        public void executeAction()
+        {
+            _command.Connection = _connection;
+
+            try
+            {
+                _connection.Open();
+                _command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
                 throw ex;
             }
         }
