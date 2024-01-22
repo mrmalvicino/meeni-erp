@@ -96,9 +96,12 @@ namespace WindowsForms
 
         private void dataGridView_SelectionChanged(object sender, EventArgs e)
         {
-            _selectedCustomer = (Customer)dataGridView.CurrentRow.DataBoundItem;
-            Functions.loadImage(pictureBox, _selectedCustomer.ImageUrl);
-            loadProfile(_selectedCustomer.Id, _selectedCustomer.ToString(), _selectedCustomer.BusinessDescription, _selectedCustomer.Phone.ToString(), _selectedCustomer.Email.ToString(), _selectedCustomer.Adress.ToString());
+            if (dataGridView.CurrentRow != null)
+            {
+                _selectedCustomer = (Customer)dataGridView.CurrentRow.DataBoundItem;
+                Functions.loadImage(pictureBox, _selectedCustomer.ImageUrl);
+                loadProfile(_selectedCustomer.Id, _selectedCustomer.ToString(), _selectedCustomer.BusinessDescription, _selectedCustomer.Phone.ToString(), _selectedCustomer.Email.ToString(), _selectedCustomer.Adress.ToString());
+            }
         }
 
         private void newButton_Click(object sender, EventArgs e)
@@ -147,6 +150,20 @@ namespace WindowsForms
         private void searchButton_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void filterTextBox_TextChanged(object sender, EventArgs e)
+        {
+            List<Customer> filteredCustomers;
+
+            if (filterTextBox.Text != "")
+                filteredCustomers = _customersTable.FindAll(reg => reg.FirstName.ToUpper().Contains(filterTextBox.Text.ToUpper()) || reg.LastName.ToUpper().Contains(filterTextBox.Text.ToUpper()) || reg.BusinessName.ToUpper().Contains(filterTextBox.Text.ToUpper()) || reg.BusinessDescription.ToUpper().Contains(filterTextBox.Text.ToUpper()) );
+            else
+                filteredCustomers = _customersTable;
+
+            dataGridView.DataSource = null;
+            dataGridView.DataSource = filteredCustomers;
+            setupDataGridView();
         }
     }
 }
