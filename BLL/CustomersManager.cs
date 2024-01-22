@@ -156,5 +156,19 @@ namespace BLL
                 _database.closeConnection();
             }
         }
+
+        public void delete(int id)
+        {
+            try
+            {
+                _database.setQuery("DELETE FROM customers WHERE Id = @Id");
+                _database.setParameter("@Id", id);
+                _database.executeAction();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

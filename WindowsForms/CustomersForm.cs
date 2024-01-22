@@ -17,6 +17,7 @@ namespace WindowsForms
         // ATTRIBUTES
 
         private Individual _individual;
+        private Customer _selectedCustomer;
         private List<Customer> _customersTable;
         private CustomersManager _customersManager = new CustomersManager();
 
@@ -96,9 +97,9 @@ namespace WindowsForms
 
         private void dataGridView_SelectionChanged(object sender, EventArgs e)
         {
-            Customer customer = (Customer)dataGridView.CurrentRow.DataBoundItem;
-            Functions.loadImage(pictureBox, customer.ImageUrl);
-            loadProfile(customer.Id, customer.ToString(), customer.BusinessDescription, customer.Phone.ToString(), customer.Email.ToString(), customer.Adress.ToString());
+            _selectedCustomer = (Customer)dataGridView.CurrentRow.DataBoundItem;
+            Functions.loadImage(pictureBox, _selectedCustomer.ImageUrl);
+            loadProfile(_selectedCustomer.Id, _selectedCustomer.ToString(), _selectedCustomer.BusinessDescription, _selectedCustomer.Phone.ToString(), _selectedCustomer.Email.ToString(), _selectedCustomer.Adress.ToString());
         }
 
         private void newButton_Click(object sender, EventArgs e)
@@ -118,7 +119,20 @@ namespace WindowsForms
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                DialogResult answer = MessageBox.Show("Esta acción no puede deshacerse. ¿Está seguro que desea continuar?", "Eliminar registro", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                
+                if (answer == DialogResult.Yes)
+                {
+                    _customersManager.delete(_selectedCustomer.Id);
+                    refreshTable();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void exportCSVButton_Click(object sender, EventArgs e)
