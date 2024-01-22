@@ -60,7 +60,7 @@
             this.streetNumberLabel = new System.Windows.Forms.Label();
             this.flatLabel = new System.Windows.Forms.Label();
             this.saveButton = new System.Windows.Forms.Button();
-            this.userPictureBox = new System.Windows.Forms.PictureBox();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.loadImageButton = new System.Windows.Forms.Button();
             this.isPersonComboBox = new System.Windows.Forms.ComboBox();
             this.legalIdLabel = new System.Windows.Forms.Label();
@@ -68,12 +68,12 @@
             this.picturePanel = new System.Windows.Forms.Panel();
             this.imageUrlLabel = new System.Windows.Forms.Label();
             this.adressPanel = new System.Windows.Forms.Panel();
-            this.zipCodeTextBox = new System.Windows.Forms.TextBox();
+            this.adressZipCodeTextBox = new System.Windows.Forms.TextBox();
             this.zipCodeLabel = new System.Windows.Forms.Label();
             this.contactPanel = new System.Windows.Forms.Panel();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.imagePanel = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.userPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.picturePanel.SuspendLayout();
             this.adressPanel.SuspendLayout();
             this.contactPanel.SuspendLayout();
@@ -120,6 +120,7 @@
             this.imageUrlTextBox.Size = new System.Drawing.Size(250, 20);
             this.imageUrlTextBox.TabIndex = 7;
             this.imageUrlTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.imageUrlTextBox.Leave += new System.EventHandler(this.imageUrlTextBox_Leave);
             // 
             // emailTextBox
             // 
@@ -343,15 +344,15 @@
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
-            // userPictureBox
+            // pictureBox
             // 
-            this.userPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("userPictureBox.Image")));
-            this.userPictureBox.Location = new System.Drawing.Point(96, 10);
-            this.userPictureBox.Name = "userPictureBox";
-            this.userPictureBox.Size = new System.Drawing.Size(160, 160);
-            this.userPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.userPictureBox.TabIndex = 39;
-            this.userPictureBox.TabStop = false;
+            this.pictureBox.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox.Image")));
+            this.pictureBox.Location = new System.Drawing.Point(96, 10);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(160, 160);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox.TabIndex = 39;
+            this.pictureBox.TabStop = false;
             // 
             // loadImageButton
             // 
@@ -369,7 +370,7 @@
             this.isPersonComboBox.FormattingEnabled = true;
             this.isPersonComboBox.Items.AddRange(new object[] {
             "Persona física",
-            "Organización"});
+            "Persona legal (Organización)"});
             this.isPersonComboBox.Location = new System.Drawing.Point(113, 13);
             this.isPersonComboBox.Name = "isPersonComboBox";
             this.isPersonComboBox.Size = new System.Drawing.Size(250, 21);
@@ -389,13 +390,13 @@
             this.isPersonLabel.AutoSize = true;
             this.isPersonLabel.Location = new System.Drawing.Point(35, 16);
             this.isPersonLabel.Name = "isPersonLabel";
-            this.isPersonLabel.Size = new System.Drawing.Size(31, 13);
+            this.isPersonLabel.Size = new System.Drawing.Size(49, 13);
             this.isPersonLabel.TabIndex = 43;
-            this.isPersonLabel.Text = "Tipo:";
+            this.isPersonLabel.Text = "Persona:";
             // 
             // picturePanel
             // 
-            this.picturePanel.Controls.Add(this.userPictureBox);
+            this.picturePanel.Controls.Add(this.pictureBox);
             this.picturePanel.Location = new System.Drawing.Point(12, 15);
             this.picturePanel.Name = "picturePanel";
             this.picturePanel.Size = new System.Drawing.Size(400, 180);
@@ -412,7 +413,7 @@
             // 
             // adressPanel
             // 
-            this.adressPanel.Controls.Add(this.zipCodeTextBox);
+            this.adressPanel.Controls.Add(this.adressZipCodeTextBox);
             this.adressPanel.Controls.Add(this.zipCodeLabel);
             this.adressPanel.Controls.Add(this.adressCountryTextBox);
             this.adressPanel.Controls.Add(this.flatLabel);
@@ -431,13 +432,13 @@
             this.adressPanel.Size = new System.Drawing.Size(400, 180);
             this.adressPanel.TabIndex = 45;
             // 
-            // zipCodeTextBox
+            // adressZipCodeTextBox
             // 
-            this.zipCodeTextBox.Location = new System.Drawing.Point(113, 92);
-            this.zipCodeTextBox.Name = "zipCodeTextBox";
-            this.zipCodeTextBox.Size = new System.Drawing.Size(250, 20);
-            this.zipCodeTextBox.TabIndex = 38;
-            this.zipCodeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.adressZipCodeTextBox.Location = new System.Drawing.Point(113, 92);
+            this.adressZipCodeTextBox.Name = "adressZipCodeTextBox";
+            this.adressZipCodeTextBox.Size = new System.Drawing.Size(250, 20);
+            this.adressZipCodeTextBox.TabIndex = 38;
+            this.adressZipCodeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // zipCodeLabel
             // 
@@ -509,7 +510,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registro";
             this.Load += new System.EventHandler(this.RegisterForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.userPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.picturePanel.ResumeLayout(false);
             this.adressPanel.ResumeLayout(false);
             this.adressPanel.PerformLayout();
@@ -555,7 +556,7 @@
         private System.Windows.Forms.Label streetNumberLabel;
         private System.Windows.Forms.Label flatLabel;
         private System.Windows.Forms.Button saveButton;
-        private System.Windows.Forms.PictureBox userPictureBox;
+        private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.Button loadImageButton;
         private System.Windows.Forms.ComboBox isPersonComboBox;
         private System.Windows.Forms.Label legalIdLabel;
@@ -566,7 +567,7 @@
         private System.Windows.Forms.Panel contactPanel;
         private System.Windows.Forms.Panel mainPanel;
         private System.Windows.Forms.Panel imagePanel;
-        private System.Windows.Forms.TextBox zipCodeTextBox;
+        private System.Windows.Forms.TextBox adressZipCodeTextBox;
         private System.Windows.Forms.Label zipCodeLabel;
     }
 }

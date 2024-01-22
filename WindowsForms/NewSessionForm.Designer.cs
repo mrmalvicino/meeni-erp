@@ -34,8 +34,8 @@
             this.passwordLabel = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.userPictureBox = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.userPictureBox)).BeginInit();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // logginButton
@@ -80,22 +80,22 @@
             this.textBox2.Size = new System.Drawing.Size(200, 20);
             this.textBox2.TabIndex = 4;
             // 
-            // userPictureBox
+            // pictureBox
             // 
-            this.userPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("userPictureBox.Image")));
-            this.userPictureBox.Location = new System.Drawing.Point(72, 15);
-            this.userPictureBox.Name = "userPictureBox";
-            this.userPictureBox.Size = new System.Drawing.Size(160, 160);
-            this.userPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.userPictureBox.TabIndex = 21;
-            this.userPictureBox.TabStop = false;
+            this.pictureBox.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox.Image")));
+            this.pictureBox.Location = new System.Drawing.Point(72, 15);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(160, 160);
+            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox.TabIndex = 21;
+            this.pictureBox.TabStop = false;
             // 
             // newSessionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(304, 321);
-            this.Controls.Add(this.userPictureBox);
+            this.Controls.Add(this.pictureBox);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.passwordLabel);
@@ -106,7 +106,7 @@
             this.Name = "newSessionForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nueva sesión";
-            ((System.ComponentModel.ISupportInitialize)(this.userPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -119,6 +119,6 @@
         private System.Windows.Forms.Label passwordLabel;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.PictureBox userPictureBox;
+        private System.Windows.Forms.PictureBox pictureBox;
     }
 }

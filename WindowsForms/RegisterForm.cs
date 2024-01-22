@@ -17,7 +17,7 @@ namespace WindowsForms
     {
         // ATTRIBUTES
 
-        Individual _individual = new Individual();
+        Individual _individual = null;
         CustomersManager _customersManager = new CustomersManager();
 
         //CONSTRUCT
@@ -25,6 +25,12 @@ namespace WindowsForms
         public RegisterForm()
         {
             InitializeComponent();
+        }
+
+        public RegisterForm(Individual individual)
+        {
+            InitializeComponent();
+            _individual = individual;
         }
 
         // METHODS
@@ -44,7 +50,42 @@ namespace WindowsForms
         private void RegisterForm_Load(object sender, EventArgs e)
         {
             setupStyle();
-            isPersonComboBox.SelectedIndex = 0;
+
+            if (_individual == null)
+            {
+                isPersonComboBox.SelectedIndex = 0;
+                _individual = new Individual();
+            }
+            else
+            {
+                legalIdXXTextBox.Text = _individual.LegalId.XX;
+                legalIdDNITextBox.Text = _individual.LegalId.DNI.ToString();
+                legalIdYTextBox.Text = _individual.LegalId.Y;
+
+                firstNameTextBox.Text = _individual.FirstName;
+                lastNameTextBox.Text = _individual.LastName;
+                businessNameTextBox.Text = _individual.BusinessName;
+                businessDescriptionTextBox.Text = _individual.BusinessDescription;
+                imageUrlTextBox.Text = _individual.ImageUrl;
+                emailTextBox.Text = _individual.Email;
+
+                phoneCountryTextBox.Text = _individual.Phone.Country.ToString();
+                phoneAreaTextBox.Text = _individual.Phone.Area.ToString();
+                phoneNumberTextBox.Text = _individual.Phone.Number.ToString();
+
+                adressCountryTextBox.Text = _individual.Adress.Country;
+                adressProvinceTextBox.Text = _individual.Adress.Province;
+                adressCityTextBox.Text = _individual.Adress.City;
+                adressZipCodeTextBox.Text = _individual.Adress.ZipCode;
+                adressStreetTextBox.Text = _individual.Adress.Street;
+                adressStreetNumberTextBox.Text = _individual.Adress.StreetNumber.ToString();
+                adressFlatTextBox.Text = _individual.Adress.Flat;
+
+                if (_individual.IsPerson) isPersonComboBox.SelectedIndex = 0;
+                else isPersonComboBox.SelectedIndex = 1;
+
+                Functions.loadImage(pictureBox, imageUrlTextBox.Text);
+            }
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -65,15 +106,17 @@ namespace WindowsForms
                 _individual.Adress.Country = adressCountryTextBox.Text;
                 _individual.Adress.Province = adressProvinceTextBox.Text;
                 _individual.Adress.City = adressCityTextBox.Text;
-                _individual.Adress.ZipCode = zipCodeTextBox.Text;
+                _individual.Adress.ZipCode = adressZipCodeTextBox.Text;
                 _individual.Adress.Street = adressStreetTextBox.Text;
                 _individual.Adress.StreetNumber = int.Parse(adressStreetNumberTextBox.Text);
                 _individual.Adress.Flat = adressFlatTextBox.Text;
                 _individual.LegalId.XX = legalIdXXTextBox.Text;
                 _individual.LegalId.DNI = int.Parse(legalIdDNITextBox.Text);
                 _individual.LegalId.Y = legalIdYTextBox.Text;
+                
+                if (0 < _individual.Id) _customersManager.edit(_individual);
+                else _customersManager.add(_individual);
 
-                _customersManager.add(_individual);
                 MessageBox.Show("Registro guardado exitosamente.");
                 Close();
             }
@@ -81,6 +124,11 @@ namespace WindowsForms
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void imageUrlTextBox_Leave(object sender, EventArgs e)
+        {
+            Functions.loadImage(pictureBox, imageUrlTextBox.Text);
         }
 
         private void loadImageButton_Click(object sender, EventArgs e)

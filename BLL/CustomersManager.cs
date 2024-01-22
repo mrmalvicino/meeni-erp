@@ -81,6 +81,7 @@ namespace BLL
             try
             {
                 _database.setQuery("INSERT INTO customers (ActiveStatus, IsPerson, FirstName, LastName, BusinessName, BusinessDescription, ImageUrl, Email, PhoneCountry, PhoneArea, PhoneNumber, AdressCountry, AdressProvince, AdressCity, AdressZipCode, AdressStreet, AdressStreetNumber, AdressFlat, LegalIdXX, LegalIdDNI, LegalIdY) VALUES (@ActiveStatus, @IsPerson, @FirstName, @LastName, @BusinessName, @BusinessDescription, @ImageUrl, @Email, @PhoneCountry, @PhoneArea, @PhoneNumber, @AdressCountry, @AdressProvince, @AdressCity, @AdressZipCode, @AdressStreet, @AdressStreetNumber, @AdressFlat, @LegalIdXX, @LegalIdDNI, @LegalIdY)");
+                
                 _database.setParameter("@ActiveStatus", reg.ActiveStatus);
                 _database.setParameter("@IsPerson", reg.IsPerson);
                 _database.setParameter("@FirstName", reg.FirstName);
@@ -102,7 +103,43 @@ namespace BLL
                 _database.setParameter("@LegalIdXX", reg.LegalId.XX);
                 _database.setParameter("@LegalIdDNI", reg.LegalId.DNI);
                 _database.setParameter("@LegalIdY", reg.LegalId.Y);
+
                 _database.executeAction();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void edit(Individual reg)
+        {
+            try
+            {
+                _database.setQuery("UPDATE customers SET ActiveStatus = @ActiveStatus, IsPerson = @IsPerson, FirstName = @FirstName, LastName = @LastName, BusinessName = @BusinessName, BusinessDescription = @BusinessDescription, ImageUrl = @ImageUrl, Email = @Email, PhoneCountry = @PhoneCountry, PhoneArea = @PhoneArea, PhoneNumber = @PhoneNumber, AdressCountry = @AdressCountry, AdressProvince = @AdressProvince, AdressCity = @AdressCity, AdressZipCode = @AdressZipCode, AdressStreet = @AdressStreet, AdressStreetNumber = @AdressStreetNumber, AdressFlat = @AdressFlat, LegalIdXX = @LegalIdXX, LegalIdDNI = @LegalIdDNI, LegalIdY = @LegalIdY WHERE Id = @Id");
+
+                _database.setParameter("@Id", reg.Id);
+                _database.setParameter("@ActiveStatus", reg.ActiveStatus);
+                _database.setParameter("@IsPerson", reg.IsPerson);
+                _database.setParameter("@FirstName", reg.FirstName);
+                _database.setParameter("@LastName", reg.LastName);
+                _database.setParameter("@BusinessName", reg.BusinessName);
+                _database.setParameter("@BusinessDescription", reg.BusinessDescription);
+                _database.setParameter("@ImageUrl", reg.ImageUrl);
+                _database.setParameter("@Email", reg.Email);
+                _database.setParameter("@PhoneCountry", reg.Phone.Country);
+                _database.setParameter("@PhoneArea", reg.Phone.Area);
+                _database.setParameter("@PhoneNumber", reg.Phone.Number);
+                _database.setParameter("@AdressCountry", reg.Adress.Country);
+                _database.setParameter("@AdressProvince", reg.Adress.Province);
+                _database.setParameter("@AdressCity", reg.Adress.City);
+                _database.setParameter("@AdressZipCode", reg.Adress.ZipCode);
+                _database.setParameter("@AdressStreet", reg.Adress.Street);
+                _database.setParameter("@AdressStreetNumber", reg.Adress.StreetNumber);
+                _database.setParameter("@AdressFlat", reg.Adress.Flat);
+                _database.setParameter("@LegalIdXX", reg.LegalId.XX);
+                _database.setParameter("@LegalIdDNI", reg.LegalId.DNI);
+                _database.setParameter("@LegalIdY", reg.LegalId.Y);
             }
             catch (Exception ex)
             {

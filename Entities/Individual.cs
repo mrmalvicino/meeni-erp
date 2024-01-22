@@ -41,6 +41,7 @@ namespace Entities
             Phone = new Phone();
             Adress = new Adress();
             LegalId = new LegalId();
+            ActiveStatus = true;
         }
     }
 }

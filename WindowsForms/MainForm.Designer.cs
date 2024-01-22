@@ -87,14 +87,14 @@
             // newSessionToolStripMenuItem
             // 
             this.newSessionToolStripMenuItem.Name = "newSessionToolStripMenuItem";
-            this.newSessionToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.newSessionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.newSessionToolStripMenuItem.Text = "Nueva sesión";
             this.newSessionToolStripMenuItem.Click += new System.EventHandler(this.newSessionToolStripMenuItem_Click);
             // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.settingsToolStripMenuItem.Text = "Configuración";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
@@ -238,8 +238,8 @@
             // helpToolStripStatusLabel
             // 
             this.helpToolStripStatusLabel.Name = "helpToolStripStatusLabel";
-            this.helpToolStripStatusLabel.Size = new System.Drawing.Size(191, 17);
-            this.helpToolStripStatusLabel.Text = "Seleccione un módulo para operar.";
+            this.helpToolStripStatusLabel.Size = new System.Drawing.Size(44, 17);
+            this.helpToolStripStatusLabel.Text = "Ayuda:";
             // 
             // MainForm
             // 

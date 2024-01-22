@@ -16,8 +16,9 @@ namespace WindowsForms
     {
         // ATTRIBUTES
 
-        private List<Customer> customersTable;
-        CustomersManager _customersManager = new CustomersManager();
+        private Individual _individual;
+        private List<Customer> _customersTable;
+        private CustomersManager _customersManager = new CustomersManager();
 
         // CONSTRUCT
 
@@ -61,18 +62,6 @@ namespace WindowsForms
             dataGridView.Columns["InvoiceCategory"].Width = 50;
         }
 
-        private void loadImage(string imageUrl)
-        {
-            try
-            {
-                pictureBox.Load(imageUrl);
-            }
-            catch (Exception)
-            {
-                pictureBox.Load(".\\..\\..\\..\\images\\profile.png");
-            }
-        }
-
         private void loadProfile(int id, string name, string description, string phone, string email, string adress)
         {
             idTextBox.Text = id.ToString();
@@ -87,8 +76,8 @@ namespace WindowsForms
         {
             try
             {
-                customersTable = _customersManager.list();
-                dataGridView.DataSource = customersTable;
+                _customersTable = _customersManager.list();
+                dataGridView.DataSource = _customersTable;
             }
             catch (Exception ex)
             {
@@ -108,8 +97,13 @@ namespace WindowsForms
         private void dataGridView_SelectionChanged(object sender, EventArgs e)
         {
             Customer customer = (Customer)dataGridView.CurrentRow.DataBoundItem;
-            loadImage(customer.ImageUrl);
+            Functions.loadImage(pictureBox, customer.ImageUrl);
             loadProfile(customer.Id, customer.ToString(), customer.BusinessDescription, customer.Phone.ToString(), customer.Email.ToString(), customer.Adress.ToString());
+
+            if (customer.ActiveStatus)
+                activeStatusButton.Text = "Dar de baja";
+            else
+                activeStatusButton.Text = "Dar de alta";
         }
 
         private void newButton_Click(object sender, EventArgs e)
@@ -121,7 +115,10 @@ namespace WindowsForms
 
         private void editButton_Click(object sender, EventArgs e)
         {
-
+            _individual = (Individual)dataGridView.CurrentRow.DataBoundItem;
+            RegisterForm registerForm = new RegisterForm(_individual);
+            registerForm.ShowDialog();
+            refreshTable();
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
