@@ -22,12 +22,12 @@ namespace WindowsForms
 
         //CONSTRUCT
 
-        public RegisterForm()
+        public RegisterForm() // Para agregar un registro
         {
             InitializeComponent();
         }
 
-        public RegisterForm(Individual individual)
+        public RegisterForm(Individual individual) // Para editar un registro
         {
             InitializeComponent();
             _individual = individual;
@@ -38,9 +38,8 @@ namespace WindowsForms
         private void setupStyle()
         {
             this.BackColor = Palette.darkBackground();
-            picturePanel.BackColor = Palette.lightBackground();
-            imagePanel.BackColor = Palette.lightBackground();
             mainPanel.BackColor = Palette.lightBackground();
+            imagePanel.BackColor = Palette.lightBackground();
             contactPanel.BackColor = Palette.lightBackground();
             adressPanel.BackColor = Palette.lightBackground();
         }
@@ -51,17 +50,15 @@ namespace WindowsForms
         {
             setupStyle();
 
-            if (_individual == null)
+            if (_individual == null) // Se está agregando un registro
             {
-                isPersonComboBox.SelectedIndex = 0;
                 _individual = new Individual();
+                activeStatusCheckBox.Enabled = false;
             }
-            else
+            else // Se está editando un registro
             {
-                legalIdXXTextBox.Text = _individual.LegalId.XX;
-                legalIdDNITextBox.Text = _individual.LegalId.DNI.ToString();
-                legalIdYTextBox.Text = _individual.LegalId.Y;
-
+                activeStatusCheckBox.Checked = _individual.ActiveStatus;
+                isPersonCheckBox.Checked = _individual.IsPerson;
                 firstNameTextBox.Text = _individual.FirstName;
                 lastNameTextBox.Text = _individual.LastName;
                 businessNameTextBox.Text = _individual.BusinessName;
@@ -81,8 +78,9 @@ namespace WindowsForms
                 adressStreetNumberTextBox.Text = _individual.Adress.StreetNumber.ToString();
                 adressFlatTextBox.Text = _individual.Adress.Flat;
 
-                if (_individual.IsPerson) isPersonComboBox.SelectedIndex = 0;
-                else isPersonComboBox.SelectedIndex = 1;
+                legalIdXXTextBox.Text = _individual.LegalId.XX;
+                legalIdDNITextBox.Text = _individual.LegalId.DNI.ToString();
+                legalIdYTextBox.Text = _individual.LegalId.Y;
 
                 Functions.loadImage(pictureBox, imageUrlTextBox.Text);
             }
@@ -92,17 +90,19 @@ namespace WindowsForms
         {
             try
             {
-                if (isPersonComboBox.SelectedItem.ToString() == "Persona física") _individual.IsPerson = true;
-                _individual.ActiveStatus = true;
+                _individual.ActiveStatus = activeStatusCheckBox.Checked;
+                _individual.IsPerson = isPersonCheckBox.Checked;
                 _individual.FirstName = firstNameTextBox.Text;
                 _individual.LastName = lastNameTextBox.Text;
                 _individual.BusinessName = businessNameTextBox.Text;
                 _individual.BusinessDescription = businessDescriptionTextBox.Text;
                 _individual.ImageUrl = imageUrlTextBox.Text;
                 _individual.Email = emailTextBox.Text;
+
                 _individual.Phone.Country = int.Parse(phoneCountryTextBox.Text);
                 _individual.Phone.Area = int.Parse(phoneAreaTextBox.Text);
                 _individual.Phone.Number = int.Parse(phoneNumberTextBox.Text);
+
                 _individual.Adress.Country = adressCountryTextBox.Text;
                 _individual.Adress.Province = adressProvinceTextBox.Text;
                 _individual.Adress.City = adressCityTextBox.Text;
@@ -110,12 +110,13 @@ namespace WindowsForms
                 _individual.Adress.Street = adressStreetTextBox.Text;
                 _individual.Adress.StreetNumber = int.Parse(adressStreetNumberTextBox.Text);
                 _individual.Adress.Flat = adressFlatTextBox.Text;
+
                 _individual.LegalId.XX = legalIdXXTextBox.Text;
                 _individual.LegalId.DNI = int.Parse(legalIdDNITextBox.Text);
                 _individual.LegalId.Y = legalIdYTextBox.Text;
                 
-                if (0 < _individual.Id) _customersManager.edit(_individual);
-                else _customersManager.add(_individual);
+                if (0 < _individual.Id) _customersManager.edit(_individual); // Se está agregando un registro
+                else _customersManager.add(_individual); // Se está editando un registro
 
                 MessageBox.Show("Registro guardado exitosamente.");
                 Close();

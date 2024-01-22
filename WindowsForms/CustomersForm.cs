@@ -33,7 +33,7 @@ namespace WindowsForms
         {
             filterComboBox.SelectedIndex = 0;
             this.BackColor = Palette.darkBackground();
-            dataPanel.BackColor = Palette.lightBackground();
+            mainPanel.BackColor = Palette.lightBackground();
             actionsPanel.BackColor = Palette.lightBackground();
             dataGridView.BackgroundColor = Palette.lightBackground();
             idTextBox.ForeColor = Palette.font();
@@ -99,11 +99,6 @@ namespace WindowsForms
             Customer customer = (Customer)dataGridView.CurrentRow.DataBoundItem;
             Functions.loadImage(pictureBox, customer.ImageUrl);
             loadProfile(customer.Id, customer.ToString(), customer.BusinessDescription, customer.Phone.ToString(), customer.Email.ToString(), customer.Adress.ToString());
-
-            if (customer.ActiveStatus)
-                activeStatusButton.Text = "Dar de baja";
-            else
-                activeStatusButton.Text = "Dar de alta";
         }
 
         private void newButton_Click(object sender, EventArgs e)
@@ -122,11 +117,6 @@ namespace WindowsForms
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void activeStatusButton_Click(object sender, EventArgs e)
         {
 
         }
