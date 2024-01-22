@@ -169,6 +169,10 @@ namespace BLL
             {
                 throw ex;
             }
+            finally
+            {
+                _database.closeConnection();
+            }
         }
     }
 }

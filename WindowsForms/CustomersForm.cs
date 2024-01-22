@@ -16,7 +16,6 @@ namespace WindowsForms
     {
         // ATTRIBUTES
 
-        private Individual _individual;
         private Customer _selectedCustomer;
         private List<Customer> _customersTable;
         private CustomersManager _customersManager = new CustomersManager();
@@ -111,8 +110,7 @@ namespace WindowsForms
 
         private void editButton_Click(object sender, EventArgs e)
         {
-            _individual = (Individual)dataGridView.CurrentRow.DataBoundItem;
-            RegisterForm registerForm = new RegisterForm(_individual);
+            RegisterForm registerForm = new RegisterForm(_selectedCustomer);
             registerForm.ShowDialog();
             refreshTable();
         }
