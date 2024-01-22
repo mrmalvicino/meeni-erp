@@ -36,8 +36,7 @@ namespace BLL
                     customer.LastName = (string)_database.Reader["LastName"];
                     customer.BusinessName = (string)_database.Reader["BusinessName"];
                     customer.BusinessDescription = (string)_database.Reader["BusinessDescription"];
-                    if (!(_database.Reader["ImageUrl"] is DBNull))
-                        customer.ImageUrl = (string)_database.Reader["ImageUrl"];
+                    customer.ImageUrl = (string)_database.Reader["ImageUrl"];
                     customer.Email = (string)_database.Reader["Email"];
 
                     customer.Phone.Country = (int)_database.Reader["PhoneCountry"];
@@ -56,9 +55,12 @@ namespace BLL
                     customer.LegalId.DNI = (int)_database.Reader["LegalIdDNI"];
                     customer.LegalId.Y = (string)_database.Reader["LegalIdY"];
 
-                    customer.PaymentMethod = (string)_database.Reader["PaymentMethod"];
-                    customer.InvoiceCategory = (string)_database.Reader["InvoiceCategory"];
-                    customer.SalesAmount = (int)_database.Reader["SalesAmount"];
+                    if (!(_database.Reader["PaymentMethod"] is DBNull)) 
+                        customer.PaymentMethod = (string)_database.Reader["PaymentMethod"];
+                    if (!(_database.Reader["InvoiceCategory"] is DBNull)) 
+                        customer.InvoiceCategory = (string)_database.Reader["InvoiceCategory"];
+                    if (!(_database.Reader["SalesAmount"] is DBNull)) 
+                        customer.SalesAmount = (int)_database.Reader["SalesAmount"];
 
                     list.Add(customer);
                 }
