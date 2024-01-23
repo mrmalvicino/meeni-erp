@@ -307,6 +307,7 @@
             this.filterComboBox.Name = "filterComboBox";
             this.filterComboBox.Size = new System.Drawing.Size(220, 26);
             this.filterComboBox.TabIndex = 69;
+            this.filterComboBox.SelectionChangeCommitted += new System.EventHandler(this.filterComboBox_SelectionChangeCommitted);
             // 
             // filterTextBox
             // 

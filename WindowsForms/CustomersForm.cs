@@ -18,6 +18,7 @@ namespace WindowsForms
 
         private Customer _selectedCustomer;
         private List<Customer> _customersTable;
+        private List<Customer> _filteredCustomers;
         private CustomersManager _customersManager = new CustomersManager();
 
         // CONSTRUCT
@@ -83,6 +84,38 @@ namespace WindowsForms
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void applyFilter()
+        {
+            string filter = filterTextBox.Text;
+            bool showActive = true;
+            bool showInactive = false;
+
+            if (filterComboBox.SelectedItem.ToString() == "Mostrar solo activos")
+            {
+                showActive = true;
+                showInactive = false;
+            }
+            else if (filterComboBox.SelectedItem.ToString() == "Mostrar solo inactivos")
+            {
+                showActive = false;
+                showInactive = true;
+            }
+            else if (filterComboBox.SelectedItem.ToString() == "Mostrar activos e inactivos")
+            {
+                showActive = true;
+                showInactive = true;
+            }
+
+            if (2 < filter.Length)
+                _filteredCustomers = _customersTable.FindAll(reg => ((reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)) && (reg.FirstName.ToUpper().Contains(filter.ToUpper()) || reg.LastName.ToUpper().Contains(filter.ToUpper()) || reg.BusinessName.ToUpper().Contains(filter.ToUpper()) || reg.BusinessDescription.ToUpper().Contains(filter.ToUpper())));
+            else
+                _filteredCustomers = _customersTable;
+
+            dataGridView.DataSource = null;
+            dataGridView.DataSource = _filteredCustomers;
+            setupDataGridView();
         }
 
         // EVENTS
@@ -154,16 +187,12 @@ namespace WindowsForms
 
         private void filterTextBox_TextChanged(object sender, EventArgs e)
         {
-            List<Customer> filteredCustomers;
+            applyFilter();
+        }
 
-            if (filterTextBox.Text != "")
-                filteredCustomers = _customersTable.FindAll(reg => reg.FirstName.ToUpper().Contains(filterTextBox.Text.ToUpper()) || reg.LastName.ToUpper().Contains(filterTextBox.Text.ToUpper()) || reg.BusinessName.ToUpper().Contains(filterTextBox.Text.ToUpper()) || reg.BusinessDescription.ToUpper().Contains(filterTextBox.Text.ToUpper()) );
-            else
-                filteredCustomers = _customersTable;
-
-            dataGridView.DataSource = null;
-            dataGridView.DataSource = filteredCustomers;
-            setupDataGridView();
+        private void filterComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            applyFilter();
         }
     }
 }
