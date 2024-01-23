@@ -19,7 +19,7 @@ namespace BLL
         public List<Customer> list()
         {
             List<Customer> list = new List<Customer>();
-
+            
             try
             {
                 _database.setQuery("SELECT Id, ActiveStatus, IsPerson, FirstName, LastName, BusinessName, BusinessDescription, ImageUrl, Email, PhoneCountry, PhoneArea, PhoneNumber, AdressCountry, AdressProvince, AdressCity, AdressZipCode, AdressStreet, AdressStreetNumber, AdressFlat, LegalIdXX, LegalIdDNI, LegalIdY, PaymentMethod, InvoiceCategory, SalesAmount FROM customers");
@@ -64,6 +64,7 @@ namespace BLL
 
                     list.Add(customer);
                 }
+
                 return list;
             }
             catch (Exception ex)

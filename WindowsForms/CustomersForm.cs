@@ -32,7 +32,6 @@ namespace WindowsForms
 
         private void setupStyle()
         {
-            filterComboBox.SelectedIndex = 0;
             this.BackColor = Palette.darkBackground();
             mainPanel.BackColor = Palette.lightBackground();
             actionsPanel.BackColor = Palette.lightBackground();
@@ -89,27 +88,11 @@ namespace WindowsForms
         private void applyFilter()
         {
             string filter = filterTextBox.Text;
-            bool showActive = true;
-            bool showInactive = false;
-
-            if (filterComboBox.SelectedItem.ToString() == "Mostrar solo activos")
-            {
-                showActive = true;
-                showInactive = false;
-            }
-            else if (filterComboBox.SelectedItem.ToString() == "Mostrar solo inactivos")
-            {
-                showActive = false;
-                showInactive = true;
-            }
-            else if (filterComboBox.SelectedItem.ToString() == "Mostrar activos e inactivos")
-            {
-                showActive = true;
-                showInactive = true;
-            }
+            bool showActive = showActiveCheckBox.Checked;
+            bool showInactive = showInactiveCheckBox.Checked;
 
             if (2 < filter.Length)
-                _filteredCustomers = _customersTable.FindAll(reg => ((reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)) && (reg.FirstName.ToUpper().Contains(filter.ToUpper()) || reg.LastName.ToUpper().Contains(filter.ToUpper()) || reg.BusinessName.ToUpper().Contains(filter.ToUpper()) || reg.BusinessDescription.ToUpper().Contains(filter.ToUpper())));
+                _filteredCustomers = _customersTable.FindAll(reg => ((reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)) && (reg.FirstName.ToUpper().Contains(filter.ToUpper()) || reg.LastName.ToUpper().Contains(filter.ToUpper()) || reg.BusinessName.ToUpper().Contains(filter.ToUpper()) || reg.BusinessDescription.ToUpper().Contains(filter.ToUpper()) || reg.Email.ToUpper().Contains(filter.ToUpper()) || reg.LegalId.ToString().Contains(filter) ) );
             else
                 _filteredCustomers = _customersTable.FindAll(reg => (reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive));
 
@@ -125,6 +108,7 @@ namespace WindowsForms
             setupStyle();
             refreshTable();
             setupDataGridView();
+            applyFilter();
         }
 
         private void dataGridView_SelectionChanged(object sender, EventArgs e)
@@ -177,20 +161,12 @@ namespace WindowsForms
         private void filterButton_Click(object sender, EventArgs e)
         {
             filterTextBox.Text = "";
-            filterComboBox.SelectedIndex = 0;
-        }
-
-        private void searchButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void filterTextBox_TextChanged(object sender, EventArgs e)
-        {
+            showActiveCheckBox.Checked = true;
+            showInactiveCheckBox.Checked = false;
             applyFilter();
         }
 
-        private void filterComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        private void filterTextBox_TextChanged(object sender, EventArgs e)
         {
             applyFilter();
         }

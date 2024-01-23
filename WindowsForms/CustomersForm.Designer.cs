@@ -38,19 +38,16 @@
             this.adressTextBox = new System.Windows.Forms.TextBox();
             this.editButton = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
-            this.searchButton = new System.Windows.Forms.Button();
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.newButton = new System.Windows.Forms.Button();
             this.exportCSVButton = new System.Windows.Forms.Button();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.actionsPanel = new System.Windows.Forms.Panel();
             this.filterButton = new System.Windows.Forms.Button();
-            this.searchTextBox = new System.Windows.Forms.TextBox();
-            this.searchComboBox = new System.Windows.Forms.ComboBox();
-            this.searchLabel = new System.Windows.Forms.Label();
             this.filterLabel = new System.Windows.Forms.Label();
-            this.filterComboBox = new System.Windows.Forms.ComboBox();
             this.filterTextBox = new System.Windows.Forms.TextBox();
+            this.showActiveCheckBox = new System.Windows.Forms.CheckBox();
+            this.showInactiveCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.mainPanel.SuspendLayout();
@@ -146,7 +143,7 @@
             // editButton
             // 
             this.editButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.editButton.Location = new System.Drawing.Point(151, 25);
+            this.editButton.Location = new System.Drawing.Point(151, 40);
             this.editButton.Name = "editButton";
             this.editButton.Size = new System.Drawing.Size(120, 35);
             this.editButton.TabIndex = 60;
@@ -157,24 +154,13 @@
             // deleteButton
             // 
             this.deleteButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deleteButton.Location = new System.Drawing.Point(277, 25);
+            this.deleteButton.Location = new System.Drawing.Point(277, 40);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(120, 35);
             this.deleteButton.TabIndex = 62;
             this.deleteButton.Text = "Eliminar";
             this.deleteButton.UseVisualStyleBackColor = true;
             this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
-            // 
-            // searchButton
-            // 
-            this.searchButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchButton.Location = new System.Drawing.Point(570, 125);
-            this.searchButton.Name = "searchButton";
-            this.searchButton.Size = new System.Drawing.Size(120, 35);
-            this.searchButton.TabIndex = 63;
-            this.searchButton.Text = "Buscar";
-            this.searchButton.UseVisualStyleBackColor = true;
-            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
             // 
             // idTextBox
             // 
@@ -191,7 +177,7 @@
             // newButton
             // 
             this.newButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.newButton.Location = new System.Drawing.Point(25, 25);
+            this.newButton.Location = new System.Drawing.Point(25, 40);
             this.newButton.Name = "newButton";
             this.newButton.Size = new System.Drawing.Size(120, 35);
             this.newButton.TabIndex = 65;
@@ -202,7 +188,7 @@
             // exportCSVButton
             // 
             this.exportCSVButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exportCSVButton.Location = new System.Drawing.Point(570, 25);
+            this.exportCSVButton.Location = new System.Drawing.Point(570, 40);
             this.exportCSVButton.Name = "exportCSVButton";
             this.exportCSVButton.Size = new System.Drawing.Size(120, 35);
             this.exportCSVButton.TabIndex = 66;
@@ -228,18 +214,15 @@
             // actionsPanel
             // 
             this.actionsPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.actionsPanel.Controls.Add(this.showInactiveCheckBox);
+            this.actionsPanel.Controls.Add(this.showActiveCheckBox);
             this.actionsPanel.Controls.Add(this.filterButton);
-            this.actionsPanel.Controls.Add(this.searchTextBox);
-            this.actionsPanel.Controls.Add(this.searchComboBox);
-            this.actionsPanel.Controls.Add(this.searchLabel);
             this.actionsPanel.Controls.Add(this.filterLabel);
-            this.actionsPanel.Controls.Add(this.filterComboBox);
             this.actionsPanel.Controls.Add(this.filterTextBox);
             this.actionsPanel.Controls.Add(this.exportCSVButton);
             this.actionsPanel.Controls.Add(this.deleteButton);
             this.actionsPanel.Controls.Add(this.editButton);
             this.actionsPanel.Controls.Add(this.newButton);
-            this.actionsPanel.Controls.Add(this.searchButton);
             this.actionsPanel.Location = new System.Drawing.Point(530, 15);
             this.actionsPanel.Name = "actionsPanel";
             this.actionsPanel.Size = new System.Drawing.Size(715, 180);
@@ -248,75 +231,56 @@
             // filterButton
             // 
             this.filterButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.filterButton.Location = new System.Drawing.Point(570, 80);
+            this.filterButton.Location = new System.Drawing.Point(570, 110);
             this.filterButton.Name = "filterButton";
             this.filterButton.Size = new System.Drawing.Size(120, 35);
             this.filterButton.TabIndex = 74;
-            this.filterButton.Text = "Limpiar";
+            this.filterButton.Text = "Restablecer";
             this.filterButton.UseVisualStyleBackColor = true;
             this.filterButton.Click += new System.EventHandler(this.filterButton_Click);
-            // 
-            // searchTextBox
-            // 
-            this.searchTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchTextBox.Location = new System.Drawing.Point(89, 130);
-            this.searchTextBox.Name = "searchTextBox";
-            this.searchTextBox.Size = new System.Drawing.Size(220, 26);
-            this.searchTextBox.TabIndex = 73;
-            // 
-            // searchComboBox
-            // 
-            this.searchComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.searchComboBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchComboBox.FormattingEnabled = true;
-            this.searchComboBox.Location = new System.Drawing.Point(315, 130);
-            this.searchComboBox.Name = "searchComboBox";
-            this.searchComboBox.Size = new System.Drawing.Size(220, 26);
-            this.searchComboBox.TabIndex = 72;
-            // 
-            // searchLabel
-            // 
-            this.searchLabel.AutoSize = true;
-            this.searchLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchLabel.Location = new System.Drawing.Point(22, 133);
-            this.searchLabel.Name = "searchLabel";
-            this.searchLabel.Size = new System.Drawing.Size(61, 18);
-            this.searchLabel.TabIndex = 71;
-            this.searchLabel.Text = "Buscar:";
             // 
             // filterLabel
             // 
             this.filterLabel.AutoSize = true;
             this.filterLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.filterLabel.Location = new System.Drawing.Point(22, 88);
+            this.filterLabel.Location = new System.Drawing.Point(22, 118);
             this.filterLabel.Name = "filterLabel";
-            this.filterLabel.Size = new System.Drawing.Size(52, 18);
+            this.filterLabel.Size = new System.Drawing.Size(47, 18);
             this.filterLabel.TabIndex = 70;
-            this.filterLabel.Text = "Filtrar:";
-            // 
-            // filterComboBox
-            // 
-            this.filterComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.filterComboBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.filterComboBox.FormattingEnabled = true;
-            this.filterComboBox.Items.AddRange(new object[] {
-            "Mostrar solo activos",
-            "Mostrar solo inactivos",
-            "Mostrar activos e inactivos"});
-            this.filterComboBox.Location = new System.Drawing.Point(315, 85);
-            this.filterComboBox.Name = "filterComboBox";
-            this.filterComboBox.Size = new System.Drawing.Size(220, 26);
-            this.filterComboBox.TabIndex = 69;
-            this.filterComboBox.SelectionChangeCommitted += new System.EventHandler(this.filterComboBox_SelectionChangeCommitted);
+            this.filterLabel.Text = "Filtro:";
             // 
             // filterTextBox
             // 
             this.filterTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.filterTextBox.Location = new System.Drawing.Point(89, 85);
+            this.filterTextBox.Location = new System.Drawing.Point(86, 115);
             this.filterTextBox.Name = "filterTextBox";
-            this.filterTextBox.Size = new System.Drawing.Size(220, 26);
+            this.filterTextBox.Size = new System.Drawing.Size(270, 26);
             this.filterTextBox.TabIndex = 68;
             this.filterTextBox.TextChanged += new System.EventHandler(this.filterTextBox_TextChanged);
+            // 
+            // showActiveCheckBox
+            // 
+            this.showActiveCheckBox.AutoSize = true;
+            this.showActiveCheckBox.Checked = true;
+            this.showActiveCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showActiveCheckBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.showActiveCheckBox.Location = new System.Drawing.Point(374, 117);
+            this.showActiveCheckBox.Name = "showActiveCheckBox";
+            this.showActiveCheckBox.Size = new System.Drawing.Size(78, 22);
+            this.showActiveCheckBox.TabIndex = 75;
+            this.showActiveCheckBox.Text = "Activos";
+            this.showActiveCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // showInactiveCheckBox
+            // 
+            this.showInactiveCheckBox.AutoSize = true;
+            this.showInactiveCheckBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.showInactiveCheckBox.Location = new System.Drawing.Point(464, 117);
+            this.showInactiveCheckBox.Name = "showInactiveCheckBox";
+            this.showInactiveCheckBox.Size = new System.Drawing.Size(87, 22);
+            this.showInactiveCheckBox.TabIndex = 76;
+            this.showInactiveCheckBox.Text = "Inactivos";
+            this.showInactiveCheckBox.UseVisualStyleBackColor = true;
             // 
             // CustomersForm
             // 
@@ -352,18 +316,15 @@
         private System.Windows.Forms.TextBox adressTextBox;
         private System.Windows.Forms.Button editButton;
         private System.Windows.Forms.Button deleteButton;
-        private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.TextBox idTextBox;
         private System.Windows.Forms.Button newButton;
         private System.Windows.Forms.Button exportCSVButton;
         private System.Windows.Forms.Panel mainPanel;
         private System.Windows.Forms.Panel actionsPanel;
         private System.Windows.Forms.TextBox filterTextBox;
-        private System.Windows.Forms.ComboBox filterComboBox;
-        private System.Windows.Forms.Label searchLabel;
         private System.Windows.Forms.Label filterLabel;
-        private System.Windows.Forms.TextBox searchTextBox;
-        private System.Windows.Forms.ComboBox searchComboBox;
         private System.Windows.Forms.Button filterButton;
+        private System.Windows.Forms.CheckBox showInactiveCheckBox;
+        private System.Windows.Forms.CheckBox showActiveCheckBox;
     }
 }
