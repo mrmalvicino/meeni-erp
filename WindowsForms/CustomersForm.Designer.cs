@@ -270,6 +270,7 @@
             this.showActiveCheckBox.TabIndex = 75;
             this.showActiveCheckBox.Text = "Activos";
             this.showActiveCheckBox.UseVisualStyleBackColor = true;
+            this.showActiveCheckBox.CheckedChanged += new System.EventHandler(this.showActiveCheckBox_CheckedChanged);
             // 
             // showInactiveCheckBox
             // 
@@ -281,6 +282,7 @@
             this.showInactiveCheckBox.TabIndex = 76;
             this.showInactiveCheckBox.Text = "Inactivos";
             this.showInactiveCheckBox.UseVisualStyleBackColor = true;
+            this.showInactiveCheckBox.CheckedChanged += new System.EventHandler(this.showInactiveCheckBox_CheckedChanged);
             // 
             // CustomersForm
             // 

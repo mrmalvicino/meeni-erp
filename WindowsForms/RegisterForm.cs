@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.IO;
+using System.Configuration;
 using Entities;
 using BLL;
 
@@ -18,6 +20,7 @@ namespace WindowsForms
         // ATTRIBUTES
 
         Individual _individual = null;
+        OpenFileDialog _file = null;
         CustomersManager _customersManager = new CustomersManager();
 
         //CONSTRUCT
@@ -118,6 +121,9 @@ namespace WindowsForms
                 if (0 < _individual.Id) _customersManager.edit(_individual); // Se está agregando un registro
                 else _customersManager.add(_individual); // Se está editando un registro
 
+                if (_file == null && !(imageUrlTextBox.Text.ToLower().Contains("http")))
+                    File.Copy(imageUrlTextBox.Text, ConfigurationManager.AppSettings["images_path"]);
+
                 MessageBox.Show("Registro guardado exitosamente.");
                 Close();
             }
@@ -134,7 +140,15 @@ namespace WindowsForms
 
         private void loadImageButton_Click(object sender, EventArgs e)
         {
+            _file = new OpenFileDialog();
+            _file.Filter = "jpg|*.jpg;|png|*.png";
+            _file.Title = "Seleccionar imagen";
 
+            if (_file.ShowDialog() == DialogResult.OK)
+            {
+                imageUrlTextBox.Text = _file.FileName;
+                Functions.loadImage(pictureBox, imageUrlTextBox.Text);
+            }
         }
     }
 }

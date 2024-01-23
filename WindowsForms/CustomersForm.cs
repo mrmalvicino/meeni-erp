@@ -170,5 +170,15 @@ namespace WindowsForms
         {
             applyFilter();
         }
+
+        private void showActiveCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            applyFilter();
+        }
+
+        private void showInactiveCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            applyFilter();
+        }
     }
 }

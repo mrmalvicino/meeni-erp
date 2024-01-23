@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Remoting.Messaging;
 using System.Data.SqlClient;
+using System.IO;
+using System.Configuration;
 
 namespace DAL
 {
@@ -24,9 +26,9 @@ namespace DAL
 
         public Database()
         {
-            _connection = new SqlConnection("server=BANGHO\\SQLEXPRESS; database=meeni_erp_db; integrated security=true");
+            _connection = new SqlConnection();
             _command = new SqlCommand();
-            //_connection.ConnectionString = "server=BANGHO\\SQLEXPRESS; database=meeni_erp_db; integrated security=true";
+            _connection.ConnectionString = ConfigurationManager.AppSettings["connection_string"];
         }
 
         // METHODS
