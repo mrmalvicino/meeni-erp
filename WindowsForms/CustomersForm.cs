@@ -111,7 +111,7 @@ namespace WindowsForms
             if (2 < filter.Length)
                 _filteredCustomers = _customersTable.FindAll(reg => ((reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)) && (reg.FirstName.ToUpper().Contains(filter.ToUpper()) || reg.LastName.ToUpper().Contains(filter.ToUpper()) || reg.BusinessName.ToUpper().Contains(filter.ToUpper()) || reg.BusinessDescription.ToUpper().Contains(filter.ToUpper())));
             else
-                _filteredCustomers = _customersTable;
+                _filteredCustomers = _customersTable.FindAll(reg => (reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive));
 
             dataGridView.DataSource = null;
             dataGridView.DataSource = _filteredCustomers;
