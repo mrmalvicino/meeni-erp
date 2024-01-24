@@ -126,6 +126,7 @@ namespace WindowsForms
             RegisterForm registerForm = new RegisterForm();
             registerForm.ShowDialog();
             refreshTable();
+            applyFilter();
         }
 
         private void editButton_Click(object sender, EventArgs e)
@@ -133,6 +134,7 @@ namespace WindowsForms
             RegisterForm registerForm = new RegisterForm(_selectedCustomer);
             registerForm.ShowDialog();
             refreshTable();
+            applyFilter();
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
@@ -145,6 +147,7 @@ namespace WindowsForms
                 {
                     _customersManager.delete(_selectedCustomer.Id);
                     refreshTable();
+                    applyFilter();
                 }
             }
             catch (Exception ex)

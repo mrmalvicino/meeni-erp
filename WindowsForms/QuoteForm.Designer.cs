@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuoteForm));
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.addButton = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -54,7 +53,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(565, 53);
+            this.textBox1.Location = new System.Drawing.Point(567, 62);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 2;
@@ -68,7 +67,6 @@
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.listBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "QuoteForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

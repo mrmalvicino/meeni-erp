@@ -89,6 +89,11 @@ namespace WindowsForms
             }
         }
 
+        private void imageUrlTextBox_Leave(object sender, EventArgs e)
+        {
+            Functions.loadImage(pictureBox, imageUrlTextBox.Text);
+        }
+
         private void saveButton_Click(object sender, EventArgs e)
         {
             try
@@ -121,9 +126,6 @@ namespace WindowsForms
                 if (0 < _individual.Id) _customersManager.edit(_individual); // Se está agregando un registro
                 else _customersManager.add(_individual); // Se está editando un registro
 
-                if (_file == null && !(imageUrlTextBox.Text.ToLower().Contains("http")))
-                    File.Copy(imageUrlTextBox.Text, ConfigurationManager.AppSettings["images_path"]);
-
                 MessageBox.Show("Registro guardado exitosamente.");
                 Close();
             }
@@ -131,11 +133,6 @@ namespace WindowsForms
             {
                 MessageBox.Show(ex.ToString());
             }
-        }
-
-        private void imageUrlTextBox_Leave(object sender, EventArgs e)
-        {
-            Functions.loadImage(pictureBox, imageUrlTextBox.Text);
         }
 
         private void loadImageButton_Click(object sender, EventArgs e)
@@ -146,8 +143,14 @@ namespace WindowsForms
 
             if (_file.ShowDialog() == DialogResult.OK)
             {
-                imageUrlTextBox.Text = _file.FileName;
-                Functions.loadImage(pictureBox, imageUrlTextBox.Text);
+                Functions.loadImage(pictureBox, _file.FileName);
+                DateTime currentDateTime = DateTime.Now;
+                string dateTimeFormat = "yyyyMMddHHmmss";
+                string formattedDateTime = currentDateTime.ToString(dateTimeFormat);
+                imageUrlTextBox.Text = ConfigurationManager.AppSettings["images_path"] + formattedDateTime + ".png";
+
+                if (_file != null && !(imageUrlTextBox.Text.ToLower().Contains("http")))
+                    File.Copy(_file.FileName, imageUrlTextBox.Text);
             }
         }
     }

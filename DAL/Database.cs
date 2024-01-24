@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Remoting.Messaging;
 using System.Data.SqlClient;
-using System.IO;
 using System.Configuration;
+using System.IO;
 
 namespace DAL
 {
@@ -17,6 +17,7 @@ namespace DAL
         private SqlConnection _connection;
         private SqlCommand _command;
         private SqlDataReader _reader;
+        private string _connectionString;
 
         // PROPERTIES
 
@@ -26,9 +27,9 @@ namespace DAL
 
         public Database()
         {
-            _connection = new SqlConnection();
+            _connectionString = ConfigurationManager.ConnectionStrings["connection_string"].ToString();
+            _connection = new SqlConnection(_connectionString);
             _command = new SqlCommand();
-            _connection.ConnectionString = ConfigurationManager.AppSettings["connection_string"];
         }
 
         // METHODS
