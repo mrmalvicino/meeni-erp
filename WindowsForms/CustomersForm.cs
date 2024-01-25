@@ -99,6 +99,24 @@ namespace WindowsForms
             dataGridView.DataSource = null;
             dataGridView.DataSource = _filteredCustomers;
             setupDataGridView();
+            validateDataGridView();
+        }
+
+        private void validateDataGridView()
+        {
+            if (0 < dataGridView.RowCount)
+            {
+                editButton.Enabled = true;
+                deleteButton.Enabled = true;
+                exportCSVButton.Enabled = true;
+            }
+            else
+            {
+                editButton.Enabled = false;
+                deleteButton.Enabled = false;
+                exportCSVButton.Enabled = false;
+                loadProfile(-1, "N/A", "N/A", "N/A", "N/A", "N/A");
+            }
         }
 
         // EVENTS
