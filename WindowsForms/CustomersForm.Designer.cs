@@ -43,11 +43,11 @@
             this.exportCSVButton = new System.Windows.Forms.Button();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.actionsPanel = new System.Windows.Forms.Panel();
+            this.showInactiveCheckBox = new System.Windows.Forms.CheckBox();
+            this.showActiveCheckBox = new System.Windows.Forms.CheckBox();
             this.filterButton = new System.Windows.Forms.Button();
             this.filterLabel = new System.Windows.Forms.Label();
             this.filterTextBox = new System.Windows.Forms.TextBox();
-            this.showActiveCheckBox = new System.Windows.Forms.CheckBox();
-            this.showInactiveCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.mainPanel.SuspendLayout();
@@ -76,7 +76,7 @@
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView.Size = new System.Drawing.Size(1230, 405);
-            this.dataGridView.TabIndex = 23;
+            this.dataGridView.TabIndex = 2;
             this.dataGridView.SelectionChanged += new System.EventHandler(this.dataGridView_SelectionChanged);
             // 
             // nameTextBox
@@ -89,7 +89,7 @@
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.ReadOnly = true;
             this.nameTextBox.Size = new System.Drawing.Size(300, 23);
-            this.nameTextBox.TabIndex = 43;
+            this.nameTextBox.TabIndex = 1;
             this.nameTextBox.Text = "Nombre";
             // 
             // descriptionTextBox
@@ -101,7 +101,7 @@
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.ReadOnly = true;
             this.descriptionTextBox.Size = new System.Drawing.Size(300, 19);
-            this.descriptionTextBox.TabIndex = 55;
+            this.descriptionTextBox.TabIndex = 2;
             this.descriptionTextBox.Text = "Descripción";
             // 
             // phoneTextBox
@@ -113,7 +113,7 @@
             this.phoneTextBox.Name = "phoneTextBox";
             this.phoneTextBox.ReadOnly = true;
             this.phoneTextBox.Size = new System.Drawing.Size(300, 19);
-            this.phoneTextBox.TabIndex = 57;
+            this.phoneTextBox.TabIndex = 4;
             this.phoneTextBox.Text = "1512345678";
             // 
             // emailTextBox
@@ -125,7 +125,7 @@
             this.emailTextBox.Name = "emailTextBox";
             this.emailTextBox.ReadOnly = true;
             this.emailTextBox.Size = new System.Drawing.Size(300, 19);
-            this.emailTextBox.TabIndex = 58;
+            this.emailTextBox.TabIndex = 3;
             this.emailTextBox.Text = "mail@gmail.com";
             // 
             // adressTextBox
@@ -137,7 +137,7 @@
             this.adressTextBox.Name = "adressTextBox";
             this.adressTextBox.ReadOnly = true;
             this.adressTextBox.Size = new System.Drawing.Size(300, 19);
-            this.adressTextBox.TabIndex = 59;
+            this.adressTextBox.TabIndex = 5;
             this.adressTextBox.Text = "Calle 1234, Ciudad";
             // 
             // editButton
@@ -146,7 +146,7 @@
             this.editButton.Location = new System.Drawing.Point(151, 40);
             this.editButton.Name = "editButton";
             this.editButton.Size = new System.Drawing.Size(120, 35);
-            this.editButton.TabIndex = 60;
+            this.editButton.TabIndex = 1;
             this.editButton.Text = "Editar";
             this.editButton.UseVisualStyleBackColor = true;
             this.editButton.Click += new System.EventHandler(this.editButton_Click);
@@ -157,7 +157,7 @@
             this.deleteButton.Location = new System.Drawing.Point(277, 40);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(120, 35);
-            this.deleteButton.TabIndex = 62;
+            this.deleteButton.TabIndex = 2;
             this.deleteButton.Text = "Eliminar";
             this.deleteButton.UseVisualStyleBackColor = true;
             this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
@@ -171,7 +171,7 @@
             this.idTextBox.Name = "idTextBox";
             this.idTextBox.ReadOnly = true;
             this.idTextBox.Size = new System.Drawing.Size(300, 23);
-            this.idTextBox.TabIndex = 64;
+            this.idTextBox.TabIndex = 0;
             this.idTextBox.Text = "1";
             // 
             // newButton
@@ -180,7 +180,7 @@
             this.newButton.Location = new System.Drawing.Point(25, 40);
             this.newButton.Name = "newButton";
             this.newButton.Size = new System.Drawing.Size(120, 35);
-            this.newButton.TabIndex = 65;
+            this.newButton.TabIndex = 0;
             this.newButton.Text = "Nuevo";
             this.newButton.UseVisualStyleBackColor = true;
             this.newButton.Click += new System.EventHandler(this.newButton_Click);
@@ -191,7 +191,7 @@
             this.exportCSVButton.Location = new System.Drawing.Point(570, 40);
             this.exportCSVButton.Name = "exportCSVButton";
             this.exportCSVButton.Size = new System.Drawing.Size(120, 35);
-            this.exportCSVButton.TabIndex = 66;
+            this.exportCSVButton.TabIndex = 3;
             this.exportCSVButton.Text = "Exportar CSV";
             this.exportCSVButton.UseVisualStyleBackColor = true;
             this.exportCSVButton.Click += new System.EventHandler(this.exportCSVButton_Click);
@@ -209,7 +209,7 @@
             this.mainPanel.Location = new System.Drawing.Point(15, 15);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(500, 180);
-            this.mainPanel.TabIndex = 68;
+            this.mainPanel.TabIndex = 0;
             // 
             // actionsPanel
             // 
@@ -226,7 +226,33 @@
             this.actionsPanel.Location = new System.Drawing.Point(530, 15);
             this.actionsPanel.Name = "actionsPanel";
             this.actionsPanel.Size = new System.Drawing.Size(715, 180);
-            this.actionsPanel.TabIndex = 69;
+            this.actionsPanel.TabIndex = 1;
+            // 
+            // showInactiveCheckBox
+            // 
+            this.showInactiveCheckBox.AutoSize = true;
+            this.showInactiveCheckBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.showInactiveCheckBox.Location = new System.Drawing.Point(464, 117);
+            this.showInactiveCheckBox.Name = "showInactiveCheckBox";
+            this.showInactiveCheckBox.Size = new System.Drawing.Size(87, 22);
+            this.showInactiveCheckBox.TabIndex = 6;
+            this.showInactiveCheckBox.Text = "Inactivos";
+            this.showInactiveCheckBox.UseVisualStyleBackColor = true;
+            this.showInactiveCheckBox.CheckedChanged += new System.EventHandler(this.showInactiveCheckBox_CheckedChanged);
+            // 
+            // showActiveCheckBox
+            // 
+            this.showActiveCheckBox.AutoSize = true;
+            this.showActiveCheckBox.Checked = true;
+            this.showActiveCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showActiveCheckBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.showActiveCheckBox.Location = new System.Drawing.Point(374, 117);
+            this.showActiveCheckBox.Name = "showActiveCheckBox";
+            this.showActiveCheckBox.Size = new System.Drawing.Size(78, 22);
+            this.showActiveCheckBox.TabIndex = 5;
+            this.showActiveCheckBox.Text = "Activos";
+            this.showActiveCheckBox.UseVisualStyleBackColor = true;
+            this.showActiveCheckBox.CheckedChanged += new System.EventHandler(this.showActiveCheckBox_CheckedChanged);
             // 
             // filterButton
             // 
@@ -234,7 +260,7 @@
             this.filterButton.Location = new System.Drawing.Point(570, 110);
             this.filterButton.Name = "filterButton";
             this.filterButton.Size = new System.Drawing.Size(120, 35);
-            this.filterButton.TabIndex = 74;
+            this.filterButton.TabIndex = 7;
             this.filterButton.Text = "Restablecer";
             this.filterButton.UseVisualStyleBackColor = true;
             this.filterButton.Click += new System.EventHandler(this.filterButton_Click);
@@ -255,34 +281,8 @@
             this.filterTextBox.Location = new System.Drawing.Point(86, 115);
             this.filterTextBox.Name = "filterTextBox";
             this.filterTextBox.Size = new System.Drawing.Size(270, 26);
-            this.filterTextBox.TabIndex = 68;
+            this.filterTextBox.TabIndex = 4;
             this.filterTextBox.TextChanged += new System.EventHandler(this.filterTextBox_TextChanged);
-            // 
-            // showActiveCheckBox
-            // 
-            this.showActiveCheckBox.AutoSize = true;
-            this.showActiveCheckBox.Checked = true;
-            this.showActiveCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.showActiveCheckBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.showActiveCheckBox.Location = new System.Drawing.Point(374, 117);
-            this.showActiveCheckBox.Name = "showActiveCheckBox";
-            this.showActiveCheckBox.Size = new System.Drawing.Size(78, 22);
-            this.showActiveCheckBox.TabIndex = 75;
-            this.showActiveCheckBox.Text = "Activos";
-            this.showActiveCheckBox.UseVisualStyleBackColor = true;
-            this.showActiveCheckBox.CheckedChanged += new System.EventHandler(this.showActiveCheckBox_CheckedChanged);
-            // 
-            // showInactiveCheckBox
-            // 
-            this.showInactiveCheckBox.AutoSize = true;
-            this.showInactiveCheckBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.showInactiveCheckBox.Location = new System.Drawing.Point(464, 117);
-            this.showInactiveCheckBox.Name = "showInactiveCheckBox";
-            this.showInactiveCheckBox.Size = new System.Drawing.Size(87, 22);
-            this.showInactiveCheckBox.TabIndex = 76;
-            this.showInactiveCheckBox.Text = "Inactivos";
-            this.showInactiveCheckBox.UseVisualStyleBackColor = true;
-            this.showInactiveCheckBox.CheckedChanged += new System.EventHandler(this.showInactiveCheckBox_CheckedChanged);
             // 
             // CustomersForm
             // 

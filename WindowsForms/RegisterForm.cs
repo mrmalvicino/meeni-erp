@@ -71,12 +71,6 @@ namespace WindowsForms
                 }
             }
 
-            if (Validations.isNumber(adressStreetNumberTextBox.Text) == false)
-            {
-                MessageBox.Show("El número de calle solo admite caracteres numéricos.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
             if (Validations.isNumber(phoneCountryTextBox.Text) == false)
             {
                 MessageBox.Show("El código de país del teléfono solo admite caracteres numéricos.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -92,6 +86,12 @@ namespace WindowsForms
             if (Validations.isNumber(phoneNumberTextBox.Text) == false)
             {
                 MessageBox.Show("El número de teléfono solo admite caracteres numéricos.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (Validations.isNumber(adressStreetNumberTextBox.Text) == false)
+            {
+                MessageBox.Show("El número de calle solo admite caracteres numéricos.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -161,20 +161,20 @@ namespace WindowsForms
                 _individual.ImageUrl = imageUrlTextBox.Text;
                 _individual.Email = emailTextBox.Text;
 
-                _individual.Phone.Country = int.Parse(phoneCountryTextBox.Text);
-                _individual.Phone.Area = int.Parse(phoneAreaTextBox.Text);
-                _individual.Phone.Number = int.Parse(phoneNumberTextBox.Text);
+                if (phoneCountryTextBox.Text != "") _individual.Phone.Country = int.Parse(phoneCountryTextBox.Text);
+                if (phoneAreaTextBox.Text != "") _individual.Phone.Area = int.Parse(phoneAreaTextBox.Text);
+                if (phoneNumberTextBox.Text != "") _individual.Phone.Number = int.Parse(phoneNumberTextBox.Text);
 
                 _individual.Adress.Country = adressCountryTextBox.Text;
                 _individual.Adress.Province = adressProvinceTextBox.Text;
                 _individual.Adress.City = adressCityTextBox.Text;
                 _individual.Adress.ZipCode = adressZipCodeTextBox.Text;
                 _individual.Adress.Street = adressStreetTextBox.Text;
-                _individual.Adress.StreetNumber = int.Parse(adressStreetNumberTextBox.Text);
+                if (adressStreetNumberTextBox.Text != "") _individual.Adress.StreetNumber = int.Parse(adressStreetNumberTextBox.Text);
                 _individual.Adress.Flat = adressFlatTextBox.Text;
 
                 _individual.LegalId.XX = legalIdXXTextBox.Text;
-                _individual.LegalId.DNI = int.Parse(legalIdDNITextBox.Text);
+                if (legalIdDNITextBox.Text != "") _individual.LegalId.DNI = int.Parse(legalIdDNITextBox.Text);
                 _individual.LegalId.Y = legalIdYTextBox.Text;
                 
                 if (0 < _individual.Id) _customersManager.edit(_individual); // Se está agregando un registro
@@ -236,14 +236,6 @@ namespace WindowsForms
                 legalIdYTextBox.ForeColor = Palette.ValidationColor;
         }
 
-        private void adressStreetNumberTextBox_TextChanged(object sender, EventArgs e)
-        {
-            if (Validations.isNumber(adressStreetNumberTextBox.Text))
-                adressStreetNumberTextBox.ForeColor = Palette.DefaultBlack;
-            else
-                adressStreetNumberTextBox.ForeColor = Palette.ValidationColor;
-        }
-
         private void phoneCountryTextBox_TextChanged(object sender, EventArgs e)
         {
             if (Validations.isNumber(phoneCountryTextBox.Text))
@@ -266,6 +258,14 @@ namespace WindowsForms
                 phoneNumberTextBox.ForeColor = Palette.DefaultBlack;
             else
                 phoneNumberTextBox.ForeColor = Palette.ValidationColor;
+        }
+
+        private void adressStreetNumberTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (Validations.isNumber(adressStreetNumberTextBox.Text))
+                adressStreetNumberTextBox.ForeColor = Palette.DefaultBlack;
+            else
+                adressStreetNumberTextBox.ForeColor = Palette.ValidationColor;
         }
     }
 }
