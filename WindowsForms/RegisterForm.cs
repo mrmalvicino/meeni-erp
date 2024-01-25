@@ -40,11 +40,62 @@ namespace WindowsForms
 
         private void setupStyle()
         {
-            this.BackColor = Palette.darkBackground();
-            mainPanel.BackColor = Palette.lightBackground();
-            imagePanel.BackColor = Palette.lightBackground();
-            contactPanel.BackColor = Palette.lightBackground();
-            adressPanel.BackColor = Palette.lightBackground();
+            this.BackColor = Palette.DarkBackColor;
+            mainPanel.BackColor = Palette.LightBackColor;
+            imagePanel.BackColor = Palette.LightBackColor;
+            contactPanel.BackColor = Palette.LightBackColor;
+            adressPanel.BackColor = Palette.LightBackColor;
+        }
+
+        private bool validateRegister()
+        {
+            if (Validations.isNumber(legalIdXXTextBox.Text) == false || Validations.isNumber(legalIdDNITextBox.Text) == false || Validations.isNumber(legalIdYTextBox.Text) == false)
+            {
+                MessageBox.Show("Los campos de CUIL/CUIT solo admiten caracteres numéricos.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (isPersonCheckBox.Checked)
+            {
+                if (Validations.isEmpty(firstNameTextBox.Text) || Validations.isEmpty(lastNameTextBox.Text)) {
+                    MessageBox.Show("Las personas físicas deben tener nombre y apellido.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+            else
+            {
+                if (Validations.isEmpty(businessNameTextBox.Text))
+                {
+                    MessageBox.Show("Especificar el nombre de la organización.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+
+            if (Validations.isNumber(adressStreetNumberTextBox.Text) == false)
+            {
+                MessageBox.Show("El número de calle solo admite caracteres numéricos.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (Validations.isNumber(phoneCountryTextBox.Text) == false)
+            {
+                MessageBox.Show("El código de país del teléfono solo admite caracteres numéricos.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (Validations.isNumber(phoneAreaTextBox.Text) == false)
+            {
+                MessageBox.Show("El código de área del teléfono solo admite caracteres numéricos.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (Validations.isNumber(phoneNumberTextBox.Text) == false)
+            {
+                MessageBox.Show("El número de teléfono solo admite caracteres numéricos.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
         }
 
         // EVENTS
@@ -96,6 +147,9 @@ namespace WindowsForms
 
         private void saveButton_Click(object sender, EventArgs e)
         {
+            if (!validateRegister())
+                return;
+
             try
             {
                 _individual.ActiveStatus = activeStatusCheckBox.Checked;
@@ -152,6 +206,66 @@ namespace WindowsForms
                 if (_file != null && !(imageUrlTextBox.Text.ToLower().Contains("http")))
                     File.Copy(_file.FileName, imageUrlTextBox.Text);
             }
+        }
+
+        private void legalIdXXTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (Validations.isNumber(legalIdXXTextBox.Text))
+            {
+                legalIdXXTextBox.ForeColor = Palette.DefaultBlack;
+            }
+            else
+            {
+                legalIdXXTextBox.ForeColor = Palette.ValidationColor;
+            }
+        }
+
+        private void legalIdDNITextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (Validations.isNumber(legalIdDNITextBox.Text))
+                legalIdDNITextBox.ForeColor = Palette.DefaultBlack;
+            else
+                legalIdDNITextBox.ForeColor = Palette.ValidationColor;
+        }
+
+        private void legalIdYTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (Validations.isNumber(legalIdYTextBox.Text))
+                legalIdYTextBox.ForeColor = Palette.DefaultBlack;
+            else
+                legalIdYTextBox.ForeColor = Palette.ValidationColor;
+        }
+
+        private void adressStreetNumberTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (Validations.isNumber(adressStreetNumberTextBox.Text))
+                adressStreetNumberTextBox.ForeColor = Palette.DefaultBlack;
+            else
+                adressStreetNumberTextBox.ForeColor = Palette.ValidationColor;
+        }
+
+        private void phoneCountryTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (Validations.isNumber(phoneCountryTextBox.Text))
+                phoneCountryTextBox.ForeColor = Palette.DefaultBlack;
+            else
+                phoneCountryTextBox.ForeColor = Palette.ValidationColor;
+        }
+
+        private void phoneAreaTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (Validations.isNumber(phoneAreaTextBox.Text))
+                phoneAreaTextBox.ForeColor = Palette.DefaultBlack;
+            else
+                phoneAreaTextBox.ForeColor = Palette.ValidationColor;
+        }
+
+        private void phoneNumberTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (Validations.isNumber(phoneNumberTextBox.Text))
+                phoneNumberTextBox.ForeColor = Palette.DefaultBlack;
+            else
+                phoneNumberTextBox.ForeColor = Palette.ValidationColor;
         }
     }
 }

@@ -99,6 +99,7 @@
     <Compile Include="TransactionsForm.Designer.cs">
       <DependentUpon>TransactionsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Validations.cs" />
     <EmbeddedResource Include="CustomersForm.resx">
       <DependentUpon>CustomersForm.cs</DependentUpon>
     </EmbeddedResource>

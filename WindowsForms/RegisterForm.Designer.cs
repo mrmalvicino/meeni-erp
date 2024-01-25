@@ -65,17 +65,17 @@
             this.loadImageButton = new System.Windows.Forms.Button();
             this.legalIdLabel = new System.Windows.Forms.Label();
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.activeStatuslabel = new System.Windows.Forms.Label();
+            this.isPersonCheckBox = new System.Windows.Forms.CheckBox();
+            this.activeStatusCheckBox = new System.Windows.Forms.CheckBox();
             this.imageUrlLabel = new System.Windows.Forms.Label();
             this.adressPanel = new System.Windows.Forms.Panel();
             this.adressZipCodeTextBox = new System.Windows.Forms.TextBox();
             this.zipCodeLabel = new System.Windows.Forms.Label();
             this.contactPanel = new System.Windows.Forms.Panel();
-            this.activeStatusCheckBox = new System.Windows.Forms.CheckBox();
-            this.isPersonCheckBox = new System.Windows.Forms.CheckBox();
             this.imagePanel = new System.Windows.Forms.Panel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.activeStatuslabel = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.mainPanel.SuspendLayout();
             this.adressPanel.SuspendLayout();
@@ -88,7 +88,7 @@
             this.firstNameTextBox.Location = new System.Drawing.Point(89, 94);
             this.firstNameTextBox.Name = "firstNameTextBox";
             this.firstNameTextBox.Size = new System.Drawing.Size(250, 20);
-            this.firstNameTextBox.TabIndex = 3;
+            this.firstNameTextBox.TabIndex = 5;
             this.firstNameTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lastNameTextBox
@@ -96,7 +96,7 @@
             this.lastNameTextBox.Location = new System.Drawing.Point(89, 120);
             this.lastNameTextBox.Name = "lastNameTextBox";
             this.lastNameTextBox.Size = new System.Drawing.Size(250, 20);
-            this.lastNameTextBox.TabIndex = 4;
+            this.lastNameTextBox.TabIndex = 6;
             this.lastNameTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // businessNameTextBox
@@ -104,7 +104,7 @@
             this.businessNameTextBox.Location = new System.Drawing.Point(89, 146);
             this.businessNameTextBox.Name = "businessNameTextBox";
             this.businessNameTextBox.Size = new System.Drawing.Size(250, 20);
-            this.businessNameTextBox.TabIndex = 5;
+            this.businessNameTextBox.TabIndex = 7;
             this.businessNameTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // businessDescriptionTextBox
@@ -112,7 +112,7 @@
             this.businessDescriptionTextBox.Location = new System.Drawing.Point(89, 172);
             this.businessDescriptionTextBox.Name = "businessDescriptionTextBox";
             this.businessDescriptionTextBox.Size = new System.Drawing.Size(250, 20);
-            this.businessDescriptionTextBox.TabIndex = 6;
+            this.businessDescriptionTextBox.TabIndex = 8;
             this.businessDescriptionTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // imageUrlTextBox
@@ -120,7 +120,7 @@
             this.imageUrlTextBox.Location = new System.Drawing.Point(20, 219);
             this.imageUrlTextBox.Name = "imageUrlTextBox";
             this.imageUrlTextBox.Size = new System.Drawing.Size(160, 20);
-            this.imageUrlTextBox.TabIndex = 7;
+            this.imageUrlTextBox.TabIndex = 1;
             this.imageUrlTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.imageUrlTextBox.Leave += new System.EventHandler(this.imageUrlTextBox_Leave);
             // 
@@ -129,7 +129,7 @@
             this.emailTextBox.Location = new System.Drawing.Point(89, 12);
             this.emailTextBox.Name = "emailTextBox";
             this.emailTextBox.Size = new System.Drawing.Size(250, 20);
-            this.emailTextBox.TabIndex = 8;
+            this.emailTextBox.TabIndex = 0;
             this.emailTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // phoneCountryTextBox
@@ -137,31 +137,34 @@
             this.phoneCountryTextBox.Location = new System.Drawing.Point(89, 38);
             this.phoneCountryTextBox.Name = "phoneCountryTextBox";
             this.phoneCountryTextBox.Size = new System.Drawing.Size(40, 20);
-            this.phoneCountryTextBox.TabIndex = 9;
+            this.phoneCountryTextBox.TabIndex = 1;
             this.phoneCountryTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.phoneCountryTextBox.TextChanged += new System.EventHandler(this.phoneCountryTextBox_TextChanged);
             // 
             // phoneNumberTextBox
             // 
             this.phoneNumberTextBox.Location = new System.Drawing.Point(181, 38);
             this.phoneNumberTextBox.Name = "phoneNumberTextBox";
             this.phoneNumberTextBox.Size = new System.Drawing.Size(158, 20);
-            this.phoneNumberTextBox.TabIndex = 11;
+            this.phoneNumberTextBox.TabIndex = 3;
             this.phoneNumberTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.phoneNumberTextBox.TextChanged += new System.EventHandler(this.phoneNumberTextBox_TextChanged);
             // 
             // phoneAreaTextBox
             // 
             this.phoneAreaTextBox.Location = new System.Drawing.Point(135, 38);
             this.phoneAreaTextBox.Name = "phoneAreaTextBox";
             this.phoneAreaTextBox.Size = new System.Drawing.Size(40, 20);
-            this.phoneAreaTextBox.TabIndex = 10;
+            this.phoneAreaTextBox.TabIndex = 2;
             this.phoneAreaTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.phoneAreaTextBox.TextChanged += new System.EventHandler(this.phoneAreaTextBox_TextChanged);
             // 
             // adressCountryTextBox
             // 
             this.adressCountryTextBox.Location = new System.Drawing.Point(89, 17);
             this.adressCountryTextBox.Name = "adressCountryTextBox";
             this.adressCountryTextBox.Size = new System.Drawing.Size(250, 20);
-            this.adressCountryTextBox.TabIndex = 13;
+            this.adressCountryTextBox.TabIndex = 0;
             this.adressCountryTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // adressProvinceTextBox
@@ -169,7 +172,7 @@
             this.adressProvinceTextBox.Location = new System.Drawing.Point(89, 43);
             this.adressProvinceTextBox.Name = "adressProvinceTextBox";
             this.adressProvinceTextBox.Size = new System.Drawing.Size(250, 20);
-            this.adressProvinceTextBox.TabIndex = 14;
+            this.adressProvinceTextBox.TabIndex = 1;
             this.adressProvinceTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // adressCityTextBox
@@ -177,7 +180,7 @@
             this.adressCityTextBox.Location = new System.Drawing.Point(89, 69);
             this.adressCityTextBox.Name = "adressCityTextBox";
             this.adressCityTextBox.Size = new System.Drawing.Size(250, 20);
-            this.adressCityTextBox.TabIndex = 15;
+            this.adressCityTextBox.TabIndex = 2;
             this.adressCityTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // adressStreetTextBox
@@ -185,7 +188,7 @@
             this.adressStreetTextBox.Location = new System.Drawing.Point(89, 121);
             this.adressStreetTextBox.Name = "adressStreetTextBox";
             this.adressStreetTextBox.Size = new System.Drawing.Size(100, 20);
-            this.adressStreetTextBox.TabIndex = 16;
+            this.adressStreetTextBox.TabIndex = 4;
             this.adressStreetTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // adressStreetNumberTextBox
@@ -193,15 +196,16 @@
             this.adressStreetNumberTextBox.Location = new System.Drawing.Point(239, 121);
             this.adressStreetNumberTextBox.Name = "adressStreetNumberTextBox";
             this.adressStreetNumberTextBox.Size = new System.Drawing.Size(100, 20);
-            this.adressStreetNumberTextBox.TabIndex = 17;
+            this.adressStreetNumberTextBox.TabIndex = 5;
             this.adressStreetNumberTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.adressStreetNumberTextBox.TextChanged += new System.EventHandler(this.adressStreetNumberTextBox_TextChanged);
             // 
             // adressFlatTextBox
             // 
             this.adressFlatTextBox.Location = new System.Drawing.Point(89, 147);
             this.adressFlatTextBox.Name = "adressFlatTextBox";
             this.adressFlatTextBox.Size = new System.Drawing.Size(250, 20);
-            this.adressFlatTextBox.TabIndex = 18;
+            this.adressFlatTextBox.TabIndex = 6;
             this.adressFlatTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // legalIdXXTextBox
@@ -209,24 +213,27 @@
             this.legalIdXXTextBox.Location = new System.Drawing.Point(89, 68);
             this.legalIdXXTextBox.Name = "legalIdXXTextBox";
             this.legalIdXXTextBox.Size = new System.Drawing.Size(40, 20);
-            this.legalIdXXTextBox.TabIndex = 19;
+            this.legalIdXXTextBox.TabIndex = 2;
             this.legalIdXXTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.legalIdXXTextBox.TextChanged += new System.EventHandler(this.legalIdXXTextBox_TextChanged);
             // 
             // legalIdDNITextBox
             // 
             this.legalIdDNITextBox.Location = new System.Drawing.Point(135, 68);
             this.legalIdDNITextBox.Name = "legalIdDNITextBox";
             this.legalIdDNITextBox.Size = new System.Drawing.Size(158, 20);
-            this.legalIdDNITextBox.TabIndex = 20;
+            this.legalIdDNITextBox.TabIndex = 3;
             this.legalIdDNITextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.legalIdDNITextBox.TextChanged += new System.EventHandler(this.legalIdDNITextBox_TextChanged);
             // 
             // legalIdYTextBox
             // 
             this.legalIdYTextBox.Location = new System.Drawing.Point(299, 68);
             this.legalIdYTextBox.Name = "legalIdYTextBox";
             this.legalIdYTextBox.Size = new System.Drawing.Size(40, 20);
-            this.legalIdYTextBox.TabIndex = 21;
+            this.legalIdYTextBox.TabIndex = 4;
             this.legalIdYTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.legalIdYTextBox.TextChanged += new System.EventHandler(this.legalIdYTextBox_TextChanged);
             // 
             // firstNameLabel
             // 
@@ -341,7 +348,7 @@
             this.saveButton.Location = new System.Drawing.Point(524, 550);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(80, 30);
-            this.saveButton.TabIndex = 38;
+            this.saveButton.TabIndex = 4;
             this.saveButton.Text = "Guardar";
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
@@ -361,7 +368,7 @@
             this.loadImageButton.Location = new System.Drawing.Point(60, 254);
             this.loadImageButton.Name = "loadImageButton";
             this.loadImageButton.Size = new System.Drawing.Size(80, 30);
-            this.loadImageButton.TabIndex = 40;
+            this.loadImageButton.TabIndex = 0;
             this.loadImageButton.Text = "Cargar";
             this.loadImageButton.UseVisualStyleBackColor = true;
             this.loadImageButton.Click += new System.EventHandler(this.loadImageButton_Click);
@@ -396,7 +403,47 @@
             this.mainPanel.Location = new System.Drawing.Point(240, 20);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(364, 210);
-            this.mainPanel.TabIndex = 44;
+            this.mainPanel.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(11, 42);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(211, 13);
+            this.label1.TabIndex = 46;
+            this.label1.Text = "Destildar si es una organización o empresa:";
+            // 
+            // activeStatuslabel
+            // 
+            this.activeStatuslabel.AutoSize = true;
+            this.activeStatuslabel.Location = new System.Drawing.Point(11, 19);
+            this.activeStatuslabel.Name = "activeStatuslabel";
+            this.activeStatuslabel.Size = new System.Drawing.Size(149, 13);
+            this.activeStatuslabel.TabIndex = 45;
+            this.activeStatuslabel.Text = "Destildar si está dado de baja:";
+            // 
+            // isPersonCheckBox
+            // 
+            this.isPersonCheckBox.AutoSize = true;
+            this.isPersonCheckBox.Location = new System.Drawing.Point(245, 41);
+            this.isPersonCheckBox.Name = "isPersonCheckBox";
+            this.isPersonCheckBox.Size = new System.Drawing.Size(94, 17);
+            this.isPersonCheckBox.TabIndex = 1;
+            this.isPersonCheckBox.Text = "Persona física";
+            this.isPersonCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // activeStatusCheckBox
+            // 
+            this.activeStatusCheckBox.AutoSize = true;
+            this.activeStatusCheckBox.Checked = true;
+            this.activeStatusCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.activeStatusCheckBox.Location = new System.Drawing.Point(245, 18);
+            this.activeStatusCheckBox.Name = "activeStatusCheckBox";
+            this.activeStatusCheckBox.Size = new System.Drawing.Size(56, 17);
+            this.activeStatusCheckBox.TabIndex = 0;
+            this.activeStatusCheckBox.Text = "Activo";
+            this.activeStatusCheckBox.UseVisualStyleBackColor = true;
             // 
             // imageUrlLabel
             // 
@@ -426,14 +473,14 @@
             this.adressPanel.Location = new System.Drawing.Point(240, 340);
             this.adressPanel.Name = "adressPanel";
             this.adressPanel.Size = new System.Drawing.Size(364, 185);
-            this.adressPanel.TabIndex = 45;
+            this.adressPanel.TabIndex = 2;
             // 
             // adressZipCodeTextBox
             // 
             this.adressZipCodeTextBox.Location = new System.Drawing.Point(89, 95);
             this.adressZipCodeTextBox.Name = "adressZipCodeTextBox";
             this.adressZipCodeTextBox.Size = new System.Drawing.Size(250, 20);
-            this.adressZipCodeTextBox.TabIndex = 38;
+            this.adressZipCodeTextBox.TabIndex = 3;
             this.adressZipCodeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // zipCodeLabel
@@ -456,29 +503,7 @@
             this.contactPanel.Location = new System.Drawing.Point(240, 250);
             this.contactPanel.Name = "contactPanel";
             this.contactPanel.Size = new System.Drawing.Size(364, 70);
-            this.contactPanel.TabIndex = 47;
-            // 
-            // activeStatusCheckBox
-            // 
-            this.activeStatusCheckBox.AutoSize = true;
-            this.activeStatusCheckBox.Checked = true;
-            this.activeStatusCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.activeStatusCheckBox.Location = new System.Drawing.Point(245, 18);
-            this.activeStatusCheckBox.Name = "activeStatusCheckBox";
-            this.activeStatusCheckBox.Size = new System.Drawing.Size(56, 17);
-            this.activeStatusCheckBox.TabIndex = 43;
-            this.activeStatusCheckBox.Text = "Activo";
-            this.activeStatusCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // isPersonCheckBox
-            // 
-            this.isPersonCheckBox.AutoSize = true;
-            this.isPersonCheckBox.Location = new System.Drawing.Point(245, 41);
-            this.isPersonCheckBox.Name = "isPersonCheckBox";
-            this.isPersonCheckBox.Size = new System.Drawing.Size(94, 17);
-            this.isPersonCheckBox.TabIndex = 44;
-            this.isPersonCheckBox.Text = "Persona física";
-            this.isPersonCheckBox.UseVisualStyleBackColor = true;
+            this.contactPanel.TabIndex = 1;
             // 
             // imagePanel
             // 
@@ -489,25 +514,7 @@
             this.imagePanel.Location = new System.Drawing.Point(20, 20);
             this.imagePanel.Name = "imagePanel";
             this.imagePanel.Size = new System.Drawing.Size(200, 300);
-            this.imagePanel.TabIndex = 48;
-            // 
-            // activeStatuslabel
-            // 
-            this.activeStatuslabel.AutoSize = true;
-            this.activeStatuslabel.Location = new System.Drawing.Point(11, 19);
-            this.activeStatuslabel.Name = "activeStatuslabel";
-            this.activeStatuslabel.Size = new System.Drawing.Size(149, 13);
-            this.activeStatuslabel.TabIndex = 45;
-            this.activeStatuslabel.Text = "Destildar si está dado de baja:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 42);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(211, 13);
-            this.label1.TabIndex = 46;
-            this.label1.Text = "Destildar si es una organización o empresa:";
+            this.imagePanel.TabIndex = 3;
             // 
             // RegisterForm
             // 

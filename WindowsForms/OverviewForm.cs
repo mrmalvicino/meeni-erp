@@ -28,10 +28,10 @@ namespace WindowsForms
 
         private void setupStyle()
         {
-            this.BackColor = Palette.darkBackground();
-            userPanel.BackColor = Palette.lightBackground();
-            metricsPanel.BackColor = Palette.lightBackground();
-            modulesPanel.BackColor = Palette.lightBackground();
+            this.BackColor = Palette.DarkBackColor;
+            userPanel.BackColor = Palette.LightBackColor;
+            metricsPanel.BackColor = Palette.LightBackColor;
+            modulesPanel.BackColor = Palette.LightBackColor;
         }
 
         // EVENTS

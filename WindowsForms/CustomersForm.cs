@@ -32,22 +32,22 @@ namespace WindowsForms
 
         private void setupStyle()
         {
-            this.BackColor = Palette.darkBackground();
-            mainPanel.BackColor = Palette.lightBackground();
-            actionsPanel.BackColor = Palette.lightBackground();
-            dataGridView.BackgroundColor = Palette.lightBackground();
-            idTextBox.ForeColor = Palette.font();
-            nameTextBox.ForeColor = Palette.font();
-            descriptionTextBox.ForeColor = Palette.font();
-            phoneTextBox.ForeColor = Palette.font();
-            emailTextBox.ForeColor = Palette.font();
-            adressTextBox.ForeColor = Palette.font();
-            idTextBox.BackColor = Palette.lightBackground();
-            nameTextBox.BackColor = Palette.lightBackground();
-            descriptionTextBox.BackColor = Palette.lightBackground();
-            emailTextBox.BackColor = Palette.lightBackground();
-            phoneTextBox.BackColor = Palette.lightBackground();
-            adressTextBox.BackColor = Palette.lightBackground();
+            this.BackColor = Palette.DarkBackColor;
+            mainPanel.BackColor = Palette.LightBackColor;
+            actionsPanel.BackColor = Palette.LightBackColor;
+            dataGridView.BackgroundColor = Palette.LightBackColor;
+            idTextBox.ForeColor = Palette.ForeColor;
+            nameTextBox.ForeColor = Palette.ForeColor;
+            descriptionTextBox.ForeColor = Palette.ForeColor;
+            phoneTextBox.ForeColor = Palette.ForeColor;
+            emailTextBox.ForeColor = Palette.ForeColor;
+            adressTextBox.ForeColor = Palette.ForeColor;
+            idTextBox.BackColor = Palette.LightBackColor;
+            nameTextBox.BackColor = Palette.LightBackColor;
+            descriptionTextBox.BackColor = Palette.LightBackColor;
+            emailTextBox.BackColor = Palette.LightBackColor;
+            phoneTextBox.BackColor = Palette.LightBackColor;
+            adressTextBox.BackColor = Palette.LightBackColor;
         }
 
         private void setupDataGridView()
@@ -116,6 +116,7 @@ namespace WindowsForms
                 deleteButton.Enabled = false;
                 exportCSVButton.Enabled = false;
                 loadProfile(-1, "N/A", "N/A", "N/A", "N/A", "N/A");
+                Functions.loadImage(pictureBox, "");
             }
         }
 

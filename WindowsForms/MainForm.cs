@@ -123,6 +123,7 @@ namespace WindowsForms
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            Palette.setDefaultSkin();
             loadOverviewForm();
         }
 
