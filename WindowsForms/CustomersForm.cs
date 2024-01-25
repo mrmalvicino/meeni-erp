@@ -157,7 +157,7 @@ namespace WindowsForms
                     }
                 }
 
-                MessageBox.Show("Exportación exitosa.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Archivo CSV exportado correctamente.", "Exportar CSV", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -222,7 +222,7 @@ namespace WindowsForms
 
         private void exportCSVButton_Click(object sender, EventArgs e)
         {
-            exportCSV(dataGridView, ConfigurationManager.AppSettings["csv_path"]);
+            exportCSV(dataGridView, ConfigurationManager.AppSettings["csv_path"] + "Clientes.csv");
         }
 
         private void filterButton_Click(object sender, EventArgs e)
