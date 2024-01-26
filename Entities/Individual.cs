@@ -34,14 +34,14 @@ namespace Entities
         [DisplayName("CUIL/CUIT")]
         public LegalId LegalId { get; set; }
 
-        // CONSTRUCT
+        // METHODS
 
-        public Individual()
+        public override string ToString()
         {
-            Phone = new Phone();
-            Adress = new Adress();
-            LegalId = new LegalId();
-            ActiveStatus = true;
+            if (this.IsPerson)
+                return $"{this.LastName}, {this.FirstName}";
+            else
+                return this.BusinessName;
         }
     }
 }

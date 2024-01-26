@@ -18,24 +18,14 @@ namespace Entities
         public int StreetNumber { get; set; }
         public string Flat {  get; set; }
 
-        // CONSTRUCT
-
-        public Adress()
-        {
-            Country = "Argentina";
-            Province = "Buenos Aires";
-            City = "";
-            ZipCode = "";
-            Street = "";
-            StreetNumber = 0;
-            Flat = "";
-        }
-
         // METHODS
 
         public override string ToString()
         {
-            return $"{Street} {StreetNumber}, {City}";
+            if (Street != null && StreetNumber != 0 && City != null)
+                return $"{Street} {StreetNumber}, {City}";
+            else
+                return "";
         }
     }
 }

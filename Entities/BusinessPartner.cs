@@ -15,13 +15,5 @@ namespace Entities
         public string PaymentMethod { get; set; }
         [DisplayName("Factura")]
         public string InvoiceCategory { get; set; }
-
-        // CONSTRUCT
-
-        public BusinessPartner()
-        {
-            PaymentMethod = "0";
-            InvoiceCategory = "0";
-        }
     }
 }

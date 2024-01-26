@@ -14,20 +14,16 @@ namespace Entities
         public int DNI { get; set; }
         public string Y { get; set; }
 
-        // CONSTRUCT
-
-        public LegalId()
-        {
-            XX = "XX";
-            DNI = 0;
-            Y = "Y";
-        }
-
         // METHODS
 
         public override string ToString()
         {
-            return $"{XX}-{DNI}-{Y}";
+            if (XX != null && Y != null)
+                return $"{XX}-{DNI}-{Y}";
+            else if (DNI != 0)
+                return DNI.ToString();
+            else
+                return "";
         }
     }
 }

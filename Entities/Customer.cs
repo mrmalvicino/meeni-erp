@@ -13,22 +13,5 @@ namespace Entities
 
         [DisplayName("Ventas")]
         public int SalesAmount { get; set; }
-
-        // CONSTRUCT
-
-        public Customer()
-        {
-            SalesAmount = 0;
-        }
-
-        // METHODS
-
-        public override string ToString()
-        {
-            if (this.IsPerson)
-                return $"{this.LastName}, {this.FirstName}";
-            else
-                return this.BusinessName;
-        }
     }
 }

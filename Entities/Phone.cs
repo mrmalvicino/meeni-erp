@@ -14,20 +14,16 @@ namespace Entities
         public int Area { get; set; }
         public int Number {  get; set; }
 
-        // CONSTRUCT
-
-        public Phone()
-        {
-            Country = 54;
-            Area = 911;
-            Number = 0;
-        }
-
         // METHODS
 
         public override string ToString()
         {
-            return $"+{Country} ({Area}) {Number}";
+            if (Country != 0 && Area != 0 && Number != 0)
+                return $"+{Country} ({Area}) {Number}";
+            else if (Number != 0)
+                return Number.ToString();
+            else
+                return "";
         }
     }
 }
