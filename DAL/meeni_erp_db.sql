@@ -46,3 +46,5 @@ INSERT INTO customers
 ('True', 'True', 'Carlos', 'Berlinguieri', '', '', '', 'berlinguieric@gmail.com', '54', '911', '1557736789', 'Argentina', 'Buenos Aires', 'Pacheco', 'B1617', 'Santa Fé', '1290', '', '', '38274478', '', 'Efectivo', 'C', '1');
 
 SELECT * FROM customers
+
+DELETE FROM customers WHERE Id = 6

@@ -215,7 +215,6 @@
             this.legalIdXXTextBox.Size = new System.Drawing.Size(40, 20);
             this.legalIdXXTextBox.TabIndex = 2;
             this.legalIdXXTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.legalIdXXTextBox.TextChanged += new System.EventHandler(this.legalIdXXTextBox_TextChanged);
             // 
             // legalIdDNITextBox
             // 
@@ -233,7 +232,6 @@
             this.legalIdYTextBox.Size = new System.Drawing.Size(40, 20);
             this.legalIdYTextBox.TabIndex = 4;
             this.legalIdYTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.legalIdYTextBox.TextChanged += new System.EventHandler(this.legalIdYTextBox_TextChanged);
             // 
             // firstNameLabel
             // 

@@ -22,7 +22,7 @@ namespace Entities
 
         public override string ToString()
         {
-            if (Street != null && StreetNumber != 0 && City != null)
+            if (Street != "" && StreetNumber != 0 && City != "")
                 return $"{Street} {StreetNumber}, {City}";
             else
                 return "";

@@ -49,9 +49,9 @@ namespace WindowsForms
 
         private bool validateRegister()
         {
-            if (Validations.isNumber(legalIdXXTextBox.Text) == false || Validations.isNumber(legalIdDNITextBox.Text) == false || Validations.isNumber(legalIdYTextBox.Text) == false)
+            if (Validations.isNumber(legalIdDNITextBox.Text) == false)
             {
-                MessageBox.Show("Los campos de CUIL/CUIT solo admiten caracteres numéricos.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("El campo de DNI solo admite caracteres numéricos.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -208,32 +208,12 @@ namespace WindowsForms
             }
         }
 
-        private void legalIdXXTextBox_TextChanged(object sender, EventArgs e)
-        {
-            if (Validations.isNumber(legalIdXXTextBox.Text))
-            {
-                legalIdXXTextBox.ForeColor = Palette.DefaultBlack;
-            }
-            else
-            {
-                legalIdXXTextBox.ForeColor = Palette.ValidationColor;
-            }
-        }
-
         private void legalIdDNITextBox_TextChanged(object sender, EventArgs e)
         {
             if (Validations.isNumber(legalIdDNITextBox.Text))
                 legalIdDNITextBox.ForeColor = Palette.DefaultBlack;
             else
                 legalIdDNITextBox.ForeColor = Palette.ValidationColor;
-        }
-
-        private void legalIdYTextBox_TextChanged(object sender, EventArgs e)
-        {
-            if (Validations.isNumber(legalIdYTextBox.Text))
-                legalIdYTextBox.ForeColor = Palette.DefaultBlack;
-            else
-                legalIdYTextBox.ForeColor = Palette.ValidationColor;
         }
 
         private void phoneCountryTextBox_TextChanged(object sender, EventArgs e)
