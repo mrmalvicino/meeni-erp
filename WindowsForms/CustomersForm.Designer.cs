@@ -76,7 +76,7 @@
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView.Size = new System.Drawing.Size(1230, 405);
-            this.dataGridView.TabIndex = 2;
+            this.dataGridView.TabIndex = 0;
             this.dataGridView.SelectionChanged += new System.EventHandler(this.dataGridView_SelectionChanged);
             // 
             // nameTextBox
@@ -209,7 +209,7 @@
             this.mainPanel.Location = new System.Drawing.Point(15, 15);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(500, 180);
-            this.mainPanel.TabIndex = 0;
+            this.mainPanel.TabIndex = 1;
             // 
             // actionsPanel
             // 
@@ -226,7 +226,7 @@
             this.actionsPanel.Location = new System.Drawing.Point(530, 15);
             this.actionsPanel.Name = "actionsPanel";
             this.actionsPanel.Size = new System.Drawing.Size(715, 180);
-            this.actionsPanel.TabIndex = 1;
+            this.actionsPanel.TabIndex = 2;
             // 
             // showInactiveCheckBox
             // 

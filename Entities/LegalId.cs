@@ -18,7 +18,7 @@ namespace Entities
 
         public override string ToString()
         {
-            if (XX != null && Y != null)
+            if (XX != null && DNI != 0 && Y != null)
                 return $"{XX}-{DNI}-{Y}";
             else if (DNI != 0)
                 return DNI.ToString();

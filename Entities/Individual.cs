@@ -34,6 +34,15 @@ namespace Entities
         [DisplayName("CUIL/CUIT")]
         public LegalId LegalId { get; set; }
 
+        // CONSTRUCT
+
+        public Individual()
+        {
+            Phone = new Phone();
+            Adress = new Adress();
+            LegalId = new LegalId();
+        }
+
         // METHODS
 
         public override string ToString()
