@@ -11,6 +11,8 @@ namespace Entities
     {
         // PROPERTIES
 
+        public int Id { get; set; }
+
         [DisplayName("Ventas")]
         public int SalesAmount { get; set; }
     }

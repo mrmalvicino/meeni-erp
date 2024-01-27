@@ -11,6 +11,8 @@ namespace Entities
     {
         // PROPERTIES
 
+        public int Id { get; set; }
+
         [DisplayName("Indispensable")]
         public bool IsIndispensable { get; set; }
     }

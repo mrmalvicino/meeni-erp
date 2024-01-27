@@ -11,8 +11,6 @@ namespace Entities
     {
         // PROPERTIES
 
-        public int Id { get; set; }
-
         [DisplayName("Activo")]
         public bool ActiveStatus { get; set; }
 
