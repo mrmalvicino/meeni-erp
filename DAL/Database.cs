@@ -58,6 +58,10 @@ namespace DAL
             {
                 throw ex;
             }
+            finally
+            {
+                _command.Parameters.Clear();
+            }
         }
 
         public void executeAction()
@@ -72,6 +76,10 @@ namespace DAL
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                _command.Parameters.Clear();
             }
         }
 
