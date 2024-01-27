@@ -11,7 +11,9 @@ namespace Entities
         // PROPERTIES
 
         public int Country { get; set; }
+
         public int Area { get; set; }
+
         public int Number {  get; set; }
 
         // METHODS

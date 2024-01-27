@@ -7,11 +7,9 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public class Supplier : BusinessPartner
+    public class Service : Item
     {
-        // PROPERTIES
-
-        [DisplayName("Indispensable")]
-        public bool IsIndispensable { get; set; }
+        [DisplayName("Nombre")]
+        public string Name { get; set; }
     }
 }

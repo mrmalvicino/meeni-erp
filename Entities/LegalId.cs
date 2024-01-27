@@ -11,7 +11,9 @@ namespace Entities
         // PROPERTIES
 
         public string XX { get; set; }
+
         public int DNI { get; set; }
+
         public string Y { get; set; }
 
         // METHODS

@@ -13,6 +13,7 @@ namespace Entities
 
         [DisplayName("Pago")]
         public string PaymentMethod { get; set; }
+
         [DisplayName("Factura")]
         public string InvoiceCategory { get; set; }
     }

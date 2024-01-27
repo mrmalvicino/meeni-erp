@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public class Supplier : BusinessPartner
+    public class Product : Item
     {
-        // PROPERTIES
+        [DisplayName("Marca")]
+        public string Brand { get; set; }
 
-        [DisplayName("Indispensable")]
-        public bool IsIndispensable { get; set; }
+        [DisplayName("Modelo")]
+        public string Model { get; set; }
     }
 }
