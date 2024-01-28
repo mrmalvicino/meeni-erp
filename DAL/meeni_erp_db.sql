@@ -5,8 +5,8 @@ USE meeni_erp_db
 GO
 
 CREATE TABLE customers(
--- Base class attributes
 Id int primary key identity,
+-- Base class attributes
 ActiveStatus bit,
 IsPerson bit,
 FirstName varchar(30),
@@ -48,3 +48,42 @@ INSERT INTO customers
 SELECT * FROM customers
 
 DELETE FROM customers WHERE Id = 6
+
+CREATE TABLE suppliers(
+Id int primary key identity,
+-- Base class attributes
+ActiveStatus bit,
+IsPerson bit,
+FirstName varchar(30),
+LastName varchar(30),
+BusinessName varchar(30),
+BusinessDescription varchar(30),
+ImageUrl varchar(300),
+Email varchar(30),
+-- Phone attribute
+PhoneCountry int,
+PhoneArea int,
+PhoneNumber int,
+-- Adress attribute
+AdressCountry varchar(30),
+AdressProvince varchar(30),
+AdressCity varchar(30),
+AdressZipCode varchar(30),
+AdressStreet varchar(30),
+AdressStreetNumber int,
+AdressFlat varchar(30),
+-- LegalId attribute
+LegalIdXX varchar(30),
+LegalIdDNI int,
+LegalIdY varchar(30),
+-- Hierarchy attributes
+PaymentMethod varchar(30),
+InvoiceCategory varchar(30),
+IsIndispensable bit
+)
+
+INSERT INTO suppliers
+(ActiveStatus, IsPerson, FirstName, LastName, BusinessName, BusinessDescription, ImageUrl, Email, PhoneCountry, PhoneArea, PhoneNumber, AdressCountry, AdressProvince, AdressCity, AdressZipCode, AdressStreet, AdressStreetNumber, AdressFlat, LegalIdXX, LegalIdDNI, LegalIdY, PaymentMethod, InvoiceCategory, IsIndispensable) VALUES
+('True', 'True', '', '', 'Carlitos Construction', 'Construcción Argentina', '', 'carlitosconstruye@gmail.com', '54', '911', '1527863846', 'Argentina', 'Buenos Aires', 'CABA', 'C1000', '9 de Julio', '1290', '', '20', '37456776', '9', 'Crédito', 'C', 'False');
+
+SELECT * FROM suppliers

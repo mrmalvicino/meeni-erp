@@ -98,6 +98,27 @@ namespace WindowsForms
             customersForm.Show();
         }
 
+        public void loadSuppliersForm()
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.GetType() == typeof(SuppliersForm))
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
+
+                    form.BringToFront();
+                    return;
+                };
+            }
+
+            SuppliersForm suppliersForm = new SuppliersForm();
+            suppliersForm.MdiParent = this;
+            suppliersForm.Show();
+        }
+
         public void loadTransactionsForm()
         {
             foreach (Form form in Application.OpenForms)
@@ -154,7 +175,7 @@ namespace WindowsForms
 
         private void suppliersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            loadSuppliersForm();
         }
 
         private void employeesToolStripMenuItem_Click(object sender, EventArgs e)

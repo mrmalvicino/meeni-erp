@@ -1,6 +1,6 @@
 ﻿namespace WindowsForms
 {
-    partial class RegisterForm
+    partial class CustomerRegisterForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegisterForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerRegisterForm));
             this.firstNameTextBox = new System.Windows.Forms.TextBox();
             this.lastNameTextBox = new System.Windows.Forms.TextBox();
             this.businessNameTextBox = new System.Windows.Forms.TextBox();
@@ -514,7 +514,7 @@
             this.imagePanel.Size = new System.Drawing.Size(200, 300);
             this.imagePanel.TabIndex = 3;
             // 
-            // RegisterForm
+            // CustomerRegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -526,10 +526,11 @@
             this.Controls.Add(this.saveButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "RegisterForm";
+            this.MaximizeBox = false;
+            this.Name = "CustomerRegisterForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Registro";
-            this.Load += new System.EventHandler(this.RegisterForm_Load);
+            this.Text = "Registro de cliente";
+            this.Load += new System.EventHandler(this.CustomerRegisterForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.mainPanel.ResumeLayout(false);
             this.mainPanel.PerformLayout();

@@ -9,18 +9,18 @@ using Entities;
 
 namespace WindowsForms
 {
-    public partial class CustomersForm : Form
+    public partial class SuppliersForm : Form
     {
         // ATTRIBUTES
 
-        private Customer _selectedCustomer;
-        private List<Customer> _customersTable;
-        private List<Customer> _filteredCustomers;
-        private CustomersManager _customersManager = new CustomersManager();
+        private Supplier _selectedSupplier;
+        private List<Supplier> _suppliersTable;
+        private List<Supplier> _filteredSuppliers;
+        private SuppliersManager _suppliersManager = new SuppliersManager();
 
         // CONSTRUCT
 
-        public CustomersForm()
+        public SuppliersForm()
         {
             InitializeComponent();
         }
@@ -56,10 +56,11 @@ namespace WindowsForms
                 dataGridView.Columns["ImageUrl"].Visible = false;
                 dataGridView.Columns["InvoiceCategory"].DisplayIndex = dataGridView.ColumnCount - 3;
                 dataGridView.Columns["PaymentMethod"].DisplayIndex = dataGridView.ColumnCount - 2;
-                dataGridView.Columns["SalesAmount"].DisplayIndex = dataGridView.ColumnCount - 1;
+                dataGridView.Columns["IsIndispensable"].DisplayIndex = dataGridView.ColumnCount - 1;
                 dataGridView.Columns["IsPerson"].Width = 50;
                 dataGridView.Columns["InvoiceCategory"].Width = 50;
-            }
+                dataGridView.Columns["IsIndispensable"].Width = 50;
+            }  
         }
 
         private void loadProfile(int id, string name, string description, string phone, string email, string adress)
@@ -76,8 +77,8 @@ namespace WindowsForms
         {
             try
             {
-                _customersTable = _customersManager.list();
-                dataGridView.DataSource = _customersTable;
+                _suppliersTable = _suppliersManager.list();
+                dataGridView.DataSource = _suppliersTable;
             }
             catch (Exception ex)
             {
@@ -92,12 +93,12 @@ namespace WindowsForms
             bool showInactive = showInactiveCheckBox.Checked;
 
             if (2 < filter.Length)
-                _filteredCustomers = _customersTable.FindAll(reg => ((reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)) && (reg.FirstName.ToUpper().Contains(filter.ToUpper()) || reg.LastName.ToUpper().Contains(filter.ToUpper()) || reg.BusinessName.ToUpper().Contains(filter.ToUpper()) || reg.BusinessDescription.ToUpper().Contains(filter.ToUpper()) || reg.Email.ToUpper().Contains(filter.ToUpper()) || reg.LegalId.ToString().Contains(filter) ) );
+                _filteredSuppliers = _suppliersTable.FindAll(reg => ((reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)) && (reg.FirstName.ToUpper().Contains(filter.ToUpper()) || reg.LastName.ToUpper().Contains(filter.ToUpper()) || reg.BusinessName.ToUpper().Contains(filter.ToUpper()) || reg.BusinessDescription.ToUpper().Contains(filter.ToUpper()) || reg.Email.ToUpper().Contains(filter.ToUpper()) || reg.LegalId.ToString().Contains(filter)));
             else
-                _filteredCustomers = _customersTable.FindAll(reg => (reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive));
+                _filteredSuppliers = _suppliersTable.FindAll(reg => (reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive));
 
             dataGridView.DataSource = null;
-            dataGridView.DataSource = _filteredCustomers;
+            dataGridView.DataSource = _filteredSuppliers;
             setupDataGridView();
             validateDataGridView();
         }
@@ -165,7 +166,7 @@ namespace WindowsForms
 
         // EVENTS
 
-        private void CustomersForm_Load(object sender, EventArgs e)
+        private void SuppliersForm_Load(object sender, EventArgs e)
         {
             setupStyle();
             refreshTable();
@@ -177,15 +178,15 @@ namespace WindowsForms
         {
             if (dataGridView.CurrentRow != null)
             {
-                _selectedCustomer = (Customer)dataGridView.CurrentRow.DataBoundItem;
-                Functions.loadImage(pictureBox, _selectedCustomer.ImageUrl);
-                loadProfile(_selectedCustomer.Id, _selectedCustomer.ToString(), _selectedCustomer.BusinessDescription, _selectedCustomer.Phone.ToString(), _selectedCustomer.Email.ToString(), _selectedCustomer.Adress.ToString());
+                _selectedSupplier = (Supplier)dataGridView.CurrentRow.DataBoundItem;
+                Functions.loadImage(pictureBox, _selectedSupplier.ImageUrl);
+                loadProfile(_selectedSupplier.Id, _selectedSupplier.ToString(), _selectedSupplier.BusinessDescription, _selectedSupplier.Phone.ToString(), _selectedSupplier.Email.ToString(), _selectedSupplier.Adress.ToString());
             }
         }
 
         private void newButton_Click(object sender, EventArgs e)
         {
-            CustomerRegisterForm registerForm = new CustomerRegisterForm();
+            SupplierRegisterForm registerForm = new SupplierRegisterForm();
             registerForm.ShowDialog();
             refreshTable();
             applyFilter();
@@ -193,7 +194,7 @@ namespace WindowsForms
 
         private void editButton_Click(object sender, EventArgs e)
         {
-            CustomerRegisterForm registerForm = new CustomerRegisterForm(_selectedCustomer);
+            SupplierRegisterForm registerForm = new SupplierRegisterForm(_selectedSupplier);
             registerForm.ShowDialog();
             refreshTable();
             applyFilter();
@@ -204,10 +205,10 @@ namespace WindowsForms
             try
             {
                 DialogResult answer = MessageBox.Show("Esta acción no puede deshacerse. ¿Está seguro que desea continuar?", "Eliminar registro", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                
+
                 if (answer == DialogResult.Yes)
                 {
-                    _customersManager.delete(_selectedCustomer.Id);
+                    _suppliersManager.delete(_selectedSupplier.Id);
                     refreshTable();
                     applyFilter();
                 }
@@ -220,7 +221,7 @@ namespace WindowsForms
 
         private void exportCSVButton_Click(object sender, EventArgs e)
         {
-            exportCSV(dataGridView, ConfigurationManager.AppSettings["csv_path"] + "Clientes.csv");
+            exportCSV(dataGridView, ConfigurationManager.AppSettings["csv_path"] + "Proveedores.csv");
         }
 
         private void filterButton_Click(object sender, EventArgs e)
@@ -231,7 +232,7 @@ namespace WindowsForms
             applyFilter();
         }
 
-        private void filterTextBox_TextChanged(object sender, EventArgs e)
+        private void filterTextBox_TextChanged_1(object sender, EventArgs e)
         {
             applyFilter();
         }

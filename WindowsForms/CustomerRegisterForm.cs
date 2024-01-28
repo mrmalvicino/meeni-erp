@@ -1,39 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using System.IO;
 using System.Configuration;
-using Entities;
+using System.IO;
 using BLL;
+using Entities;
 
 namespace WindowsForms
 {
-    public partial class RegisterForm : Form
+    public partial class CustomerRegisterForm : Form
     {
         // ATTRIBUTES
 
-        Individual _individual = null;
+        Customer _customer = null;
         OpenFileDialog _file = null;
         CustomersManager _customersManager = new CustomersManager();
 
         //CONSTRUCT
 
-        public RegisterForm() // Para agregar un registro
+        public CustomerRegisterForm()
         {
             InitializeComponent();
         }
 
-        public RegisterForm(Individual individual) // Para editar un registro
+        public CustomerRegisterForm(Customer customer)
         {
             InitializeComponent();
-            _individual = individual;
+            _customer = customer;
         }
 
         // METHODS
@@ -100,41 +92,41 @@ namespace WindowsForms
 
         // EVENTS
 
-        private void RegisterForm_Load(object sender, EventArgs e)
+        private void CustomerRegisterForm_Load(object sender, EventArgs e)
         {
             setupStyle();
 
-            if (_individual == null) // Se está agregando un registro
+            if (_customer == null) // Se está agregando un registro
             {
-                _individual = new Individual();
+                _customer = new Customer();
                 activeStatusCheckBox.Enabled = false;
             }
             else // Se está editando un registro
             {
-                activeStatusCheckBox.Checked = _individual.ActiveStatus;
-                isPersonCheckBox.Checked = _individual.IsPerson;
-                firstNameTextBox.Text = _individual.FirstName;
-                lastNameTextBox.Text = _individual.LastName;
-                businessNameTextBox.Text = _individual.BusinessName;
-                businessDescriptionTextBox.Text = _individual.BusinessDescription;
-                imageUrlTextBox.Text = _individual.ImageUrl;
-                emailTextBox.Text = _individual.Email;
+                activeStatusCheckBox.Checked = _customer.ActiveStatus;
+                isPersonCheckBox.Checked = _customer.IsPerson;
+                firstNameTextBox.Text = _customer.FirstName;
+                lastNameTextBox.Text = _customer.LastName;
+                businessNameTextBox.Text = _customer.BusinessName;
+                businessDescriptionTextBox.Text = _customer.BusinessDescription;
+                imageUrlTextBox.Text = _customer.ImageUrl;
+                emailTextBox.Text = _customer.Email;
 
-                phoneCountryTextBox.Text = _individual.Phone.Country.ToString();
-                phoneAreaTextBox.Text = _individual.Phone.Area.ToString();
-                phoneNumberTextBox.Text = _individual.Phone.Number.ToString();
+                phoneCountryTextBox.Text = _customer.Phone.Country.ToString();
+                phoneAreaTextBox.Text = _customer.Phone.Area.ToString();
+                phoneNumberTextBox.Text = _customer.Phone.Number.ToString();
 
-                adressCountryTextBox.Text = _individual.Adress.Country;
-                adressProvinceTextBox.Text = _individual.Adress.Province;
-                adressCityTextBox.Text = _individual.Adress.City;
-                adressZipCodeTextBox.Text = _individual.Adress.ZipCode;
-                adressStreetTextBox.Text = _individual.Adress.Street;
-                adressStreetNumberTextBox.Text = _individual.Adress.StreetNumber.ToString();
-                adressFlatTextBox.Text = _individual.Adress.Flat;
+                adressCountryTextBox.Text = _customer.Adress.Country;
+                adressProvinceTextBox.Text = _customer.Adress.Province;
+                adressCityTextBox.Text = _customer.Adress.City;
+                adressZipCodeTextBox.Text = _customer.Adress.ZipCode;
+                adressStreetTextBox.Text = _customer.Adress.Street;
+                adressStreetNumberTextBox.Text = _customer.Adress.StreetNumber.ToString();
+                adressFlatTextBox.Text = _customer.Adress.Flat;
 
-                legalIdXXTextBox.Text = _individual.LegalId.XX;
-                legalIdDNITextBox.Text = _individual.LegalId.DNI.ToString();
-                legalIdYTextBox.Text = _individual.LegalId.Y;
+                legalIdXXTextBox.Text = _customer.LegalId.XX;
+                legalIdDNITextBox.Text = _customer.LegalId.DNI.ToString();
+                legalIdYTextBox.Text = _customer.LegalId.Y;
 
                 Functions.loadImage(pictureBox, imageUrlTextBox.Text);
             }
@@ -152,33 +144,35 @@ namespace WindowsForms
 
             try
             {
-                _individual.ActiveStatus = activeStatusCheckBox.Checked;
-                _individual.IsPerson = isPersonCheckBox.Checked;
-                _individual.FirstName = firstNameTextBox.Text;
-                _individual.LastName = lastNameTextBox.Text;
-                _individual.BusinessName = businessNameTextBox.Text;
-                _individual.BusinessDescription = businessDescriptionTextBox.Text;
-                _individual.ImageUrl = imageUrlTextBox.Text;
-                _individual.Email = emailTextBox.Text;
+                _customer.ActiveStatus = activeStatusCheckBox.Checked;
+                _customer.IsPerson = isPersonCheckBox.Checked;
+                _customer.FirstName = firstNameTextBox.Text;
+                _customer.LastName = lastNameTextBox.Text;
+                _customer.BusinessName = businessNameTextBox.Text;
+                _customer.BusinessDescription = businessDescriptionTextBox.Text;
+                _customer.ImageUrl = imageUrlTextBox.Text;
+                _customer.Email = emailTextBox.Text;
 
-                if (phoneCountryTextBox.Text != "") _individual.Phone.Country = int.Parse(phoneCountryTextBox.Text);
-                if (phoneAreaTextBox.Text != "") _individual.Phone.Area = int.Parse(phoneAreaTextBox.Text);
-                if (phoneNumberTextBox.Text != "") _individual.Phone.Number = int.Parse(phoneNumberTextBox.Text);
+                if (phoneCountryTextBox.Text != "") _customer.Phone.Country = int.Parse(phoneCountryTextBox.Text);
+                if (phoneAreaTextBox.Text != "") _customer.Phone.Area = int.Parse(phoneAreaTextBox.Text);
+                if (phoneNumberTextBox.Text != "") _customer.Phone.Number = int.Parse(phoneNumberTextBox.Text);
 
-                _individual.Adress.Country = adressCountryTextBox.Text;
-                _individual.Adress.Province = adressProvinceTextBox.Text;
-                _individual.Adress.City = adressCityTextBox.Text;
-                _individual.Adress.ZipCode = adressZipCodeTextBox.Text;
-                _individual.Adress.Street = adressStreetTextBox.Text;
-                if (adressStreetNumberTextBox.Text != "") _individual.Adress.StreetNumber = int.Parse(adressStreetNumberTextBox.Text);
-                _individual.Adress.Flat = adressFlatTextBox.Text;
+                _customer.Adress.Country = adressCountryTextBox.Text;
+                _customer.Adress.Province = adressProvinceTextBox.Text;
+                _customer.Adress.City = adressCityTextBox.Text;
+                _customer.Adress.ZipCode = adressZipCodeTextBox.Text;
+                _customer.Adress.Street = adressStreetTextBox.Text;
+                if (adressStreetNumberTextBox.Text != "") _customer.Adress.StreetNumber = int.Parse(adressStreetNumberTextBox.Text);
+                _customer.Adress.Flat = adressFlatTextBox.Text;
 
-                _individual.LegalId.XX = legalIdXXTextBox.Text;
-                if (legalIdDNITextBox.Text != "") _individual.LegalId.DNI = int.Parse(legalIdDNITextBox.Text);
-                _individual.LegalId.Y = legalIdYTextBox.Text;
-                
-                if (0 < _individual.Id) _customersManager.edit(_individual); // Se está agregando un registro
-                else _customersManager.add(_individual); // Se está editando un registro
+                _customer.LegalId.XX = legalIdXXTextBox.Text;
+                if (legalIdDNITextBox.Text != "") _customer.LegalId.DNI = int.Parse(legalIdDNITextBox.Text);
+                _customer.LegalId.Y = legalIdYTextBox.Text;
+            
+                if (0 < _customer.Id)
+                    _customersManager.edit(_customer); // Se está agregando un registro
+                else
+                    _customersManager.add(_customer); // Se está editando un registro
 
                 MessageBox.Show("Registro guardado exitosamente.");
                 Close();

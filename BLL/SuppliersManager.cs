@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using Entities;
 
 namespace BLL
@@ -7,6 +8,18 @@ namespace BLL
     public class SuppliersManager : IndividualsManager
     {
         // METHODS
+
+        public void createSuppliersTable()
+        {
+            string individualColumns = "ActiveStatus bit, IsPerson bit, FirstName varchar(30), LastName varchar(30), BusinessName varchar(30), BusinessDescription varchar(30), ImageUrl varchar(300), Email varchar(30)";
+            string individualPhone = "PhoneCountry int, PhoneArea int, PhoneNumber int";
+            string individualAdress = "AdressCountry varchar(30), AdressProvince varchar(30), AdressCity varchar(30), AdressZipCode varchar(30), AdressStreet varchar(30), AdressStreetNumber int, AdressFlat varchar(30)";
+            string individualLegalId = "LegalIdXX varchar(30), LegalIdDNI int, LegalIdY varchar(30)";
+            string businessPartnerColumns = "PaymentMethod varchar(30), InvoiceCategory varchar(30)";
+            string supplierColumns = "IsIndispensable bit";
+            string createTableQuery = $"CREATE TABLE suppliers(Id int primary key identity, {individualColumns}, {individualPhone}, {individualAdress}, {individualLegalId}, {businessPartnerColumns}, {supplierColumns})";
+            _database.createTable("suppliers", createTableQuery);
+        }
 
         public List<Supplier> list()
         {

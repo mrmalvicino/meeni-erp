@@ -53,7 +53,7 @@ namespace WindowsForms
 
         private void suppliersButton_Click(object sender, EventArgs e)
         {
-
+            _mainForm.loadSuppliersForm();
         }
 
         private void employeesButton_Click(object sender, EventArgs e)
