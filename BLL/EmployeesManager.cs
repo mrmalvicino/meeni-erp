@@ -24,7 +24,7 @@ namespace BLL
                     Employee employee = new Employee();
 
                     readIndividual(employee);
-                    employee.Id = (int)_database.Reader["Id"];
+                    employee.EmployeeId = (int)_database.Reader["EmployeeId"];
 
                     if (!(_database.Reader["PaymentMethod"] is DBNull))
                         employee.PaymentMethod = (string)_database.Reader["PaymentMethod"];

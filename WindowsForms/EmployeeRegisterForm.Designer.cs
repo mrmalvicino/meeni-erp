@@ -74,11 +74,20 @@
             this.businessDescriptionLabel = new System.Windows.Forms.Label();
             this.legalIdYTextBox = new System.Windows.Forms.TextBox();
             this.saveButton = new System.Windows.Forms.Button();
+            this.specialPanel = new System.Windows.Forms.Panel();
+            this.areaComboBox = new System.Windows.Forms.ComboBox();
+            this.titleComboBox = new System.Windows.Forms.ComboBox();
+            this.seniorityComboBox = new System.Windows.Forms.ComboBox();
+            this.areaLabel = new System.Windows.Forms.Label();
+            this.titleLabel = new System.Windows.Forms.Label();
+            this.seniorityLabel = new System.Windows.Forms.Label();
+            this.newCategoryButton = new System.Windows.Forms.Button();
             this.imagePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.contactPanel.SuspendLayout();
             this.adressPanel.SuspendLayout();
             this.mainPanel.SuspendLayout();
+            this.specialPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // imagePanel
@@ -90,7 +99,7 @@
             this.imagePanel.Location = new System.Drawing.Point(20, 20);
             this.imagePanel.Name = "imagePanel";
             this.imagePanel.Size = new System.Drawing.Size(200, 300);
-            this.imagePanel.TabIndex = 8;
+            this.imagePanel.TabIndex = 3;
             // 
             // pictureBox
             // 
@@ -104,11 +113,11 @@
             // 
             // loadImageButton
             // 
-            this.loadImageButton.Location = new System.Drawing.Point(60, 254);
+            this.loadImageButton.Location = new System.Drawing.Point(50, 260);
             this.loadImageButton.Name = "loadImageButton";
-            this.loadImageButton.Size = new System.Drawing.Size(80, 30);
+            this.loadImageButton.Size = new System.Drawing.Size(100, 30);
             this.loadImageButton.TabIndex = 0;
-            this.loadImageButton.Text = "Cargar";
+            this.loadImageButton.Text = "Cargar localmente";
             this.loadImageButton.UseVisualStyleBackColor = true;
             // 
             // imageUrlLabel
@@ -139,7 +148,7 @@
             this.contactPanel.Location = new System.Drawing.Point(240, 250);
             this.contactPanel.Name = "contactPanel";
             this.contactPanel.Size = new System.Drawing.Size(364, 70);
-            this.contactPanel.TabIndex = 6;
+            this.contactPanel.TabIndex = 1;
             // 
             // emailTextBox
             // 
@@ -210,7 +219,7 @@
             this.adressPanel.Location = new System.Drawing.Point(240, 340);
             this.adressPanel.Name = "adressPanel";
             this.adressPanel.Size = new System.Drawing.Size(364, 185);
-            this.adressPanel.TabIndex = 7;
+            this.adressPanel.TabIndex = 2;
             // 
             // adressZipCodeTextBox
             // 
@@ -352,7 +361,7 @@
             this.mainPanel.Location = new System.Drawing.Point(240, 20);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(364, 210);
-            this.mainPanel.TabIndex = 5;
+            this.mainPanel.TabIndex = 0;
             // 
             // label1
             // 
@@ -507,11 +516,86 @@
             this.saveButton.Text = "Guardar";
             this.saveButton.UseVisualStyleBackColor = true;
             // 
+            // specialPanel
+            // 
+            this.specialPanel.Controls.Add(this.newCategoryButton);
+            this.specialPanel.Controls.Add(this.seniorityLabel);
+            this.specialPanel.Controls.Add(this.titleLabel);
+            this.specialPanel.Controls.Add(this.areaLabel);
+            this.specialPanel.Controls.Add(this.seniorityComboBox);
+            this.specialPanel.Controls.Add(this.titleComboBox);
+            this.specialPanel.Controls.Add(this.areaComboBox);
+            this.specialPanel.Location = new System.Drawing.Point(20, 340);
+            this.specialPanel.Name = "specialPanel";
+            this.specialPanel.Size = new System.Drawing.Size(200, 185);
+            this.specialPanel.TabIndex = 4;
+            // 
+            // areaComboBox
+            // 
+            this.areaComboBox.FormattingEnabled = true;
+            this.areaComboBox.Location = new System.Drawing.Point(20, 29);
+            this.areaComboBox.Name = "areaComboBox";
+            this.areaComboBox.Size = new System.Drawing.Size(160, 21);
+            this.areaComboBox.TabIndex = 0;
+            // 
+            // titleComboBox
+            // 
+            this.titleComboBox.FormattingEnabled = true;
+            this.titleComboBox.Location = new System.Drawing.Point(20, 69);
+            this.titleComboBox.Name = "titleComboBox";
+            this.titleComboBox.Size = new System.Drawing.Size(160, 21);
+            this.titleComboBox.TabIndex = 1;
+            // 
+            // seniorityComboBox
+            // 
+            this.seniorityComboBox.FormattingEnabled = true;
+            this.seniorityComboBox.Location = new System.Drawing.Point(20, 109);
+            this.seniorityComboBox.Name = "seniorityComboBox";
+            this.seniorityComboBox.Size = new System.Drawing.Size(160, 21);
+            this.seniorityComboBox.TabIndex = 2;
+            // 
+            // areaLabel
+            // 
+            this.areaLabel.AutoSize = true;
+            this.areaLabel.Location = new System.Drawing.Point(17, 13);
+            this.areaLabel.Name = "areaLabel";
+            this.areaLabel.Size = new System.Drawing.Size(32, 13);
+            this.areaLabel.TabIndex = 33;
+            this.areaLabel.Text = "Área:";
+            // 
+            // titleLabel
+            // 
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.Location = new System.Drawing.Point(17, 53);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(38, 13);
+            this.titleLabel.TabIndex = 34;
+            this.titleLabel.Text = "Título:";
+            // 
+            // seniorityLabel
+            // 
+            this.seniorityLabel.AutoSize = true;
+            this.seniorityLabel.Location = new System.Drawing.Point(17, 93);
+            this.seniorityLabel.Name = "seniorityLabel";
+            this.seniorityLabel.Size = new System.Drawing.Size(65, 13);
+            this.seniorityLabel.TabIndex = 35;
+            this.seniorityLabel.Text = "Experiencia:";
+            // 
+            // newCategoryButton
+            // 
+            this.newCategoryButton.Location = new System.Drawing.Point(50, 145);
+            this.newCategoryButton.Name = "newCategoryButton";
+            this.newCategoryButton.Size = new System.Drawing.Size(100, 30);
+            this.newCategoryButton.TabIndex = 42;
+            this.newCategoryButton.Text = "Nueva categoría";
+            this.newCategoryButton.UseVisualStyleBackColor = true;
+            // 
             // EmployeeRegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 601);
+            this.Controls.Add(this.specialPanel);
             this.Controls.Add(this.imagePanel);
             this.Controls.Add(this.contactPanel);
             this.Controls.Add(this.adressPanel);
@@ -532,6 +616,8 @@
             this.adressPanel.PerformLayout();
             this.mainPanel.ResumeLayout(false);
             this.mainPanel.PerformLayout();
+            this.specialPanel.ResumeLayout(false);
+            this.specialPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -583,5 +669,13 @@
         private System.Windows.Forms.Label businessDescriptionLabel;
         private System.Windows.Forms.TextBox legalIdYTextBox;
         private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.Panel specialPanel;
+        private System.Windows.Forms.ComboBox areaComboBox;
+        private System.Windows.Forms.Label seniorityLabel;
+        private System.Windows.Forms.Label titleLabel;
+        private System.Windows.Forms.Label areaLabel;
+        private System.Windows.Forms.ComboBox seniorityComboBox;
+        private System.Windows.Forms.ComboBox titleComboBox;
+        private System.Windows.Forms.Button newCategoryButton;
     }
 }

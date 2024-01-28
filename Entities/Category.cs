@@ -19,7 +19,7 @@ namespace Entities
         [DisplayName("Título")]
         public string Title { get; set; }
 
-        [DisplayName("Antiguedad")]
+        [DisplayName("Experiencia")]
         public string Seniority { get; set; }
 
         // METHODS

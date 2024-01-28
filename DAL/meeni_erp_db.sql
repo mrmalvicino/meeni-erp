@@ -10,7 +10,6 @@ GO
 
 CREATE TABLE customers(
 Id int primary key identity,
--- Base class attributes
 ActiveStatus bit,
 IsPerson bit,
 FirstName varchar(30),
@@ -19,11 +18,9 @@ BusinessName varchar(30),
 BusinessDescription varchar(30),
 ImageUrl varchar(300),
 Email varchar(30),
--- Phone attribute
 PhoneCountry int,
 PhoneArea int,
 PhoneNumber int,
--- Adress attribute
 AdressCountry varchar(30),
 AdressProvince varchar(30),
 AdressCity varchar(30),
@@ -31,11 +28,9 @@ AdressZipCode varchar(30),
 AdressStreet varchar(30),
 AdressStreetNumber int,
 AdressFlat varchar(30),
--- LegalId attribute
 LegalIdXX varchar(30),
 LegalIdDNI int,
 LegalIdY varchar(30),
--- Hierarchy attributes
 PaymentMethod varchar(30),
 InvoiceCategory varchar(30),
 SalesAmount int
@@ -53,7 +48,6 @@ INSERT INTO customers
 
 CREATE TABLE suppliers(
 Id int primary key identity,
--- Base class attributes
 ActiveStatus bit,
 IsPerson bit,
 FirstName varchar(30),
@@ -62,11 +56,9 @@ BusinessName varchar(30),
 BusinessDescription varchar(30),
 ImageUrl varchar(300),
 Email varchar(30),
--- Phone attribute
 PhoneCountry int,
 PhoneArea int,
 PhoneNumber int,
--- Adress attribute
 AdressCountry varchar(30),
 AdressProvince varchar(30),
 AdressCity varchar(30),
@@ -74,11 +66,9 @@ AdressZipCode varchar(30),
 AdressStreet varchar(30),
 AdressStreetNumber int,
 AdressFlat varchar(30),
--- LegalId attribute
 LegalIdXX varchar(30),
 LegalIdDNI int,
 LegalIdY varchar(30),
--- Hierarchy attributes
 PaymentMethod varchar(30),
 InvoiceCategory varchar(30),
 IsIndispensable bit
@@ -92,7 +82,6 @@ INSERT INTO suppliers
 
 CREATE TABLE employees(
 Id int primary key identity,
--- Base class attributes
 ActiveStatus bit,
 IsPerson bit,
 FirstName varchar(30),
@@ -101,11 +90,9 @@ BusinessName varchar(30),
 BusinessDescription varchar(30),
 ImageUrl varchar(300),
 Email varchar(30),
--- Phone attribute
 PhoneCountry int,
 PhoneArea int,
 PhoneNumber int,
--- Adress attribute
 AdressCountry varchar(30),
 AdressProvince varchar(30),
 AdressCity varchar(30),
@@ -113,11 +100,10 @@ AdressZipCode varchar(30),
 AdressStreet varchar(30),
 AdressStreetNumber int,
 AdressFlat varchar(30),
--- LegalId attribute
 LegalIdXX varchar(30),
 LegalIdDNI int,
 LegalIdY varchar(30),
--- Hierarchy attributes
+Admission datetime default getdate() not null,
 CategoryId int
 )
 
@@ -181,10 +167,11 @@ INSERT INTO roles
 
 -- TESTING QUERIES
 
-SELECT * FROM employees
+SELECT FirstName, LastName, C.Title
+FROM employees E, categories C
+WHERE E.CategoryId = C.Id
+
 SELECT * FROM categories
-SELECT * FROM users
-SELECT * FROM roles
 
 UPDATE users SET UserName = 'Bocca1' WHERE UserId = 1;
 

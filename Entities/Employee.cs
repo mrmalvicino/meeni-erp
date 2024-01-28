@@ -13,6 +13,9 @@ namespace Entities
 
         public int EmployeeId { get; set; }
 
+        [DisplayName("Ingreso")]
+        public DateTime Admission { get; set; }
+
         [DisplayName("Categoría")]
         public Category Category { get; set; }
 
