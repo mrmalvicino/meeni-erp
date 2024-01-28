@@ -1,8 +1,12 @@
+-- DATABASE
+
 CREATE DATABASE meeni_erp_db
 GO
 
 USE meeni_erp_db
 GO
+
+-- CUSTOMERS
 
 CREATE TABLE customers(
 Id int primary key identity,
@@ -45,9 +49,7 @@ INSERT INTO customers
 ('True', 'False', '', '', 'Urban Renovations', 'Urban Renewal Experts', '', 'info@urbanrenovations.com', '54', '911', '1558897263', 'Argentina', 'Buenos Aires', 'Tigre', 'B1648', 'Cazón', '768', '', '23', '29334857', '9', 'Cheque', 'A', '2'),
 ('True', 'True', 'Carlos', 'Berlinguieri', '', '', '', 'berlinguieric@gmail.com', '54', '911', '1557736789', 'Argentina', 'Buenos Aires', 'Pacheco', 'B1617', 'Santa Fé', '1290', '', '', '38274478', '', 'Efectivo', 'C', '1');
 
-SELECT * FROM customers
-
-DELETE FROM customers WHERE Id = 6
+-- SUPPLIERS
 
 CREATE TABLE suppliers(
 Id int primary key identity,
@@ -86,4 +88,104 @@ INSERT INTO suppliers
 (ActiveStatus, IsPerson, FirstName, LastName, BusinessName, BusinessDescription, ImageUrl, Email, PhoneCountry, PhoneArea, PhoneNumber, AdressCountry, AdressProvince, AdressCity, AdressZipCode, AdressStreet, AdressStreetNumber, AdressFlat, LegalIdXX, LegalIdDNI, LegalIdY, PaymentMethod, InvoiceCategory, IsIndispensable) VALUES
 ('True', 'True', '', '', 'Carlitos Construction', 'Construcción Argentina', '', 'carlitosconstruye@gmail.com', '54', '911', '1527863846', 'Argentina', 'Buenos Aires', 'CABA', 'C1000', '9 de Julio', '1290', '', '20', '37456776', '9', 'Crédito', 'C', 'False');
 
-SELECT * FROM suppliers
+-- EMPLOYEES
+
+CREATE TABLE employees(
+Id int primary key identity,
+-- Base class attributes
+ActiveStatus bit,
+IsPerson bit,
+FirstName varchar(30),
+LastName varchar(30),
+BusinessName varchar(30),
+BusinessDescription varchar(30),
+ImageUrl varchar(300),
+Email varchar(30),
+-- Phone attribute
+PhoneCountry int,
+PhoneArea int,
+PhoneNumber int,
+-- Adress attribute
+AdressCountry varchar(30),
+AdressProvince varchar(30),
+AdressCity varchar(30),
+AdressZipCode varchar(30),
+AdressStreet varchar(30),
+AdressStreetNumber int,
+AdressFlat varchar(30),
+-- LegalId attribute
+LegalIdXX varchar(30),
+LegalIdDNI int,
+LegalIdY varchar(30),
+-- Hierarchy attributes
+CategoryId int
+)
+
+INSERT INTO employees
+(ActiveStatus, IsPerson, FirstName, LastName, BusinessName, BusinessDescription, ImageUrl, Email, PhoneCountry, PhoneArea, PhoneNumber, AdressCountry, AdressProvince, AdressCity, AdressZipCode, AdressStreet, AdressStreetNumber, AdressFlat, LegalIdXX, LegalIdDNI, LegalIdY, CategoryId) VALUES
+('True', 'True', 'Federico', 'Bocca', 'Pisos Click', '', '', '', '0', '0', '0', 'Argentina', 'Buenos Aires', '', '', '', '0', '', '', '0', '', '1'),
+('True', 'True', 'Gerbacio', 'Figueredo', 'Pisos Click', '', '', '', '0', '0', '0', 'Paraguay', '', '', '', '', '0', '', '', '0', '', '10');
+
+-- CATEGORIES
+
+CREATE TABLE categories(
+Id int primary key identity,
+Area varchar(30),
+Title varchar(30),
+Seniority varchar(30),
+)
+
+INSERT INTO categories
+(Area, Title, Seniority) VALUES
+('IT', 'Administrador de Sistemas', 'Semi Senior'),
+('IT', 'Desarrollador', 'Junior'),
+('IT', 'Desarrollador', 'Senior'),
+('Ventas', 'Representante de ventas', 'Junior'),
+('Ventas', 'Gerente de ventas', 'Senior'),
+('RRHH', 'Analista de RRHH', 'Senior'),
+('Marketing', 'Comuinity Manager', 'Junior'),
+('Marketing', 'Gerente de Marketing', 'Senior'),
+('Logística', 'Gerente de Logística', 'Semi Senior'),
+('Producción', 'Operario', 'Semi Senior');
+
+-- USERS
+
+CREATE TABLE users(
+UserId int primary key identity,
+UserName varchar(30),
+UserPassword varchar(30),
+RoleId int
+)
+
+INSERT INTO users
+(UserName, UserPassword, RoleId) VALUES
+('BOCCA1', 'estanopk', '1');
+
+-- ROLES
+
+CREATE TABLE roles(
+Id int primary key identity,
+RoleName varchar(30),
+PermissionLevel int
+)
+
+INSERT INTO roles
+(RoleName, PermissionLevel) VALUES
+('Administrador', '5'),
+('Ventas', '5'),
+('Ventas', '4'),
+('RRHH', '5'),
+('RRHH', '3'),
+('Logística', '5'),
+('Logística', '2');
+
+-- TESTING QUERIES
+
+SELECT * FROM employees
+SELECT * FROM categories
+SELECT * FROM users
+SELECT * FROM roles
+
+UPDATE users SET UserName = 'Bocca1' WHERE UserId = 1;
+
+DELETE FROM employees WHERE Id = 6

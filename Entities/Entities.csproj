@@ -44,6 +44,7 @@
     <Compile Include="Account.cs" />
     <Compile Include="Adress.cs" />
     <Compile Include="BusinessPartner.cs" />
+    <Compile Include="Category.cs" />
     <Compile Include="Currency.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="Item.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Individual.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transaction.cs" />
+    <Compile Include="User.cs" />
     <Compile Include="Warehouse.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

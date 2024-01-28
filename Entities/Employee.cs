@@ -11,16 +11,17 @@ namespace Entities
     {
         // PROPERTIES
 
-        public int Id { get; set; }
+        public int EmployeeId { get; set; }
 
-        [DisplayName("Rol")]
-        public int RoleId { get; set; }
+        [DisplayName("Categoría")]
+        public Category Category { get; set; }
 
         // CONSTRUCT
 
         public Employee()
         {
             IsPerson = true;
+            Category = new Category();
         }
     }
 }

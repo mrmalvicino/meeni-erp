@@ -7,23 +7,26 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
-    public class Role
+    public class Category
     {
         // PROPERTIES
 
         public int Id { get; set; }
 
-        [DisplayName("Rol")]
-        public string RoleName { get; set; }
+        [DisplayName("Área")]
+        public string Area { get; set; }
 
-        [DisplayName("Nivel")]
-        public int PermissionLevel { get; set; }
+        [DisplayName("Título")]
+        public string Title { get; set; }
+
+        [DisplayName("Antiguedad")]
+        public string Seniority { get; set; }
 
         // METHODS
 
         public override string ToString()
         {
-            return RoleName;
+            return Title + " " + Seniority;
         }
     }
 }
