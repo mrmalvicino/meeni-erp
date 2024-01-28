@@ -82,24 +82,5 @@ namespace DAL
             if (_reader != null) _reader.Close();
             _connection.Close();
         }
-
-        public void createTable(string tableName, string createTableQuery)
-        {
-            _connection.Open();
-
-            string checkTableQuery = $"SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = '{tableName}'";
-            using (SqlCommand checkCommand = new SqlCommand(checkTableQuery, _connection))
-            {
-                int tableCount = (int)checkCommand.ExecuteScalar();
-
-                if (tableCount == 0)
-                {
-                    using (SqlCommand createCommand = new SqlCommand(createTableQuery, _connection))
-                    {
-                        createCommand.ExecuteNonQuery();
-                    }
-                }
-            }
-        }
     }
 }
