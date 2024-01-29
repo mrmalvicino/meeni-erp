@@ -58,22 +58,27 @@ namespace WindowsForms
 
         private void employeesButton_Click(object sender, EventArgs e)
         {
+            _mainForm.loadEmployeesForm();
+        }
 
+        private void usersButton_Click(object sender, EventArgs e)
+        {
+            _mainForm.loadUsersForm();
         }
 
         private void warehousesButton_Click(object sender, EventArgs e)
         {
-
+            _mainForm.loadWarehousesForm();
         }
 
         private void productsButton_Click(object sender, EventArgs e)
         {
-
+            _mainForm.loadProductsForm();
         }
 
         private void servicesButton_Click(object sender, EventArgs e)
         {
-
+            _mainForm.loadServicesForm();
         }
 
         private void transactionsButton_Click(object sender, EventArgs e)

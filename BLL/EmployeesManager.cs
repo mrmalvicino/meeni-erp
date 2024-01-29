@@ -16,7 +16,7 @@ namespace BLL
 
             try
             {
-                _database.setQuery("SELECT Id, ActiveStatus, IsPerson, FirstName, LastName, BusinessName, BusinessDescription, ImageUrl, Email, PhoneCountry, PhoneArea, PhoneNumber, AdressCountry, AdressProvince, AdressCity, AdressZipCode, AdressStreet, AdressStreetNumber, AdressFlat, LegalIdXX, LegalIdDNI, LegalIdY, RoleId FROM employees");
+                _database.setQuery("SELECT EmployeeId, ActiveStatus, IsPerson, FirstName, LastName, BusinessName, BusinessDescription, ImageUrl, Email, PhoneCountry, PhoneArea, PhoneNumber, AdressCountry, AdressProvince, AdressCity, AdressZipCode, AdressStreet, AdressStreetNumber, AdressFlat, LegalIdXX, LegalIdDNI, LegalIdY, Admission, CategoryId, C.Area, C.Title, C.Seniority FROM employees E, categories C WHERE E.CategoryId = C.Id");
                 _database.executeReader();
 
                 while (_database.Reader.Read())
@@ -25,9 +25,15 @@ namespace BLL
 
                     readIndividual(employee);
                     employee.EmployeeId = (int)_database.Reader["EmployeeId"];
+                    employee.Admission = (DateTime)_database.Reader["Admission"];
 
-                    if (!(_database.Reader["PaymentMethod"] is DBNull))
-                        employee.PaymentMethod = (string)_database.Reader["PaymentMethod"];
+                    if (!(_database.Reader["CategoryId"] is DBNull))
+                    {
+                        employee.Category.Id = (int)_database.Reader["CategoryId"];
+                        employee.Category.Area = (string)_database.Reader["Area"];
+                        employee.Category.Title = (string)_database.Reader["Title"];
+                        employee.Category.Seniority = (string)_database.Reader["Seniority"];
+                    }
 
                     list.Add(employee);
                 }
@@ -66,8 +72,8 @@ namespace BLL
         {
             try
             {
-                _database.setQuery("UPDATE employees SET ActiveStatus = @ActiveStatus, IsPerson = @IsPerson, FirstName = @FirstName, LastName = @LastName, BusinessName = @BusinessName, BusinessDescription = @BusinessDescription, ImageUrl = @ImageUrl, Email = @Email, PhoneCountry = @PhoneCountry, PhoneArea = @PhoneArea, PhoneNumber = @PhoneNumber, AdressCountry = @AdressCountry, AdressProvince = @AdressProvince, AdressCity = @AdressCity, AdressZipCode = @AdressZipCode, AdressStreet = @AdressStreet, AdressStreetNumber = @AdressStreetNumber, AdressFlat = @AdressFlat, LegalIdXX = @LegalIdXX, LegalIdDNI = @LegalIdDNI, LegalIdY = @LegalIdY WHERE Id = @Id");
-                _database.setParameter("@Id", reg.Id);
+                _database.setQuery("UPDATE employees SET ActiveStatus = @ActiveStatus, IsPerson = @IsPerson, FirstName = @FirstName, LastName = @LastName, BusinessName = @BusinessName, BusinessDescription = @BusinessDescription, ImageUrl = @ImageUrl, Email = @Email, PhoneCountry = @PhoneCountry, PhoneArea = @PhoneArea, PhoneNumber = @PhoneNumber, AdressCountry = @AdressCountry, AdressProvince = @AdressProvince, AdressCity = @AdressCity, AdressZipCode = @AdressZipCode, AdressStreet = @AdressStreet, AdressStreetNumber = @AdressStreetNumber, AdressFlat = @AdressFlat, LegalIdXX = @LegalIdXX, LegalIdDNI = @LegalIdDNI, LegalIdY = @LegalIdY WHERE EmployeeId = @EmployeeId");
+                _database.setParameter("@EmployeeId", reg.EmployeeId);
                 setupIndividualParameters(reg);
                 _database.executeAction();
             }
@@ -81,12 +87,12 @@ namespace BLL
             }
         }
 
-        public void delete(int id)
+        public void delete(int EmployeeId)
         {
             try
             {
-                _database.setQuery("DELETE FROM employees WHERE Id = @Id");
-                _database.setParameter("@Id", id);
+                _database.setQuery("DELETE FROM employees WHERE EmployeeId = @EmployeeId");
+                _database.setParameter("@EmployeeId", EmployeeId);
                 _database.executeAction();
             }
             catch (Exception ex)

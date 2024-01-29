@@ -119,6 +119,47 @@ namespace WindowsForms
             suppliersForm.Show();
         }
 
+        public void loadEmployeesForm()
+        {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.GetType() == typeof(EmployeesForm))
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
+
+                    form.BringToFront();
+                    return;
+                };
+            }
+
+            EmployeesForm employeesForm = new EmployeesForm();
+            employeesForm.MdiParent = this;
+            employeesForm.Show();
+        }
+
+        public void loadUsersForm()
+        {
+
+        }
+
+        public void loadWarehousesForm()
+        {
+
+        }
+
+        public void loadProductsForm()
+        {
+
+        }
+
+        public void loadServicesForm()
+        {
+
+        }
+
         public void loadTransactionsForm()
         {
             foreach (Form form in Application.OpenForms)
@@ -180,22 +221,27 @@ namespace WindowsForms
 
         private void employeesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            loadEmployeesForm();
+        }
 
+        private void usersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            loadUsersForm();
         }
 
         private void warehousesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            loadWarehousesForm();
         }
 
         private void productsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            loadProductsForm();
         }
 
         private void servicesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            loadServicesForm();
         }
 
         private void transactionsToolStripMenuItem_Click(object sender, EventArgs e)

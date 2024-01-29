@@ -81,7 +81,7 @@ INSERT INTO suppliers
 -- EMPLOYEES
 
 CREATE TABLE employees(
-Id int primary key identity,
+EmployeeId int primary key identity,
 ActiveStatus bit,
 IsPerson bit,
 FirstName varchar(30),
@@ -145,7 +145,7 @@ RoleId int
 
 INSERT INTO users
 (UserName, UserPassword, RoleId) VALUES
-('BOCCA1', 'estanopk', '1');
+('Bocca1', 'estanopk', '1');
 
 -- ROLES
 
@@ -167,12 +167,10 @@ INSERT INTO roles
 
 -- TESTING QUERIES
 
-SELECT FirstName, LastName, C.Title
-FROM employees E, categories C
-WHERE E.CategoryId = C.Id
+SELECT EmployeeId, FirstName, LastName, Admission, CategoryId, C.Area, C.Title, C.Seniority FROM employees E, categories C WHERE E.CategoryId = C.Id
 
 SELECT * FROM categories
 
 UPDATE users SET UserName = 'Bocca1' WHERE UserId = 1;
 
-DELETE FROM employees WHERE Id = 6
+DELETE FROM employees WHERE EmployeeId = 6

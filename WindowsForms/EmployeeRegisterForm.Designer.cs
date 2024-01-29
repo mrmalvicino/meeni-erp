@@ -119,6 +119,7 @@
             this.loadImageButton.TabIndex = 0;
             this.loadImageButton.Text = "Cargar localmente";
             this.loadImageButton.UseVisualStyleBackColor = true;
+            this.loadImageButton.Click += new System.EventHandler(this.loadImageButton_Click);
             // 
             // imageUrlLabel
             // 
@@ -136,6 +137,7 @@
             this.imageUrlTextBox.Size = new System.Drawing.Size(160, 20);
             this.imageUrlTextBox.TabIndex = 1;
             this.imageUrlTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.imageUrlTextBox.Leave += new System.EventHandler(this.imageUrlTextBox_Leave);
             // 
             // contactPanel
             // 
@@ -165,6 +167,7 @@
             this.phoneCountryTextBox.Size = new System.Drawing.Size(40, 20);
             this.phoneCountryTextBox.TabIndex = 1;
             this.phoneCountryTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.phoneCountryTextBox.TextChanged += new System.EventHandler(this.phoneCountryTextBox_TextChanged);
             // 
             // phoneNumberTextBox
             // 
@@ -173,6 +176,7 @@
             this.phoneNumberTextBox.Size = new System.Drawing.Size(158, 20);
             this.phoneNumberTextBox.TabIndex = 3;
             this.phoneNumberTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.phoneNumberTextBox.TextChanged += new System.EventHandler(this.phoneNumberTextBox_TextChanged);
             // 
             // phoneAreaTextBox
             // 
@@ -181,6 +185,7 @@
             this.phoneAreaTextBox.Size = new System.Drawing.Size(40, 20);
             this.phoneAreaTextBox.TabIndex = 2;
             this.phoneAreaTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.phoneAreaTextBox.TextChanged += new System.EventHandler(this.phoneAreaTextBox_TextChanged);
             // 
             // emailLabel
             // 
@@ -295,6 +300,7 @@
             this.adressStreetNumberTextBox.Size = new System.Drawing.Size(100, 20);
             this.adressStreetNumberTextBox.TabIndex = 5;
             this.adressStreetNumberTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.adressStreetNumberTextBox.TextChanged += new System.EventHandler(this.adressStreetNumberTextBox_TextChanged);
             // 
             // streetLabel
             // 
@@ -489,6 +495,7 @@
             this.legalIdDNITextBox.Size = new System.Drawing.Size(158, 20);
             this.legalIdDNITextBox.TabIndex = 3;
             this.legalIdDNITextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.legalIdDNITextBox.TextChanged += new System.EventHandler(this.legalIdDNITextBox_TextChanged);
             // 
             // businessDescriptionLabel
             // 
@@ -515,6 +522,7 @@
             this.saveButton.TabIndex = 9;
             this.saveButton.Text = "Guardar";
             this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // specialPanel
             // 
@@ -532,6 +540,7 @@
             // 
             // areaComboBox
             // 
+            this.areaComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.areaComboBox.FormattingEnabled = true;
             this.areaComboBox.Location = new System.Drawing.Point(20, 29);
             this.areaComboBox.Name = "areaComboBox";
@@ -540,6 +549,7 @@
             // 
             // titleComboBox
             // 
+            this.titleComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.titleComboBox.FormattingEnabled = true;
             this.titleComboBox.Location = new System.Drawing.Point(20, 69);
             this.titleComboBox.Name = "titleComboBox";
@@ -548,6 +558,7 @@
             // 
             // seniorityComboBox
             // 
+            this.seniorityComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.seniorityComboBox.FormattingEnabled = true;
             this.seniorityComboBox.Location = new System.Drawing.Point(20, 109);
             this.seniorityComboBox.Name = "seniorityComboBox";
@@ -589,6 +600,7 @@
             this.newCategoryButton.TabIndex = 42;
             this.newCategoryButton.Text = "Nueva categoría";
             this.newCategoryButton.UseVisualStyleBackColor = true;
+            this.newCategoryButton.Click += new System.EventHandler(this.newCategoryButton_Click);
             // 
             // EmployeeRegisterForm
             // 
@@ -607,6 +619,7 @@
             this.Name = "EmployeeRegisterForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registro de empleado";
+            this.Load += new System.EventHandler(this.EmployeeRegisterForm_Load);
             this.imagePanel.ResumeLayout(false);
             this.imagePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();

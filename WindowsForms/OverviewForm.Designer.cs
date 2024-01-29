@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OverviewForm));
-            this.settingsLabel = new System.Windows.Forms.Label();
             this.transactionsLabel = new System.Windows.Forms.Label();
             this.servicesLabel = new System.Windows.Forms.Label();
             this.productsLabel = new System.Windows.Forms.Label();
@@ -70,6 +69,8 @@
             this.userPanel = new System.Windows.Forms.Panel();
             this.metricsPanel = new System.Windows.Forms.Panel();
             this.modulesPanel = new System.Windows.Forms.Panel();
+            this.usersButton = new System.Windows.Forms.Button();
+            this.usersLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.userPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.coverPictureBox)).BeginInit();
@@ -78,19 +79,10 @@
             this.modulesPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // settingsLabel
-            // 
-            this.settingsLabel.AutoSize = true;
-            this.settingsLabel.Location = new System.Drawing.Point(1113, 20);
-            this.settingsLabel.Name = "settingsLabel";
-            this.settingsLabel.Size = new System.Drawing.Size(83, 13);
-            this.settingsLabel.TabIndex = 30;
-            this.settingsLabel.Text = "Configuraciones";
-            // 
             // transactionsLabel
             // 
             this.transactionsLabel.AutoSize = true;
-            this.transactionsLabel.Location = new System.Drawing.Point(933, 20);
+            this.transactionsLabel.Location = new System.Drawing.Point(1102, 20);
             this.transactionsLabel.Name = "transactionsLabel";
             this.transactionsLabel.Size = new System.Drawing.Size(77, 13);
             this.transactionsLabel.TabIndex = 29;
@@ -99,7 +91,7 @@
             // servicesLabel
             // 
             this.servicesLabel.AutoSize = true;
-            this.servicesLabel.Location = new System.Drawing.Point(826, 20);
+            this.servicesLabel.Location = new System.Drawing.Point(981, 20);
             this.servicesLabel.Name = "servicesLabel";
             this.servicesLabel.Size = new System.Drawing.Size(50, 13);
             this.servicesLabel.TabIndex = 28;
@@ -108,7 +100,7 @@
             // productsLabel
             // 
             this.productsLabel.AutoSize = true;
-            this.productsLabel.Location = new System.Drawing.Point(695, 20);
+            this.productsLabel.Location = new System.Drawing.Point(848, 20);
             this.productsLabel.Name = "productsLabel";
             this.productsLabel.Size = new System.Drawing.Size(55, 13);
             this.productsLabel.TabIndex = 27;
@@ -117,7 +109,7 @@
             // warehousesLabel
             // 
             this.warehousesLabel.AutoSize = true;
-            this.warehousesLabel.Location = new System.Drawing.Point(567, 20);
+            this.warehousesLabel.Location = new System.Drawing.Point(716, 20);
             this.warehousesLabel.Name = "warehousesLabel";
             this.warehousesLabel.Size = new System.Drawing.Size(54, 13);
             this.warehousesLabel.TabIndex = 26;
@@ -126,7 +118,7 @@
             // employeesLabel
             // 
             this.employeesLabel.AutoSize = true;
-            this.employeesLabel.Location = new System.Drawing.Point(437, 20);
+            this.employeesLabel.Location = new System.Drawing.Point(457, 20);
             this.employeesLabel.Name = "employeesLabel";
             this.employeesLabel.Size = new System.Drawing.Size(59, 13);
             this.employeesLabel.TabIndex = 25;
@@ -135,7 +127,7 @@
             // suppliersLabel
             // 
             this.suppliersLabel.AutoSize = true;
-            this.suppliersLabel.Location = new System.Drawing.Point(304, 20);
+            this.suppliersLabel.Location = new System.Drawing.Point(321, 20);
             this.suppliersLabel.Name = "suppliersLabel";
             this.suppliersLabel.Size = new System.Drawing.Size(67, 13);
             this.suppliersLabel.TabIndex = 24;
@@ -144,7 +136,7 @@
             // customersLabel
             // 
             this.customersLabel.AutoSize = true;
-            this.customersLabel.Location = new System.Drawing.Point(190, 20);
+            this.customersLabel.Location = new System.Drawing.Point(206, 20);
             this.customersLabel.Name = "customersLabel";
             this.customersLabel.Size = new System.Drawing.Size(44, 13);
             this.customersLabel.TabIndex = 23;
@@ -153,7 +145,7 @@
             // quoteLabel
             // 
             this.quoteLabel.AutoSize = true;
-            this.quoteLabel.Location = new System.Drawing.Point(56, 20);
+            this.quoteLabel.Location = new System.Drawing.Point(78, 20);
             this.quoteLabel.Name = "quoteLabel";
             this.quoteLabel.Size = new System.Drawing.Size(39, 13);
             this.quoteLabel.TabIndex = 22;
@@ -163,7 +155,7 @@
             // 
             this.employeesButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.employeesButton.Image = ((System.Drawing.Image)(resources.GetObject("employeesButton.Image")));
-            this.employeesButton.Location = new System.Drawing.Point(404, 40);
+            this.employeesButton.Location = new System.Drawing.Point(425, 40);
             this.employeesButton.Margin = new System.Windows.Forms.Padding(4);
             this.employeesButton.Name = "employeesButton";
             this.employeesButton.Size = new System.Drawing.Size(120, 120);
@@ -175,7 +167,7 @@
             // 
             this.customersButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.customersButton.Image = ((System.Drawing.Image)(resources.GetObject("customersButton.Image")));
-            this.customersButton.Location = new System.Drawing.Point(148, 40);
+            this.customersButton.Location = new System.Drawing.Point(165, 40);
             this.customersButton.Margin = new System.Windows.Forms.Padding(4);
             this.customersButton.Name = "customersButton";
             this.customersButton.Size = new System.Drawing.Size(120, 120);
@@ -188,7 +180,7 @@
             this.suppliersButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.suppliersButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.suppliersButton.Image = ((System.Drawing.Image)(resources.GetObject("suppliersButton.Image")));
-            this.suppliersButton.Location = new System.Drawing.Point(276, 40);
+            this.suppliersButton.Location = new System.Drawing.Point(295, 40);
             this.suppliersButton.Margin = new System.Windows.Forms.Padding(4);
             this.suppliersButton.Name = "suppliersButton";
             this.suppliersButton.Size = new System.Drawing.Size(120, 120);
@@ -200,7 +192,7 @@
             // 
             this.transactionsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.transactionsButton.Image = ((System.Drawing.Image)(resources.GetObject("transactionsButton.Image")));
-            this.transactionsButton.Location = new System.Drawing.Point(916, 40);
+            this.transactionsButton.Location = new System.Drawing.Point(1075, 40);
             this.transactionsButton.Margin = new System.Windows.Forms.Padding(4);
             this.transactionsButton.Name = "transactionsButton";
             this.transactionsButton.Size = new System.Drawing.Size(120, 120);
@@ -211,12 +203,12 @@
             // settingsButton
             // 
             this.settingsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.settingsButton.Image = ((System.Drawing.Image)(resources.GetObject("settingsButton.Image")));
-            this.settingsButton.Location = new System.Drawing.Point(1091, 40);
+            this.settingsButton.Location = new System.Drawing.Point(318, 135);
             this.settingsButton.Margin = new System.Windows.Forms.Padding(4);
             this.settingsButton.Name = "settingsButton";
-            this.settingsButton.Size = new System.Drawing.Size(120, 120);
+            this.settingsButton.Size = new System.Drawing.Size(120, 40);
             this.settingsButton.TabIndex = 2;
+            this.settingsButton.Text = "Configuración";
             this.settingsButton.UseVisualStyleBackColor = true;
             this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click);
             // 
@@ -224,7 +216,7 @@
             // 
             this.quoteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.quoteButton.Image = ((System.Drawing.Image)(resources.GetObject("quoteButton.Image")));
-            this.quoteButton.Location = new System.Drawing.Point(20, 40);
+            this.quoteButton.Location = new System.Drawing.Point(35, 40);
             this.quoteButton.Margin = new System.Windows.Forms.Padding(4);
             this.quoteButton.Name = "quoteButton";
             this.quoteButton.Size = new System.Drawing.Size(120, 120);
@@ -236,7 +228,7 @@
             // 
             this.servicesButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.servicesButton.Image = ((System.Drawing.Image)(resources.GetObject("servicesButton.Image")));
-            this.servicesButton.Location = new System.Drawing.Point(788, 40);
+            this.servicesButton.Location = new System.Drawing.Point(945, 40);
             this.servicesButton.Margin = new System.Windows.Forms.Padding(4);
             this.servicesButton.Name = "servicesButton";
             this.servicesButton.Size = new System.Drawing.Size(120, 120);
@@ -248,7 +240,7 @@
             // 
             this.warehousesButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.warehousesButton.Image = ((System.Drawing.Image)(resources.GetObject("warehousesButton.Image")));
-            this.warehousesButton.Location = new System.Drawing.Point(532, 40);
+            this.warehousesButton.Location = new System.Drawing.Point(685, 40);
             this.warehousesButton.Margin = new System.Windows.Forms.Padding(4);
             this.warehousesButton.Name = "warehousesButton";
             this.warehousesButton.Size = new System.Drawing.Size(120, 120);
@@ -260,7 +252,7 @@
             // 
             this.productsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.productsButton.Image = ((System.Drawing.Image)(resources.GetObject("productsButton.Image")));
-            this.productsButton.Location = new System.Drawing.Point(660, 40);
+            this.productsButton.Location = new System.Drawing.Point(815, 40);
             this.productsButton.Margin = new System.Windows.Forms.Padding(4);
             this.productsButton.Name = "productsButton";
             this.productsButton.Size = new System.Drawing.Size(120, 120);
@@ -317,10 +309,10 @@
             // newSessionButton
             // 
             this.newSessionButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.newSessionButton.Location = new System.Drawing.Point(248, 130);
+            this.newSessionButton.Location = new System.Drawing.Point(190, 135);
             this.newSessionButton.Margin = new System.Windows.Forms.Padding(4);
             this.newSessionButton.Name = "newSessionButton";
-            this.newSessionButton.Size = new System.Drawing.Size(130, 40);
+            this.newSessionButton.Size = new System.Drawing.Size(120, 40);
             this.newSessionButton.TabIndex = 19;
             this.newSessionButton.Text = "Nueva Sesión";
             this.newSessionButton.UseVisualStyleBackColor = true;
@@ -474,6 +466,7 @@
             this.userPanel.Controls.Add(this.newSessionButton);
             this.userPanel.Controls.Add(this.roleLabel);
             this.userPanel.Controls.Add(this.userLabel);
+            this.userPanel.Controls.Add(this.settingsButton);
             this.userPanel.Location = new System.Drawing.Point(15, 210);
             this.userPanel.Name = "userPanel";
             this.userPanel.Size = new System.Drawing.Size(450, 190);
@@ -502,7 +495,8 @@
             // modulesPanel
             // 
             this.modulesPanel.BackColor = System.Drawing.SystemColors.Control;
-            this.modulesPanel.Controls.Add(this.settingsLabel);
+            this.modulesPanel.Controls.Add(this.usersLabel);
+            this.modulesPanel.Controls.Add(this.usersButton);
             this.modulesPanel.Controls.Add(this.quoteLabel);
             this.modulesPanel.Controls.Add(this.transactionsLabel);
             this.modulesPanel.Controls.Add(this.productsButton);
@@ -513,7 +507,6 @@
             this.modulesPanel.Controls.Add(this.warehousesLabel);
             this.modulesPanel.Controls.Add(this.quoteButton);
             this.modulesPanel.Controls.Add(this.employeesLabel);
-            this.modulesPanel.Controls.Add(this.settingsButton);
             this.modulesPanel.Controls.Add(this.suppliersLabel);
             this.modulesPanel.Controls.Add(this.transactionsButton);
             this.modulesPanel.Controls.Add(this.customersLabel);
@@ -524,6 +517,27 @@
             this.modulesPanel.Name = "modulesPanel";
             this.modulesPanel.Size = new System.Drawing.Size(1230, 200);
             this.modulesPanel.TabIndex = 26;
+            // 
+            // usersButton
+            // 
+            this.usersButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.usersButton.Image = ((System.Drawing.Image)(resources.GetObject("usersButton.Image")));
+            this.usersButton.Location = new System.Drawing.Point(555, 40);
+            this.usersButton.Margin = new System.Windows.Forms.Padding(4);
+            this.usersButton.Name = "usersButton";
+            this.usersButton.Size = new System.Drawing.Size(120, 120);
+            this.usersButton.TabIndex = 30;
+            this.usersButton.UseVisualStyleBackColor = true;
+            this.usersButton.Click += new System.EventHandler(this.usersButton_Click);
+            // 
+            // usersLabel
+            // 
+            this.usersLabel.AutoSize = true;
+            this.usersLabel.Location = new System.Drawing.Point(588, 20);
+            this.usersLabel.Name = "usersLabel";
+            this.usersLabel.Size = new System.Drawing.Size(48, 13);
+            this.usersLabel.TabIndex = 31;
+            this.usersLabel.Text = "Usuarios";
             // 
             // OverviewForm
             // 
@@ -557,7 +571,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Label settingsLabel;
         private System.Windows.Forms.Label transactionsLabel;
         private System.Windows.Forms.Label servicesLabel;
         private System.Windows.Forms.Label productsLabel;
@@ -598,5 +611,7 @@
         private System.Windows.Forms.Panel userPanel;
         private System.Windows.Forms.Panel metricsPanel;
         private System.Windows.Forms.Panel modulesPanel;
+        private System.Windows.Forms.Label usersLabel;
+        private System.Windows.Forms.Button usersButton;
     }
 }

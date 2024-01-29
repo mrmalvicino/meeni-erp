@@ -81,6 +81,7 @@
             this.showInactiveCheckBox.TabIndex = 6;
             this.showInactiveCheckBox.Text = "Inactivos";
             this.showInactiveCheckBox.UseVisualStyleBackColor = true;
+            this.showInactiveCheckBox.CheckedChanged += new System.EventHandler(this.showInactiveCheckBox_CheckedChanged);
             // 
             // showActiveCheckBox
             // 
@@ -94,6 +95,7 @@
             this.showActiveCheckBox.TabIndex = 5;
             this.showActiveCheckBox.Text = "Activos";
             this.showActiveCheckBox.UseVisualStyleBackColor = true;
+            this.showActiveCheckBox.CheckedChanged += new System.EventHandler(this.showActiveCheckBox_CheckedChanged);
             // 
             // filterButton
             // 
@@ -104,6 +106,7 @@
             this.filterButton.TabIndex = 7;
             this.filterButton.Text = "Restablecer";
             this.filterButton.UseVisualStyleBackColor = true;
+            this.filterButton.Click += new System.EventHandler(this.filterButton_Click);
             // 
             // filterLabel
             // 
@@ -122,6 +125,7 @@
             this.filterTextBox.Name = "filterTextBox";
             this.filterTextBox.Size = new System.Drawing.Size(270, 26);
             this.filterTextBox.TabIndex = 4;
+            this.filterTextBox.TextChanged += new System.EventHandler(this.filterTextBox_TextChanged);
             // 
             // exportCSVButton
             // 
@@ -132,6 +136,7 @@
             this.exportCSVButton.TabIndex = 3;
             this.exportCSVButton.Text = "Exportar CSV";
             this.exportCSVButton.UseVisualStyleBackColor = true;
+            this.exportCSVButton.Click += new System.EventHandler(this.exportCSVButton_Click);
             // 
             // deleteButton
             // 
@@ -142,6 +147,7 @@
             this.deleteButton.TabIndex = 2;
             this.deleteButton.Text = "Eliminar";
             this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
             // editButton
             // 
@@ -152,6 +158,7 @@
             this.editButton.TabIndex = 1;
             this.editButton.Text = "Editar";
             this.editButton.UseVisualStyleBackColor = true;
+            this.editButton.Click += new System.EventHandler(this.editButton_Click);
             // 
             // newButton
             // 
@@ -162,6 +169,7 @@
             this.newButton.TabIndex = 0;
             this.newButton.Text = "Nuevo";
             this.newButton.UseVisualStyleBackColor = true;
+            this.newButton.Click += new System.EventHandler(this.newButton_Click);
             // 
             // mainPanel
             // 
@@ -274,6 +282,7 @@
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView.Size = new System.Drawing.Size(1230, 405);
             this.dataGridView.TabIndex = 3;
+            this.dataGridView.SelectionChanged += new System.EventHandler(this.dataGridView_SelectionChanged);
             // 
             // EmployeesForm
             // 
@@ -286,7 +295,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.Name = "EmployeesForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EmployeesForm";
+            this.Load += new System.EventHandler(this.EmployeesForm_Load);
             this.actionsPanel.ResumeLayout(false);
             this.actionsPanel.PerformLayout();
             this.mainPanel.ResumeLayout(false);
