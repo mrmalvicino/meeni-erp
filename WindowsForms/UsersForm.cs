@@ -37,43 +37,40 @@ namespace WindowsForms
             mainPanel.BackColor = Palette.LightBackColor;
             actionsPanel.BackColor = Palette.LightBackColor;
             dataGridView.BackgroundColor = Palette.LightBackColor;
-            idTextBox.ForeColor = Palette.ForeColor;
-            nameTextBox.ForeColor = Palette.ForeColor;
-            descriptionTextBox.ForeColor = Palette.ForeColor;
-            phoneTextBox.ForeColor = Palette.ForeColor;
-            emailTextBox.ForeColor = Palette.ForeColor;
-            adressTextBox.ForeColor = Palette.ForeColor;
-            idTextBox.BackColor = Palette.LightBackColor;
-            nameTextBox.BackColor = Palette.LightBackColor;
-            descriptionTextBox.BackColor = Palette.LightBackColor;
-            emailTextBox.BackColor = Palette.LightBackColor;
-            phoneTextBox.BackColor = Palette.LightBackColor;
-            adressTextBox.BackColor = Palette.LightBackColor;
+            userIdTextBox.ForeColor = Palette.ForeColor;
+            userNameTextBox.ForeColor = Palette.ForeColor;
+            userIdTextBox.BackColor = Palette.LightBackColor;
+            userNameTextBox.BackColor = Palette.LightBackColor;
         }
 
         private void setupDataGridView()
         {
             if (0 < dataGridView.RowCount)
             {
-                dataGridView.Columns["Id"].Visible = false;
                 dataGridView.Columns["ActiveStatus"].Visible = false;
+                dataGridView.Columns["IsPerson"].Visible = false;
+                dataGridView.Columns["FirstName"].Visible = false;
+                dataGridView.Columns["LastName"].Visible = false;
+                dataGridView.Columns["BusinessName"].Visible = false;
+                dataGridView.Columns["BusinessDescription"].Visible = false;
                 dataGridView.Columns["ImageUrl"].Visible = false;
-                dataGridView.Columns["InvoiceCategory"].DisplayIndex = dataGridView.ColumnCount - 3;
-                dataGridView.Columns["PaymentMethod"].DisplayIndex = dataGridView.ColumnCount - 2;
-                dataGridView.Columns["SalesAmount"].DisplayIndex = dataGridView.ColumnCount - 1;
-                dataGridView.Columns["IsPerson"].Width = 50;
-                dataGridView.Columns["InvoiceCategory"].Width = 50;
+                dataGridView.Columns["Email"].Visible = false;
+                dataGridView.Columns["Phone"].Visible = false;
+                dataGridView.Columns["Adress"].Visible = false;
+                dataGridView.Columns["LegalId"].Visible = false;
+                dataGridView.Columns["EmployeeId"].Visible = false;
+                dataGridView.Columns["Admission"].Visible = false;
+                dataGridView.Columns["Category"].Visible = false;
+                dataGridView.Columns["UserId"].Visible = false;
+                dataGridView.Columns["UserPassword"].Visible = false;
+                Functions.fillDataGrid(dataGridView);
             }
         }
 
-        private void loadProfile(int id, string name, string description, string phone, string email, string adress)
+        private void loadProfile(int userId, string userName)
         {
-            idTextBox.Text = id.ToString();
-            nameTextBox.Text = name;
-            descriptionTextBox.Text = description;
-            phoneTextBox.Text = phone;
-            emailTextBox.Text = email;
-            adressTextBox.Text = adress;
+            userIdTextBox.Text = userId.ToString();
+            userNameTextBox.Text = userName;
         }
 
         private void refreshTable()
@@ -96,7 +93,7 @@ namespace WindowsForms
             bool showInactive = showInactiveCheckBox.Checked;
 
             if (2 < filter.Length)
-                _filteredUsers = _usersTable.FindAll(reg => ((reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)) && (reg.FirstName.ToUpper().Contains(filter.ToUpper()) || reg.LastName.ToUpper().Contains(filter.ToUpper()) || reg.BusinessName.ToUpper().Contains(filter.ToUpper()) || reg.BusinessDescription.ToUpper().Contains(filter.ToUpper()) || reg.Email.ToUpper().Contains(filter.ToUpper()) || reg.LegalId.ToString().Contains(filter)));
+                _filteredUsers = _usersTable.FindAll(reg => ((reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)) && reg.FirstName.ToUpper().Contains(filter.ToUpper()));
             else
                 _filteredUsers = _usersTable.FindAll(reg => (reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive));
 
@@ -113,14 +110,15 @@ namespace WindowsForms
                 editButton.Enabled = true;
                 deleteButton.Enabled = true;
                 exportCSVButton.Enabled = true;
+                viewEmployeeButton.Enabled = true;
             }
             else
             {
                 editButton.Enabled = false;
                 deleteButton.Enabled = false;
                 exportCSVButton.Enabled = false;
-                loadProfile(-1, "N/A", "N/A", "N/A", "N/A", "N/A");
-                Functions.loadImage(pictureBox, "");
+                viewEmployeeButton.Enabled = false;
+                loadProfile(-1, "N/A");
             }
         }
 
@@ -140,7 +138,7 @@ namespace WindowsForms
             {
                 _selectedUser = (User)dataGridView.CurrentRow.DataBoundItem;
                 Functions.loadImage(pictureBox, _selectedUser.ImageUrl);
-                loadProfile(_selectedUser.UserId, _selectedUser.ToString(), _selectedUser.BusinessDescription, _selectedUser.Phone.ToString(), _selectedUser.Email.ToString(), _selectedUser.Adress.ToString());
+                loadProfile(_selectedUser.UserId, _selectedUser.ToString());
             }
         }
 

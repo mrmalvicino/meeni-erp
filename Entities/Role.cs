@@ -23,7 +23,7 @@ namespace Entities
 
         public override string ToString()
         {
-            return RoleName;
+            return RoleName + " nivel " + PermissionLevel;
         }
     }
 }

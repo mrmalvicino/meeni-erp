@@ -165,14 +165,17 @@ INSERT INTO roles
 ('Logística', '5'),
 ('Logística', '2');
 
--- TESTING QUERIES
-
-SELECT EmployeeId, FirstName, LastName, Admission, CategoryId, Area, Title, Seniority FROM employees E, categories C WHERE E.CategoryId = C.Id
-
-SELECT EmployeeId, FirstName, LastName, UserName, UserPassword FROM employees E, users U WHERE U.UserName = concat(E.LastName, E.EmployeeId)
+-- QUERIES
 
 SELECT * FROM users
 
-UPDATE users SET UserName = 'Bocca1' WHERE UserId = 1;
+UPDATE users
+SET UserName = 'Bocca1'
+WHERE UserId = 1;
 
-DELETE FROM employees WHERE EmployeeId = 6
+DELETE FROM employees
+WHERE EmployeeId = 6
+
+SELECT EmployeeId, UserId, UserName, UserPassword, RoleId, RoleName, PermissionLevel
+FROM employees E, users U, categories C, roles R
+WHERE U.UserName = concat(E.LastName, E.EmployeeId) AND E.CategoryId = C.Id AND U.RoleId = R.Id

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    internal class UsersManager : IndividualsManager
+    public class UsersManager : IndividualsManager
     {
         // METHODS
 
@@ -17,16 +17,18 @@ namespace BLL
 
             try
             {
-                _database.setQuery("SELECT Id, ActiveStatus, IsPerson, FirstName, LastName, BusinessName, BusinessDescription, ImageUrl, Email, PhoneCountry, PhoneArea, PhoneNumber, AdressCountry, AdressProvince, AdressCity, AdressZipCode, AdressStreet, AdressStreetNumber, AdressFlat, LegalIdXX, LegalIdDNI, LegalIdY, CategoryId, Area, Title, Seniority, RoleId, RoleName, PermissionLevel FROM employees E, users U WHERE U.UserName = concat(E.LastName, E.EmployeeId)");
+                _database.setQuery("SELECT ActiveStatus, EmployeeId, UserId, UserName, UserPassword, RoleId, RoleName, PermissionLevel FROM employees E, users U, categories C, roles R WHERE U.UserName = concat(E.LastName, E.EmployeeId) AND E.CategoryId = C.Id AND U.RoleId = R.Id");
                 _database.executeReader();
 
                 while (_database.Reader.Read())
                 {
                     User user = new User();
 
-                    readIndividual(user);
-                    // readEmployee(user); // crear en EmployeesManager
-
+                    user.ActiveStatus = (bool)_database.Reader["ActiveStatus"];
+                    user.EmployeeId = (int)_database.Reader["EmployeeId"];
+                    user.UserId = (int)_database.Reader["UserId"];
+                    user.UserName = (string)_database.Reader["UserName"];
+                    user.UserPassword = (string)_database.Reader["UserPassword"];
                     user.Role.Id = (int)_database.Reader["RoleId"];
                     user.Role.RoleName = (string)_database.Reader["RoleName"];
                     user.Role.PermissionLevel = (int)_database.Reader["PermissionLevel"];

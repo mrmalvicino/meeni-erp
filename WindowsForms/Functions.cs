@@ -63,5 +63,11 @@ namespace WindowsForms
                 MessageBox.Show("Error al exportar a CSV: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        public static void fillDataGrid(DataGridView dataGridView)
+        {
+            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+        }
     }
 }
