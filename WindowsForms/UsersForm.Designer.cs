@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UsersForm));
             this.actionsPanel = new System.Windows.Forms.Panel();
+            this.viewEmployeeButton = new System.Windows.Forms.Button();
             this.showInactiveCheckBox = new System.Windows.Forms.CheckBox();
             this.showActiveCheckBox = new System.Windows.Forms.CheckBox();
             this.filterButton = new System.Windows.Forms.Button();
@@ -48,7 +49,6 @@
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.viewEmployeeButton = new System.Windows.Forms.Button();
             this.actionsPanel.SuspendLayout();
             this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
@@ -68,21 +68,36 @@
             this.actionsPanel.Controls.Add(this.deleteButton);
             this.actionsPanel.Controls.Add(this.editButton);
             this.actionsPanel.Controls.Add(this.newButton);
-            this.actionsPanel.Location = new System.Drawing.Point(530, 15);
+            this.actionsPanel.Location = new System.Drawing.Point(1060, 29);
+            this.actionsPanel.Margin = new System.Windows.Forms.Padding(6);
             this.actionsPanel.Name = "actionsPanel";
-            this.actionsPanel.Size = new System.Drawing.Size(715, 180);
+            this.actionsPanel.Size = new System.Drawing.Size(1430, 346);
             this.actionsPanel.TabIndex = 5;
+            // 
+            // viewEmployeeButton
+            // 
+            this.viewEmployeeButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.viewEmployeeButton.Location = new System.Drawing.Point(806, 77);
+            this.viewEmployeeButton.Margin = new System.Windows.Forms.Padding(6);
+            this.viewEmployeeButton.Name = "viewEmployeeButton";
+            this.viewEmployeeButton.Size = new System.Drawing.Size(240, 67);
+            this.viewEmployeeButton.TabIndex = 71;
+            this.viewEmployeeButton.Text = "Ver empleado";
+            this.viewEmployeeButton.UseVisualStyleBackColor = true;
+            this.viewEmployeeButton.Click += new System.EventHandler(this.viewEmployeeButton_Click);
             // 
             // showInactiveCheckBox
             // 
             this.showInactiveCheckBox.AutoSize = true;
             this.showInactiveCheckBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.showInactiveCheckBox.Location = new System.Drawing.Point(464, 117);
+            this.showInactiveCheckBox.Location = new System.Drawing.Point(928, 225);
+            this.showInactiveCheckBox.Margin = new System.Windows.Forms.Padding(6);
             this.showInactiveCheckBox.Name = "showInactiveCheckBox";
-            this.showInactiveCheckBox.Size = new System.Drawing.Size(87, 22);
+            this.showInactiveCheckBox.Size = new System.Drawing.Size(171, 40);
             this.showInactiveCheckBox.TabIndex = 6;
             this.showInactiveCheckBox.Text = "Inactivos";
             this.showInactiveCheckBox.UseVisualStyleBackColor = true;
+            this.showInactiveCheckBox.CheckedChanged += new System.EventHandler(this.showInactiveCheckBox_CheckedChanged);
             // 
             // showActiveCheckBox
             // 
@@ -90,80 +105,95 @@
             this.showActiveCheckBox.Checked = true;
             this.showActiveCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.showActiveCheckBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.showActiveCheckBox.Location = new System.Drawing.Point(374, 117);
+            this.showActiveCheckBox.Location = new System.Drawing.Point(748, 225);
+            this.showActiveCheckBox.Margin = new System.Windows.Forms.Padding(6);
             this.showActiveCheckBox.Name = "showActiveCheckBox";
-            this.showActiveCheckBox.Size = new System.Drawing.Size(78, 22);
+            this.showActiveCheckBox.Size = new System.Drawing.Size(148, 40);
             this.showActiveCheckBox.TabIndex = 5;
             this.showActiveCheckBox.Text = "Activos";
             this.showActiveCheckBox.UseVisualStyleBackColor = true;
+            this.showActiveCheckBox.CheckedChanged += new System.EventHandler(this.showActiveCheckBox_CheckedChanged);
             // 
             // filterButton
             // 
             this.filterButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.filterButton.Location = new System.Drawing.Point(570, 110);
+            this.filterButton.Location = new System.Drawing.Point(1140, 212);
+            this.filterButton.Margin = new System.Windows.Forms.Padding(6);
             this.filterButton.Name = "filterButton";
-            this.filterButton.Size = new System.Drawing.Size(120, 35);
+            this.filterButton.Size = new System.Drawing.Size(240, 67);
             this.filterButton.TabIndex = 7;
             this.filterButton.Text = "Restablecer";
             this.filterButton.UseVisualStyleBackColor = true;
+            this.filterButton.Click += new System.EventHandler(this.filterButton_Click);
             // 
             // filterLabel
             // 
             this.filterLabel.AutoSize = true;
             this.filterLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.filterLabel.Location = new System.Drawing.Point(22, 118);
+            this.filterLabel.Location = new System.Drawing.Point(44, 227);
+            this.filterLabel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.filterLabel.Name = "filterLabel";
-            this.filterLabel.Size = new System.Drawing.Size(47, 18);
+            this.filterLabel.Size = new System.Drawing.Size(95, 36);
             this.filterLabel.TabIndex = 70;
             this.filterLabel.Text = "Filtro:";
             // 
             // filterTextBox
             // 
             this.filterTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.filterTextBox.Location = new System.Drawing.Point(86, 115);
+            this.filterTextBox.Location = new System.Drawing.Point(172, 221);
+            this.filterTextBox.Margin = new System.Windows.Forms.Padding(6);
             this.filterTextBox.Name = "filterTextBox";
-            this.filterTextBox.Size = new System.Drawing.Size(270, 26);
+            this.filterTextBox.Size = new System.Drawing.Size(536, 44);
             this.filterTextBox.TabIndex = 4;
+            this.filterTextBox.TextChanged += new System.EventHandler(this.filterTextBox_TextChanged);
             // 
             // exportCSVButton
             // 
             this.exportCSVButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exportCSVButton.Location = new System.Drawing.Point(570, 40);
+            this.exportCSVButton.Location = new System.Drawing.Point(1140, 77);
+            this.exportCSVButton.Margin = new System.Windows.Forms.Padding(6);
             this.exportCSVButton.Name = "exportCSVButton";
-            this.exportCSVButton.Size = new System.Drawing.Size(120, 35);
+            this.exportCSVButton.Size = new System.Drawing.Size(240, 67);
             this.exportCSVButton.TabIndex = 3;
             this.exportCSVButton.Text = "Exportar CSV";
             this.exportCSVButton.UseVisualStyleBackColor = true;
+            this.exportCSVButton.Click += new System.EventHandler(this.exportCSVButton_Click);
             // 
             // deleteButton
             // 
             this.deleteButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deleteButton.Location = new System.Drawing.Point(277, 40);
+            this.deleteButton.Location = new System.Drawing.Point(554, 77);
+            this.deleteButton.Margin = new System.Windows.Forms.Padding(6);
             this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(120, 35);
+            this.deleteButton.Size = new System.Drawing.Size(240, 67);
             this.deleteButton.TabIndex = 2;
             this.deleteButton.Text = "Eliminar";
             this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
             // editButton
             // 
             this.editButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.editButton.Location = new System.Drawing.Point(151, 40);
+            this.editButton.Location = new System.Drawing.Point(302, 77);
+            this.editButton.Margin = new System.Windows.Forms.Padding(6);
             this.editButton.Name = "editButton";
-            this.editButton.Size = new System.Drawing.Size(120, 35);
+            this.editButton.Size = new System.Drawing.Size(240, 67);
             this.editButton.TabIndex = 1;
             this.editButton.Text = "Editar";
             this.editButton.UseVisualStyleBackColor = true;
+            this.editButton.Click += new System.EventHandler(this.editButton_Click);
             // 
             // newButton
             // 
             this.newButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.newButton.Location = new System.Drawing.Point(25, 40);
+            this.newButton.Location = new System.Drawing.Point(50, 77);
+            this.newButton.Margin = new System.Windows.Forms.Padding(6);
             this.newButton.Name = "newButton";
-            this.newButton.Size = new System.Drawing.Size(120, 35);
+            this.newButton.Size = new System.Drawing.Size(240, 67);
             this.newButton.TabIndex = 0;
             this.newButton.Text = "Nuevo";
             this.newButton.UseVisualStyleBackColor = true;
+            this.newButton.Click += new System.EventHandler(this.newButton_Click);
             // 
             // mainPanel
             // 
@@ -175,9 +205,10 @@
             this.mainPanel.Controls.Add(this.descriptionTextBox);
             this.mainPanel.Controls.Add(this.nameTextBox);
             this.mainPanel.Controls.Add(this.pictureBox);
-            this.mainPanel.Location = new System.Drawing.Point(15, 15);
+            this.mainPanel.Location = new System.Drawing.Point(30, 29);
+            this.mainPanel.Margin = new System.Windows.Forms.Padding(6);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(500, 180);
+            this.mainPanel.Size = new System.Drawing.Size(1000, 346);
             this.mainPanel.TabIndex = 4;
             // 
             // idTextBox
@@ -185,10 +216,11 @@
             this.idTextBox.BackColor = System.Drawing.SystemColors.Control;
             this.idTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.idTextBox.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.idTextBox.Location = new System.Drawing.Point(197, 10);
+            this.idTextBox.Location = new System.Drawing.Point(394, 19);
+            this.idTextBox.Margin = new System.Windows.Forms.Padding(6);
             this.idTextBox.Name = "idTextBox";
             this.idTextBox.ReadOnly = true;
-            this.idTextBox.Size = new System.Drawing.Size(300, 23);
+            this.idTextBox.Size = new System.Drawing.Size(600, 46);
             this.idTextBox.TabIndex = 0;
             this.idTextBox.Text = "1";
             // 
@@ -197,10 +229,11 @@
             this.adressTextBox.BackColor = System.Drawing.SystemColors.Control;
             this.adressTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.adressTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.adressTextBox.Location = new System.Drawing.Point(197, 143);
+            this.adressTextBox.Location = new System.Drawing.Point(394, 275);
+            this.adressTextBox.Margin = new System.Windows.Forms.Padding(6);
             this.adressTextBox.Name = "adressTextBox";
             this.adressTextBox.ReadOnly = true;
-            this.adressTextBox.Size = new System.Drawing.Size(300, 19);
+            this.adressTextBox.Size = new System.Drawing.Size(600, 37);
             this.adressTextBox.TabIndex = 5;
             this.adressTextBox.Text = "Calle 1234, Ciudad";
             // 
@@ -209,10 +242,11 @@
             this.emailTextBox.BackColor = System.Drawing.SystemColors.Control;
             this.emailTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.emailTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emailTextBox.Location = new System.Drawing.Point(197, 93);
+            this.emailTextBox.Location = new System.Drawing.Point(394, 179);
+            this.emailTextBox.Margin = new System.Windows.Forms.Padding(6);
             this.emailTextBox.Name = "emailTextBox";
             this.emailTextBox.ReadOnly = true;
-            this.emailTextBox.Size = new System.Drawing.Size(300, 19);
+            this.emailTextBox.Size = new System.Drawing.Size(600, 37);
             this.emailTextBox.TabIndex = 3;
             this.emailTextBox.Text = "mail@gmail.com";
             // 
@@ -221,10 +255,11 @@
             this.phoneTextBox.BackColor = System.Drawing.SystemColors.Control;
             this.phoneTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.phoneTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.phoneTextBox.Location = new System.Drawing.Point(197, 118);
+            this.phoneTextBox.Location = new System.Drawing.Point(394, 227);
+            this.phoneTextBox.Margin = new System.Windows.Forms.Padding(6);
             this.phoneTextBox.Name = "phoneTextBox";
             this.phoneTextBox.ReadOnly = true;
-            this.phoneTextBox.Size = new System.Drawing.Size(300, 19);
+            this.phoneTextBox.Size = new System.Drawing.Size(600, 37);
             this.phoneTextBox.TabIndex = 4;
             this.phoneTextBox.Text = "1512345678";
             // 
@@ -233,10 +268,11 @@
             this.descriptionTextBox.BackColor = System.Drawing.SystemColors.Control;
             this.descriptionTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.descriptionTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.descriptionTextBox.Location = new System.Drawing.Point(197, 68);
+            this.descriptionTextBox.Location = new System.Drawing.Point(394, 131);
+            this.descriptionTextBox.Margin = new System.Windows.Forms.Padding(6);
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.ReadOnly = true;
-            this.descriptionTextBox.Size = new System.Drawing.Size(300, 19);
+            this.descriptionTextBox.Size = new System.Drawing.Size(600, 37);
             this.descriptionTextBox.TabIndex = 2;
             this.descriptionTextBox.Text = "Descripción";
             // 
@@ -246,19 +282,21 @@
             this.nameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.nameTextBox.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nameTextBox.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.nameTextBox.Location = new System.Drawing.Point(197, 39);
+            this.nameTextBox.Location = new System.Drawing.Point(394, 75);
+            this.nameTextBox.Margin = new System.Windows.Forms.Padding(6);
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.ReadOnly = true;
-            this.nameTextBox.Size = new System.Drawing.Size(300, 23);
+            this.nameTextBox.Size = new System.Drawing.Size(600, 46);
             this.nameTextBox.TabIndex = 1;
             this.nameTextBox.Text = "Nombre";
             // 
             // pictureBox
             // 
             this.pictureBox.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox.Image")));
-            this.pictureBox.Location = new System.Drawing.Point(10, 10);
+            this.pictureBox.Location = new System.Drawing.Point(20, 19);
+            this.pictureBox.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(160, 160);
+            this.pictureBox.Size = new System.Drawing.Size(320, 308);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox.TabIndex = 22;
             this.pictureBox.TabStop = false;
@@ -270,32 +308,26 @@
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView.GridColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.dataGridView.Location = new System.Drawing.Point(15, 210);
+            this.dataGridView.Location = new System.Drawing.Point(30, 404);
+            this.dataGridView.Margin = new System.Windows.Forms.Padding(6);
             this.dataGridView.MultiSelect = false;
             this.dataGridView.Name = "dataGridView";
+            this.dataGridView.RowHeadersWidth = 82;
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView.Size = new System.Drawing.Size(1230, 405);
+            this.dataGridView.Size = new System.Drawing.Size(2460, 779);
             this.dataGridView.TabIndex = 3;
-            // 
-            // viewEmployeeButton
-            // 
-            this.viewEmployeeButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.viewEmployeeButton.Location = new System.Drawing.Point(403, 40);
-            this.viewEmployeeButton.Name = "viewEmployeeButton";
-            this.viewEmployeeButton.Size = new System.Drawing.Size(120, 35);
-            this.viewEmployeeButton.TabIndex = 71;
-            this.viewEmployeeButton.Text = "Ver empleado";
-            this.viewEmployeeButton.UseVisualStyleBackColor = true;
+            this.dataGridView.SelectionChanged += new System.EventHandler(this.dataGridView_SelectionChanged);
             // 
             // UsersForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1260, 631);
+            this.ClientSize = new System.Drawing.Size(2831, 1110);
             this.Controls.Add(this.actionsPanel);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.dataGridView);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximizeBox = false;
             this.Name = "UsersForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
