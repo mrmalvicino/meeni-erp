@@ -142,22 +142,86 @@ namespace WindowsForms
 
         public void loadUsersForm()
         {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.GetType() == typeof(UsersForm))
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
 
+                    form.BringToFront();
+                    return;
+                };
+            }
+
+            UsersForm usersForm = new UsersForm();
+            usersForm.MdiParent = this;
+            usersForm.Show();
         }
 
         public void loadWarehousesForm()
         {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.GetType() == typeof(WarehousesForm))
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
 
+                    form.BringToFront();
+                    return;
+                };
+            }
+
+            WarehousesForm warehousesForm = new WarehousesForm();
+            warehousesForm.MdiParent = this;
+            warehousesForm.Show();
         }
 
         public void loadProductsForm()
         {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.GetType() == typeof(ProductsForm))
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
 
+                    form.BringToFront();
+                    return;
+                };
+            }
+
+            ProductsForm productsForm = new ProductsForm();
+            productsForm.MdiParent = this;
+            productsForm.Show();
         }
 
         public void loadServicesForm()
         {
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form.GetType() == typeof(ServicesForm))
+                {
+                    if (form.WindowState == FormWindowState.Minimized)
+                    {
+                        form.WindowState = FormWindowState.Normal;
+                    }
 
+                    form.BringToFront();
+                    return;
+                };
+            }
+
+            ServicesForm servicesForm = new ServicesForm();
+            servicesForm.MdiParent = this;
+            servicesForm.Show();
         }
 
         public void loadTransactionsForm()
