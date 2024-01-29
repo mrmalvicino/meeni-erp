@@ -1,6 +1,6 @@
 ﻿namespace WindowsForms
 {
-    partial class EmployeesForm
+    partial class WarehousesForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmployeesForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WarehousesForm));
             this.actionsPanel = new System.Windows.Forms.Panel();
-            this.viewUserButton = new System.Windows.Forms.Button();
+            this.stockButton = new System.Windows.Forms.Button();
             this.showInactiveCheckBox = new System.Windows.Forms.CheckBox();
             this.showActiveCheckBox = new System.Windows.Forms.CheckBox();
             this.filterButton = new System.Windows.Forms.Button();
@@ -58,7 +58,7 @@
             // actionsPanel
             // 
             this.actionsPanel.BackColor = System.Drawing.SystemColors.Control;
-            this.actionsPanel.Controls.Add(this.viewUserButton);
+            this.actionsPanel.Controls.Add(this.stockButton);
             this.actionsPanel.Controls.Add(this.showInactiveCheckBox);
             this.actionsPanel.Controls.Add(this.showActiveCheckBox);
             this.actionsPanel.Controls.Add(this.filterButton);
@@ -71,18 +71,17 @@
             this.actionsPanel.Location = new System.Drawing.Point(530, 15);
             this.actionsPanel.Name = "actionsPanel";
             this.actionsPanel.Size = new System.Drawing.Size(715, 180);
-            this.actionsPanel.TabIndex = 5;
+            this.actionsPanel.TabIndex = 8;
             // 
-            // viewUserButton
+            // stockButton
             // 
-            this.viewUserButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.viewUserButton.Location = new System.Drawing.Point(403, 40);
-            this.viewUserButton.Name = "viewUserButton";
-            this.viewUserButton.Size = new System.Drawing.Size(120, 35);
-            this.viewUserButton.TabIndex = 71;
-            this.viewUserButton.Text = "Ver usuario";
-            this.viewUserButton.UseVisualStyleBackColor = true;
-            this.viewUserButton.Click += new System.EventHandler(this.viewUserButton_Click);
+            this.stockButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stockButton.Location = new System.Drawing.Point(403, 40);
+            this.stockButton.Name = "stockButton";
+            this.stockButton.Size = new System.Drawing.Size(120, 35);
+            this.stockButton.TabIndex = 71;
+            this.stockButton.Text = "Existencias";
+            this.stockButton.UseVisualStyleBackColor = true;
             // 
             // showInactiveCheckBox
             // 
@@ -94,7 +93,6 @@
             this.showInactiveCheckBox.TabIndex = 6;
             this.showInactiveCheckBox.Text = "Inactivos";
             this.showInactiveCheckBox.UseVisualStyleBackColor = true;
-            this.showInactiveCheckBox.CheckedChanged += new System.EventHandler(this.showInactiveCheckBox_CheckedChanged);
             // 
             // showActiveCheckBox
             // 
@@ -108,7 +106,6 @@
             this.showActiveCheckBox.TabIndex = 5;
             this.showActiveCheckBox.Text = "Activos";
             this.showActiveCheckBox.UseVisualStyleBackColor = true;
-            this.showActiveCheckBox.CheckedChanged += new System.EventHandler(this.showActiveCheckBox_CheckedChanged);
             // 
             // filterButton
             // 
@@ -119,7 +116,6 @@
             this.filterButton.TabIndex = 7;
             this.filterButton.Text = "Restablecer";
             this.filterButton.UseVisualStyleBackColor = true;
-            this.filterButton.Click += new System.EventHandler(this.filterButton_Click);
             // 
             // filterLabel
             // 
@@ -138,7 +134,6 @@
             this.filterTextBox.Name = "filterTextBox";
             this.filterTextBox.Size = new System.Drawing.Size(270, 26);
             this.filterTextBox.TabIndex = 4;
-            this.filterTextBox.TextChanged += new System.EventHandler(this.filterTextBox_TextChanged);
             // 
             // exportCSVButton
             // 
@@ -149,7 +144,6 @@
             this.exportCSVButton.TabIndex = 3;
             this.exportCSVButton.Text = "Exportar CSV";
             this.exportCSVButton.UseVisualStyleBackColor = true;
-            this.exportCSVButton.Click += new System.EventHandler(this.exportCSVButton_Click);
             // 
             // deleteButton
             // 
@@ -160,7 +154,6 @@
             this.deleteButton.TabIndex = 2;
             this.deleteButton.Text = "Eliminar";
             this.deleteButton.UseVisualStyleBackColor = true;
-            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
             // editButton
             // 
@@ -171,7 +164,6 @@
             this.editButton.TabIndex = 1;
             this.editButton.Text = "Editar";
             this.editButton.UseVisualStyleBackColor = true;
-            this.editButton.Click += new System.EventHandler(this.editButton_Click);
             // 
             // newButton
             // 
@@ -182,7 +174,6 @@
             this.newButton.TabIndex = 0;
             this.newButton.Text = "Nuevo";
             this.newButton.UseVisualStyleBackColor = true;
-            this.newButton.Click += new System.EventHandler(this.newButton_Click);
             // 
             // mainPanel
             // 
@@ -197,7 +188,7 @@
             this.mainPanel.Location = new System.Drawing.Point(15, 15);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(500, 180);
-            this.mainPanel.TabIndex = 4;
+            this.mainPanel.TabIndex = 7;
             // 
             // idTextBox
             // 
@@ -294,10 +285,9 @@
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView.Size = new System.Drawing.Size(1230, 405);
-            this.dataGridView.TabIndex = 3;
-            this.dataGridView.SelectionChanged += new System.EventHandler(this.dataGridView_SelectionChanged);
+            this.dataGridView.TabIndex = 6;
             // 
-            // EmployeesForm
+            // WarehousesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -307,10 +297,8 @@
             this.Controls.Add(this.dataGridView);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
-            this.Name = "EmployeesForm";
+            this.Name = "WarehousesForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "EmployeesForm";
-            this.Load += new System.EventHandler(this.EmployeesForm_Load);
             this.actionsPanel.ResumeLayout(false);
             this.actionsPanel.PerformLayout();
             this.mainPanel.ResumeLayout(false);
@@ -324,6 +312,7 @@
         #endregion
 
         private System.Windows.Forms.Panel actionsPanel;
+        private System.Windows.Forms.Button stockButton;
         private System.Windows.Forms.CheckBox showInactiveCheckBox;
         private System.Windows.Forms.CheckBox showActiveCheckBox;
         private System.Windows.Forms.Button filterButton;
@@ -342,6 +331,5 @@
         private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.DataGridView dataGridView;
-        private System.Windows.Forms.Button viewUserButton;
     }
 }

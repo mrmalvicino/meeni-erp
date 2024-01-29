@@ -67,6 +67,18 @@
     </Compile>
     <Compile Include="Functions.cs" />
     <Compile Include="Palette.cs" />
+    <Compile Include="ProductRegisterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductRegisterForm.Designer.cs">
+      <DependentUpon>ProductRegisterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductsForm.Designer.cs">
+      <DependentUpon>ProductsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="QuoteForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +96,18 @@
     </Compile>
     <Compile Include="CustomerRegisterForm.Designer.cs">
       <DependentUpon>CustomerRegisterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceRegisterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServiceRegisterForm.Designer.cs">
+      <DependentUpon>ServiceRegisterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ServicesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServicesForm.Designer.cs">
+      <DependentUpon>ServicesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SettingsForm.cs">
       <SubType>Form</SubType>
@@ -123,7 +147,31 @@
     <Compile Include="TransactionsForm.Designer.cs">
       <DependentUpon>TransactionsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserRegisterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserRegisterForm.Designer.cs">
+      <DependentUpon>UserRegisterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UsersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UsersForm.Designer.cs">
+      <DependentUpon>UsersForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Validations.cs" />
+    <Compile Include="WarehouseRegisterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WarehouseRegisterForm.Designer.cs">
+      <DependentUpon>WarehouseRegisterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WarehousesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WarehousesForm.Designer.cs">
+      <DependentUpon>WarehousesForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="CustomersForm.resx">
       <DependentUpon>CustomersForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -139,6 +187,12 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductRegisterForm.resx">
+      <DependentUpon>ProductRegisterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductsForm.resx">
+      <DependentUpon>ProductsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -159,6 +213,12 @@
     <EmbeddedResource Include="CustomerRegisterForm.resx">
       <DependentUpon>CustomerRegisterForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ServiceRegisterForm.resx">
+      <DependentUpon>ServiceRegisterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServicesForm.resx">
+      <DependentUpon>ServicesForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SettingsForm.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -170,6 +230,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TransactionsForm.resx">
       <DependentUpon>TransactionsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserRegisterForm.resx">
+      <DependentUpon>UserRegisterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UsersForm.resx">
+      <DependentUpon>UsersForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WarehouseRegisterForm.resx">
+      <DependentUpon>WarehouseRegisterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WarehousesForm.resx">
+      <DependentUpon>WarehousesForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

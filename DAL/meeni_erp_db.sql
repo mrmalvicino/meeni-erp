@@ -167,9 +167,11 @@ INSERT INTO roles
 
 -- TESTING QUERIES
 
-SELECT EmployeeId, FirstName, LastName, Admission, CategoryId, C.Area, C.Title, C.Seniority FROM employees E, categories C WHERE E.CategoryId = C.Id
+SELECT EmployeeId, FirstName, LastName, Admission, CategoryId, Area, Title, Seniority FROM employees E, categories C WHERE E.CategoryId = C.Id
 
-SELECT * FROM categories
+SELECT EmployeeId, FirstName, LastName, UserName, UserPassword FROM employees E, users U WHERE U.UserName = concat(E.LastName, E.EmployeeId)
+
+SELECT * FROM users
 
 UPDATE users SET UserName = 'Bocca1' WHERE UserId = 1;
 

@@ -16,7 +16,7 @@ namespace BLL
 
             try
             {
-                _database.setQuery("SELECT EmployeeId, ActiveStatus, IsPerson, FirstName, LastName, BusinessName, BusinessDescription, ImageUrl, Email, PhoneCountry, PhoneArea, PhoneNumber, AdressCountry, AdressProvince, AdressCity, AdressZipCode, AdressStreet, AdressStreetNumber, AdressFlat, LegalIdXX, LegalIdDNI, LegalIdY, Admission, CategoryId, C.Area, C.Title, C.Seniority FROM employees E, categories C WHERE E.CategoryId = C.Id");
+                _database.setQuery("SELECT EmployeeId, ActiveStatus, IsPerson, FirstName, LastName, BusinessName, BusinessDescription, ImageUrl, Email, PhoneCountry, PhoneArea, PhoneNumber, AdressCountry, AdressProvince, AdressCity, AdressZipCode, AdressStreet, AdressStreetNumber, AdressFlat, LegalIdXX, LegalIdDNI, LegalIdY, Admission, CategoryId, Area, Title, Seniority FROM employees E, categories C WHERE E.CategoryId = C.Id");
                 _database.executeReader();
 
                 while (_database.Reader.Read())
