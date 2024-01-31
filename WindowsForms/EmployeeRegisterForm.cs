@@ -14,6 +14,7 @@ namespace WindowsForms
         Employee _employee = null;
         OpenFileDialog _file = null;
         EmployeesManager _employeesManager = new EmployeesManager();
+        CategoriesManager _categoriesManager = new CategoriesManager();
 
         //CONSTRUCT
 
@@ -89,6 +90,12 @@ namespace WindowsForms
                 return false;
             }
 
+            if (!_categoriesManager.categoryExists(categoryAreaComboBox.Text, categoryTitleComboBox.Text, categorySeniorityComboBox.Text))
+            {
+                MessageBox.Show("Los datos de área, título y experiencia no representan una categoría existente. Si así lo requiere, puede agregarlos como una nueva categoría.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
             return true;
         }
 
@@ -98,39 +105,57 @@ namespace WindowsForms
         {
             setupStyle();
 
-            if (_employee == null) // Se está agregando un registro
+            try
             {
-                _employee = new Employee();
-                activeStatusCheckBox.Enabled = false;
+                categoryAreaComboBox.DataSource = _categoriesManager.listRegisters("Area");
+                categoryTitleComboBox.DataSource = _categoriesManager.listRegisters("Title");
+                categorySeniorityComboBox.DataSource = _categoriesManager.listRegisters("Seniority");
+
+                if (_employee == null) // Se está agregando un registro
+                {
+                    _employee = new Employee();
+                    activeStatusCheckBox.Enabled = false;
+                    categoryAreaComboBox.SelectedIndex = -1;
+                    categoryTitleComboBox.SelectedIndex = -1;
+                    categorySeniorityComboBox.SelectedIndex = -1;
+                }
+                else // Se está editando un registro
+                {
+                    categoryAreaComboBox.Text = _employee.Category.Area;
+                    categoryTitleComboBox.Text = _employee.Category.Title;
+                    categorySeniorityComboBox.Text = _employee.Category.Seniority;
+
+                    activeStatusCheckBox.Checked = _employee.ActiveStatus;
+                    isPersonCheckBox.Checked = _employee.IsPerson;
+                    firstNameTextBox.Text = _employee.FirstName;
+                    lastNameTextBox.Text = _employee.LastName;
+                    businessNameTextBox.Text = _employee.BusinessName;
+                    businessDescriptionTextBox.Text = _employee.BusinessDescription;
+                    imageUrlTextBox.Text = _employee.ImageUrl;
+                    emailTextBox.Text = _employee.Email;
+
+                    phoneCountryTextBox.Text = _employee.Phone.Country.ToString();
+                    phoneAreaTextBox.Text = _employee.Phone.Area.ToString();
+                    phoneNumberTextBox.Text = _employee.Phone.Number.ToString();
+
+                    adressCountryTextBox.Text = _employee.Adress.Country;
+                    adressProvinceTextBox.Text = _employee.Adress.Province;
+                    adressCityTextBox.Text = _employee.Adress.City;
+                    adressZipCodeTextBox.Text = _employee.Adress.ZipCode;
+                    adressStreetTextBox.Text = _employee.Adress.Street;
+                    adressStreetNumberTextBox.Text = _employee.Adress.StreetNumber.ToString();
+                    adressFlatTextBox.Text = _employee.Adress.Flat;
+
+                    legalIdXXTextBox.Text = _employee.LegalId.XX;
+                    legalIdDNITextBox.Text = _employee.LegalId.DNI.ToString();
+                    legalIdYTextBox.Text = _employee.LegalId.Y;
+
+                    Functions.loadImage(pictureBox, imageUrlTextBox.Text);
+                }
             }
-            else // Se está editando un registro
+            catch (Exception ex)
             {
-                activeStatusCheckBox.Checked = _employee.ActiveStatus;
-                isPersonCheckBox.Checked = _employee.IsPerson;
-                firstNameTextBox.Text = _employee.FirstName;
-                lastNameTextBox.Text = _employee.LastName;
-                businessNameTextBox.Text = _employee.BusinessName;
-                businessDescriptionTextBox.Text = _employee.BusinessDescription;
-                imageUrlTextBox.Text = _employee.ImageUrl;
-                emailTextBox.Text = _employee.Email;
-
-                phoneCountryTextBox.Text = _employee.Phone.Country.ToString();
-                phoneAreaTextBox.Text = _employee.Phone.Area.ToString();
-                phoneNumberTextBox.Text = _employee.Phone.Number.ToString();
-
-                adressCountryTextBox.Text = _employee.Adress.Country;
-                adressProvinceTextBox.Text = _employee.Adress.Province;
-                adressCityTextBox.Text = _employee.Adress.City;
-                adressZipCodeTextBox.Text = _employee.Adress.ZipCode;
-                adressStreetTextBox.Text = _employee.Adress.Street;
-                adressStreetNumberTextBox.Text = _employee.Adress.StreetNumber.ToString();
-                adressFlatTextBox.Text = _employee.Adress.Flat;
-
-                legalIdXXTextBox.Text = _employee.LegalId.XX;
-                legalIdDNITextBox.Text = _employee.LegalId.DNI.ToString();
-                legalIdYTextBox.Text = _employee.LegalId.Y;
-
-                Functions.loadImage(pictureBox, imageUrlTextBox.Text);
+                MessageBox.Show(ex.ToString());
             }
         }
 
@@ -170,6 +195,10 @@ namespace WindowsForms
                 _employee.LegalId.XX = legalIdXXTextBox.Text;
                 if (legalIdDNITextBox.Text != "") _employee.LegalId.DNI = int.Parse(legalIdDNITextBox.Text);
                 _employee.LegalId.Y = legalIdYTextBox.Text;
+
+                _employee.Category.Area = categoryAreaComboBox.Text;
+                _employee.Category.Title = categoryTitleComboBox.Text;
+                _employee.Category.Seniority = categorySeniorityComboBox.Text;
 
                 if (0 < _employee.EmployeeId)
                     _employeesManager.edit(_employee); // Se está agregando un registro
@@ -244,7 +273,12 @@ namespace WindowsForms
                 adressStreetNumberTextBox.ForeColor = Palette.ValidationColor;
         }
 
-        private void newCategoryButton_Click(object sender, EventArgs e)
+        private void addCategoryButton_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void deleteCategoryButton_Click(object sender, EventArgs e)
         {
 
         }

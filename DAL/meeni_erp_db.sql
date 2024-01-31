@@ -166,7 +166,7 @@ INSERT INTO roles
 
 -- QUERIES
 
-SELECT * FROM employees
+SELECT * FROM categories
 
 UPDATE users
 SET UserName = 'Bocca1'
