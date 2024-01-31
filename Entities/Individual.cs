@@ -11,10 +11,10 @@ namespace Entities
     {
         // PROPERTIES
 
-        [DisplayName("Activo")]
+        [DisplayName("Está activo")]
         public bool ActiveStatus { get; set; }
 
-        [DisplayName("Persona")]
+        [DisplayName("Es persona")]
         public bool IsPerson { get; set; }
 
         [DisplayName("Nombre")]

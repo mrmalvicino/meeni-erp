@@ -9,6 +9,9 @@ namespace Entities
 {
     public class Product : Item
     {
+        [DisplayName("ID de producto")]
+        public int Id { get; set; }
+
         [DisplayName("Marca")]
         public string Brand { get; set; }
 

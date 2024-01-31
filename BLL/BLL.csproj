@@ -45,6 +45,7 @@
     <Compile Include="EmployeesManager.cs" />
     <Compile Include="IndividualsManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RolesManager.cs" />
     <Compile Include="SuppliersManager.cs" />
     <Compile Include="UsersManager.cs" />
   </ItemGroup>

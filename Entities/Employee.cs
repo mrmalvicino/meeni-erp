@@ -11,9 +11,13 @@ namespace Entities
     {
         // PROPERTIES
 
+        [DisplayName("ID de empleado")]
         public int EmployeeId { get; set; }
 
-        [DisplayName("Ingreso")]
+        [DisplayName("Es usuario")]
+        public bool IsUser { get; set; }
+
+        [DisplayName("Fecha de ingreso")]
         public DateTime Admission { get; set; }
 
         [DisplayName("Categoría")]
@@ -24,6 +28,7 @@ namespace Entities
         public Employee()
         {
             IsPerson = true;
+            IsUser = false;
             Category = new Category();
         }
     }

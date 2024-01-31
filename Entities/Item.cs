@@ -9,8 +9,6 @@ namespace Entities
 {
     public class Item
     {
-        public int Id { get; set; }
-
         [DisplayName("Categoría")]
         public string Category { get; set; }
 

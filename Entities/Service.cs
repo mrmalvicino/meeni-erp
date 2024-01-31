@@ -9,6 +9,9 @@ namespace Entities
 {
     public class Service : Item
     {
+        [DisplayName("ID de servicio")]
+        public int Id { get; set; }
+
         [DisplayName("Nombre")]
         public string Name { get; set; }
     }

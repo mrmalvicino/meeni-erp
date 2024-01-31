@@ -11,9 +11,10 @@ namespace Entities
     {
         // PROPERTIES
 
+        [DisplayName("ID de depósito")]
         public int Id { get; set; }
 
-        [DisplayName("Activo")]
+        [DisplayName("Está activo")]
         public bool ActiveStatus { get; set; }
 
         [DisplayName("Nombre")]

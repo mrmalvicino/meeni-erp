@@ -11,9 +11,10 @@ namespace Entities
     {
         // PROPERTIES
 
+        [DisplayName("ID de proveedor")]
         public int Id { get; set; }
 
-        [DisplayName("Indispensable")]
+        [DisplayName("Es indispensable")]
         public bool IsIndispensable { get; set; }
     }
 }

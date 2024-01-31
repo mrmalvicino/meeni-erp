@@ -53,12 +53,22 @@ namespace WindowsForms
             {
                 dataGridView.Columns["Id"].Visible = false;
                 dataGridView.Columns["ActiveStatus"].Visible = false;
-                dataGridView.Columns["ImageUrl"].Visible = false;
-                dataGridView.Columns["InvoiceCategory"].DisplayIndex = dataGridView.ColumnCount - 3;
-                dataGridView.Columns["PaymentMethod"].DisplayIndex = dataGridView.ColumnCount - 2;
-                dataGridView.Columns["SalesAmount"].DisplayIndex = dataGridView.ColumnCount - 1;
                 dataGridView.Columns["IsPerson"].Width = 50;
+                dataGridView.Columns["FirstName"].Width = 80;
+                dataGridView.Columns["LastName"].Width = 80;
+                dataGridView.Columns["BusinessDescription"].Width = 120;
+                dataGridView.Columns["ImageUrl"].Visible = false;
+                dataGridView.Columns["Email"].Width = 150;
+                dataGridView.Columns["Phone"].Width = 120;
+                dataGridView.Columns["Adress"].Width = 150;
+                dataGridView.Columns["LegalId"].Width = 80;
+                dataGridView.Columns["PaymentMethod"].DisplayIndex = dataGridView.ColumnCount - 1;
+                dataGridView.Columns["PaymentMethod"].Width = 50;
+                dataGridView.Columns["InvoiceCategory"].DisplayIndex = dataGridView.ColumnCount - 1;
                 dataGridView.Columns["InvoiceCategory"].Width = 50;
+                dataGridView.Columns["SalesAmount"].DisplayIndex = dataGridView.ColumnCount - 1;
+                dataGridView.Columns["SalesAmount"].Width = 80;
+                Functions.fillDataGrid(dataGridView);
             }
         }
 

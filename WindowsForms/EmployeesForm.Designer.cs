@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmployeesForm));
             this.actionsPanel = new System.Windows.Forms.Panel();
-            this.viewUserButton = new System.Windows.Forms.Button();
+            this.userButton = new System.Windows.Forms.Button();
             this.showInactiveCheckBox = new System.Windows.Forms.CheckBox();
             this.showActiveCheckBox = new System.Windows.Forms.CheckBox();
             this.filterButton = new System.Windows.Forms.Button();
@@ -58,7 +58,7 @@
             // actionsPanel
             // 
             this.actionsPanel.BackColor = System.Drawing.SystemColors.Control;
-            this.actionsPanel.Controls.Add(this.viewUserButton);
+            this.actionsPanel.Controls.Add(this.userButton);
             this.actionsPanel.Controls.Add(this.showInactiveCheckBox);
             this.actionsPanel.Controls.Add(this.showActiveCheckBox);
             this.actionsPanel.Controls.Add(this.filterButton);
@@ -73,16 +73,16 @@
             this.actionsPanel.Size = new System.Drawing.Size(715, 180);
             this.actionsPanel.TabIndex = 5;
             // 
-            // viewUserButton
+            // userButton
             // 
-            this.viewUserButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.viewUserButton.Location = new System.Drawing.Point(403, 40);
-            this.viewUserButton.Name = "viewUserButton";
-            this.viewUserButton.Size = new System.Drawing.Size(120, 35);
-            this.viewUserButton.TabIndex = 71;
-            this.viewUserButton.Text = "Ver usuario";
-            this.viewUserButton.UseVisualStyleBackColor = true;
-            this.viewUserButton.Click += new System.EventHandler(this.viewUserButton_Click);
+            this.userButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.userButton.Location = new System.Drawing.Point(403, 40);
+            this.userButton.Name = "userButton";
+            this.userButton.Size = new System.Drawing.Size(120, 35);
+            this.userButton.TabIndex = 71;
+            this.userButton.Text = "Ver usuario";
+            this.userButton.UseVisualStyleBackColor = true;
+            this.userButton.Click += new System.EventHandler(this.userButton_Click);
             // 
             // showInactiveCheckBox
             // 
@@ -342,6 +342,6 @@
         private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.DataGridView dataGridView;
-        private System.Windows.Forms.Button viewUserButton;
+        private System.Windows.Forms.Button userButton;
     }
 }

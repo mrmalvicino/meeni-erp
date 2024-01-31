@@ -11,6 +11,7 @@ namespace Entities
     {
         // PROPERTIES
 
+        [DisplayName("ID de divisa")]
         public int Id { get; set; }
 
         [DisplayName("Código")]

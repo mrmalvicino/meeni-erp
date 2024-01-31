@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,10 +11,13 @@ namespace Entities
     {
         // PROPERTIES
 
+        [DisplayName("Cód. del país")]
         public int Country { get; set; }
 
+        [DisplayName("Cód. de área")]
         public int Area { get; set; }
 
+        [DisplayName("Número telefónico")]
         public int Number {  get; set; }
 
         // METHODS

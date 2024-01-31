@@ -11,19 +11,17 @@ namespace Entities
     {
         // PROPERTIES
 
+        [DisplayName("ID de rol")]
         public int Id { get; set; }
 
-        [DisplayName("Rol")]
-        public string RoleName { get; set; }
-
-        [DisplayName("Nivel")]
-        public int PermissionLevel { get; set; }
+        [DisplayName("Nombre")]
+        public string Name { get; set; }
 
         // METHODS
 
         public override string ToString()
         {
-            return RoleName + " nivel " + PermissionLevel;
+            return Name;
         }
     }
 }

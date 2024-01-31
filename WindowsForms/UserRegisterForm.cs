@@ -19,6 +19,7 @@ namespace WindowsForms
         User _user = null;
         OpenFileDialog _file = null;
         UsersManager _usersManager = new UsersManager();
+        RolesManager _rolesManager = new RolesManager();
 
         //CONSTRUCT
 
@@ -38,8 +39,7 @@ namespace WindowsForms
         private void setupStyle()
         {
             this.BackColor = Palette.DarkBackColor;
-            userPanel.BackColor = Palette.LightBackColor;
-            rolePanel.BackColor = Palette.LightBackColor;
+            mainPanel.BackColor = Palette.LightBackColor;
         }
 
         private bool validateRegister()
@@ -58,17 +58,29 @@ namespace WindowsForms
         {
             setupStyle();
 
-            if (_user == null) // Se está agregando un registro
+            try
             {
-                _user = new User();
+                roleNameComboBox.DataSource = _rolesManager.list();
+                roleNameComboBox.ValueMember = "Id";
+                roleNameComboBox.DisplayMember = "Name";
+
+                if (_user == null) // Se está agregando un registro
+                {
+                    _user = new User();
+                    roleNameComboBox.SelectedIndex = -1;
+                    userNameTextBox.Text = _user.LastName + _user.EmployeeId;
+                }
+                else // Se está editando un registro
+                {
+                    userNameTextBox.Text = _user.UserName;
+                    userPasswordTextBox.Text = _user.UserPassword;
+                    repeatTextBox.Text = userPasswordTextBox.Text;
+                    roleNameComboBox.SelectedValue = _user.Role.Id;
+                }                
             }
-            else // Se está editando un registro
+            catch (Exception ex)
             {
-                userNameTextBox.Text = _user.UserName;
-                userPasswordTextBox.Text = _user.UserPassword;
-                repeatTextBox.Text = userPasswordTextBox.Text;
-                roleNameComboBox.SelectedItem = _user.Role.RoleName;
-                permissionLevelNumericUpDown.Value = _user.Role.PermissionLevel;
+                MessageBox.Show(ex.ToString());
             }
         }
 
@@ -81,8 +93,7 @@ namespace WindowsForms
             {
                 _user.UserName = userNameTextBox.Text;
                 _user.UserPassword = userPasswordTextBox.Text;              
-                _user.Role.RoleName = roleNameComboBox.SelectedItem.ToString();
-                _user.Role.PermissionLevel = (int)permissionLevelNumericUpDown.Value;
+                _user.Role = (Role)roleNameComboBox.SelectedItem;
 
                 if (0 < _user.UserId)
                     _usersManager.edit(_user); // Se está agregando un registro
@@ -96,11 +107,6 @@ namespace WindowsForms
             {
                 MessageBox.Show(ex.ToString());
             }
-        }
-
-        private void newRoleButton_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

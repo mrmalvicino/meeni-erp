@@ -11,6 +11,7 @@ namespace Entities
     {
         // PROPERTIES
 
+        [DisplayName("ID de cliente")]
         public int Id { get; set; }
 
         [DisplayName("Ventas")]

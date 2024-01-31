@@ -16,7 +16,7 @@ namespace BLL
 
             try
             {
-                _database.setQuery("SELECT EmployeeId, ActiveStatus, IsPerson, FirstName, LastName, BusinessName, BusinessDescription, ImageUrl, Email, PhoneCountry, PhoneArea, PhoneNumber, AdressCountry, AdressProvince, AdressCity, AdressZipCode, AdressStreet, AdressStreetNumber, AdressFlat, LegalIdXX, LegalIdDNI, LegalIdY, Admission, CategoryId, Area, Title, Seniority FROM employees E, categories C WHERE E.CategoryId = C.Id");
+                _database.setQuery("SELECT EmployeeId, ActiveStatus, IsPerson, FirstName, LastName, BusinessName, BusinessDescription, ImageUrl, Email, PhoneCountry, PhoneArea, PhoneNumber, AdressCountry, AdressProvince, AdressCity, AdressZipCode, AdressStreet, AdressStreetNumber, AdressFlat, LegalIdXX, LegalIdDNI, LegalIdY, IsUser, Admission, CategoryId, Area, Title, Seniority FROM employees E, categories C WHERE E.CategoryId = C.Id");
                 _database.executeReader();
 
                 while (_database.Reader.Read())
@@ -25,6 +25,7 @@ namespace BLL
 
                     readIndividual(employee);
                     employee.EmployeeId = (int)_database.Reader["EmployeeId"];
+                    employee.IsUser = (bool)_database.Reader["IsUser"];
                     employee.Admission = (DateTime)_database.Reader["Admission"];
 
                     if (!(_database.Reader["CategoryId"] is DBNull))

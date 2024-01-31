@@ -9,7 +9,6 @@ GO
 -- CUSTOMERS
 
 CREATE TABLE customers(
-Id int primary key identity,
 ActiveStatus bit,
 IsPerson bit,
 FirstName varchar(30),
@@ -33,6 +32,7 @@ LegalIdDNI int,
 LegalIdY varchar(30),
 PaymentMethod varchar(30),
 InvoiceCategory varchar(30),
+Id int primary key identity,
 SalesAmount int
 )
 
@@ -47,7 +47,6 @@ INSERT INTO customers
 -- SUPPLIERS
 
 CREATE TABLE suppliers(
-Id int primary key identity,
 ActiveStatus bit,
 IsPerson bit,
 FirstName varchar(30),
@@ -71,6 +70,7 @@ LegalIdDNI int,
 LegalIdY varchar(30),
 PaymentMethod varchar(30),
 InvoiceCategory varchar(30),
+Id int primary key identity,
 IsIndispensable bit
 )
 
@@ -81,7 +81,6 @@ INSERT INTO suppliers
 -- EMPLOYEES
 
 CREATE TABLE employees(
-EmployeeId int primary key identity,
 ActiveStatus bit,
 IsPerson bit,
 FirstName varchar(30),
@@ -103,13 +102,15 @@ AdressFlat varchar(30),
 LegalIdXX varchar(30),
 LegalIdDNI int,
 LegalIdY varchar(30),
+EmployeeId int primary key identity,
+IsUser bit default 'False' not null,
 Admission datetime default getdate() not null,
 CategoryId int
 )
 
 INSERT INTO employees
 (ActiveStatus, IsPerson, FirstName, LastName, BusinessName, BusinessDescription, ImageUrl, Email, PhoneCountry, PhoneArea, PhoneNumber, AdressCountry, AdressProvince, AdressCity, AdressZipCode, AdressStreet, AdressStreetNumber, AdressFlat, LegalIdXX, LegalIdDNI, LegalIdY, CategoryId) VALUES
-('True', 'True', 'Federico', 'Bocca', 'Pisos Click', '', '', '', '0', '0', '0', 'Argentina', 'Buenos Aires', '', '', '', '0', '', '', '0', '', '1'),
+('True', 'True', 'Federico', 'Bocca', 'Pisos Click', '', '', '', '0', '0', '0', 'Argentina', 'Buenos Aires', '', '', '', '0', '', '', '0', '', '5'),
 ('True', 'True', 'Gerbacio', 'Figueredo', 'Pisos Click', '', '', '', '0', '0', '0', 'Paraguay', '', '', '', '', '0', '', '', '0', '', '10');
 
 -- CATEGORIES
@@ -151,23 +152,21 @@ INSERT INTO users
 
 CREATE TABLE roles(
 Id int primary key identity,
-RoleName varchar(30),
-PermissionLevel int
+RoleName varchar(30)
 )
 
 INSERT INTO roles
-(RoleName, PermissionLevel) VALUES
-('Administrador', '5'),
-('Ventas', '5'),
-('Ventas', '4'),
-('RRHH', '5'),
-('RRHH', '3'),
-('Logística', '5'),
-('Logística', '2');
+(RoleName) VALUES
+('Acceso total'),
+('Compras'),
+('Contabilidad'),
+('Logística'),
+('RRHH'),
+('Ventas');
 
 -- QUERIES
 
-SELECT * FROM users
+SELECT * FROM employees
 
 UPDATE users
 SET UserName = 'Bocca1'
@@ -176,6 +175,6 @@ WHERE UserId = 1;
 DELETE FROM employees
 WHERE EmployeeId = 6
 
-SELECT EmployeeId, UserId, UserName, UserPassword, RoleId, RoleName, PermissionLevel
+SELECT ActiveStatus, EmployeeId, UserId, UserName, UserPassword, RoleId, RoleName
 FROM employees E, users U, categories C, roles R
 WHERE U.UserName = concat(E.LastName, E.EmployeeId) AND E.CategoryId = C.Id AND U.RoleId = R.Id

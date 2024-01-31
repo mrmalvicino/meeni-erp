@@ -58,8 +58,21 @@ namespace WindowsForms
             {
                 dataGridView.Columns["EmployeeId"].Visible = false;
                 dataGridView.Columns["ActiveStatus"].Visible = false;
-                dataGridView.Columns["ImageUrl"].Visible = false;
                 dataGridView.Columns["IsPerson"].Visible = false;
+                dataGridView.Columns["FirstName"].Width = 80;
+                dataGridView.Columns["LastName"].Width = 80;
+                dataGridView.Columns["BusinessDescription"].Width = 120;
+                dataGridView.Columns["ImageUrl"].Visible = false;
+                dataGridView.Columns["Email"].Width = 150;
+                dataGridView.Columns["Phone"].Width = 120;
+                dataGridView.Columns["Adress"].Width = 150;
+                dataGridView.Columns["LegalId"].Width = 80;
+                dataGridView.Columns["IsUser"].Visible = false;
+                dataGridView.Columns["Admission"].DisplayIndex = dataGridView.ColumnCount - 1;
+                dataGridView.Columns["Admission"].Width = 110;
+                dataGridView.Columns["Category"].DisplayIndex = dataGridView.ColumnCount - 1;
+                dataGridView.Columns["Category"].Width = 150;
+                Functions.fillDataGrid(dataGridView);
             }
         }
 
@@ -138,6 +151,15 @@ namespace WindowsForms
                 _selectedEmployee = (Employee)dataGridView.CurrentRow.DataBoundItem;
                 Functions.loadImage(pictureBox, _selectedEmployee.ImageUrl);
                 loadProfile(_selectedEmployee.EmployeeId, _selectedEmployee.ToString(), _selectedEmployee.BusinessDescription, _selectedEmployee.Phone.ToString(), _selectedEmployee.Email.ToString(), _selectedEmployee.Adress.ToString());
+                
+                if (_selectedEmployee.IsUser)
+                {
+                    userButton.Text = "Ver usuario";
+                }
+                else
+                {
+                    userButton.Text = "Hacer usuario";
+                }
             }
         }
 
@@ -204,7 +226,7 @@ namespace WindowsForms
             applyFilter();
         }
 
-        private void viewUserButton_Click(object sender, EventArgs e)
+        private void userButton_Click(object sender, EventArgs e)
         {
 
         }

@@ -11,6 +11,7 @@ namespace Entities
     {
         // PROPERTIES
 
+        [DisplayName("ID de usuario")]
         public int UserId { get; set; }
 
         [DisplayName("Nombre de usuario")]
