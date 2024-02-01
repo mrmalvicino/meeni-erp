@@ -133,11 +133,6 @@ namespace WindowsForms
             }
         }
 
-        private void imageUrlTextBox_Leave(object sender, EventArgs e)
-        {
-            Functions.loadImage(pictureBox, imageUrlTextBox.Text);
-        }
-
         private void saveButton_Click(object sender, EventArgs e)
         {
             if (!validateRegister())
@@ -171,9 +166,9 @@ namespace WindowsForms
                 _supplier.LegalId.Y = legalIdYTextBox.Text;
 
                 if (0 < _supplier.Id)
-                    _suppliersManager.edit(_supplier); // Se está agregando un registro
+                    _suppliersManager.edit(_supplier); // Se está editando un registro
                 else
-                    _suppliersManager.add(_supplier); // Se está editando un registro
+                    _suppliersManager.add(_supplier); // Se está agregando un registro
 
                 MessageBox.Show("Registro guardado exitosamente.");
                 Close();
@@ -182,6 +177,11 @@ namespace WindowsForms
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void imageUrlTextBox_Leave(object sender, EventArgs e)
+        {
+            Functions.loadImage(pictureBox, imageUrlTextBox.Text);
         }
 
         private void loadImageButton_Click(object sender, EventArgs e)

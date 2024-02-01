@@ -177,11 +177,6 @@ namespace WindowsForms
             }
         }
 
-        private void imageUrlTextBox_Leave(object sender, EventArgs e)
-        {
-            Functions.loadImage(pictureBox, imageUrlTextBox.Text);
-        }
-
         private void saveButton_Click(object sender, EventArgs e)
         {
             if (!validateRegister())
@@ -220,9 +215,9 @@ namespace WindowsForms
                 _employee.Category.Seniority = categorySeniorityComboBox.Text;
 
                 if (0 < _employee.EmployeeId)
-                    _employeesManager.edit(_employee); // Se está agregando un registro
+                    _employeesManager.edit(_employee); // Se está editando un registro
                 else
-                    _employeesManager.add(_employee); // Se está editando un registro
+                    _employeesManager.add(_employee); // Se está agregando un registro
 
                 MessageBox.Show("Registro guardado exitosamente.");
                 Close();
@@ -231,6 +226,11 @@ namespace WindowsForms
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void imageUrlTextBox_Leave(object sender, EventArgs e)
+        {
+            Functions.loadImage(pictureBox, imageUrlTextBox.Text);
         }
 
         private void loadImageButton_Click(object sender, EventArgs e)

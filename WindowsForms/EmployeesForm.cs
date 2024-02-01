@@ -22,20 +22,18 @@ namespace WindowsForms
         private List<Employee> _employeesTable;
         private List<Employee> _filteredEmployees;
         private EmployeesManager _employeesManager = new EmployeesManager();
-        private bool _userButtonIsVisible;
 
         // CONSTRUCT
 
         public EmployeesForm()
         {
             InitializeComponent();
-            _userButtonIsVisible = false;
         }
 
         public EmployeesForm(bool userButtonIsVisible)
         {
             InitializeComponent();
-            _userButtonIsVisible = userButtonIsVisible;
+            userButton.Visible = userButtonIsVisible;
         }
 
         // METHODS
@@ -159,15 +157,6 @@ namespace WindowsForms
                 _selectedEmployee = (Employee)dataGridView.CurrentRow.DataBoundItem;
                 Functions.loadImage(pictureBox, _selectedEmployee.ImageUrl);
                 loadProfile(_selectedEmployee.EmployeeId, _selectedEmployee.ToString(), _selectedEmployee.BusinessDescription, _selectedEmployee.Phone.ToString(), _selectedEmployee.Email.ToString(), _selectedEmployee.Adress.ToString());
-                
-                if (_selectedEmployee.IsUser)
-                {
-                    userButton.Visible = false;
-                }
-                else if (_userButtonIsVisible)
-                {
-                    userButton.Visible = true;
-                }
             }
         }
 
@@ -236,10 +225,14 @@ namespace WindowsForms
 
         private void userButton_Click(object sender, EventArgs e)
         {
-                UserRegisterForm registerForm = new UserRegisterForm();
-                registerForm.ShowDialog();
-                refreshTable();
-                applyFilter();
+            if (_selectedEmployee.IsUser)
+            {
+                MessageBox.Show("El empleado seleccionado ya tiene un usuario creado.", "Nuevo usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            UserRegisterForm registerForm = new UserRegisterForm(_selectedEmployee);
+            registerForm.ShowDialog();
         }
     }
 }

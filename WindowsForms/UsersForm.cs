@@ -17,6 +17,7 @@ namespace WindowsForms
     {
         // ATTRIBUTES
 
+        private MainForm _mainForm = null;
         private User _selectedUser;
         private List<User> _usersTable;
         private List<User> _filteredUsers;
@@ -24,9 +25,10 @@ namespace WindowsForms
 
         // CONSTRUCT
 
-        public UsersForm()
+        public UsersForm(MainForm mainForm)
         {
             InitializeComponent();
+            _mainForm = mainForm;
         }
 
         // METHODS
@@ -59,6 +61,7 @@ namespace WindowsForms
                 dataGridView.Columns["Adress"].Visible = false;
                 dataGridView.Columns["LegalId"].Visible = false;
                 dataGridView.Columns["EmployeeId"].Visible = false;
+                dataGridView.Columns["IsUser"].Visible = false;
                 dataGridView.Columns["Admission"].Visible = false;
                 dataGridView.Columns["Category"].Visible = false;
                 dataGridView.Columns["UserId"].Visible = false;
@@ -142,7 +145,12 @@ namespace WindowsForms
 
         private void newButton_Click(object sender, EventArgs e)
         {
-            
+            FormsManager formsManager = new FormsManager(_mainForm);
+            formsManager.closeForm<EmployeesForm>();
+            EmployeesForm employeesForm = new EmployeesForm(true);
+            employeesForm.MdiParent = this.MdiParent;
+            employeesForm.Show();
+            MessageBox.Show("Seleccione un empleado para crear un usuario.", "Nuevo usuario", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void editButton_Click(object sender, EventArgs e)

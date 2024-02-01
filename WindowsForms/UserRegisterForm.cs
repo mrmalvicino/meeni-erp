@@ -17,7 +17,7 @@ namespace WindowsForms
         // ATTRIBUTES
 
         User _user = null;
-        OpenFileDialog _file = null;
+        Employee _employee = null;
         UsersManager _usersManager = new UsersManager();
         RolesManager _rolesManager = new RolesManager();
 
@@ -32,6 +32,12 @@ namespace WindowsForms
         {
             InitializeComponent();
             _user = user;
+        }
+
+        public UserRegisterForm(Employee selectedEmployee)
+        {
+            InitializeComponent();
+            _employee = selectedEmployee;
         }
 
         // METHODS
@@ -68,7 +74,7 @@ namespace WindowsForms
                 {
                     _user = new User();
                     roleNameComboBox.SelectedIndex = -1;
-                    userNameTextBox.Text = _user.LastName + _user.EmployeeId;
+                    userNameTextBox.Text = _employee.LastName + _employee.EmployeeId;
                 }
                 else // Se está editando un registro
                 {
@@ -96,9 +102,12 @@ namespace WindowsForms
                 _user.Role = (Role)roleNameComboBox.SelectedItem;
 
                 if (0 < _user.UserId)
-                    _usersManager.edit(_user); // Se está agregando un registro
+                    _usersManager.edit(_user); // Se está editando un registro
                 else
-                    _usersManager.add(_user); // Se está editando un registro
+                {
+                    _usersManager.add(_user); // Se está agregando un registro
+                    _employee.IsUser = true;
+                }
 
                 MessageBox.Show("Registro guardado exitosamente.");
                 Close();

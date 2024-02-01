@@ -65,6 +65,7 @@
     <Compile Include="EmployeesForm.Designer.cs">
       <DependentUpon>EmployeesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormsManager.cs" />
     <Compile Include="Functions.cs" />
     <Compile Include="Palette.cs" />
     <Compile Include="ProductRegisterForm.cs">

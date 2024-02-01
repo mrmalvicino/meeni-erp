@@ -75,13 +75,15 @@
             // 
             // userButton
             // 
+            this.userButton.BackColor = System.Drawing.Color.PaleGreen;
             this.userButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.userButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.userButton.Location = new System.Drawing.Point(403, 40);
             this.userButton.Name = "userButton";
             this.userButton.Size = new System.Drawing.Size(120, 35);
             this.userButton.TabIndex = 71;
-            this.userButton.Text = "Hacer usuario";
-            this.userButton.UseVisualStyleBackColor = true;
+            this.userButton.Text = "Crear usuario";
+            this.userButton.UseVisualStyleBackColor = false;
             this.userButton.Visible = false;
             this.userButton.Click += new System.EventHandler(this.userButton_Click);
             // 
