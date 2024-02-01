@@ -172,8 +172,8 @@ UPDATE users
 SET UserName = 'Bocca1'
 WHERE UserId = 1;
 
-DELETE FROM employees
-WHERE EmployeeId = 6
+DELETE FROM categories
+WHERE Id = 11
 
 SELECT ActiveStatus, EmployeeId, UserId, UserName, UserPassword, RoleId, RoleName
 FROM employees E, users U, categories C, roles R

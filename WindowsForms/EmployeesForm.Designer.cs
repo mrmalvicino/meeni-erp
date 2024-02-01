@@ -80,8 +80,9 @@
             this.userButton.Name = "userButton";
             this.userButton.Size = new System.Drawing.Size(120, 35);
             this.userButton.TabIndex = 71;
-            this.userButton.Text = "Ver usuario";
+            this.userButton.Text = "Hacer usuario";
             this.userButton.UseVisualStyleBackColor = true;
+            this.userButton.Visible = false;
             this.userButton.Click += new System.EventHandler(this.userButton_Click);
             // 
             // showInactiveCheckBox

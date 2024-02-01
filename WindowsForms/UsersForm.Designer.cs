@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UsersForm));
             this.actionsPanel = new System.Windows.Forms.Panel();
-            this.viewEmployeeButton = new System.Windows.Forms.Button();
             this.showInactiveCheckBox = new System.Windows.Forms.CheckBox();
             this.showActiveCheckBox = new System.Windows.Forms.CheckBox();
             this.filterButton = new System.Windows.Forms.Button();
@@ -54,7 +53,6 @@
             // actionsPanel
             // 
             this.actionsPanel.BackColor = System.Drawing.SystemColors.Control;
-            this.actionsPanel.Controls.Add(this.viewEmployeeButton);
             this.actionsPanel.Controls.Add(this.showInactiveCheckBox);
             this.actionsPanel.Controls.Add(this.showActiveCheckBox);
             this.actionsPanel.Controls.Add(this.filterButton);
@@ -68,17 +66,6 @@
             this.actionsPanel.Name = "actionsPanel";
             this.actionsPanel.Size = new System.Drawing.Size(715, 180);
             this.actionsPanel.TabIndex = 5;
-            // 
-            // viewEmployeeButton
-            // 
-            this.viewEmployeeButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.viewEmployeeButton.Location = new System.Drawing.Point(403, 40);
-            this.viewEmployeeButton.Name = "viewEmployeeButton";
-            this.viewEmployeeButton.Size = new System.Drawing.Size(120, 35);
-            this.viewEmployeeButton.TabIndex = 71;
-            this.viewEmployeeButton.Text = "Ver empleado";
-            this.viewEmployeeButton.UseVisualStyleBackColor = true;
-            this.viewEmployeeButton.Click += new System.EventHandler(this.viewEmployeeButton_Click);
             // 
             // showInactiveCheckBox
             // 
@@ -282,6 +269,5 @@
         private System.Windows.Forms.TextBox userNameTextBox;
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.DataGridView dataGridView;
-        private System.Windows.Forms.Button viewEmployeeButton;
     }
 }

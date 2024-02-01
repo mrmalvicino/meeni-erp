@@ -110,14 +110,12 @@ namespace WindowsForms
                 editButton.Enabled = true;
                 deleteButton.Enabled = true;
                 exportCSVButton.Enabled = true;
-                viewEmployeeButton.Enabled = true;
             }
             else
             {
                 editButton.Enabled = false;
                 deleteButton.Enabled = false;
                 exportCSVButton.Enabled = false;
-                viewEmployeeButton.Enabled = false;
                 loadProfile(-1, "N/A");
             }
         }
@@ -144,10 +142,7 @@ namespace WindowsForms
 
         private void newButton_Click(object sender, EventArgs e)
         {
-            UserRegisterForm registerForm = new UserRegisterForm();
-            registerForm.ShowDialog();
-            refreshTable();
-            applyFilter();
+            
         }
 
         private void editButton_Click(object sender, EventArgs e)
@@ -203,11 +198,6 @@ namespace WindowsForms
         private void showInactiveCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             applyFilter();
-        }
-
-        private void viewEmployeeButton_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -137,15 +137,15 @@ namespace BLL
             }
         }
 
-        public bool categoryExists(string area, string title, string seniority)
+        public int getCategoryId(string area, string title, string seniority)
         {
             foreach (Category category in list())
             {
                 if (category.Area == area && category.Title == title && category.Seniority == seniority)
-                    return true;
+                    return category.Id;
             }
 
-            return false;
+            return -1;
         }
     }
 }

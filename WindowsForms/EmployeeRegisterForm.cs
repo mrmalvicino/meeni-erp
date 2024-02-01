@@ -90,9 +90,27 @@ namespace WindowsForms
                 return false;
             }
 
-            if (!_categoriesManager.categoryExists(categoryAreaComboBox.Text, categoryTitleComboBox.Text, categorySeniorityComboBox.Text))
+            if (categoryAreaComboBox.Text == "")
             {
-                MessageBox.Show("Los datos de área, título y experiencia no representan una categoría existente. Si así lo requiere, puede agregarlos como una nueva categoría.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Indicar en qué área trabaja el empleado.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (categoryTitleComboBox.Text == "")
+            {
+                MessageBox.Show("Indicar el título del puesto del empleado.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (categorySeniorityComboBox.Text == "")
+            {
+                MessageBox.Show("Indicar la experiencia del empleado.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (_categoriesManager.getCategoryId(categoryAreaComboBox.Text, categoryTitleComboBox.Text, categorySeniorityComboBox.Text) == -1)
+            {
+                MessageBox.Show("Los datos de área, título y experiencia no representan una categoría existente. Si así lo requiere, puede agregarla como una nueva categoría.", "Categoría inexistente", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -196,6 +214,7 @@ namespace WindowsForms
                 if (legalIdDNITextBox.Text != "") _employee.LegalId.DNI = int.Parse(legalIdDNITextBox.Text);
                 _employee.LegalId.Y = legalIdYTextBox.Text;
 
+                _employee.Category.Id = _categoriesManager.getCategoryId(categoryAreaComboBox.Text, categoryTitleComboBox.Text, categorySeniorityComboBox.Text);
                 _employee.Category.Area = categoryAreaComboBox.Text;
                 _employee.Category.Title = categoryTitleComboBox.Text;
                 _employee.Category.Seniority = categorySeniorityComboBox.Text;
@@ -275,12 +294,44 @@ namespace WindowsForms
 
         private void addCategoryButton_Click(object sender, EventArgs e)
         {
-            
+            if (0 < _categoriesManager.getCategoryId(categoryAreaComboBox.Text, categoryTitleComboBox.Text, categorySeniorityComboBox.Text))
+            {
+                MessageBox.Show($"La categoría {categoryTitleComboBox.Text} {categorySeniorityComboBox.Text} perteneciente al área de {categoryAreaComboBox.Text} ya existe.", "Categoría existente", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            else
+            {
+                DialogResult answer = MessageBox.Show($"¿Desea agregar la categoría {categoryTitleComboBox.Text} {categorySeniorityComboBox.Text} perteneciente al área de {categoryAreaComboBox.Text}?", "Nueva categoría", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (answer == DialogResult.Yes)
+                {
+                    Category newCategory = new Category();
+                    newCategory.Area = categoryAreaComboBox.Text;
+                    newCategory.Title = categoryTitleComboBox.Text;
+                    newCategory.Seniority = categorySeniorityComboBox.Text;
+                    _categoriesManager.add(newCategory);
+                }
+            }
         }
 
         private void deleteCategoryButton_Click(object sender, EventArgs e)
         {
+            int id = _categoriesManager.getCategoryId(categoryAreaComboBox.Text, categoryTitleComboBox.Text, categorySeniorityComboBox.Text);
 
+            if (id == -1)
+            {
+                MessageBox.Show($"La categoría {categoryTitleComboBox.Text} {categorySeniorityComboBox.Text} perteneciente al área de {categoryAreaComboBox.Text} no existe.", "Categoría inexistente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                DialogResult answer = MessageBox.Show("Esta acción no puede deshacerse. ¿Está seguro que desea continuar?", "Eliminar registro", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (answer == DialogResult.Yes)
+                {
+                    _categoriesManager.delete(id);
+                }
+            }
         }
     }
 }

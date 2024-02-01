@@ -545,9 +545,9 @@
             this.seniorityLabel.AutoSize = true;
             this.seniorityLabel.Location = new System.Drawing.Point(11, 72);
             this.seniorityLabel.Name = "seniorityLabel";
-            this.seniorityLabel.Size = new System.Drawing.Size(31, 13);
+            this.seniorityLabel.Size = new System.Drawing.Size(65, 13);
             this.seniorityLabel.TabIndex = 35;
-            this.seniorityLabel.Text = "Exp.:";
+            this.seniorityLabel.Text = "Experiencia:";
             // 
             // titleLabel
             // 
@@ -570,25 +570,25 @@
             // categorySeniorityComboBox
             // 
             this.categorySeniorityComboBox.FormattingEnabled = true;
-            this.categorySeniorityComboBox.Location = new System.Drawing.Point(50, 69);
+            this.categorySeniorityComboBox.Location = new System.Drawing.Point(82, 69);
             this.categorySeniorityComboBox.Name = "categorySeniorityComboBox";
-            this.categorySeniorityComboBox.Size = new System.Drawing.Size(130, 21);
+            this.categorySeniorityComboBox.Size = new System.Drawing.Size(98, 21);
             this.categorySeniorityComboBox.TabIndex = 2;
             // 
             // categoryTitleComboBox
             // 
             this.categoryTitleComboBox.FormattingEnabled = true;
-            this.categoryTitleComboBox.Location = new System.Drawing.Point(50, 43);
+            this.categoryTitleComboBox.Location = new System.Drawing.Point(82, 43);
             this.categoryTitleComboBox.Name = "categoryTitleComboBox";
-            this.categoryTitleComboBox.Size = new System.Drawing.Size(130, 21);
+            this.categoryTitleComboBox.Size = new System.Drawing.Size(98, 21);
             this.categoryTitleComboBox.TabIndex = 1;
             // 
             // categoryAreaComboBox
             // 
             this.categoryAreaComboBox.FormattingEnabled = true;
-            this.categoryAreaComboBox.Location = new System.Drawing.Point(50, 17);
+            this.categoryAreaComboBox.Location = new System.Drawing.Point(82, 17);
             this.categoryAreaComboBox.Name = "categoryAreaComboBox";
-            this.categoryAreaComboBox.Size = new System.Drawing.Size(130, 21);
+            this.categoryAreaComboBox.Size = new System.Drawing.Size(98, 21);
             this.categoryAreaComboBox.TabIndex = 0;
             // 
             // deleteCategoryButton
