@@ -39,6 +39,8 @@ namespace WindowsForms
             contactPanel.BackColor = Palette.LightBackColor;
             adressPanel.BackColor = Palette.LightBackColor;
             specialPanel.BackColor = Palette.LightBackColor;
+            isPersonCheckBox.Visible = false;
+            isPersonLabel.Visible = false;
         }
 
         private bool validateRegister()
@@ -125,14 +127,16 @@ namespace WindowsForms
 
             try
             {
-                categoryAreaComboBox.DataSource = _categoriesManager.listRegisters("Area");
-                categoryTitleComboBox.DataSource = _categoriesManager.listRegisters("Title");
-                categorySeniorityComboBox.DataSource = _categoriesManager.listRegisters("Seniority");
+                categoryAreaComboBox.DataSource = _categoriesManager.list("Area");
+                categoryTitleComboBox.DataSource = _categoriesManager.list("Title");
+                categorySeniorityComboBox.DataSource = _categoriesManager.list("Seniority");
 
                 if (_employee == null) // Se está agregando un registro
                 {
                     _employee = new Employee();
-                    activeStatusCheckBox.Enabled = false;
+                    userButton.Visible = false;
+                    activeStatusCheckBox.Visible = false;
+                    activeStatusLabel.Visible = false;
                     categoryAreaComboBox.SelectedIndex = -1;
                     categoryTitleComboBox.SelectedIndex = -1;
                     categorySeniorityComboBox.SelectedIndex = -1;
@@ -336,7 +340,7 @@ namespace WindowsForms
 
         private void userButton_Click(object sender, EventArgs e)
         {
-            UserRegisterForm registerForm = new UserRegisterForm(_selectedEmployee);
+            UserRegisterForm registerForm = new UserRegisterForm(_employee);
             registerForm.ShowDialog();
         }
     }

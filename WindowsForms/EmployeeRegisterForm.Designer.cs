@@ -57,8 +57,8 @@
             this.cityLabel = new System.Windows.Forms.Label();
             this.provinceLabel = new System.Windows.Forms.Label();
             this.mainPanel = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.activeStatuslabel = new System.Windows.Forms.Label();
+            this.isPersonLabel = new System.Windows.Forms.Label();
+            this.activeStatusLabel = new System.Windows.Forms.Label();
             this.isPersonCheckBox = new System.Windows.Forms.CheckBox();
             this.firstNameTextBox = new System.Windows.Forms.TextBox();
             this.lastNameTextBox = new System.Windows.Forms.TextBox();
@@ -350,8 +350,8 @@
             // 
             // mainPanel
             // 
-            this.mainPanel.Controls.Add(this.label1);
-            this.mainPanel.Controls.Add(this.activeStatuslabel);
+            this.mainPanel.Controls.Add(this.isPersonLabel);
+            this.mainPanel.Controls.Add(this.activeStatusLabel);
             this.mainPanel.Controls.Add(this.isPersonCheckBox);
             this.mainPanel.Controls.Add(this.firstNameTextBox);
             this.mainPanel.Controls.Add(this.lastNameTextBox);
@@ -371,23 +371,23 @@
             this.mainPanel.Size = new System.Drawing.Size(364, 210);
             this.mainPanel.TabIndex = 0;
             // 
-            // label1
+            // isPersonLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 42);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(211, 13);
-            this.label1.TabIndex = 46;
-            this.label1.Text = "Destildar si es una organización o empresa:";
+            this.isPersonLabel.AutoSize = true;
+            this.isPersonLabel.Location = new System.Drawing.Point(11, 42);
+            this.isPersonLabel.Name = "isPersonLabel";
+            this.isPersonLabel.Size = new System.Drawing.Size(211, 13);
+            this.isPersonLabel.TabIndex = 46;
+            this.isPersonLabel.Text = "Destildar si es una organización o empresa:";
             // 
-            // activeStatuslabel
+            // activeStatusLabel
             // 
-            this.activeStatuslabel.AutoSize = true;
-            this.activeStatuslabel.Location = new System.Drawing.Point(11, 19);
-            this.activeStatuslabel.Name = "activeStatuslabel";
-            this.activeStatuslabel.Size = new System.Drawing.Size(149, 13);
-            this.activeStatuslabel.TabIndex = 45;
-            this.activeStatuslabel.Text = "Destildar si está dado de baja:";
+            this.activeStatusLabel.AutoSize = true;
+            this.activeStatusLabel.Location = new System.Drawing.Point(11, 19);
+            this.activeStatusLabel.Name = "activeStatusLabel";
+            this.activeStatusLabel.Size = new System.Drawing.Size(149, 13);
+            this.activeStatusLabel.TabIndex = 45;
+            this.activeStatusLabel.Text = "Destildar si está dado de baja:";
             // 
             // isPersonCheckBox
             // 
@@ -614,7 +614,7 @@
             // 
             // userButton
             // 
-            this.userButton.Location = new System.Drawing.Point(20, 550);
+            this.userButton.Location = new System.Drawing.Point(60, 550);
             this.userButton.Name = "userButton";
             this.userButton.Size = new System.Drawing.Size(120, 30);
             this.userButton.TabIndex = 6;
@@ -686,8 +686,8 @@
         private System.Windows.Forms.Label cityLabel;
         private System.Windows.Forms.Label provinceLabel;
         private System.Windows.Forms.Panel mainPanel;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label activeStatuslabel;
+        private System.Windows.Forms.Label isPersonLabel;
+        private System.Windows.Forms.Label activeStatusLabel;
         private System.Windows.Forms.CheckBox isPersonCheckBox;
         private System.Windows.Forms.TextBox firstNameTextBox;
         private System.Windows.Forms.TextBox lastNameTextBox;

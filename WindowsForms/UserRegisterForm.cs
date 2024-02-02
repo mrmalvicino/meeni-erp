@@ -17,27 +17,15 @@ namespace WindowsForms
         // ATTRIBUTES
 
         User _user = null;
-        Employee _employee = null;
         UsersManager _usersManager = new UsersManager();
         RolesManager _rolesManager = new RolesManager();
 
         //CONSTRUCT
 
-        public UserRegisterForm()
+        public UserRegisterForm(Employee employee)
         {
             InitializeComponent();
-        }
-
-        public UserRegisterForm(User user)
-        {
-            InitializeComponent();
-            _user = user;
-        }
-
-        public UserRegisterForm(Employee selectedEmployee)
-        {
-            InitializeComponent();
-            _employee = selectedEmployee;
+            _user = _usersManager.loadUser(employee);
         }
 
         // METHODS
@@ -50,8 +38,15 @@ namespace WindowsForms
 
         private bool validateRegister()
         {
+            if (userPasswordTextBox.Text == "")
+            {
+                MessageBox.Show("Ingresar una contraseña.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
             if (repeatTextBox.Text != userPasswordTextBox.Text)
             {
+                MessageBox.Show("Las contraseñas ingresadas no coinciden.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -70,19 +65,18 @@ namespace WindowsForms
                 roleNameComboBox.ValueMember = "Id";
                 roleNameComboBox.DisplayMember = "Name";
 
-                if (_user == null) // Se está agregando un registro
-                {
-                    _user = new User();
-                    roleNameComboBox.SelectedIndex = -1;
-                    userNameTextBox.Text = _employee.LastName + _employee.EmployeeId;
-                }
-                else // Se está editando un registro
+                if (0 < _user.UserId) // Se está editando un registro
                 {
                     userNameTextBox.Text = _user.UserName;
                     userPasswordTextBox.Text = _user.UserPassword;
                     repeatTextBox.Text = userPasswordTextBox.Text;
                     roleNameComboBox.SelectedValue = _user.Role.Id;
                 }                
+                else // Se está agregando un registro
+                {
+                    userNameTextBox.Text = _user.LastName + _user.EmployeeId;
+                    roleNameComboBox.SelectedIndex = -1;
+                }
             }
             catch (Exception ex)
             {
@@ -106,7 +100,6 @@ namespace WindowsForms
                 else
                 {
                     _usersManager.add(_user); // Se está agregando un registro
-                    _employee.IsUser = true;
                 }
 
                 MessageBox.Show("Registro guardado exitosamente.");
@@ -126,9 +119,8 @@ namespace WindowsForms
 
                 if (answer == DialogResult.Yes)
                 {
-                    _usersManager.delete(_selectedUser.UserId);
-                    refreshTable();
-                    applyFilter();
+                    _usersManager.delete(_user.UserId);
+                    Close();
                 }
             }
             catch (Exception ex)

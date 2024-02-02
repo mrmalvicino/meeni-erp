@@ -76,7 +76,7 @@ IsIndispensable bit
 
 INSERT INTO suppliers
 (ActiveStatus, IsPerson, FirstName, LastName, BusinessName, BusinessDescription, ImageUrl, Email, PhoneCountry, PhoneArea, PhoneNumber, AdressCountry, AdressProvince, AdressCity, AdressZipCode, AdressStreet, AdressStreetNumber, AdressFlat, LegalIdXX, LegalIdDNI, LegalIdY, PaymentMethod, InvoiceCategory, IsIndispensable) VALUES
-('True', 'True', '', '', 'Carlitos Construction', 'Construcción Argentina', '', 'carlitosconstruye@gmail.com', '54', '911', '1527863846', 'Argentina', 'Buenos Aires', 'CABA', 'C1000', '9 de Julio', '1290', '', '20', '37456776', '9', 'Crédito', 'C', 'False');
+('True', 'True', '', '', 'Carlitos', 'Colocador', '', 'carlitosconstrucciones@gmail.com', '54', '911', '1527863846', 'Argentina', 'Buenos Aires', 'CABA', 'C1000', '9 de Julio', '1290', '', '20', '37456776', '9', 'Crédito', 'C', 'False');
 
 -- EMPLOYEES
 
@@ -103,7 +103,6 @@ LegalIdXX varchar(30),
 LegalIdDNI int,
 LegalIdY varchar(30),
 EmployeeId int primary key identity,
-IsUser bit default 'False' not null,
 Admission datetime default getdate() not null,
 CategoryId int
 )
@@ -166,16 +165,10 @@ INSERT INTO roles
 
 -- QUERIES
 
-SELECT * FROM users
 SELECT * FROM employees
 
-UPDATE users
-SET UserName = 'Bocca1'
-WHERE UserId = 1;
+SELECT UserId, UserName, UserPassword, RoleId, RoleName FROM employees E, users U, roles R WHERE U.UserName = concat(E.LastName, E.EmployeeId) AND U.RoleId = R.Id
 
-DELETE FROM categories
-WHERE Id = 11
+UPDATE users SET UserName = 'Bocca1' WHERE UserId = 1;
 
-SELECT ActiveStatus, EmployeeId, UserId, UserName, UserPassword, RoleId, RoleName
-FROM employees E, users U, categories C, roles R
-WHERE U.UserName = concat(E.LastName, E.EmployeeId) AND E.CategoryId = C.Id AND U.RoleId = R.Id
+DELETE FROM categories WHERE Id = 11

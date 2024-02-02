@@ -48,7 +48,36 @@ namespace BLL
                 _database.closeConnection();
             }
         }
-        
+
+        public List<string> list(string attribute)
+        {
+            List<string> list = new List<string>();
+
+            try
+            {
+                _database.setQuery($"SELECT {attribute} FROM categories");
+                _database.executeReader();
+
+                while (_database.Reader.Read())
+                {
+                    string str = (string)_database.Reader[$"{attribute}"];
+
+                    if (!list.Contains(str))
+                        list.Add(str);
+                }
+
+                return list;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _database.closeConnection();
+            }
+        }
+
         public void add(Category reg)
         {
             try
@@ -107,36 +136,7 @@ namespace BLL
                 _database.closeConnection();
             }
         }
-
-        public List<string> listRegisters(string attribute)
-        {
-            List<string> list = new List<string>();
-
-            try
-            {
-                _database.setQuery($"SELECT {attribute} FROM categories");
-                _database.executeReader();
-
-                while (_database.Reader.Read())
-                {
-                    string str = (string)_database.Reader[$"{attribute}"];
-
-                    if (!list.Contains(str))
-                        list.Add(str);
-                }
-
-                return list;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                _database.closeConnection();
-            }
-        }
-
+        
         public int getCategoryId(string area, string title, string seniority)
         {
             foreach (Category category in list())

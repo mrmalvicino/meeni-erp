@@ -30,12 +30,6 @@ namespace WindowsForms
             InitializeComponent();
         }
 
-        public EmployeesForm(bool userButtonIsVisible)
-        {
-            InitializeComponent();
-            userButton.Visible = userButtonIsVisible;
-        }
-
         // METHODS
 
         private void setupStyle()
@@ -73,7 +67,6 @@ namespace WindowsForms
                 dataGridView.Columns["Phone"].Width = 120;
                 dataGridView.Columns["Adress"].Width = 150;
                 dataGridView.Columns["LegalId"].Width = 80;
-                dataGridView.Columns["IsUser"].Visible = false;
                 dataGridView.Columns["Admission"].DisplayIndex = dataGridView.ColumnCount - 1;
                 dataGridView.Columns["Admission"].Width = 110;
                 dataGridView.Columns["Category"].DisplayIndex = dataGridView.ColumnCount - 1;

@@ -14,10 +14,7 @@ namespace Entities
         [DisplayName("ID de empleado")]
         public int EmployeeId { get; set; }
 
-        [DisplayName("Es usuario")]
-        public bool IsUser { get; set; }
-
-        [DisplayName("Fecha de ingreso")]
+        [DisplayName("Ingreso")]
         public DateTime Admission { get; set; }
 
         [DisplayName("Categoría")]
@@ -28,7 +25,6 @@ namespace Entities
         public Employee()
         {
             IsPerson = true;
-            IsUser = false;
             Category = new Category();
         }
     }
