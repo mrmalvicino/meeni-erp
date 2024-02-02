@@ -154,12 +154,6 @@
     <Compile Include="UserRegisterForm.Designer.cs">
       <DependentUpon>UserRegisterForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UsersForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UsersForm.Designer.cs">
-      <DependentUpon>UsersForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Validations.cs" />
     <Compile Include="WarehouseRegisterForm.cs">
       <SubType>Form</SubType>
@@ -234,9 +228,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserRegisterForm.resx">
       <DependentUpon>UserRegisterForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UsersForm.resx">
-      <DependentUpon>UsersForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WarehouseRegisterForm.resx">
       <DependentUpon>WarehouseRegisterForm.cs</DependentUpon>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,18 +12,30 @@ namespace WindowsForms
     {
         // ATTRIBUTES
 
-        MainForm _mainForm;
+        Form _mdiParent = null;
+
+        // PROPERTIES
+
+        public Form MdiParent { get { return _mdiParent; } set { _mdiParent = value; } }
 
         // CONSTRUCT
 
-        public FormsManager(MainForm mainForm)
+        public FormsManager() { }
+
+        public FormsManager(Form mdiParent)
         {
-            _mainForm = mainForm;
+            _mdiParent = mdiParent;
         }
 
         // METHODS
 
-        public void loadForm<FormClass>() where FormClass : Form, new()
+        public void loadDialogForm<FormClass>() where FormClass : Form, new()
+        {
+            FormClass form = new FormClass();
+            form.ShowDialog();
+        }
+
+        public void loadParentForm<FormClass>() where FormClass : Form, new()
         {
             foreach (Form form in Application.OpenForms)
             {
@@ -39,7 +52,7 @@ namespace WindowsForms
             }
 
             FormClass newForm = new FormClass();
-            newForm.MdiParent = _mainForm;
+            newForm.MdiParent = _mdiParent;
             newForm.Show();
         }
 

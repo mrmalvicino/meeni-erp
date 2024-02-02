@@ -9,6 +9,8 @@ namespace Entities
 {
     public class Service : Item
     {
+        // PROPERTIES
+
         [DisplayName("ID de servicio")]
         public int Id { get; set; }
 

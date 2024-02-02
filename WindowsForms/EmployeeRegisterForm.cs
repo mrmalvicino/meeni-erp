@@ -177,7 +177,7 @@ namespace WindowsForms
             }
         }
 
-        private void saveButton_Click(object sender, EventArgs e)
+        private void acceptButton_Click(object sender, EventArgs e)
         {
             if (!validateRegister())
                 return;
@@ -332,6 +332,12 @@ namespace WindowsForms
                     _categoriesManager.delete(id);
                 }
             }
+        }
+
+        private void userButton_Click(object sender, EventArgs e)
+        {
+            UserRegisterForm registerForm = new UserRegisterForm(_selectedEmployee);
+            registerForm.ShowDialog();
         }
     }
 }

@@ -69,8 +69,7 @@
             this.userPanel = new System.Windows.Forms.Panel();
             this.metricsPanel = new System.Windows.Forms.Panel();
             this.modulesPanel = new System.Windows.Forms.Panel();
-            this.usersButton = new System.Windows.Forms.Button();
-            this.usersLabel = new System.Windows.Forms.Label();
+            this.settingsLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.userPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.coverPictureBox)).BeginInit();
@@ -203,12 +202,12 @@
             // settingsButton
             // 
             this.settingsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.settingsButton.Location = new System.Drawing.Point(318, 135);
+            this.settingsButton.Image = ((System.Drawing.Image)(resources.GetObject("settingsButton.Image")));
+            this.settingsButton.Location = new System.Drawing.Point(555, 40);
             this.settingsButton.Margin = new System.Windows.Forms.Padding(4);
             this.settingsButton.Name = "settingsButton";
-            this.settingsButton.Size = new System.Drawing.Size(120, 40);
+            this.settingsButton.Size = new System.Drawing.Size(120, 120);
             this.settingsButton.TabIndex = 2;
-            this.settingsButton.Text = "Configuración";
             this.settingsButton.UseVisualStyleBackColor = true;
             this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click);
             // 
@@ -309,7 +308,7 @@
             // newSessionButton
             // 
             this.newSessionButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.newSessionButton.Location = new System.Drawing.Point(190, 135);
+            this.newSessionButton.Location = new System.Drawing.Point(257, 135);
             this.newSessionButton.Margin = new System.Windows.Forms.Padding(4);
             this.newSessionButton.Name = "newSessionButton";
             this.newSessionButton.Size = new System.Drawing.Size(120, 40);
@@ -466,7 +465,6 @@
             this.userPanel.Controls.Add(this.newSessionButton);
             this.userPanel.Controls.Add(this.roleLabel);
             this.userPanel.Controls.Add(this.userLabel);
-            this.userPanel.Controls.Add(this.settingsButton);
             this.userPanel.Location = new System.Drawing.Point(15, 210);
             this.userPanel.Name = "userPanel";
             this.userPanel.Size = new System.Drawing.Size(450, 190);
@@ -495,14 +493,14 @@
             // modulesPanel
             // 
             this.modulesPanel.BackColor = System.Drawing.SystemColors.Control;
-            this.modulesPanel.Controls.Add(this.usersLabel);
-            this.modulesPanel.Controls.Add(this.usersButton);
+            this.modulesPanel.Controls.Add(this.settingsLabel);
             this.modulesPanel.Controls.Add(this.quoteLabel);
             this.modulesPanel.Controls.Add(this.transactionsLabel);
             this.modulesPanel.Controls.Add(this.productsButton);
             this.modulesPanel.Controls.Add(this.servicesLabel);
             this.modulesPanel.Controls.Add(this.warehousesButton);
             this.modulesPanel.Controls.Add(this.productsLabel);
+            this.modulesPanel.Controls.Add(this.settingsButton);
             this.modulesPanel.Controls.Add(this.servicesButton);
             this.modulesPanel.Controls.Add(this.warehousesLabel);
             this.modulesPanel.Controls.Add(this.quoteButton);
@@ -518,26 +516,14 @@
             this.modulesPanel.Size = new System.Drawing.Size(1230, 200);
             this.modulesPanel.TabIndex = 26;
             // 
-            // usersButton
+            // settingsLabel
             // 
-            this.usersButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.usersButton.Image = ((System.Drawing.Image)(resources.GetObject("usersButton.Image")));
-            this.usersButton.Location = new System.Drawing.Point(555, 40);
-            this.usersButton.Margin = new System.Windows.Forms.Padding(4);
-            this.usersButton.Name = "usersButton";
-            this.usersButton.Size = new System.Drawing.Size(120, 120);
-            this.usersButton.TabIndex = 30;
-            this.usersButton.UseVisualStyleBackColor = true;
-            this.usersButton.Click += new System.EventHandler(this.usersButton_Click);
-            // 
-            // usersLabel
-            // 
-            this.usersLabel.AutoSize = true;
-            this.usersLabel.Location = new System.Drawing.Point(588, 20);
-            this.usersLabel.Name = "usersLabel";
-            this.usersLabel.Size = new System.Drawing.Size(48, 13);
-            this.usersLabel.TabIndex = 31;
-            this.usersLabel.Text = "Usuarios";
+            this.settingsLabel.AutoSize = true;
+            this.settingsLabel.Location = new System.Drawing.Point(581, 20);
+            this.settingsLabel.Name = "settingsLabel";
+            this.settingsLabel.Size = new System.Drawing.Size(72, 13);
+            this.settingsLabel.TabIndex = 30;
+            this.settingsLabel.Text = "Configuración";
             // 
             // OverviewForm
             // 
@@ -611,7 +597,6 @@
         private System.Windows.Forms.Panel userPanel;
         private System.Windows.Forms.Panel metricsPanel;
         private System.Windows.Forms.Panel modulesPanel;
-        private System.Windows.Forms.Label usersLabel;
-        private System.Windows.Forms.Button usersButton;
+        private System.Windows.Forms.Label settingsLabel;
     }
 }

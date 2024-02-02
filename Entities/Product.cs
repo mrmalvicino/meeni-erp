@@ -9,6 +9,8 @@ namespace Entities
 {
     public class Product : Item
     {
+        // PROPERTIES
+
         [DisplayName("ID de producto")]
         public int Id { get; set; }
 

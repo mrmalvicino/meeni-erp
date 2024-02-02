@@ -73,16 +73,17 @@
             this.legalIdDNITextBox = new System.Windows.Forms.TextBox();
             this.businessDescriptionLabel = new System.Windows.Forms.Label();
             this.legalIdYTextBox = new System.Windows.Forms.TextBox();
-            this.saveButton = new System.Windows.Forms.Button();
+            this.acceptButton = new System.Windows.Forms.Button();
             this.specialPanel = new System.Windows.Forms.Panel();
+            this.addCategoryButton = new System.Windows.Forms.Button();
             this.seniorityLabel = new System.Windows.Forms.Label();
             this.titleLabel = new System.Windows.Forms.Label();
+            this.deleteCategoryButton = new System.Windows.Forms.Button();
             this.areaLabel = new System.Windows.Forms.Label();
             this.categorySeniorityComboBox = new System.Windows.Forms.ComboBox();
             this.categoryTitleComboBox = new System.Windows.Forms.ComboBox();
             this.categoryAreaComboBox = new System.Windows.Forms.ComboBox();
-            this.deleteCategoryButton = new System.Windows.Forms.Button();
-            this.addCategoryButton = new System.Windows.Forms.Button();
+            this.userButton = new System.Windows.Forms.Button();
             this.imagePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.contactPanel.SuspendLayout();
@@ -515,15 +516,15 @@
             this.legalIdYTextBox.TabIndex = 4;
             this.legalIdYTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // saveButton
+            // acceptButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(524, 550);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(80, 30);
-            this.saveButton.TabIndex = 5;
-            this.saveButton.Text = "Guardar";
-            this.saveButton.UseVisualStyleBackColor = true;
-            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            this.acceptButton.Location = new System.Drawing.Point(524, 550);
+            this.acceptButton.Name = "acceptButton";
+            this.acceptButton.Size = new System.Drawing.Size(80, 30);
+            this.acceptButton.TabIndex = 5;
+            this.acceptButton.Text = "Aceptar";
+            this.acceptButton.UseVisualStyleBackColor = true;
+            this.acceptButton.Click += new System.EventHandler(this.acceptButton_Click);
             // 
             // specialPanel
             // 
@@ -539,6 +540,16 @@
             this.specialPanel.Name = "specialPanel";
             this.specialPanel.Size = new System.Drawing.Size(200, 185);
             this.specialPanel.TabIndex = 4;
+            // 
+            // addCategoryButton
+            // 
+            this.addCategoryButton.Location = new System.Drawing.Point(40, 104);
+            this.addCategoryButton.Name = "addCategoryButton";
+            this.addCategoryButton.Size = new System.Drawing.Size(120, 30);
+            this.addCategoryButton.TabIndex = 3;
+            this.addCategoryButton.Text = "Agregar categoría";
+            this.addCategoryButton.UseVisualStyleBackColor = true;
+            this.addCategoryButton.Click += new System.EventHandler(this.addCategoryButton_Click);
             // 
             // seniorityLabel
             // 
@@ -557,6 +568,16 @@
             this.titleLabel.Size = new System.Drawing.Size(38, 13);
             this.titleLabel.TabIndex = 34;
             this.titleLabel.Text = "Título:";
+            // 
+            // deleteCategoryButton
+            // 
+            this.deleteCategoryButton.Location = new System.Drawing.Point(40, 140);
+            this.deleteCategoryButton.Name = "deleteCategoryButton";
+            this.deleteCategoryButton.Size = new System.Drawing.Size(120, 30);
+            this.deleteCategoryButton.TabIndex = 4;
+            this.deleteCategoryButton.Text = "Eliminar categoría";
+            this.deleteCategoryButton.UseVisualStyleBackColor = true;
+            this.deleteCategoryButton.Click += new System.EventHandler(this.deleteCategoryButton_Click);
             // 
             // areaLabel
             // 
@@ -591,37 +612,28 @@
             this.categoryAreaComboBox.Size = new System.Drawing.Size(98, 21);
             this.categoryAreaComboBox.TabIndex = 0;
             // 
-            // deleteCategoryButton
+            // userButton
             // 
-            this.deleteCategoryButton.Location = new System.Drawing.Point(40, 140);
-            this.deleteCategoryButton.Name = "deleteCategoryButton";
-            this.deleteCategoryButton.Size = new System.Drawing.Size(120, 30);
-            this.deleteCategoryButton.TabIndex = 4;
-            this.deleteCategoryButton.Text = "Eliminar categoría";
-            this.deleteCategoryButton.UseVisualStyleBackColor = true;
-            this.deleteCategoryButton.Click += new System.EventHandler(this.deleteCategoryButton_Click);
-            // 
-            // addCategoryButton
-            // 
-            this.addCategoryButton.Location = new System.Drawing.Point(40, 104);
-            this.addCategoryButton.Name = "addCategoryButton";
-            this.addCategoryButton.Size = new System.Drawing.Size(120, 30);
-            this.addCategoryButton.TabIndex = 3;
-            this.addCategoryButton.Text = "Agregar categoría";
-            this.addCategoryButton.UseVisualStyleBackColor = true;
-            this.addCategoryButton.Click += new System.EventHandler(this.addCategoryButton_Click);
+            this.userButton.Location = new System.Drawing.Point(20, 550);
+            this.userButton.Name = "userButton";
+            this.userButton.Size = new System.Drawing.Size(120, 30);
+            this.userButton.TabIndex = 6;
+            this.userButton.Text = "Registro de usuario";
+            this.userButton.UseVisualStyleBackColor = true;
+            this.userButton.Click += new System.EventHandler(this.userButton_Click);
             // 
             // EmployeeRegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 601);
+            this.Controls.Add(this.userButton);
             this.Controls.Add(this.specialPanel);
             this.Controls.Add(this.imagePanel);
             this.Controls.Add(this.contactPanel);
             this.Controls.Add(this.adressPanel);
             this.Controls.Add(this.mainPanel);
-            this.Controls.Add(this.saveButton);
+            this.Controls.Add(this.acceptButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -690,7 +702,7 @@
         private System.Windows.Forms.TextBox legalIdDNITextBox;
         private System.Windows.Forms.Label businessDescriptionLabel;
         private System.Windows.Forms.TextBox legalIdYTextBox;
-        private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.Button acceptButton;
         private System.Windows.Forms.Panel specialPanel;
         private System.Windows.Forms.ComboBox categoryAreaComboBox;
         private System.Windows.Forms.Label seniorityLabel;
@@ -700,5 +712,6 @@
         private System.Windows.Forms.ComboBox categoryTitleComboBox;
         private System.Windows.Forms.Button addCategoryButton;
         private System.Windows.Forms.Button deleteCategoryButton;
+        private System.Windows.Forms.Button userButton;
     }
 }

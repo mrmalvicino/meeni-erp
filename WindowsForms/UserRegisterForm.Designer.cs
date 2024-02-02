@@ -30,15 +30,16 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserRegisterForm));
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.roleNameComboBox = new System.Windows.Forms.ComboBox();
+            this.roleNameLabel = new System.Windows.Forms.Label();
             this.repeatLabel = new System.Windows.Forms.Label();
             this.repeatTextBox = new System.Windows.Forms.TextBox();
             this.userPasswordTextBox = new System.Windows.Forms.TextBox();
             this.userNameTextBox = new System.Windows.Forms.TextBox();
             this.userPasswordLabel = new System.Windows.Forms.Label();
             this.userNameLabel = new System.Windows.Forms.Label();
-            this.roleNameComboBox = new System.Windows.Forms.ComboBox();
-            this.roleNameLabel = new System.Windows.Forms.Label();
             this.saveButton = new System.Windows.Forms.Button();
+            this.deleteButton = new System.Windows.Forms.Button();
             this.mainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,6 +57,24 @@
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(280, 250);
             this.mainPanel.TabIndex = 0;
+            // 
+            // roleNameComboBox
+            // 
+            this.roleNameComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.roleNameComboBox.FormattingEnabled = true;
+            this.roleNameComboBox.Location = new System.Drawing.Point(23, 217);
+            this.roleNameComboBox.Name = "roleNameComboBox";
+            this.roleNameComboBox.Size = new System.Drawing.Size(236, 21);
+            this.roleNameComboBox.TabIndex = 3;
+            // 
+            // roleNameLabel
+            // 
+            this.roleNameLabel.AutoSize = true;
+            this.roleNameLabel.Location = new System.Drawing.Point(20, 190);
+            this.roleNameLabel.Name = "roleNameLabel";
+            this.roleNameLabel.Size = new System.Drawing.Size(26, 13);
+            this.roleNameLabel.TabIndex = 0;
+            this.roleNameLabel.Text = "Rol:";
             // 
             // repeatLabel
             // 
@@ -111,39 +130,32 @@
             this.userNameLabel.TabIndex = 0;
             this.userNameLabel.Text = "Nombre de usuario:";
             // 
-            // roleNameComboBox
-            // 
-            this.roleNameComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.roleNameComboBox.FormattingEnabled = true;
-            this.roleNameComboBox.Location = new System.Drawing.Point(23, 217);
-            this.roleNameComboBox.Name = "roleNameComboBox";
-            this.roleNameComboBox.Size = new System.Drawing.Size(236, 21);
-            this.roleNameComboBox.TabIndex = 3;
-            // 
-            // roleNameLabel
-            // 
-            this.roleNameLabel.AutoSize = true;
-            this.roleNameLabel.Location = new System.Drawing.Point(20, 190);
-            this.roleNameLabel.Name = "roleNameLabel";
-            this.roleNameLabel.Size = new System.Drawing.Size(26, 13);
-            this.roleNameLabel.TabIndex = 0;
-            this.roleNameLabel.Text = "Rol:";
-            // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(112, 275);
+            this.saveButton.Location = new System.Drawing.Point(171, 275);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(80, 30);
+            this.saveButton.Size = new System.Drawing.Size(100, 30);
             this.saveButton.TabIndex = 1;
-            this.saveButton.Text = "Guardar";
+            this.saveButton.Text = "Guardar usuario";
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            // 
+            // deleteButton
+            // 
+            this.deleteButton.Location = new System.Drawing.Point(35, 275);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(100, 30);
+            this.deleteButton.TabIndex = 2;
+            this.deleteButton.Text = "Eliminar usuario";
+            this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
             // UserRegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(304, 321);
+            this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.mainPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -171,5 +183,6 @@
         private System.Windows.Forms.ComboBox roleNameComboBox;
         private System.Windows.Forms.Label repeatLabel;
         private System.Windows.Forms.TextBox repeatTextBox;
+        private System.Windows.Forms.Button deleteButton;
     }
 }

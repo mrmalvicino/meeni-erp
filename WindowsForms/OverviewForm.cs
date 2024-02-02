@@ -14,14 +14,14 @@ namespace WindowsForms
     {
         // ATTRIBUTES
 
-        private MainForm _mainForm;
+        FormsManager _formsManager = null;
 
         // CONSTRUCT
 
-        public OverviewForm(MainForm mainForm)
+        public OverviewForm()
         {
             InitializeComponent();
-            _mainForm = mainForm;
+            _formsManager = new FormsManager(this.MdiParent);
         }
 
         // METHODS
@@ -43,57 +43,52 @@ namespace WindowsForms
 
         private void quoteButton_Click(object sender, EventArgs e)
         {
-            _mainForm.loadQuoteForm();
+            _formsManager.loadParentForm<QuoteForm>();
         }
 
         private void customersButton_Click(object sender, EventArgs e)
         {
-            _mainForm.loadCustomersForm();
+            _formsManager.loadParentForm<CustomersForm>();
         }
 
         private void suppliersButton_Click(object sender, EventArgs e)
         {
-            _mainForm.loadSuppliersForm();
+            _formsManager.loadParentForm<SuppliersForm>();
         }
 
         private void employeesButton_Click(object sender, EventArgs e)
         {
-            _mainForm.loadEmployeesForm();
-        }
-
-        private void usersButton_Click(object sender, EventArgs e)
-        {
-            _mainForm.loadUsersForm();
+            _formsManager.loadParentForm<EmployeesForm>();
         }
 
         private void warehousesButton_Click(object sender, EventArgs e)
         {
-            _mainForm.loadWarehousesForm();
+            _formsManager.loadParentForm<WarehousesForm>();
         }
 
         private void productsButton_Click(object sender, EventArgs e)
         {
-            _mainForm.loadProductsForm();
+            _formsManager.loadParentForm<ProductsForm>();
         }
 
         private void servicesButton_Click(object sender, EventArgs e)
         {
-            _mainForm.loadServicesForm();
+            _formsManager.loadParentForm<ServicesForm>();
         }
 
         private void transactionsButton_Click(object sender, EventArgs e)
         {
-            _mainForm.loadTransactionsForm();
+            _formsManager.loadParentForm<TransactionsForm>();
         }
 
         private void settingsButton_Click(object sender, EventArgs e)
         {
-            _mainForm.loadSettingsForm();
+            _formsManager.loadDialogForm<SettingsForm>();
         }
 
         private void newSessionButton_Click(object sender, EventArgs e)
         {
-            _mainForm.loadNewSessionForm();
+            _formsManager.loadDialogForm<NewSessionForm>();
         }
     }
 }

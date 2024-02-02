@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace WindowsForms
 {
-    public partial class newSessionForm : Form
+    public partial class NewSessionForm : Form
     {
         // CONSTRUCT
 
-        public newSessionForm()
+        public NewSessionForm()
         {
             InitializeComponent();
         }

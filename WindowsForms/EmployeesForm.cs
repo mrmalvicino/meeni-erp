@@ -222,17 +222,5 @@ namespace WindowsForms
         {
             applyFilter();
         }
-
-        private void userButton_Click(object sender, EventArgs e)
-        {
-            if (_selectedEmployee.IsUser)
-            {
-                MessageBox.Show("El empleado seleccionado ya tiene un usuario creado.", "Nuevo usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            UserRegisterForm registerForm = new UserRegisterForm(_selectedEmployee);
-            registerForm.ShowDialog();
-        }
     }
 }

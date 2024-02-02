@@ -9,6 +9,8 @@ namespace Entities
 {
     public class Account
     {
+        // PROPERTIES
+
         [DisplayName("ID de cuenta")]
         public int Id { get; set; }
 
