@@ -37,6 +37,7 @@ namespace WindowsForms
             imagePanel.BackColor = Palette.LightBackColor;
             contactPanel.BackColor = Palette.LightBackColor;
             adressPanel.BackColor = Palette.LightBackColor;
+            specialPanel.BackColor = Palette.LightBackColor;
         }
 
         private bool validateRegister()
@@ -88,6 +89,18 @@ namespace WindowsForms
                 return false;
             }
 
+            if (paymentMethodComboBox.SelectedIndex == -1)
+            {
+                MessageBox.Show("Seleccionar el método de pago preferido.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (invoiceCategoryComboBox.SelectedIndex == -1)
+            {
+                MessageBox.Show("Seleccionar el tipo de factura.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
             return true;
         }
 
@@ -129,6 +142,9 @@ namespace WindowsForms
                 legalIdDNITextBox.Text = _supplier.LegalId.DNI.ToString();
                 legalIdYTextBox.Text = _supplier.LegalId.Y;
 
+                paymentMethodComboBox.Text = _supplier.PaymentMethod;
+                invoiceCategoryComboBox.Text = _supplier.InvoiceCategory;
+
                 Functions.loadImage(pictureBox, imageUrlTextBox.Text);
             }
         }
@@ -164,6 +180,9 @@ namespace WindowsForms
                 _supplier.LegalId.XX = legalIdXXTextBox.Text;
                 if (legalIdDNITextBox.Text != "") _supplier.LegalId.DNI = int.Parse(legalIdDNITextBox.Text);
                 _supplier.LegalId.Y = legalIdYTextBox.Text;
+
+                _supplier.PaymentMethod = paymentMethodComboBox.Text;
+                _supplier.InvoiceCategory = invoiceCategoryComboBox.Text;
 
                 if (0 < _supplier.Id)
                     _suppliersManager.edit(_supplier); // Se está editando un registro

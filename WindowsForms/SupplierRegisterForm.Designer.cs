@@ -74,11 +74,17 @@
             this.businessDescriptionLabel = new System.Windows.Forms.Label();
             this.legalIdYTextBox = new System.Windows.Forms.TextBox();
             this.saveButton = new System.Windows.Forms.Button();
+            this.specialPanel = new System.Windows.Forms.Panel();
+            this.invoiceCategoryLabel = new System.Windows.Forms.Label();
+            this.paymentMethodLabel = new System.Windows.Forms.Label();
+            this.invoiceCategoryComboBox = new System.Windows.Forms.ComboBox();
+            this.paymentMethodComboBox = new System.Windows.Forms.ComboBox();
             this.imagePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.contactPanel.SuspendLayout();
             this.adressPanel.SuspendLayout();
             this.mainPanel.SuspendLayout();
+            this.specialPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // imagePanel
@@ -512,11 +518,69 @@
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
+            // specialPanel
+            // 
+            this.specialPanel.Controls.Add(this.invoiceCategoryLabel);
+            this.specialPanel.Controls.Add(this.paymentMethodLabel);
+            this.specialPanel.Controls.Add(this.invoiceCategoryComboBox);
+            this.specialPanel.Controls.Add(this.paymentMethodComboBox);
+            this.specialPanel.Location = new System.Drawing.Point(20, 340);
+            this.specialPanel.Name = "specialPanel";
+            this.specialPanel.Size = new System.Drawing.Size(200, 185);
+            this.specialPanel.TabIndex = 4;
+            // 
+            // invoiceCategoryLabel
+            // 
+            this.invoiceCategoryLabel.AutoSize = true;
+            this.invoiceCategoryLabel.Location = new System.Drawing.Point(17, 98);
+            this.invoiceCategoryLabel.Name = "invoiceCategoryLabel";
+            this.invoiceCategoryLabel.Size = new System.Drawing.Size(82, 13);
+            this.invoiceCategoryLabel.TabIndex = 34;
+            this.invoiceCategoryLabel.Text = "Tipo de factura:";
+            // 
+            // paymentMethodLabel
+            // 
+            this.paymentMethodLabel.AutoSize = true;
+            this.paymentMethodLabel.Location = new System.Drawing.Point(17, 20);
+            this.paymentMethodLabel.Name = "paymentMethodLabel";
+            this.paymentMethodLabel.Size = new System.Drawing.Size(88, 13);
+            this.paymentMethodLabel.TabIndex = 33;
+            this.paymentMethodLabel.Text = "Método de pago:";
+            // 
+            // invoiceCategoryComboBox
+            // 
+            this.invoiceCategoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.invoiceCategoryComboBox.FormattingEnabled = true;
+            this.invoiceCategoryComboBox.Items.AddRange(new object[] {
+            "A",
+            "B",
+            "C"});
+            this.invoiceCategoryComboBox.Location = new System.Drawing.Point(20, 121);
+            this.invoiceCategoryComboBox.Name = "invoiceCategoryComboBox";
+            this.invoiceCategoryComboBox.Size = new System.Drawing.Size(160, 21);
+            this.invoiceCategoryComboBox.TabIndex = 1;
+            // 
+            // paymentMethodComboBox
+            // 
+            this.paymentMethodComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.paymentMethodComboBox.FormattingEnabled = true;
+            this.paymentMethodComboBox.Items.AddRange(new object[] {
+            "Cheque",
+            "Crédito",
+            "Débito",
+            "Efectivo",
+            "Transferencia"});
+            this.paymentMethodComboBox.Location = new System.Drawing.Point(20, 43);
+            this.paymentMethodComboBox.Name = "paymentMethodComboBox";
+            this.paymentMethodComboBox.Size = new System.Drawing.Size(160, 21);
+            this.paymentMethodComboBox.TabIndex = 0;
+            // 
             // SupplierRegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 601);
+            this.Controls.Add(this.specialPanel);
             this.Controls.Add(this.imagePanel);
             this.Controls.Add(this.contactPanel);
             this.Controls.Add(this.adressPanel);
@@ -538,6 +602,8 @@
             this.adressPanel.PerformLayout();
             this.mainPanel.ResumeLayout(false);
             this.mainPanel.PerformLayout();
+            this.specialPanel.ResumeLayout(false);
+            this.specialPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -589,5 +655,10 @@
         private System.Windows.Forms.Label businessDescriptionLabel;
         private System.Windows.Forms.TextBox legalIdYTextBox;
         private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.Panel specialPanel;
+        private System.Windows.Forms.Label invoiceCategoryLabel;
+        private System.Windows.Forms.Label paymentMethodLabel;
+        private System.Windows.Forms.ComboBox invoiceCategoryComboBox;
+        private System.Windows.Forms.ComboBox paymentMethodComboBox;
     }
 }

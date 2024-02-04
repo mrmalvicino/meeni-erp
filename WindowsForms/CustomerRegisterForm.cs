@@ -37,6 +37,7 @@ namespace WindowsForms
             imagePanel.BackColor = Palette.LightBackColor;
             contactPanel.BackColor = Palette.LightBackColor;
             adressPanel.BackColor = Palette.LightBackColor;
+            specialPanel.BackColor = Palette.LightBackColor;
         }
 
         private bool validateRegister()
@@ -49,7 +50,8 @@ namespace WindowsForms
 
             if (isPersonCheckBox.Checked)
             {
-                if (Validations.isEmpty(firstNameTextBox.Text) || Validations.isEmpty(lastNameTextBox.Text)) {
+                if (Validations.isEmpty(firstNameTextBox.Text) || Validations.isEmpty(lastNameTextBox.Text))
+                {
                     MessageBox.Show("Las personas físicas deben tener nombre y apellido.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
@@ -84,6 +86,18 @@ namespace WindowsForms
             if (Validations.isNumber(adressStreetNumberTextBox.Text) == false)
             {
                 MessageBox.Show("El número de calle solo admite caracteres numéricos.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (paymentMethodComboBox.SelectedIndex == -1)
+            {
+                MessageBox.Show("Seleccionar el método de pago preferido.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if (invoiceCategoryComboBox.SelectedIndex == -1)
+            {
+                MessageBox.Show("Seleccionar el tipo de factura.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -128,6 +142,9 @@ namespace WindowsForms
                 legalIdDNITextBox.Text = _customer.LegalId.DNI.ToString();
                 legalIdYTextBox.Text = _customer.LegalId.Y;
 
+                paymentMethodComboBox.Text = _customer.PaymentMethod;
+                invoiceCategoryComboBox.Text = _customer.InvoiceCategory;
+
                 Functions.loadImage(pictureBox, imageUrlTextBox.Text);
             }
         }
@@ -163,7 +180,10 @@ namespace WindowsForms
                 _customer.LegalId.XX = legalIdXXTextBox.Text;
                 if (legalIdDNITextBox.Text != "") _customer.LegalId.DNI = int.Parse(legalIdDNITextBox.Text);
                 _customer.LegalId.Y = legalIdYTextBox.Text;
-            
+
+                _customer.PaymentMethod = paymentMethodComboBox.Text;
+                _customer.InvoiceCategory = invoiceCategoryComboBox.Text;
+
                 if (0 < _customer.Id)
                     _customersManager.edit(_customer); // Se está editando un registro
                 else
