@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace Entities
 {
     public sealed class Adress
     {
         // PROPERTIES
+
+        [DisplayName("ID de dirección")]
+        public int AdressId { get; set; }
 
         [DisplayName("País")]
         public string Country { get; set; }
@@ -24,7 +22,7 @@ namespace Entities
         public string ZipCode { get; set; }
 
         [DisplayName("Calle")]
-        public string Street { get; set; }
+        public string StreetName { get; set; }
 
         [DisplayName("Número")]
         public int StreetNumber { get; set; }
@@ -36,8 +34,8 @@ namespace Entities
 
         public override string ToString()
         {
-            if (Street != "" && StreetNumber != 0 && City != "")
-                return $"{Street} {StreetNumber}, {City}";
+            if (StreetName != "" && StreetNumber != 0 && City != "")
+                return $"{StreetName} {StreetNumber}, {City}";
             else
                 return "";
         }

@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace Entities
 {
     public class Individual
     {
         // PROPERTIES
+
+        [DisplayName("ID de individuo")]
+        public int IndividualId { get; set; }
 
         [DisplayName("Está activo")]
         public bool ActiveStatus { get; set; }
@@ -41,7 +39,7 @@ namespace Entities
         public Adress Adress { get; set; }
 
         [DisplayName("CUIL/CUIT")]
-        public LegalId LegalId { get; set; }
+        public TaxCode TaxCode { get; set; }
 
         // CONSTRUCT
 
@@ -49,7 +47,7 @@ namespace Entities
         {
             Phone = new Phone();
             Adress = new Adress();
-            LegalId = new LegalId();
+            TaxCode = new TaxCode();
         }
 
         // METHODS

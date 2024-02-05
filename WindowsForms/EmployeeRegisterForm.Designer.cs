@@ -43,19 +43,19 @@
             this.phoneLabel = new System.Windows.Forms.Label();
             this.adressPanel = new System.Windows.Forms.Panel();
             this.adressZipCodeTextBox = new System.Windows.Forms.TextBox();
-            this.zipCodeLabel = new System.Windows.Forms.Label();
+            this.adressZipCodeLabel = new System.Windows.Forms.Label();
             this.adressCountryTextBox = new System.Windows.Forms.TextBox();
-            this.flatLabel = new System.Windows.Forms.Label();
+            this.adressFlatLabel = new System.Windows.Forms.Label();
             this.adressProvinceTextBox = new System.Windows.Forms.TextBox();
             this.adressCityTextBox = new System.Windows.Forms.TextBox();
-            this.streetNumberLabel = new System.Windows.Forms.Label();
+            this.adressStreetNumberLabel = new System.Windows.Forms.Label();
             this.adressStreetTextBox = new System.Windows.Forms.TextBox();
             this.adressStreetNumberTextBox = new System.Windows.Forms.TextBox();
-            this.streetLabel = new System.Windows.Forms.Label();
+            this.adressStreetLabel = new System.Windows.Forms.Label();
             this.adressFlatTextBox = new System.Windows.Forms.TextBox();
-            this.countryLabel = new System.Windows.Forms.Label();
-            this.cityLabel = new System.Windows.Forms.Label();
-            this.provinceLabel = new System.Windows.Forms.Label();
+            this.adressCountryLabel = new System.Windows.Forms.Label();
+            this.adressCityLabel = new System.Windows.Forms.Label();
+            this.adressProvinceLabel = new System.Windows.Forms.Label();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.isPersonLabel = new System.Windows.Forms.Label();
             this.activeStatusLabel = new System.Windows.Forms.Label();
@@ -210,19 +210,19 @@
             // adressPanel
             // 
             this.adressPanel.Controls.Add(this.adressZipCodeTextBox);
-            this.adressPanel.Controls.Add(this.zipCodeLabel);
+            this.adressPanel.Controls.Add(this.adressZipCodeLabel);
             this.adressPanel.Controls.Add(this.adressCountryTextBox);
-            this.adressPanel.Controls.Add(this.flatLabel);
+            this.adressPanel.Controls.Add(this.adressFlatLabel);
             this.adressPanel.Controls.Add(this.adressProvinceTextBox);
             this.adressPanel.Controls.Add(this.adressCityTextBox);
-            this.adressPanel.Controls.Add(this.streetNumberLabel);
+            this.adressPanel.Controls.Add(this.adressStreetNumberLabel);
             this.adressPanel.Controls.Add(this.adressStreetTextBox);
             this.adressPanel.Controls.Add(this.adressStreetNumberTextBox);
-            this.adressPanel.Controls.Add(this.streetLabel);
+            this.adressPanel.Controls.Add(this.adressStreetLabel);
             this.adressPanel.Controls.Add(this.adressFlatTextBox);
-            this.adressPanel.Controls.Add(this.countryLabel);
-            this.adressPanel.Controls.Add(this.cityLabel);
-            this.adressPanel.Controls.Add(this.provinceLabel);
+            this.adressPanel.Controls.Add(this.adressCountryLabel);
+            this.adressPanel.Controls.Add(this.adressCityLabel);
+            this.adressPanel.Controls.Add(this.adressProvinceLabel);
             this.adressPanel.Location = new System.Drawing.Point(240, 340);
             this.adressPanel.Name = "adressPanel";
             this.adressPanel.Size = new System.Drawing.Size(364, 185);
@@ -236,14 +236,14 @@
             this.adressZipCodeTextBox.TabIndex = 3;
             this.adressZipCodeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // zipCodeLabel
+            // adressZipCodeLabel
             // 
-            this.zipCodeLabel.AutoSize = true;
-            this.zipCodeLabel.Location = new System.Drawing.Point(11, 98);
-            this.zipCodeLabel.Name = "zipCodeLabel";
-            this.zipCodeLabel.Size = new System.Drawing.Size(63, 13);
-            this.zipCodeLabel.TabIndex = 39;
-            this.zipCodeLabel.Text = "Cod. postal:";
+            this.adressZipCodeLabel.AutoSize = true;
+            this.adressZipCodeLabel.Location = new System.Drawing.Point(11, 98);
+            this.adressZipCodeLabel.Name = "adressZipCodeLabel";
+            this.adressZipCodeLabel.Size = new System.Drawing.Size(63, 13);
+            this.adressZipCodeLabel.TabIndex = 39;
+            this.adressZipCodeLabel.Text = "Cod. postal:";
             // 
             // adressCountryTextBox
             // 
@@ -253,14 +253,14 @@
             this.adressCountryTextBox.TabIndex = 0;
             this.adressCountryTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // flatLabel
+            // adressFlatLabel
             // 
-            this.flatLabel.AutoSize = true;
-            this.flatLabel.Location = new System.Drawing.Point(11, 150);
-            this.flatLabel.Name = "flatLabel";
-            this.flatLabel.Size = new System.Drawing.Size(42, 13);
-            this.flatLabel.TabIndex = 37;
-            this.flatLabel.Text = "Depto.:";
+            this.adressFlatLabel.AutoSize = true;
+            this.adressFlatLabel.Location = new System.Drawing.Point(11, 150);
+            this.adressFlatLabel.Name = "adressFlatLabel";
+            this.adressFlatLabel.Size = new System.Drawing.Size(42, 13);
+            this.adressFlatLabel.TabIndex = 37;
+            this.adressFlatLabel.Text = "Depto.:";
             // 
             // adressProvinceTextBox
             // 
@@ -278,14 +278,14 @@
             this.adressCityTextBox.TabIndex = 2;
             this.adressCityTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // streetNumberLabel
+            // adressStreetNumberLabel
             // 
-            this.streetNumberLabel.AutoSize = true;
-            this.streetNumberLabel.Location = new System.Drawing.Point(200, 124);
-            this.streetNumberLabel.Name = "streetNumberLabel";
-            this.streetNumberLabel.Size = new System.Drawing.Size(35, 13);
-            this.streetNumberLabel.TabIndex = 36;
-            this.streetNumberLabel.Text = "Núm.:";
+            this.adressStreetNumberLabel.AutoSize = true;
+            this.adressStreetNumberLabel.Location = new System.Drawing.Point(200, 124);
+            this.adressStreetNumberLabel.Name = "adressStreetNumberLabel";
+            this.adressStreetNumberLabel.Size = new System.Drawing.Size(35, 13);
+            this.adressStreetNumberLabel.TabIndex = 36;
+            this.adressStreetNumberLabel.Text = "Núm.:";
             // 
             // adressStreetTextBox
             // 
@@ -304,14 +304,14 @@
             this.adressStreetNumberTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.adressStreetNumberTextBox.TextChanged += new System.EventHandler(this.adressStreetNumberTextBox_TextChanged);
             // 
-            // streetLabel
+            // adressStreetLabel
             // 
-            this.streetLabel.AutoSize = true;
-            this.streetLabel.Location = new System.Drawing.Point(11, 124);
-            this.streetLabel.Name = "streetLabel";
-            this.streetLabel.Size = new System.Drawing.Size(33, 13);
-            this.streetLabel.TabIndex = 35;
-            this.streetLabel.Text = "Calle:";
+            this.adressStreetLabel.AutoSize = true;
+            this.adressStreetLabel.Location = new System.Drawing.Point(11, 124);
+            this.adressStreetLabel.Name = "adressStreetLabel";
+            this.adressStreetLabel.Size = new System.Drawing.Size(33, 13);
+            this.adressStreetLabel.TabIndex = 35;
+            this.adressStreetLabel.Text = "Calle:";
             // 
             // adressFlatTextBox
             // 
@@ -321,32 +321,32 @@
             this.adressFlatTextBox.TabIndex = 6;
             this.adressFlatTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // countryLabel
+            // adressCountryLabel
             // 
-            this.countryLabel.AutoSize = true;
-            this.countryLabel.Location = new System.Drawing.Point(11, 20);
-            this.countryLabel.Name = "countryLabel";
-            this.countryLabel.Size = new System.Drawing.Size(32, 13);
-            this.countryLabel.TabIndex = 32;
-            this.countryLabel.Text = "País:";
+            this.adressCountryLabel.AutoSize = true;
+            this.adressCountryLabel.Location = new System.Drawing.Point(11, 20);
+            this.adressCountryLabel.Name = "adressCountryLabel";
+            this.adressCountryLabel.Size = new System.Drawing.Size(32, 13);
+            this.adressCountryLabel.TabIndex = 32;
+            this.adressCountryLabel.Text = "País:";
             // 
-            // cityLabel
+            // adressCityLabel
             // 
-            this.cityLabel.AutoSize = true;
-            this.cityLabel.Location = new System.Drawing.Point(11, 72);
-            this.cityLabel.Name = "cityLabel";
-            this.cityLabel.Size = new System.Drawing.Size(43, 13);
-            this.cityLabel.TabIndex = 34;
-            this.cityLabel.Text = "Ciudad:";
+            this.adressCityLabel.AutoSize = true;
+            this.adressCityLabel.Location = new System.Drawing.Point(11, 72);
+            this.adressCityLabel.Name = "adressCityLabel";
+            this.adressCityLabel.Size = new System.Drawing.Size(43, 13);
+            this.adressCityLabel.TabIndex = 34;
+            this.adressCityLabel.Text = "Ciudad:";
             // 
-            // provinceLabel
+            // adressProvinceLabel
             // 
-            this.provinceLabel.AutoSize = true;
-            this.provinceLabel.Location = new System.Drawing.Point(11, 46);
-            this.provinceLabel.Name = "provinceLabel";
-            this.provinceLabel.Size = new System.Drawing.Size(54, 13);
-            this.provinceLabel.TabIndex = 33;
-            this.provinceLabel.Text = "Provincia:";
+            this.adressProvinceLabel.AutoSize = true;
+            this.adressProvinceLabel.Location = new System.Drawing.Point(11, 46);
+            this.adressProvinceLabel.Name = "adressProvinceLabel";
+            this.adressProvinceLabel.Size = new System.Drawing.Size(54, 13);
+            this.adressProvinceLabel.TabIndex = 33;
+            this.adressProvinceLabel.Text = "Provincia:";
             // 
             // mainPanel
             // 
@@ -672,19 +672,19 @@
         private System.Windows.Forms.Label phoneLabel;
         private System.Windows.Forms.Panel adressPanel;
         private System.Windows.Forms.TextBox adressZipCodeTextBox;
-        private System.Windows.Forms.Label zipCodeLabel;
+        private System.Windows.Forms.Label adressZipCodeLabel;
         private System.Windows.Forms.TextBox adressCountryTextBox;
-        private System.Windows.Forms.Label flatLabel;
+        private System.Windows.Forms.Label adressFlatLabel;
         private System.Windows.Forms.TextBox adressProvinceTextBox;
         private System.Windows.Forms.TextBox adressCityTextBox;
-        private System.Windows.Forms.Label streetNumberLabel;
+        private System.Windows.Forms.Label adressStreetNumberLabel;
         private System.Windows.Forms.TextBox adressStreetTextBox;
         private System.Windows.Forms.TextBox adressStreetNumberTextBox;
-        private System.Windows.Forms.Label streetLabel;
+        private System.Windows.Forms.Label adressStreetLabel;
         private System.Windows.Forms.TextBox adressFlatTextBox;
-        private System.Windows.Forms.Label countryLabel;
-        private System.Windows.Forms.Label cityLabel;
-        private System.Windows.Forms.Label provinceLabel;
+        private System.Windows.Forms.Label adressCountryLabel;
+        private System.Windows.Forms.Label adressCityLabel;
+        private System.Windows.Forms.Label adressProvinceLabel;
         private System.Windows.Forms.Panel mainPanel;
         private System.Windows.Forms.Label isPersonLabel;
         private System.Windows.Forms.Label activeStatusLabel;

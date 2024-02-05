@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace Entities
 {
@@ -12,7 +7,7 @@ namespace Entities
         // PROPERTIES
 
         [DisplayName("ID de depósito")]
-        public int Id { get; set; }
+        public int WarehouseId { get; set; }
 
         [DisplayName("Está activo")]
         public bool ActiveStatus { get; set; }

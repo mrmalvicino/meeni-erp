@@ -1,8 +1,6 @@
-﻿using DAL;
-using Entities;
+﻿using Entities;
 using System;
 using System.Collections.Generic;
-
 
 namespace BLL
 {

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace Entities
 {
@@ -12,7 +7,7 @@ namespace Entities
         // PROPERTIES
 
         [DisplayName("ID de cliente")]
-        public int Id { get; set; }
+        public int CustomerId { get; set; }
 
         [DisplayName("Ventas")]
         public int SalesAmount { get; set; }

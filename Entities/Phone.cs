@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace Entities
 {
@@ -11,11 +6,14 @@ namespace Entities
     {
         // PROPERTIES
 
+        [DisplayName("ID de teléfono")]
+        public int PhoneId { get; set; }
+
         [DisplayName("Cód. del país")]
-        public int Country { get; set; }
+        public int CountryAreaCode { get; set; }
 
         [DisplayName("Cód. de área")]
-        public int Area { get; set; }
+        public int ProvinceAreaCode { get; set; }
 
         [DisplayName("Número telefónico")]
         public int Number {  get; set; }

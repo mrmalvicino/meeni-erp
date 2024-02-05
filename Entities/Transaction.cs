@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Entities
 {
@@ -12,7 +9,7 @@ namespace Entities
         // PROPERTIES
 
         [DisplayName("ID de transacción")]
-        public int Id { get; set; }
+        public int TransactionId { get; set; }
 
         [DisplayName("Descripción")]
         public string Description { get; set; }

@@ -76,7 +76,7 @@ IsIndispensable bit
 
 INSERT INTO suppliers
 (ActiveStatus, IsPerson, FirstName, LastName, BusinessName, BusinessDescription, ImageUrl, Email, PhoneCountry, PhoneArea, PhoneNumber, AdressCountry, AdressProvince, AdressCity, AdressZipCode, AdressStreet, AdressStreetNumber, AdressFlat, LegalIdXX, LegalIdDNI, LegalIdY, PaymentMethod, InvoiceCategory, IsIndispensable) VALUES
-('True', 'True', '', '', 'Carlitos', 'Colocador', '', 'carlitosconstrucciones@gmail.com', '54', '911', '1527863846', 'Argentina', 'Buenos Aires', 'CABA', 'C1000', '9 de Julio', '1290', '', '20', '37456776', '9', 'Crédito', 'C', 'False');
+('True', 'True', 'Juán', 'Gómez', '', 'Colocador', '', 'carlitosconstrucciones@gmail.com', '54', '911', '1527863846', 'Argentina', 'Buenos Aires', 'CABA', 'C1000', '9 de Julio', '1290', '', '20', '37456776', '9', 'Crédito', 'C', 'False');
 
 -- EMPLOYEES
 

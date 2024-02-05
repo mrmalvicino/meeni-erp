@@ -44,11 +44,15 @@
     <Compile Include="Account.cs" />
     <Compile Include="Adress.cs" />
     <Compile Include="BusinessPartner.cs" />
-    <Compile Include="Category.cs" />
+    <Compile Include="Country.cs" />
+    <Compile Include="Department.cs" />
+    <Compile Include="Position.cs" />
     <Compile Include="Currency.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="Item.cs" />
-    <Compile Include="LegalId.cs" />
+    <Compile Include="Province.cs" />
+    <Compile Include="Seniority.cs" />
+    <Compile Include="TaxCode.cs" />
     <Compile Include="Phone.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Role.cs" />

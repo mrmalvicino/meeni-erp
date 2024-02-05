@@ -14,7 +14,7 @@ namespace WindowsForms
         Employee _employee = null;
         OpenFileDialog _file = null;
         EmployeesManager _employeesManager = new EmployeesManager();
-        CategoriesManager _categoriesManager = new CategoriesManager();
+        PositionsManager _categoriesManager = new PositionsManager();
 
         //CONSTRUCT
 

@@ -2,12 +2,12 @@
 
 namespace Entities
 {
-    public class Service : Item
+    public class Department
     {
         // PROPERTIES
 
-        [DisplayName("ID de servicio")]
-        public int ServiceId { get; set; }
+        [DisplayName("ID de área")]
+        public int DepartmentId { get; set; }
 
         [DisplayName("Nombre")]
         public string Name { get; set; }

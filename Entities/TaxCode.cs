@@ -1,20 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 
 namespace Entities
 {
-    public sealed class LegalId
+    public sealed class TaxCode
     {
         // PROPERTIES
 
+        [DisplayName("ID de código fiscal")]
+        public int TaxCodeId { get; set; }
+
+        [DisplayName("Prefijo")]
         public string XX { get; set; }
 
+        [DisplayName("Número de documento")]
         public int DNI { get; set; }
 
+        [DisplayName("Sufijo")]
         public string Y { get; set; }
 
         // METHODS
