@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsForms
@@ -21,7 +14,7 @@ namespace WindowsForms
         public OverviewForm()
         {
             InitializeComponent();
-            _formsManager = new FormsManager(this.MdiParent);
+            _formsManager = new FormsManager();
         }
 
         // METHODS
@@ -43,42 +36,42 @@ namespace WindowsForms
 
         private void quoteButton_Click(object sender, EventArgs e)
         {
-            _formsManager.loadParentForm<QuoteForm>();
+            _formsManager.loadParentForm<QuoteForm>(this.MdiParent);
         }
 
         private void customersButton_Click(object sender, EventArgs e)
         {
-            _formsManager.loadParentForm<CustomersForm>();
+            _formsManager.loadParentForm<CustomersForm>(this.MdiParent);
         }
 
         private void suppliersButton_Click(object sender, EventArgs e)
         {
-            _formsManager.loadParentForm<SuppliersForm>();
+            _formsManager.loadParentForm<SuppliersForm>(this.MdiParent);
         }
 
         private void employeesButton_Click(object sender, EventArgs e)
         {
-            _formsManager.loadParentForm<EmployeesForm>();
+            _formsManager.loadParentForm<EmployeesForm>(this.MdiParent);
         }
 
         private void warehousesButton_Click(object sender, EventArgs e)
         {
-            _formsManager.loadParentForm<WarehousesForm>();
+            _formsManager.loadParentForm<WarehousesForm>(this.MdiParent);
         }
 
         private void productsButton_Click(object sender, EventArgs e)
         {
-            _formsManager.loadParentForm<ProductsForm>();
+            _formsManager.loadParentForm<ProductsForm>(this.MdiParent);
         }
 
         private void servicesButton_Click(object sender, EventArgs e)
         {
-            _formsManager.loadParentForm<ServicesForm>();
+            _formsManager.loadParentForm<ServicesForm>(this.MdiParent);
         }
 
         private void transactionsButton_Click(object sender, EventArgs e)
         {
-            _formsManager.loadParentForm<TransactionsForm>();
+            _formsManager.loadParentForm<TransactionsForm>(this.MdiParent);
         }
 
         private void settingsButton_Click(object sender, EventArgs e)

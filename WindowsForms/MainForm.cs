@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
-using BLL;
 
 namespace WindowsForms
 {
@@ -23,7 +15,7 @@ namespace WindowsForms
         public MainForm()
         {
             InitializeComponent();
-            _formsManager = new FormsManager(this);
+            _formsManager = new FormsManager();
         }
 
         // EVENTS
@@ -31,7 +23,7 @@ namespace WindowsForms
         private void MainForm_Load(object sender, EventArgs e)
         {
             Palette.setDefaultSkin();
-            _formsManager.loadParentForm<OverviewForm>();
+            _formsManager.loadParentForm<OverviewForm>(this);
         }
 
         private void newSessionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -46,47 +38,47 @@ namespace WindowsForms
 
         private void overviewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _formsManager.loadParentForm<OverviewForm>();
+            _formsManager.loadParentForm<OverviewForm>(this);
         }
 
         private void quoteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _formsManager.loadParentForm<QuoteForm>();
+            _formsManager.loadParentForm<QuoteForm>(this);
         }
 
         private void customersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _formsManager.loadParentForm<CustomersForm>();
+            _formsManager.loadParentForm<CustomersForm>(this);
         }
 
         private void suppliersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _formsManager.loadParentForm<SuppliersForm>();
+            _formsManager.loadParentForm<SuppliersForm>(this);
         }
 
         private void employeesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _formsManager.loadParentForm<EmployeesForm>();
+            _formsManager.loadParentForm<EmployeesForm>(this);
         }
 
         private void warehousesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _formsManager.loadParentForm<WarehousesForm>();
+            _formsManager.loadParentForm<WarehousesForm>(this);
         }
 
         private void productsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _formsManager.loadParentForm<ProductsForm>();
+            _formsManager.loadParentForm<ProductsForm>(this);
         }
 
         private void servicesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _formsManager.loadParentForm<ServicesForm>();
+            _formsManager.loadParentForm<ServicesForm>(this);
         }
 
         private void transactionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _formsManager.loadParentForm<TransactionsForm>();
+            _formsManager.loadParentForm<TransactionsForm>(this);
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
