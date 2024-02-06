@@ -9,12 +9,6 @@ namespace Entities
         [DisplayName("ID de dirección")]
         public int AdressId { get; set; }
 
-        [DisplayName("País")]
-        public string Country { get; set; }
-
-        [DisplayName("Provincia")]
-        public string Province { get; set; }
-
         [DisplayName("Ciudad")]
         public string City { get; set; }
 
@@ -30,6 +24,12 @@ namespace Entities
         [DisplayName("Depto. o lote")]
         public string Flat {  get; set; }
 
+        [DisplayName("País")]
+        public Country Country { get; set; }
+
+        [DisplayName("Provincia")]
+        public Province Province { get; set; }
+
         // METHODS
 
         public override string ToString()
@@ -38,6 +38,14 @@ namespace Entities
                 return $"{StreetName} {StreetNumber}, {City}";
             else
                 return "";
+        }
+
+        // CONSTRUCT
+
+        public Adress()
+        {
+            Country = new Country();
+            Province = new Province();
         }
     }
 }

@@ -9,21 +9,21 @@ namespace Entities
         [DisplayName("ID de teléfono")]
         public int PhoneId { get; set; }
 
-        [DisplayName("Cód. del país")]
-        public int CountryAreaCode { get; set; }
-
-        [DisplayName("Cód. de área")]
-        public int ProvinceAreaCode { get; set; }
-
         [DisplayName("Número telefónico")]
         public int Number {  get; set; }
+
+        [DisplayName("País")]
+        public Country Country { get; set; }
+
+        [DisplayName("Provincia")]
+        public Province Province { get; set; }
 
         // METHODS
 
         public override string ToString()
         {
-            if (Country != 0 && Area != 0 && Number != 0)
-                return $"+{Country} ({Area}) {Number}";
+            if (Country.PhoneAreaCode != 0 && Province.PhoneAreaCode != 0 && Number != 0)
+                return $"+{Country.PhoneAreaCode} ({Province.PhoneAreaCode}) {Number}";
             else if (Number != 0)
                 return Number.ToString();
             else

@@ -6,9 +6,81 @@ GO
 USE meeni_erp_db
 GO
 
--- CUSTOMERS
+-- PHONES
 
-CREATE TABLE customers(
+CREATE TABLE phones(
+PhoneId int primary key identity,
+PhoneNumber int,
+CountryId int,
+ProvinceId int)
+
+INSERT INTO phones
+(PhoneNumber, CountryId, ProvinceId)
+VALUES
+('1527863846', '1', '1'),
+('1547873654', '1', '1'),
+('1568994786', '1', '1'),
+('1558897263', '1', '1'),
+('1557736789', '1', '1'),
+('1527863846', '1', '1'),
+('1547873654', '1', '1'),
+('1558897263', '1', '1'),
+('1568994786', '1', '1'),
+('1557736789', '1', '1');
+
+
+-- ADRESSES
+
+CREATE TABLE adresses(
+AdressId int primary key identity,
+AdressCity varchar(30),
+AdressZipCode varchar(30),
+AdressStreetName varchar(30),
+AdressStreetNumber int,
+AdressFlat varchar(30),
+CountryId int,
+ProvinceId int)
+
+INSERT INTO adresses
+(AdressCity, AdressZipCode, AdressStreetName, AdressStreetNumber, AdressFlat, CountryId, ProvinceId)
+VALUES
+('CABA', 'C1000', '9 de Julio', '1290', '', '1', '1'),
+('CABA', 'C1000', 'Córdoba', '2345', '9B', '1', '1'),
+('San Fernando', 'B1646', 'Perón', '345', '', '1', '1'),
+('Tigre', 'B1648', 'Cazón', '768', '', '1', '1'),
+('Pacheco', 'B1617', 'Santa Fé', '1290', '', '1', '1'),
+('CABA', 'C1000', '9 de Julio', '1290', '', '1', '1'),
+('CABA', 'C1000', 'Córdoba', '2345', '9B', '1', '1'),
+('San Fernando', 'B1646', 'Perón', '345', '', '1', '1'),
+('Tigre', 'B1648', 'Cazón', '768', '', '1', '1'),
+('Pacheco', 'B1617', 'Santa Fé', '1290', '', '1', '1');
+
+-- TAXCODES
+
+CREATE TABLE taxCodes(
+TaxCodeId int primary key identity,
+TaxCodePrefix varchar(30),
+TaxCodeNumber int,
+TaxCodeSuffix varchar(30))
+
+INSERT INTO taxCodes
+(TaxCodePrefix, TaxCodeNumber, TaxCodeSuffix)
+VALUES
+('20', '37456776', '9'),
+('20', '20378846', '3'),
+('30', '34768495', '9'),
+('23', '29334857', '9'),
+('0', '38274478', '0'),
+('20', '37456776', '9'),
+('20', '20378846', '3'),
+('30', '34768495', '9'),
+('0', '38274478', '0'),
+('20', '37456776', '9');
+
+-- INDIVIDUALS
+
+CREATE TABLE individuals(
+IndividualId int primary key identity,
 ActiveStatus bit,
 IsPerson bit,
 FirstName varchar(30),
@@ -17,122 +89,138 @@ BusinessName varchar(30),
 BusinessDescription varchar(30),
 ImageUrl varchar(300),
 Email varchar(30),
-PhoneCountry int,
-PhoneArea int,
-PhoneNumber int,
-AdressCountry varchar(30),
-AdressProvince varchar(30),
-AdressCity varchar(30),
-AdressZipCode varchar(30),
-AdressStreet varchar(30),
-AdressStreetNumber int,
-AdressFlat varchar(30),
-LegalIdXX varchar(30),
-LegalIdDNI int,
-LegalIdY varchar(30),
+PhoneId int,
+AdressId int,
+TaxCodeId int)
+
+INSERT INTO individuals
+(ActiveStatus, IsPerson, FirstName, LastName, BusinessName, BusinessDescription, ImageUrl, Email, PhoneId, AdressId, TaxCodeId)
+VALUES
+('True', 'False', '', '', 'Johnson Construction', 'Residential Contractor', 'https://img.freepik.com/vector-gratis/logotipo-empresa-construccion-diseno-plano_23-2150051909.jpg?size=338&ext=jpg&ga=GA1.1.1412446893.1705449600&semt=ais', 'info@johnsonconstruction.com', '1', '1', '1'),
+('False', 'False', '', '', 'Smith Commercial', 'Comercial Developer', 'https://img.freepik.com/vector-gratis/logotipo-excavadora-construccion-edificios_23-2148657768.jpg?size=338&ext=jpg&ga=GA1.1.1412446893.1705449600&semt=ais', 'contact@smithcommercial.com', '2', '2', '2'),
+('True', 'False', '', '', 'Greenfield Builders', 'Eco Friendly Construction', 'https://img.freepik.com/vector-premium/logotipo-enlucido-construccion-diseno-ladrillo-paleta_501861-302.jpg?size=338&ext=jpg&ga=GA1.1.1412446893.1705449600&semt=ais', 'info@greenfield.com', '3', '3', '3'),
+('True', 'True', 'Carlos', 'Berlinguieri', '', '', '', 'berlinguieric@gmail.com', '4', '4', '4'),
+('True', 'False', '', '', 'Fierros Ratti', 'Hierros y herrajes', 'https://hierrosratti.com.ar/images/productos/tubos.jpg', 'contacto@hierrosratti.com.ar', '5', '5', '5'),
+('True', 'True', 'Teodoro', 'Figueredo', '', 'Colocador', '', '', '6', '6', '6'),
+('True', 'True', 'Federico', 'Bocca', 'Pisos Click', 'Pisos vinílicos', '', '', '7', '7', '7'),
+('True', 'True', 'Mario', 'Santos', 'Pisos Click', 'Pisos vinílicos', '', '', '8', '8', '8'),
+('False', 'True', 'Pablo', 'Lampone', 'Pisos Click', 'Pisos vinílicos', '', '', '9', '9', '9'),
+('True', 'True', 'Emilio', 'Ravena', 'Pisos Click', 'Pisos vinílicos', '', '', '10', '10', '10');
+
+
+-- BUSINESS PARTNERS
+
+CREATE TABLE businessPartners(
+BusinessPartnerId int primary key identity,
 PaymentMethod varchar(30),
 InvoiceCategory varchar(30),
-Id int primary key identity,
-SalesAmount int
-)
+IndividualId int)
+
+INSERT INTO businessPartners
+(PaymentMethod, InvoiceCategory, IndividualId)
+VALUES
+('Efectivo', 'C', '1'),
+('Efectivo', 'A', '2'),
+('Débito', 'B', '3'),
+('Transferencia', 'C', '4'),
+('Transferencia', 'C', '5'),
+('Efectivo', 'A', '6');
+
+-- CUSTOMERS
+
+CREATE TABLE customers(
+CustomerId int primary key identity,
+SalesAmount int,
+BusinessPartnerId int)
 
 INSERT INTO customers
-(ActiveStatus, IsPerson, FirstName, LastName, BusinessName, BusinessDescription, ImageUrl, Email, PhoneCountry, PhoneArea, PhoneNumber, AdressCountry, AdressProvince, AdressCity, AdressZipCode, AdressStreet, AdressStreetNumber, AdressFlat, LegalIdXX, LegalIdDNI, LegalIdY, PaymentMethod, InvoiceCategory, SalesAmount) VALUES
-('True', 'False', '', '', 'Johnson Construction', 'Residential Contractor', 'https://img.freepik.com/vector-gratis/logotipo-empresa-construccion-diseno-plano_23-2150051909.jpg?size=338&ext=jpg&ga=GA1.1.1412446893.1705449600&semt=ais', 'info@johnsonconstruction.com', '54', '911', '1527863846', 'Argentina', 'Buenos Aires', 'CABA', 'C1000', '9 de Julio', '1290', '', '20', '37456776', '9', 'Crédito', 'A', '5'),
-('False', 'False', '', '', 'Smith Commercial', 'Comercial Developer', 'https://img.freepik.com/vector-gratis/logotipo-excavadora-construccion-edificios_23-2148657768.jpg?size=338&ext=jpg&ga=GA1.1.1412446893.1705449600&semt=ais', 'contact@smithcommercial.com', '54', '911', '1547873654', 'Argentina', 'Buenos Aires', 'CABA', 'C1000', 'Córdoba', '2345', '9B', '20', '20378846', '3', 'Débito', 'B', '5'),
-('False', 'False', '', '', 'Greenfield Builders', 'Eco Friendly Construction', 'https://img.freepik.com/vector-premium/logotipo-enlucido-construccion-diseno-ladrillo-paleta_501861-302.jpg?size=338&ext=jpg&ga=GA1.1.1412446893.1705449600&semt=ais', 'info@greenfield.com', '54', '911', '1568994786', 'Argentina', 'Buenos Aires', 'San Fernando', 'B1646', 'Perón', '345', '', '30', '34768495', '9', 'Efectivo', 'C', '6'),
-('True', 'False', '', '', 'Urban Renovations', 'Urban Renewal Experts', '', 'info@urbanrenovations.com', '54', '911', '1558897263', 'Argentina', 'Buenos Aires', 'Tigre', 'B1648', 'Cazón', '768', '', '23', '29334857', '9', 'Cheque', 'A', '2'),
-('True', 'True', 'Carlos', 'Berlinguieri', '', '', '', 'berlinguieric@gmail.com', '54', '911', '1557736789', 'Argentina', 'Buenos Aires', 'Pacheco', 'B1617', 'Santa Fé', '1290', '', '', '38274478', '', 'Efectivo', 'C', '1');
+(SalesAmount, BusinessPartnerId)
+VALUES
+('5', '1'),
+('3', '2'),
+('8', '3'),
+('1', '4');
 
 -- SUPPLIERS
 
 CREATE TABLE suppliers(
-ActiveStatus bit,
-IsPerson bit,
-FirstName varchar(30),
-LastName varchar(30),
-BusinessName varchar(30),
-BusinessDescription varchar(30),
-ImageUrl varchar(300),
-Email varchar(30),
-PhoneCountry int,
-PhoneArea int,
-PhoneNumber int,
-AdressCountry varchar(30),
-AdressProvince varchar(30),
-AdressCity varchar(30),
-AdressZipCode varchar(30),
-AdressStreet varchar(30),
-AdressStreetNumber int,
-AdressFlat varchar(30),
-LegalIdXX varchar(30),
-LegalIdDNI int,
-LegalIdY varchar(30),
-PaymentMethod varchar(30),
-InvoiceCategory varchar(30),
-Id int primary key identity,
-IsIndispensable bit
-)
+SupplierId int primary key identity,
+IsIndispensable bit,
+BusinessPartnerId int)
 
 INSERT INTO suppliers
-(ActiveStatus, IsPerson, FirstName, LastName, BusinessName, BusinessDescription, ImageUrl, Email, PhoneCountry, PhoneArea, PhoneNumber, AdressCountry, AdressProvince, AdressCity, AdressZipCode, AdressStreet, AdressStreetNumber, AdressFlat, LegalIdXX, LegalIdDNI, LegalIdY, PaymentMethod, InvoiceCategory, IsIndispensable) VALUES
-('True', 'True', 'Juán', 'Gómez', '', 'Colocador', '', 'carlitosconstrucciones@gmail.com', '54', '911', '1527863846', 'Argentina', 'Buenos Aires', 'CABA', 'C1000', '9 de Julio', '1290', '', '20', '37456776', '9', 'Crédito', 'C', 'False');
+(IsIndispensable, BusinessPartnerId)
+VALUES
+('True', '5'),
+('False', '6');
+
+-- SENIORITIES
+
+CREATE TABLE seniorities(
+SeniorityId int primary key identity,
+SeniorityName varchar(30))
+
+INSERT INTO seniorities
+(SeniorityName)
+VALUES
+('Trainee'),
+('Junior'),
+('Semi Senior'),
+('Senior');
+
+-- DEPARTMENTS
+
+CREATE TABLE departments(
+DepartmentId int primary key identity,
+DepartmentName varchar(30))
+
+INSERT INTO departments
+(DepartmentName)
+VALUES
+('IT'),
+('Ventas'),
+('RRHH'),
+('Marketing'),
+('Logística'),
+('Producción');
+
+-- POSITIONS
+
+CREATE TABLE positions(
+PositionId int primary key identity,
+PositionTitle varchar(30),
+SeniorityId int,
+DepartmentId int)
+
+INSERT INTO positions
+(PositionTitle, SeniorityId, DepartmentId)
+VALUES
+('Administrador de Sistemas', '1', '3'),
+('Desarrollador', '1', '2'),
+('Desarrollador', '1', '4'),
+('Representante de ventas', '2', '2'),
+('Gerente de ventas', '2', '4'),
+('Analista de RRHH', '3', '3'),
+('Comuinity Manager', '4', '2'),
+('Gerente de Marketing', '4', '3'),
+('Gerente de Logística', '5', '4'),
+('Operario', '6', '1');
 
 -- EMPLOYEES
 
 CREATE TABLE employees(
-ActiveStatus bit,
-IsPerson bit,
-FirstName varchar(30),
-LastName varchar(30),
-BusinessName varchar(30),
-BusinessDescription varchar(30),
-ImageUrl varchar(300),
-Email varchar(30),
-PhoneCountry int,
-PhoneArea int,
-PhoneNumber int,
-AdressCountry varchar(30),
-AdressProvince varchar(30),
-AdressCity varchar(30),
-AdressZipCode varchar(30),
-AdressStreet varchar(30),
-AdressStreetNumber int,
-AdressFlat varchar(30),
-LegalIdXX varchar(30),
-LegalIdDNI int,
-LegalIdY varchar(30),
 EmployeeId int primary key identity,
-Admission datetime default getdate() not null,
-CategoryId int
-)
+Admission datetime not null default getdate(),
+PositionId int,
+IndividualId int)
 
 INSERT INTO employees
-(ActiveStatus, IsPerson, FirstName, LastName, BusinessName, BusinessDescription, ImageUrl, Email, PhoneCountry, PhoneArea, PhoneNumber, AdressCountry, AdressProvince, AdressCity, AdressZipCode, AdressStreet, AdressStreetNumber, AdressFlat, LegalIdXX, LegalIdDNI, LegalIdY, CategoryId) VALUES
-('True', 'True', 'Federico', 'Bocca', 'Pisos Click', '', '', '', '0', '0', '0', 'Argentina', 'Buenos Aires', '', '', '', '0', '', '', '0', '', '5'),
-('True', 'True', 'Gerbacio', 'Figueredo', 'Pisos Click', '', '', '', '0', '0', '0', 'Paraguay', '', '', '', '', '0', '', '', '0', '', '10');
-
--- CATEGORIES
-
-CREATE TABLE categories(
-Id int primary key identity,
-Area varchar(30),
-Title varchar(30),
-Seniority varchar(30),
-)
-
-INSERT INTO categories
-(Area, Title, Seniority) VALUES
-('IT', 'Administrador de Sistemas', 'Semi Senior'),
-('IT', 'Desarrollador', 'Junior'),
-('IT', 'Desarrollador', 'Senior'),
-('Ventas', 'Representante de ventas', 'Junior'),
-('Ventas', 'Gerente de ventas', 'Senior'),
-('RRHH', 'Analista de RRHH', 'Senior'),
-('Marketing', 'Comuinity Manager', 'Junior'),
-('Marketing', 'Gerente de Marketing', 'Senior'),
-('Logística', 'Gerente de Logística', 'Semi Senior'),
-('Producción', 'Operario', 'Semi Senior');
+(PositionId, IndividualId)
+VALUES
+('5', '7'),
+('1', '8'),
+('9', '9'),
+('4', '10');
 
 -- USERS
 
@@ -162,6 +250,19 @@ INSERT INTO roles
 ('Logística'),
 ('RRHH'),
 ('Ventas');
+
+-- WAREHOUSES
+
+CREATE TABLE warehouses(
+Id int primary key identity,
+WarehouseName varchar(30),
+AdressId int
+)
+
+INSERT INTO warehouses
+(WarehouseName) VALUES
+('Depósito 197', ),
+('Showroom Ballester');
 
 -- QUERIES
 

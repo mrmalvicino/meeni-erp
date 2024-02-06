@@ -14,5 +14,12 @@ namespace Entities
 
         [DisplayName("Código de área telefónico")]
         public int PhoneAreaCode { get; set; }
+
+        // METHODS
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

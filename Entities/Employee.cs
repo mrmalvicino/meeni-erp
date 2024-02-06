@@ -13,7 +13,7 @@ namespace Entities
         [DisplayName("Ingreso")]
         public DateTime Admission { get; set; }
 
-        [DisplayName("Categoría")]
+        [DisplayName("Puesto")]
         public Position Position { get; set; }
 
         // CONSTRUCT

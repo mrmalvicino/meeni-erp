@@ -6,6 +6,9 @@ namespace Entities
     {
         // PROPERTIES
 
+        [DisplayName("ID de socio de negocio")]
+        public int BusinessPartnerId { get; set; }
+
         [DisplayName("Pago")]
         public string PaymentMethod { get; set; }
 

@@ -23,5 +23,12 @@ namespace Entities
         {
             Currency = new Currency();
         }
+
+        // METHODS
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

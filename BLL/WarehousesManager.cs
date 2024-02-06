@@ -26,10 +26,10 @@ namespace BLL
                 {
                     Warehouse warehouse = new Warehouse();
 
-                    warehouse.Id = (int)_database.Reader["Id"];
+                    warehouse.WarehouseId = (int)_database.Reader["Id"];
                     warehouse.ActiveStatus = (bool)_database.Reader["ActiveStatus"];
                     warehouse.Name = (string)_database.Reader["WarehouseName"];
-                    warehouse.Adress.Id = (int)_database.Reader["AdressId"];
+                    warehouse.Adress.AdressId = (int)_database.Reader["AdressId"];
 
                     list.Add(warehouse);
                 }

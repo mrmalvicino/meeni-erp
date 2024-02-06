@@ -9,23 +9,23 @@ namespace Entities
         [DisplayName("ID de código fiscal")]
         public int TaxCodeId { get; set; }
 
-        [DisplayName("Prefijo")]
-        public string XX { get; set; }
+        [DisplayName("XX")]
+        public string Prefix { get; set; }
 
-        [DisplayName("Número de documento")]
-        public int DNI { get; set; }
+        [DisplayName("DNI")]
+        public int Number { get; set; }
 
-        [DisplayName("Sufijo")]
-        public string Y { get; set; }
+        [DisplayName("Y")]
+        public string Suffix { get; set; }
 
         // METHODS
 
         public override string ToString()
         {
-            if (XX != "" && DNI != 0 && Y != "")
-                return $"{XX}-{DNI}-{Y}";
-            else if (DNI != 0)
-                return DNI.ToString();
+            if (Prefix != "" && Number != 0 && Suffix != "")
+                return $"{Prefix}-{Number}-{Suffix}";
+            else if (Number != 0)
+                return Number.ToString();
             else
                 return "";
         }
