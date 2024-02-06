@@ -25,7 +25,6 @@ VALUES
 ('1527863846', '1', '1'),
 ('1547873654', '1', '1'),
 ('1558897263', '1', '1'),
-('1568994786', '1', '1'),
 ('1557736789', '1', '1');
 
 
@@ -53,7 +52,8 @@ VALUES
 ('CABA', 'C1000', 'Córdoba', '2345', '9B', '1', '1'),
 ('San Fernando', 'B1646', 'Perón', '345', '', '1', '1'),
 ('Tigre', 'B1648', 'Cazón', '768', '', '1', '1'),
-('Pacheco', 'B1617', 'Santa Fé', '1290', '', '1', '1');
+('Pacheco', 'B1617', 'Santa Fé', '1290', '', '1', '1'),
+('Villa Adelina', '', 'Piedra Mala', '389', '2C', '1', '1');
 
 -- TAXCODES
 
@@ -74,8 +74,7 @@ VALUES
 ('20', '37456776', '9'),
 ('20', '20378846', '3'),
 ('30', '34768495', '9'),
-('0', '38274478', '0'),
-('20', '37456776', '9');
+('0', '38274478', '0');
 
 -- INDIVIDUALS
 
@@ -104,8 +103,7 @@ VALUES
 ('True', 'True', 'Teodoro', 'Figueredo', '', 'Colocador', '', '', '6', '6', '6'),
 ('True', 'True', 'Federico', 'Bocca', 'Pisos Click', 'Pisos vinílicos', '', '', '7', '7', '7'),
 ('True', 'True', 'Mario', 'Santos', 'Pisos Click', 'Pisos vinílicos', '', '', '8', '8', '8'),
-('False', 'True', 'Pablo', 'Lampone', 'Pisos Click', 'Pisos vinílicos', '', '', '9', '9', '9'),
-('True', 'True', 'Emilio', 'Ravena', 'Pisos Click', 'Pisos vinílicos', '', '', '10', '10', '10');
+('False', 'True', 'Pablo', 'Lampone', 'Pisos Click', 'Pisos vinílicos', '', '', '9', '9', '9');
 
 
 -- BUSINESS PARTNERS
@@ -219,8 +217,23 @@ INSERT INTO employees
 VALUES
 ('5', '7'),
 ('1', '8'),
-('9', '9'),
-('4', '10');
+('9', '9');
+
+-- ROLES
+
+CREATE TABLE roles(
+RoleId int primary key identity,
+RoleName varchar(50))
+
+INSERT INTO roles
+(RoleName)
+VALUES
+('Acceso total'),
+('Escritura en área y lectura total'),
+('Lectoescritura en área'),
+('Lectura total'),
+('Solo lectura en área'),
+('Solo lectura restringida');
 
 -- USERS
 
@@ -228,48 +241,29 @@ CREATE TABLE users(
 UserId int primary key identity,
 UserName varchar(30),
 UserPassword varchar(30),
-RoleId int
-)
+RoleId int)
 
 INSERT INTO users
-(UserName, UserPassword, RoleId) VALUES
+(UserName, UserPassword, RoleId)
+VALUES
 ('Bocca1', 'estanopk', '1');
-
--- ROLES
-
-CREATE TABLE roles(
-Id int primary key identity,
-RoleName varchar(30)
-)
-
-INSERT INTO roles
-(RoleName) VALUES
-('Acceso total'),
-('Compras'),
-('Contabilidad'),
-('Logística'),
-('RRHH'),
-('Ventas');
 
 -- WAREHOUSES
 
 CREATE TABLE warehouses(
-Id int primary key identity,
+WarehouseId int primary key identity,
+ActiveStatus bit,
 WarehouseName varchar(30),
-AdressId int
-)
+AdressId int)
 
 INSERT INTO warehouses
-(WarehouseName) VALUES
-('Depósito 197', ),
-('Showroom Ballester');
+(ActiveStatus, WarehouseName, AdressId)
+VALUES
+('True', 'Depósito de 197', '10'),
+('False', 'Showroom Villa Adelina', '11');
 
 -- QUERIES
 
 SELECT * FROM employees
 
-SELECT UserId, UserName, UserPassword, RoleId, RoleName FROM employees E, users U, roles R WHERE U.UserName = concat(E.LastName, E.EmployeeId) AND U.RoleId = R.Id
-
-UPDATE users SET UserName = 'Bocca1' WHERE UserId = 1;
-
-DELETE FROM categories WHERE Id = 11
+SELECT UserId, UserName, UserPassword, U.RoleId, RoleName FROM individuals I, employees E, users U, roles R WHERE U.UserName = concat(I.LastName, E.EmployeeId) AND U.RoleId = R.RoleId
