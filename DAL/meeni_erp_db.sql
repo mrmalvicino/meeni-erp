@@ -6,6 +6,52 @@ GO
 USE meeni_erp_db
 GO
 
+-- CURRENCIES
+
+CREATE TABLE currencies(
+CurrencyId int primary key identity,
+CurrencyCode varchar(30),
+CurrencyName varchar(30),
+CurrencyRate decimal(15,2),
+CurrencyBlackRate decimal(15,2))
+
+INSERT INTO currencies
+(CurrencyCode, CurrencyName, CurrencyRate, CurrencyBlackRate)
+VALUES
+('USD', 'Dólar estadounidense', '1', '1'),
+('EUR', 'Euro', '0.93', '0.93'),
+('ARS', 'Peso argentino', '830', '1130'),
+('BRL', 'Real', '5', '5');
+
+-- COUNTRIES
+
+CREATE TABLE countries(
+CountryId int primary key identity,
+CountryName varchar(30),
+CountryPhoneAreaCode int,
+CurrencyId int)
+
+INSERT INTO countries
+(CountryName, CountryPhoneAreaCode, CurrencyId)
+VALUES
+('Argentina', '54', '3'),
+('Estados Unidos', '1', '1'),
+('España', '34', '2'),
+('Brasil', '55', '4');
+
+-- PROVINCES
+
+CREATE TABLE provinces(
+ProvinceId int primary key identity,
+ProvinceName varchar(30),
+ProvincePhoneAreaCode int)
+
+INSERT INTO provinces
+(ProvinceName, ProvincePhoneAreaCode)
+VALUES
+('Buenos Aires', '911'),
+('Córdoba', '351');
+
 -- PHONES
 
 CREATE TABLE phones(
@@ -26,7 +72,6 @@ VALUES
 ('1547873654', '1', '1'),
 ('1558897263', '1', '1'),
 ('1557736789', '1', '1');
-
 
 -- ADRESSES
 
@@ -69,7 +114,7 @@ VALUES
 ('20', '37456776', '9'),
 ('20', '20378846', '3'),
 ('30', '34768495', '9'),
-('23', '29334857', '9'),
+('0', '29334857', '0'),
 ('0', '38274478', '0'),
 ('20', '37456776', '9'),
 ('20', '20378846', '3'),
@@ -104,7 +149,6 @@ VALUES
 ('True', 'True', 'Federico', 'Bocca', 'Pisos Click', 'Pisos vinílicos', '', '', '7', '7', '7'),
 ('True', 'True', 'Mario', 'Santos', 'Pisos Click', 'Pisos vinílicos', '', '', '8', '8', '8'),
 ('False', 'True', 'Pablo', 'Lampone', 'Pisos Click', 'Pisos vinílicos', '', '', '9', '9', '9');
-
 
 -- BUSINESS PARTNERS
 
@@ -262,8 +306,25 @@ VALUES
 ('True', 'Depósito de 197', '10'),
 ('False', 'Showroom Villa Adelina', '11');
 
--- QUERIES
+-- JOINED QUERY EXAMPLE
 
-SELECT * FROM employees
+SELECT C.CustomerId, C.SalesAmount, B.PaymentMethod, B.InvoiceCategory,
+I.ActiveStatus, I.IsPerson, I.FirstName, I.LastName, I.BusinessName, I.BusinessDescription, I.ImageUrl, I.Email,
+CO.CountryPhoneAreaCode, PR.ProvincePhoneAreaCode, P.PhoneNumber,
+Co.CountryName, PR.ProvinceName, A.AdressCity, A.AdressZipCode, A.AdressStreetName, A.AdressStreetNumber, A.AdressFlat,
+T.TaxCodePrefix, T.TaxCodeNumber, T.TaxCodeSuffix
 
-SELECT UserId, UserName, UserPassword, U.RoleId, RoleName FROM individuals I, employees E, users U, roles R WHERE U.UserName = concat(I.LastName, E.EmployeeId) AND U.RoleId = R.RoleId
+FROM customers C, businessPartners B, individuals I, phones P, adresses A, taxCodes T, countries CO, provinces PR, currencies CU
+
+WHERE C.BusinessPartnerId = B.BusinessPartnerId
+AND B.IndividualId = I.IndividualId
+AND I.PhoneId = P.PhoneId
+AND I.AdressId = A.AdressId
+AND I.TaxCodeId = T.TaxCodeId
+AND A.CountryId = CO.CountryId
+AND A.ProvinceId = PR.ProvinceId
+AND CO.CurrencyId = CU.CurrencyId
+
+-- TESTING QUERIES
+
+SELECT * FROM customers

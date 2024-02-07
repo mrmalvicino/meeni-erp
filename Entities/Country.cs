@@ -15,6 +15,7 @@ namespace Entities
         [DisplayName("Código de área telefónico")]
         public int PhoneAreaCode { get; set; }
 
+        [DisplayName("Divisa")]
         public Currency Currency { get; set; }
 
         // CONSTRUCT

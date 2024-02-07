@@ -29,5 +29,13 @@ namespace Entities
             else
                 return "";
         }
+
+        // CONSTRUCT
+
+        public Phone()
+        {
+            Country = new Country();
+            Province = new Province();
+        }
     }
 }
