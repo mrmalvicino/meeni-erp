@@ -90,13 +90,16 @@ namespace BLL
             }
         }
 
-        public void delete(int customerId)
+        public void delete(Customer customer)
         {
             try
             {
                 _database.setQuery("DELETE FROM customers WHERE CustomerId = @CustomerId");
-                _database.setParameter("@CustomerId", customerId);
+                _database.setParameter("@CustomerId", customer.CustomerId);
                 _database.executeAction();
+
+                delete(customer.toBusinessPartner());
+                delete(customer.toIndividual());
             }
             catch (Exception ex)
             {

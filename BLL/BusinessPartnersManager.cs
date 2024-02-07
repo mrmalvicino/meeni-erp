@@ -20,5 +20,23 @@ namespace BLL
             businessPartner.InvoiceCategory = (string)_database.Reader["InvoiceCategory"];
             businessPartner.IndividualId = (int)_database.Reader["IndividualId"];
         }
+
+        public void delete(BusinessPartner businessPartner)
+        {
+            try
+            {
+                _database.setQuery("DELETE FROM businessPartners WHERE BusinessPartnerId = @BusinessPartnerId");
+                _database.setParameter("@BusinessPartnerId", businessPartner.BusinessPartnerId);
+                _database.executeAction();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _database.closeConnection();
+            }
+        }
     }
 }

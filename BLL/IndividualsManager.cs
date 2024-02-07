@@ -1,5 +1,6 @@
 ﻿using Entities;
 using DAL;
+using System;
 
 namespace BLL
 {
@@ -120,6 +121,36 @@ namespace BLL
             _database.setParameter("@LegalIdXX", reg.TaxCode.Prefix);
             _database.setParameter("@LegalIdDNI", reg.TaxCode.Number);
             _database.setParameter("@LegalIdY", reg.TaxCode.Suffix);
+        }
+
+        public void delete(Individual individual)
+        {
+            try
+            {
+                _database.setQuery("DELETE FROM individuals WHERE IndividualId = @IndividualId");
+                _database.setParameter("@IndividualId", individual.IndividualId);
+                _database.executeAction();
+
+                _database.setQuery("DELETE FROM phones WHERE PhoneId = @PhoneId");
+                _database.setParameter("@PhoneId", individual.Phone.PhoneId);
+                _database.executeAction();
+
+                _database.setQuery("DELETE FROM adresses WHERE AdressId = @AdressId");
+                _database.setParameter("@AdressId", individual.Adress.AdressId);
+                _database.executeAction();
+
+                _database.setQuery("DELETE FROM taxCodes WHERE TaxCodeId = @TaxCodeId");
+                _database.setParameter("@TaxCodeId", individual.TaxCode.TaxCodeId);
+                _database.executeAction();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _database.closeConnection();
+            }
         }
     }
 }

@@ -59,5 +59,46 @@ namespace Entities
             else
                 return this.BusinessName;
         }
+
+        public Individual toIndividual()
+        {
+            Individual individual;
+            individual = new Individual();
+
+            individual.IndividualId = this.IndividualId;
+            individual.ActiveStatus = this.ActiveStatus;
+            individual.IsPerson = this.IsPerson;
+            individual.FirstName = this.FirstName;
+            individual.LastName = this.LastName;
+            individual.BusinessName = this.BusinessName;
+            individual.BusinessDescription = this.BusinessDescription;
+            individual.ImageUrl = this.ImageUrl;
+            individual.Email = this.Email;
+            individual.Phone = this.Phone;
+            individual.Adress = this.Adress;
+            individual.TaxCode = this.TaxCode;
+
+            return individual;
+        }
+
+        public T copyFromIndividual<T>(Individual individual) where T : Individual, new()
+        {
+            T obj = new T();
+
+            obj.IndividualId = individual.IndividualId;
+            obj.ActiveStatus = individual.ActiveStatus;
+            obj.IsPerson = individual.IsPerson;
+            obj.FirstName = individual.FirstName;
+            obj.LastName = individual.LastName;
+            obj.BusinessName = individual.BusinessName;
+            obj.BusinessDescription = individual.BusinessDescription;
+            obj.ImageUrl = individual.ImageUrl;
+            obj.Email = individual.Email;
+            obj.Phone = individual.Phone;
+            obj.Adress = individual.Adress;
+            obj.TaxCode = individual.TaxCode;
+
+            return obj;
+        }
     }
 }

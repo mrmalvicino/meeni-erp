@@ -2,7 +2,7 @@
 
 namespace Entities
 {
-    public abstract class BusinessPartner : Individual
+    public class BusinessPartner : Individual
     {
         // PROPERTIES
 
@@ -14,5 +14,19 @@ namespace Entities
 
         [DisplayName("Factura")]
         public string InvoiceCategory { get; set; }
+
+        // METHODS
+
+        public BusinessPartner toBusinessPartner()
+        {
+            BusinessPartner businessPartner;
+            businessPartner = copyFromIndividual<BusinessPartner>(this.toIndividual());
+
+            businessPartner.BusinessPartnerId = this.BusinessPartnerId;
+            businessPartner.PaymentMethod = this.PaymentMethod;
+            businessPartner.InvoiceCategory = this.InvoiceCategory;
+
+            return businessPartner;
+        }
     }
 }
