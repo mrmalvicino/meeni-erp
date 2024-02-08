@@ -61,7 +61,7 @@ namespace WindowsForms
                 dataGridView.Columns["Email"].Width = 150;
                 dataGridView.Columns["Phone"].Width = 120;
                 dataGridView.Columns["Adress"].Width = 150;
-                dataGridView.Columns["LegalId"].Width = 80;
+                dataGridView.Columns["TaxCode"].Width = 80;
                 dataGridView.Columns["PaymentMethod"].DisplayIndex = dataGridView.ColumnCount - 1;
                 dataGridView.Columns["PaymentMethod"].Width = 50;
                 dataGridView.Columns["InvoiceCategory"].DisplayIndex = dataGridView.ColumnCount - 1;

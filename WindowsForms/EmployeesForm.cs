@@ -66,7 +66,7 @@ namespace WindowsForms
                 dataGridView.Columns["Email"].Width = 150;
                 dataGridView.Columns["Phone"].Width = 120;
                 dataGridView.Columns["Adress"].Width = 150;
-                dataGridView.Columns["LegalId"].Width = 80;
+                dataGridView.Columns["TaxCode"].Width = 80;
                 dataGridView.Columns["Admission"].DisplayIndex = dataGridView.ColumnCount - 1;
                 dataGridView.Columns["Admission"].Width = 110;
                 dataGridView.Columns["Category"].DisplayIndex = dataGridView.ColumnCount - 1;
@@ -105,7 +105,7 @@ namespace WindowsForms
             bool showInactive = showInactiveCheckBox.Checked;
 
             if (2 < filter.Length)
-                _filteredEmployees = _employeesTable.FindAll(reg => ((reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)) && (reg.FirstName.ToUpper().Contains(filter.ToUpper()) || reg.LastName.ToUpper().Contains(filter.ToUpper()) || reg.BusinessName.ToUpper().Contains(filter.ToUpper()) || reg.BusinessDescription.ToUpper().Contains(filter.ToUpper()) || reg.Email.ToUpper().Contains(filter.ToUpper()) || reg.LegalId.ToString().Contains(filter)));
+                _filteredEmployees = _employeesTable.FindAll(reg => ((reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)) && (reg.FirstName.ToUpper().Contains(filter.ToUpper()) || reg.LastName.ToUpper().Contains(filter.ToUpper()) || reg.BusinessName.ToUpper().Contains(filter.ToUpper()) || reg.BusinessDescription.ToUpper().Contains(filter.ToUpper()) || reg.Email.ToUpper().Contains(filter.ToUpper()) || reg.TaxCode.ToString().Contains(filter)));
             else
                 _filteredEmployees = _employeesTable.FindAll(reg => (reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive));
 

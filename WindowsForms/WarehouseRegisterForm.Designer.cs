@@ -149,7 +149,6 @@
             this.adressStreetNumberTextBox.Size = new System.Drawing.Size(60, 20);
             this.adressStreetNumberTextBox.TabIndex = 5;
             this.adressStreetNumberTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.adressStreetNumberTextBox.TextChanged += new System.EventHandler(this.adressStreetNumberTextBox_TextChanged);
             // 
             // adressStreetLabel
             // 
@@ -252,7 +251,6 @@
             this.saveButton.TabIndex = 10;
             this.saveButton.Text = "Guardar";
             this.saveButton.UseVisualStyleBackColor = true;
-            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // WarehouseRegisterForm
             // 
@@ -268,7 +266,6 @@
             this.Name = "WarehouseRegisterForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registro de depósito";
-            this.Load += new System.EventHandler(this.WarehouseRegisterForm_Load);
             this.adressPanel.ResumeLayout(false);
             this.adressPanel.PerformLayout();
             this.mainPanel.ResumeLayout(false);
