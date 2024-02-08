@@ -14,7 +14,7 @@ namespace WindowsForms
         Employee _employee = null;
         OpenFileDialog _file = null;
         EmployeesManager _employeesManager = new EmployeesManager();
-        PositionsManager _categoriesManager = new PositionsManager();
+        PositionsManager _positionsManager = new PositionsManager();
 
         //CONSTRUCT
 
@@ -110,7 +110,7 @@ namespace WindowsForms
                 return false;
             }
 
-            if (_categoriesManager.getCategoryId(categoryAreaComboBox.Text, categoryTitleComboBox.Text, categorySeniorityComboBox.Text) == -1)
+            if (_positionsManager.getPositionId(categoryAreaComboBox.Text, categoryTitleComboBox.Text, categorySeniorityComboBox.Text) == -1)
             {
                 MessageBox.Show("Los datos de área, título y experiencia no representan una categoría existente. Si así lo requiere, puede agregarla como una nueva categoría.", "Categoría inexistente", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -127,9 +127,9 @@ namespace WindowsForms
 
             try
             {
-                categoryAreaComboBox.DataSource = _categoriesManager.list("Area");
-                categoryTitleComboBox.DataSource = _categoriesManager.list("Title");
-                categorySeniorityComboBox.DataSource = _categoriesManager.list("Seniority");
+                categoryAreaComboBox.DataSource = _positionsManager.list("Area");
+                categoryTitleComboBox.DataSource = _positionsManager.list("Title");
+                categorySeniorityComboBox.DataSource = _positionsManager.list("Seniority");
 
                 if (_employee == null) // Se está agregando un registro
                 {
@@ -143,9 +143,9 @@ namespace WindowsForms
                 }
                 else // Se está editando un registro
                 {
-                    categoryAreaComboBox.Text = _employee.Category.Area;
-                    categoryTitleComboBox.Text = _employee.Category.Title;
-                    categorySeniorityComboBox.Text = _employee.Category.Seniority;
+                    categoryTitleComboBox.Text = _employee.Position.Title;
+                    categorySeniorityComboBox.Text = _employee.Position.Seniority.Name;
+                    categoryAreaComboBox.Text = _employee.Position.Department.Name;
 
                     activeStatusCheckBox.Checked = _employee.ActiveStatus;
                     isPersonCheckBox.Checked = _employee.IsPerson;
@@ -156,21 +156,21 @@ namespace WindowsForms
                     imageUrlTextBox.Text = _employee.ImageUrl;
                     emailTextBox.Text = _employee.Email;
 
-                    phoneCountryTextBox.Text = _employee.Phone.Country.ToString();
-                    phoneAreaTextBox.Text = _employee.Phone.Area.ToString();
                     phoneNumberTextBox.Text = _employee.Phone.Number.ToString();
+                    phoneCountryTextBox.Text = _employee.Phone.Country.PhoneAreaCode.ToString();
+                    phoneAreaTextBox.Text = _employee.Phone.Province.PhoneAreaCode.ToString();
 
-                    adressCountryTextBox.Text = _employee.Adress.Country;
-                    adressProvinceTextBox.Text = _employee.Adress.Province;
                     adressCityTextBox.Text = _employee.Adress.City;
                     adressZipCodeTextBox.Text = _employee.Adress.ZipCode;
-                    adressStreetTextBox.Text = _employee.Adress.Street;
+                    adressStreetTextBox.Text = _employee.Adress.StreetName;
                     adressStreetNumberTextBox.Text = _employee.Adress.StreetNumber.ToString();
                     adressFlatTextBox.Text = _employee.Adress.Flat;
+                    adressCountryTextBox.Text = _employee.Adress.Country.Name;
+                    adressProvinceTextBox.Text = _employee.Adress.Province.Name;
 
-                    legalIdXXTextBox.Text = _employee.LegalId.XX;
-                    legalIdDNITextBox.Text = _employee.LegalId.DNI.ToString();
-                    legalIdYTextBox.Text = _employee.LegalId.Y;
+                    legalIdXXTextBox.Text = _employee.TaxCode.Prefix;
+                    legalIdDNITextBox.Text = _employee.TaxCode.Number.ToString();
+                    legalIdYTextBox.Text = _employee.TaxCode.Suffix;
 
                     Functions.loadImage(pictureBox, imageUrlTextBox.Text);
                 }
@@ -197,26 +197,26 @@ namespace WindowsForms
                 _employee.ImageUrl = imageUrlTextBox.Text;
                 _employee.Email = emailTextBox.Text;
 
-                if (phoneCountryTextBox.Text != "") _employee.Phone.Country = int.Parse(phoneCountryTextBox.Text);
-                if (phoneAreaTextBox.Text != "") _employee.Phone.Area = int.Parse(phoneAreaTextBox.Text);
                 if (phoneNumberTextBox.Text != "") _employee.Phone.Number = int.Parse(phoneNumberTextBox.Text);
+                if (phoneCountryTextBox.Text != "") _employee.Phone.Country.PhoneAreaCode = int.Parse(phoneCountryTextBox.Text);
+                if (phoneAreaTextBox.Text != "") _employee.Phone.Province.PhoneAreaCode = int.Parse(phoneAreaTextBox.Text);
 
-                _employee.Adress.Country = adressCountryTextBox.Text;
-                _employee.Adress.Province = adressProvinceTextBox.Text;
                 _employee.Adress.City = adressCityTextBox.Text;
                 _employee.Adress.ZipCode = adressZipCodeTextBox.Text;
-                _employee.Adress.Street = adressStreetTextBox.Text;
+                _employee.Adress.StreetName = adressStreetTextBox.Text;
                 if (adressStreetNumberTextBox.Text != "") _employee.Adress.StreetNumber = int.Parse(adressStreetNumberTextBox.Text);
                 _employee.Adress.Flat = adressFlatTextBox.Text;
+                _employee.Adress.Country.Name = adressCountryTextBox.Text;
+                _employee.Adress.Province.Name = adressProvinceTextBox.Text;
 
-                _employee.LegalId.XX = legalIdXXTextBox.Text;
-                if (legalIdDNITextBox.Text != "") _employee.LegalId.DNI = int.Parse(legalIdDNITextBox.Text);
-                _employee.LegalId.Y = legalIdYTextBox.Text;
+                _employee.TaxCode.Prefix = legalIdXXTextBox.Text;
+                if (legalIdDNITextBox.Text != "") _employee.TaxCode.Number = int.Parse(legalIdDNITextBox.Text);
+                _employee.TaxCode.Suffix = legalIdYTextBox.Text;
 
-                _employee.Category.Id = _categoriesManager.getCategoryId(categoryAreaComboBox.Text, categoryTitleComboBox.Text, categorySeniorityComboBox.Text);
-                _employee.Category.Area = categoryAreaComboBox.Text;
-                _employee.Category.Title = categoryTitleComboBox.Text;
-                _employee.Category.Seniority = categorySeniorityComboBox.Text;
+                _employee.Position.PositionId = _positionsManager.getPositionId(categoryAreaComboBox.Text, categoryTitleComboBox.Text, categorySeniorityComboBox.Text);
+                _employee.Position.Title = categoryTitleComboBox.Text;
+                _employee.Position.Seniority.Name = categorySeniorityComboBox.Text;
+                _employee.Position.Department.Name = categoryAreaComboBox.Text;
 
                 if (0 < _employee.EmployeeId)
                     _employeesManager.edit(_employee); // Se está editando un registro
@@ -298,7 +298,7 @@ namespace WindowsForms
 
         private void addCategoryButton_Click(object sender, EventArgs e)
         {
-            if (0 < _categoriesManager.getCategoryId(categoryAreaComboBox.Text, categoryTitleComboBox.Text, categorySeniorityComboBox.Text))
+            if (0 < _positionsManager.getPositionId(categoryAreaComboBox.Text, categoryTitleComboBox.Text, categorySeniorityComboBox.Text))
             {
                 MessageBox.Show($"La categoría {categoryTitleComboBox.Text} {categorySeniorityComboBox.Text} perteneciente al área de {categoryAreaComboBox.Text} ya existe.", "Categoría existente", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -309,18 +309,18 @@ namespace WindowsForms
 
                 if (answer == DialogResult.Yes)
                 {
-                    Category newCategory = new Category();
-                    newCategory.Area = categoryAreaComboBox.Text;
-                    newCategory.Title = categoryTitleComboBox.Text;
-                    newCategory.Seniority = categorySeniorityComboBox.Text;
-                    _categoriesManager.add(newCategory);
+                    Position newPosition = new Position();
+                    newPosition.Department.Name = categoryAreaComboBox.Text;
+                    newPosition.Title = categoryTitleComboBox.Text;
+                    newPosition.Seniority.Name = categorySeniorityComboBox.Text;
+                    _positionsManager.add(newPosition);
                 }
             }
         }
 
         private void deleteCategoryButton_Click(object sender, EventArgs e)
         {
-            int id = _categoriesManager.getCategoryId(categoryAreaComboBox.Text, categoryTitleComboBox.Text, categorySeniorityComboBox.Text);
+            int id = _positionsManager.getPositionId(categoryAreaComboBox.Text, categoryTitleComboBox.Text, categorySeniorityComboBox.Text);
 
             if (id == -1)
             {
@@ -333,7 +333,7 @@ namespace WindowsForms
 
                 if (answer == DialogResult.Yes)
                 {
-                    _categoriesManager.delete(id);
+                    _positionsManager.delete(id);
                 }
             }
         }

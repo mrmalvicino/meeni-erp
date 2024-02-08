@@ -12,6 +12,8 @@ namespace BLL
         private PhonesManager _phonesManager = new PhonesManager();
         private AdressesManager _adressesManager = new AdressesManager();
         private TaxCodesManager _taxCodesManager = new TaxCodesManager();
+        private CountriesManager _countriesManager = new CountriesManager();
+        private ProvincesManager _provincesManager = new ProvincesManager();
 
         // METHODS
 
@@ -123,6 +125,14 @@ namespace BLL
             individual.Phone.PhoneId = (int)_database.Reader["PhoneId"];
             individual.Adress.AdressId = (int)_database.Reader["AdressId"];
             individual.TaxCode.TaxCodeId = (int)_database.Reader["TaxCodeId"];
+
+            _phonesManager.readPhone(individual.Phone, individual.Phone.PhoneId);
+            _adressesManager.readAdress(individual.Adress, individual.Adress.AdressId);
+            _taxCodesManager.readTaxCode(individual.TaxCode, individual.TaxCode.TaxCodeId);
+            _countriesManager.readCountry(individual.Phone.Country, individual.Phone.Country.CountryId);
+            _countriesManager.readCountry(individual.Adress.Country, individual.Adress.Country.CountryId);
+            _provincesManager.readProvince(individual.Phone.Province, individual.Phone.Province.ProvinceId);
+            _provincesManager.readProvince(individual.Adress.Province, individual.Adress.Province.ProvinceId);
         }
     }
 }

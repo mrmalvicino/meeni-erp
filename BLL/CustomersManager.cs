@@ -6,14 +6,6 @@ namespace BLL
 {
     public class CustomersManager : BusinessPartnersManager
     {
-        // ATTRIBUTES
-
-        PhonesManager _phonesManager = new PhonesManager();
-        AdressesManager _adressesManager = new AdressesManager();
-        TaxCodesManager _taxCodesManager = new TaxCodesManager();
-        CountriesManager _countriesManager = new CountriesManager();
-        ProvincesManager _provincesManager = new ProvincesManager();
-
         // METHODS
 
         public List<Customer> list()
@@ -35,14 +27,6 @@ namespace BLL
 
                     readBusinessPartner(customer, customer.BusinessPartnerId);
                     readIndividual(customer, customer.IndividualId);
-
-                    _phonesManager.readPhone(customer.Phone, customer.Phone.PhoneId);
-                    _adressesManager.readAdress(customer.Adress, customer.Adress.AdressId);
-                    _taxCodesManager.readTaxCode(customer.TaxCode, customer.TaxCode.TaxCodeId);
-                    _countriesManager.readCountry(customer.Phone.Country, customer.Phone.Country.CountryId);
-                    _countriesManager.readCountry(customer.Adress.Country, customer.Adress.Country.CountryId);
-                    _provincesManager.readProvince(customer.Phone.Province, customer.Phone.Province.ProvinceId);
-                    _provincesManager.readProvince(customer.Adress.Province, customer.Adress.Province.ProvinceId);
 
                     list.Add(customer);
                 }

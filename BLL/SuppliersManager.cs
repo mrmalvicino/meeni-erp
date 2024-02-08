@@ -21,8 +21,7 @@ namespace BLL
                 {
                     Supplier supplier = new Supplier();
 
-                    readIndividual(supplier);
-                    supplier.Id = (int)_database.Reader["Id"];
+                    supplier.SupplierId = (int)_database.Reader["Id"];
 
                     if (!(_database.Reader["PaymentMethod"] is DBNull))
                         supplier.PaymentMethod = (string)_database.Reader["PaymentMethod"];
@@ -51,7 +50,6 @@ namespace BLL
             try
             {
                 _database.setQuery("INSERT INTO suppliers (ActiveStatus, IsPerson, FirstName, LastName, BusinessName, BusinessDescription, ImageUrl, Email, PhoneCountry, PhoneArea, PhoneNumber, AdressCountry, AdressProvince, AdressCity, AdressZipCode, AdressStreet, AdressStreetNumber, AdressFlat, LegalIdXX, LegalIdDNI, LegalIdY, PaymentMethod, InvoiceCategory) VALUES (@ActiveStatus, @IsPerson, @FirstName, @LastName, @BusinessName, @BusinessDescription, @ImageUrl, @Email, @PhoneCountry, @PhoneArea, @PhoneNumber, @AdressCountry, @AdressProvince, @AdressCity, @AdressZipCode, @AdressStreet, @AdressStreetNumber, @AdressFlat, @LegalIdXX, @LegalIdDNI, @LegalIdY, @PaymentMethod, @InvoiceCategory)");
-                setupIndividualParameters(reg);
                 _database.setParameter("@PaymentMethod", reg.PaymentMethod);
                 _database.setParameter("@InvoiceCategory", reg.InvoiceCategory);
                 _database.executeAction();
@@ -66,15 +64,14 @@ namespace BLL
             }
         }
 
-        public void edit(Supplier reg)
+        public void edit(Supplier supplier)
         {
             try
             {
-                _database.setQuery("UPDATE suppliers SET ActiveStatus = @ActiveStatus, IsPerson = @IsPerson, FirstName = @FirstName, LastName = @LastName, BusinessName = @BusinessName, BusinessDescription = @BusinessDescription, ImageUrl = @ImageUrl, Email = @Email, PhoneCountry = @PhoneCountry, PhoneArea = @PhoneArea, PhoneNumber = @PhoneNumber, AdressCountry = @AdressCountry, AdressProvince = @AdressProvince, AdressCity = @AdressCity, AdressZipCode = @AdressZipCode, AdressStreet = @AdressStreet, AdressStreetNumber = @AdressStreetNumber, AdressFlat = @AdressFlat, LegalIdXX = @LegalIdXX, LegalIdDNI = @LegalIdDNI, LegalIdY = @LegalIdY, PaymentMethod = @PaymentMethod, InvoiceCategory = @InvoiceCategory WHERE Id = @Id");
-                setupIndividualParameters(reg);
-                _database.setParameter("@PaymentMethod", reg.PaymentMethod);
-                _database.setParameter("@InvoiceCategory", reg.InvoiceCategory);
-                _database.setParameter("@Id", reg.Id);
+                _database.setQuery("UPDATE suppliers SET ActiveStatus = @ActiveStatus, IsPerson = @IsPerson, FirstName = @FirstName, LastName = @LastName, BusinessName = @BusinessName, BusinessDescription = @BusinessDescription, ImageUrl = @ImageUrl, Email = @Email, PhoneCountry = @PhoneCountry, PhoneArea = @PhoneArea, PhoneNumber = @PhoneNumber, AdressCountry = @AdressCountry, AdressProvince = @AdressProvince, AdressCity = @AdressCity, AdressZipCode = @AdressZipCode, AdressStreet = @AdressStreet, AdressStreetNumber = @AdressStreetNumber, AdressFlat = @AdressFlat, LegalIdXX = @LegalIdXX, LegalIdDNI = @LegalIdDNI, LegalIdY = @LegalIdY, PaymentMethod = @PaymentMethod, InvoiceCategory = @InvoiceCategory WHERE SupplierId = @SupplierId");
+                _database.setParameter("@PaymentMethod", supplier.PaymentMethod);
+                _database.setParameter("@InvoiceCategory", supplier.InvoiceCategory);
+                _database.setParameter("@SupplierId", supplier.SupplierId);
                 _database.executeAction();
             }
             catch (Exception ex)

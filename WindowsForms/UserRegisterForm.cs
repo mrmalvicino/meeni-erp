@@ -70,7 +70,7 @@ namespace WindowsForms
                     userNameTextBox.Text = _user.UserName;
                     userPasswordTextBox.Text = _user.UserPassword;
                     repeatTextBox.Text = userPasswordTextBox.Text;
-                    roleNameComboBox.SelectedValue = _user.Role.Id;
+                    roleNameComboBox.SelectedValue = _user.Role.RoleId;
                 }                
                 else // Se está agregando un registro
                 {

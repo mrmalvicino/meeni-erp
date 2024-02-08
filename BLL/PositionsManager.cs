@@ -26,10 +26,10 @@ namespace BLL
                 {
                     Position position = new Position();
 
-                    position.Id = (int)_database.Reader["Id"];
-                    position.Area = (string)_database.Reader["Area"];
+                    position.PositionId = (int)_database.Reader["Id"];
                     position.Title = (string)_database.Reader["Title"];
-                    position.Seniority = (string)_database.Reader["Seniority"];
+                    position.Seniority.Name = (string)_database.Reader["Seniority"];
+                    position.Department.Name = (string)_database.Reader["Area"];
 
                     list.Add(position);
                 }
@@ -75,14 +75,14 @@ namespace BLL
             }
         }
 
-        public void add(Position reg)
+        public void add(Position position)
         {
             try
             {
                 _database.setQuery("INSERT INTO positions (Area, Title, Seniority) VALUES (@Area, @Title, @Seniority)");
-                _database.setParameter("@Area", reg.Area);
-                _database.setParameter("@Title", reg.Title);
-                _database.setParameter("@Seniority", reg.Seniority);
+                _database.setParameter("@Title", position.Title);
+                _database.setParameter("@Seniority", position.Seniority.Name);
+                _database.setParameter("@Area", position.Department.Name);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -95,15 +95,15 @@ namespace BLL
             }
         }
 
-        public void edit(Position reg)
+        public void edit(Position position)
         {
             try
             {
                 _database.setQuery("UPDATE positions SET Area = @Area, Title = @Title, Seniority = @Seniority WHERE Id = @Id");
-                _database.setParameter("@Id", reg.Id);
-                _database.setParameter("@Area", reg.Area);
-                _database.setParameter("@Title", reg.Title);
-                _database.setParameter("@Seniority", reg.Seniority);
+                _database.setParameter("@Id", position.PositionId);
+                _database.setParameter("@Title", position.Title);
+                _database.setParameter("@Seniority", position.Seniority.Name);
+                _database.setParameter("@Area", position.Department.Name);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -134,12 +134,12 @@ namespace BLL
             }
         }
         
-        public int getPositionId(string area, string title, string seniority)
+        public int getPositionId(string department, string title, string seniority)
         {
             foreach (Position position in list())
             {
-                if (position.Area == area && position.Title == title && position.Seniority == seniority)
-                    return position.Id;
+                if (position.Department.Name == department && position.Title == title && position.Seniority.Name == seniority)
+                    return position.PositionId;
             }
 
             return -1;

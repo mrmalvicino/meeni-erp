@@ -126,21 +126,21 @@ namespace WindowsForms
                 imageUrlTextBox.Text = _customer.ImageUrl;
                 emailTextBox.Text = _customer.Email;
 
-                phoneCountryTextBox.Text = _customer.Phone.Country.ToString();
-                phoneAreaTextBox.Text = _customer.Phone.Area.ToString();
                 phoneNumberTextBox.Text = _customer.Phone.Number.ToString();
+                phoneCountryTextBox.Text = _customer.Phone.Country.PhoneAreaCode.ToString();
+                phoneAreaTextBox.Text = _customer.Phone.Province.PhoneAreaCode.ToString();
 
-                adressCountryTextBox.Text = _customer.Adress.Country;
-                adressProvinceTextBox.Text = _customer.Adress.Province;
                 adressCityTextBox.Text = _customer.Adress.City;
                 adressZipCodeTextBox.Text = _customer.Adress.ZipCode;
-                adressStreetTextBox.Text = _customer.Adress.Street;
+                adressStreetTextBox.Text = _customer.Adress.StreetName;
                 adressStreetNumberTextBox.Text = _customer.Adress.StreetNumber.ToString();
                 adressFlatTextBox.Text = _customer.Adress.Flat;
+                adressCountryTextBox.Text = _customer.Adress.Country.Name;
+                adressProvinceTextBox.Text = _customer.Adress.Province.Name;
 
-                legalIdXXTextBox.Text = _customer.LegalId.XX;
-                legalIdDNITextBox.Text = _customer.LegalId.DNI.ToString();
-                legalIdYTextBox.Text = _customer.LegalId.Y;
+                legalIdXXTextBox.Text = _customer.TaxCode.Prefix;
+                legalIdDNITextBox.Text = _customer.TaxCode.Number.ToString();
+                legalIdYTextBox.Text = _customer.TaxCode.Suffix;
 
                 paymentMethodComboBox.Text = _customer.PaymentMethod;
                 invoiceCategoryComboBox.Text = _customer.InvoiceCategory;
@@ -165,26 +165,26 @@ namespace WindowsForms
                 _customer.ImageUrl = imageUrlTextBox.Text;
                 _customer.Email = emailTextBox.Text;
 
-                if (phoneCountryTextBox.Text != "") _customer.Phone.Country = int.Parse(phoneCountryTextBox.Text);
-                if (phoneAreaTextBox.Text != "") _customer.Phone.Area = int.Parse(phoneAreaTextBox.Text);
                 if (phoneNumberTextBox.Text != "") _customer.Phone.Number = int.Parse(phoneNumberTextBox.Text);
+                if (phoneCountryTextBox.Text != "") _customer.Phone.Country.PhoneAreaCode = int.Parse(phoneCountryTextBox.Text);
+                if (phoneAreaTextBox.Text != "") _customer.Phone.Province.PhoneAreaCode = int.Parse(phoneAreaTextBox.Text);
 
-                _customer.Adress.Country = adressCountryTextBox.Text;
-                _customer.Adress.Province = adressProvinceTextBox.Text;
                 _customer.Adress.City = adressCityTextBox.Text;
                 _customer.Adress.ZipCode = adressZipCodeTextBox.Text;
-                _customer.Adress.Street = adressStreetTextBox.Text;
+                _customer.Adress.StreetName = adressStreetTextBox.Text;
                 if (adressStreetNumberTextBox.Text != "") _customer.Adress.StreetNumber = int.Parse(adressStreetNumberTextBox.Text);
                 _customer.Adress.Flat = adressFlatTextBox.Text;
+                _customer.Adress.Country.Name = adressCountryTextBox.Text;
+                _customer.Adress.Province.Name = adressProvinceTextBox.Text;
 
-                _customer.LegalId.XX = legalIdXXTextBox.Text;
-                if (legalIdDNITextBox.Text != "") _customer.LegalId.DNI = int.Parse(legalIdDNITextBox.Text);
-                _customer.LegalId.Y = legalIdYTextBox.Text;
+                _customer.TaxCode.Prefix = legalIdXXTextBox.Text;
+                if (legalIdDNITextBox.Text != "") _customer.TaxCode.Number = int.Parse(legalIdDNITextBox.Text);
+                _customer.TaxCode.Suffix = legalIdYTextBox.Text;
 
                 _customer.PaymentMethod = paymentMethodComboBox.Text;
                 _customer.InvoiceCategory = invoiceCategoryComboBox.Text;
 
-                if (0 < _customer.Id)
+                if (0 < _customer.CustomerId)
                     _customersManager.edit(_customer); // Se está editando un registro
                 else
                     _customersManager.add(_customer); // Se está agregando un registro

@@ -102,7 +102,7 @@ namespace WindowsForms
             bool showInactive = showInactiveCheckBox.Checked;
 
             if (2 < filter.Length)
-                _filteredSuppliers = _suppliersTable.FindAll(reg => ((reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)) && (reg.FirstName.ToUpper().Contains(filter.ToUpper()) || reg.LastName.ToUpper().Contains(filter.ToUpper()) || reg.BusinessName.ToUpper().Contains(filter.ToUpper()) || reg.BusinessDescription.ToUpper().Contains(filter.ToUpper()) || reg.Email.ToUpper().Contains(filter.ToUpper()) || reg.LegalId.ToString().Contains(filter)));
+                _filteredSuppliers = _suppliersTable.FindAll(reg => ((reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)) && (reg.FirstName.ToUpper().Contains(filter.ToUpper()) || reg.LastName.ToUpper().Contains(filter.ToUpper()) || reg.BusinessName.ToUpper().Contains(filter.ToUpper()) || reg.BusinessDescription.ToUpper().Contains(filter.ToUpper()) || reg.Email.ToUpper().Contains(filter.ToUpper()) || reg.TaxCode.ToString().Contains(filter)));
             else
                 _filteredSuppliers = _suppliersTable.FindAll(reg => (reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive));
 
@@ -146,7 +146,7 @@ namespace WindowsForms
             {
                 _selectedSupplier = (Supplier)dataGridView.CurrentRow.DataBoundItem;
                 Functions.loadImage(pictureBox, _selectedSupplier.ImageUrl);
-                loadProfile(_selectedSupplier.Id, _selectedSupplier.ToString(), _selectedSupplier.BusinessDescription, _selectedSupplier.Phone.ToString(), _selectedSupplier.Email.ToString(), _selectedSupplier.Adress.ToString());
+                loadProfile(_selectedSupplier.SupplierId, _selectedSupplier.ToString(), _selectedSupplier.BusinessDescription, _selectedSupplier.Phone.ToString(), _selectedSupplier.Email.ToString(), _selectedSupplier.Adress.ToString());
             }
         }
 
@@ -174,7 +174,7 @@ namespace WindowsForms
 
                 if (answer == DialogResult.Yes)
                 {
-                    _suppliersManager.delete(_selectedSupplier.Id);
+                    _suppliersManager.delete(_selectedSupplier);
                     refreshTable();
                     applyFilter();
                 }

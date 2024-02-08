@@ -19,14 +19,14 @@ namespace BLL
 
             try
             {
-                _database.setQuery("SELECT Id, RoleName FROM roles");
+                _database.setQuery("SELECT RoleId, RoleName FROM roles");
                 _database.executeReader();
 
                 while (_database.Reader.Read())
                 {
                     Role role = new Role();
 
-                    role.Id = (int)_database.Reader["Id"];
+                    role.RoleId = (int)_database.Reader["RoleId"];
                     role.Name = (string)_database.Reader["RoleName"];
 
                     list.Add(role);
@@ -42,61 +42,6 @@ namespace BLL
             {
                 _database.closeConnection();
             }
-        }
-        /*
-        public void add(Role reg)
-        {
-            try
-            {
-                _database.setQuery("INSERT INTO roles (RoleName) VALUES (@RoleName)");
-                _database.setParameter("@RoleName", reg.Name);
-                _database.executeAction();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                _database.closeConnection();
-            }
-        }
-
-        public void edit(Role reg)
-        {
-            try
-            {
-                _database.setQuery("UPDATE roles SET RoleName = @RoleName WHERE Id = @Id");
-                _database.setParameter("@Id", reg.Id);
-                _database.setParameter("@RoleName", reg.Name);
-                _database.executeAction();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                _database.closeConnection();
-            }
-        }
-
-        public void delete(int id)
-        {
-            try
-            {
-                _database.setQuery("DELETE FROM roles WHERE Id = @Id");
-                _database.setParameter("@Id", id);
-                _database.executeAction();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                _database.closeConnection();
-            }
-        }*/
+        }        
     }
 }

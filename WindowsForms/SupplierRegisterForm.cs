@@ -126,21 +126,21 @@ namespace WindowsForms
                 imageUrlTextBox.Text = _supplier.ImageUrl;
                 emailTextBox.Text = _supplier.Email;
 
-                phoneCountryTextBox.Text = _supplier.Phone.Country.ToString();
-                phoneAreaTextBox.Text = _supplier.Phone.Area.ToString();
                 phoneNumberTextBox.Text = _supplier.Phone.Number.ToString();
+                phoneCountryTextBox.Text = _supplier.Phone.Country.PhoneAreaCode.ToString();
+                phoneAreaTextBox.Text = _supplier.Phone.Province.PhoneAreaCode.ToString();
 
-                adressCountryTextBox.Text = _supplier.Adress.Country;
-                adressProvinceTextBox.Text = _supplier.Adress.Province;
                 adressCityTextBox.Text = _supplier.Adress.City;
                 adressZipCodeTextBox.Text = _supplier.Adress.ZipCode;
-                adressStreetTextBox.Text = _supplier.Adress.Street;
+                adressStreetTextBox.Text = _supplier.Adress.StreetName;
                 adressStreetNumberTextBox.Text = _supplier.Adress.StreetNumber.ToString();
                 adressFlatTextBox.Text = _supplier.Adress.Flat;
+                adressCountryTextBox.Text = _supplier.Adress.Country.Name;
+                adressProvinceTextBox.Text = _supplier.Adress.Province.Name;
 
-                legalIdXXTextBox.Text = _supplier.LegalId.XX;
-                legalIdDNITextBox.Text = _supplier.LegalId.DNI.ToString();
-                legalIdYTextBox.Text = _supplier.LegalId.Y;
+                legalIdXXTextBox.Text = _supplier.TaxCode.Prefix;
+                legalIdDNITextBox.Text = _supplier.TaxCode.Number.ToString();
+                legalIdYTextBox.Text = _supplier.TaxCode.Suffix;
 
                 paymentMethodComboBox.Text = _supplier.PaymentMethod;
                 invoiceCategoryComboBox.Text = _supplier.InvoiceCategory;
@@ -165,26 +165,26 @@ namespace WindowsForms
                 _supplier.ImageUrl = imageUrlTextBox.Text;
                 _supplier.Email = emailTextBox.Text;
 
-                if (phoneCountryTextBox.Text != "") _supplier.Phone.Country = int.Parse(phoneCountryTextBox.Text);
-                if (phoneAreaTextBox.Text != "") _supplier.Phone.Area = int.Parse(phoneAreaTextBox.Text);
                 if (phoneNumberTextBox.Text != "") _supplier.Phone.Number = int.Parse(phoneNumberTextBox.Text);
+                if (phoneCountryTextBox.Text != "") _supplier.Phone.Country.PhoneAreaCode = int.Parse(phoneCountryTextBox.Text);
+                if (phoneAreaTextBox.Text != "") _supplier.Phone.Province.PhoneAreaCode = int.Parse(phoneAreaTextBox.Text);
 
-                _supplier.Adress.Country = adressCountryTextBox.Text;
-                _supplier.Adress.Province = adressProvinceTextBox.Text;
                 _supplier.Adress.City = adressCityTextBox.Text;
                 _supplier.Adress.ZipCode = adressZipCodeTextBox.Text;
-                _supplier.Adress.Street = adressStreetTextBox.Text;
+                _supplier.Adress.StreetName = adressStreetTextBox.Text;
                 if (adressStreetNumberTextBox.Text != "") _supplier.Adress.StreetNumber = int.Parse(adressStreetNumberTextBox.Text);
                 _supplier.Adress.Flat = adressFlatTextBox.Text;
+                _supplier.Adress.Country.Name = adressCountryTextBox.Text;
+                _supplier.Adress.Province.Name = adressProvinceTextBox.Text;
 
-                _supplier.LegalId.XX = legalIdXXTextBox.Text;
-                if (legalIdDNITextBox.Text != "") _supplier.LegalId.DNI = int.Parse(legalIdDNITextBox.Text);
-                _supplier.LegalId.Y = legalIdYTextBox.Text;
+                _supplier.TaxCode.Prefix = legalIdXXTextBox.Text;
+                if (legalIdDNITextBox.Text != "") _supplier.TaxCode.Number = int.Parse(legalIdDNITextBox.Text);
+                _supplier.TaxCode.Suffix = legalIdYTextBox.Text;
 
                 _supplier.PaymentMethod = paymentMethodComboBox.Text;
                 _supplier.InvoiceCategory = invoiceCategoryComboBox.Text;
 
-                if (0 < _supplier.Id)
+                if (0 < _supplier.SupplierId)
                     _suppliersManager.edit(_supplier); // Se está editando un registro
                 else
                     _suppliersManager.add(_supplier); // Se está agregando un registro

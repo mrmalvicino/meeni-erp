@@ -24,7 +24,7 @@ namespace BLL
                     user.UserId = (int)_database.Reader["UserId"];
                     user.UserName = (string)_database.Reader["UserName"];
                     user.UserPassword = (string)_database.Reader["UserPassword"];
-                    user.Role.Id = (int)_database.Reader["RoleId"];
+                    user.Role.RoleId = (int)_database.Reader["RoleId"];
                     user.Role.Name = (string)_database.Reader["RoleName"];
 
                     list.Add(user);
@@ -49,7 +49,7 @@ namespace BLL
                 _database.setQuery("INSERT INTO users (UserName, UserPassword, RoleId) VALUES (@UserName, @UserPassword, @RoleId)");
                 _database.setParameter("@UserName", reg.UserName);
                 _database.setParameter("@UserPassword", reg.UserPassword);
-                _database.setParameter("@RoleId", reg.Role.Id);
+                _database.setParameter("@RoleId", reg.Role.RoleId);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -70,7 +70,7 @@ namespace BLL
                 _database.setParameter("@UserId", reg.UserId);
                 _database.setParameter("@UserName", reg.UserName);
                 _database.setParameter("@UserPassword", reg.UserPassword);
-                _database.setParameter("@RoleId", reg.Role.Id);
+                _database.setParameter("@RoleId", reg.Role.RoleId);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -134,58 +134,24 @@ namespace BLL
             user.BusinessDescription = employee.BusinessDescription;
             user.ImageUrl = employee.ImageUrl;
             user.Email = employee.Email;
-            user.Phone.Country = employee.Phone.Country;
-            user.Phone.Area = employee.Phone.Area;
             user.Phone.Number = employee.Phone.Number;
+            user.Phone.Country.PhoneAreaCode = employee.Phone.Country.PhoneAreaCode;
+            user.Phone.Province.PhoneAreaCode = employee.Phone.Province.PhoneAreaCode;
             user.Adress.Country = employee.Adress.Country;
             user.Adress.Province = employee.Adress.Province;
             user.Adress.City = employee.Adress.City;
             user.Adress.ZipCode = employee.Adress.ZipCode;
-            user.Adress.Street = employee.Adress.Street;
+            user.Adress.StreetName = employee.Adress.StreetName;
             user.Adress.StreetNumber = employee.Adress.StreetNumber;
             user.Adress.Flat = employee.Adress.Flat;
-            user.LegalId.XX = employee.LegalId.XX;
-            user.LegalId.DNI = employee.LegalId.DNI;
-            user.LegalId.Y = employee.LegalId.Y;
+            user.TaxCode.Prefix = employee.TaxCode.Prefix;
+            user.TaxCode.Number = employee.TaxCode.Number;
+            user.TaxCode.Suffix = employee.TaxCode.Suffix;
             user.EmployeeId = employee.EmployeeId;
             user.Admission = employee.Admission;
-            user.Category.Area = employee.Category.Area;
-            user.Category.Title = employee.Category.Title;
-            user.Category.Seniority = employee.Category.Seniority;
+            user.Position.Title = employee.Position.Title;
+            user.Position.Seniority.Name = employee.Position.Seniority.Name;
+            user.Position.Department.Name = employee.Position.Department.Name;
         }
-        /*
-        public int getUserId(Employee employee)
-        {
-            try
-            {
-                foreach (User existingUser in list())
-                {
-                    if (existingUser.UserName == employee.LastName + employee.EmployeeId)
-                        return existingUser.UserId;
-                }
-
-                return -1;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public User loadUser(int userId)
-        {
-            if (0 < userId)
-            {
-                foreach (User existingUser in list())
-                {
-                    if (existingUser.UserId == userId)
-                        return existingUser;
-                }
-            }
-
-            User newUser = new User();
-            return newUser;
-        }
-        */
     }
 }

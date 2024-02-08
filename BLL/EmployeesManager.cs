@@ -21,16 +21,15 @@ namespace BLL
                 {
                     Employee employee = new Employee();
 
-                    readIndividual(employee);
                     employee.EmployeeId = (int)_database.Reader["EmployeeId"];
                     employee.Admission = (DateTime)_database.Reader["Admission"];
 
                     if (!(_database.Reader["CategoryId"] is DBNull))
                     {
-                        employee.Category.Id = (int)_database.Reader["CategoryId"];
-                        employee.Category.Area = (string)_database.Reader["Area"];
-                        employee.Category.Title = (string)_database.Reader["Title"];
-                        employee.Category.Seniority = (string)_database.Reader["Seniority"];
+                        employee.Position.PositionId = (int)_database.Reader["CategoryId"];
+                        employee.Position.Title = (string)_database.Reader["Title"];
+                        employee.Position.Seniority.Name = (string)_database.Reader["Seniority"];
+                        employee.Position.Department.Name = (string)_database.Reader["Department"];
                     }
 
                     list.Add(employee);
@@ -48,13 +47,12 @@ namespace BLL
             }
         }
 
-        public void add(Employee reg)
+        public void add(Employee employee)
         {
             try
             {
-                _database.setQuery("INSERT INTO employees (ActiveStatus, IsPerson, FirstName, LastName, BusinessName, BusinessDescription, ImageUrl, Email, PhoneCountry, PhoneArea, PhoneNumber, AdressCountry, AdressProvince, AdressCity, AdressZipCode, AdressStreet, AdressStreetNumber, AdressFlat, LegalIdXX, LegalIdDNI, LegalIdY, CategoryId) VALUES (@ActiveStatus, @IsPerson, @FirstName, @LastName, @BusinessName, @BusinessDescription, @ImageUrl, @Email, @PhoneCountry, @PhoneArea, @PhoneNumber, @AdressCountry, @AdressProvince, @AdressCity, @AdressZipCode, @AdressStreet, @AdressStreetNumber, @AdressFlat, @LegalIdXX, @LegalIdDNI, @LegalIdY, @CategoryId)");
-                setupIndividualParameters(reg);
-                _database.setParameter("@CategoryId", reg.Category.Id);
+                _database.setQuery("INSERT INTO employees (ActiveStatus, IsPerson, FirstName, LastName, BusinessName, BusinessDescription, ImageUrl, Email, PhoneCountry, PhoneArea, PhoneNumber, AdressCountry, AdressProvince, AdressCity, AdressZipCode, AdressStreet, AdressStreetNumber, AdressFlat, LegalIdXX, LegalIdDNI, LegalIdY, PositionId) VALUES (@ActiveStatus, @IsPerson, @FirstName, @LastName, @BusinessName, @BusinessDescription, @ImageUrl, @Email, @PhoneCountry, @PhoneArea, @PhoneNumber, @AdressCountry, @AdressProvince, @AdressCity, @AdressZipCode, @AdressStreet, @AdressStreetNumber, @AdressFlat, @LegalIdXX, @LegalIdDNI, @LegalIdY, @PositionId)");
+                _database.setParameter("@CategoryId", employee.Position.PositionId);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -67,14 +65,13 @@ namespace BLL
             }
         }
 
-        public void edit(Employee reg)
+        public void edit(Employee employee)
         {
             try
             {
                 _database.setQuery("UPDATE employees SET ActiveStatus = @ActiveStatus, IsPerson = @IsPerson, FirstName = @FirstName, LastName = @LastName, BusinessName = @BusinessName, BusinessDescription = @BusinessDescription, ImageUrl = @ImageUrl, Email = @Email, PhoneCountry = @PhoneCountry, PhoneArea = @PhoneArea, PhoneNumber = @PhoneNumber, AdressCountry = @AdressCountry, AdressProvince = @AdressProvince, AdressCity = @AdressCity, AdressZipCode = @AdressZipCode, AdressStreet = @AdressStreet, AdressStreetNumber = @AdressStreetNumber, AdressFlat = @AdressFlat, LegalIdXX = @LegalIdXX, LegalIdDNI = @LegalIdDNI, LegalIdY = @LegalIdY, CategoryId = @CategoryId WHERE EmployeeId = @EmployeeId");
-                setupIndividualParameters(reg);
-                _database.setParameter("@EmployeeId", reg.EmployeeId);
-                _database.setParameter("@CategoryId", reg.Category.Id);
+                _database.setParameter("@EmployeeId", employee.EmployeeId);
+                _database.setParameter("@CategoryId", employee.Position.PositionId);
                 _database.executeAction();
             }
             catch (Exception ex)
