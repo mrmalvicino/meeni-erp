@@ -6,6 +6,14 @@ namespace BLL
 {
     public class CustomersManager : BusinessPartnersManager
     {
+        // ATTRIBUTES
+
+        PhonesManager _phonesManager = new PhonesManager();
+        AdressesManager _adressesManager = new AdressesManager();
+        TaxCodesManager _taxCodesManager = new TaxCodesManager();
+        CountriesManager _countriesManager = new CountriesManager();
+        ProvincesManager _provincesManager = new ProvincesManager();
+
         // METHODS
 
         public List<Customer> list()
@@ -24,15 +32,17 @@ namespace BLL
                     customer.CustomerId = (int)_database.Reader["CustomerId"];
                     customer.SalesAmount = (int)_database.Reader["SalesAmount"];
                     customer.BusinessPartnerId = (int)_database.Reader["BusinessPartnerId"];
+
                     readBusinessPartner(customer, customer.BusinessPartnerId);
                     readIndividual(customer, customer.IndividualId);
-                    readPhone(customer.Phone, customer.Phone.PhoneId);
-                    readAdress(customer.Adress, customer.Adress.AdressId);
-                    readTaxCode(customer.TaxCode, customer.TaxCode.TaxCodeId);
-                    readCountry(customer.Phone.Country, customer.Phone.Country.CountryId);
-                    readCountry(customer.Adress.Country, customer.Adress.Country.CountryId);
-                    readProvince(customer.Phone.Province, customer.Phone.Province.ProvinceId);
-                    readProvince(customer.Adress.Province, customer.Adress.Province.ProvinceId);
+
+                    _phonesManager.readPhone(customer.Phone, customer.Phone.PhoneId);
+                    _adressesManager.readAdress(customer.Adress, customer.Adress.AdressId);
+                    _taxCodesManager.readTaxCode(customer.TaxCode, customer.TaxCode.TaxCodeId);
+                    _countriesManager.readCountry(customer.Phone.Country, customer.Phone.Country.CountryId);
+                    _countriesManager.readCountry(customer.Adress.Country, customer.Adress.Country.CountryId);
+                    _provincesManager.readProvince(customer.Phone.Province, customer.Phone.Province.ProvinceId);
+                    _provincesManager.readProvince(customer.Adress.Province, customer.Adress.Province.ProvinceId);
 
                     list.Add(customer);
                 }
@@ -53,11 +63,14 @@ namespace BLL
         {
             try
             {
-                _database.setQuery("INSERT INTO customers (ActiveStatus, IsPerson, FirstName, LastName, BusinessName, BusinessDescription, ImageUrl, Email, PhoneCountry, PhoneArea, PhoneNumber, AdressCountry, AdressProvince, AdressCity, AdressZipCode, AdressStreet, AdressStreetNumber, AdressFlat, LegalIdXX, LegalIdDNI, LegalIdY, PaymentMethod, InvoiceCategory) VALUES (@ActiveStatus, @IsPerson, @FirstName, @LastName, @BusinessName, @BusinessDescription, @ImageUrl, @Email, @PhoneCountry, @PhoneArea, @PhoneNumber, @AdressCountry, @AdressProvince, @AdressCity, @AdressZipCode, @AdressStreet, @AdressStreetNumber, @AdressFlat, @LegalIdXX, @LegalIdDNI, @LegalIdY, @PaymentMethod, @InvoiceCategory)");
-                setupIndividualParameters(customer);
-                _database.setParameter("@PaymentMethod", customer.PaymentMethod);
-                _database.setParameter("@InvoiceCategory", customer.InvoiceCategory);
+                _database.setQuery("INSERT INTO customers (SalesAmount, BusinessPartnerId) VALUES (@SalesAmount, @BusinessPartnerId)");
+
+                _database.setParameter("@SalesAmount", customer.SalesAmount);
+                _database.setParameter("@BusinessPartnerId", customer.BusinessPartnerId);
+
                 _database.executeAction();
+
+                add(customer.toBusinessPartner());
             }
             catch (Exception ex)
             {
@@ -73,12 +86,15 @@ namespace BLL
         {
             try
             {
-                _database.setQuery("UPDATE customers SET ActiveStatus = @ActiveStatus, IsPerson = @IsPerson, FirstName = @FirstName, LastName = @LastName, BusinessName = @BusinessName, BusinessDescription = @BusinessDescription, ImageUrl = @ImageUrl, Email = @Email, PhoneCountry = @PhoneCountry, PhoneArea = @PhoneArea, PhoneNumber = @PhoneNumber, AdressCountry = @AdressCountry, AdressProvince = @AdressProvince, AdressCity = @AdressCity, AdressZipCode = @AdressZipCode, AdressStreet = @AdressStreet, AdressStreetNumber = @AdressStreetNumber, AdressFlat = @AdressFlat, LegalIdXX = @LegalIdXX, LegalIdDNI = @LegalIdDNI, LegalIdY = @LegalIdY, PaymentMethod = @PaymentMethod, InvoiceCategory = @InvoiceCategory WHERE CustomerId = @CustomerId");
-                setupIndividualParameters(customer);
-                _database.setParameter("@PaymentMethod", customer.PaymentMethod);
-                _database.setParameter("@InvoiceCategory", customer.InvoiceCategory);
+                _database.setQuery("UPDATE customers SET SalesAmount = @SalesAmount, BusinessPartnerId = @BusinessPartnerId WHERE CustomerId = @CustomerId");
+
                 _database.setParameter("@CustomerId", customer.CustomerId);
+                _database.setParameter("@SalesAmount", customer.SalesAmount);
+                _database.setParameter("@BusinessPartnerId", customer.BusinessPartnerId);
+
                 _database.executeAction();
+
+                edit(customer.toBusinessPartner());
             }
             catch (Exception ex)
             {
@@ -99,7 +115,6 @@ namespace BLL
                 _database.executeAction();
 
                 delete(customer.toBusinessPartner());
-                delete(customer.toIndividual());
             }
             catch (Exception ex)
             {

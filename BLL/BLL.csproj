@@ -41,14 +41,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdressesManager.cs" />
     <Compile Include="BusinessPartnersManager.cs" />
+    <Compile Include="CountriesManager.cs" />
+    <Compile Include="CurrenciesManager.cs" />
+    <Compile Include="PhonesManager.cs" />
     <Compile Include="PositionsManager.cs" />
     <Compile Include="CustomersManager.cs" />
     <Compile Include="EmployeesManager.cs" />
     <Compile Include="IndividualsManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProvincesManager.cs" />
     <Compile Include="RolesManager.cs" />
     <Compile Include="SuppliersManager.cs" />
+    <Compile Include="TaxCodesManager.cs" />
     <Compile Include="UsersManager.cs" />
     <Compile Include="WarehousesManager.cs" />
   </ItemGroup>
