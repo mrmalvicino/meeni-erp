@@ -1,6 +1,7 @@
 ﻿using Entities;
 using DAL;
 using System;
+using System.Collections.Generic;
 
 namespace BLL
 {
@@ -16,6 +17,90 @@ namespace BLL
         private ProvincesManager _provincesManager = new ProvincesManager();
 
         // METHODS
+
+        public List<Individual> listIndividuals()
+        {
+            List<Individual> individualsList = new List<Individual>();
+
+            try
+            {
+                _database.setQuery("SELECT IndividualId, ActiveStatus, IsPerson, FirstName, LastName, BusinessName, BusinessDescription, ImageUrl, Email, PhoneId, AdressId, TaxCodeId FROM individuals");
+                _database.executeReader();
+
+                while (_database.Reader.Read())
+                {
+                    Individual individual= new Individual();
+
+                    individual.IndividualId = (int)_database.Reader["IndividualId"];
+                    individual.ActiveStatus = (bool)_database.Reader["ActiveStatus"];
+                    individual.IsPerson = (bool)_database.Reader["IsPerson"];
+                    individual.FirstName = (string)_database.Reader["FirstName"];
+                    individual.LastName = (string)_database.Reader["LastName"];
+                    individual.BusinessName = (string)_database.Reader["BusinessName"];
+                    individual.BusinessDescription = (string)_database.Reader["BusinessDescription"];
+                    individual.ImageUrl = (string)_database.Reader["ImageUrl"];
+                    individual.Email = (string)_database.Reader["Email"];
+                    individual.Phone.PhoneId = (int)_database.Reader["PhoneId"];
+                    individual.Adress.AdressId = (int)_database.Reader["AdressId"];
+                    individual.TaxCode.TaxCodeId = (int)_database.Reader["TaxCodeId"];
+
+                    individualsList.Add(individual);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _database.closeConnection();
+            }
+
+            foreach (Individual i in individualsList)
+            {
+                foreach (Phone p in _phonesManager.listPhones())
+                {
+                    if (i.Phone.PhoneId == p.PhoneId)
+                    {
+                        i.Phone.Number = p.Number;
+                        i.Phone.Country.CountryId = p.Country.CountryId;
+                        i.Phone.Province.ProvinceId = p.Province.ProvinceId;
+
+                        i.Phone.Country.PhoneAreaCode = p.Country.PhoneAreaCode;
+                        i.Phone.Province.PhoneAreaCode = p.Province.PhoneAreaCode;
+                    }
+                }
+
+                foreach (Adress a in _adressesManager.listAdresses())
+                {
+                    if (i.Adress.AdressId == a.AdressId)
+                    {
+                        i.Adress.City = a.City;
+                        i.Adress.ZipCode = a.ZipCode;
+                        i.Adress.StreetName = a.StreetName;
+                        i.Adress.StreetNumber = a.StreetNumber;
+                        i.Adress.Flat = a.Flat;
+                        i.Adress.Country.CountryId = a.Country.CountryId;
+                        i.Adress.Province.ProvinceId = a.Province.ProvinceId;
+
+                        i.Adress.Country.Name = a.Country.Name;
+                        i.Adress.Province.Name = a.Province.Name;
+                    }
+                }
+
+                foreach (TaxCode t in _taxCodesManager.listTaxCodes())
+                {
+                    if (i.TaxCode.TaxCodeId == t.TaxCodeId)
+                    {
+                        i.TaxCode.Prefix = t.Prefix;
+                        i.TaxCode.Number = t.Number;
+                        i.TaxCode.Suffix = t.Suffix;
+                    }
+                }
+            }
+
+            return individualsList;
+        }
 
         public void add(Individual individual)
         {
@@ -106,33 +191,6 @@ namespace BLL
             {
                 _database.closeConnection();
             }
-        }
-
-        public void readIndividual(Individual individual, int individualId)
-        {
-            _database.setQuery($"SELECT ActiveStatus, IsPerson, FirstName, LastName, BusinessName, BusinessDescription, ImageUrl, Email, PhoneId, AdressId, TaxCodeId FROM individuals WHERE IndividualId = {individualId}");
-            _database.executeReader();
-
-            individual.ActiveStatus = (bool)_database.Reader["ActiveStatus"];
-            individual.IsPerson = (bool)_database.Reader["IsPerson"];
-            individual.FirstName = (string)_database.Reader["FirstName"];
-            individual.LastName = (string)_database.Reader["LastName"];
-            individual.BusinessName = (string)_database.Reader["BusinessName"];
-            individual.BusinessDescription = (string)_database.Reader["BusinessDescription"];
-            individual.ImageUrl = (string)_database.Reader["ImageUrl"];
-            individual.Email = (string)_database.Reader["Email"];
-
-            individual.Phone.PhoneId = (int)_database.Reader["PhoneId"];
-            individual.Adress.AdressId = (int)_database.Reader["AdressId"];
-            individual.TaxCode.TaxCodeId = (int)_database.Reader["TaxCodeId"];
-
-            _phonesManager.readPhone(individual.Phone, individual.Phone.PhoneId);
-            _adressesManager.readAdress(individual.Adress, individual.Adress.AdressId);
-            _taxCodesManager.readTaxCode(individual.TaxCode, individual.TaxCode.TaxCodeId);
-            _countriesManager.readCountry(individual.Phone.Country, individual.Phone.Country.CountryId);
-            _countriesManager.readCountry(individual.Adress.Country, individual.Adress.Country.CountryId);
-            _provincesManager.readProvince(individual.Phone.Province, individual.Phone.Province.ProvinceId);
-            _provincesManager.readProvince(individual.Adress.Province, individual.Adress.Province.ProvinceId);
         }
     }
 }

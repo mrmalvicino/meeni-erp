@@ -60,7 +60,7 @@ namespace Entities
                 return this.BusinessName;
         }
 
-        public Individual toIndividual()
+        public Individual copyToIndividual()
         {
             Individual individual;
             individual = new Individual();

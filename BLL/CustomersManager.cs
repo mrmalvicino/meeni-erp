@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Policy;
 using Entities;
+using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 namespace BLL
 {
@@ -8,9 +10,9 @@ namespace BLL
     {
         // METHODS
 
-        public List<Customer> list()
+        public List<Customer> listCustomers()
         {
-            List<Customer> list = new List<Customer>();
+            List<Customer> customersList = new List<Customer>();
             
             try
             {
@@ -25,13 +27,8 @@ namespace BLL
                     customer.SalesAmount = (int)_database.Reader["SalesAmount"];
                     customer.BusinessPartnerId = (int)_database.Reader["BusinessPartnerId"];
 
-                    readBusinessPartner(customer, customer.BusinessPartnerId);
-                    readIndividual(customer, customer.IndividualId);
-
-                    list.Add(customer);
+                    customersList.Add(customer);
                 }
-
-                return list;
             }
             catch (Exception ex)
             {
@@ -41,6 +38,55 @@ namespace BLL
             {
                 _database.closeConnection();
             }
+
+            foreach (Customer c in customersList)
+            {
+                foreach (BusinessPartner b in listBusinessPartners())
+                {
+                    if (c.BusinessPartnerId == b.BusinessPartnerId)
+                    {
+                        c.PaymentMethod = b.PaymentMethod;
+                        c.InvoiceCategory = b.InvoiceCategory;
+                        c.IndividualId = b.IndividualId;
+
+                        c.ActiveStatus = b.ActiveStatus;
+                        c.IsPerson = b.IsPerson;
+                        c.FirstName = b.FirstName;
+                        c.LastName = b.LastName;
+                        c.BusinessName = b.BusinessName;
+                        c.BusinessDescription = b.BusinessDescription;
+                        c.ImageUrl = b.ImageUrl;
+                        c.Email = b.Email;
+                        c.Phone.PhoneId = b.Phone.PhoneId;
+                        c.Adress.AdressId = b.Adress.AdressId;
+                        c.TaxCode.TaxCodeId = b.TaxCode.TaxCodeId;
+
+                        c.Phone.Number = b.Phone.Number;
+                        c.Phone.Country.CountryId = b.Phone.Country.CountryId;
+                        c.Phone.Province.ProvinceId = b.Phone.Province.ProvinceId;
+
+                        c.Phone.Country.PhoneAreaCode = b.Phone.Country.PhoneAreaCode;
+                        c.Phone.Province.PhoneAreaCode = b.Phone.Province.PhoneAreaCode;
+
+                        c.Adress.City = b.Adress.City;
+                        c.Adress.ZipCode = b.Adress.ZipCode;
+                        c.Adress.StreetName = b.Adress.StreetName;
+                        c.Adress.StreetNumber = b.Adress.StreetNumber;
+                        c.Adress.Flat = b.Adress.Flat;
+                        c.Adress.Country.CountryId = b.Adress.Country.CountryId;
+                        c.Adress.Province.ProvinceId = b.Adress.Province.ProvinceId;
+
+                        c.Adress.Country.Name = b.Adress.Country.Name;
+                        c.Adress.Province.Name = b.Adress.Province.Name;
+
+                        c.TaxCode.Prefix = b.TaxCode.Prefix;
+                        c.TaxCode.Number = b.TaxCode.Number;
+                        c.TaxCode.Suffix = b.TaxCode.Suffix;
+                    }
+                }
+            }
+
+            return customersList;
         }
 
         public void add(Customer customer)
@@ -54,7 +100,7 @@ namespace BLL
 
                 _database.executeAction();
 
-                add(customer.toBusinessPartner());
+                add(customer.copyToBusinessPartner());
             }
             catch (Exception ex)
             {
@@ -78,7 +124,7 @@ namespace BLL
 
                 _database.executeAction();
 
-                edit(customer.toBusinessPartner());
+                edit(customer.copyToBusinessPartner());
             }
             catch (Exception ex)
             {
@@ -98,7 +144,7 @@ namespace BLL
                 _database.setParameter("@CustomerId", customer.CustomerId);
                 _database.executeAction();
 
-                delete(customer.toBusinessPartner());
+                delete(customer.copyToBusinessPartner());
             }
             catch (Exception ex)
             {

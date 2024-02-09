@@ -1,6 +1,7 @@
 ﻿using DAL;
 using Entities;
 using System;
+using System.Collections.Generic;
 
 namespace BLL
 {
@@ -8,11 +9,67 @@ namespace BLL
     {
         // ATTRIBUTES
 
-        Database _database = new Database();
-        CountriesManager _countriesManager = new CountriesManager();
-        ProvincesManager _provincesManager = new ProvincesManager();
+        private Database _database = new Database();
+        private CountriesManager _countriesManager = new CountriesManager();
+        private ProvincesManager _provincesManager = new ProvincesManager();
 
         // METHODS
+
+        public List<Adress> listAdresses()
+        {
+            List<Adress> adressesList = new List<Adress>();
+
+            try
+            {
+                _database.setQuery("SELECT AdressId, AdressCity, AdressZipCode, AdressStreetName, AdressStreetNumber, AdressFlat, CountryId, ProvinceId FROM adresses");
+                _database.executeReader();
+
+                while (_database.Reader.Read())
+                {
+                    Adress adress = new Adress();
+
+                    adress.AdressId = (int)_database.Reader["AdressId"];
+                    adress.City = (string)_database.Reader["AdressCity"];
+                    adress.ZipCode = (string)_database.Reader["AdressZipCode"];
+                    adress.StreetName = (string)_database.Reader["AdressStreetName"];
+                    adress.StreetNumber = (int)_database.Reader["AdressStreetNumber"];
+                    adress.Flat = (string)_database.Reader["AdressFlat"];
+                    adress.Country.CountryId = (int)_database.Reader["CountryId"];
+                    adress.Province.ProvinceId = (int)_database.Reader["ProvinceId"];
+
+                    adressesList.Add(adress);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _database.closeConnection();
+            }
+
+            foreach (Adress a in adressesList)
+            {
+                foreach (Country c in _countriesManager.listCountries())
+                {
+                    if (a.Country.CountryId == c.CountryId)
+                    {
+                        a.Country.Name = c.Name;
+                    }
+                }
+
+                foreach (Province p in _provincesManager.listProvinces())
+                {
+                    if (a.Province.ProvinceId == p.ProvinceId)
+                    {
+                        a.Province.Name = p.Name;
+                    }
+                }
+            }
+
+            return adressesList;
+        }
 
         public void add(Adress adress)
         {
@@ -89,20 +146,6 @@ namespace BLL
             {
                 _database.closeConnection();
             }
-        }
-
-        public void readAdress(Adress adress, int adressId)
-        {
-            _database.setQuery($"SELECT AdressCity, AdressZipCode, AdressStreetName, AdressStreetNumber, AdressFlat, CountryId, ProvinceId FROM adresses WHERE AdressId = {adressId}");
-            _database.executeReader();
-
-            adress.City = (string)_database.Reader["AdressCity"];
-            adress.ZipCode = (string)_database.Reader["AdressZipCode"];
-            adress.StreetName = (string)_database.Reader["AdressStreetName"];
-            adress.StreetNumber = (int)_database.Reader["AdressStreetNumber"];
-            adress.Flat = (string)_database.Reader["AdressFlat"];
-            adress.Country.CountryId = (int)_database.Reader["CountryId"];
-            adress.Province.ProvinceId = (int)_database.Reader["ProvinceId"];
         }
     }
 }

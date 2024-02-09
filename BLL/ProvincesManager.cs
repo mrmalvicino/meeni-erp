@@ -1,6 +1,7 @@
 ﻿using DAL;
 using Entities;
 using System;
+using System.Collections.Generic;
 
 namespace BLL
 {
@@ -8,9 +9,41 @@ namespace BLL
     {
         // ATTRIBUTES
 
-        Database _database = new Database();
+        private Database _database = new Database();
 
         // METHODS
+
+        public List<Province> listProvinces()
+        {
+            List<Province> provincesList = new List<Province>();
+
+            try
+            {
+                _database.setQuery("SELECT ProvinceId, ProvinceName, ProvincePhoneAreaCode FROM provinces");
+                _database.executeReader();
+
+                while (_database.Reader.Read())
+                {
+                    Province province = new Province();
+
+                    province.ProvinceId = (int)_database.Reader["ProvinceId"];
+                    province.Name = (string)_database.Reader["ProvinceName"];
+                    province.PhoneAreaCode = (int)_database.Reader["ProvincePhoneAreaCode"];
+
+                    provincesList.Add(province);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _database.closeConnection();
+            }
+
+            return provincesList;
+        }
 
         public void add(Province province)
         {
@@ -43,15 +76,6 @@ namespace BLL
         public void update(Province province)
         {
             // agrega si no existe, editar si existe
-        }
-
-        public void readProvince(Province province, int provinceId)
-        {
-            _database.setQuery($"SELECT ProvinceName, ProvincePhoneAreaCode FROM provinces WHERE ProvinceId = {provinceId}");
-            _database.executeReader();
-
-            province.Name = (string)_database.Reader["ProvinceName"];
-            province.PhoneAreaCode = (int)_database.Reader["ProvincePhoneAreaCode"];
         }
     }
 }

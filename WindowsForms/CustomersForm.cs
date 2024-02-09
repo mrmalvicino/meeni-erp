@@ -51,7 +51,7 @@ namespace WindowsForms
         {
             if (0 < dataGridView.RowCount)
             {
-                dataGridView.Columns["Id"].Visible = false;
+                dataGridView.Columns["CustomerId"].Visible = false;
                 dataGridView.Columns["ActiveStatus"].Visible = false;
                 dataGridView.Columns["IsPerson"].Width = 50;
                 dataGridView.Columns["FirstName"].Width = 80;
@@ -86,7 +86,7 @@ namespace WindowsForms
         {
             try
             {
-                _customersTable = _customersManager.list();
+                _customersTable = _customersManager.listCustomers();
                 dataGridView.DataSource = _customersTable;
             }
             catch (Exception ex)
@@ -146,7 +146,7 @@ namespace WindowsForms
             {
                 _selectedCustomer = (Customer)dataGridView.CurrentRow.DataBoundItem;
                 Functions.loadImage(pictureBox, _selectedCustomer.ImageUrl);
-                loadProfile(_selectedCustomer.CustomerId, _selectedCustomer.ToString(), _selectedCustomer.BusinessDescription, _selectedCustomer.Phone.ToString(), _selectedCustomer.Email.ToString(), _selectedCustomer.Adress.ToString());
+                //loadProfile(_selectedCustomer.CustomerId, _selectedCustomer.ToString(), _selectedCustomer.BusinessDescription, _selectedCustomer.Phone.ToString(), _selectedCustomer.Email.ToString(), _selectedCustomer.Adress.ToString());
             }
         }
 

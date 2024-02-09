@@ -1,6 +1,7 @@
 ﻿using DAL;
 using Entities;
 using System;
+using System.Collections.Generic;
 
 namespace BLL
 {
@@ -8,9 +9,42 @@ namespace BLL
     {
         // ATTRIBUTES
 
-        Database _database = new Database();
+        private Database _database = new Database();
 
         // METHODS
+
+        public List<TaxCode> listTaxCodes()
+        {
+            List<TaxCode> taxCodesList = new List<TaxCode>();
+
+            try
+            {
+                _database.setQuery("SELECT TaxCodeId, TaxCodePrefix, TaxCodeNumber, TaxCodeSuffix FROM taxCodes");
+                _database.executeReader();
+
+                while (_database.Reader.Read())
+                {
+                    TaxCode taxCode = new TaxCode();
+
+                    taxCode.TaxCodeId = (int)_database.Reader["TaxCodeId"];
+                    taxCode.Prefix = (string)_database.Reader["TaxCodePrefix"];
+                    taxCode.Number = (int)_database.Reader["TaxCodeNumber"];
+                    taxCode.Suffix = (string)_database.Reader["TaxCodeSuffix"];
+
+                    taxCodesList.Add(taxCode);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _database.closeConnection();
+            }
+
+            return taxCodesList;
+        }
 
         public void add(TaxCode taxCode)
         {
@@ -73,16 +107,6 @@ namespace BLL
             {
                 _database.closeConnection();
             }
-        }
-
-        public void readTaxCode(TaxCode taxCode, int taxCodeId)
-        {
-            _database.setQuery($"SELECT TaxCodePrefix, TaxCodeNumber, TaxCodeSuffix FROM taxCodes WHERE TaxCodeId = {taxCodeId}");
-            _database.executeReader();
-
-            taxCode.Prefix = (string)_database.Reader["TaxCodePrefix"];
-            taxCode.Number = (int)_database.Reader["TaxCodeNumber"];
-            taxCode.Suffix = (string)_database.Reader["TaxCodeSuffix"];
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using DAL;
 using Entities;
 using System;
+using System.Collections.Generic;
 
 namespace BLL
 {
@@ -8,11 +9,63 @@ namespace BLL
     {
         // ATTRIBUTES
 
-        Database _database = new Database();
-        CountriesManager _countriesManager = new CountriesManager();
-        ProvincesManager _provincesManager = new ProvincesManager();
+        private Database _database = new Database();
+        private CountriesManager _countriesManager = new CountriesManager();
+        private ProvincesManager _provincesManager = new ProvincesManager();
 
         // METHODS
+
+        public List<Phone> listPhones()
+        {
+            List<Phone> phonesList = new List<Phone>();
+
+            try
+            {
+                _database.setQuery("SELECT PhoneId, PhoneNumber, CountryId, ProvinceId FROM phones");
+                _database.executeReader();
+
+                while (_database.Reader.Read())
+                {
+                    Phone phone = new Phone();
+
+                    phone.PhoneId = (int)_database.Reader["PhoneId"];
+                    phone.Number = (int)_database.Reader["PhoneNumber"];
+                    phone.Country.CountryId = (int)_database.Reader["CountryId"];
+                    phone.Province.ProvinceId = (int)_database.Reader["ProvinceId"];
+
+                    phonesList.Add(phone);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _database.closeConnection();
+            }
+
+            foreach (Phone ph in phonesList)
+            {
+                foreach (Country c in _countriesManager.listCountries())
+                {
+                    if (ph.Country.CountryId == c.CountryId)
+                    {
+                        ph.Country.PhoneAreaCode = c.PhoneAreaCode;
+                    }
+                }
+
+                foreach (Province pr in _provincesManager.listProvinces())
+                {
+                    if (ph.Province.ProvinceId == pr.ProvinceId)
+                    {
+                        ph.Province.PhoneAreaCode = pr.PhoneAreaCode;
+                    }
+                }
+            }
+
+            return phonesList;
+        }
 
         public void add(Phone phone)
         {
@@ -83,14 +136,21 @@ namespace BLL
             }
         }
 
-        public void readPhone(Phone phone, int phoneId)
+        public Phone readPhone(int phoneId)
         {
             _database.setQuery($"SELECT PhoneNumber, CountryId, ProvinceId FROM phones WHERE PhoneId = {phoneId}");
             _database.executeReader();
 
-            phone.Number = (int)_database.Reader["PhoneNumber"];
-            phone.Country.CountryId = (int)_database.Reader["CountryId"];
-            phone.Province.ProvinceId = (int)_database.Reader["ProvinceId"];
+            Phone phone = new Phone();
+
+            if (_database.Reader.Read())
+            {
+                phone.Number = (int)_database.Reader["PhoneNumber"];
+                phone.Country.CountryId = (int)_database.Reader["CountryId"];
+                phone.Province.ProvinceId = (int)_database.Reader["ProvinceId"];                
+            }
+
+            return phone;
         }
     }
 }

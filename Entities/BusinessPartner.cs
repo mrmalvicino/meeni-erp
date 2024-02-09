@@ -17,10 +17,10 @@ namespace Entities
 
         // METHODS
 
-        public BusinessPartner toBusinessPartner()
+        public BusinessPartner copyToBusinessPartner()
         {
             BusinessPartner businessPartner;
-            businessPartner = copyFromIndividual<BusinessPartner>(this.toIndividual());
+            businessPartner = copyFromIndividual<BusinessPartner>(this.copyToIndividual());
 
             businessPartner.BusinessPartnerId = this.BusinessPartnerId;
             businessPartner.PaymentMethod = this.PaymentMethod;

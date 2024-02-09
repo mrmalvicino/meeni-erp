@@ -1,6 +1,7 @@
 ﻿using DAL;
 using Entities;
 using System;
+using System.Collections.Generic;
 
 namespace BLL
 {
@@ -8,9 +9,42 @@ namespace BLL
     {
         // ATTRIBUTES
 
-        Database _database = new Database();
+        private Database _database = new Database();
 
         // METHODS
+
+        public List<Country> listCountries()
+        {
+            List<Country> countriesList = new List<Country>();
+
+            try
+            {
+                _database.setQuery("SELECT CountryId, CountryName, CountryPhoneAreaCode, CurrencyId FROM countries");
+                _database.executeReader();
+
+                while (_database.Reader.Read())
+                {
+                    Country country = new Country();
+
+                    country.CountryId = (int)_database.Reader["CountryId"];
+                    country.Name = (string)_database.Reader["CountryName"];
+                    country.PhoneAreaCode = (int)_database.Reader["CountryPhoneAreaCode"];
+                    country.Currency.CurrencyId = (int)_database.Reader["CurrencyId"];
+
+                    countriesList.Add(country);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _database.closeConnection();
+            }
+
+            return countriesList;
+        }
 
         public void add(Country country)
         {
@@ -43,16 +77,6 @@ namespace BLL
         public void update(Country country)
         {
             // agrega si no existe, editar si existe
-        }
-
-        public void readCountry(Country country, int countryId)
-        {
-            _database.setQuery($"SELECT CountryName, CountryPhoneAreaCode, CurrencyId FROM countries WHERE CountryId = {countryId}");
-            _database.executeReader();
-
-            country.Name = (string)_database.Reader["CountryName"];
-            country.PhoneAreaCode = (int)_database.Reader["CountryPhoneAreaCode"];
-            country.Currency.CurrencyId = (int)_database.Reader["CurrencyId"];
         }
     }
 }
