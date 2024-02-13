@@ -2,8 +2,6 @@
 using System.Windows.Forms;
 using System.Configuration;
 using System.Collections.Generic;
-using System.Text;
-using System.IO;
 using BLL;
 using Entities;
 
@@ -51,23 +49,25 @@ namespace WindowsForms
         {
             if (0 < dataGridView.RowCount)
             {
-                dataGridView.Columns["CustomerId"].Visible = false;
+                dataGridView.Columns["IndividualId"].Visible = false;
                 dataGridView.Columns["ActiveStatus"].Visible = false;
                 dataGridView.Columns["IsPerson"].Width = 50;
-                dataGridView.Columns["FirstName"].Width = 80;
-                dataGridView.Columns["LastName"].Width = 80;
+                dataGridView.Columns["FirstName"].Width = 60;
+                dataGridView.Columns["LastName"].Width = 60;
                 dataGridView.Columns["BusinessDescription"].Width = 120;
                 dataGridView.Columns["ImageUrl"].Visible = false;
                 dataGridView.Columns["Email"].Width = 150;
-                dataGridView.Columns["Phone"].Width = 120;
+                dataGridView.Columns["Phone"].Width = 100;
                 dataGridView.Columns["Adress"].Width = 150;
-                dataGridView.Columns["TaxCode"].Width = 80;
+                dataGridView.Columns["TaxCode"].Width = 70;
+                dataGridView.Columns["BusinessPartnerId"].Visible = false;
                 dataGridView.Columns["PaymentMethod"].DisplayIndex = dataGridView.ColumnCount - 1;
                 dataGridView.Columns["PaymentMethod"].Width = 50;
                 dataGridView.Columns["InvoiceCategory"].DisplayIndex = dataGridView.ColumnCount - 1;
                 dataGridView.Columns["InvoiceCategory"].Width = 50;
+                dataGridView.Columns["CustomerId"].Visible = false;
                 dataGridView.Columns["SalesAmount"].DisplayIndex = dataGridView.ColumnCount - 1;
-                dataGridView.Columns["SalesAmount"].Width = 80;
+                dataGridView.Columns["SalesAmount"].Width = 50;
                 Functions.fillDataGrid(dataGridView);
             }
         }
@@ -146,7 +146,7 @@ namespace WindowsForms
             {
                 _selectedCustomer = (Customer)dataGridView.CurrentRow.DataBoundItem;
                 Functions.loadImage(pictureBox, _selectedCustomer.ImageUrl);
-                //loadProfile(_selectedCustomer.CustomerId, _selectedCustomer.ToString(), _selectedCustomer.BusinessDescription, _selectedCustomer.Phone.ToString(), _selectedCustomer.Email.ToString(), _selectedCustomer.Adress.ToString());
+                loadProfile(_selectedCustomer.CustomerId, _selectedCustomer.ToString(), _selectedCustomer.BusinessDescription, _selectedCustomer.Phone.ToString(), _selectedCustomer.Email.ToString(), _selectedCustomer.Adress.ToString());
             }
         }
 
