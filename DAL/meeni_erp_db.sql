@@ -1,7 +1,3 @@
---------------
--- DATABASE --
---------------
-
 create database meeni_erp_db
 go
 
@@ -13,16 +9,16 @@ go
 ----------------
 
 create table Currencies(
-	CurrencyId int primary key identity(1,1) not null,
-	CurrencyCode varchar(3) unique check(len(trim(CurrencyCode)) = 3) not null,
+	CurrencyId tinyint primary key identity(1,1) not null,
+	Code varchar(3) unique check(len(trim(Code)) = 3) not null,
 	CurrencyName varchar(30) not null,
-	CurrencyRate decimal(15,2) not null,
-	CurrencyBlackRate decimal(15,2) null
+	Rate decimal(15,2) not null,
+	BlackRate decimal(15,2) null
 )
 go
 
 insert into Currencies
-(CurrencyCode, CurrencyName, CurrencyRate, CurrencyBlackRate)
+(Code, CurrencyName, Rate, BlackRate)
 values
 ('USD', 'Dólar', '1', '1'),
 ('EUR', 'Euro', '0.93', '0.93'),
@@ -35,10 +31,10 @@ go
 ---------------
 
 create table Countries(
-	CountryId int primary key identity(1,1) not null,
+	CountryId tinyint primary key identity(1,1) not null,
 	CountryName varchar(30) unique not null,
 	PhoneAreaCode int unique not null,
-	CurrencyId int foreign key references Currencies(CurrencyId) not null
+	CurrencyId tinyint foreign key references Currencies(CurrencyId) not null
 )
 go
 
@@ -56,10 +52,10 @@ go
 ---------------
 
 create table Provinces(
-	ProvinceId int primary key identity(1,1) not null,
+	ProvinceId smallint primary key identity(1,1) not null,
 	ProvinceName varchar(30) not null,
 	PhoneAreaCode int not null,
-	CountryId int foreign key references Countries(CountryId) not null
+	CountryId tinyint foreign key references Countries(CountryId) not null
 )
 go
 
@@ -76,10 +72,10 @@ go
 ------------
 
 create table Cities(
-	CityId int primary key identity(1,1) not null,
+	CityId smallint primary key identity(1,1) not null,
 	CityName varchar(30) not null,
 	ZipCode varchar(30) null,
-	ProvinceId int foreign key references Provinces(ProvinceId) not null
+	ProvinceId smallint foreign key references Provinces(ProvinceId) not null
 )
 go
 
@@ -94,55 +90,6 @@ values
 ('Don Torcuato', '1617', '1'),
 ('Villa Carlos Paz', '5152', '2'),
 ('San Carlos de Bariloche', '8400', '3');
-go
-
-------------
--- PHONES --
-------------
-
-create table Phones(
-	PhoneId int primary key identity(1,1) not null,
-	PhoneNumber int not null,
-	ProvinceId int foreign key references Provinces(ProvinceId) null
-)
-go
-
-insert into Phones
-(PhoneNumber, ProvinceId)
-values
-('1527863846', '1'),
-('1547873654', '1'),
-('1568994786', '1'),
-('1558897263', '1'),
-('1557736789', '1'),
-('1527863846', '1'),
-('1547873654', '1'),
-('1558897263', '2'),
-('1557736789', '3');
-go
-
---------------
--- ADRESSES --
---------------
-
-create table Adresses(
-	AdressId int primary key identity(1,1) not null,
-	AdressStreetName varchar(30) not null,
-	AdressStreetNumber int not null,
-	AdressFlat varchar(30) null,
-	CityId int foreign key references Cities(CityId) not null
-)
-go
-
-insert into Adresses
-(AdressStreetName, AdressStreetNumber, AdressFlat, CityId)
-values
-('9 de Julio', '1290', '', '1'),
-('Córdoba', '2345', '9B', '1'),
-('Perón', '345', '', '4'),
-('Cazón', '768', '', '5'),
-('Santa Fé', '1290', '', '3'),
-('Piedra Buena', '389', '2C', '2');
 go
 
 --------------
@@ -163,34 +110,57 @@ values
 ('20', '37456776', '9'),
 ('20', '20378846', '3'),
 ('30', '34768495', '9'),
-('0', '29334857', '0'),
-('0', '38274478', '0'),
 ('20', '37456776', '9'),
 ('20', '20378846', '3'),
 ('30', '34768495', '9'),
-('0', '38274478', '0');
+(null, '29334857', null),
+(null, '38274478', null);
 go
 
-------------
--- IMAGES --
-------------
+--------------
+-- ADRESSES --
+--------------
 
-create table Images(
-	ImageId int primary key identity(1,1) not null,
-	PersonId int null,
-	OrganizationId int null,
-	ProductId int null,
-	ImageUrl varchar(300) unique not null
+create table Adresses(
+	AdressId int primary key identity(1,1) not null,
+	StreetName varchar(30) not null,
+	StreetNumber int not null,
+	Flat varchar(30) null,
+	Details varchar(300) null,
+	CityId smallint foreign key references Cities(CityId) not null
 )
 go
 
-insert into Images
-(PersonId, OrganizationId, ProductId, ImageUrl)
+insert into Adresses
+(StreetName, StreetNumber, Flat, Details, CityId)
 values
-(null, null, null, 'https://img.freepik.com/vector-gratis/logotipo-empresa-construccion-diseno-plano_23-2150051909.jpg?size=338&ext=jpg&ga=GA1.1.1412446893.1705449600&semt=ais'),
-(null, null, null, 'https://img.freepik.com/vector-gratis/logotipo-excavadora-construccion-edificios_23-2148657768.jpg?size=338&ext=jpg&ga=GA1.1.1412446893.1705449600&semt=ais'),
-(null, null, null, 'https://img.freepik.com/vector-premium/logotipo-enlucido-construccion-diseno-ladrillo-paleta_501861-302.jpg?size=338&ext=jpg&ga=GA1.1.1412446893.1705449600&semt=ais'),
-(null, null, null, 'https://hierrosratti.com.ar/images/productos/tubos.jpg');
+('Piedra Buena', '389', '2C', 'En frente de las vías', '2'),
+('9 de Julio', '1290', '2C', 'No anda el timbre', '1'),
+('Córdoba', '2345', '9B', 'Puerta roja', '1'),
+('Perón', '345', '', '', '4'),
+('Cazón', '768', '', '', '5'),
+('Santa Fé', '1290', '', '', '3');
+go
+
+------------
+-- PHONES --
+------------
+
+create table Phones(
+	PhoneId int primary key identity(1,1) not null,
+	PhoneNumber int not null,
+	ProvinceId smallint foreign key references Provinces(ProvinceId) null
+)
+go
+
+insert into Phones
+(PhoneNumber, ProvinceId)
+values
+('1527863846', '1'),
+('1547873654', '1'),
+('1568994786', '1'),
+('1558897263', '1'),
+('1557736789', '1');
 go
 
 ------------
@@ -201,22 +171,15 @@ create table People(
 	PersonId int primary key identity(1,1) not null,
 	FirstName varchar(30) not null,
 	LastName varchar(30) not null,
-	Birth date null,
-	Email varchar(30) null,
-	TaxCodeId int foreign key references TaxCodes(TaxCodeId) null,
-	AdressId int foreign key references Adresses(AdressId) null,
-	PhoneId int foreign key references Phones(PhoneId) null,
 )
 go
 
 insert into People
-(FirstName, LastName, Birth, Email, TaxCodeId, AdressId, PhoneId)
+(FirstName, LastName)
 values
-('Federico', 'Bocca', '1997-01-26', null, '11', '11', '11'),
-('Carlos', 'Berlinguieri', '1987-05-12', 'berlinguieric@gmail.com', '4', '4', '4'),
-('Teodoro', 'Figueredo', '1985-06-18', null, '6', '6', '6'),
-('Mario', 'Santos', '1992-10-18', null, '8', '8', '8'),
-('Pablo', 'Lampone', '1990-09-14', null, '9', '9', '9');
+('Federico', 'Bocca'),
+('Carlos', 'Berlinguieri'),
+('Teodoro', 'Figueredo');
 go
 
 -------------------
@@ -226,23 +189,71 @@ go
 create table Organizations(
 	OrganizationId int primary key identity(1,1) not null,
 	OrganizationName varchar(30) unique not null,
-	OrganizationDescription varchar(50) null,
-	Birth date null,
-	Email varchar(30) null,
-	TaxCodeId int foreign key references TaxCodes(TaxCodeId) null,
-	AdressId int foreign key references Adresses(AdressId) null,
-	PhoneId int foreign key references Phones(PhoneId) null,
+	OrganizationDescription varchar(50) null
 )
 go
 
 insert into Organizations
-(OrganizationName, OrganizationDescription, Birth, Email, TaxCodeId, AdressId, PhoneId)
+(OrganizationName, OrganizationDescription)
 values
-('Pisos Click', 'Pisos vinílicos', null, null, null, null, null),
-('Johnson Construction', 'Residential Contractor', null, 'info@johnsonconstruction.com', '1', '1', '1'),
-('Smith Commercial', 'Comercial Developer', null, 'contact@smithcommercial.com', '2', '2', '2'),
-('Greenfield Builders', 'Eco Friendly Construction', null, 'info@greenfield.com', '3', '3', '3'),
-('Fierros Ratti', 'Hierros y herrajes', null, 'contacto@hierrosratti.com.ar', '5', '5', '5');
+('Pisos Click', 'Pisos vinílicos'),
+('Johnson Construction', null),
+('Smith Commercial', 'Comercial Developer'),
+('Greenfield Builders', 'Eco Friendly Construction'),
+('Fierros Ratti', null),
+('Herrajes San Martín', 'Herrajes de todo tipo');
+go
+
+-----------
+-- ITEMS --
+-----------
+
+create table Items(
+	ItemId int primary key identity(1,1) not null
+)
+go
+
+--------------
+-- PRODUCTS --
+--------------
+
+create table Products(
+	ProductId int primary key identity(1,1) not null,
+	ItemId int foreign key references Items(ItemId) not null
+)
+go
+
+--------------
+-- SERVICES --
+--------------
+
+create table Services(
+	ServiceId int primary key identity(1,1) not null,
+	ItemId int foreign key references Items(ItemId) not null
+)
+go
+
+------------
+-- IMAGES --
+------------
+
+create table Images(
+	ImageId int primary key identity(1,1) not null,
+	PersonId int foreign key references People(PersonId) null,
+	OrganizationId int foreign key references Organizations(OrganizationId) null,
+	ProductId int foreign key references Products(ProductId) null,
+	ImageUrl varchar(300) unique not null
+)
+go
+
+insert into Images
+(PersonId, OrganizationId, ProductId, ImageUrl)
+values
+(null, null, null, 'https://img.freepik.com/vector-gratis/logotipo-empresa-construccion-diseno-plano_23-2150051909.jpg?size=338&ext=jpg&ga=GA1.1.1412446893.1705449600&semt=ais'),
+(null, null, null, 'https://img.freepik.com/vector-gratis/logotipo-excavadora-construccion-edificios_23-2148657768.jpg?size=338&ext=jpg&ga=GA1.1.1412446893.1705449600&semt=ais'),
+(null, null, null, 'https://img.freepik.com/vector-premium/logotipo-enlucido-construccion-diseno-ladrillo-paleta_501861-302.jpg?size=338&ext=jpg&ga=GA1.1.1412446893.1705449600&semt=ais'),
+(null, null, null, 'https://hierrosratti.com.ar/images/productos/tubos.jpg'),
+(null, null, null, 'https://www.herrajessanmartin.com/Pubs/Sites/Default/Config/logo-hsm-invertido-02.png');
 go
 
 -----------------
@@ -250,25 +261,30 @@ go
 -----------------
 
 create table Individuals(
+	IndividualId int primary key identity(1,1) not null,
 	ActiveStatus bit not null default(1),
-	PersonId int foreign key references People(PersonId) not null,
-	OrganizationId int foreign key references Organizations(OrganizationId) not null,
-	primary key (PersonId, OrganizationId)
+	Birth date null,
+	Email varchar(30) null,
+	TaxCodeId int foreign key references TaxCodes(TaxCodeId) null,
+	AdressId int foreign key references Adresses(AdressId) null,
+	PhoneId int foreign key references Phones(PhoneId) null,
+	PersonId int foreign key references People(PersonId) null,
+	OrganizationId int foreign key references Organizations(OrganizationId) null,
+	Constraint UC_Person_Organization unique (PersonId, OrganizationId)
 )
 go
 
 insert into Individuals
-(ActiveStatus, PersonId, OrganizationId)
+(ActiveStatus, Birth, Email, TaxCodeId, AdressId, PhoneId, PersonId, OrganizationId)
 values
-('True', '1', '1'),
-('True', '0', '2'),
-('False', '0', '3'),
-('True',  '0', '4'),
-('True', '2', '0'),
-('True', '0', '5'),
-('True', '3', '0'),
-('True', '4', '0'),
-('True', '5', '0');
+('true', '2019-01-26', 'pisosclick@gmail.com', '1', '1', null, '1', '1'),
+('true', null, 'johnsonconst@gmail.com', '2', '2', null, null, '2'),
+('true', null, 'contact@smithcommercial.com', '3', '3', '1', null, '3'),
+('false', null, 'info@greenfield.com', '4', '4', null, null, '4'),
+('true', null, 'contacto@hierrosratti.com.ar', '5', '5', '2', null, '5'),
+('true', null, 'contacto@hsm.com.ar', '6', '6', '3', null, '6'),
+('false', '1987-05-12', 'berlinguieric@gmail.com', '7', null, '4', '2', null),
+('true', '1985-06-18', null, '8', null, '5', '3', null);
 go
 
 -----------------------
@@ -279,29 +295,28 @@ create table BusinessPartners(
 	BusinessPartnerId int primary key identity(1,1) not null,
 	PaymentMethod varchar(30) null,
 	InvoiceCategory varchar(30) null,
-	PersonId int not null,
-	OrganizationId int not null,
-	foreign key (PersonId, OrganizationId) references Individuals(PersonId, OrganizationId)
+	IndividualId int foreign key references Individuals(IndividualId) not null
 )
 go
 
 insert into BusinessPartners
 (PaymentMethod, InvoiceCategory, IndividualId)
 values
-('Efectivo', 'C', '1'),
-('Efectivo', 'A', '2'),
-('Débito', 'B', '3'),
-('Transferencia', 'C', '4'),
+('Efectivo', 'C', '2'),
+('Efectivo', 'A', '3'),
+('Débito', 'B', '4'),
 ('Transferencia', 'C', '5'),
 ('Efectivo', 'A', '6');
 go
 
--- CUSTOMERS
+---------------
+-- CUSTOMERS --
+---------------
 
 create table Customers(
 	CustomerId int primary key identity(1,1) not null,
 	SalesAmount int null,
-	BusinessPartnerId int not null
+	BusinessPartnerId int foreign key references BusinessPartners(BusinessPartnerId) not null
 )
 go
 
@@ -310,30 +325,33 @@ insert into Customers
 values
 ('5', '1'),
 ('3', '2'),
-('8', '3'),
-('1', '4');
+('8', '3');
 go
 
--- SUPPLIERS
+---------------
+-- SUPPLIERS --
+---------------
 
 create table Suppliers(
 	SupplierId int primary key identity(1,1) not null,
 	IsIndispensable bit not null default(0),
-	BusinessPartnerId int not null
+	BusinessPartnerId int foreign key references BusinessPartners(BusinessPartnerId) not null
 )
 go
 
 insert into Suppliers
 (IsIndispensable, BusinessPartnerId)
 values
-('True', '5'),
-('False', '6');
+('true', '4'),
+('false', '5');
 go
 
--- SENIORITIES
+-----------------
+-- SENIORITIES --
+-----------------
 
 create table Seniorities(
-	SeniorityId int primary key identity(1,1) not null,
+	SeniorityId tinyint primary key identity(1,1) not null,
 	SeniorityName varchar(30) not null
 )
 go
@@ -347,10 +365,12 @@ values
 ('Senior');
 go
 
--- DEPARTMENTS
+-----------------
+-- DEPARTMENTS --
+-----------------
 
 create table Departments(
-	DepartmentId int primary key identity(1,1) not null,
+	DepartmentId tinyint primary key identity(1,1) not null,
 	DepartmentName varchar(30) not null
 )
 go
@@ -366,53 +386,59 @@ values
 ('Producción');
 go
 
--- POSITIONS
+---------------
+-- POSITIONS --
+---------------
 
 create table Positions(
-	PositionId int primary key identity(1,1) not null,
+	PositionId smallint primary key identity(1,1) not null,
 	PositionTitle varchar(30) not null,
-	SeniorityId int not null,
-	DepartmentId int not null
+	SeniorityId tinyint foreign key references Seniorities(SeniorityId) not null,
+	DepartmentId tinyint foreign key references Departments(DepartmentId) not null
 )
 go
 
 insert into Positions
 (PositionTitle, SeniorityId, DepartmentId)
 values
-('Administrador de Sistemas', '1', '3'),
-('Desarrollador', '1', '2'),
-('Desarrollador', '1', '4'),
+('Administrador de Sistemas', '3', '1'),
+('Desarrollador', '2', '1'),
+('Desarrollador', '4', '1'),
 ('Representante de ventas', '2', '2'),
-('Gerente de ventas', '2', '4'),
+('Gerente de ventas', '4', '2'),
 ('Analista de RRHH', '3', '3'),
-('Comuinity Manager', '4', '2'),
-('Gerente de Marketing', '4', '3'),
-('Gerente de Logística', '5', '4'),
-('Operario', '6', '1');
+('Comuinity Manager', '2', '4'),
+('Gerente de Marketing', '3', '4'),
+('Gerente de Logística', '4', '5'),
+('Operario', '1', '6');
 go
 
--- EMPLOYEES
+---------------
+-- EMPLOYEES --
+---------------
 
 create table Employees(
 	EmployeeId int primary key identity(1,1) not null,
 	Admission datetime not null default getdate(),
-	PositionId int not null,
-	IndividualId int not null
+	PositionId smallint foreign key references Positions(PositionId) not null,
+	IndividualId int foreign key references Individuals(IndividualId) not null
 )
 go
 
 insert into Employees
 (PositionId, IndividualId)
 values
-('5', '7'),
-('1', '8'),
-('9', '9');
+('5', '1'),
+('10', '7'),
+('10', '8');
 go
 
--- ROLES
+-----------
+-- ROLES --
+-----------
 
 create table Roles(
-	RoleId int primary key identity(1,1) not null,
+	RoleId tinyint primary key identity(1,1) not null,
 	RoleName varchar(50) not null
 )
 go
@@ -428,60 +454,41 @@ values
 ('Solo lectura restringida');
 go
 
--- USERS
+-----------
+-- USERS --
+-----------
 
 create table Users(
 	UserId int primary key identity(1,1) not null,
 	UserName varchar(30) not null,
 	UserPassword varchar(30) not null,
-	RoleId int not null
+	RoleId tinyint foreign key references Roles(RoleId) not null,
+	EmployeeId int foreign key references Employees(EmployeeId) not null
 )
 go
 
 insert into Users
-(UserName, UserPassword, RoleId)
+(UserName, UserPassword, RoleId, EmployeeId)
 values
-('Bocca1', 'estanopk', '1');
+('fedebocca97', 'estanopk', '1', '1'),
+('bercar2000', '2368', '4', '2');
 go
 
--- WAREHOUSES
+----------------
+-- WAREHOUSES --
+----------------
 
 create table Warehouses(
 	WarehouseId int primary key identity(1,1) not null,
 	ActiveStatus bit not null default(1),
 	WarehouseName varchar(30) not null,
-	AdressId int null
+	AdressId int foreign key references Adresses(AdressId) null
 )
 go
 
 insert into Warehouses
 (ActiveStatus, WarehouseName, AdressId)
 values
-('True', 'Depósito de 197', '10'),
-('False', 'Showroom Villa Adelina', '11');
-go
-
--- JOINED QUERY EXAMPLE
-
-SELECT C.CustomerId, C.SalesAmount, B.PaymentMethod, B.InvoiceCategory,
-I.ActiveStatus, I.IsPerson, I.FirstName, I.LastName, I.BusinessName, I.BusinessDescription, I.ImageUrl, I.Email,
-CO.CountryPhoneAreaCode, PR.ProvincePhoneAreaCode, P.PhoneNumber,
-Co.CountryName, PR.ProvinceName, A.AdressCity, A.AdressZipCode, A.AdressStreetName, A.AdressStreetNumber, A.AdressFlat,
-T.TaxCodePrefix, T.TaxCodeNumber, T.TaxCodeSuffix
-
-FROM Customers C, BusinessPartners B, Individuals I, Phones P, Adresses A, TaxCodes T, Countries CO, Provinces PR, Currencies CU
-
-WHERE C.BusinessPartnerId = B.BusinessPartnerId
-AND B.IndividualId = I.IndividualId
-AND I.PhoneId = P.PhoneId
-AND I.AdressId = A.AdressId
-AND I.TaxCodeId = T.TaxCodeId
-AND A.CountryId = CO.CountryId
-AND A.ProvinceId = PR.ProvinceId
-AND CO.CurrencyId = CU.CurrencyId
-go
-
--- TESTING QUERIES
-
-SELECT * FROM Individuals
+('true', 'Depósito de 197', '6'),
+('false', 'Showroom Villa Adelina', '1');
 go
