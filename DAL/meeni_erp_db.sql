@@ -98,14 +98,14 @@ go
 
 create table TaxCodes(
 	TaxCodeId int primary key identity(1,1) not null,
-	TaxCodePrefix varchar(10) null,
-	TaxCodeNumber int not null,
-	TaxCodeSuffix varchar(10) null
+	Prefix varchar(10) null,
+	Number int not null,
+	Suffix varchar(10) null
 )
 go
 
 insert into TaxCodes
-(TaxCodePrefix, TaxCodeNumber, TaxCodeSuffix)
+(Prefix, Number, Suffix)
 values
 ('20', '37456776', '9'),
 ('20', '20378846', '3'),
@@ -148,13 +148,13 @@ go
 
 create table Phones(
 	PhoneId int primary key identity(1,1) not null,
-	PhoneNumber int not null,
+	Number int not null,
 	ProvinceId smallint foreign key references Provinces(ProvinceId) null
 )
 go
 
 insert into Phones
-(PhoneNumber, ProvinceId)
+(Number, ProvinceId)
 values
 ('1527863846', '1'),
 ('1547873654', '1'),
@@ -239,21 +239,48 @@ go
 
 create table Images(
 	ImageId int primary key identity(1,1) not null,
-	PersonId int foreign key references People(PersonId) null,
-	OrganizationId int foreign key references Organizations(OrganizationId) null,
-	ProductId int foreign key references Products(ProductId) null,
 	ImageUrl varchar(300) unique not null
 )
 go
 
 insert into Images
-(PersonId, OrganizationId, ProductId, ImageUrl)
+(ImageUrl)
 values
-(null, null, null, 'https://img.freepik.com/vector-gratis/logotipo-empresa-construccion-diseno-plano_23-2150051909.jpg?size=338&ext=jpg&ga=GA1.1.1412446893.1705449600&semt=ais'),
-(null, null, null, 'https://img.freepik.com/vector-gratis/logotipo-excavadora-construccion-edificios_23-2148657768.jpg?size=338&ext=jpg&ga=GA1.1.1412446893.1705449600&semt=ais'),
-(null, null, null, 'https://img.freepik.com/vector-premium/logotipo-enlucido-construccion-diseno-ladrillo-paleta_501861-302.jpg?size=338&ext=jpg&ga=GA1.1.1412446893.1705449600&semt=ais'),
-(null, null, null, 'https://hierrosratti.com.ar/images/productos/tubos.jpg'),
-(null, null, null, 'https://www.herrajessanmartin.com/Pubs/Sites/Default/Config/logo-hsm-invertido-02.png');
+('https://img.freepik.com/vector-gratis/logotipo-empresa-construccion-diseno-plano_23-2150051909.jpg?size=338&ext=jpg&ga=GA1.1.1412446893.1705449600&semt=ais'),
+('https://img.freepik.com/vector-gratis/logotipo-excavadora-construccion-edificios_23-2148657768.jpg?size=338&ext=jpg&ga=GA1.1.1412446893.1705449600&semt=ais'),
+('https://img.freepik.com/vector-premium/logotipo-enlucido-construccion-diseno-ladrillo-paleta_501861-302.jpg?size=338&ext=jpg&ga=GA1.1.1412446893.1705449600&semt=ais'),
+('https://hierrosratti.com.ar/images/productos/tubos.jpg'),
+('https://www.herrajessanmartin.com/Pubs/Sites/Default/Config/logo-hsm-invertido-02.png');
+go
+
+---------------------------
+-- IMAGE-PERSON RELATION --
+---------------------------
+
+create table ImagePersonRelations(
+	ImageId int foreign key references Images(ImageId) not null,
+	PersonId int foreign key references People(PersonId) not null
+)
+go
+
+---------------------------------
+-- IMAGE-ORGANIZATION RELATION --
+---------------------------------
+
+create table ImageOrganizationRelations(
+	ImageId int foreign key references Images(ImageId) not null,
+	OrganizationId int foreign key references Organizations(OrganizationId) not null
+)
+go
+
+----------------------------
+-- IMAGE-PRODUCT RELATION --
+----------------------------
+
+create table ImageProductRelations(
+	ImageId int foreign key references Images(ImageId) not null,
+	ProductId int foreign key references Products(ProductId) not null
+)
 go
 
 -----------------
@@ -263,8 +290,8 @@ go
 create table Individuals(
 	IndividualId int primary key identity(1,1) not null,
 	ActiveStatus bit not null default(1),
-	Birth date null,
 	Email varchar(30) null,
+	Birth date null,
 	TaxCodeId int foreign key references TaxCodes(TaxCodeId) null,
 	AdressId int foreign key references Adresses(AdressId) null,
 	PhoneId int foreign key references Phones(PhoneId) null,
@@ -275,16 +302,16 @@ create table Individuals(
 go
 
 insert into Individuals
-(ActiveStatus, Birth, Email, TaxCodeId, AdressId, PhoneId, PersonId, OrganizationId)
+(ActiveStatus, Email, Birth, TaxCodeId, AdressId, PhoneId, PersonId, OrganizationId)
 values
-('true', '2019-01-26', 'pisosclick@gmail.com', '1', '1', null, '1', '1'),
-('true', null, 'johnsonconst@gmail.com', '2', '2', null, null, '2'),
-('true', null, 'contact@smithcommercial.com', '3', '3', '1', null, '3'),
-('false', null, 'info@greenfield.com', '4', '4', null, null, '4'),
-('true', null, 'contacto@hierrosratti.com.ar', '5', '5', '2', null, '5'),
-('true', null, 'contacto@hsm.com.ar', '6', '6', '3', null, '6'),
-('false', '1987-05-12', 'berlinguieric@gmail.com', '7', null, '4', '2', null),
-('true', '1985-06-18', null, '8', null, '5', '3', null);
+('true', 'pisosclick@gmail.com', '2019-01-26', '1', '1', null, '1', '1'),
+('true', 'johnsonconst@gmail.com', null, '2', '2', null, null, '2'),
+('true', 'contact@smithcommercial.com', null, '3', '3', '1', null, '3'),
+('false', 'info@greenfield.com', null, '4', '4', null, null, '4'),
+('true', 'contacto@hierrosratti.com.ar', null, '5', '5', '2', null, '5'),
+('true', 'contacto@hsm.com.ar', null, '6', '6', '3', null, '6'),
+('false', 'berlinguieric@gmail.com', '1987-05-12', '7', null, '4', '2', null),
+('true', null, '1985-06-18', '8', null, '5', '3', null);
 go
 
 -----------------------

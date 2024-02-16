@@ -44,8 +44,11 @@
     <Compile Include="Account.cs" />
     <Compile Include="Adress.cs" />
     <Compile Include="BusinessPartner.cs" />
+    <Compile Include="City.cs" />
     <Compile Include="Country.cs" />
     <Compile Include="Department.cs" />
+    <Compile Include="Organization.cs" />
+    <Compile Include="Person.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="Currency.cs" />
     <Compile Include="Employee.cs" />

@@ -9,7 +9,7 @@ namespace Entities
         [DisplayName("ID de país")]
         public int CountryId { get; set; }
 
-        [DisplayName("Nombre")]
+        [DisplayName("País")]
         public string Name { get; set; }
 
         [DisplayName("Código de área telefónico")]

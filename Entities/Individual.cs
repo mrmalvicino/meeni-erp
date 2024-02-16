@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 
 namespace Entities
 {
@@ -15,39 +16,40 @@ namespace Entities
         [DisplayName("Es persona")]
         public bool IsPerson { get; set; }
 
-        [DisplayName("Nombre")]
-        public string FirstName { get; set; }
-
-        [DisplayName("Apellido")]
-        public string LastName { get; set; }
-
-        [DisplayName("Organización")]
-        public string BusinessName { get; set; }
-
-        [DisplayName("Descripción")]
-        public string BusinessDescription { get; set; }
-
-        public string ImageUrl { get; set; }
-
         [DisplayName("E-Mail")]
         public string Email { get; set; }
 
-        [DisplayName("Teléfono")]
-        public Phone Phone { get; set; }
+        [DisplayName("URL de imagen")]
+        public string ImageUrl { get; set; }
+
+        [DisplayName("Nacimiento")]
+        public DateTime Birth {  get; set; }
+
+        [DisplayName("CUIL/CUIT")]
+        public TaxCode TaxCode { get; set; }
 
         [DisplayName("Dirección")]
         public Adress Adress { get; set; }
 
-        [DisplayName("CUIL/CUIT")]
-        public TaxCode TaxCode { get; set; }
+        [DisplayName("Teléfono")]
+        public Phone Phone { get; set; }
+
+        [DisplayName("Persona")]
+        public Person Person { get; set; }
+
+        [DisplayName("Organización")]
+        public Organization Organization { get; set; }
 
         // CONSTRUCT
 
         public Individual()
         {
+            Birth = new DateTime();
             Phone = new Phone();
             Adress = new Adress();
             TaxCode = new TaxCode();
+            Person = new Person();
+            Organization = new Organization();
         }
 
         // METHODS
@@ -55,9 +57,9 @@ namespace Entities
         public override string ToString()
         {
             if (this.IsPerson)
-                return $"{this.LastName}, {this.FirstName}";
+                return this.Person.ToString();
             else
-                return this.BusinessName;
+                return this.Organization.ToString();
         }
 
         public Individual copyToIndividual()
