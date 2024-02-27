@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Reflection;
 using DAL;
 using Entities;
 
@@ -15,25 +15,28 @@ namespace BLL
 
         // METHODS
 
-        public List<Phone> listPhones()
+        public Phone readPhone(int phoneId)
         {
-            List<Phone> phonesList = new List<Phone>();
+            Phone phone = new Phone();
 
             try
             {
-                _database.setQuery("SELECT PhoneId, PhoneNumber, CountryId, ProvinceId FROM phones");
+                _database.setQuery(
+                    "select " +
+                    "PH.Number, PR.PhoneAreaCode as ProvincePhoneAreaCode, C.PhoneAreaCode as CountryPhoneAreaCode " +
+                    "from Phones PH " +
+                    "inner join Provinces PR on PH.ProvinceId = PR.ProvinceId " +
+                    "inner join Countries C on PR.CountryId = C.CountryId " +
+                    "where PhoneId = @PhoneId"
+                );
+                _database.setParameter("@PhoneId", phoneId);
                 _database.executeReader();
 
-                while (_database.Reader.Read())
+                if (_database.Reader.Read())
                 {
-                    Phone phone = new Phone();
-
-                    phone.PhoneId = (int)_database.Reader["PhoneId"];
-                    phone.Number = (int)_database.Reader["PhoneNumber"];
-                    phone.Country.CountryId = (int)_database.Reader["CountryId"];
-                    phone.Province.ProvinceId = (int)_database.Reader["ProvinceId"];
-
-                    phonesList.Add(phone);
+                    phone.Number = (int)_database.Reader["Number"];
+                    phone.Province.PhoneAreaCode = (int)_database.Reader["ProvincePhoneAreaCode"];
+                    phone.Country.PhoneAreaCode = (int)_database.Reader["CountryPhoneAreaCode"];
                 }
             }
             catch (Exception ex)
@@ -45,26 +48,7 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            foreach (Phone ph in phonesList)
-            {
-                foreach (Country c in _countriesManager.listCountries())
-                {
-                    if (ph.Country.CountryId == c.CountryId)
-                    {
-                        ph.Country.PhoneAreaCode = c.PhoneAreaCode;
-                    }
-                }
-
-                foreach (Province pr in _provincesManager.listProvinces())
-                {
-                    if (ph.Province.ProvinceId == pr.ProvinceId)
-                    {
-                        ph.Province.PhoneAreaCode = pr.PhoneAreaCode;
-                    }
-                }
-            }
-
-            return phonesList;
+            return phone;
         }
 
         public void add(Phone phone)
@@ -134,23 +118,6 @@ namespace BLL
             {
                 _database.closeConnection();
             }
-        }
-
-        public Phone readPhone(int phoneId)
-        {
-            _database.setQuery($"SELECT PhoneNumber, CountryId, ProvinceId FROM phones WHERE PhoneId = {phoneId}");
-            _database.executeReader();
-
-            Phone phone = new Phone();
-
-            if (_database.Reader.Read())
-            {
-                phone.Number = (int)_database.Reader["PhoneNumber"];
-                phone.Country.CountryId = (int)_database.Reader["CountryId"];
-                phone.Province.ProvinceId = (int)_database.Reader["ProvinceId"];                
-            }
-
-            return phone;
         }
     }
 }

@@ -50,10 +50,10 @@ namespace Entities
 
         public override string ToString()
         {
-            if (true)
-                return this.Person.ToString();
+            if (Person.FirstName != "" && Person.LastName != "")
+                return Person.ToString();
             else
-                return this.Organization.ToString();
+                return Organization.ToString();
         }
 
         public Individual copyToIndividual()

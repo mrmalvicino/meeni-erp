@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using DAL;
 using Entities;
 
@@ -25,7 +24,6 @@ namespace BLL
 
                 if (_database.Reader.Read())
                 {
-                    taxCode.TaxCodeId = taxCodeId;
                     if (!(_database.Reader["Prefix"] is DBNull))
                         taxCode.Prefix = (string)_database.Reader["Prefix"];
                     taxCode.Number = (int)_database.Reader["Number"];

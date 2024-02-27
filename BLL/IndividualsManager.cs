@@ -10,11 +10,11 @@ namespace BLL
         // ATTRIBUTES
 
         private Database _database = new Database();
-        private CountriesManager _countriesManager = new CountriesManager();
-        private ProvincesManager _provincesManager = new ProvincesManager();
         private TaxCodesManager _taxCodesManager = new TaxCodesManager();
         private AdressesManager _adressesManager = new AdressesManager();
         private PhonesManager _phonesManager = new PhonesManager();
+        private PeopleManager _peopleManager = new PeopleManager();
+        private OrganizationsManager _organizationsManager = new OrganizationsManager();
 
         // METHODS
 
@@ -58,6 +58,10 @@ namespace BLL
             }
 
             individual.TaxCode = _taxCodesManager.readTaxCode(individual.TaxCode.TaxCodeId);
+            individual.Adress = _adressesManager.readAdress(individual.Adress.AdressId);
+            individual.Phone = _phonesManager.readPhone(individual.Phone.PhoneId);
+            individual.Person = _peopleManager.readPerson(individual.Person.PersonId);
+            individual.Organization = _organizationsManager.readOrganization(individual.Organization.OrganizationId);
 
             return individual;
         }

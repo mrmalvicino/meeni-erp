@@ -43,9 +43,12 @@
   <ItemGroup>
     <Compile Include="AdressesManager.cs" />
     <Compile Include="BusinessPartnersManager.cs" />
+    <Compile Include="CitiesManager.cs" />
     <Compile Include="CountriesManager.cs" />
     <Compile Include="CurrenciesManager.cs" />
     <Compile Include="Helper.cs" />
+    <Compile Include="OrganizationsManager.cs" />
+    <Compile Include="PeopleManager.cs" />
     <Compile Include="PhonesManager.cs" />
     <Compile Include="PositionsManager.cs" />
     <Compile Include="CustomersManager.cs" />

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using DAL;
 using Entities;
 
@@ -15,25 +14,37 @@ namespace BLL
 
         // METHODS
 
-        public List<Adress> listAdresses()
+        public Adress readAdress(int adressId)
         {
-            List<Adress> adressesList = new List<Adress>();
+            Adress adress = new Adress();
 
             try
             {
-                _database.setQuery("SELECT AdressId, AdressCity, AdressZipCode, AdressStreetName, AdressStreetNumber, AdressFlat, CountryId, ProvinceId FROM adresses");
+                _database.setQuery(
+                    "select " +
+                    "A.StreetName, A.StreetNumber, A.Flat, A.Details, CI.CityName, CI.ZipCode, P.ProvinceName, CO.CountryName " +
+                    "from Adresses A " +
+                    "inner join Cities CI on A.CityId = CI.CityId " +
+                    "inner join Provinces P on CI.ProvinceId = P.ProvinceId " +
+                    "inner join Countries CO on P.CountryId = CO.CountryId " +
+                    "where AdressId = @AdressId"
+                );
+                _database.setParameter("@AdressId", adressId);
                 _database.executeReader();
 
-                while (_database.Reader.Read())
+                if (_database.Reader.Read())
                 {
-                    Adress adress = new Adress();
-
-                    adress.AdressId = (int)_database.Reader["AdressId"];
-                    adress.StreetName = (string)_database.Reader["AdressStreetName"];
-                    adress.StreetNumber = (int)_database.Reader["AdressStreetNumber"];
-                    adress.Flat = (string)_database.Reader["AdressFlat"];
-
-                    adressesList.Add(adress);
+                    adress.StreetName = (string)_database.Reader["StreetName"];
+                    adress.StreetNumber = (int)_database.Reader["StreetNumber"];
+                    if (!(_database.Reader["Flat"] is DBNull))
+                        adress.Flat = (string)_database.Reader["Flat"];
+                    if (!(_database.Reader["Details"] is DBNull))
+                        adress.Details = (string)_database.Reader["Details"];
+                    adress.City.Name = (string)_database.Reader["CityName"];
+                    if (!(_database.Reader["ZipCode"] is DBNull))
+                        adress.City.ZipCode = (string)_database.Reader["ZipCode"];
+                    adress.Province.Name = (string)_database.Reader["ProvinceName"];
+                    adress.Country.Name = (string)_database.Reader["CountryName"];
                 }
             }
             catch (Exception ex)
@@ -45,26 +56,7 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            foreach (Adress a in adressesList)
-            {
-                foreach (Country c in _countriesManager.listCountries())
-                {
-                    if (a.Country.CountryId == c.CountryId)
-                    {
-                        a.Country.Name = c.Name;
-                    }
-                }
-
-                foreach (Province p in _provincesManager.listProvinces())
-                {
-                    if (a.Province.ProvinceId == p.ProvinceId)
-                    {
-                        a.Province.Name = p.Name;
-                    }
-                }
-            }
-
-            return adressesList;
+            return adress;
         }
 
         public void add(Adress adress)

@@ -19,7 +19,10 @@ namespace Entities
 
         public override string ToString()
         {
-            return $"{LastName}, {FirstName}";
+            if (FirstName != "" && LastName != "" && FirstName != null && LastName != null)
+                return $"{LastName}, {FirstName}";
+            else
+                return "";
         }
     }
 }

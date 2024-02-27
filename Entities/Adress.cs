@@ -21,14 +21,14 @@ namespace Entities
         [DisplayName("Detalles")]
         public string Details { get; set; }
 
-        [DisplayName("País")]
-        public Country Country { get; set; }
+        [DisplayName("Ciudad")]
+        public City City { get; set; }
 
         [DisplayName("Provincia")]
         public Province Province { get; set; }
 
-        [DisplayName("Ciudad")]
-        public City City { get; set; }
+        [DisplayName("País")]
+        public Country Country { get; set; }
 
         // METHODS
 

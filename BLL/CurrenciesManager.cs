@@ -1,4 +1,5 @@
-﻿using DAL;
+﻿using System;
+using DAL;
 using Entities;
 
 namespace BLL
@@ -11,15 +12,36 @@ namespace BLL
 
         // METHODS
 
-        protected void readCurrency(Currency currency, int currencyId)
+        public Currency readCurrency(int currencyId)
         {
-            _database.setQuery($"SELECT Code, Name, Rate, BlackRate FROM currencies WHERE CurrencyId = {currencyId}");
-            _database.executeReader();
+            Currency currency = new Currency();
 
-            currency.Code = (string)_database.Reader["CountryName"];
-            currency.Name = (string)_database.Reader["Name"];
-            currency.Rate = (decimal)_database.Reader["Rate"];
-            currency.BlackRate = (decimal)_database.Reader["BlackRate"];
+            try
+            {
+                _database.setQuery("select Code, CurrencyName, Rate, BlackRate from Currencies where CurrencyId = @CurrencyId");
+                _database.setParameter("@CurrencyId", currencyId);
+                _database.executeReader();
+
+                if (_database.Reader.Read())
+                {
+                    currency.CurrencyId = currencyId;
+                    currency.Code = (string)_database.Reader["Code"];
+                    currency.Name = (string)_database.Reader["CurrencyName"];
+                    currency.Rate = (decimal)_database.Reader["Rate"];
+                    if (!(_database.Reader["BlackRate"] is DBNull))
+                        currency.BlackRate = (decimal)_database.Reader["BlackRate"];
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _database.closeConnection();
+            }
+
+            return currency;
         }
     }
 }

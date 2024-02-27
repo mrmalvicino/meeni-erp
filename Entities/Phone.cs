@@ -12,11 +12,11 @@ namespace Entities
         [DisplayName("Número telefónico")]
         public int Number {  get; set; }
 
-        [DisplayName("País")]
-        public Country Country { get; set; }
-
         [DisplayName("Provincia")]
         public Province Province { get; set; }
+
+        [DisplayName("País")]
+        public Country Country { get; set; }
 
         // METHODS
 

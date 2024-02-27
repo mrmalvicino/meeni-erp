@@ -10,28 +10,25 @@ namespace BLL
         // ATTRIBUTES
 
         private Database _database = new Database();
+        private CurrenciesManager _currenciesManager = new CurrenciesManager();
 
         // METHODS
 
-        public List<Country> listCountries()
+        public Country readCountry(int countryId)
         {
-            List<Country> countriesList = new List<Country>();
+            Country country = new Country();
 
             try
             {
-                _database.setQuery("SELECT CountryId, CountryName, CountryPhoneAreaCode, CurrencyId FROM countries");
+                _database.setQuery("select CountryName, PhoneAreaCode, CurrencyId from Countries");
                 _database.executeReader();
 
-                while (_database.Reader.Read())
+                if (_database.Reader.Read())
                 {
-                    Country country = new Country();
-
-                    country.CountryId = (int)_database.Reader["CountryId"];
+                    country.CountryId = countryId;
                     country.Name = (string)_database.Reader["CountryName"];
-                    country.PhoneAreaCode = (int)_database.Reader["CountryPhoneAreaCode"];
+                    country.PhoneAreaCode = (int)_database.Reader["PhoneAreaCode"];
                     country.Currency.CurrencyId = (int)_database.Reader["CurrencyId"];
-
-                    countriesList.Add(country);
                 }
             }
             catch (Exception ex)
@@ -43,7 +40,9 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            return countriesList;
+            country.Currency = _currenciesManager.readCurrency(country.Currency.CurrencyId);
+
+            return country;
         }
 
         public void add(Country country)

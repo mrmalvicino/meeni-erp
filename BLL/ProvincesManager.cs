@@ -13,24 +13,21 @@ namespace BLL
 
         // METHODS
 
-        public List<Province> listProvinces()
+        public Province readProvince(int provinceId)
         {
-            List<Province> provincesList = new List<Province>();
+            Province province = new Province();
 
             try
             {
-                _database.setQuery("SELECT ProvinceId, ProvinceName, ProvincePhoneAreaCode FROM provinces");
+                _database.setQuery("select ProvinceName, PhoneAreaCode from Provinces where ProvinceId = @ProvinceId");
+                _database.setParameter("@ProvinceId", provinceId);
                 _database.executeReader();
 
-                while (_database.Reader.Read())
+                if (_database.Reader.Read())
                 {
-                    Province province = new Province();
-
-                    province.ProvinceId = (int)_database.Reader["ProvinceId"];
+                    province.ProvinceId = provinceId;
                     province.Name = (string)_database.Reader["ProvinceName"];
-                    province.PhoneAreaCode = (int)_database.Reader["ProvincePhoneAreaCode"];
-
-                    provincesList.Add(province);
+                    province.PhoneAreaCode = (int)_database.Reader["PhoneAreaCode"];
                 }
             }
             catch (Exception ex)
@@ -42,7 +39,7 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            return provincesList;
+            return province;
         }
 
         public void add(Province province)

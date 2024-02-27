@@ -102,7 +102,7 @@ namespace WindowsForms
             bool showInactive = showInactiveCheckBox.Checked;
 
             if (2 < filter.Length)
-                _filteredSuppliers = _suppliersTable.FindAll(reg => ((reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)) && (reg.Person.FirstName.ToUpper().Contains(filter.ToUpper()) || reg.Person.LastName.ToUpper().Contains(filter.ToUpper()) || reg.Organization.OrganizationName.ToUpper().Contains(filter.ToUpper()) || reg.Organization.OrganizationDescription.ToUpper().Contains(filter.ToUpper()) || reg.Email.ToUpper().Contains(filter.ToUpper()) || reg.TaxCode.ToString().Contains(filter)));
+                _filteredSuppliers = _suppliersTable.FindAll(reg => ((reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)) && (reg.Person.FirstName.ToUpper().Contains(filter.ToUpper()) || reg.Person.LastName.ToUpper().Contains(filter.ToUpper()) || reg.Organization.Name.ToUpper().Contains(filter.ToUpper()) || reg.Organization.Description.ToUpper().Contains(filter.ToUpper()) || reg.Email.ToUpper().Contains(filter.ToUpper()) || reg.TaxCode.ToString().Contains(filter)));
             else
                 _filteredSuppliers = _suppliersTable.FindAll(reg => (reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive));
 

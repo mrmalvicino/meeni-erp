@@ -105,7 +105,7 @@ namespace WindowsForms
             bool showInactive = showInactiveCheckBox.Checked;
 
             if (2 < filter.Length)
-                _filteredEmployees = _employeesTable.FindAll(reg => ((reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)) && (reg.Person.FirstName.ToUpper().Contains(filter.ToUpper()) || reg.Person.LastName.ToUpper().Contains(filter.ToUpper()) || reg.Organization.OrganizationName.ToUpper().Contains(filter.ToUpper()) || reg.Organization.OrganizationDescription.ToUpper().Contains(filter.ToUpper()) || reg.Email.ToUpper().Contains(filter.ToUpper()) || reg.TaxCode.ToString().Contains(filter)));
+                _filteredEmployees = _employeesTable.FindAll(reg => ((reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)) && (reg.Person.FirstName.ToUpper().Contains(filter.ToUpper()) || reg.Person.LastName.ToUpper().Contains(filter.ToUpper()) || reg.Organization.Name.ToUpper().Contains(filter.ToUpper()) || reg.Organization.Description.ToUpper().Contains(filter.ToUpper()) || reg.Email.ToUpper().Contains(filter.ToUpper()) || reg.TaxCode.ToString().Contains(filter)));
             else
                 _filteredEmployees = _employeesTable.FindAll(reg => (reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive));
 
@@ -149,7 +149,7 @@ namespace WindowsForms
             {
                 _selectedEmployee = (Employee)dataGridView.CurrentRow.DataBoundItem;
                 //Functions.loadImage(pictureBox, _selectedEmployee.ImageUrl);
-                loadProfile(_selectedEmployee.EmployeeId, _selectedEmployee.ToString(), _selectedEmployee.Organization.OrganizationDescription, _selectedEmployee.Phone.ToString(), _selectedEmployee.Email.ToString(), _selectedEmployee.Adress.ToString());
+                loadProfile(_selectedEmployee.EmployeeId, _selectedEmployee.ToString(), _selectedEmployee.Organization.Description, _selectedEmployee.Phone.ToString(), _selectedEmployee.Email.ToString(), _selectedEmployee.Adress.ToString());
             }
         }
 

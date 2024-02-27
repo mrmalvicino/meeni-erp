@@ -51,34 +51,53 @@ namespace WindowsForms
             {
                 dataGridView.Columns["IndividualId"].Visible = false;
                 dataGridView.Columns["ActiveStatus"].Visible = false;
-                dataGridView.Columns["FirstName"].Width = 60;
-                dataGridView.Columns["LastName"].Width = 60;
-                dataGridView.Columns["BusinessDescription"].Width = 120;
-                dataGridView.Columns["ImageUrl"].Visible = false;
-                dataGridView.Columns["Email"].Width = 150;
-                dataGridView.Columns["Phone"].Width = 100;
-                dataGridView.Columns["Adress"].Width = 150;
-                dataGridView.Columns["TaxCode"].Width = 70;
                 dataGridView.Columns["BusinessPartnerId"].Visible = false;
-                dataGridView.Columns["PaymentMethod"].DisplayIndex = dataGridView.ColumnCount - 1;
-                dataGridView.Columns["PaymentMethod"].Width = 50;
-                dataGridView.Columns["InvoiceCategory"].DisplayIndex = dataGridView.ColumnCount - 1;
-                dataGridView.Columns["InvoiceCategory"].Width = 50;
                 dataGridView.Columns["CustomerId"].Visible = false;
-                dataGridView.Columns["SalesAmount"].DisplayIndex = dataGridView.ColumnCount - 1;
+
+                dataGridView.Columns["Person"].Width = 80;
+                dataGridView.Columns["Organization"].Width = 80;
+                dataGridView.Columns["TaxCode"].Width = 70;
+                dataGridView.Columns["Adress"].Width = 150;
+                dataGridView.Columns["Phone"].Width = 100;
+                dataGridView.Columns["Email"].Width = 150;
+                dataGridView.Columns["Birth"].Width = 60;
+                dataGridView.Columns["PaymentMethod"].Width = 50;
+                dataGridView.Columns["InvoiceCategory"].Width = 50;
                 dataGridView.Columns["SalesAmount"].Width = 50;
+
+                dataGridView.Columns["Person"].DisplayIndex = 0;
+                dataGridView.Columns["Organization"].DisplayIndex = 1;
+                dataGridView.Columns["TaxCode"].DisplayIndex = 2;
+                dataGridView.Columns["Adress"].DisplayIndex = 3;
+                dataGridView.Columns["Phone"].DisplayIndex = 4;
+                dataGridView.Columns["Email"].DisplayIndex = 5;
+                dataGridView.Columns["Birth"].DisplayIndex = 6;
+                dataGridView.Columns["PaymentMethod"].DisplayIndex = dataGridView.ColumnCount - 1;
+                dataGridView.Columns["InvoiceCategory"].DisplayIndex = dataGridView.ColumnCount - 1;
+                dataGridView.Columns["SalesAmount"].DisplayIndex = dataGridView.ColumnCount - 1;
+
+                dataGridView.Columns["Birth"].DefaultCellStyle.Format = "dd/MM/yyyy";
+
                 Functions.fillDataGrid(dataGridView);
             }
         }
 
-        private void loadProfile(int id, string name, string description, string phone, string email, string adress)
+        private void validateDataGridView()
         {
-            idTextBox.Text = id.ToString();
-            nameTextBox.Text = name;
-            descriptionTextBox.Text = description;
-            phoneTextBox.Text = phone;
-            emailTextBox.Text = email;
-            adressTextBox.Text = adress;
+            if (0 < dataGridView.RowCount)
+            {
+                editButton.Enabled = true;
+                deleteButton.Enabled = true;
+                exportCSVButton.Enabled = true;
+            }
+            else
+            {
+                editButton.Enabled = false;
+                deleteButton.Enabled = false;
+                exportCSVButton.Enabled = false;
+                loadProfile(-1, "N/A", "N/A", "N/A", "N/A", "N/A");
+                Functions.loadImage(pictureBox, "");
+            }
         }
 
         private void refreshTable()
@@ -101,32 +120,24 @@ namespace WindowsForms
             bool showInactive = showInactiveCheckBox.Checked;
 
             if (2 < filter.Length)
-                _filteredCustomers = _customersTable.FindAll(reg => ((reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)) && (reg.Person.FirstName.ToUpper().Contains(filter.ToUpper()) || reg.Person.LastName.ToUpper().Contains(filter.ToUpper()) || reg.Organization.OrganizationName.ToUpper().Contains(filter.ToUpper()) || reg.Organization.OrganizationDescription.ToUpper().Contains(filter.ToUpper()) || reg.Email.ToUpper().Contains(filter.ToUpper()) || reg.TaxCode.ToString().Contains(filter) ) );
+                _filteredCustomers = _customersTable.FindAll(reg => ((reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)) && (reg.Person.FirstName.ToUpper().Contains(filter.ToUpper()) || reg.Person.LastName.ToUpper().Contains(filter.ToUpper()) || reg.Organization.Name.ToUpper().Contains(filter.ToUpper()) || reg.Organization.Description.ToUpper().Contains(filter.ToUpper()) || reg.Email.ToUpper().Contains(filter.ToUpper()) || reg.TaxCode.ToString().Contains(filter) ) );
             else
                 _filteredCustomers = _customersTable.FindAll(reg => (reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive));
 
             dataGridView.DataSource = null;
             dataGridView.DataSource = _filteredCustomers;
-            //setupDataGridView();
+            setupDataGridView();
             validateDataGridView();
         }
 
-        private void validateDataGridView()
+        private void loadProfile(int id, string name, string description, string phone, string email, string adress)
         {
-            if (0 < dataGridView.RowCount)
-            {
-                editButton.Enabled = true;
-                deleteButton.Enabled = true;
-                exportCSVButton.Enabled = true;
-            }
-            else
-            {
-                editButton.Enabled = false;
-                deleteButton.Enabled = false;
-                exportCSVButton.Enabled = false;
-                loadProfile(-1, "N/A", "N/A", "N/A", "N/A", "N/A");
-                Functions.loadImage(pictureBox, "");
-            }
+            idTextBox.Text = id.ToString();
+            nameTextBox.Text = name;
+            descriptionTextBox.Text = description;
+            phoneTextBox.Text = phone;
+            emailTextBox.Text = email;
+            adressTextBox.Text = adress;
         }
 
         // EVENTS
@@ -135,7 +146,7 @@ namespace WindowsForms
         {
             setupStyle();
             refreshTable();
-            //setupDataGridView();
+            setupDataGridView();
             applyFilter();
         }
 
@@ -145,7 +156,7 @@ namespace WindowsForms
             {
                 _selectedCustomer = (Customer)dataGridView.CurrentRow.DataBoundItem;
                 //Functions.loadImage(pictureBox, _selectedCustomer.ImageUrl);
-                loadProfile(_selectedCustomer.CustomerId, _selectedCustomer.ToString(), _selectedCustomer.Organization.OrganizationDescription, _selectedCustomer.Phone.ToString(), _selectedCustomer.Email.ToString(), _selectedCustomer.Adress.ToString());
+                loadProfile(_selectedCustomer.CustomerId, _selectedCustomer.ToString(), _selectedCustomer.Organization.Description, _selectedCustomer.Phone.ToString(), _selectedCustomer.Email.ToString(), _selectedCustomer.Adress.ToString());
             }
         }
 

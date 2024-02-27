@@ -2,7 +2,7 @@ use meeni_erp_db
 go
 
 --------------------
--- CUSTOMERS LIST --
+-- LIST CUSTOMERS --
 --------------------
 
 select
@@ -31,4 +31,23 @@ left join Phones PH on I.PhoneId = PH.PhoneId
 left join Provinces PR2 on PH.ProvinceId = PR2.ProvinceId
 left join Countries CO2 on PR2.CountryId = CO2.CountryId
 
-select TaxCodeId, Prefix, Number, Suffix from taxCodes where TaxCodeId = 2
+-----------------
+-- READ ADRESS --
+-----------------
+
+select A.StreetName, A.StreetNumber, A.Flat, A.Details, CI.CityName, CI.ZipCode, P.ProvinceName, CO.CountryName
+from Adresses A
+inner join Cities CI on A.CityId = CI.CityId
+inner join Provinces P on CI.ProvinceId = P.ProvinceId
+inner join Countries CO on P.CountryId = CO.CountryId
+where AdressId = 6
+
+----------------
+-- READ PHONE --
+----------------
+
+select PH.Number, PR.PhoneAreaCode as ProvincePhoneAreaCode, C.PhoneAreaCode as CountryPhoneAreaCode
+from Phones PH
+inner join Provinces PR on PH.ProvinceId = PR.ProvinceId
+inner join Countries C on PR.CountryId = C.CountryId
+where PhoneId = 2

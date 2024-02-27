@@ -10,16 +10,19 @@ namespace Entities
         public int OrganizationId { get; set; }
 
         [DisplayName("Organización")]
-        public string OrganizationName { get; set; }
+        public string Name { get; set; }
 
         [DisplayName("Descripción")]
-        public string OrganizationDescription { get; set; }
+        public string Description { get; set; }
 
         // METHODS
 
         public override string ToString()
         {
-            return OrganizationName;
+            if (Name != "")
+                return Name;
+            else
+                return "";
         }
     }
 }
