@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace BLL
 {
     public class EmployeesManager : IndividualsManager
-    {
+    {/*
         // METHODS
 
         public List<Employee> list()
@@ -100,6 +100,6 @@ namespace BLL
             {
                 _database.closeConnection();
             }
-        }
+        }*/
     }
 }

@@ -1,7 +1,7 @@
-﻿using Entities;
-using DAL;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using DAL;
+using Entities;
 
 namespace BLL
 {
@@ -9,42 +9,43 @@ namespace BLL
     {
         // ATTRIBUTES
 
-        protected Database _database = new Database();
-        private PhonesManager _phonesManager = new PhonesManager();
-        private AdressesManager _adressesManager = new AdressesManager();
-        private TaxCodesManager _taxCodesManager = new TaxCodesManager();
+        private Database _database = new Database();
         private CountriesManager _countriesManager = new CountriesManager();
         private ProvincesManager _provincesManager = new ProvincesManager();
+        private TaxCodesManager _taxCodesManager = new TaxCodesManager();
+        private AdressesManager _adressesManager = new AdressesManager();
+        private PhonesManager _phonesManager = new PhonesManager();
 
         // METHODS
 
-        public List<Individual> listIndividuals()
+        public Individual readIndividual(int individualId)
         {
-            List<Individual> individualsList = new List<Individual>();
+            Individual individual = new Individual();
 
             try
             {
-                _database.setQuery("SELECT IndividualId, ActiveStatus, IsPerson, FirstName, LastName, BusinessName, BusinessDescription, ImageUrl, Email, PhoneId, AdressId, TaxCodeId FROM individuals");
+                _database.setQuery("select ActiveStatus, Email, Birth, TaxCodeId, AdressId, PhoneId, PersonId, OrganizationId from Individuals where IndividualId = @IndividualId");
+                _database.setParameter("@IndividualId", individualId);
                 _database.executeReader();
 
-                while (_database.Reader.Read())
+                if (_database.Reader.Read())
                 {
-                    Individual individual= new Individual();
-
-                    individual.IndividualId = (int)_database.Reader["IndividualId"];
+                    individual.IndividualId = individualId;
                     individual.ActiveStatus = (bool)_database.Reader["ActiveStatus"];
-                    individual.IsPerson = (bool)_database.Reader["IsPerson"];
-                    individual.FirstName = (string)_database.Reader["FirstName"];
-                    individual.LastName = (string)_database.Reader["LastName"];
-                    individual.BusinessName = (string)_database.Reader["BusinessName"];
-                    individual.BusinessDescription = (string)_database.Reader["BusinessDescription"];
-                    individual.ImageUrl = (string)_database.Reader["ImageUrl"];
-                    individual.Email = (string)_database.Reader["Email"];
-                    individual.Phone.PhoneId = (int)_database.Reader["PhoneId"];
-                    individual.Adress.AdressId = (int)_database.Reader["AdressId"];
-                    individual.TaxCode.TaxCodeId = (int)_database.Reader["TaxCodeId"];
-
-                    individualsList.Add(individual);
+                    if (!(_database.Reader["Email"] is DBNull))
+                        individual.Email = (string)_database.Reader["Email"];
+                    if (!(_database.Reader["Birth"] is DBNull))
+                        individual.Birth = (DateTime)_database.Reader["Birth"];
+                    if (!(_database.Reader["TaxCodeId"] is DBNull))
+                        individual.TaxCode.TaxCodeId = (int)_database.Reader["TaxCodeId"];
+                    if (!(_database.Reader["AdressId"] is DBNull))
+                        individual.Adress.AdressId = (int)_database.Reader["AdressId"];
+                    if (!(_database.Reader["PhoneId"] is DBNull))
+                        individual.Phone.PhoneId = (int)_database.Reader["PhoneId"];
+                    if (!(_database.Reader["PersonId"] is DBNull))
+                        individual.Person.PersonId = (int)_database.Reader["PersonId"];
+                    if (!(_database.Reader["OrganizationId"] is DBNull))
+                        individual.Organization.OrganizationId = (int)_database.Reader["OrganizationId"];
                 }
             }
             catch (Exception ex)
@@ -56,52 +57,11 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            foreach (Individual i in individualsList)
-            {
-                foreach (Phone p in _phonesManager.listPhones())
-                {
-                    if (i.Phone.PhoneId == p.PhoneId)
-                    {
-                        i.Phone.Number = p.Number;
-                        i.Phone.Country.CountryId = p.Country.CountryId;
-                        i.Phone.Province.ProvinceId = p.Province.ProvinceId;
+            individual.TaxCode = _taxCodesManager.readTaxCode(individual.TaxCode.TaxCodeId);
 
-                        i.Phone.Country.PhoneAreaCode = p.Country.PhoneAreaCode;
-                        i.Phone.Province.PhoneAreaCode = p.Province.PhoneAreaCode;
-                    }
-                }
-
-                foreach (Adress a in _adressesManager.listAdresses())
-                {
-                    if (i.Adress.AdressId == a.AdressId)
-                    {
-                        i.Adress.City = a.City;
-                        i.Adress.ZipCode = a.ZipCode;
-                        i.Adress.StreetName = a.StreetName;
-                        i.Adress.StreetNumber = a.StreetNumber;
-                        i.Adress.Flat = a.Flat;
-                        i.Adress.Country.CountryId = a.Country.CountryId;
-                        i.Adress.Province.ProvinceId = a.Province.ProvinceId;
-
-                        i.Adress.Country.Name = a.Country.Name;
-                        i.Adress.Province.Name = a.Province.Name;
-                    }
-                }
-
-                foreach (TaxCode t in _taxCodesManager.listTaxCodes())
-                {
-                    if (i.TaxCode.TaxCodeId == t.TaxCodeId)
-                    {
-                        i.TaxCode.Prefix = t.Prefix;
-                        i.TaxCode.Number = t.Number;
-                        i.TaxCode.Suffix = t.Suffix;
-                    }
-                }
-            }
-
-            return individualsList;
+            return individual;
         }
-
+        
         public void add(Individual individual)
         {
             try
@@ -109,12 +69,6 @@ namespace BLL
                 _database.setQuery("INSERT INTO individuals (ActiveStatus, IsPerson, FirstName, LastName, BusinessName, BusinessDescription, ImageUrl, Email, PhoneId, AdressId, TaxCodeId) VALUES (@ActiveStatus, @IsPerson, @FirstName, @LastName, @BusinessName, @BusinessDescription, @ImageUrl, @Email, @PhoneId, @AdressId, @TaxCodeId)");
 
                 _database.setParameter("@ActiveStatus", individual.ActiveStatus);
-                _database.setParameter("@IsPerson", individual.IsPerson);
-                _database.setParameter("@FirstName", individual.FirstName);
-                _database.setParameter("@LastName", individual.LastName);
-                _database.setParameter("@BusinessName", individual.BusinessName);
-                _database.setParameter("@BusinessDescription", individual.BusinessDescription);
-                _database.setParameter("@ImageUrl", individual.ImageUrl);
                 _database.setParameter("@Email", individual.Email);
                 _database.setParameter("@PhoneId", individual.Phone.PhoneId);
                 _database.setParameter("@AdressId", individual.Adress.AdressId);
@@ -144,12 +98,6 @@ namespace BLL
 
                 _database.setParameter("@IndividualId", individual.IndividualId);
                 _database.setParameter("@ActiveStatus", individual.ActiveStatus);
-                _database.setParameter("@IsPerson", individual.IsPerson);
-                _database.setParameter("@FirstName", individual.FirstName);
-                _database.setParameter("@LastName", individual.LastName);
-                _database.setParameter("@BusinessName", individual.BusinessName);
-                _database.setParameter("@BusinessDescription", individual.BusinessDescription);
-                _database.setParameter("@ImageUrl", individual.ImageUrl);
                 _database.setParameter("@Email", individual.Email);
                 _database.setParameter("@PhoneId", individual.Phone.PhoneId);
                 _database.setParameter("@AdressId", individual.Adress.AdressId);
@@ -181,7 +129,6 @@ namespace BLL
 
                 _phonesManager.delete(individual.Phone);
                 _adressesManager.delete(individual.Adress);
-                _taxCodesManager.delete(individual.TaxCode);
             }
             catch (Exception ex)
             {

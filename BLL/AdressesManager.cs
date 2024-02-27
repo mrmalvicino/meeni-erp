@@ -1,7 +1,7 @@
-﻿using DAL;
-using Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using DAL;
+using Entities;
 
 namespace BLL
 {
@@ -29,13 +29,9 @@ namespace BLL
                     Adress adress = new Adress();
 
                     adress.AdressId = (int)_database.Reader["AdressId"];
-                    adress.City = (string)_database.Reader["AdressCity"];
-                    adress.ZipCode = (string)_database.Reader["AdressZipCode"];
                     adress.StreetName = (string)_database.Reader["AdressStreetName"];
                     adress.StreetNumber = (int)_database.Reader["AdressStreetNumber"];
                     adress.Flat = (string)_database.Reader["AdressFlat"];
-                    adress.Country.CountryId = (int)_database.Reader["CountryId"];
-                    adress.Province.ProvinceId = (int)_database.Reader["ProvinceId"];
 
                     adressesList.Add(adress);
                 }
@@ -77,8 +73,6 @@ namespace BLL
             {
                 _database.setQuery("INSERT INTO adresses (AdressCity, AdressZipCode, AdressStreetName, AdressStreetNumber, AdressFlat, CountryId, ProvinceId) VALUES (@AdressCity, @AdressZipCode, @AdressStreetName, @AdressStreetNumber, @AdressFlat, @CountryId, @ProvinceId)");
 
-                _database.setParameter("@AdressCity", adress.City);
-                _database.setParameter("@AdressZipCode", adress.ZipCode);
                 _database.setParameter("@AdressStreetName", adress.StreetName);
                 _database.setParameter("@AdressStreetNumber", adress.StreetNumber);
                 _database.setParameter("@AdressFlat", adress.Flat);

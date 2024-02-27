@@ -45,6 +45,7 @@
     <Compile Include="BusinessPartnersManager.cs" />
     <Compile Include="CountriesManager.cs" />
     <Compile Include="CurrenciesManager.cs" />
+    <Compile Include="Helper.cs" />
     <Compile Include="PhonesManager.cs" />
     <Compile Include="PositionsManager.cs" />
     <Compile Include="CustomersManager.cs" />

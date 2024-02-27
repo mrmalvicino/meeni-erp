@@ -25,7 +25,7 @@ namespace WindowsForms
         public UserRegisterForm(Employee employee)
         {
             InitializeComponent();
-            _user = _usersManager.loadUser(employee);
+            //_user = _usersManager.loadUser(employee);
         }
 
         // METHODS
@@ -74,7 +74,7 @@ namespace WindowsForms
                 }                
                 else // Se está agregando un registro
                 {
-                    userNameTextBox.Text = _user.LastName + _user.EmployeeId;
+                    userNameTextBox.Text = _user.Person.LastName + _user.EmployeeId;
                     roleNameComboBox.SelectedIndex = -1;
                 }
             }
@@ -119,7 +119,7 @@ namespace WindowsForms
 
                 if (answer == DialogResult.Yes)
                 {
-                    _usersManager.delete(_user.UserId);
+                    //_usersManager.delete(_user.UserId);
                     Close();
                 }
             }

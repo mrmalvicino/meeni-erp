@@ -118,20 +118,12 @@ namespace WindowsForms
             else // Se está editando un registro
             {
                 activeStatusCheckBox.Checked = _supplier.ActiveStatus;
-                isPersonCheckBox.Checked = _supplier.IsPerson;
-                firstNameTextBox.Text = _supplier.FirstName;
-                lastNameTextBox.Text = _supplier.LastName;
-                businessNameTextBox.Text = _supplier.BusinessName;
-                businessDescriptionTextBox.Text = _supplier.BusinessDescription;
-                imageUrlTextBox.Text = _supplier.ImageUrl;
                 emailTextBox.Text = _supplier.Email;
 
                 phoneNumberTextBox.Text = _supplier.Phone.Number.ToString();
                 phoneCountryTextBox.Text = _supplier.Phone.Country.PhoneAreaCode.ToString();
                 phoneAreaTextBox.Text = _supplier.Phone.Province.PhoneAreaCode.ToString();
 
-                adressCityTextBox.Text = _supplier.Adress.City;
-                adressZipCodeTextBox.Text = _supplier.Adress.ZipCode;
                 adressStreetTextBox.Text = _supplier.Adress.StreetName;
                 adressStreetNumberTextBox.Text = _supplier.Adress.StreetNumber.ToString();
                 adressFlatTextBox.Text = _supplier.Adress.Flat;
@@ -157,20 +149,12 @@ namespace WindowsForms
             try
             {
                 _supplier.ActiveStatus = activeStatusCheckBox.Checked;
-                _supplier.IsPerson = isPersonCheckBox.Checked;
-                _supplier.FirstName = firstNameTextBox.Text;
-                _supplier.LastName = lastNameTextBox.Text;
-                _supplier.BusinessName = businessNameTextBox.Text;
-                _supplier.BusinessDescription = businessDescriptionTextBox.Text;
-                _supplier.ImageUrl = imageUrlTextBox.Text;
                 _supplier.Email = emailTextBox.Text;
 
                 if (phoneNumberTextBox.Text != "") _supplier.Phone.Number = int.Parse(phoneNumberTextBox.Text);
                 if (phoneCountryTextBox.Text != "") _supplier.Phone.Country.PhoneAreaCode = int.Parse(phoneCountryTextBox.Text);
                 if (phoneAreaTextBox.Text != "") _supplier.Phone.Province.PhoneAreaCode = int.Parse(phoneAreaTextBox.Text);
 
-                _supplier.Adress.City = adressCityTextBox.Text;
-                _supplier.Adress.ZipCode = adressZipCodeTextBox.Text;
                 _supplier.Adress.StreetName = adressStreetTextBox.Text;
                 if (adressStreetNumberTextBox.Text != "") _supplier.Adress.StreetNumber = int.Parse(adressStreetNumberTextBox.Text);
                 _supplier.Adress.Flat = adressFlatTextBox.Text;

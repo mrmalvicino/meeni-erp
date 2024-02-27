@@ -5,7 +5,7 @@ using Entities;
 namespace BLL
 {
     public class SuppliersManager : IndividualsManager
-    {
+    {/*
         // METHODS
 
         public List<Supplier> list()
@@ -100,6 +100,6 @@ namespace BLL
             {
                 _database.closeConnection();
             }
-        }
+        }*/
     }
 }

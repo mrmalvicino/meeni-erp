@@ -1,7 +1,7 @@
-﻿using DAL;
-using Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using DAL;
+using Entities;
 
 namespace BLL
 {
@@ -13,25 +13,24 @@ namespace BLL
 
         // METHODS
 
-        public List<TaxCode> listTaxCodes()
+        public TaxCode readTaxCode(int taxCodeId)
         {
-            List<TaxCode> taxCodesList = new List<TaxCode>();
+            TaxCode taxCode = new TaxCode();
 
             try
             {
-                _database.setQuery("SELECT TaxCodeId, TaxCodePrefix, TaxCodeNumber, TaxCodeSuffix FROM taxCodes");
+                _database.setQuery("select Prefix, Number, Suffix from TaxCodes where TaxCodeId = @TaxCodeId");
+                _database.setParameter("@TaxCodeId", taxCodeId);
                 _database.executeReader();
 
-                while (_database.Reader.Read())
+                if (_database.Reader.Read())
                 {
-                    TaxCode taxCode = new TaxCode();
-
-                    taxCode.TaxCodeId = (int)_database.Reader["TaxCodeId"];
-                    taxCode.Prefix = (string)_database.Reader["TaxCodePrefix"];
-                    taxCode.Number = (int)_database.Reader["TaxCodeNumber"];
-                    taxCode.Suffix = (string)_database.Reader["TaxCodeSuffix"];
-
-                    taxCodesList.Add(taxCode);
+                    taxCode.TaxCodeId = taxCodeId;
+                    if (!(_database.Reader["Prefix"] is DBNull))
+                        taxCode.Prefix = (string)_database.Reader["Prefix"];
+                    taxCode.Number = (int)_database.Reader["Number"];
+                    if (!(_database.Reader["Suffix"] is DBNull))
+                        taxCode.Suffix = (string)_database.Reader["Suffix"];
                 }
             }
             catch (Exception ex)
@@ -43,7 +42,7 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            return taxCodesList;
+            return taxCode;
         }
 
         public void add(TaxCode taxCode)
@@ -91,12 +90,12 @@ namespace BLL
             }
         }
 
-        public void delete(TaxCode taxCode)
+        public void delete(int taxCodeId)
         {
             try
             {
                 _database.setQuery("DELETE FROM taxCodes WHERE TaxCodeId = @TaxCodeId");
-                _database.setParameter("@TaxCodeId", taxCode.TaxCodeId);
+                _database.setParameter("@TaxCodeId", taxCodeId);
                 _database.executeAction();
             }
             catch (Exception ex)

@@ -20,7 +20,6 @@ namespace Entities
 
         public Employee()
         {
-            IsPerson = true;
             Position = new Position();
         }
     }

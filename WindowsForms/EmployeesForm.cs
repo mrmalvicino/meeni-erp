@@ -89,8 +89,8 @@ namespace WindowsForms
         {
             try
             {
-                _employeesTable = _employeesManager.list();
-                dataGridView.DataSource = _employeesTable;
+                //_employeesTable = _employeesManager.list();
+                //dataGridView.DataSource = _employeesTable;
             }
             catch (Exception ex)
             {
@@ -105,7 +105,7 @@ namespace WindowsForms
             bool showInactive = showInactiveCheckBox.Checked;
 
             if (2 < filter.Length)
-                _filteredEmployees = _employeesTable.FindAll(reg => ((reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)) && (reg.FirstName.ToUpper().Contains(filter.ToUpper()) || reg.LastName.ToUpper().Contains(filter.ToUpper()) || reg.BusinessName.ToUpper().Contains(filter.ToUpper()) || reg.BusinessDescription.ToUpper().Contains(filter.ToUpper()) || reg.Email.ToUpper().Contains(filter.ToUpper()) || reg.TaxCode.ToString().Contains(filter)));
+                _filteredEmployees = _employeesTable.FindAll(reg => ((reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)) && (reg.Person.FirstName.ToUpper().Contains(filter.ToUpper()) || reg.Person.LastName.ToUpper().Contains(filter.ToUpper()) || reg.Organization.OrganizationName.ToUpper().Contains(filter.ToUpper()) || reg.Organization.OrganizationDescription.ToUpper().Contains(filter.ToUpper()) || reg.Email.ToUpper().Contains(filter.ToUpper()) || reg.TaxCode.ToString().Contains(filter)));
             else
                 _filteredEmployees = _employeesTable.FindAll(reg => (reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive));
 
@@ -148,8 +148,8 @@ namespace WindowsForms
             if (dataGridView.CurrentRow != null)
             {
                 _selectedEmployee = (Employee)dataGridView.CurrentRow.DataBoundItem;
-                Functions.loadImage(pictureBox, _selectedEmployee.ImageUrl);
-                loadProfile(_selectedEmployee.EmployeeId, _selectedEmployee.ToString(), _selectedEmployee.BusinessDescription, _selectedEmployee.Phone.ToString(), _selectedEmployee.Email.ToString(), _selectedEmployee.Adress.ToString());
+                //Functions.loadImage(pictureBox, _selectedEmployee.ImageUrl);
+                loadProfile(_selectedEmployee.EmployeeId, _selectedEmployee.ToString(), _selectedEmployee.Organization.OrganizationDescription, _selectedEmployee.Phone.ToString(), _selectedEmployee.Email.ToString(), _selectedEmployee.Adress.ToString());
             }
         }
 
@@ -177,7 +177,7 @@ namespace WindowsForms
 
                 if (answer == DialogResult.Yes)
                 {
-                    _employeesManager.delete(_selectedEmployee.EmployeeId);
+                    //_employeesManager.delete(_selectedEmployee.EmployeeId);
                     refreshTable();
                     applyFilter();
                 }

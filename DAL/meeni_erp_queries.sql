@@ -9,12 +9,12 @@ select
 P.FirstName, P.LastName,
 O.OrganizationName, O.OrganizationDescription,
 I.ActiveStatus, I.Birth, I.Email,
-T.Prefix, T.Number, T.Suffix,
+T.Prefix, T.Number as TaxCodeNumber, T.Suffix,
 CO1.CountryName,
 PR1.ProvinceName,
 CI.CityName, CI.ZipCode,
 A.StreetName, A.StreetNumber, A.Flat, A.Details,
-CO2.PhoneAreaCode, PR2.PhoneAreaCode, PH.Number,
+CO2.PhoneAreaCode as CountryPhoneAreaCode, PR2.PhoneAreaCode as ProvincePhoneAreaCode, PH.Number as PhoneNumber,
 B.PaymentMethod, B.InvoiceCategory,
 C.SalesAmount
 from Customers C
@@ -30,3 +30,5 @@ left join Countries CO1 on PR1.CountryId = CO1.CountryId
 left join Phones PH on I.PhoneId = PH.PhoneId
 left join Provinces PR2 on PH.ProvinceId = PR2.ProvinceId
 left join Countries CO2 on PR2.CountryId = CO2.CountryId
+
+select TaxCodeId, Prefix, Number, Suffix from taxCodes where TaxCodeId = 2

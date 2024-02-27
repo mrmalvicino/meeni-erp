@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace BLL
 {
     public class UsersManager : IndividualsManager
-    {
+    {/*
         // METHODS
 
         public List<User> list()
@@ -152,6 +152,6 @@ namespace BLL
             user.Position.Title = employee.Position.Title;
             user.Position.Seniority.Name = employee.Position.Seniority.Name;
             user.Position.Department.Name = employee.Position.Department.Name;
-        }
+        }*/
     }
 }

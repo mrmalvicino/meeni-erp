@@ -6,7 +6,7 @@ namespace Entities
     {
         // PROPERTIES
 
-        [DisplayName("ID de código fiscal")]
+        [DisplayName("ID de CUIL")]
         public int TaxCodeId { get; set; }
 
         [DisplayName("XX")]

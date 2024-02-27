@@ -13,14 +13,8 @@ namespace Entities
         [DisplayName("Está activo")]
         public bool ActiveStatus { get; set; }
 
-        [DisplayName("Es persona")]
-        public bool IsPerson { get; set; }
-
         [DisplayName("E-Mail")]
         public string Email { get; set; }
-
-        [DisplayName("URL de imagen")]
-        public string ImageUrl { get; set; }
 
         [DisplayName("Nacimiento")]
         public DateTime Birth {  get; set; }
@@ -56,7 +50,7 @@ namespace Entities
 
         public override string ToString()
         {
-            if (this.IsPerson)
+            if (true)
                 return this.Person.ToString();
             else
                 return this.Organization.ToString();
@@ -69,12 +63,6 @@ namespace Entities
 
             individual.IndividualId = this.IndividualId;
             individual.ActiveStatus = this.ActiveStatus;
-            individual.IsPerson = this.IsPerson;
-            individual.FirstName = this.FirstName;
-            individual.LastName = this.LastName;
-            individual.BusinessName = this.BusinessName;
-            individual.BusinessDescription = this.BusinessDescription;
-            individual.ImageUrl = this.ImageUrl;
             individual.Email = this.Email;
             individual.Phone = this.Phone;
             individual.Adress = this.Adress;
@@ -89,12 +77,6 @@ namespace Entities
 
             obj.IndividualId = individual.IndividualId;
             obj.ActiveStatus = individual.ActiveStatus;
-            obj.IsPerson = individual.IsPerson;
-            obj.FirstName = individual.FirstName;
-            obj.LastName = individual.LastName;
-            obj.BusinessName = individual.BusinessName;
-            obj.BusinessDescription = individual.BusinessDescription;
-            obj.ImageUrl = individual.ImageUrl;
             obj.Email = individual.Email;
             obj.Phone = individual.Phone;
             obj.Adress = individual.Adress;

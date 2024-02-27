@@ -51,7 +51,6 @@ namespace WindowsForms
             {
                 dataGridView.Columns["IndividualId"].Visible = false;
                 dataGridView.Columns["ActiveStatus"].Visible = false;
-                dataGridView.Columns["IsPerson"].Width = 50;
                 dataGridView.Columns["FirstName"].Width = 60;
                 dataGridView.Columns["LastName"].Width = 60;
                 dataGridView.Columns["BusinessDescription"].Width = 120;
@@ -102,13 +101,13 @@ namespace WindowsForms
             bool showInactive = showInactiveCheckBox.Checked;
 
             if (2 < filter.Length)
-                _filteredCustomers = _customersTable.FindAll(reg => ((reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)) && (reg.FirstName.ToUpper().Contains(filter.ToUpper()) || reg.LastName.ToUpper().Contains(filter.ToUpper()) || reg.BusinessName.ToUpper().Contains(filter.ToUpper()) || reg.BusinessDescription.ToUpper().Contains(filter.ToUpper()) || reg.Email.ToUpper().Contains(filter.ToUpper()) || reg.TaxCode.ToString().Contains(filter) ) );
+                _filteredCustomers = _customersTable.FindAll(reg => ((reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)) && (reg.Person.FirstName.ToUpper().Contains(filter.ToUpper()) || reg.Person.LastName.ToUpper().Contains(filter.ToUpper()) || reg.Organization.OrganizationName.ToUpper().Contains(filter.ToUpper()) || reg.Organization.OrganizationDescription.ToUpper().Contains(filter.ToUpper()) || reg.Email.ToUpper().Contains(filter.ToUpper()) || reg.TaxCode.ToString().Contains(filter) ) );
             else
                 _filteredCustomers = _customersTable.FindAll(reg => (reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive));
 
             dataGridView.DataSource = null;
             dataGridView.DataSource = _filteredCustomers;
-            setupDataGridView();
+            //setupDataGridView();
             validateDataGridView();
         }
 
@@ -136,7 +135,7 @@ namespace WindowsForms
         {
             setupStyle();
             refreshTable();
-            setupDataGridView();
+            //setupDataGridView();
             applyFilter();
         }
 
@@ -145,8 +144,8 @@ namespace WindowsForms
             if (dataGridView.CurrentRow != null)
             {
                 _selectedCustomer = (Customer)dataGridView.CurrentRow.DataBoundItem;
-                Functions.loadImage(pictureBox, _selectedCustomer.ImageUrl);
-                loadProfile(_selectedCustomer.CustomerId, _selectedCustomer.ToString(), _selectedCustomer.BusinessDescription, _selectedCustomer.Phone.ToString(), _selectedCustomer.Email.ToString(), _selectedCustomer.Adress.ToString());
+                //Functions.loadImage(pictureBox, _selectedCustomer.ImageUrl);
+                loadProfile(_selectedCustomer.CustomerId, _selectedCustomer.ToString(), _selectedCustomer.Organization.OrganizationDescription, _selectedCustomer.Phone.ToString(), _selectedCustomer.Email.ToString(), _selectedCustomer.Adress.ToString());
             }
         }
 

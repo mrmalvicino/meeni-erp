@@ -86,7 +86,7 @@ namespace WindowsForms
         {
             try
             {
-                _suppliersTable = _suppliersManager.list();
+                //_suppliersTable = _suppliersManager.list();
                 dataGridView.DataSource = _suppliersTable;
             }
             catch (Exception ex)
@@ -102,7 +102,7 @@ namespace WindowsForms
             bool showInactive = showInactiveCheckBox.Checked;
 
             if (2 < filter.Length)
-                _filteredSuppliers = _suppliersTable.FindAll(reg => ((reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)) && (reg.FirstName.ToUpper().Contains(filter.ToUpper()) || reg.LastName.ToUpper().Contains(filter.ToUpper()) || reg.BusinessName.ToUpper().Contains(filter.ToUpper()) || reg.BusinessDescription.ToUpper().Contains(filter.ToUpper()) || reg.Email.ToUpper().Contains(filter.ToUpper()) || reg.TaxCode.ToString().Contains(filter)));
+                _filteredSuppliers = _suppliersTable.FindAll(reg => ((reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)) && (reg.Person.FirstName.ToUpper().Contains(filter.ToUpper()) || reg.Person.LastName.ToUpper().Contains(filter.ToUpper()) || reg.Organization.OrganizationName.ToUpper().Contains(filter.ToUpper()) || reg.Organization.OrganizationDescription.ToUpper().Contains(filter.ToUpper()) || reg.Email.ToUpper().Contains(filter.ToUpper()) || reg.TaxCode.ToString().Contains(filter)));
             else
                 _filteredSuppliers = _suppliersTable.FindAll(reg => (reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive));
 
@@ -145,8 +145,8 @@ namespace WindowsForms
             if (dataGridView.CurrentRow != null)
             {
                 _selectedSupplier = (Supplier)dataGridView.CurrentRow.DataBoundItem;
-                Functions.loadImage(pictureBox, _selectedSupplier.ImageUrl);
-                loadProfile(_selectedSupplier.SupplierId, _selectedSupplier.ToString(), _selectedSupplier.BusinessDescription, _selectedSupplier.Phone.ToString(), _selectedSupplier.Email.ToString(), _selectedSupplier.Adress.ToString());
+                //Functions.loadImage(pictureBox, _selectedSupplier.ImageUrl);
+                //loadProfile(_selectedSupplier.SupplierId, _selectedSupplier.ToString(), _selectedSupplier.BusinessDescription, _selectedSupplier.Phone.ToString(), _selectedSupplier.Email.ToString(), _selectedSupplier.Adress.ToString());
             }
         }
 
