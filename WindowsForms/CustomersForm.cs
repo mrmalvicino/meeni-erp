@@ -189,7 +189,7 @@ namespace WindowsForms
         private void newButton_Click(object sender, EventArgs e)
         {
             CustomerRegisterForm registerForm = new CustomerRegisterForm();
-            registerForm.ShowDialog();
+            registerForm.ShowDialog();//
             refreshTable();
             applyFilter();
         }

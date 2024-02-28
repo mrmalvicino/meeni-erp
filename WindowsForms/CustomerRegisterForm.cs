@@ -56,14 +56,6 @@ namespace WindowsForms
                     return false;
                 }
             }
-            else
-            {
-                if (Validations.isEmpty(businessNameTextBox.Text))
-                {
-                    MessageBox.Show("Especificar el nombre de la organización.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-            }
 
             if (Validations.isNumber(phoneCountryTextBox.Text) == false)
             {
@@ -71,7 +63,7 @@ namespace WindowsForms
                 return false;
             }
 
-            if (Validations.isNumber(phoneAreaTextBox.Text) == false)
+            if (Validations.isNumber(phoneProvinceTextBox.Text) == false)
             {
                 MessageBox.Show("El código de área del teléfono solo admite caracteres numéricos.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -83,7 +75,7 @@ namespace WindowsForms
                 return false;
             }
 
-            if (Validations.isNumber(adressStreetNumberTextBox.Text) == false)
+            if (Validations.isNumber(streetNumberTextBox.Text) == false)
             {
                 MessageBox.Show("El número de calle solo admite caracteres numéricos.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -122,13 +114,11 @@ namespace WindowsForms
 
                 phoneNumberTextBox.Text = _customer.Phone.Number.ToString();
                 phoneCountryTextBox.Text = _customer.Phone.Country.PhoneAreaCode.ToString();
-                phoneAreaTextBox.Text = _customer.Phone.Province.PhoneAreaCode.ToString();
+                phoneProvinceTextBox.Text = _customer.Phone.Province.PhoneAreaCode.ToString();
 
-                adressStreetTextBox.Text = _customer.Adress.StreetName;
-                adressStreetNumberTextBox.Text = _customer.Adress.StreetNumber.ToString();
-                adressFlatTextBox.Text = _customer.Adress.Flat;
-                adressCountryTextBox.Text = _customer.Adress.Country.Name;
-                adressProvinceTextBox.Text = _customer.Adress.Province.Name;
+                streetNameTextBox.Text = _customer.Adress.StreetName;
+                streetNumberTextBox.Text = _customer.Adress.StreetNumber.ToString();
+                flatTextBox.Text = _customer.Adress.Flat;
 
                 legalIdXXTextBox.Text = _customer.TaxCode.Prefix;
                 legalIdDNITextBox.Text = _customer.TaxCode.Number.ToString();
@@ -153,13 +143,11 @@ namespace WindowsForms
 
                 if (phoneNumberTextBox.Text != "") _customer.Phone.Number = int.Parse(phoneNumberTextBox.Text);
                 if (phoneCountryTextBox.Text != "") _customer.Phone.Country.PhoneAreaCode = int.Parse(phoneCountryTextBox.Text);
-                if (phoneAreaTextBox.Text != "") _customer.Phone.Province.PhoneAreaCode = int.Parse(phoneAreaTextBox.Text);
+                if (phoneProvinceTextBox.Text != "") _customer.Phone.Province.PhoneAreaCode = int.Parse(phoneProvinceTextBox.Text);
 
-                _customer.Adress.StreetName = adressStreetTextBox.Text;
-                if (adressStreetNumberTextBox.Text != "") _customer.Adress.StreetNumber = int.Parse(adressStreetNumberTextBox.Text);
-                _customer.Adress.Flat = adressFlatTextBox.Text;
-                _customer.Adress.Country.Name = adressCountryTextBox.Text;
-                _customer.Adress.Province.Name = adressProvinceTextBox.Text;
+                _customer.Adress.StreetName = streetNameTextBox.Text;
+                if (streetNumberTextBox.Text != "") _customer.Adress.StreetNumber = int.Parse(streetNumberTextBox.Text);
+                _customer.Adress.Flat = flatTextBox.Text;
 
                 _customer.TaxCode.Prefix = legalIdXXTextBox.Text;
                 if (legalIdDNITextBox.Text != "") _customer.TaxCode.Number = int.Parse(legalIdDNITextBox.Text);
@@ -224,10 +212,10 @@ namespace WindowsForms
 
         private void phoneAreaTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (Validations.isNumber(phoneAreaTextBox.Text))
-                phoneAreaTextBox.ForeColor = Palette.DefaultBlack;
+            if (Validations.isNumber(phoneProvinceTextBox.Text))
+                phoneProvinceTextBox.ForeColor = Palette.DefaultBlack;
             else
-                phoneAreaTextBox.ForeColor = Palette.ValidationColor;
+                phoneProvinceTextBox.ForeColor = Palette.ValidationColor;
         }
 
         private void phoneNumberTextBox_TextChanged(object sender, EventArgs e)
@@ -240,10 +228,19 @@ namespace WindowsForms
 
         private void adressStreetNumberTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (Validations.isNumber(adressStreetNumberTextBox.Text))
-                adressStreetNumberTextBox.ForeColor = Palette.DefaultBlack;
+            if (Validations.isNumber(streetNumberTextBox.Text))
+                streetNumberTextBox.ForeColor = Palette.DefaultBlack;
             else
-                adressStreetNumberTextBox.ForeColor = Palette.ValidationColor;
+                streetNumberTextBox.ForeColor = Palette.ValidationColor;
+        }
+
+        private void isPersonCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            firstNameTextBox.Enabled = !firstNameTextBox.Enabled;
+            lastNameTextBox.Enabled = !lastNameTextBox.Enabled;
+
+            firstNameTextBox.Text = "";
+            lastNameTextBox.Text = "";
         }
     }
 }
