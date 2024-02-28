@@ -15,6 +15,7 @@ namespace WindowsForms
         private List<Customer> _customersTable;
         private List<Customer> _filteredCustomers;
         private CustomersManager _customersManager = new CustomersManager();
+        private ImagesManager _imagesManager = new ImagesManager();
 
         // CONSTRUCT
 
@@ -60,7 +61,7 @@ namespace WindowsForms
                 dataGridView.Columns["Adress"].Width = 150;
                 dataGridView.Columns["Phone"].Width = 100;
                 dataGridView.Columns["Email"].Width = 150;
-                dataGridView.Columns["Birth"].Width = 60;
+                dataGridView.Columns["Birth"].Width = 50;
                 dataGridView.Columns["PaymentMethod"].Width = 50;
                 dataGridView.Columns["InvoiceCategory"].Width = 50;
                 dataGridView.Columns["SalesAmount"].Width = 50;
@@ -76,7 +77,7 @@ namespace WindowsForms
                 dataGridView.Columns["InvoiceCategory"].DisplayIndex = dataGridView.ColumnCount - 1;
                 dataGridView.Columns["SalesAmount"].DisplayIndex = dataGridView.ColumnCount - 1;
 
-                dataGridView.Columns["Birth"].DefaultCellStyle.Format = "dd/MM/yyyy";
+                dataGridView.Columns["Birth"].DefaultCellStyle.Format = "dd/mm/yy";
 
                 Functions.fillDataGrid(dataGridView);
             }
@@ -120,14 +121,31 @@ namespace WindowsForms
             bool showInactive = showInactiveCheckBox.Checked;
 
             if (2 < filter.Length)
-                _filteredCustomers = _customersTable.FindAll(reg => ((reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)) && (reg.Person.FirstName.ToUpper().Contains(filter.ToUpper()) || reg.Person.LastName.ToUpper().Contains(filter.ToUpper()) || reg.Organization.Name.ToUpper().Contains(filter.ToUpper()) || reg.Organization.Description.ToUpper().Contains(filter.ToUpper()) || reg.Email.ToUpper().Contains(filter.ToUpper()) || reg.TaxCode.ToString().Contains(filter) ) );
+            {
+                _filteredCustomers = _customersTable.FindAll(reg =>
+                    (
+                        (reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)
+                    )
+                    &&
+                    (
+                        reg.Person.ToString().ToUpper().Contains(filter.ToUpper()) || 
+                        reg.Organization.ToString().ToUpper().Contains(filter.ToUpper()) || 
+                        reg.Email.ToUpper().Contains(filter.ToUpper()) || 
+                        reg.TaxCode.ToString().Contains(filter)
+                    )
+                );
+            }
             else
-                _filteredCustomers = _customersTable.FindAll(reg => (reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive));
+            {
+                _filteredCustomers = _customersTable.FindAll(reg =>
+                    (reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)
+                );
+            }                
 
             dataGridView.DataSource = null;
             dataGridView.DataSource = _filteredCustomers;
-            setupDataGridView();
             validateDataGridView();
+            setupDataGridView();
         }
 
         private void loadProfile(int id, string name, string description, string phone, string email, string adress)
@@ -155,8 +173,16 @@ namespace WindowsForms
             if (dataGridView.CurrentRow != null)
             {
                 _selectedCustomer = (Customer)dataGridView.CurrentRow.DataBoundItem;
-                //Functions.loadImage(pictureBox, _selectedCustomer.ImageUrl);
                 loadProfile(_selectedCustomer.CustomerId, _selectedCustomer.ToString(), _selectedCustomer.Organization.Description, _selectedCustomer.Phone.ToString(), _selectedCustomer.Email.ToString(), _selectedCustomer.Adress.ToString());
+                
+                string imageUrl;
+
+                if (_selectedCustomer.isPerson())
+                    imageUrl = _imagesManager.readImage<Person>(_selectedCustomer.Person.PersonId);
+                else
+                    imageUrl = _imagesManager.readImage<Organization>(_selectedCustomer.Organization.OrganizationId);
+
+                Functions.loadImage(pictureBox, imageUrl);
             }
         }
 

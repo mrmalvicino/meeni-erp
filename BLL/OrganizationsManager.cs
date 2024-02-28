@@ -28,6 +28,7 @@ namespace BLL
 
                 if (_database.Reader.Read())
                 {
+                    organization.OrganizationId = organizationId;
                     organization.Name = (string)_database.Reader["OrganizationName"];
                     if (!(_database.Reader["OrganizationDescription"] is DBNull))
                         organization.Description = (string)_database.Reader["OrganizationDescription"];

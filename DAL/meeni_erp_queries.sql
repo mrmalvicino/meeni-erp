@@ -51,3 +51,25 @@ from Phones PH
 inner join Provinces PR on PH.ProvinceId = PR.ProvinceId
 inner join Countries C on PR.CountryId = C.CountryId
 where PhoneId = 2
+
+------------
+-- IMAGES --
+------------
+
+select I.ImageUrl
+from Images I
+inner join ImagePersonRelations R on I.ImageId = R.ImageId
+inner join People P on R.PersonId = P.PersonId
+where P.PersonId = 2
+
+select I.ImageUrl
+from Images I
+inner join ImageOrganizationRelations R on I.ImageId = R.ImageId
+inner join Organizations O on R.OrganizationId = O.OrganizationId
+where O.OrganizationId = 2
+
+select I.ImageUrl
+from Images I
+inner join ImageProductRelations R on I.ImageId = R.ImageId
+inner join Products P on R.ProductId = P.ProductId
+where P.ProductId = 2

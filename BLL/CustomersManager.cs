@@ -10,6 +10,7 @@ namespace BLL
         // ATTRIBUTES
 
         private Database _database = new Database();
+        private BusinessPartner _businessPartner;
         private BusinessPartnersManager _businessPartnersManager = new BusinessPartnersManager();
 
         // METHODS
@@ -44,12 +45,10 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            BusinessPartner businessPartner;
-
             foreach (Customer customer in customersList)
             {
-                businessPartner = _businessPartnersManager.readBusinessPartner(customer.BusinessPartnerId);
-                Helper.assign(customer, businessPartner);
+                _businessPartner = _businessPartnersManager.readBusinessPartner(customer.BusinessPartnerId);
+                Helper.assign(customer, _businessPartner);
             }
 
             return customersList;

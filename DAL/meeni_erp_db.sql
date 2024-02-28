@@ -250,7 +250,8 @@ values
 ('https://img.freepik.com/vector-gratis/logotipo-excavadora-construccion-edificios_23-2148657768.jpg?size=338&ext=jpg&ga=GA1.1.1412446893.1705449600&semt=ais'),
 ('https://img.freepik.com/vector-premium/logotipo-enlucido-construccion-diseno-ladrillo-paleta_501861-302.jpg?size=338&ext=jpg&ga=GA1.1.1412446893.1705449600&semt=ais'),
 ('https://hierrosratti.com.ar/images/productos/tubos.jpg'),
-('https://www.herrajessanmartin.com/Pubs/Sites/Default/Config/logo-hsm-invertido-02.png');
+('https://www.herrajessanmartin.com/Pubs/Sites/Default/Config/logo-hsm-invertido-02.png'),
+('https://img.freepik.com/foto-gratis/chico-guapo-seguro-posando-contra-pared-blanca_176420-32936.jpg?size=626&ext=jpg&ga=GA1.1.1224184972.1708992000&semt=sph');
 go
 
 ---------------------------
@@ -272,6 +273,13 @@ create table ImageOrganizationRelations(
 	OrganizationId int foreign key references Organizations(OrganizationId) not null
 )
 go
+
+insert into ImageOrganizationRelations
+(ImageId, OrganizationId)
+values
+(1,2),
+(2,3),
+(3,4);
 
 ----------------------------
 -- IMAGE-PRODUCT RELATION --

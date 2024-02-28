@@ -28,6 +28,7 @@ namespace BLL
 
                 if (_database.Reader.Read())
                 {
+                    person.PersonId = personId;
                     person.FirstName = (string)_database.Reader["FirstName"];
                     person.LastName = (string)_database.Reader["LastName"];
                 }
