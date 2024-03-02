@@ -32,18 +32,27 @@ namespace BLL
                 {
                     individual.IndividualId = individualId;
                     individual.ActiveStatus = (bool)_database.Reader["ActiveStatus"];
+
                     if (!(_database.Reader["Email"] is DBNull))
                         individual.Email = (string)_database.Reader["Email"];
-                    if (!(_database.Reader["Birth"] is DBNull))
+
+                    if (_database.Reader["Birth"] is DBNull)
+                        individual.Birth = DateTime.Today;
+                    else
                         individual.Birth = (DateTime)_database.Reader["Birth"];
+
                     if (!(_database.Reader["TaxCodeId"] is DBNull))
                         individual.TaxCode.TaxCodeId = (int)_database.Reader["TaxCodeId"];
+
                     if (!(_database.Reader["AdressId"] is DBNull))
                         individual.Adress.AdressId = (int)_database.Reader["AdressId"];
+
                     if (!(_database.Reader["PhoneId"] is DBNull))
                         individual.Phone.PhoneId = (int)_database.Reader["PhoneId"];
+
                     if (!(_database.Reader["PersonId"] is DBNull))
                         individual.Person.PersonId = (int)_database.Reader["PersonId"];
+
                     if (!(_database.Reader["OrganizationId"] is DBNull))
                         individual.Organization.OrganizationId = (int)_database.Reader["OrganizationId"];
                 }

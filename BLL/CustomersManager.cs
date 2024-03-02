@@ -21,7 +21,7 @@ namespace BLL
             
             try
             {
-                _database.setQuery("SELECT CustomerId, SalesAmount, BusinessPartnerId FROM customers");
+                _database.setQuery("select CustomerId, SalesAmount, BusinessPartnerId from Customers");
                 _database.executeReader();
 
                 while (_database.Reader.Read())
@@ -29,8 +29,10 @@ namespace BLL
                     Customer customer = new Customer();
 
                     customer.CustomerId = (int)_database.Reader["CustomerId"];
+
                     if (!(_database.Reader["SalesAmount"] is DBNull))
                         customer.SalesAmount = (int)_database.Reader["SalesAmount"];
+
                     customer.BusinessPartnerId = (int)_database.Reader["BusinessPartnerId"];
 
                     customersList.Add(customer);

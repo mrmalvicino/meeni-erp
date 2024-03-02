@@ -13,21 +13,24 @@ namespace BLL
 
         // METHODS
 
-        public Province readProvince(int provinceId)
+        public List<Province> list()
         {
-            Province province = new Province();
+            List<Province> provincesList = new List<Province>();
 
             try
             {
-                _database.setQuery("select ProvinceName, PhoneAreaCode from Provinces where ProvinceId = @ProvinceId");
-                _database.setParameter("@ProvinceId", provinceId);
+                _database.setQuery("select ProvinceId, ProvinceName, PhoneAreaCode from Provinces");
                 _database.executeReader();
 
-                if (_database.Reader.Read())
+                while (_database.Reader.Read())
                 {
-                    province.ProvinceId = provinceId;
+                    Province province = new Province();
+
+                    province.ProvinceId = Convert.ToInt32(_database.Reader["ProvinceId"]);
                     province.Name = (string)_database.Reader["ProvinceName"];
                     province.PhoneAreaCode = (int)_database.Reader["PhoneAreaCode"];
+
+                    provincesList.Add(province);
                 }
             }
             catch (Exception ex)
@@ -39,40 +42,7 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            return province;
-        }
-
-        public void add(Province province)
-        {
-
-        }
-
-        public void edit(Province province)
-        {
-
-        }
-
-        public void delete(Province province)
-        {
-            try
-            {
-                _database.setQuery("DELETE FROM provinces WHERE ProvinceId = @ProvinceId");
-                _database.setParameter("@ProvinceId", province.ProvinceId);
-                _database.executeAction();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                _database.closeConnection();
-            }
-        }
-
-        public void update(Province province)
-        {
-            // agrega si no existe, editar si existe
+            return provincesList;
         }
     }
 }

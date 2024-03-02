@@ -16,21 +16,26 @@ namespace BLL
 
         // METHODS
 
-        public City readCity(int cityId)
+        public List<City> list()
         {
-            City city = new City();
+            List<City> citiesList = new List<City>();
 
             try
             {
-                _database.setQuery("select CityName, ZipCode from Cities where CityId = @CityId");
-                _database.setParameter("@CityId", cityId);
+                _database.setQuery("select CityId, CityName, ZipCode from Cities");
                 _database.executeReader();
 
-                if (_database.Reader.Read())
+                while (_database.Reader.Read())
                 {
-                    city.CityId = cityId;
+                    City city = new City();
+
+                    city.CityId = Convert.ToInt32(_database.Reader["CityId"]);
                     city.Name = (string)_database.Reader["CityName"];
-                    city.ZipCode = (string)_database.Reader["ZipCode"];
+
+                    if (!(_database.Reader["ZipCode"] is DBNull))
+                        city.ZipCode = (string)_database.Reader["ZipCode"];
+
+                    citiesList.Add(city);
                 }
             }
             catch (Exception ex)
@@ -42,7 +47,7 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            return city;
+            return citiesList;
         }
     }
 }

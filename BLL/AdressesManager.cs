@@ -22,7 +22,9 @@ namespace BLL
             {
                 _database.setQuery(
                     "select " +
-                    "A.StreetName, A.StreetNumber, A.Flat, A.Details, CI.CityName, CI.ZipCode, P.ProvinceName, CO.CountryName " +
+                    "A.StreetName, A.StreetNumber, A.Flat, A.Details, A.CityId, " +
+                    "CI.CityName, CI.ZipCode, CI.ProvinceId, " +
+                    "P.ProvinceName, P.CountryId, CO.CountryName " +
                     "from Adresses A " +
                     "inner join Cities CI on A.CityId = CI.CityId " +
                     "inner join Provinces P on CI.ProvinceId = P.ProvinceId " +
@@ -36,14 +38,22 @@ namespace BLL
                 {
                     adress.StreetName = (string)_database.Reader["StreetName"];
                     adress.StreetNumber = (int)_database.Reader["StreetNumber"];
+
                     if (!(_database.Reader["Flat"] is DBNull))
                         adress.Flat = (string)_database.Reader["Flat"];
+
                     if (!(_database.Reader["Details"] is DBNull))
                         adress.Details = (string)_database.Reader["Details"];
+
+                    adress.City.CityId = Convert.ToInt32(_database.Reader["CityId"]);
                     adress.City.Name = (string)_database.Reader["CityName"];
+
                     if (!(_database.Reader["ZipCode"] is DBNull))
                         adress.City.ZipCode = (string)_database.Reader["ZipCode"];
+
+                    adress.Province.ProvinceId = Convert.ToInt32(_database.Reader["ProvinceId"]);
                     adress.Province.Name = (string)_database.Reader["ProvinceName"];
+                    adress.Country.CountryId = Convert.ToInt32(_database.Reader["CountryId"]);
                     adress.Country.Name = (string)_database.Reader["CountryName"];
                 }
             }
@@ -73,8 +83,8 @@ namespace BLL
 
                 _database.executeAction();
 
-                _countriesManager.update(adress.Country);
-                _provincesManager.update(adress.Province);
+                //_countriesManager.update(adress.Country);
+                //_provincesManager.update(adress.Province);
             }
             catch (Exception ex)
             {
@@ -103,8 +113,8 @@ namespace BLL
 
                 _database.executeAction();
 
-                _countriesManager.edit(adress.Country);
-                _provincesManager.edit(adress.Province);
+                //_countriesManager.edit(adress.Country);
+                //_provincesManager.edit(adress.Province);
             }
             catch (Exception ex)
             {

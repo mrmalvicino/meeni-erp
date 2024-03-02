@@ -28,6 +28,7 @@ namespace BLL
                     currency.Code = (string)_database.Reader["Code"];
                     currency.Name = (string)_database.Reader["CurrencyName"];
                     currency.Rate = (decimal)_database.Reader["Rate"];
+
                     if (!(_database.Reader["BlackRate"] is DBNull))
                         currency.BlackRate = (decimal)_database.Reader["BlackRate"];
                 }

@@ -63,8 +63,8 @@ namespace BLL
 
                 _database.executeAction();
 
-                _countriesManager.update(phone.Country);
-                _provincesManager.update(phone.Province);
+                //_countriesManager.update(phone.Country);
+                //_provincesManager.update(phone.Province);
             }
             catch (Exception ex)
             {
@@ -89,8 +89,8 @@ namespace BLL
 
                 _database.executeAction();
 
-                _countriesManager.edit(phone.Country);
-                _provincesManager.edit(phone.Province);
+                //_countriesManager.edit(phone.Country);
+                //_provincesManager.edit(phone.Province);
             }
             catch (Exception ex)
             {

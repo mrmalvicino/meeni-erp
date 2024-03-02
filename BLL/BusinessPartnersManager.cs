@@ -27,10 +27,13 @@ namespace BLL
                 if (_database.Reader.Read())
                 {
                     businessPartner.BusinessPartnerId = (int)_database.Reader["BusinessPartnerId"];
+
                     if (!(_database.Reader["PaymentMethod"] is DBNull))
                         businessPartner.PaymentMethod = (string)_database.Reader["PaymentMethod"];
+
                     if (!(_database.Reader["InvoiceCategory"] is DBNull))
                         businessPartner.InvoiceCategory = (string)_database.Reader["InvoiceCategory"];
+
                     businessPartner.IndividualId = (int)_database.Reader["IndividualId"];
                 }
             }

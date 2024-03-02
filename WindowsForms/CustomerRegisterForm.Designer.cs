@@ -34,15 +34,13 @@
             this.organizationDescriptionTextBox = new System.Windows.Forms.TextBox();
             this.imageUrlTextBox = new System.Windows.Forms.TextBox();
             this.emailTextBox = new System.Windows.Forms.TextBox();
-            this.phoneCountryTextBox = new System.Windows.Forms.TextBox();
             this.phoneNumberTextBox = new System.Windows.Forms.TextBox();
-            this.phoneProvinceTextBox = new System.Windows.Forms.TextBox();
             this.streetNameTextBox = new System.Windows.Forms.TextBox();
             this.streetNumberTextBox = new System.Windows.Forms.TextBox();
             this.flatTextBox = new System.Windows.Forms.TextBox();
-            this.legalIdXXTextBox = new System.Windows.Forms.TextBox();
-            this.legalIdDNITextBox = new System.Windows.Forms.TextBox();
-            this.legalIdYTextBox = new System.Windows.Forms.TextBox();
+            this.taxCodePrefixTextBox = new System.Windows.Forms.TextBox();
+            this.taxCodeNumberTextBox = new System.Windows.Forms.TextBox();
+            this.taxCodeSuffixTextBox = new System.Windows.Forms.TextBox();
             this.firstNameLabel = new System.Windows.Forms.Label();
             this.lastNameLabel = new System.Windows.Forms.Label();
             this.organizationNameLabel = new System.Windows.Forms.Label();
@@ -56,9 +54,9 @@
             this.streetNumberLabel = new System.Windows.Forms.Label();
             this.flatLabel = new System.Windows.Forms.Label();
             this.saveButton = new System.Windows.Forms.Button();
-            this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.profilePictureBox = new System.Windows.Forms.PictureBox();
             this.loadImageButton = new System.Windows.Forms.Button();
-            this.legalIdLabel = new System.Windows.Forms.Label();
+            this.taxCodeLabel = new System.Windows.Forms.Label();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.isPersonCheckBox = new System.Windows.Forms.CheckBox();
             this.activeStatusCheckBox = new System.Windows.Forms.CheckBox();
@@ -78,10 +76,12 @@
             this.cityComboBox = new System.Windows.Forms.ComboBox();
             this.detailsTextBox = new System.Windows.Forms.TextBox();
             this.detailsLabel = new System.Windows.Forms.Label();
-            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.birthDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.birthLabel = new System.Windows.Forms.Label();
-            this.organizationComboBox = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            this.organizationNameComboBox = new System.Windows.Forms.ComboBox();
+            this.phoneCountryComboBox = new System.Windows.Forms.ComboBox();
+            this.phoneProvinceComboBox = new System.Windows.Forms.ComboBox();
+            ((System.ComponentModel.ISupportInitialize)(this.profilePictureBox)).BeginInit();
             this.mainPanel.SuspendLayout();
             this.adressPanel.SuspendLayout();
             this.contactPanel.SuspendLayout();
@@ -132,32 +132,14 @@
             this.emailTextBox.TabIndex = 0;
             this.emailTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // phoneCountryTextBox
-            // 
-            this.phoneCountryTextBox.Location = new System.Drawing.Point(89, 38);
-            this.phoneCountryTextBox.Name = "phoneCountryTextBox";
-            this.phoneCountryTextBox.Size = new System.Drawing.Size(40, 20);
-            this.phoneCountryTextBox.TabIndex = 1;
-            this.phoneCountryTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.phoneCountryTextBox.TextChanged += new System.EventHandler(this.phoneCountryTextBox_TextChanged);
-            // 
             // phoneNumberTextBox
             // 
-            this.phoneNumberTextBox.Location = new System.Drawing.Point(181, 38);
+            this.phoneNumberTextBox.Location = new System.Drawing.Point(201, 38);
             this.phoneNumberTextBox.Name = "phoneNumberTextBox";
-            this.phoneNumberTextBox.Size = new System.Drawing.Size(158, 20);
+            this.phoneNumberTextBox.Size = new System.Drawing.Size(138, 20);
             this.phoneNumberTextBox.TabIndex = 3;
             this.phoneNumberTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.phoneNumberTextBox.TextChanged += new System.EventHandler(this.phoneNumberTextBox_TextChanged);
-            // 
-            // phoneProvinceTextBox
-            // 
-            this.phoneProvinceTextBox.Location = new System.Drawing.Point(135, 38);
-            this.phoneProvinceTextBox.Name = "phoneProvinceTextBox";
-            this.phoneProvinceTextBox.Size = new System.Drawing.Size(40, 20);
-            this.phoneProvinceTextBox.TabIndex = 2;
-            this.phoneProvinceTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.phoneProvinceTextBox.TextChanged += new System.EventHandler(this.phoneAreaTextBox_TextChanged);
             // 
             // streetNameTextBox
             // 
@@ -184,30 +166,30 @@
             this.flatTextBox.TabIndex = 6;
             this.flatTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // legalIdXXTextBox
+            // taxCodePrefixTextBox
             // 
-            this.legalIdXXTextBox.Location = new System.Drawing.Point(89, 68);
-            this.legalIdXXTextBox.Name = "legalIdXXTextBox";
-            this.legalIdXXTextBox.Size = new System.Drawing.Size(40, 20);
-            this.legalIdXXTextBox.TabIndex = 2;
-            this.legalIdXXTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.taxCodePrefixTextBox.Location = new System.Drawing.Point(89, 68);
+            this.taxCodePrefixTextBox.Name = "taxCodePrefixTextBox";
+            this.taxCodePrefixTextBox.Size = new System.Drawing.Size(40, 20);
+            this.taxCodePrefixTextBox.TabIndex = 2;
+            this.taxCodePrefixTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // legalIdDNITextBox
+            // taxCodeNumberTextBox
             // 
-            this.legalIdDNITextBox.Location = new System.Drawing.Point(135, 68);
-            this.legalIdDNITextBox.Name = "legalIdDNITextBox";
-            this.legalIdDNITextBox.Size = new System.Drawing.Size(158, 20);
-            this.legalIdDNITextBox.TabIndex = 3;
-            this.legalIdDNITextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.legalIdDNITextBox.TextChanged += new System.EventHandler(this.legalIdDNITextBox_TextChanged);
+            this.taxCodeNumberTextBox.Location = new System.Drawing.Point(135, 68);
+            this.taxCodeNumberTextBox.Name = "taxCodeNumberTextBox";
+            this.taxCodeNumberTextBox.Size = new System.Drawing.Size(158, 20);
+            this.taxCodeNumberTextBox.TabIndex = 3;
+            this.taxCodeNumberTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.taxCodeNumberTextBox.TextChanged += new System.EventHandler(this.legalIdDNITextBox_TextChanged);
             // 
-            // legalIdYTextBox
+            // taxCodeSuffixTextBox
             // 
-            this.legalIdYTextBox.Location = new System.Drawing.Point(299, 68);
-            this.legalIdYTextBox.Name = "legalIdYTextBox";
-            this.legalIdYTextBox.Size = new System.Drawing.Size(40, 20);
-            this.legalIdYTextBox.TabIndex = 4;
-            this.legalIdYTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.taxCodeSuffixTextBox.Location = new System.Drawing.Point(299, 68);
+            this.taxCodeSuffixTextBox.Name = "taxCodeSuffixTextBox";
+            this.taxCodeSuffixTextBox.Size = new System.Drawing.Size(40, 20);
+            this.taxCodeSuffixTextBox.TabIndex = 4;
+            this.taxCodeSuffixTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // firstNameLabel
             // 
@@ -327,15 +309,15 @@
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
-            // pictureBox
+            // profilePictureBox
             // 
-            this.pictureBox.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox.Image")));
-            this.pictureBox.Location = new System.Drawing.Point(20, 20);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(160, 160);
-            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox.TabIndex = 39;
-            this.pictureBox.TabStop = false;
+            this.profilePictureBox.Image = ((System.Drawing.Image)(resources.GetObject("profilePictureBox.Image")));
+            this.profilePictureBox.Location = new System.Drawing.Point(20, 20);
+            this.profilePictureBox.Name = "profilePictureBox";
+            this.profilePictureBox.Size = new System.Drawing.Size(160, 160);
+            this.profilePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.profilePictureBox.TabIndex = 39;
+            this.profilePictureBox.TabStop = false;
             // 
             // loadImageButton
             // 
@@ -347,33 +329,33 @@
             this.loadImageButton.UseVisualStyleBackColor = true;
             this.loadImageButton.Click += new System.EventHandler(this.loadImageButton_Click);
             // 
-            // legalIdLabel
+            // taxCodeLabel
             // 
-            this.legalIdLabel.AutoSize = true;
-            this.legalIdLabel.Location = new System.Drawing.Point(11, 71);
-            this.legalIdLabel.Name = "legalIdLabel";
-            this.legalIdLabel.Size = new System.Drawing.Size(64, 13);
-            this.legalIdLabel.TabIndex = 42;
-            this.legalIdLabel.Text = "CUIL/CUIT:";
+            this.taxCodeLabel.AutoSize = true;
+            this.taxCodeLabel.Location = new System.Drawing.Point(11, 71);
+            this.taxCodeLabel.Name = "taxCodeLabel";
+            this.taxCodeLabel.Size = new System.Drawing.Size(64, 13);
+            this.taxCodeLabel.TabIndex = 42;
+            this.taxCodeLabel.Text = "CUIL/CUIT:";
             // 
             // mainPanel
             // 
-            this.mainPanel.Controls.Add(this.organizationComboBox);
+            this.mainPanel.Controls.Add(this.organizationNameComboBox);
             this.mainPanel.Controls.Add(this.birthLabel);
-            this.mainPanel.Controls.Add(this.dateTimePicker);
+            this.mainPanel.Controls.Add(this.birthDateTimePicker);
             this.mainPanel.Controls.Add(this.isPersonCheckBox);
             this.mainPanel.Controls.Add(this.firstNameTextBox);
             this.mainPanel.Controls.Add(this.lastNameTextBox);
             this.mainPanel.Controls.Add(this.activeStatusCheckBox);
             this.mainPanel.Controls.Add(this.organizationDescriptionTextBox);
             this.mainPanel.Controls.Add(this.lastNameLabel);
-            this.mainPanel.Controls.Add(this.legalIdXXTextBox);
+            this.mainPanel.Controls.Add(this.taxCodePrefixTextBox);
             this.mainPanel.Controls.Add(this.organizationNameLabel);
-            this.mainPanel.Controls.Add(this.legalIdLabel);
+            this.mainPanel.Controls.Add(this.taxCodeLabel);
             this.mainPanel.Controls.Add(this.firstNameLabel);
-            this.mainPanel.Controls.Add(this.legalIdDNITextBox);
+            this.mainPanel.Controls.Add(this.taxCodeNumberTextBox);
             this.mainPanel.Controls.Add(this.organizationDescriptionLabel);
-            this.mainPanel.Controls.Add(this.legalIdYTextBox);
+            this.mainPanel.Controls.Add(this.taxCodeSuffixTextBox);
             this.mainPanel.Location = new System.Drawing.Point(240, 20);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(364, 210);
@@ -407,9 +389,9 @@
             this.imageUrlLabel.AutoSize = true;
             this.imageUrlLabel.Location = new System.Drawing.Point(17, 203);
             this.imageUrlLabel.Name = "imageUrlLabel";
-            this.imageUrlLabel.Size = new System.Drawing.Size(125, 13);
+            this.imageUrlLabel.Size = new System.Drawing.Size(95, 13);
             this.imageUrlLabel.TabIndex = 41;
-            this.imageUrlLabel.Text = "URL o ruta de la imagen:";
+            this.imageUrlLabel.Text = "URL de la imagen:";
             // 
             // adressPanel
             // 
@@ -453,10 +435,10 @@
             // 
             // contactPanel
             // 
+            this.contactPanel.Controls.Add(this.phoneProvinceComboBox);
+            this.contactPanel.Controls.Add(this.phoneCountryComboBox);
             this.contactPanel.Controls.Add(this.emailTextBox);
-            this.contactPanel.Controls.Add(this.phoneCountryTextBox);
             this.contactPanel.Controls.Add(this.phoneNumberTextBox);
-            this.contactPanel.Controls.Add(this.phoneProvinceTextBox);
             this.contactPanel.Controls.Add(this.emailLabel);
             this.contactPanel.Controls.Add(this.phoneLabel);
             this.contactPanel.Location = new System.Drawing.Point(240, 250);
@@ -466,7 +448,7 @@
             // 
             // imagePanel
             // 
-            this.imagePanel.Controls.Add(this.pictureBox);
+            this.imagePanel.Controls.Add(this.profilePictureBox);
             this.imagePanel.Controls.Add(this.loadImageButton);
             this.imagePanel.Controls.Add(this.imageUrlLabel);
             this.imagePanel.Controls.Add(this.imageUrlTextBox);
@@ -573,14 +555,15 @@
             this.detailsLabel.TabIndex = 43;
             this.detailsLabel.Text = "Detalles:";
             // 
-            // dateTimePicker
+            // birthDateTimePicker
             // 
-            this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker.Location = new System.Drawing.Point(89, 42);
-            this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(122, 20);
-            this.dateTimePicker.TabIndex = 43;
-            this.dateTimePicker.Value = new System.DateTime(2024, 2, 28, 17, 0, 56, 0);
+            this.birthDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.birthDateTimePicker.Location = new System.Drawing.Point(89, 42);
+            this.birthDateTimePicker.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.birthDateTimePicker.Name = "birthDateTimePicker";
+            this.birthDateTimePicker.Size = new System.Drawing.Size(122, 20);
+            this.birthDateTimePicker.TabIndex = 43;
+            this.birthDateTimePicker.Value = new System.DateTime(2024, 2, 28, 17, 0, 56, 0);
             // 
             // birthLabel
             // 
@@ -591,13 +574,30 @@
             this.birthLabel.TabIndex = 44;
             this.birthLabel.Text = "Nacimiento:";
             // 
-            // organizationComboBox
+            // organizationNameComboBox
             // 
-            this.organizationComboBox.FormattingEnabled = true;
-            this.organizationComboBox.Location = new System.Drawing.Point(89, 146);
-            this.organizationComboBox.Name = "organizationComboBox";
-            this.organizationComboBox.Size = new System.Drawing.Size(250, 21);
-            this.organizationComboBox.TabIndex = 44;
+            this.organizationNameComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.organizationNameComboBox.FormattingEnabled = true;
+            this.organizationNameComboBox.Location = new System.Drawing.Point(89, 146);
+            this.organizationNameComboBox.Name = "organizationNameComboBox";
+            this.organizationNameComboBox.Size = new System.Drawing.Size(250, 21);
+            this.organizationNameComboBox.TabIndex = 44;
+            // 
+            // phoneCountryComboBox
+            // 
+            this.phoneCountryComboBox.FormattingEnabled = true;
+            this.phoneCountryComboBox.Location = new System.Drawing.Point(89, 38);
+            this.phoneCountryComboBox.Name = "phoneCountryComboBox";
+            this.phoneCountryComboBox.Size = new System.Drawing.Size(50, 21);
+            this.phoneCountryComboBox.TabIndex = 44;
+            // 
+            // phoneProvinceComboBox
+            // 
+            this.phoneProvinceComboBox.FormattingEnabled = true;
+            this.phoneProvinceComboBox.Location = new System.Drawing.Point(145, 38);
+            this.phoneProvinceComboBox.Name = "phoneProvinceComboBox";
+            this.phoneProvinceComboBox.Size = new System.Drawing.Size(50, 21);
+            this.phoneProvinceComboBox.TabIndex = 45;
             // 
             // CustomerRegisterForm
             // 
@@ -617,7 +617,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registro de cliente";
             this.Load += new System.EventHandler(this.CustomerRegisterForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.profilePictureBox)).EndInit();
             this.mainPanel.ResumeLayout(false);
             this.mainPanel.PerformLayout();
             this.adressPanel.ResumeLayout(false);
@@ -638,15 +638,13 @@
         private System.Windows.Forms.TextBox organizationDescriptionTextBox;
         private System.Windows.Forms.TextBox imageUrlTextBox;
         private System.Windows.Forms.TextBox emailTextBox;
-        private System.Windows.Forms.TextBox phoneCountryTextBox;
         private System.Windows.Forms.TextBox phoneNumberTextBox;
-        private System.Windows.Forms.TextBox phoneProvinceTextBox;
         private System.Windows.Forms.TextBox streetNameTextBox;
         private System.Windows.Forms.TextBox streetNumberTextBox;
         private System.Windows.Forms.TextBox flatTextBox;
-        private System.Windows.Forms.TextBox legalIdXXTextBox;
-        private System.Windows.Forms.TextBox legalIdDNITextBox;
-        private System.Windows.Forms.TextBox legalIdYTextBox;
+        private System.Windows.Forms.TextBox taxCodePrefixTextBox;
+        private System.Windows.Forms.TextBox taxCodeNumberTextBox;
+        private System.Windows.Forms.TextBox taxCodeSuffixTextBox;
         private System.Windows.Forms.Label firstNameLabel;
         private System.Windows.Forms.Label lastNameLabel;
         private System.Windows.Forms.Label organizationNameLabel;
@@ -660,9 +658,9 @@
         private System.Windows.Forms.Label streetNumberLabel;
         private System.Windows.Forms.Label flatLabel;
         private System.Windows.Forms.Button saveButton;
-        private System.Windows.Forms.PictureBox pictureBox;
+        private System.Windows.Forms.PictureBox profilePictureBox;
         private System.Windows.Forms.Button loadImageButton;
-        private System.Windows.Forms.Label legalIdLabel;
+        private System.Windows.Forms.Label taxCodeLabel;
         private System.Windows.Forms.Label imageUrlLabel;
         private System.Windows.Forms.Panel adressPanel;
         private System.Windows.Forms.Panel contactPanel;
@@ -683,7 +681,9 @@
         private System.Windows.Forms.Label detailsLabel;
         private System.Windows.Forms.TextBox detailsTextBox;
         private System.Windows.Forms.Label birthLabel;
-        private System.Windows.Forms.DateTimePicker dateTimePicker;
-        private System.Windows.Forms.ComboBox organizationComboBox;
+        private System.Windows.Forms.DateTimePicker birthDateTimePicker;
+        private System.Windows.Forms.ComboBox organizationNameComboBox;
+        private System.Windows.Forms.ComboBox phoneProvinceComboBox;
+        private System.Windows.Forms.ComboBox phoneCountryComboBox;
     }
 }
