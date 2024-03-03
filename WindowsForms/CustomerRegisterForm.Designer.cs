@@ -55,32 +55,30 @@
             this.flatLabel = new System.Windows.Forms.Label();
             this.saveButton = new System.Windows.Forms.Button();
             this.profilePictureBox = new System.Windows.Forms.PictureBox();
-            this.loadImageButton = new System.Windows.Forms.Button();
             this.taxCodeLabel = new System.Windows.Forms.Label();
             this.mainPanel = new System.Windows.Forms.Panel();
-            this.isPersonCheckBox = new System.Windows.Forms.CheckBox();
+            this.organizationNameComboBox = new System.Windows.Forms.ComboBox();
+            this.birthLabel = new System.Windows.Forms.Label();
+            this.birthDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.activeStatusCheckBox = new System.Windows.Forms.CheckBox();
             this.imageUrlLabel = new System.Windows.Forms.Label();
             this.adressPanel = new System.Windows.Forms.Panel();
+            this.detailsLabel = new System.Windows.Forms.Label();
+            this.detailsTextBox = new System.Windows.Forms.TextBox();
+            this.cityComboBox = new System.Windows.Forms.ComboBox();
+            this.adressProvinceComboBox = new System.Windows.Forms.ComboBox();
+            this.adressCountryComboBox = new System.Windows.Forms.ComboBox();
             this.zipCodeTextBox = new System.Windows.Forms.TextBox();
             this.zipCodeLabel = new System.Windows.Forms.Label();
             this.contactPanel = new System.Windows.Forms.Panel();
+            this.phoneProvinceComboBox = new System.Windows.Forms.ComboBox();
+            this.phoneCountryComboBox = new System.Windows.Forms.ComboBox();
             this.imagePanel = new System.Windows.Forms.Panel();
             this.specialPanel = new System.Windows.Forms.Panel();
             this.invoiceCategoryLabel = new System.Windows.Forms.Label();
             this.paymentMethodLabel = new System.Windows.Forms.Label();
             this.invoiceCategoryComboBox = new System.Windows.Forms.ComboBox();
             this.paymentMethodComboBox = new System.Windows.Forms.ComboBox();
-            this.adressCountryComboBox = new System.Windows.Forms.ComboBox();
-            this.adressProvinceComboBox = new System.Windows.Forms.ComboBox();
-            this.cityComboBox = new System.Windows.Forms.ComboBox();
-            this.detailsTextBox = new System.Windows.Forms.TextBox();
-            this.detailsLabel = new System.Windows.Forms.Label();
-            this.birthDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.birthLabel = new System.Windows.Forms.Label();
-            this.organizationNameComboBox = new System.Windows.Forms.ComboBox();
-            this.phoneCountryComboBox = new System.Windows.Forms.ComboBox();
-            this.phoneProvinceComboBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.profilePictureBox)).BeginInit();
             this.mainPanel.SuspendLayout();
             this.adressPanel.SuspendLayout();
@@ -91,7 +89,6 @@
             // 
             // firstNameTextBox
             // 
-            this.firstNameTextBox.Enabled = false;
             this.firstNameTextBox.Location = new System.Drawing.Point(89, 94);
             this.firstNameTextBox.Name = "firstNameTextBox";
             this.firstNameTextBox.Size = new System.Drawing.Size(250, 20);
@@ -100,7 +97,6 @@
             // 
             // lastNameTextBox
             // 
-            this.lastNameTextBox.Enabled = false;
             this.lastNameTextBox.Location = new System.Drawing.Point(89, 120);
             this.lastNameTextBox.Name = "lastNameTextBox";
             this.lastNameTextBox.Size = new System.Drawing.Size(250, 20);
@@ -117,7 +113,7 @@
             // 
             // imageUrlTextBox
             // 
-            this.imageUrlTextBox.Location = new System.Drawing.Point(20, 219);
+            this.imageUrlTextBox.Location = new System.Drawing.Point(20, 242);
             this.imageUrlTextBox.Name = "imageUrlTextBox";
             this.imageUrlTextBox.Size = new System.Drawing.Size(160, 20);
             this.imageUrlTextBox.TabIndex = 1;
@@ -319,16 +315,6 @@
             this.profilePictureBox.TabIndex = 39;
             this.profilePictureBox.TabStop = false;
             // 
-            // loadImageButton
-            // 
-            this.loadImageButton.Location = new System.Drawing.Point(60, 254);
-            this.loadImageButton.Name = "loadImageButton";
-            this.loadImageButton.Size = new System.Drawing.Size(80, 30);
-            this.loadImageButton.TabIndex = 0;
-            this.loadImageButton.Text = "Cargar";
-            this.loadImageButton.UseVisualStyleBackColor = true;
-            this.loadImageButton.Click += new System.EventHandler(this.loadImageButton_Click);
-            // 
             // taxCodeLabel
             // 
             this.taxCodeLabel.AutoSize = true;
@@ -343,7 +329,6 @@
             this.mainPanel.Controls.Add(this.organizationNameComboBox);
             this.mainPanel.Controls.Add(this.birthLabel);
             this.mainPanel.Controls.Add(this.birthDateTimePicker);
-            this.mainPanel.Controls.Add(this.isPersonCheckBox);
             this.mainPanel.Controls.Add(this.firstNameTextBox);
             this.mainPanel.Controls.Add(this.lastNameTextBox);
             this.mainPanel.Controls.Add(this.activeStatusCheckBox);
@@ -361,23 +346,41 @@
             this.mainPanel.Size = new System.Drawing.Size(364, 210);
             this.mainPanel.TabIndex = 0;
             // 
-            // isPersonCheckBox
+            // organizationNameComboBox
             // 
-            this.isPersonCheckBox.AutoSize = true;
-            this.isPersonCheckBox.Location = new System.Drawing.Point(231, 44);
-            this.isPersonCheckBox.Name = "isPersonCheckBox";
-            this.isPersonCheckBox.Size = new System.Drawing.Size(108, 17);
-            this.isPersonCheckBox.TabIndex = 1;
-            this.isPersonCheckBox.Text = "Es persona física";
-            this.isPersonCheckBox.UseVisualStyleBackColor = true;
-            this.isPersonCheckBox.CheckedChanged += new System.EventHandler(this.isPersonCheckBox_CheckedChanged);
+            this.organizationNameComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.organizationNameComboBox.FormattingEnabled = true;
+            this.organizationNameComboBox.Location = new System.Drawing.Point(89, 146);
+            this.organizationNameComboBox.Name = "organizationNameComboBox";
+            this.organizationNameComboBox.Size = new System.Drawing.Size(250, 21);
+            this.organizationNameComboBox.TabIndex = 44;
+            // 
+            // birthLabel
+            // 
+            this.birthLabel.AutoSize = true;
+            this.birthLabel.Location = new System.Drawing.Point(11, 45);
+            this.birthLabel.Name = "birthLabel";
+            this.birthLabel.Size = new System.Drawing.Size(63, 13);
+            this.birthLabel.TabIndex = 44;
+            this.birthLabel.Text = "Nacimiento:";
+            // 
+            // birthDateTimePicker
+            // 
+            this.birthDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.birthDateTimePicker.Location = new System.Drawing.Point(89, 42);
+            this.birthDateTimePicker.MaxDate = new System.DateTime(9000, 1, 1, 0, 0, 0, 0);
+            this.birthDateTimePicker.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.birthDateTimePicker.Name = "birthDateTimePicker";
+            this.birthDateTimePicker.Size = new System.Drawing.Size(250, 20);
+            this.birthDateTimePicker.TabIndex = 43;
+            this.birthDateTimePicker.Value = new System.DateTime(2024, 2, 28, 17, 0, 56, 0);
             // 
             // activeStatusCheckBox
             // 
             this.activeStatusCheckBox.AutoSize = true;
             this.activeStatusCheckBox.Checked = true;
             this.activeStatusCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.activeStatusCheckBox.Location = new System.Drawing.Point(231, 21);
+            this.activeStatusCheckBox.Location = new System.Drawing.Point(164, 19);
             this.activeStatusCheckBox.Name = "activeStatusCheckBox";
             this.activeStatusCheckBox.Size = new System.Drawing.Size(56, 17);
             this.activeStatusCheckBox.TabIndex = 0;
@@ -387,7 +390,7 @@
             // imageUrlLabel
             // 
             this.imageUrlLabel.AutoSize = true;
-            this.imageUrlLabel.Location = new System.Drawing.Point(17, 203);
+            this.imageUrlLabel.Location = new System.Drawing.Point(17, 219);
             this.imageUrlLabel.Name = "imageUrlLabel";
             this.imageUrlLabel.Size = new System.Drawing.Size(95, 13);
             this.imageUrlLabel.TabIndex = 41;
@@ -415,6 +418,47 @@
             this.adressPanel.Name = "adressPanel";
             this.adressPanel.Size = new System.Drawing.Size(364, 185);
             this.adressPanel.TabIndex = 2;
+            // 
+            // detailsLabel
+            // 
+            this.detailsLabel.AutoSize = true;
+            this.detailsLabel.Location = new System.Drawing.Point(11, 150);
+            this.detailsLabel.Name = "detailsLabel";
+            this.detailsLabel.Size = new System.Drawing.Size(48, 13);
+            this.detailsLabel.TabIndex = 43;
+            this.detailsLabel.Text = "Detalles:";
+            // 
+            // detailsTextBox
+            // 
+            this.detailsTextBox.Location = new System.Drawing.Point(89, 147);
+            this.detailsTextBox.Name = "detailsTextBox";
+            this.detailsTextBox.Size = new System.Drawing.Size(250, 20);
+            this.detailsTextBox.TabIndex = 32;
+            this.detailsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // cityComboBox
+            // 
+            this.cityComboBox.FormattingEnabled = true;
+            this.cityComboBox.Location = new System.Drawing.Point(89, 69);
+            this.cityComboBox.Name = "cityComboBox";
+            this.cityComboBox.Size = new System.Drawing.Size(250, 21);
+            this.cityComboBox.TabIndex = 42;
+            // 
+            // adressProvinceComboBox
+            // 
+            this.adressProvinceComboBox.FormattingEnabled = true;
+            this.adressProvinceComboBox.Location = new System.Drawing.Point(89, 43);
+            this.adressProvinceComboBox.Name = "adressProvinceComboBox";
+            this.adressProvinceComboBox.Size = new System.Drawing.Size(250, 21);
+            this.adressProvinceComboBox.TabIndex = 41;
+            // 
+            // adressCountryComboBox
+            // 
+            this.adressCountryComboBox.FormattingEnabled = true;
+            this.adressCountryComboBox.Location = new System.Drawing.Point(89, 17);
+            this.adressCountryComboBox.Name = "adressCountryComboBox";
+            this.adressCountryComboBox.Size = new System.Drawing.Size(250, 21);
+            this.adressCountryComboBox.TabIndex = 40;
             // 
             // zipCodeTextBox
             // 
@@ -446,10 +490,25 @@
             this.contactPanel.Size = new System.Drawing.Size(364, 70);
             this.contactPanel.TabIndex = 1;
             // 
+            // phoneProvinceComboBox
+            // 
+            this.phoneProvinceComboBox.FormattingEnabled = true;
+            this.phoneProvinceComboBox.Location = new System.Drawing.Point(145, 38);
+            this.phoneProvinceComboBox.Name = "phoneProvinceComboBox";
+            this.phoneProvinceComboBox.Size = new System.Drawing.Size(50, 21);
+            this.phoneProvinceComboBox.TabIndex = 45;
+            // 
+            // phoneCountryComboBox
+            // 
+            this.phoneCountryComboBox.FormattingEnabled = true;
+            this.phoneCountryComboBox.Location = new System.Drawing.Point(89, 38);
+            this.phoneCountryComboBox.Name = "phoneCountryComboBox";
+            this.phoneCountryComboBox.Size = new System.Drawing.Size(50, 21);
+            this.phoneCountryComboBox.TabIndex = 44;
+            // 
             // imagePanel
             // 
             this.imagePanel.Controls.Add(this.profilePictureBox);
-            this.imagePanel.Controls.Add(this.loadImageButton);
             this.imagePanel.Controls.Add(this.imageUrlLabel);
             this.imagePanel.Controls.Add(this.imageUrlTextBox);
             this.imagePanel.Location = new System.Drawing.Point(20, 20);
@@ -514,92 +573,6 @@
             this.paymentMethodComboBox.Size = new System.Drawing.Size(160, 21);
             this.paymentMethodComboBox.TabIndex = 0;
             // 
-            // adressCountryComboBox
-            // 
-            this.adressCountryComboBox.FormattingEnabled = true;
-            this.adressCountryComboBox.Location = new System.Drawing.Point(89, 17);
-            this.adressCountryComboBox.Name = "adressCountryComboBox";
-            this.adressCountryComboBox.Size = new System.Drawing.Size(250, 21);
-            this.adressCountryComboBox.TabIndex = 40;
-            // 
-            // adressProvinceComboBox
-            // 
-            this.adressProvinceComboBox.FormattingEnabled = true;
-            this.adressProvinceComboBox.Location = new System.Drawing.Point(89, 43);
-            this.adressProvinceComboBox.Name = "adressProvinceComboBox";
-            this.adressProvinceComboBox.Size = new System.Drawing.Size(250, 21);
-            this.adressProvinceComboBox.TabIndex = 41;
-            // 
-            // cityComboBox
-            // 
-            this.cityComboBox.FormattingEnabled = true;
-            this.cityComboBox.Location = new System.Drawing.Point(89, 69);
-            this.cityComboBox.Name = "cityComboBox";
-            this.cityComboBox.Size = new System.Drawing.Size(250, 21);
-            this.cityComboBox.TabIndex = 42;
-            // 
-            // detailsTextBox
-            // 
-            this.detailsTextBox.Location = new System.Drawing.Point(89, 147);
-            this.detailsTextBox.Name = "detailsTextBox";
-            this.detailsTextBox.Size = new System.Drawing.Size(250, 20);
-            this.detailsTextBox.TabIndex = 32;
-            this.detailsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // detailsLabel
-            // 
-            this.detailsLabel.AutoSize = true;
-            this.detailsLabel.Location = new System.Drawing.Point(11, 150);
-            this.detailsLabel.Name = "detailsLabel";
-            this.detailsLabel.Size = new System.Drawing.Size(48, 13);
-            this.detailsLabel.TabIndex = 43;
-            this.detailsLabel.Text = "Detalles:";
-            // 
-            // birthDateTimePicker
-            // 
-            this.birthDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.birthDateTimePicker.Location = new System.Drawing.Point(89, 42);
-            this.birthDateTimePicker.MaxDate = new System.DateTime(9000, 1, 1, 0, 0, 0, 0);
-            this.birthDateTimePicker.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.birthDateTimePicker.Name = "birthDateTimePicker";
-            this.birthDateTimePicker.Size = new System.Drawing.Size(122, 20);
-            this.birthDateTimePicker.TabIndex = 43;
-            this.birthDateTimePicker.Value = new System.DateTime(2024, 2, 28, 17, 0, 56, 0);
-            // 
-            // birthLabel
-            // 
-            this.birthLabel.AutoSize = true;
-            this.birthLabel.Location = new System.Drawing.Point(11, 45);
-            this.birthLabel.Name = "birthLabel";
-            this.birthLabel.Size = new System.Drawing.Size(63, 13);
-            this.birthLabel.TabIndex = 44;
-            this.birthLabel.Text = "Nacimiento:";
-            // 
-            // organizationNameComboBox
-            // 
-            this.organizationNameComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.organizationNameComboBox.FormattingEnabled = true;
-            this.organizationNameComboBox.Location = new System.Drawing.Point(89, 146);
-            this.organizationNameComboBox.Name = "organizationNameComboBox";
-            this.organizationNameComboBox.Size = new System.Drawing.Size(250, 21);
-            this.organizationNameComboBox.TabIndex = 44;
-            // 
-            // phoneCountryComboBox
-            // 
-            this.phoneCountryComboBox.FormattingEnabled = true;
-            this.phoneCountryComboBox.Location = new System.Drawing.Point(89, 38);
-            this.phoneCountryComboBox.Name = "phoneCountryComboBox";
-            this.phoneCountryComboBox.Size = new System.Drawing.Size(50, 21);
-            this.phoneCountryComboBox.TabIndex = 44;
-            // 
-            // phoneProvinceComboBox
-            // 
-            this.phoneProvinceComboBox.FormattingEnabled = true;
-            this.phoneProvinceComboBox.Location = new System.Drawing.Point(145, 38);
-            this.phoneProvinceComboBox.Name = "phoneProvinceComboBox";
-            this.phoneProvinceComboBox.Size = new System.Drawing.Size(50, 21);
-            this.phoneProvinceComboBox.TabIndex = 45;
-            // 
             // CustomerRegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -660,7 +633,6 @@
         private System.Windows.Forms.Label flatLabel;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.PictureBox profilePictureBox;
-        private System.Windows.Forms.Button loadImageButton;
         private System.Windows.Forms.Label taxCodeLabel;
         private System.Windows.Forms.Label imageUrlLabel;
         private System.Windows.Forms.Panel adressPanel;
@@ -669,7 +641,6 @@
         private System.Windows.Forms.TextBox zipCodeTextBox;
         private System.Windows.Forms.Label zipCodeLabel;
         private System.Windows.Forms.CheckBox activeStatusCheckBox;
-        private System.Windows.Forms.CheckBox isPersonCheckBox;
         private System.Windows.Forms.Panel imagePanel;
         private System.Windows.Forms.Panel specialPanel;
         private System.Windows.Forms.Label invoiceCategoryLabel;

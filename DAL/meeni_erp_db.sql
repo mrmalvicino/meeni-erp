@@ -163,47 +163,6 @@ values
 ('1557736789', '1');
 go
 
-------------
--- PEOPLE --
-------------
-
-create table People(
-	PersonId int primary key identity(1,1) not null,
-	FirstName varchar(30) not null,
-	LastName varchar(30) not null,
-)
-go
-
-insert into People
-(FirstName, LastName)
-values
-('Federico', 'Bocca'),
-('Carlos', 'Berlinguieri'),
-('Teodoro', 'Figueredo');
-go
-
--------------------
--- ORGANIZATIONS --
--------------------
-
-create table Organizations(
-	OrganizationId int primary key identity(1,1) not null,
-	OrganizationName varchar(30) unique not null,
-	OrganizationDescription varchar(50) null
-)
-go
-
-insert into Organizations
-(OrganizationName, OrganizationDescription)
-values
-('Pisos Click', 'Pisos vinílicos'),
-('Johnson Construction', null),
-('Smith Commercial', 'Comercial Developer'),
-('Greenfield Builders', 'Eco Friendly Construction'),
-('Fierros Ratti', null),
-('Herrajes San Martín', 'Herrajes de todo tipo');
-go
-
 -----------
 -- ITEMS --
 -----------
@@ -254,33 +213,6 @@ values
 ('https://img.freepik.com/foto-gratis/chico-guapo-seguro-posando-contra-pared-blanca_176420-32936.jpg?size=626&ext=jpg&ga=GA1.1.1224184972.1708992000&semt=sph');
 go
 
----------------------------
--- IMAGE-PERSON RELATION --
----------------------------
-
-create table ImagePersonRelations(
-	ImageId int foreign key references Images(ImageId) not null,
-	PersonId int foreign key references People(PersonId) not null
-)
-go
-
----------------------------------
--- IMAGE-ORGANIZATION RELATION --
----------------------------------
-
-create table ImageOrganizationRelations(
-	ImageId int foreign key references Images(ImageId) not null,
-	OrganizationId int foreign key references Organizations(OrganizationId) not null
-)
-go
-
-insert into ImageOrganizationRelations
-(ImageId, OrganizationId)
-values
-(1,2),
-(2,3),
-(3,4);
-
 ----------------------------
 -- IMAGE-PRODUCT RELATION --
 ----------------------------
@@ -289,6 +221,49 @@ create table ImageProductRelations(
 	ImageId int foreign key references Images(ImageId) not null,
 	ProductId int foreign key references Products(ProductId) not null
 )
+go
+
+------------
+-- PEOPLE --
+------------
+
+create table People(
+	PersonId int primary key identity(1,1) not null,
+	FirstName varchar(30) not null,
+	LastName varchar(30) not null,
+	ImageId int foreign key references Images(ImageId) null
+)
+go
+
+insert into People
+(FirstName, LastName, ImageId)
+values
+('Federico', 'Bocca', null),
+('Carlos', 'Berlinguieri', '6'),
+('Teodoro', 'Figueredo', null);
+go
+
+-------------------
+-- ORGANIZATIONS --
+-------------------
+
+create table Organizations(
+	OrganizationId int primary key identity(1,1) not null,
+	OrganizationName varchar(30) unique not null,
+	OrganizationDescription varchar(50) null,
+	ImageId int foreign key references Images(ImageId) null
+)
+go
+
+insert into Organizations
+(OrganizationName, OrganizationDescription, ImageId)
+values
+('Pisos Click', 'Pisos vinílicos', null),
+('Johnson Construction', null, '1'),
+('Smith Commercial', 'Comercial Developer', '2'),
+('Greenfield Builders', 'Eco Friendly Construction', '3'),
+('Fierros Ratti', null, '4'),
+('Herrajes San Martín', 'Herrajes de todo tipo', '5');
 go
 
 -----------------

@@ -52,15 +52,6 @@ namespace WindowsForms
                 return false;
             }
 
-            if (isPersonCheckBox.Checked)
-            {
-                if (Validations.isEmpty(firstNameTextBox.Text) || Validations.isEmpty(lastNameTextBox.Text))
-                {
-                    MessageBox.Show("Las personas físicas deben tener nombre y apellido.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
-                }
-            }
-
             if (Validations.isNumber(phoneNumberTextBox.Text) == false)
             {
                 MessageBox.Show("El número de teléfono solo admite caracteres numéricos.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -257,25 +248,6 @@ namespace WindowsForms
             Functions.loadImage(profilePictureBox, imageUrlTextBox.Text);
         }
 
-        private void loadImageButton_Click(object sender, EventArgs e)
-        {
-            _file = new OpenFileDialog();
-            _file.Filter = "jpg|*.jpg;|png|*.png";
-            _file.Title = "Seleccionar imagen";
-
-            if (_file.ShowDialog() == DialogResult.OK)
-            {
-                Functions.loadImage(profilePictureBox, _file.FileName);
-                DateTime currentDateTime = DateTime.Now;
-                string dateTimeFormat = "yyyyMMddHHmmss";
-                string formattedDateTime = currentDateTime.ToString(dateTimeFormat);
-                imageUrlTextBox.Text = ConfigurationManager.AppSettings["images_path"] + formattedDateTime + ".png";
-
-                if (_file != null && !(imageUrlTextBox.Text.ToLower().Contains("http")))
-                    File.Copy(_file.FileName, imageUrlTextBox.Text);
-            }
-        }
-
         private void legalIdDNITextBox_TextChanged(object sender, EventArgs e)
         {
             if (Validations.isNumber(taxCodeNumberTextBox.Text))
@@ -298,15 +270,6 @@ namespace WindowsForms
                 streetNumberTextBox.ForeColor = Palette.DefaultBlack;
             else
                 streetNumberTextBox.ForeColor = Palette.ValidationColor;
-        }
-
-        private void isPersonCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            firstNameTextBox.Enabled = !firstNameTextBox.Enabled;
-            lastNameTextBox.Enabled = !lastNameTextBox.Enabled;
-
-            firstNameTextBox.Text = "";
-            lastNameTextBox.Text = "";
         }
     }
 }
