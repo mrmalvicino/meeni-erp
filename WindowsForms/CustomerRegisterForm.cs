@@ -18,6 +18,7 @@ namespace WindowsForms
         CountriesManager _countriesManager = new CountriesManager();
         ProvincesManager _provincesManager = new ProvincesManager();
         CitiesManager _citiesManager = new CitiesManager();
+        ImagesManager _imagesManager = new ImagesManager();
 
         //CONSTRUCT
 
@@ -169,6 +170,8 @@ namespace WindowsForms
                 organizationNameComboBox.SelectedValue = _customer.Organization.OrganizationId;
                 organizationDescriptionTextBox.Text = _customer.Organization.Description;
             }
+
+            imageUrlTextBox.Text = _imagesManager.readIndividualImage(_customer);
         }
 
         private void mapBusinessPartner()

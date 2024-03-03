@@ -173,15 +173,9 @@ namespace WindowsForms
             if (dataGridView.CurrentRow != null)
             {
                 _selectedCustomer = (Customer)dataGridView.CurrentRow.DataBoundItem;
+                string imageUrl = _imagesManager.readIndividualImage(_selectedCustomer);
+
                 loadProfile(_selectedCustomer.CustomerId, _selectedCustomer.ToString(), _selectedCustomer.Organization.Description, _selectedCustomer.Phone.ToString(), _selectedCustomer.Email.ToString(), _selectedCustomer.Adress.ToString());
-                
-                string imageUrl;
-
-                if (_selectedCustomer.isPerson())
-                    imageUrl = _imagesManager.readImage<Person>(_selectedCustomer.Person.PersonId);
-                else
-                    imageUrl = _imagesManager.readImage<Organization>(_selectedCustomer.Organization.OrganizationId);
-
                 Functions.loadImage(pictureBox, imageUrl);
             }
         }

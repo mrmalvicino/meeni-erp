@@ -60,18 +60,13 @@ where PhoneId = 2
 
 select I.ImageUrl
 from Images I
-inner join ImagePersonRelations R on I.ImageId = R.ImageId
-inner join People P on R.PersonId = P.PersonId
-where P.PersonId = 2
-
-select I.ImageUrl
-from Images I
-inner join ImageOrganizationRelations R on I.ImageId = R.ImageId
-inner join Organizations O on R.OrganizationId = O.OrganizationId
-where O.OrganizationId = 2
-
-select I.ImageUrl
-from Images I
 inner join ImageProductRelations R on I.ImageId = R.ImageId
 inner join Products P on R.ProductId = P.ProductId
 where P.ProductId = 2
+
+-------------
+-- TESTING --
+-------------
+
+select I.ImageUrl from Images I inner join People P on P.ImageId = I.ImageId where P.PersonId = 2
+select I.ImageUrl from Images I inner join Organizations O on O.ImageId = I.ImageId where O.OrganizationId = 2

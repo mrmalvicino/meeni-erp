@@ -16,26 +16,32 @@ namespace BLL
 
         // METHODS
 
-        public string readImage<T>(int id)
+        public string readIndividualImage<T>(T obj)
+            where T : Individual, new()
         {
             string imageUrl = "";
+            string queryString;
+            int filterId;
+            
+            if (obj.isPerson())
+            {
+                queryString = "select I.ImageUrl from Images I inner join People P on P.ImageId = I.ImageId where P.PersonId = @filterId";
+                filterId = obj.Person.PersonId;
+            }
+            else
+            {
+                queryString = "select I.ImageUrl from Images I inner join Organizations O on O.ImageId = I.ImageId where O.OrganizationId = @filterId";
+                filterId = obj.Organization.OrganizationId;
+            }
 
             try
             {
-                if (typeof(T) == typeof(Person))
-                    _database.setQuery("select I.ImageUrl from Images I inner join ImagePersonRelations R on I.ImageId = R.ImageId inner join People P on R.PersonId = P.PersonId where P.PersonId = @id");
-                else if (typeof(T) == typeof(Organization))
-                    _database.setQuery("select I.ImageUrl from Images I inner join ImageOrganizationRelations R on I.ImageId = R.ImageId inner join Organizations O on R.OrganizationId = O.OrganizationId where O.OrganizationId = @id");
-                else if (typeof(T) == typeof(Product))
-                    _database.setQuery("select I.ImageUrl from Images I inner join ImageProductRelations R on I.ImageId = R.ImageId inner join Products P on R.ProductId = P.ProductId where P.ProductId = @id");
-
-                _database.setParameter("@id", id);
+                _database.setQuery(queryString);
+                _database.setParameter("@filterId", filterId);
                 _database.executeReader();
 
                 if (_database.Reader.Read())
-                {
                     imageUrl = (string)_database.Reader["ImageUrl"];
-                }
             }
             catch (Exception ex)
             {
