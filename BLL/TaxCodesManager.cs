@@ -18,15 +18,19 @@ namespace BLL
 
             try
             {
-                _database.setQuery("select Prefix, Number, Suffix from TaxCodes where TaxCodeId = @TaxCodeId");
+                _database.setQuery("select TaxCodeId, Prefix, Number, Suffix from TaxCodes where TaxCodeId = @TaxCodeId");
                 _database.setParameter("@TaxCodeId", taxCodeId);
                 _database.executeReader();
 
                 if (_database.Reader.Read())
                 {
+                    taxCode.TaxCodeId = (int)_database.Reader["TaxCodeId"];
+
                     if (!(_database.Reader["Prefix"] is DBNull))
                         taxCode.Prefix = (string)_database.Reader["Prefix"];
+
                     taxCode.Number = (int)_database.Reader["Number"];
+
                     if (!(_database.Reader["Suffix"] is DBNull))
                         taxCode.Suffix = (string)_database.Reader["Suffix"];
                 }

@@ -23,7 +23,7 @@ namespace BLL
             {
                 _database.setQuery(
                     "select " +
-                    "PH.Number, PR.PhoneAreaCode as ProvincePhoneAreaCode, C.PhoneAreaCode as CountryPhoneAreaCode " +
+                    "PH.PhoneId, PH.Number, PR.PhoneAreaCode as ProvincePhoneAreaCode, C.PhoneAreaCode as CountryPhoneAreaCode " +
                     "from Phones PH " +
                     "inner join Provinces PR on PH.ProvinceId = PR.ProvinceId " +
                     "inner join Countries C on PR.CountryId = C.CountryId " +
@@ -34,6 +34,7 @@ namespace BLL
 
                 if (_database.Reader.Read())
                 {
+                    phone.PhoneId = (int)_database.Reader["PhoneId"];
                     phone.Number = (int)_database.Reader["Number"];
                     phone.Province.PhoneAreaCode = (int)_database.Reader["ProvincePhoneAreaCode"];
                     phone.Country.PhoneAreaCode = (int)_database.Reader["CountryPhoneAreaCode"];

@@ -37,7 +37,7 @@ namespace BLL
                         individual.Email = (string)_database.Reader["Email"];
 
                     if (_database.Reader["Birth"] is DBNull)
-                        individual.Birth = DateTime.Today;
+                        individual.Birth = new DateTime(9000, 1, 1);
                     else
                         individual.Birth = (DateTime)_database.Reader["Birth"];
 

@@ -35,7 +35,9 @@ left join Countries CO2 on PR2.CountryId = CO2.CountryId
 -- READ ADRESS --
 -----------------
 
-select A.StreetName, A.StreetNumber, A.Flat, A.Details, CI.CityName, CI.ZipCode, P.ProvinceName, CO.CountryName
+select A.StreetName, A.StreetNumber, A.Flat, A.Details, A.CityId, 
+CI.CityName, CI.ZipCode, CI.ProvinceId, 
+P.ProvinceName, P.CountryId, CO.CountryName
 from Adresses A
 inner join Cities CI on A.CityId = CI.CityId
 inner join Provinces P on CI.ProvinceId = P.ProvinceId

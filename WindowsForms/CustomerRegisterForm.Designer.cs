@@ -559,6 +559,7 @@
             // 
             this.birthDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.birthDateTimePicker.Location = new System.Drawing.Point(89, 42);
+            this.birthDateTimePicker.MaxDate = new System.DateTime(9000, 1, 1, 0, 0, 0, 0);
             this.birthDateTimePicker.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.birthDateTimePicker.Name = "birthDateTimePicker";
             this.birthDateTimePicker.Size = new System.Drawing.Size(122, 20);

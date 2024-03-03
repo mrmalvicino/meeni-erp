@@ -149,7 +149,7 @@ go
 create table Phones(
 	PhoneId int primary key identity(1,1) not null,
 	Number int not null,
-	ProvinceId smallint foreign key references Provinces(ProvinceId) null
+	ProvinceId smallint foreign key references Provinces(ProvinceId) not null
 )
 go
 

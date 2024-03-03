@@ -91,27 +91,26 @@ namespace WindowsForms
         private void bindComboBoxes()
         {
             organizationNameComboBox.DataSource = _organizationsManager.list();
-            phoneCountryComboBox.DataSource = _countriesManager.list();
-            phoneProvinceComboBox.DataSource = _provincesManager.list();
-            adressCountryComboBox.DataSource = _countriesManager.list();
-            adressProvinceComboBox.DataSource = _provincesManager.list();
-            cityComboBox.DataSource = _citiesManager.list();
-
             organizationNameComboBox.ValueMember = "OrganizationId";
             organizationNameComboBox.DisplayMember = "Name";
 
+            phoneCountryComboBox.DataSource = _countriesManager.list();
             phoneCountryComboBox.ValueMember = "CountryId";
             phoneCountryComboBox.DisplayMember = "PhoneAreaCode";
 
+            phoneProvinceComboBox.DataSource = _provincesManager.list();
             phoneProvinceComboBox.ValueMember = "ProvinceId";
             phoneProvinceComboBox.DisplayMember = "PhoneAreaCode";
-
+            
+            adressCountryComboBox.DataSource = _countriesManager.list();
             adressCountryComboBox.ValueMember = "CountryId";
             adressCountryComboBox.DisplayMember = "Name";
-
+            
+            adressProvinceComboBox.DataSource = _provincesManager.list();
             adressProvinceComboBox.ValueMember = "ProvinceId";
             adressProvinceComboBox.DisplayMember = "Name";
-
+            
+            cityComboBox.DataSource = _citiesManager.list();
             cityComboBox.ValueMember = "CityId";
             cityComboBox.DisplayMember = "Name";
         }
@@ -124,6 +123,68 @@ namespace WindowsForms
             adressCountryComboBox.SelectedIndex = -1;
             adressProvinceComboBox.SelectedIndex = -1;
             cityComboBox.SelectedIndex = -1;
+        }
+
+        private void mapIndividual()
+        {
+            activeStatusCheckBox.Checked = _customer.ActiveStatus;
+            emailTextBox.Text = _customer.Email;
+            birthDateTimePicker.Value = DateTime.Parse(_customer.Birth.ToShortDateString());
+
+            if (0 < _customer.TaxCode.TaxCodeId) // Si tiene, mapear TaxCode
+            {
+                taxCodePrefixTextBox.Text = _customer.TaxCode.Prefix;
+                taxCodeNumberTextBox.Text = _customer.TaxCode.Number.ToString();
+                taxCodeSuffixTextBox.Text = _customer.TaxCode.Suffix;
+            }
+
+            if (0 < _customer.Adress.City.CityId) // Si tiene, mapear Adress
+            {
+                streetNameTextBox.Text = _customer.Adress.StreetName;
+                streetNumberTextBox.Text = _customer.Adress.StreetNumber.ToString();
+                flatTextBox.Text = _customer.Adress.Flat;
+                detailsTextBox.Text = _customer.Adress.Details;
+                cityComboBox.SelectedValue = _customer.Adress.City.CityId;
+                adressProvinceComboBox.SelectedValue = _customer.Adress.Province.ProvinceId;
+                adressCountryComboBox.SelectedValue = _customer.Adress.Country.CountryId;
+            }
+            else
+            {
+                cityComboBox.SelectedIndex = -1;
+                adressProvinceComboBox.SelectedIndex = -1;
+                adressCountryComboBox.SelectedIndex = -1;
+            }
+            
+            if (0 < _customer.Phone.PhoneId) // Si tiene, mapear Phone
+            {
+                phoneCountryComboBox.SelectedValue = _customer.Adress.Country.CountryId;
+                phoneProvinceComboBox.SelectedValue = _customer.Adress.Province.ProvinceId;
+                phoneNumberTextBox.Text = _customer.Phone.Number.ToString();
+            }
+            else
+            {
+                phoneCountryComboBox.SelectedIndex = -1;
+                phoneProvinceComboBox.SelectedIndex = -1;
+            }
+
+            if (0 < _customer.Person.PersonId) // Si tiene, mapear Person
+            {
+                firstNameTextBox.Text = _customer.Person.FirstName;
+                lastNameTextBox.Text = _customer.Person.LastName;
+            }
+
+            if (0 < _customer.Organization.OrganizationId) // Si tiene, mapear Organization
+            {
+                organizationNameComboBox.SelectedValue = _customer.Organization.OrganizationId;
+                organizationDescriptionTextBox.Text = _customer.Organization.Description;
+            }
+        }
+
+        private void mapBusinessPartner()
+        {
+            mapIndividual();
+            paymentMethodComboBox.Text = _customer.PaymentMethod;
+            invoiceCategoryComboBox.Text = _customer.InvoiceCategory;
         }
 
         // EVENTS
@@ -144,49 +205,7 @@ namespace WindowsForms
                 }
                 else // Se está editando un registro
                 {
-                    activeStatusCheckBox.Checked = _customer.ActiveStatus;
-                    emailTextBox.Text = _customer.Email;
-
-                    birthDateTimePicker.Value = DateTime.Parse(_customer.Birth.ToShortDateString());
-
-                    taxCodePrefixTextBox.Text = _customer.TaxCode.Prefix;
-                    taxCodeNumberTextBox.Text = _customer.TaxCode.Number.ToString();
-                    taxCodeSuffixTextBox.Text = _customer.TaxCode.Suffix;
-
-                    if (0 < _customer.Adress.City.CityId)
-                    {
-                        streetNameTextBox.Text = _customer.Adress.StreetName;
-                        streetNumberTextBox.Text = _customer.Adress.StreetNumber.ToString();
-                        flatTextBox.Text = _customer.Adress.Flat;
-                        detailsTextBox.Text = _customer.Adress.Details;
-                        cityComboBox.SelectedValue = _customer.Adress.City.CityId;
-                        adressProvinceComboBox.SelectedValue = _customer.Adress.Province.ProvinceId;
-                        adressCountryComboBox.SelectedValue = _customer.Adress.Country.CountryId;
-                    }
-                    else
-                    {
-                        cityComboBox.SelectedIndex = -1;
-                        adressProvinceComboBox.SelectedIndex = -1;
-                        adressCountryComboBox.SelectedIndex = -1;
-                    }
-
-                    if (0 < _customer.Phone.Province.ProvinceId)
-                    {
-                        phoneCountryComboBox.SelectedValue = _customer.Adress.Country.CountryId;
-                        phoneProvinceComboBox.SelectedValue = _customer.Adress.Province.ProvinceId;
-                    }
-                    else
-                    {
-                        phoneCountryComboBox.SelectedIndex = -1;
-                        phoneProvinceComboBox.SelectedIndex = -1;
-                    }
-
-                    if (0 < _customer.Phone.Number)
-                        phoneNumberTextBox.Text = _customer.Phone.Number.ToString();
-
-                    paymentMethodComboBox.Text = _customer.PaymentMethod;
-                    invoiceCategoryComboBox.Text = _customer.InvoiceCategory;
-
+                    mapBusinessPartner();
                     Functions.loadImage(profilePictureBox, imageUrlTextBox.Text);
                 }
             }
