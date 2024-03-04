@@ -135,7 +135,7 @@
             this.phoneNumberTextBox.Size = new System.Drawing.Size(138, 20);
             this.phoneNumberTextBox.TabIndex = 3;
             this.phoneNumberTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.phoneNumberTextBox.TextChanged += new System.EventHandler(this.phoneNumberTextBox_TextChanged);
+            this.phoneNumberTextBox.TextChanged += new System.EventHandler(this.phoneNumberTextBox_TextChanged_1);
             // 
             // streetNameTextBox
             // 
@@ -152,7 +152,7 @@
             this.streetNumberTextBox.Size = new System.Drawing.Size(100, 20);
             this.streetNumberTextBox.TabIndex = 5;
             this.streetNumberTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.streetNumberTextBox.TextChanged += new System.EventHandler(this.adressStreetNumberTextBox_TextChanged);
+            this.streetNumberTextBox.TextChanged += new System.EventHandler(this.streetNumberTextBox_TextChanged);
             // 
             // flatTextBox
             // 
@@ -169,6 +169,7 @@
             this.taxCodePrefixTextBox.Size = new System.Drawing.Size(40, 20);
             this.taxCodePrefixTextBox.TabIndex = 2;
             this.taxCodePrefixTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.taxCodePrefixTextBox.TextChanged += new System.EventHandler(this.taxCodePrefixTextBox_TextChanged);
             // 
             // taxCodeNumberTextBox
             // 
@@ -177,7 +178,7 @@
             this.taxCodeNumberTextBox.Size = new System.Drawing.Size(158, 20);
             this.taxCodeNumberTextBox.TabIndex = 3;
             this.taxCodeNumberTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.taxCodeNumberTextBox.TextChanged += new System.EventHandler(this.legalIdDNITextBox_TextChanged);
+            this.taxCodeNumberTextBox.TextChanged += new System.EventHandler(this.taxCodeNumberTextBox_TextChanged);
             // 
             // taxCodeSuffixTextBox
             // 
@@ -186,6 +187,7 @@
             this.taxCodeSuffixTextBox.Size = new System.Drawing.Size(40, 20);
             this.taxCodeSuffixTextBox.TabIndex = 4;
             this.taxCodeSuffixTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.taxCodeSuffixTextBox.TextChanged += new System.EventHandler(this.taxCodeSuffixTextBox_TextChanged);
             // 
             // firstNameLabel
             // 
@@ -349,6 +351,7 @@
             // organizationNameComboBox
             // 
             this.organizationNameComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.organizationNameComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.organizationNameComboBox.FormattingEnabled = true;
             this.organizationNameComboBox.Location = new System.Drawing.Point(89, 146);
             this.organizationNameComboBox.Name = "organizationNameComboBox";
@@ -369,11 +372,11 @@
             this.birthDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.birthDateTimePicker.Location = new System.Drawing.Point(89, 42);
             this.birthDateTimePicker.MaxDate = new System.DateTime(9000, 1, 1, 0, 0, 0, 0);
-            this.birthDateTimePicker.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.birthDateTimePicker.MinDate = new System.DateTime(1800, 1, 1, 0, 0, 0, 0);
             this.birthDateTimePicker.Name = "birthDateTimePicker";
             this.birthDateTimePicker.Size = new System.Drawing.Size(250, 20);
             this.birthDateTimePicker.TabIndex = 43;
-            this.birthDateTimePicker.Value = new System.DateTime(2024, 2, 28, 17, 0, 56, 0);
+            this.birthDateTimePicker.Value = new System.DateTime(9000, 1, 1, 0, 0, 0, 0);
             // 
             // activeStatusCheckBox
             // 
@@ -438,6 +441,8 @@
             // 
             // cityComboBox
             // 
+            this.cityComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cityComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cityComboBox.FormattingEnabled = true;
             this.cityComboBox.Location = new System.Drawing.Point(89, 69);
             this.cityComboBox.Name = "cityComboBox";
@@ -446,19 +451,25 @@
             // 
             // adressProvinceComboBox
             // 
+            this.adressProvinceComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.adressProvinceComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.adressProvinceComboBox.FormattingEnabled = true;
             this.adressProvinceComboBox.Location = new System.Drawing.Point(89, 43);
             this.adressProvinceComboBox.Name = "adressProvinceComboBox";
             this.adressProvinceComboBox.Size = new System.Drawing.Size(250, 21);
             this.adressProvinceComboBox.TabIndex = 41;
+            this.adressProvinceComboBox.SelectedIndexChanged += new System.EventHandler(this.adressProvinceComboBox_SelectedIndexChanged);
             // 
             // adressCountryComboBox
             // 
+            this.adressCountryComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.adressCountryComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.adressCountryComboBox.FormattingEnabled = true;
             this.adressCountryComboBox.Location = new System.Drawing.Point(89, 17);
             this.adressCountryComboBox.Name = "adressCountryComboBox";
             this.adressCountryComboBox.Size = new System.Drawing.Size(250, 21);
             this.adressCountryComboBox.TabIndex = 40;
+            this.adressCountryComboBox.SelectedIndexChanged += new System.EventHandler(this.adressCountryComboBox_SelectedIndexChanged);
             // 
             // zipCodeTextBox
             // 
@@ -492,19 +503,26 @@
             // 
             // phoneProvinceComboBox
             // 
+            this.phoneProvinceComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.phoneProvinceComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.phoneProvinceComboBox.FormattingEnabled = true;
             this.phoneProvinceComboBox.Location = new System.Drawing.Point(145, 38);
             this.phoneProvinceComboBox.Name = "phoneProvinceComboBox";
             this.phoneProvinceComboBox.Size = new System.Drawing.Size(50, 21);
             this.phoneProvinceComboBox.TabIndex = 45;
+            this.phoneProvinceComboBox.TextChanged += new System.EventHandler(this.phoneProvinceComboBox_TextChanged);
             // 
             // phoneCountryComboBox
             // 
+            this.phoneCountryComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.phoneCountryComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.phoneCountryComboBox.FormattingEnabled = true;
             this.phoneCountryComboBox.Location = new System.Drawing.Point(89, 38);
             this.phoneCountryComboBox.Name = "phoneCountryComboBox";
             this.phoneCountryComboBox.Size = new System.Drawing.Size(50, 21);
             this.phoneCountryComboBox.TabIndex = 44;
+            this.phoneCountryComboBox.SelectedIndexChanged += new System.EventHandler(this.phoneCountryComboBox_SelectedIndexChanged);
+            this.phoneCountryComboBox.TextChanged += new System.EventHandler(this.phoneCountryComboBox_TextChanged);
             // 
             // imagePanel
             // 

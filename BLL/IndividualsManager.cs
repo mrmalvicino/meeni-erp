@@ -36,9 +36,7 @@ namespace BLL
                     if (!(_database.Reader["Email"] is DBNull))
                         individual.Email = (string)_database.Reader["Email"];
 
-                    if (_database.Reader["Birth"] is DBNull)
-                        individual.Birth = new DateTime(9000, 1, 1);
-                    else
+                    if (!(_database.Reader["Birth"] is DBNull))
                         individual.Birth = (DateTime)_database.Reader["Birth"];
 
                     if (!(_database.Reader["TaxCodeId"] is DBNull))

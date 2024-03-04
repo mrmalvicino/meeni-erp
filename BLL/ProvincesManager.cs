@@ -13,13 +13,20 @@ namespace BLL
 
         // METHODS
 
-        public List<Province> list()
+        public List<Province> list(int countryId = 0)
         {
             List<Province> provincesList = new List<Province>();
+            string query = "select ProvinceId, ProvinceName, PhoneAreaCode from Provinces";
+
+            if (0 < countryId)
+            {
+                query += " where CountryId = @CountryId";
+                _database.setParameter("@CountryId", countryId);
+            }
 
             try
             {
-                _database.setQuery("select ProvinceId, ProvinceName, PhoneAreaCode from Provinces");
+                _database.setQuery(query);
                 _database.executeReader();
 
                 while (_database.Reader.Read())

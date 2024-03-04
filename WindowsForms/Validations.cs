@@ -29,5 +29,10 @@ namespace WindowsForms
 
             return true;
         }
+
+        public static void error(string message)
+        {
+            MessageBox.Show(message, "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
 }

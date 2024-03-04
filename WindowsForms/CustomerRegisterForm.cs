@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Configuration;
-using System.IO;
+using System.Collections.Generic;
 using BLL;
 using Entities;
 
@@ -11,14 +10,13 @@ namespace WindowsForms
     {
         // ATTRIBUTES
 
-        Customer _customer = null;
-        OpenFileDialog _file = null;
-        CustomersManager _customersManager = new CustomersManager();
-        OrganizationsManager _organizationsManager = new OrganizationsManager();
-        CountriesManager _countriesManager = new CountriesManager();
-        ProvincesManager _provincesManager = new ProvincesManager();
-        CitiesManager _citiesManager = new CitiesManager();
-        ImagesManager _imagesManager = new ImagesManager();
+        private Customer _customer = null;
+        private CustomersManager _customersManager = new CustomersManager();
+        private OrganizationsManager _organizationsManager = new OrganizationsManager();
+        private CountriesManager _countriesManager = new CountriesManager();
+        private ProvincesManager _provincesManager = new ProvincesManager();
+        private CitiesManager _citiesManager = new CitiesManager();
+        private ImagesManager _imagesManager = new ImagesManager();
 
         //CONSTRUCT
 
@@ -35,6 +33,81 @@ namespace WindowsForms
 
         // METHODS
 
+        private bool validateRegister()
+        {
+            // Birth
+
+            if (birthDateTimePicker.Value < birthDateTimePicker.MinDate || DateTime.Today < birthDateTimePicker.Value)
+            {
+                Validations.error("La fecha ingresada no es válida.");
+                return false;
+            }
+
+            // TaxCode
+
+            if (!Validations.isNumber(taxCodeNumberTextBox.Text))
+            {
+                Validations.error("El campo de DNI solo admite caracteres numéricos.");
+                return false;
+            }
+
+            // Person-Organization
+
+            if (!Validations.isEmpty(organizationNameComboBox.Text) && organizationNameComboBox.SelectedIndex == -1)
+            {
+                Validations.error("La organización ingresada no es válida.");
+                return false;
+            }
+
+            if (Validations.isEmpty(organizationNameComboBox.Text) && (Validations.isEmpty(firstNameTextBox.Text) || Validations.isEmpty(lastNameTextBox.Text)))
+            {
+                Validations.error("Ingresar el nombre y apellido de una persona o el nombre de una organización.");
+                return false;
+            }
+
+            // Phone
+
+            if (!Validations.isNumber(phoneNumberTextBox.Text))
+            {
+                Validations.error("El número de teléfono solo admite caracteres numéricos.");
+                return false;
+            }
+
+            if (!Validations.isEmpty(phoneNumberTextBox.Text) && phoneCountryComboBox.Text == "")
+            {
+                Validations.error("Especificar el código de área de país del teléfono.");
+                return false;
+            }
+
+            if (!Validations.isEmpty(phoneNumberTextBox.Text) && phoneProvinceComboBox.Text == "")
+            {
+                Validations.error("Especificar el código de área de provincia del teléfono.");
+                return false;
+            }
+
+            if (!Validations.isEmpty(phoneNumberTextBox.Text) && phoneCountryComboBox.SelectedIndex == -1)
+            {
+                Validations.error("El código de área de país del teléfono no es válido.");
+                return false;
+            }
+
+            if (!Validations.isEmpty(phoneNumberTextBox.Text) && phoneProvinceComboBox.SelectedIndex == -1)
+            {
+                Validations.error("El código de área de provincia del teléfono no es válido.");
+                return false;
+            }
+
+            // Adress
+
+            if (Validations.isNumber(streetNumberTextBox.Text) == false)
+            {
+                Validations.error("El número de calle solo admite caracteres numéricos.");
+                return false;
+            }
+
+            return true;
+        }
+
         private void setupStyle()
         {
             this.BackColor = Palette.DarkBackColor;
@@ -45,44 +118,9 @@ namespace WindowsForms
             specialPanel.BackColor = Palette.LightBackColor;
         }
 
-        private bool validateRegister()
-        {
-            if (Validations.isNumber(taxCodeNumberTextBox.Text) == false)
-            {
-                MessageBox.Show("El campo de DNI solo admite caracteres numéricos.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            if (Validations.isNumber(phoneNumberTextBox.Text) == false)
-            {
-                MessageBox.Show("El número de teléfono solo admite caracteres numéricos.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            if (Validations.isNumber(streetNumberTextBox.Text) == false)
-            {
-                MessageBox.Show("El número de calle solo admite caracteres numéricos.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            if (paymentMethodComboBox.SelectedIndex == -1)
-            {
-                MessageBox.Show("Seleccionar el método de pago preferido.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            if (invoiceCategoryComboBox.SelectedIndex == -1)
-            {
-                MessageBox.Show("Seleccionar el tipo de factura.", "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-
-            return true;
-        }
-
         private void bindComboBoxes()
         {
-            organizationNameComboBox.DataSource = _organizationsManager.list();
+            organizationNameComboBox.DataSource = _organizationsManager.list(); ;
             organizationNameComboBox.ValueMember = "OrganizationId";
             organizationNameComboBox.DisplayMember = "Name";
 
@@ -90,7 +128,7 @@ namespace WindowsForms
             phoneCountryComboBox.ValueMember = "CountryId";
             phoneCountryComboBox.DisplayMember = "PhoneAreaCode";
 
-            phoneProvinceComboBox.DataSource = _provincesManager.list();
+            //phoneProvinceComboBox.DataSource = _provincesManager.list();
             phoneProvinceComboBox.ValueMember = "ProvinceId";
             phoneProvinceComboBox.DisplayMember = "PhoneAreaCode";
             
@@ -98,11 +136,11 @@ namespace WindowsForms
             adressCountryComboBox.ValueMember = "CountryId";
             adressCountryComboBox.DisplayMember = "Name";
             
-            adressProvinceComboBox.DataSource = _provincesManager.list();
+            //adressProvinceComboBox.DataSource = _provincesManager.list();
             adressProvinceComboBox.ValueMember = "ProvinceId";
             adressProvinceComboBox.DisplayMember = "Name";
             
-            cityComboBox.DataSource = _citiesManager.list();
+            //cityComboBox.DataSource = _citiesManager.list();
             cityComboBox.ValueMember = "CityId";
             cityComboBox.DisplayMember = "Name";
         }
@@ -121,7 +159,11 @@ namespace WindowsForms
         {
             activeStatusCheckBox.Checked = _customer.ActiveStatus;
             emailTextBox.Text = _customer.Email;
-            birthDateTimePicker.Value = DateTime.Parse(_customer.Birth.ToShortDateString());
+
+            if (birthDateTimePicker.MinDate < _customer.Birth && _customer.Birth < birthDateTimePicker.MaxDate) // Si tiene, mapear Birth
+            {
+                birthDateTimePicker.Value = DateTime.Parse(_customer.Birth.ToShortDateString());
+            }
 
             if (0 < _customer.TaxCode.TaxCodeId) // Si tiene, mapear TaxCode
             {
@@ -181,6 +223,40 @@ namespace WindowsForms
             invoiceCategoryComboBox.Text = _customer.InvoiceCategory;
         }
 
+        private void mapCustomer()
+        {
+            mapBusinessPartner();
+        }
+
+        private void mapCustomerAttribute()
+        {
+            _customer.ActiveStatus = activeStatusCheckBox.Checked;
+            _customer.Email = emailTextBox.Text;
+
+            if (birthDateTimePicker.MinDate < birthDateTimePicker.Value && birthDateTimePicker.Value < DateTime.Today) // Si tiene, mapear Birth
+                _customer.Birth = birthDateTimePicker.Value;
+
+            if (phoneNumberTextBox.Text != "")
+                _customer.Phone.Number = int.Parse(phoneNumberTextBox.Text);
+
+            _customer.Adress.StreetName = streetNameTextBox.Text;
+
+            if (streetNumberTextBox.Text != "")
+                _customer.Adress.StreetNumber = int.Parse(streetNumberTextBox.Text);
+
+            _customer.Adress.Flat = flatTextBox.Text;
+
+            _customer.TaxCode.Prefix = taxCodePrefixTextBox.Text;
+
+            if (taxCodeNumberTextBox.Text != "")
+                _customer.TaxCode.Number = int.Parse(taxCodeNumberTextBox.Text);
+
+            _customer.TaxCode.Suffix = taxCodeSuffixTextBox.Text;
+
+            _customer.PaymentMethod = paymentMethodComboBox.Text;
+            _customer.InvoiceCategory = invoiceCategoryComboBox.Text;
+        }
+
         // EVENTS
 
         private void CustomerRegisterForm_Load(object sender, EventArgs e)
@@ -189,6 +265,7 @@ namespace WindowsForms
 
             try
             {
+                birthDateTimePicker.Value = birthDateTimePicker.MinDate;
                 bindComboBoxes();
 
                 if (_customer == null) // Se está agregando un registro
@@ -199,7 +276,7 @@ namespace WindowsForms
                 }
                 else // Se está editando un registro
                 {
-                    mapBusinessPartner();
+                    mapCustomer();
                     Functions.loadImage(profilePictureBox, imageUrlTextBox.Text);
                 }
             }
@@ -216,21 +293,7 @@ namespace WindowsForms
 
             try
             {
-                _customer.ActiveStatus = activeStatusCheckBox.Checked;
-                _customer.Email = emailTextBox.Text;
-
-                if (phoneNumberTextBox.Text != "") _customer.Phone.Number = int.Parse(phoneNumberTextBox.Text);
-
-                _customer.Adress.StreetName = streetNameTextBox.Text;
-                if (streetNumberTextBox.Text != "") _customer.Adress.StreetNumber = int.Parse(streetNumberTextBox.Text);
-                _customer.Adress.Flat = flatTextBox.Text;
-
-                _customer.TaxCode.Prefix = taxCodePrefixTextBox.Text;
-                if (taxCodeNumberTextBox.Text != "") _customer.TaxCode.Number = int.Parse(taxCodeNumberTextBox.Text);
-                _customer.TaxCode.Suffix = taxCodeSuffixTextBox.Text;
-
-                _customer.PaymentMethod = paymentMethodComboBox.Text;
-                _customer.InvoiceCategory = invoiceCategoryComboBox.Text;
+                mapCustomerAttribute();
 
                 if (0 < _customer.CustomerId)
                     _customersManager.edit(_customer); // Se está editando un registro
@@ -251,7 +314,51 @@ namespace WindowsForms
             Functions.loadImage(profilePictureBox, imageUrlTextBox.Text);
         }
 
-        private void legalIdDNITextBox_TextChanged(object sender, EventArgs e)
+        private void phoneCountryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            phoneProvinceComboBox.DataSource = null;
+
+            if (phoneCountryComboBox.SelectedIndex != -1)
+            {
+                Country country = (Country)phoneCountryComboBox.SelectedItem;
+                phoneProvinceComboBox.DataSource = _provincesManager.list(country.CountryId);
+            }
+
+            phoneProvinceComboBox.ValueMember = "ProvinceId";
+            phoneProvinceComboBox.DisplayMember = "PhoneAreaCode";
+        }
+
+        private void adressCountryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            adressProvinceComboBox.DataSource = null;
+
+            if (adressCountryComboBox.SelectedIndex != -1)
+            {
+                Country country = (Country)adressCountryComboBox.SelectedItem;                
+                adressProvinceComboBox.DataSource = _provincesManager.list(country.CountryId);
+            }
+        }
+
+        private void adressProvinceComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cityComboBox.DataSource = null;
+
+            if (adressProvinceComboBox.SelectedIndex != -1)
+            {
+                Province province = (Province)adressProvinceComboBox.SelectedItem;
+                cityComboBox.DataSource = _citiesManager.list(province.ProvinceId);
+            }
+        }
+
+        private void taxCodePrefixTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (Validations.isNumber(taxCodePrefixTextBox.Text))
+                taxCodePrefixTextBox.ForeColor = Palette.DefaultBlack;
+            else
+                taxCodePrefixTextBox.ForeColor = Palette.ValidationColor;
+        }
+
+        private void taxCodeNumberTextBox_TextChanged(object sender, EventArgs e)
         {
             if (Validations.isNumber(taxCodeNumberTextBox.Text))
                 taxCodeNumberTextBox.ForeColor = Palette.DefaultBlack;
@@ -259,7 +366,31 @@ namespace WindowsForms
                 taxCodeNumberTextBox.ForeColor = Palette.ValidationColor;
         }
 
-        private void phoneNumberTextBox_TextChanged(object sender, EventArgs e)
+        private void taxCodeSuffixTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (Validations.isNumber(taxCodeSuffixTextBox.Text))
+                taxCodeSuffixTextBox.ForeColor = Palette.DefaultBlack;
+            else
+                taxCodeSuffixTextBox.ForeColor = Palette.ValidationColor;
+        }
+
+        private void phoneCountryComboBox_TextChanged(object sender, EventArgs e)
+        {
+            if (Validations.isNumber(phoneCountryComboBox.Text))
+                phoneCountryComboBox.ForeColor = Palette.DefaultBlack;
+            else
+                phoneCountryComboBox.ForeColor = Palette.ValidationColor;
+        }
+
+        private void phoneProvinceComboBox_TextChanged(object sender, EventArgs e)
+        {
+            if (Validations.isNumber(phoneProvinceComboBox.Text))
+                phoneProvinceComboBox.ForeColor = Palette.DefaultBlack;
+            else
+                phoneProvinceComboBox.ForeColor = Palette.ValidationColor;
+        }
+
+        private void phoneNumberTextBox_TextChanged_1(object sender, EventArgs e)
         {
             if (Validations.isNumber(phoneNumberTextBox.Text))
                 phoneNumberTextBox.ForeColor = Palette.DefaultBlack;
@@ -267,7 +398,7 @@ namespace WindowsForms
                 phoneNumberTextBox.ForeColor = Palette.ValidationColor;
         }
 
-        private void adressStreetNumberTextBox_TextChanged(object sender, EventArgs e)
+        private void streetNumberTextBox_TextChanged(object sender, EventArgs e)
         {
             if (Validations.isNumber(streetNumberTextBox.Text))
                 streetNumberTextBox.ForeColor = Palette.DefaultBlack;
