@@ -231,14 +231,29 @@ namespace WindowsForms
             _customer.ActiveStatus = activeStatusCheckBox.Checked;
             _customer.Email = emailTextBox.Text;
             _customer.Birth = birthDateTimePicker.Value;
+
             _customer.TaxCode.Prefix = taxCodePrefixTextBox.Text;
             _customer.TaxCode.Number = taxCodeNumberTextBox.Text;
-
             _customer.TaxCode.Suffix = taxCodeSuffixTextBox.Text;
-            _customer.Phone.Number = phoneNumberTextBox.Text;
+
             _customer.Adress.StreetName = streetNameTextBox.Text;
             _customer.Adress.StreetNumber = streetNumberTextBox.Text;
             _customer.Adress.Flat = flatTextBox.Text;
+            _customer.Adress.Details = detailsTextBox.Text;
+            _customer.Adress.City = (City)cityComboBox.SelectedItem;
+            _customer.Adress.City.ZipCode = zipCodeTextBox.Text;
+            _customer.Adress.Province = (Province)adressProvinceComboBox.SelectedItem;
+            _customer.Adress.Country = (Country)adressCountryComboBox.SelectedItem;
+
+            _customer.Phone.Country = (Country)phoneCountryComboBox.SelectedItem;
+            _customer.Phone.Province = (Province)phoneProvinceComboBox.SelectedItem;
+            _customer.Phone.Number = phoneNumberTextBox.Text;
+
+            _customer.Person.FirstName = firstNameTextBox.Text;
+            _customer.Person.LastName = lastNameTextBox.Text;
+
+            _customer.Organization = (Organization)organizationNameComboBox.SelectedItem;
+            _customer.Organization.Description = organizationDescriptionTextBox.Text;
 
             _customer.PaymentMethod = paymentMethodComboBox.Text;
             _customer.InvoiceCategory = invoiceCategoryComboBox.Text;

@@ -130,9 +130,9 @@
             // 
             // phoneNumberTextBox
             // 
-            this.phoneNumberTextBox.Location = new System.Drawing.Point(201, 38);
+            this.phoneNumberTextBox.Location = new System.Drawing.Point(221, 38);
             this.phoneNumberTextBox.Name = "phoneNumberTextBox";
-            this.phoneNumberTextBox.Size = new System.Drawing.Size(138, 20);
+            this.phoneNumberTextBox.Size = new System.Drawing.Size(118, 20);
             this.phoneNumberTextBox.TabIndex = 3;
             this.phoneNumberTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.phoneNumberTextBox.TextChanged += new System.EventHandler(this.phoneNumberTextBox_TextChanged_1);
@@ -166,25 +166,25 @@
             // 
             this.taxCodePrefixTextBox.Location = new System.Drawing.Point(89, 68);
             this.taxCodePrefixTextBox.Name = "taxCodePrefixTextBox";
-            this.taxCodePrefixTextBox.Size = new System.Drawing.Size(40, 20);
+            this.taxCodePrefixTextBox.Size = new System.Drawing.Size(60, 20);
             this.taxCodePrefixTextBox.TabIndex = 2;
             this.taxCodePrefixTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.taxCodePrefixTextBox.TextChanged += new System.EventHandler(this.taxCodePrefixTextBox_TextChanged);
             // 
             // taxCodeNumberTextBox
             // 
-            this.taxCodeNumberTextBox.Location = new System.Drawing.Point(135, 68);
+            this.taxCodeNumberTextBox.Location = new System.Drawing.Point(155, 68);
             this.taxCodeNumberTextBox.Name = "taxCodeNumberTextBox";
-            this.taxCodeNumberTextBox.Size = new System.Drawing.Size(158, 20);
+            this.taxCodeNumberTextBox.Size = new System.Drawing.Size(118, 20);
             this.taxCodeNumberTextBox.TabIndex = 3;
             this.taxCodeNumberTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.taxCodeNumberTextBox.TextChanged += new System.EventHandler(this.taxCodeNumberTextBox_TextChanged);
             // 
             // taxCodeSuffixTextBox
             // 
-            this.taxCodeSuffixTextBox.Location = new System.Drawing.Point(299, 68);
+            this.taxCodeSuffixTextBox.Location = new System.Drawing.Point(279, 68);
             this.taxCodeSuffixTextBox.Name = "taxCodeSuffixTextBox";
-            this.taxCodeSuffixTextBox.Size = new System.Drawing.Size(40, 20);
+            this.taxCodeSuffixTextBox.Size = new System.Drawing.Size(60, 20);
             this.taxCodeSuffixTextBox.TabIndex = 4;
             this.taxCodeSuffixTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.taxCodeSuffixTextBox.TextChanged += new System.EventHandler(this.taxCodeSuffixTextBox_TextChanged);
@@ -506,9 +506,9 @@
             this.phoneProvinceComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.phoneProvinceComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.phoneProvinceComboBox.FormattingEnabled = true;
-            this.phoneProvinceComboBox.Location = new System.Drawing.Point(145, 38);
+            this.phoneProvinceComboBox.Location = new System.Drawing.Point(155, 38);
             this.phoneProvinceComboBox.Name = "phoneProvinceComboBox";
-            this.phoneProvinceComboBox.Size = new System.Drawing.Size(50, 21);
+            this.phoneProvinceComboBox.Size = new System.Drawing.Size(60, 21);
             this.phoneProvinceComboBox.TabIndex = 45;
             this.phoneProvinceComboBox.TextChanged += new System.EventHandler(this.phoneProvinceComboBox_TextChanged);
             // 
@@ -519,7 +519,7 @@
             this.phoneCountryComboBox.FormattingEnabled = true;
             this.phoneCountryComboBox.Location = new System.Drawing.Point(89, 38);
             this.phoneCountryComboBox.Name = "phoneCountryComboBox";
-            this.phoneCountryComboBox.Size = new System.Drawing.Size(50, 21);
+            this.phoneCountryComboBox.Size = new System.Drawing.Size(60, 21);
             this.phoneCountryComboBox.TabIndex = 44;
             this.phoneCountryComboBox.SelectedIndexChanged += new System.EventHandler(this.phoneCountryComboBox_SelectedIndexChanged);
             this.phoneCountryComboBox.TextChanged += new System.EventHandler(this.phoneCountryComboBox_TextChanged);
