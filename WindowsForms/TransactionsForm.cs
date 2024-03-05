@@ -12,18 +12,9 @@ namespace WindowsForms
 {
     public partial class TransactionsForm : Form
     {
-        // CONSTRUCT
-
         public TransactionsForm()
         {
             InitializeComponent();
-        }
-
-        // EVENTS
-
-        private void exportCSVButton_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

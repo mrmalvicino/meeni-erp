@@ -14,19 +14,5 @@ namespace Entities
 
         [DisplayName("Factura")]
         public string InvoiceCategory { get; set; }
-
-        // METHODS
-
-        public BusinessPartner copyToBusinessPartner()
-        {
-            BusinessPartner businessPartner;
-            businessPartner = copyFromIndividual<BusinessPartner>(this.copyToIndividual());
-
-            businessPartner.BusinessPartnerId = this.BusinessPartnerId;
-            businessPartner.PaymentMethod = this.PaymentMethod;
-            businessPartner.InvoiceCategory = this.InvoiceCategory;
-
-            return businessPartner;
-        }
     }
 }

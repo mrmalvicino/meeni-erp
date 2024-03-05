@@ -138,7 +138,6 @@
             this.saveButton.TabIndex = 1;
             this.saveButton.Text = "Guardar usuario";
             this.saveButton.UseVisualStyleBackColor = true;
-            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // deleteButton
             // 
@@ -148,7 +147,6 @@
             this.deleteButton.TabIndex = 2;
             this.deleteButton.Text = "Eliminar usuario";
             this.deleteButton.UseVisualStyleBackColor = true;
-            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
             // UserRegisterForm
             // 
@@ -164,7 +162,6 @@
             this.Name = "UserRegisterForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registro de usuario";
-            this.Load += new System.EventHandler(this.UserRegisterForm_Load);
             this.mainPanel.ResumeLayout(false);
             this.mainPanel.PerformLayout();
             this.ResumeLayout(false);

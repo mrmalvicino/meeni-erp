@@ -18,6 +18,5 @@ namespace WindowsForms
         {
             InitializeComponent();
         }
-        
     }
 }

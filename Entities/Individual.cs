@@ -62,34 +62,5 @@ namespace Entities
                 return true;
             return false;
         }
-
-        public Individual copyToIndividual()
-        {
-            Individual individual;
-            individual = new Individual();
-
-            individual.IndividualId = this.IndividualId;
-            individual.ActiveStatus = this.ActiveStatus;
-            individual.Email = this.Email;
-            individual.Phone = this.Phone;
-            individual.Adress = this.Adress;
-            individual.TaxCode = this.TaxCode;
-
-            return individual;
-        }
-
-        public T copyFromIndividual<T>(Individual individual) where T : Individual, new()
-        {
-            T obj = new T();
-
-            obj.IndividualId = individual.IndividualId;
-            obj.ActiveStatus = individual.ActiveStatus;
-            obj.Email = individual.Email;
-            obj.Phone = individual.Phone;
-            obj.Adress = individual.Adress;
-            obj.TaxCode = individual.TaxCode;
-
-            return obj;
-        }
     }
 }

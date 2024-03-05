@@ -19,7 +19,7 @@ namespace BLL
 
             try
             {
-                _database.setQuery("SELECT RoleId, RoleName FROM roles");
+                _database.setQuery("select RoleId, RoleName from Roles");
                 _database.executeReader();
 
                 while (_database.Reader.Read())

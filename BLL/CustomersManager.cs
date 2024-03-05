@@ -60,14 +60,11 @@ namespace BLL
         {
             try
             {
-                _database.setQuery("INSERT INTO customers (SalesAmount, BusinessPartnerId) VALUES (@SalesAmount, @BusinessPartnerId)");
-
+                _database.setQuery("insert into Customers (SalesAmount, BusinessPartnerId) values (@SalesAmount, @BusinessPartnerId)");
                 _database.setParameter("@SalesAmount", customer.SalesAmount);
                 _database.setParameter("@BusinessPartnerId", customer.BusinessPartnerId);
-
                 _database.executeAction();
-
-                //add(customer.copyToBusinessPartner());
+                _businessPartnersManager.add(customer);
             }
             catch (Exception ex)
             {
