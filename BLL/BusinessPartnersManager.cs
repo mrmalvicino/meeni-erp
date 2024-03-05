@@ -20,13 +20,13 @@ namespace BLL
 
             try
             {
-                _database.setQuery("select BusinessPartnerId, PaymentMethod, InvoiceCategory, IndividualId from BusinessPartners where BusinessPartnerId = @BusinessPartnerId");
+                _database.setQuery("select PaymentMethod, InvoiceCategory, IndividualId from BusinessPartners where BusinessPartnerId = @BusinessPartnerId");
                 _database.setParameter("@BusinessPartnerId", businessPartnerId);
                 _database.executeReader();
 
                 if (_database.Reader.Read())
                 {
-                    businessPartner.BusinessPartnerId = (int)_database.Reader["BusinessPartnerId"];
+                    businessPartner.BusinessPartnerId = businessPartnerId;
 
                     if (!(_database.Reader["PaymentMethod"] is DBNull))
                         businessPartner.PaymentMethod = (string)_database.Reader["PaymentMethod"];

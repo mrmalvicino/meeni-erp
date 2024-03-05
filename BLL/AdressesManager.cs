@@ -22,7 +22,7 @@ namespace BLL
             {
                 _database.setQuery(
                     "select " +
-                    "A.StreetName, A.StreetNumber, A.Flat, A.Details, A.CityId, " +
+                    "A.AdressId, A.StreetName, A.StreetNumber, A.Flat, A.Details, A.CityId, " +
                     "CI.CityName, CI.ZipCode, CI.ProvinceId, " +
                     "P.ProvinceName, P.CountryId, CO.CountryName " +
                     "from Adresses A " +
@@ -36,6 +36,7 @@ namespace BLL
 
                 if (_database.Reader.Read())
                 {
+                    adress.AdressId = (int)_database.Reader["AdressId"];
                     adress.StreetName = (string)_database.Reader["StreetName"];
                     adress.StreetNumber = (string)_database.Reader["StreetNumber"];
 

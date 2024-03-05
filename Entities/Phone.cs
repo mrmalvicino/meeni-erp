@@ -22,12 +22,13 @@ namespace Entities
 
         public override string ToString()
         {
-            if (Country.PhoneAreaCode != null && Province.PhoneAreaCode != null && Number != null)
+            if (Country != null && Province != null && Country.PhoneAreaCode != null && Province.PhoneAreaCode != null && Number != null)
                 return $"+{Country.PhoneAreaCode} ({Province.PhoneAreaCode}) {Number}";
-            else if (Number != null)
+
+            if (Number != null)
                 return Number.ToString();
-            else
-                return "";
+            
+            return "";
         }
 
         // CONSTRUCT

@@ -34,10 +34,10 @@ namespace Entities
 
         public override string ToString()
         {
-            if (StreetName != null && StreetNumber != null && City.ToString() != "")
+            if (Country != null && Province != null && City != null && StreetName != null && StreetNumber != null)
                 return $"{StreetName} {StreetNumber}, {City.ToString()}";
-            else
-                return "";
+
+            return "";
         }
 
         // CONSTRUCT
