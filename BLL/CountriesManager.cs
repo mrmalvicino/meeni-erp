@@ -29,7 +29,7 @@ namespace BLL
 
                     country.CountryId = Convert.ToInt32(_database.Reader["CountryId"]);
                     country.Name = (string)_database.Reader["CountryName"];
-                    country.PhoneAreaCode = (int)_database.Reader["PhoneAreaCode"];
+                    country.PhoneAreaCode = (string)_database.Reader["PhoneAreaCode"];
 
                     countriesList.Add(country);
                 }

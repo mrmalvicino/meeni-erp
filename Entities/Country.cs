@@ -13,7 +13,7 @@ namespace Entities
         public string Name { get; set; }
 
         [DisplayName("Código de área telefónico")]
-        public int PhoneAreaCode { get; set; }
+        public string PhoneAreaCode { get; set; }
 
         [DisplayName("Divisa")]
         public Currency Currency { get; set; }

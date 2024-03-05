@@ -33,7 +33,7 @@ go
 create table Countries(
 	CountryId tinyint primary key identity(1,1) not null,
 	CountryName varchar(30) unique not null,
-	PhoneAreaCode int unique not null,
+	PhoneAreaCode varchar(10) unique not null,
 	CurrencyId tinyint foreign key references Currencies(CurrencyId) not null
 )
 go
@@ -54,7 +54,7 @@ go
 create table Provinces(
 	ProvinceId smallint primary key identity(1,1) not null,
 	ProvinceName varchar(30) not null,
-	PhoneAreaCode int not null,
+	PhoneAreaCode varchar(10) not null,
 	CountryId tinyint foreign key references Countries(CountryId) not null
 )
 go
@@ -99,7 +99,7 @@ go
 create table TaxCodes(
 	TaxCodeId int primary key identity(1,1) not null,
 	Prefix varchar(10) null,
-	Number int not null,
+	Number varchar(20) not null,
 	Suffix varchar(10) null
 )
 go
@@ -124,7 +124,7 @@ go
 create table Adresses(
 	AdressId int primary key identity(1,1) not null,
 	StreetName varchar(30) not null,
-	StreetNumber int not null,
+	StreetNumber varchar(10) not null,
 	Flat varchar(30) null,
 	Details varchar(300) null,
 	CityId smallint foreign key references Cities(CityId) not null
@@ -148,7 +148,7 @@ go
 
 create table Phones(
 	PhoneId int primary key identity(1,1) not null,
-	Number int not null,
+	Number varchar(20) not null,
 	ProvinceId smallint foreign key references Provinces(ProvinceId) not null
 )
 go

@@ -161,9 +161,7 @@ namespace WindowsForms
             emailTextBox.Text = _customer.Email;
 
             if (birthDateTimePicker.MinDate < _customer.Birth && _customer.Birth < birthDateTimePicker.MaxDate) // Si tiene, mapear Birth
-            {
                 birthDateTimePicker.Value = DateTime.Parse(_customer.Birth.ToShortDateString());
-            }
 
             if (0 < _customer.TaxCode.TaxCodeId) // Si tiene, mapear TaxCode
             {
@@ -228,30 +226,19 @@ namespace WindowsForms
             mapBusinessPartner();
         }
 
-        private void mapCustomerAttribute()
+        private void setCustomer()
         {
             _customer.ActiveStatus = activeStatusCheckBox.Checked;
             _customer.Email = emailTextBox.Text;
-
-            if (birthDateTimePicker.MinDate < birthDateTimePicker.Value && birthDateTimePicker.Value < DateTime.Today) // Si tiene, mapear Birth
-                _customer.Birth = birthDateTimePicker.Value;
-
-            if (phoneNumberTextBox.Text != "")
-                _customer.Phone.Number = int.Parse(phoneNumberTextBox.Text);
-
-            _customer.Adress.StreetName = streetNameTextBox.Text;
-
-            if (streetNumberTextBox.Text != "")
-                _customer.Adress.StreetNumber = int.Parse(streetNumberTextBox.Text);
-
-            _customer.Adress.Flat = flatTextBox.Text;
-
+            _customer.Birth = birthDateTimePicker.Value;
             _customer.TaxCode.Prefix = taxCodePrefixTextBox.Text;
-
-            if (taxCodeNumberTextBox.Text != "")
-                _customer.TaxCode.Number = int.Parse(taxCodeNumberTextBox.Text);
+            _customer.TaxCode.Number = taxCodeNumberTextBox.Text;
 
             _customer.TaxCode.Suffix = taxCodeSuffixTextBox.Text;
+            _customer.Phone.Number = phoneNumberTextBox.Text;
+            _customer.Adress.StreetName = streetNameTextBox.Text;
+            _customer.Adress.StreetNumber = streetNumberTextBox.Text;
+            _customer.Adress.Flat = flatTextBox.Text;
 
             _customer.PaymentMethod = paymentMethodComboBox.Text;
             _customer.InvoiceCategory = invoiceCategoryComboBox.Text;
@@ -293,7 +280,7 @@ namespace WindowsForms
 
             try
             {
-                mapCustomerAttribute();
+                setCustomer();
 
                 if (0 < _customer.CustomerId)
                     _customersManager.edit(_customer); // Se está editando un registro

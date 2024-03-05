@@ -183,18 +183,18 @@ namespace WindowsForms
                 _employee.ActiveStatus = activeStatusCheckBox.Checked;
                 _employee.Email = emailTextBox.Text;
 
-                if (phoneNumberTextBox.Text != "") _employee.Phone.Number = int.Parse(phoneNumberTextBox.Text);
-                if (phoneCountryTextBox.Text != "") _employee.Phone.Country.PhoneAreaCode = int.Parse(phoneCountryTextBox.Text);
-                if (phoneAreaTextBox.Text != "") _employee.Phone.Province.PhoneAreaCode = int.Parse(phoneAreaTextBox.Text);
+                if (phoneNumberTextBox.Text != "") _employee.Phone.Number = phoneNumberTextBox.Text;
+                if (phoneCountryTextBox.Text != "") _employee.Phone.Country.PhoneAreaCode = phoneCountryTextBox.Text;
+                if (phoneAreaTextBox.Text != "") _employee.Phone.Province.PhoneAreaCode = phoneAreaTextBox.Text;
 
                 _employee.Adress.StreetName = adressStreetTextBox.Text;
-                if (adressStreetNumberTextBox.Text != "") _employee.Adress.StreetNumber = int.Parse(adressStreetNumberTextBox.Text);
+                if (adressStreetNumberTextBox.Text != "") _employee.Adress.StreetNumber = adressStreetNumberTextBox.Text;
                 _employee.Adress.Flat = adressFlatTextBox.Text;
                 _employee.Adress.Country.Name = adressCountryTextBox.Text;
                 _employee.Adress.Province.Name = adressProvinceTextBox.Text;
 
                 _employee.TaxCode.Prefix = legalIdXXTextBox.Text;
-                if (legalIdDNITextBox.Text != "") _employee.TaxCode.Number = int.Parse(legalIdDNITextBox.Text);
+                if (legalIdDNITextBox.Text != "") _employee.TaxCode.Number = legalIdDNITextBox.Text;
                 _employee.TaxCode.Suffix = legalIdYTextBox.Text;
 
                 _employee.Position.PositionId = _positionsManager.getPositionId(categoryAreaComboBox.Text, categoryTitleComboBox.Text, categorySeniorityComboBox.Text);

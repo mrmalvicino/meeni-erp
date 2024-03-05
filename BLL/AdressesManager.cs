@@ -37,7 +37,7 @@ namespace BLL
                 if (_database.Reader.Read())
                 {
                     adress.StreetName = (string)_database.Reader["StreetName"];
-                    adress.StreetNumber = (int)_database.Reader["StreetNumber"];
+                    adress.StreetNumber = (string)_database.Reader["StreetNumber"];
 
                     if (!(_database.Reader["Flat"] is DBNull))
                         adress.Flat = (string)_database.Reader["Flat"];

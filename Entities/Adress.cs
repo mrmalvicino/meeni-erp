@@ -13,7 +13,7 @@ namespace Entities
         public string StreetName { get; set; }
 
         [DisplayName("Número")]
-        public int StreetNumber { get; set; }
+        public string StreetNumber { get; set; }
 
         [DisplayName("Depto. o lote")]
         public string Flat {  get; set; }
@@ -34,7 +34,7 @@ namespace Entities
 
         public override string ToString()
         {
-            if (StreetName != "" && StreetNumber != 0 && City.ToString() != "")
+            if (StreetName != null && StreetNumber != null && City.ToString() != "")
                 return $"{StreetName} {StreetNumber}, {City.ToString()}";
             else
                 return "";

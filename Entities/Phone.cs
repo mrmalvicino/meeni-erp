@@ -10,7 +10,7 @@ namespace Entities
         public int PhoneId { get; set; }
 
         [DisplayName("Número telefónico")]
-        public int Number {  get; set; }
+        public string Number {  get; set; }
 
         [DisplayName("Provincia")]
         public Province Province { get; set; }
@@ -22,9 +22,9 @@ namespace Entities
 
         public override string ToString()
         {
-            if (Country.PhoneAreaCode != 0 && Province.PhoneAreaCode != 0 && Number != 0)
+            if (Country.PhoneAreaCode != null && Province.PhoneAreaCode != null && Number != null)
                 return $"+{Country.PhoneAreaCode} ({Province.PhoneAreaCode}) {Number}";
-            else if (Number != 0)
+            else if (Number != null)
                 return Number.ToString();
             else
                 return "";

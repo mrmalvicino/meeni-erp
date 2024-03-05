@@ -13,7 +13,7 @@ namespace Entities
         public string Prefix { get; set; }
 
         [DisplayName("DNI")]
-        public int Number { get; set; }
+        public string Number { get; set; }
 
         [DisplayName("Y")]
         public string Suffix { get; set; }
@@ -22,9 +22,9 @@ namespace Entities
 
         public override string ToString()
         {
-            if (Prefix != "" && Number != 0 && Suffix != "")
+            if (Prefix != null && Number != null && Suffix != null)
                 return $"{Prefix}-{Number}-{Suffix}";
-            else if (Number != 0)
+            else if (Number != null)
                 return Number.ToString();
             else
                 return "";

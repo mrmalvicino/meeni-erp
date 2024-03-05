@@ -35,9 +35,9 @@ namespace BLL
                 if (_database.Reader.Read())
                 {
                     phone.PhoneId = (int)_database.Reader["PhoneId"];
-                    phone.Number = (int)_database.Reader["Number"];
-                    phone.Province.PhoneAreaCode = (int)_database.Reader["ProvincePhoneAreaCode"];
-                    phone.Country.PhoneAreaCode = (int)_database.Reader["CountryPhoneAreaCode"];
+                    phone.Number = (string)_database.Reader["Number"];
+                    phone.Province.PhoneAreaCode = (string)_database.Reader["ProvincePhoneAreaCode"];
+                    phone.Country.PhoneAreaCode = (string)_database.Reader["CountryPhoneAreaCode"];
                 }
             }
             catch (Exception ex)

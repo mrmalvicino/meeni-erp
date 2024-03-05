@@ -35,7 +35,7 @@ namespace BLL
 
                     province.ProvinceId = Convert.ToInt32(_database.Reader["ProvinceId"]);
                     province.Name = (string)_database.Reader["ProvinceName"];
-                    province.PhoneAreaCode = (int)_database.Reader["PhoneAreaCode"];
+                    province.PhoneAreaCode = (string)_database.Reader["PhoneAreaCode"];
 
                     provincesList.Add(province);
                 }

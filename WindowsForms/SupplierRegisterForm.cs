@@ -151,18 +151,18 @@ namespace WindowsForms
                 _supplier.ActiveStatus = activeStatusCheckBox.Checked;
                 _supplier.Email = emailTextBox.Text;
 
-                if (phoneNumberTextBox.Text != "") _supplier.Phone.Number = int.Parse(phoneNumberTextBox.Text);
-                if (phoneCountryTextBox.Text != "") _supplier.Phone.Country.PhoneAreaCode = int.Parse(phoneCountryTextBox.Text);
-                if (phoneAreaTextBox.Text != "") _supplier.Phone.Province.PhoneAreaCode = int.Parse(phoneAreaTextBox.Text);
+                if (phoneNumberTextBox.Text != "") _supplier.Phone.Number = phoneNumberTextBox.Text;
+                if (phoneCountryTextBox.Text != "") _supplier.Phone.Country.PhoneAreaCode = phoneCountryTextBox.Text;
+                if (phoneAreaTextBox.Text != "") _supplier.Phone.Province.PhoneAreaCode = phoneAreaTextBox.Text;
 
                 _supplier.Adress.StreetName = adressStreetTextBox.Text;
-                if (adressStreetNumberTextBox.Text != "") _supplier.Adress.StreetNumber = int.Parse(adressStreetNumberTextBox.Text);
+                if (adressStreetNumberTextBox.Text != "") _supplier.Adress.StreetNumber = adressStreetNumberTextBox.Text;
                 _supplier.Adress.Flat = adressFlatTextBox.Text;
                 _supplier.Adress.Country.Name = adressCountryTextBox.Text;
                 _supplier.Adress.Province.Name = adressProvinceTextBox.Text;
 
                 _supplier.TaxCode.Prefix = legalIdXXTextBox.Text;
-                if (legalIdDNITextBox.Text != "") _supplier.TaxCode.Number = int.Parse(legalIdDNITextBox.Text);
+                if (legalIdDNITextBox.Text != "") _supplier.TaxCode.Number = legalIdDNITextBox.Text;
                 _supplier.TaxCode.Suffix = legalIdYTextBox.Text;
 
                 _supplier.PaymentMethod = paymentMethodComboBox.Text;

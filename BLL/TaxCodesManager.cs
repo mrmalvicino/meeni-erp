@@ -29,7 +29,7 @@ namespace BLL
                     if (!(_database.Reader["Prefix"] is DBNull))
                         taxCode.Prefix = (string)_database.Reader["Prefix"];
 
-                    taxCode.Number = (int)_database.Reader["Number"];
+                    taxCode.Number = (string)_database.Reader["Number"];
 
                     if (!(_database.Reader["Suffix"] is DBNull))
                         taxCode.Suffix = (string)_database.Reader["Suffix"];
