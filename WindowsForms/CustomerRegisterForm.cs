@@ -236,18 +236,24 @@ namespace WindowsForms
             _customer.TaxCode.Number = taxCodeNumberTextBox.Text;
             _customer.TaxCode.Suffix = taxCodeSuffixTextBox.Text;
 
-            _customer.Adress.StreetName = streetNameTextBox.Text;
-            _customer.Adress.StreetNumber = streetNumberTextBox.Text;
-            _customer.Adress.Flat = flatTextBox.Text;
-            _customer.Adress.Details = detailsTextBox.Text;
-            _customer.Adress.City = (City)cityComboBox.SelectedItem;
-            _customer.Adress.City.ZipCode = zipCodeTextBox.Text;
-            _customer.Adress.Province = (Province)adressProvinceComboBox.SelectedItem;
-            _customer.Adress.Country = (Country)adressCountryComboBox.SelectedItem;
+            if (cityComboBox.SelectedIndex != -1)
+            {
+                _customer.Adress.StreetName = streetNameTextBox.Text;
+                _customer.Adress.StreetNumber = streetNumberTextBox.Text;
+                _customer.Adress.Flat = flatTextBox.Text;
+                _customer.Adress.Details = detailsTextBox.Text;
+                _customer.Adress.City = (City)cityComboBox.SelectedItem;
+                _customer.Adress.City.ZipCode = zipCodeTextBox.Text;
+                _customer.Adress.Province = (Province)adressProvinceComboBox.SelectedItem;
+                _customer.Adress.Country = (Country)adressCountryComboBox.SelectedItem;
+            }
 
-            _customer.Phone.Country = (Country)phoneCountryComboBox.SelectedItem;
-            _customer.Phone.Province = (Province)phoneProvinceComboBox.SelectedItem;
-            _customer.Phone.Number = phoneNumberTextBox.Text;
+            if (phoneProvinceComboBox.SelectedIndex != -1)
+            {
+                _customer.Phone.Country = (Country)phoneCountryComboBox.SelectedItem;
+                _customer.Phone.Province = (Province)phoneProvinceComboBox.SelectedItem;
+                _customer.Phone.Number = phoneNumberTextBox.Text;
+            }
 
             _customer.Person.FirstName = firstNameTextBox.Text;
             _customer.Person.LastName = lastNameTextBox.Text;
@@ -292,6 +298,12 @@ namespace WindowsForms
         {
             if (!validateRegister())
                 return;
+
+            setCustomer();
+            MessageBox.Show("IndividualId: " + _customer.IndividualId.ToString());
+            MessageBox.Show("BusinessPartnerId: " + _customer.BusinessPartnerId.ToString());
+            MessageBox.Show("CustomerId: " + _customer.CustomerId.ToString());
+            return;
 
             try
             {

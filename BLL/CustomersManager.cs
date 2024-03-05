@@ -64,9 +64,6 @@ namespace BLL
                 _database.setParameter("@SalesAmount", customer.SalesAmount);
                 _database.setParameter("@BusinessPartnerId", customer.BusinessPartnerId);
                 _database.executeAction();
-                _businessPartnersManager.add(customer);
-
-                // Este metodo tiene que agregar los datos del customer en el resto de las tablas
             }
             catch (Exception ex)
             {
@@ -76,6 +73,8 @@ namespace BLL
             {
                 _database.closeConnection();
             }
+
+            // Este metodo tiene que agregar los datos del customer en el resto de las tablas
         }
 
         public void edit(Customer customer)
@@ -87,8 +86,6 @@ namespace BLL
                 _database.setParameter("@SalesAmount", customer.SalesAmount);
                 _database.setParameter("@BusinessPartnerId", customer.BusinessPartnerId);
                 _database.executeAction();
-
-                // Este metodo tiene que editar los datos del customer en el resto de las tablas
             }
             catch (Exception ex)
             {
@@ -98,6 +95,8 @@ namespace BLL
             {
                 _database.closeConnection();
             }
+
+            // Este metodo tiene que editar los datos del customer en el resto de las tablas
         }
 
         public void delete(Customer customer)
@@ -107,8 +106,6 @@ namespace BLL
                 _database.setQuery("delete from Customers where CustomerId = @CustomerId");
                 _database.setParameter("@CustomerId", customer.CustomerId);
                 _database.executeAction();
-
-                // Este metodo tiene que borrar los datos del customer del resto de las tablas
             }
             catch (Exception ex)
             {
@@ -118,6 +115,8 @@ namespace BLL
             {
                 _database.closeConnection();
             }
+
+            // Este metodo tiene que borrar los datos del customer del resto de las tablas
         }
     }
 }
