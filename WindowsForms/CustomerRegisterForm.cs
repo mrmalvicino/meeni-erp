@@ -293,6 +293,22 @@ namespace WindowsForms
             if (!validateRegister())
                 return;
 
+            setCustomer();
+            MessageBox.Show("TaxCodeId: " + _customer.TaxCode.TaxCodeId.ToString());
+            MessageBox.Show("AdressId: " + _customer.Adress.AdressId.ToString());//
+            MessageBox.Show("AdressCountryId: " + _customer.Adress.Country.CountryId.ToString());// ver que pasa si no hay adress id
+            MessageBox.Show("AdressProvinceId: " + _customer.Adress.Province.ProvinceId.ToString());// ver que pasa si no hay adress id
+            MessageBox.Show("AdressCityId: " + _customer.Adress.City.CityId.ToString());// ver que pasa si no hay adress id
+            MessageBox.Show("PhoneId: " + _customer.Phone.PhoneId.ToString());
+            MessageBox.Show("PhoneCountryId: " + _customer.Phone.Country.CountryId.ToString()); // ver que pasa si no hay phone id
+            MessageBox.Show("PhoneProvinceId: " + _customer.Phone.Province.ProvinceId.ToString()); // ver que pasa si no hay phone id
+            MessageBox.Show("PersonId: " + _customer.Person.PersonId.ToString());
+            MessageBox.Show("OrganizationId: " + _customer.Organization.OrganizationId.ToString());
+            MessageBox.Show("IndividualId: " + _customer.IndividualId.ToString());//
+            MessageBox.Show("BusinessPartnerId: " + _customer.BusinessPartnerId.ToString());
+            MessageBox.Show("CustomerId: " + _customer.CustomerId.ToString());
+            return;
+
             try
             {
                 setCustomer();
