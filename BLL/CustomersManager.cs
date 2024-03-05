@@ -82,7 +82,7 @@ namespace BLL
         {
             try
             {
-                _database.setQuery("UPDATE customers SET SalesAmount = @SalesAmount, BusinessPartnerId = @BusinessPartnerId WHERE CustomerId = @CustomerId");
+                _database.setQuery("update Customers set SalesAmount = @SalesAmount, BusinessPartnerId = @BusinessPartnerId where CustomerId = @CustomerId");
                 _database.setParameter("@CustomerId", customer.CustomerId);
                 _database.setParameter("@SalesAmount", customer.SalesAmount);
                 _database.setParameter("@BusinessPartnerId", customer.BusinessPartnerId);
