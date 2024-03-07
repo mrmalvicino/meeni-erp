@@ -299,15 +299,11 @@ namespace WindowsForms
             if (!validateRegister())
                 return;
 
-            setCustomer();
-            MessageBox.Show("IndividualId: " + _customer.IndividualId.ToString());
-            MessageBox.Show("BusinessPartnerId: " + _customer.BusinessPartnerId.ToString());
-            MessageBox.Show("CustomerId: " + _customer.CustomerId.ToString());
-            return;
-
             try
             {
                 setCustomer();
+
+                _customer.Person.PersonId = 3; //TEST
 
                 if (0 < _customer.CustomerId)
                     _customersManager.edit(_customer); // Se está editando un registro

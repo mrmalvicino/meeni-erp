@@ -72,7 +72,14 @@ select I.ImageUrl from Images I
 inner join Organizations O on O.ImageId = I.ImageId
 where O.OrganizationId = 2
 
+------------
+-- GET ID --
+------------
+
+select ident_current('Individuals') as LastId;
+
 -------------
 -- TESTING --
 -------------
 
+select * from Customers

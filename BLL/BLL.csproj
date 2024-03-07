@@ -46,7 +46,7 @@
     <Compile Include="CitiesManager.cs" />
     <Compile Include="CountriesManager.cs" />
     <Compile Include="CurrenciesManager.cs" />
-    <Compile Include="Helper.cs" />
+    <Compile Include="Functions.cs" />
     <Compile Include="ImagesManager.cs" />
     <Compile Include="OrganizationsManager.cs" />
     <Compile Include="PeopleManager.cs" />

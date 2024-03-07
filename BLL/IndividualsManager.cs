@@ -77,19 +77,37 @@ namespace BLL
         {
             try
             {
-                _database.setQuery("INSERT INTO individuals (ActiveStatus, IsPerson, FirstName, LastName, BusinessName, BusinessDescription, ImageUrl, Email, PhoneId, AdressId, TaxCodeId) VALUES (@ActiveStatus, @IsPerson, @FirstName, @LastName, @BusinessName, @BusinessDescription, @ImageUrl, @Email, @PhoneId, @AdressId, @TaxCodeId)");
-
+                _database.setQuery("insert into individuals (ActiveStatus, Email, Birth, TaxCodeId, AdressId, PhoneId, PersonId, OrganizationId) values (@ActiveStatus, @Email, @Birth, @TaxCodeId, @AdressId, @PhoneId, @PersonId, @OrganizationId)");
                 _database.setParameter("@ActiveStatus", individual.ActiveStatus);
                 _database.setParameter("@Email", individual.Email);
-                _database.setParameter("@PhoneId", individual.Phone.PhoneId);
-                _database.setParameter("@AdressId", individual.Adress.AdressId);
-                _database.setParameter("@TaxCodeId", individual.TaxCode.TaxCodeId);
+                _database.setParameter("@Birth", individual.Birth);
+
+                if (0 < individual.TaxCode.TaxCodeId)
+                    _database.setParameter("@TaxCodeId", individual.TaxCode.TaxCodeId);
+                else
+                    _database.setParameter("@TaxCodeId", DBNull.Value);
+
+                if (0 < individual.Adress.AdressId)
+                    _database.setParameter("@AdressId", individual.Adress.AdressId);
+                else
+                    _database.setParameter("@AdressId", DBNull.Value);
+
+                if (0 < individual.Phone.PhoneId)
+                    _database.setParameter("@PhoneId", individual.Phone.PhoneId);
+                else
+                    _database.setParameter("@PhoneId", DBNull.Value);
+
+                if (0 < individual.Person.PersonId)
+                    _database.setParameter("@PersonId", individual.Person.PersonId);
+                else
+                    _database.setParameter("@PersonId", DBNull.Value);
+
+                if (0 < individual.Organization.OrganizationId)
+                    _database.setParameter("@OrganizationId", individual.Organization.OrganizationId);
+                else
+                    _database.setParameter("@OrganizationId", DBNull.Value);
 
                 _database.executeAction();
-
-                _phonesManager.add(individual.Phone);
-                _adressesManager.add(individual.Adress);
-                _taxCodesManager.add(individual.TaxCode);
             }
             catch (Exception ex)
             {
@@ -105,20 +123,14 @@ namespace BLL
         {
             try
             {
-                _database.setQuery("UPDATE customers SET ActiveStatus = @ActiveStatus, IsPerson = @IsPerson, FirstName = @FirstName, LastName = @LastName, BusinessName = @BusinessName, BusinessDescription = @BusinessDescription, ImageUrl = @ImageUrl, Email = @Email, PhoneId = @PhoneId, AdressId = @AdressId, TaxCodeId = @TaxCodeId WHERE IndividualId = @IndividualId");
-
+                _database.setQuery("");
                 _database.setParameter("@IndividualId", individual.IndividualId);
                 _database.setParameter("@ActiveStatus", individual.ActiveStatus);
                 _database.setParameter("@Email", individual.Email);
                 _database.setParameter("@PhoneId", individual.Phone.PhoneId);
                 _database.setParameter("@AdressId", individual.Adress.AdressId);
                 _database.setParameter("@TaxCodeId", individual.TaxCode.TaxCodeId);
-
                 _database.executeAction();
-
-                _phonesManager.edit(individual.Phone);
-                _adressesManager.edit(individual.Adress);
-                _taxCodesManager.edit(individual.TaxCode);
             }
             catch (Exception ex)
             {
@@ -134,12 +146,9 @@ namespace BLL
         {
             try
             {
-                _database.setQuery("DELETE FROM individuals WHERE IndividualId = @IndividualId");
+                _database.setQuery("delete from Individuals where IndividualId = @IndividualId");
                 _database.setParameter("@IndividualId", individual.IndividualId);
                 _database.executeAction();
-
-                _phonesManager.delete(individual.Phone);
-                _adressesManager.delete(individual.Adress);
             }
             catch (Exception ex)
             {

@@ -47,24 +47,26 @@ namespace BLL
             }
 
             Individual individual = _individualsManager.readIndividual(businessPartner.IndividualId);
-            Helper.assign(businessPartner, individual);
+            Functions.assign(businessPartner, individual);
 
             return businessPartner;
         }
         
         public void add(BusinessPartner businessPartner)
         {
+            Individual individual = new Individual();
+            Functions.assign<Individual, BusinessPartner>(individual, businessPartner);
+            _individualsManager.add(individual);
+
+            int individualId = Functions.getLastId("Individuals");
+
             try
             {
-                _database.setQuery("INSERT INTO businessPartners (PaymentMethod, InvoiceCategory, IndividualId) VALUES (@PaymentMethod, @InvoiceCategory, @IndividualId)");
-
+                _database.setQuery("insert into BusinessPartners (PaymentMethod, InvoiceCategory, IndividualId) values (@PaymentMethod, @InvoiceCategory, @IndividualId)");
                 _database.setParameter("@PaymentMethod", businessPartner.PaymentMethod);
                 _database.setParameter("@InvoiceCategory", businessPartner.InvoiceCategory);
-                _database.setParameter("@IndividualId", businessPartner.IndividualId);
-
+                _database.setParameter("@IndividualId", individualId);
                 _database.executeAction();
-
-                //add(businessPartner.copyToIndividual());
             }
             catch (Exception ex)
             {
@@ -80,16 +82,12 @@ namespace BLL
         {
             try
             {
-                _database.setQuery("UPDATE customers SET PaymentMethod = @PaymentMethod, InvoiceCategory = @InvoiceCategory, IndividualId = @IndividualId WHERE BusinessPartnerId = @BusinessPartnerId");
-
+                _database.setQuery("update Customers set PaymentMethod = @PaymentMethod, InvoiceCategory = @InvoiceCategory, IndividualId = @IndividualId where BusinessPartnerId = @BusinessPartnerId");
                 _database.setParameter("@BusinessPartnerId", businessPartner.BusinessPartnerId);
                 _database.setParameter("@PaymentMethod", businessPartner.PaymentMethod);
                 _database.setParameter("@InvoiceCategory", businessPartner.InvoiceCategory);
                 _database.setParameter("@IndividualId", businessPartner.IndividualId);
-
                 _database.executeAction();
-
-                //edit(businessPartner.copyToIndividual());
             }
             catch (Exception ex)
             {
@@ -108,8 +106,6 @@ namespace BLL
                 _database.setQuery("DELETE FROM businessPartners WHERE BusinessPartnerId = @BusinessPartnerId");
                 _database.setParameter("@BusinessPartnerId", businessPartner.BusinessPartnerId);
                 _database.executeAction();
-
-                //delete(businessPartner.copyToIndividual());
             }
             catch (Exception ex)
             {

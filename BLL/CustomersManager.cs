@@ -50,7 +50,7 @@ namespace BLL
             foreach (Customer customer in customersList)
             {
                 _businessPartner = _businessPartnersManager.readBusinessPartner(customer.BusinessPartnerId);
-                Helper.assign(customer, _businessPartner);
+                Functions.assign(customer, _businessPartner);
             }
 
             return customersList;
@@ -58,11 +58,17 @@ namespace BLL
 
         public void add(Customer customer)
         {
+            //BusinessPartner businessPartner = new BusinessPartner();
+            //Functions.assign<BusinessPartner, Customer>(businessPartner, customer);
+            //_businessPartnersManager.add(businessPartner);
+
+            int businessPartnerId = Functions.getLastId("BusinessPartners");
+
             try
             {
                 _database.setQuery("insert into Customers (SalesAmount, BusinessPartnerId) values (@SalesAmount, @BusinessPartnerId)");
                 _database.setParameter("@SalesAmount", customer.SalesAmount);
-                _database.setParameter("@BusinessPartnerId", customer.BusinessPartnerId);
+                _database.setParameter("@BusinessPartnerId", businessPartnerId);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -73,8 +79,6 @@ namespace BLL
             {
                 _database.closeConnection();
             }
-
-            // Este metodo tiene que agregar los datos del customer en el resto de las tablas
         }
 
         public void edit(Customer customer)
