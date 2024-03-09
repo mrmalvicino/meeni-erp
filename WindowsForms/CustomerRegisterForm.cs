@@ -108,18 +108,6 @@ namespace WindowsForms
                 return false;
             }
 
-            if (phoneNumberTextBox.Text != "" && phoneCountryComboBox.SelectedIndex == -1)
-            {
-                Validations.error("El código de área de país del teléfono no es válido.");
-                return false;
-            }
-
-            if (phoneNumberTextBox.Text != "" && phoneProvinceComboBox.SelectedIndex == -1)
-            {
-                Validations.error("El código de área de provincia del teléfono no es válido.");
-                return false;
-            }
-
             // Adress
 
             if (Validations.isNumber(streetNumberTextBox.Text) == false)
@@ -151,18 +139,21 @@ namespace WindowsForms
             phoneCountryComboBox.ValueMember = "CountryId";
             phoneCountryComboBox.DisplayMember = "PhoneAreaCode";
 
+            phoneProvinceComboBox.DataSource = _provincesManager.list();
             phoneProvinceComboBox.ValueMember = "ProvinceId";
             phoneProvinceComboBox.DisplayMember = "PhoneAreaCode";
             
             adressCountryComboBox.DataSource = _countriesManager.list();
             adressCountryComboBox.ValueMember = "CountryId";
             adressCountryComboBox.DisplayMember = "Name";
-            
+
+            adressProvinceComboBox.DataSource = _provincesManager.list();
             adressProvinceComboBox.ValueMember = "ProvinceId";
             adressProvinceComboBox.DisplayMember = "Name";
-            
-            cityComboBox.ValueMember = "CityId";
-            cityComboBox.DisplayMember = "Name";
+
+            adressCityComboBox.DataSource = _citiesManager.list();
+            adressCityComboBox.ValueMember = "CityId";
+            adressCityComboBox.DisplayMember = "Name";
         }
 
         private void clearComboBoxes()
@@ -172,7 +163,7 @@ namespace WindowsForms
             phoneProvinceComboBox.SelectedIndex = -1;
             adressCountryComboBox.SelectedIndex = -1;
             adressProvinceComboBox.SelectedIndex = -1;
-            cityComboBox.SelectedIndex = -1;
+            adressCityComboBox.SelectedIndex = -1;
         }
 
         private void mapIndividual()
@@ -196,13 +187,13 @@ namespace WindowsForms
                 streetNumberTextBox.Text = _customer.Adress.StreetNumber.ToString();
                 flatTextBox.Text = _customer.Adress.Flat;
                 detailsTextBox.Text = _customer.Adress.Details;
-                cityComboBox.SelectedValue = _customer.Adress.City.CityId;
+                adressCityComboBox.SelectedValue = _customer.Adress.City.CityId;
                 adressProvinceComboBox.SelectedValue = _customer.Adress.Province.ProvinceId;
                 adressCountryComboBox.SelectedValue = _customer.Adress.Country.CountryId;
             }
             else
             {
-                cityComboBox.SelectedIndex = -1;
+                adressCityComboBox.SelectedIndex = -1;
                 adressProvinceComboBox.SelectedIndex = -1;
                 adressCountryComboBox.SelectedIndex = -1;
             }
@@ -263,26 +254,26 @@ namespace WindowsForms
                 _customer.TaxCode = null;
             }
 
-            if (cityComboBox.Text != "")
+            if (adressCityComboBox.Text != "")
             {
                 _customer.Adress.StreetName = streetNameTextBox.Text;
                 _customer.Adress.StreetNumber = streetNumberTextBox.Text;
                 _customer.Adress.Flat = flatTextBox.Text;
                 _customer.Adress.Details = detailsTextBox.Text;
-                _customer.Adress.City = (City)cityComboBox.SelectedItem;
+                _customer.Adress.City.Name = adressCityComboBox.Text;
                 _customer.Adress.City.ZipCode = zipCodeTextBox.Text;
-                _customer.Adress.Province = (Province)adressProvinceComboBox.SelectedItem;
-                _customer.Adress.Country = (Country)adressCountryComboBox.SelectedItem;
+                _customer.Adress.Province.Name = adressProvinceComboBox.Text;
+                _customer.Adress.Country.Name = adressCountryComboBox.Text;
             }
             else
             {
                 _customer.Adress = null;
             }
 
-            if (phoneProvinceComboBox.Text != "")
+            if (phoneNumberTextBox.Text != "")
             {
-                _customer.Phone.Country = (Country)phoneCountryComboBox.SelectedItem;
-                _customer.Phone.Province = (Province)phoneProvinceComboBox.SelectedItem;
+                _customer.Phone.Country.Name = phoneCountryComboBox.Text;
+                _customer.Phone.Province.Name = phoneProvinceComboBox.Text;
                 _customer.Phone.Number = phoneNumberTextBox.Text;
             }
             else
@@ -378,98 +369,6 @@ namespace WindowsForms
         private void imageUrlTextBox_Leave(object sender, EventArgs e)
         {
             Functions.loadImage(profilePictureBox, imageUrlTextBox.Text);
-        }
-
-        private void phoneCountryComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            phoneProvinceComboBox.DataSource = null;
-
-            if (phoneCountryComboBox.SelectedIndex != -1)
-            {
-                Country country = (Country)phoneCountryComboBox.SelectedItem;
-                phoneProvinceComboBox.DataSource = _provincesManager.list(country.CountryId);
-            }
-
-            phoneProvinceComboBox.ValueMember = "ProvinceId";
-            phoneProvinceComboBox.DisplayMember = "PhoneAreaCode";
-        }
-
-        private void adressCountryComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            adressProvinceComboBox.DataSource = null;
-
-            if (adressCountryComboBox.SelectedIndex != -1)
-            {
-                Country country = (Country)adressCountryComboBox.SelectedItem;                
-                adressProvinceComboBox.DataSource = _provincesManager.list(country.CountryId);
-            }
-        }
-
-        private void adressProvinceComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            cityComboBox.DataSource = null;
-
-            if (adressProvinceComboBox.SelectedIndex != -1)
-            {
-                Province province = (Province)adressProvinceComboBox.SelectedItem;
-                cityComboBox.DataSource = _citiesManager.list(province.ProvinceId);
-            }
-        }
-
-        private void taxCodePrefixTextBox_TextChanged(object sender, EventArgs e)
-        {
-            if (Validations.isNumber(taxCodePrefixTextBox.Text))
-                taxCodePrefixTextBox.ForeColor = Palette.DefaultBlack;
-            else
-                taxCodePrefixTextBox.ForeColor = Palette.ValidationColor;
-        }
-
-        private void taxCodeNumberTextBox_TextChanged(object sender, EventArgs e)
-        {
-            if (Validations.isNumber(taxCodeNumberTextBox.Text))
-                taxCodeNumberTextBox.ForeColor = Palette.DefaultBlack;
-            else
-                taxCodeNumberTextBox.ForeColor = Palette.ValidationColor;
-        }
-
-        private void taxCodeSuffixTextBox_TextChanged(object sender, EventArgs e)
-        {
-            if (Validations.isNumber(taxCodeSuffixTextBox.Text))
-                taxCodeSuffixTextBox.ForeColor = Palette.DefaultBlack;
-            else
-                taxCodeSuffixTextBox.ForeColor = Palette.ValidationColor;
-        }
-
-        private void phoneCountryComboBox_TextChanged(object sender, EventArgs e)
-        {
-            if (Validations.isNumber(phoneCountryComboBox.Text))
-                phoneCountryComboBox.ForeColor = Palette.DefaultBlack;
-            else
-                phoneCountryComboBox.ForeColor = Palette.ValidationColor;
-        }
-
-        private void phoneProvinceComboBox_TextChanged(object sender, EventArgs e)
-        {
-            if (Validations.isNumber(phoneProvinceComboBox.Text))
-                phoneProvinceComboBox.ForeColor = Palette.DefaultBlack;
-            else
-                phoneProvinceComboBox.ForeColor = Palette.ValidationColor;
-        }
-
-        private void phoneNumberTextBox_TextChanged_1(object sender, EventArgs e)
-        {
-            if (Validations.isNumber(phoneNumberTextBox.Text))
-                phoneNumberTextBox.ForeColor = Palette.DefaultBlack;
-            else
-                phoneNumberTextBox.ForeColor = Palette.ValidationColor;
-        }
-
-        private void streetNumberTextBox_TextChanged(object sender, EventArgs e)
-        {
-            if (Validations.isNumber(streetNumberTextBox.Text))
-                streetNumberTextBox.ForeColor = Palette.DefaultBlack;
-            else
-                streetNumberTextBox.ForeColor = Palette.ValidationColor;
         }
     }
 }

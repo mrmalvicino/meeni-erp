@@ -3,6 +3,7 @@ using Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -55,6 +56,26 @@ namespace BLL
             }
 
             return citiesList;
+        }
+
+        public void add(City city, int provinceId)
+        {
+            try
+            {
+                _database.setQuery("insert into Cities (CityName, ZipCode, ProvinceId) values (@CityName, @ZipCode, @ProvinceId)");
+                _database.setParameter("@PhoneNumber", city.Name);
+                _database.setParameter("@ZipCode", city.ZipCode);
+                _database.setParameter("@ProvinceId", provinceId);
+                _database.executeAction();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _database.closeConnection();
+            }
         }
     }
 }
