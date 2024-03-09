@@ -51,12 +51,10 @@ namespace BLL
         {
             try
             {
-                _database.setQuery("INSERT INTO taxCodes (TaxCodePrefix, TaxCodeNumber, TaxCodeSuffix) VALUES (@TaxCodePrefix, @TaxCodeNumber, @TaxCodeSuffix)");
-
-                _database.setParameter("@TaxCodePrefix", taxCode.Prefix);
-                _database.setParameter("@TaxCodeNumber", taxCode.Number);
-                _database.setParameter("@TaxCodeSuffix", taxCode.Suffix);
-
+                _database.setQuery("insert into TaxCodes (Prefix, Number, Suffix) values (@Prefix, @Number, @Suffix)");
+                _database.setParameter("@Prefix", taxCode.Prefix);
+                _database.setParameter("@Number", taxCode.Number);
+                _database.setParameter("@Suffix", taxCode.Suffix);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -73,13 +71,11 @@ namespace BLL
         {
             try
             {
-                _database.setQuery("UPDATE taxCodes SET TaxCodePrefix = @TaxCodePrefix, TaxCodeNumber = @TaxCodeNumber, TaxCodeSuffix = @TaxCodeSuffix WHERE TaxCodeId = @TaxCodeId");
-
+                _database.setQuery("update TaxCodes set Prefix = @Prefix, Number = @Number, Suffix = @Suffix where TaxCodeId = @TaxCodeId");
                 _database.setParameter("@TaxCodeId", taxCode.TaxCodeId);
                 _database.setParameter("@TaxCodePrefix", taxCode.Prefix);
                 _database.setParameter("@TaxCodeNumber", taxCode.Number);
                 _database.setParameter("@TaxCodeSuffix", taxCode.Suffix);
-
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -96,7 +92,7 @@ namespace BLL
         {
             try
             {
-                _database.setQuery("DELETE FROM taxCodes WHERE TaxCodeId = @TaxCodeId");
+                _database.setQuery("delete from TaxCodes where TaxCodeId = @TaxCodeId");
                 _database.setParameter("@TaxCodeId", taxCodeId);
                 _database.executeAction();
             }

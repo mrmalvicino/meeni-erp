@@ -54,10 +54,7 @@ namespace BLL
         
         public void add(BusinessPartner businessPartner)
         {
-            Individual individual = new Individual();
-            Functions.assign<Individual, BusinessPartner>(individual, businessPartner);
-            _individualsManager.add(individual);
-
+            _individualsManager.add(businessPartner);
             int individualId = Functions.getLastId("Individuals");
 
             try
@@ -80,9 +77,11 @@ namespace BLL
 
         public void edit(BusinessPartner businessPartner)
         {
+            _individualsManager.edit(businessPartner);
+
             try
             {
-                _database.setQuery("update Customers set PaymentMethod = @PaymentMethod, InvoiceCategory = @InvoiceCategory, IndividualId = @IndividualId where BusinessPartnerId = @BusinessPartnerId");
+                _database.setQuery("update BusinessPartners set PaymentMethod = @PaymentMethod, InvoiceCategory = @InvoiceCategory, IndividualId = @IndividualId where BusinessPartnerId = @BusinessPartnerId");
                 _database.setParameter("@BusinessPartnerId", businessPartner.BusinessPartnerId);
                 _database.setParameter("@PaymentMethod", businessPartner.PaymentMethod);
                 _database.setParameter("@InvoiceCategory", businessPartner.InvoiceCategory);
@@ -103,7 +102,7 @@ namespace BLL
         {
             try
             {
-                _database.setQuery("DELETE FROM businessPartners WHERE BusinessPartnerId = @BusinessPartnerId");
+                _database.setQuery("delete from BusinessPartners where BusinessPartnerId = @BusinessPartnerId");
                 _database.setParameter("@BusinessPartnerId", businessPartner.BusinessPartnerId);
                 _database.executeAction();
             }
@@ -115,6 +114,8 @@ namespace BLL
             {
                 _database.closeConnection();
             }
+
+            _individualsManager.delete(businessPartner);
         }
     }
 }

@@ -13,6 +13,7 @@ namespace BLL
         // ATTRIBUTES
 
         private Database _database = new Database();
+        private ImagesManager _imagesManager = new ImagesManager();
 
         // METHODS
 
@@ -77,6 +78,57 @@ namespace BLL
             }
 
             return organization;
+        }
+
+        public void add(Organization organization)
+        {
+            organization.Image.ImageId = _imagesManager.getId(organization.Image);
+
+            if (organization.Image.ImageId == 0)
+            {
+                _imagesManager.add(organization.Image);
+                organization.Image.ImageId = _imagesManager.getId(organization.Image);
+            }
+
+            try
+            {
+                _database.setQuery("insert into Organizations (OrganizationName, OrganizationDescription, ImageId) values (@OrganizationName, @OrganizationDescription, @ImageId)");
+                _database.setParameter("@OrganizationName", organization.Name);
+                _database.setParameter("@OrganizationDescription", organization.Description);
+                _database.setParameter("@ImageId", organization.Image.ImageId);
+                _database.executeAction();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _database.closeConnection();
+            }
+        }
+
+        public int getId(Organization organization)
+        {
+            try
+            {
+                _database.setQuery("select OrganizationId from Organizations where OrganizationName = @OrganizationName");
+                _database.setParameter("@OrganizationName", organization.Name);
+                _database.executeReader();
+
+                if (_database.Reader.Read())
+                    return (int)_database.Reader["OrganizationId"];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _database.closeConnection();
+            }
+
+            return 0;
         }
     }
 }

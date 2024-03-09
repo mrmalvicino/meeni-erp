@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Policy;
 using DAL;
 using Entities;
 
@@ -49,6 +50,47 @@ namespace BLL
             }
 
             return imageUrl;
+        }
+
+        public void add(Image image)
+        {
+            try
+            {
+                _database.setQuery("insert into Images (ImageUrl) values (@ImageUrl)");
+                _database.setParameter("@ImageUrl", image.Url);
+                _database.executeAction();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _database.closeConnection();
+            }
+        }
+
+        public int getId(Image image)
+        {
+            try
+            {
+                _database.setQuery("select ImageId from Images where ImageUrl = @ImageUrl");
+                _database.setParameter("@ImageUrl", image.Url);
+                _database.executeReader();
+
+                if (_database.Reader.Read())
+                    return (int)_database.Reader["ImageId"];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _database.closeConnection();
+            }
+
+            return 0;
         }
     }
 }

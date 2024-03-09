@@ -13,14 +13,6 @@ namespace WindowsForms
     {
         // METHODS
 
-        public static bool isEmpty(string input)
-        {
-            if (string.IsNullOrEmpty(input))
-                return true;
-
-            return false;
-        }
-
         public static bool isNumber(string input)
         {
             foreach (char c in input)

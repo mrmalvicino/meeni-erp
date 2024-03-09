@@ -58,10 +58,7 @@ namespace BLL
 
         public void add(Customer customer)
         {
-            //BusinessPartner businessPartner = new BusinessPartner();
-            //Functions.assign<BusinessPartner, Customer>(businessPartner, customer);
-            //_businessPartnersManager.add(businessPartner);
-
+            _businessPartnersManager.add(customer);
             int businessPartnerId = Functions.getLastId("BusinessPartners");
 
             try
@@ -83,6 +80,8 @@ namespace BLL
 
         public void edit(Customer customer)
         {
+            _businessPartnersManager.edit(customer);
+
             try
             {
                 _database.setQuery("update Customers set SalesAmount = @SalesAmount, BusinessPartnerId = @BusinessPartnerId where CustomerId = @CustomerId");
@@ -99,8 +98,6 @@ namespace BLL
             {
                 _database.closeConnection();
             }
-
-            // Este metodo tiene que editar los datos del customer en el resto de las tablas
         }
 
         public void delete(Customer customer)
@@ -120,7 +117,7 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            // Este metodo tiene que borrar los datos del customer del resto de las tablas
+            _businessPartnersManager.delete(customer);
         }
     }
 }

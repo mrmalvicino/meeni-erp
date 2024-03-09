@@ -101,20 +101,21 @@ create table TaxCodes(
 	Prefix varchar(10) null,
 	Number varchar(20) not null,
 	Suffix varchar(10) null
+	Constraint UC_Prefix_Number_Suffix unique (Prefix, Number, Suffix)
 )
 go
 
 insert into TaxCodes
 (Prefix, Number, Suffix)
 values
-('20', '37456776', '9'),
-('20', '20378846', '3'),
-('30', '34768495', '9'),
-('20', '37456776', '9'),
-('20', '20378846', '3'),
-('30', '34768495', '9'),
-(null, '29334857', null),
-(null, '38274478', null);
+('20', '37455376', '9'),
+('20', '20288746', '3'),
+('30', '34468435', '9'),
+('20', '37196796', '9'),
+('20', '20878716', '3'),
+('30', '34726195', '9'),
+(null, '29383857', null),
+(null, '38474878', null);
 go
 
 --------------

@@ -58,8 +58,12 @@ namespace Entities
 
         public bool isPerson()
         {
+            if (Person == null) return false;
+            if (Organization == null) return true;
+
             if (Person.FirstName != "" && Person.LastName != "" && Person.FirstName != null && Person.LastName != null)
                 return true;
+
             return false;
         }
     }

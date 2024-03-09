@@ -56,16 +56,10 @@ namespace BLL
         {
             try
             {
-                _database.setQuery("INSERT INTO phones (PhoneNumber, CountryId, ProvinceId) VALUES (@PhoneNumber, @CountryId, @ProvinceId)");
-
+                _database.setQuery("insert into Phones (Number, ProvinceId) values (@Number, @ProvinceId)");
                 _database.setParameter("@PhoneNumber", phone.Number);
-                _database.setParameter("@CountryId", phone.Country.CountryId);
                 _database.setParameter("@ProvinceId", phone.Province.ProvinceId);
-
                 _database.executeAction();
-
-                //_countriesManager.update(phone.Country);
-                //_provincesManager.update(phone.Province);
             }
             catch (Exception ex)
             {
@@ -81,17 +75,11 @@ namespace BLL
         {
             try
             {
-                _database.setQuery("UPDATE adresses SET PhoneNumber = @PhoneNumber, CountryId = @CountryId, ProvinceId = @ProvinceId WHERE PhoneId = @PhoneId");
-
+                _database.setQuery("update Phones set Number = @Number, ProvinceId = @ProvinceId where PhoneId = @PhoneId");
                 _database.setParameter("@PhoneId", phone.PhoneId);
-                _database.setParameter("@PhoneNumber", phone.Number);
-                _database.setParameter("@CountryId", phone.Country.CountryId);
+                _database.setParameter("@Number", phone.Number);
                 _database.setParameter("@ProvinceId", phone.Province.ProvinceId);
-
                 _database.executeAction();
-
-                //_countriesManager.edit(phone.Country);
-                //_provincesManager.edit(phone.Province);
             }
             catch (Exception ex)
             {
@@ -107,7 +95,7 @@ namespace BLL
         {
             try
             {
-                _database.setQuery("DELETE FROM phones WHERE PhoneId = @PhoneId");
+                _database.setQuery("delete from Phones where PhoneId = @PhoneId");
                 _database.setParameter("@PhoneId", phone.PhoneId);
                 _database.executeAction();
             }

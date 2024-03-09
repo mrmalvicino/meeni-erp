@@ -74,18 +74,13 @@ namespace BLL
         {
             try
             {
-                _database.setQuery("INSERT INTO adresses (AdressCity, AdressZipCode, AdressStreetName, AdressStreetNumber, AdressFlat, CountryId, ProvinceId) VALUES (@AdressCity, @AdressZipCode, @AdressStreetName, @AdressStreetNumber, @AdressFlat, @CountryId, @ProvinceId)");
-
-                _database.setParameter("@AdressStreetName", adress.StreetName);
-                _database.setParameter("@AdressStreetNumber", adress.StreetNumber);
-                _database.setParameter("@AdressFlat", adress.Flat);
-                _database.setParameter("@CountryId", adress.Country.CountryId);
-                _database.setParameter("@ProvinceId", adress.Province.ProvinceId);
-
+                _database.setQuery("insert into Adresses (StreetName, StreetNumber, Flat, Details, CityId) values (@StreetName, @StreetNumber, @Flat, @Details, @CityId)");
+                _database.setParameter("@StreetName", adress.StreetName);
+                _database.setParameter("@StreetNumber", adress.StreetNumber);
+                _database.setParameter("@Flat", adress.Flat);
+                _database.setParameter("@Details", adress.Details);
+                _database.setParameter("@CityId", adress.City.CityId);
                 _database.executeAction();
-
-                //_countriesManager.update(adress.Country);
-                //_provincesManager.update(adress.Province);
             }
             catch (Exception ex)
             {
@@ -101,21 +96,14 @@ namespace BLL
         {
             try
             {
-                _database.setQuery("UPDATE adresses SET AdressCity = @AdressCity, AdressZipCode = @AdressZipCode, AdressStreetName = @AdressStreetName, AdressStreetNumber = @AdressStreetNumber, AdressFlat = @AdressFlat, CountryId = @CountryId, ProvinceId = @ProvinceId WHERE AdressId = @AdressId");
-
+                _database.setQuery("update Adresses set StreetName = @StreetName, StreetNumber = @StreetNumber, Flat = @Flat, Details = @Details, CityId = @CityId where AdressId = @AdressId");
                 _database.setParameter("@AdressId", adress.AdressId);
-                _database.setParameter("@AdressCity", adress.AdressId);
-                _database.setParameter("@AdressZipCode", adress.AdressId);
-                _database.setParameter("@AdressStreetName", adress.AdressId);
-                _database.setParameter("@AdressStreetNumber", adress.AdressId);
-                _database.setParameter("@AdressFlat", adress.AdressId);
-                _database.setParameter("@CountryId", adress.Country.CountryId);
-                _database.setParameter("@ProvinceId", adress.Province.ProvinceId);
-
+                _database.setParameter("@StreetName", adress.StreetName);
+                _database.setParameter("@StreetNumber", adress.StreetNumber);
+                _database.setParameter("@Flat", adress.Flat);
+                _database.setParameter("@Details", adress.Details);
+                _database.setParameter("@CityId", adress.City.CityId);
                 _database.executeAction();
-
-                //_countriesManager.edit(adress.Country);
-                //_provincesManager.edit(adress.Province);
             }
             catch (Exception ex)
             {
@@ -131,7 +119,7 @@ namespace BLL
         {
             try
             {
-                _database.setQuery("DELETE FROM adresses WHERE AdressId = @AdressId");
+                _database.setQuery("delete from Adresses where AdressId = @AdressId");
                 _database.setParameter("@AdressId", adress.AdressId);
                 _database.executeAction();
             }

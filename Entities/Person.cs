@@ -15,6 +15,16 @@ namespace Entities
         [DisplayName("Apellido")]
         public string LastName { get; set; }
 
+        [DisplayName("Imagen")]
+        public Image Image { get; set; }
+
+        // CONSTRUCT
+
+        public Person()
+        {
+            Image = new Image();
+        }
+
         // METHODS
 
         public override string ToString()

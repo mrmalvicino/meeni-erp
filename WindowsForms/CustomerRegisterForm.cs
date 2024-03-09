@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Collections.Generic;
 using BLL;
 using Entities;
 
@@ -45,21 +44,45 @@ namespace WindowsForms
 
             // TaxCode
 
+            if (!Validations.isNumber(taxCodePrefixTextBox.Text))
+            {
+                Validations.error("Los campos de CUIL o CUIT solo admiten caracteres numéricos.");
+                return false;
+            }
+
             if (!Validations.isNumber(taxCodeNumberTextBox.Text))
             {
                 Validations.error("El campo de DNI solo admite caracteres numéricos.");
                 return false;
             }
 
-            // Person-Organization
-
-            if (!Validations.isEmpty(organizationNameComboBox.Text) && organizationNameComboBox.SelectedIndex == -1)
+            if (!Validations.isNumber(taxCodeSuffixTextBox.Text))
             {
-                Validations.error("La organización ingresada no es válida.");
+                Validations.error("Los campos de CUIL o CUIT solo admiten caracteres numéricos.");
                 return false;
             }
 
-            if (Validations.isEmpty(organizationNameComboBox.Text) && (Validations.isEmpty(firstNameTextBox.Text) || Validations.isEmpty(lastNameTextBox.Text)))
+            if (taxCodePrefixTextBox.Text != "" && taxCodeSuffixTextBox.Text == "")
+            {
+                Validations.error("Además de un prefijo, el CUIL o CUIT requiere de un sufijo.");
+                return false;
+            }
+
+            if (taxCodePrefixTextBox.Text == "" && taxCodeSuffixTextBox.Text != "")
+            {
+                Validations.error("Además de un sufijo, el CUIL o CUIT requiere de un prefijo.");
+                return false;
+            }
+
+            if (taxCodeNumberTextBox.Text == "" && (taxCodePrefixTextBox.Text != "" || taxCodeSuffixTextBox.Text != ""))
+            {
+                Validations.error("Además de un prefijo y un sufijo, el CUIL o CUIT requiere de un número de DNI.");
+                return false;
+            }
+
+            // Person-Organization
+
+            if (organizationNameComboBox.Text == "" && (firstNameTextBox.Text == "" || lastNameTextBox.Text == ""))
             {
                 Validations.error("Ingresar el nombre y apellido de una persona o el nombre de una organización.");
                 return false;
@@ -73,25 +96,25 @@ namespace WindowsForms
                 return false;
             }
 
-            if (!Validations.isEmpty(phoneNumberTextBox.Text) && phoneCountryComboBox.Text == "")
+            if (phoneNumberTextBox.Text != "" && phoneCountryComboBox.Text == "")
             {
                 Validations.error("Especificar el código de área de país del teléfono.");
                 return false;
             }
 
-            if (!Validations.isEmpty(phoneNumberTextBox.Text) && phoneProvinceComboBox.Text == "")
+            if (phoneNumberTextBox.Text != "" && phoneProvinceComboBox.Text == "")
             {
                 Validations.error("Especificar el código de área de provincia del teléfono.");
                 return false;
             }
 
-            if (!Validations.isEmpty(phoneNumberTextBox.Text) && phoneCountryComboBox.SelectedIndex == -1)
+            if (phoneNumberTextBox.Text != "" && phoneCountryComboBox.SelectedIndex == -1)
             {
                 Validations.error("El código de área de país del teléfono no es válido.");
                 return false;
             }
 
-            if (!Validations.isEmpty(phoneNumberTextBox.Text) && phoneProvinceComboBox.SelectedIndex == -1)
+            if (phoneNumberTextBox.Text != "" && phoneProvinceComboBox.SelectedIndex == -1)
             {
                 Validations.error("El código de área de provincia del teléfono no es válido.");
                 return false;
@@ -128,7 +151,6 @@ namespace WindowsForms
             phoneCountryComboBox.ValueMember = "CountryId";
             phoneCountryComboBox.DisplayMember = "PhoneAreaCode";
 
-            //phoneProvinceComboBox.DataSource = _provincesManager.list();
             phoneProvinceComboBox.ValueMember = "ProvinceId";
             phoneProvinceComboBox.DisplayMember = "PhoneAreaCode";
             
@@ -136,11 +158,9 @@ namespace WindowsForms
             adressCountryComboBox.ValueMember = "CountryId";
             adressCountryComboBox.DisplayMember = "Name";
             
-            //adressProvinceComboBox.DataSource = _provincesManager.list();
             adressProvinceComboBox.ValueMember = "ProvinceId";
             adressProvinceComboBox.DisplayMember = "Name";
             
-            //cityComboBox.DataSource = _citiesManager.list();
             cityComboBox.ValueMember = "CityId";
             cityComboBox.DisplayMember = "Name";
         }
@@ -232,11 +252,18 @@ namespace WindowsForms
             _customer.Email = emailTextBox.Text;
             _customer.Birth = birthDateTimePicker.Value;
 
-            _customer.TaxCode.Prefix = taxCodePrefixTextBox.Text;
-            _customer.TaxCode.Number = taxCodeNumberTextBox.Text;
-            _customer.TaxCode.Suffix = taxCodeSuffixTextBox.Text;
+            if (taxCodeNumberTextBox.Text != "")
+            {
+                _customer.TaxCode.Prefix = taxCodePrefixTextBox.Text;
+                _customer.TaxCode.Number = taxCodeNumberTextBox.Text;
+                _customer.TaxCode.Suffix = taxCodeSuffixTextBox.Text;
+            }
+            else
+            {
+                _customer.TaxCode = null;
+            }
 
-            if (cityComboBox.SelectedIndex != -1)
+            if (cityComboBox.Text != "")
             {
                 _customer.Adress.StreetName = streetNameTextBox.Text;
                 _customer.Adress.StreetNumber = streetNumberTextBox.Text;
@@ -247,19 +274,50 @@ namespace WindowsForms
                 _customer.Adress.Province = (Province)adressProvinceComboBox.SelectedItem;
                 _customer.Adress.Country = (Country)adressCountryComboBox.SelectedItem;
             }
+            else
+            {
+                _customer.Adress = null;
+            }
 
-            if (phoneProvinceComboBox.SelectedIndex != -1)
+            if (phoneProvinceComboBox.Text != "")
             {
                 _customer.Phone.Country = (Country)phoneCountryComboBox.SelectedItem;
                 _customer.Phone.Province = (Province)phoneProvinceComboBox.SelectedItem;
                 _customer.Phone.Number = phoneNumberTextBox.Text;
             }
+            else
+            {
+                _customer.Phone = null;
+            }
 
+            if (firstNameTextBox.Text != "")
+            {
             _customer.Person.FirstName = firstNameTextBox.Text;
             _customer.Person.LastName = lastNameTextBox.Text;
+            }
+            else
+            {
+                _customer.Person = null;
+            }
 
-            _customer.Organization = (Organization)organizationNameComboBox.SelectedItem;
+            if (organizationNameComboBox.Text != "")
+            {
+            _customer.Organization.Name = organizationNameComboBox.Text;
             _customer.Organization.Description = organizationDescriptionTextBox.Text;
+            }
+            else
+            {
+                _customer.Organization = null;
+            }
+
+            if (_customer.isPerson())
+            {
+                _customer.Person.Image.Url = imageUrlTextBox.Text;
+            }
+            else
+            {
+                _customer.Organization.Image.Url = imageUrlTextBox.Text;
+            }
 
             _customer.PaymentMethod = paymentMethodComboBox.Text;
             _customer.InvoiceCategory = invoiceCategoryComboBox.Text;
@@ -302,8 +360,6 @@ namespace WindowsForms
             try
             {
                 setCustomer();
-
-                _customer.Person.PersonId = 3; //TEST
 
                 if (0 < _customer.CustomerId)
                     _customersManager.edit(_customer); // Se está editando un registro

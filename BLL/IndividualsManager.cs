@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using DAL;
 using Entities;
 
@@ -75,6 +76,36 @@ namespace BLL
         
         public void add(Individual individual)
         {
+            if (individual.TaxCode != null)
+            {
+                _taxCodesManager.add(individual.TaxCode);
+                individual.TaxCode.TaxCodeId = Functions.getLastId("TaxCodes");
+            }
+
+            if (individual.Adress != null)
+            {
+                _adressesManager.add(individual.Adress);
+                individual.Adress.AdressId = Functions.getLastId("Adresses");
+            }
+
+            if (individual.Phone != null)
+            {
+                _phonesManager.add(individual.Phone);
+                individual.Phone.PhoneId = Functions.getLastId("Phones");
+            }
+
+            if (individual.Person != null)
+            {
+                _peopleManager.add(individual.Person);
+                individual.Person.PersonId = Functions.getLastId("People");
+            }
+
+            if (_organizationsManager.getId(individual.Organization) == 0)
+            {
+                _organizationsManager.add(individual.Organization);
+                individual.Organization.OrganizationId = Functions.getLastId("Organizations");
+            }
+
             try
             {
                 _database.setQuery("insert into individuals (ActiveStatus, Email, Birth, TaxCodeId, AdressId, PhoneId, PersonId, OrganizationId) values (@ActiveStatus, @Email, @Birth, @TaxCodeId, @AdressId, @PhoneId, @PersonId, @OrganizationId)");
@@ -82,27 +113,27 @@ namespace BLL
                 _database.setParameter("@Email", individual.Email);
                 _database.setParameter("@Birth", individual.Birth);
 
-                if (0 < individual.TaxCode.TaxCodeId)
+                if (individual.TaxCode != null)
                     _database.setParameter("@TaxCodeId", individual.TaxCode.TaxCodeId);
                 else
                     _database.setParameter("@TaxCodeId", DBNull.Value);
 
-                if (0 < individual.Adress.AdressId)
+                if (individual.Adress != null)
                     _database.setParameter("@AdressId", individual.Adress.AdressId);
                 else
                     _database.setParameter("@AdressId", DBNull.Value);
 
-                if (0 < individual.Phone.PhoneId)
+                if (individual.Phone != null)
                     _database.setParameter("@PhoneId", individual.Phone.PhoneId);
                 else
                     _database.setParameter("@PhoneId", DBNull.Value);
 
-                if (0 < individual.Person.PersonId)
+                if (individual.Person != null)
                     _database.setParameter("@PersonId", individual.Person.PersonId);
                 else
                     _database.setParameter("@PersonId", DBNull.Value);
 
-                if (0 < individual.Organization.OrganizationId)
+                if (individual.Organization != null)
                     _database.setParameter("@OrganizationId", individual.Organization.OrganizationId);
                 else
                     _database.setParameter("@OrganizationId", DBNull.Value);
@@ -123,13 +154,16 @@ namespace BLL
         {
             try
             {
-                _database.setQuery("");
+                _database.setQuery("update Individuals set ActiveStatus = @ActiveStatus, Email = @Email, Birth = @Birth, TaxCodeId = @TaxCodeId, AdressId = @AdressId, PhoneId = @PhoneId, PersonId = @PersonId, OrganizationId = @OrganizationId where IndividualId = @IndividualId");
                 _database.setParameter("@IndividualId", individual.IndividualId);
                 _database.setParameter("@ActiveStatus", individual.ActiveStatus);
                 _database.setParameter("@Email", individual.Email);
-                _database.setParameter("@PhoneId", individual.Phone.PhoneId);
-                _database.setParameter("@AdressId", individual.Adress.AdressId);
+                _database.setParameter("@Birth", individual.Birth);
                 _database.setParameter("@TaxCodeId", individual.TaxCode.TaxCodeId);
+                _database.setParameter("@AdressId", individual.Adress.AdressId);
+                _database.setParameter("@PhoneId", individual.Phone.PhoneId);
+                _database.setParameter("@PersonId", individual.Person.PersonId);
+                _database.setParameter("@OrganizationId", individual.Organization.OrganizationId);
                 _database.executeAction();
             }
             catch (Exception ex)

@@ -82,4 +82,3 @@ select ident_current('Individuals') as LastId;
 -- TESTING --
 -------------
 
-select * from Customers
