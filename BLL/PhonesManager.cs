@@ -54,6 +54,21 @@ namespace BLL
 
         public void add(Phone phone)
         {
+            phone.Country.CountryId = _countriesManager.getIdByCode(phone.Country);
+            phone.Province.ProvinceId = _provincesManager.getIdByCode(phone.Province);
+
+            if (phone.Country.CountryId == 0)
+            {
+                _countriesManager.add(phone.Country); // setear name
+                phone.Country.CountryId = Functions.getLastId("Countries");
+            }
+
+            if (phone.Province.ProvinceId == 0)
+            {
+                _provincesManager.add(phone.Province, phone.Country.CountryId); // setear name
+                phone.Province.ProvinceId = Functions.getLastId("Provinces");
+            }
+
             try
             {
                 _database.setQuery("insert into Phones (Number, ProvinceId) values (@Number, @ProvinceId)");

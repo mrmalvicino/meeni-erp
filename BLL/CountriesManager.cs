@@ -45,5 +45,74 @@ namespace BLL
 
             return countriesList;
         }
+
+        public void add(Country country)
+        {
+            try
+            {
+                _database.setQuery("insert into Countries (CountryName, PhoneAreaCode) values (@CountryName, @PhoneAreaCode)");
+                _database.setParameter("@CountryName", country.Name);
+                _database.setParameter("@PhoneAreaCode", country.PhoneAreaCode);
+                _database.executeAction();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _database.closeConnection();
+            }
+        }
+
+        public int getIdByName(Country country)
+        {
+            try
+            {
+                _database.setQuery("select CountryId from Countries where CountryName = @CountryName");
+                _database.setParameter("@CountryName", country.Name);
+                _database.executeReader();
+
+                if (_database.Reader.Read())
+                {
+                    country.CountryId = Convert.ToInt32(_database.Reader["CountryId"]);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _database.closeConnection();
+            }
+
+            return country.CountryId;
+        }
+
+        public int getIdByCode(Country country)
+        {
+            try
+            {
+                _database.setQuery("select CountryId from Countries where PhoneAreaCode = @PhoneAreaCode");
+                _database.setParameter("@PhoneAreaCode", country.PhoneAreaCode);
+                _database.executeReader();
+
+                if (_database.Reader.Read())
+                {
+                    country.CountryId = Convert.ToInt32(_database.Reader["CountryId"]);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _database.closeConnection();
+            }
+
+            return country.CountryId;
+        }
     }
 }

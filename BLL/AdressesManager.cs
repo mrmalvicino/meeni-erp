@@ -73,19 +73,19 @@ namespace BLL
 
         public void add(Adress adress)
         {
-            adress.Country.CountryId = _countriesManager.getId(adress.Country);
-            adress.Province.ProvinceId = _provincesManager.getId(adress.Province);
+            adress.Country.CountryId = _countriesManager.getIdByName(adress.Country);
+            adress.Province.ProvinceId = _provincesManager.getIdByName(adress.Province);
             adress.City.CityId = _citiesManager.getId(adress.City);
 
             if (adress.Country.CountryId == 0)
             {
-                _countriesManager.add(adress.Country);
+                _countriesManager.add(adress.Country); // setear phoneareacode
                 adress.Country.CountryId = Functions.getLastId("Countries");
             }
 
             if (adress.Province.ProvinceId == 0)
             {
-                _provincesManager.add(adress.Province, adress.Country.CountryId);
+                _provincesManager.add(adress.Province, adress.Country.CountryId); // setear phoneareacode
                 adress.Province.ProvinceId = Functions.getLastId("Provinces");
             }
 

@@ -82,3 +82,5 @@ select ident_current('Individuals') as LastId;
 -- TESTING --
 -------------
 
+select * from Countries
+select CountryId from Countries where PhoneAreaCode = 99

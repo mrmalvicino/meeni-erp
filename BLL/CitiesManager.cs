@@ -63,7 +63,7 @@ namespace BLL
             try
             {
                 _database.setQuery("insert into Cities (CityName, ZipCode, ProvinceId) values (@CityName, @ZipCode, @ProvinceId)");
-                _database.setParameter("@PhoneNumber", city.Name);
+                _database.setParameter("@CityName", city.Name);
                 _database.setParameter("@ZipCode", city.ZipCode);
                 _database.setParameter("@ProvinceId", provinceId);
                 _database.executeAction();
@@ -76,6 +76,31 @@ namespace BLL
             {
                 _database.closeConnection();
             }
+        }
+
+        public int getId(City city)
+        {
+            try
+            {
+                _database.setQuery("select CityId from Cities where CityName = @CityName");
+                _database.setParameter("@CityName", city.Name);
+                _database.executeReader();
+
+                if (_database.Reader.Read())
+                {
+                    city.CityId = Convert.ToInt32(_database.Reader["CityId"]);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _database.closeConnection();
+            }
+
+            return city.CityId;
         }
     }
 }

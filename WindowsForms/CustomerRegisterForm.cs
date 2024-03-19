@@ -272,8 +272,8 @@ namespace WindowsForms
 
             if (phoneNumberTextBox.Text != "")
             {
-                _customer.Phone.Country.Name = phoneCountryComboBox.Text;
-                _customer.Phone.Province.Name = phoneProvinceComboBox.Text;
+                _customer.Phone.Country.PhoneAreaCode = phoneCountryComboBox.Text;
+                _customer.Phone.Province.PhoneAreaCode = phoneProvinceComboBox.Text;
                 _customer.Phone.Number = phoneNumberTextBox.Text;
             }
             else

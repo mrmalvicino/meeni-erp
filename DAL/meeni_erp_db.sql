@@ -34,7 +34,7 @@ create table Countries(
 	CountryId tinyint primary key identity(1,1) not null,
 	CountryName varchar(30) unique not null,
 	PhoneAreaCode varchar(10) unique not null,
-	CurrencyId tinyint foreign key references Currencies(CurrencyId) not null
+	CurrencyId tinyint foreign key references Currencies(CurrencyId) not null default(1)
 )
 go
 
