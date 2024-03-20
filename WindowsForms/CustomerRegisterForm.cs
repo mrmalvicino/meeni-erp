@@ -304,10 +304,12 @@ namespace WindowsForms
             if (_customer.isPerson())
             {
                 _customer.Person.Image.Url = imageUrlTextBox.Text;
+                _customer.Organization.Image.Url = "";
             }
             else
             {
                 _customer.Organization.Image.Url = imageUrlTextBox.Text;
+                _customer.Person.Image.Url = "";
             }
 
             _customer.PaymentMethod = paymentMethodComboBox.Text;

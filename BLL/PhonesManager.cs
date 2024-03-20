@@ -59,20 +59,22 @@ namespace BLL
 
             if (phone.Country.CountryId == 0)
             {
-                _countriesManager.add(phone.Country); // setear name
+                phone.Country.Name = "default_" + (Functions.getLastId("Individuals") + 1).ToString();
+                _countriesManager.add(phone.Country);
                 phone.Country.CountryId = Functions.getLastId("Countries");
             }
 
             if (phone.Province.ProvinceId == 0)
             {
-                _provincesManager.add(phone.Province, phone.Country.CountryId); // setear name
+                phone.Province.Name = "default_" + (Functions.getLastId("Individuals") + 1).ToString();
+                _provincesManager.add(phone.Province, phone.Country.CountryId);
                 phone.Province.ProvinceId = Functions.getLastId("Provinces");
             }
 
             try
             {
                 _database.setQuery("insert into Phones (Number, ProvinceId) values (@Number, @ProvinceId)");
-                _database.setParameter("@PhoneNumber", phone.Number);
+                _database.setParameter("@Number", phone.Number);
                 _database.setParameter("@ProvinceId", phone.Province.ProvinceId);
                 _database.executeAction();
             }

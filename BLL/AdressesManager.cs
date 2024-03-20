@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Policy;
 using DAL;
 using Entities;
 
@@ -79,13 +80,15 @@ namespace BLL
 
             if (adress.Country.CountryId == 0)
             {
-                _countriesManager.add(adress.Country); // setear phoneareacode
+                adress.Country.PhoneAreaCode = "default_" + (Functions.getLastId("Individuals") + 1).ToString();
+                _countriesManager.add(adress.Country);
                 adress.Country.CountryId = Functions.getLastId("Countries");
             }
 
             if (adress.Province.ProvinceId == 0)
             {
-                _provincesManager.add(adress.Province, adress.Country.CountryId); // setear phoneareacode
+                adress.Province.PhoneAreaCode = "default_" + (Functions.getLastId("Individuals") + 1).ToString();
+                _provincesManager.add(adress.Province, adress.Country.CountryId);
                 adress.Province.ProvinceId = Functions.getLastId("Provinces");
             }
 
