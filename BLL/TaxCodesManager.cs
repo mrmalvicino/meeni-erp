@@ -105,5 +105,32 @@ namespace BLL
                 _database.closeConnection();
             }
         }
+
+        public int getId(TaxCode taxCode)
+        {
+            taxCode.TaxCodeId = 0;
+
+            try
+            {
+                _database.setQuery("select TaxCodeId from TaxCodes where Prefix = @Prefix and Number = @Number and Suffix = @Suffix");
+                _database.setParameter("@Prefix", taxCode.Prefix);
+                _database.setParameter("@Number", taxCode.Number);
+                _database.setParameter("@Suffix", taxCode.Suffix);
+                _database.executeReader();
+
+                if (_database.Reader.Read())
+                    taxCode.TaxCodeId = (int)_database.Reader["TaxCodeId"];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _database.closeConnection();
+            }
+
+            return taxCode.TaxCodeId;
+        }
     }
 }

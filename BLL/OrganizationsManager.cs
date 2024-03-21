@@ -110,6 +110,8 @@ namespace BLL
 
         public int getId(Organization organization)
         {
+            organization.OrganizationId = 0;
+
             try
             {
                 _database.setQuery("select OrganizationId from Organizations where OrganizationName = @OrganizationName");
@@ -117,7 +119,7 @@ namespace BLL
                 _database.executeReader();
 
                 if (_database.Reader.Read())
-                    return (int)_database.Reader["OrganizationId"];
+                    organization.OrganizationId = (int)_database.Reader["OrganizationId"];
             }
             catch (Exception ex)
             {
@@ -128,7 +130,7 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            return 0;
+            return organization.OrganizationId;
         }
     }
 }

@@ -152,6 +152,11 @@ namespace BLL
 
         public void edit(Individual individual)
         {
+            if (_taxCodesManager.getId(individual.TaxCode) != individual.TaxCode.TaxCodeId)
+            {
+                _taxCodesManager.edit(individual.TaxCode);
+            }
+
             try
             {
                 _database.setQuery("update Individuals set ActiveStatus = @ActiveStatus, Email = @Email, Birth = @Birth, TaxCodeId = @TaxCodeId, AdressId = @AdressId, PhoneId = @PhoneId, PersonId = @PersonId, OrganizationId = @OrganizationId where IndividualId = @IndividualId");
