@@ -34,6 +34,9 @@ namespace Entities
         [DisplayName("Organización")]
         public Organization Organization { get; set; }
 
+        [DisplayName("Imagen")]
+        public Image Image { get; set; }
+
         // CONSTRUCT
 
         public Individual()
@@ -44,6 +47,7 @@ namespace Entities
             TaxCode = new TaxCode();
             Person = new Person();
             Organization = new Organization();
+            Image = new Image();
         }
 
         // METHODS

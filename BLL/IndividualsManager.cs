@@ -14,6 +14,7 @@ namespace BLL
         private PhonesManager _phonesManager = new PhonesManager();
         private PeopleManager _peopleManager = new PeopleManager();
         private OrganizationsManager _organizationsManager = new OrganizationsManager();
+        private ImagesManager _imagesManager = new ImagesManager();
 
         // METHODS
 
@@ -23,7 +24,7 @@ namespace BLL
 
             try
             {
-                _database.setQuery("select ActiveStatus, Email, Birth, TaxCodeId, AdressId, PhoneId, PersonId, OrganizationId from Individuals where IndividualId = @IndividualId");
+                _database.setQuery("select ActiveStatus, Email, Birth, TaxCodeId, AdressId, PhoneId, PersonId, OrganizationId, ImageId from Individuals where IndividualId = @IndividualId");
                 _database.setParameter("@IndividualId", individualId);
                 _database.executeReader();
 
@@ -66,6 +67,11 @@ namespace BLL
                     {
                         individual.Organization.OrganizationId = (int)_database.Reader["OrganizationId"];
                     }
+
+                    if (!(_database.Reader["ImageId"] is DBNull))
+                    {
+                        individual.Image.ImageId = (int)_database.Reader["ImageId"];
+                    }
                 }
             }
             catch (Exception ex)
@@ -82,6 +88,7 @@ namespace BLL
             individual.Phone = _phonesManager.read(individual.Phone.PhoneId);
             individual.Person = _peopleManager.read(individual.Person.PersonId);
             individual.Organization = _organizationsManager.read(individual.Organization.OrganizationId);
+            individual.Image = _imagesManager.read(individual.Image.ImageId);
 
             return individual;
         }
@@ -112,64 +119,29 @@ namespace BLL
                 individual.Person.PersonId = Functions.getLastId("People");
             }
 
-            if (_organizationsManager.getId(individual.Organization) == 0)
+            if (individual.Organization != null)
             {
-                _organizationsManager.add(individual.Organization);
-                individual.Organization.OrganizationId = Functions.getLastId("Organizations");
+                if (_organizationsManager.getId(individual.Organization) == 0)
+                {
+                    _organizationsManager.add(individual.Organization);
+                    individual.Organization.OrganizationId = Functions.getLastId("Organizations");
+                }
+                else
+                {
+                    individual.Organization.OrganizationId = _organizationsManager.getId(individual.Organization);
+                }
+            }
+
+            if (individual.Image != null)
+            {
+                _imagesManager.add(individual.Image);
+                individual.Image.ImageId = Functions.getLastId("Images");
             }
 
             try
             {
-                _database.setQuery("insert into individuals (ActiveStatus, Email, Birth, TaxCodeId, AdressId, PhoneId, PersonId, OrganizationId) values (@ActiveStatus, @Email, @Birth, @TaxCodeId, @AdressId, @PhoneId, @PersonId, @OrganizationId)");
-                _database.setParameter("@ActiveStatus", individual.ActiveStatus);
-                _database.setParameter("@Email", individual.Email);
-                _database.setParameter("@Birth", individual.Birth);
-
-                if (individual.TaxCode != null)
-                {
-                    _database.setParameter("@TaxCodeId", individual.TaxCode.TaxCodeId);
-                }
-                else
-                {
-                    _database.setParameter("@TaxCodeId", DBNull.Value);
-                }
-
-                if (individual.Adress != null)
-                {
-                    _database.setParameter("@AdressId", individual.Adress.AdressId);
-                }
-                else
-                {
-                    _database.setParameter("@AdressId", DBNull.Value);
-                }
-
-                if (individual.Phone != null)
-                {
-                    _database.setParameter("@PhoneId", individual.Phone.PhoneId);
-                }
-                else
-                {
-                    _database.setParameter("@PhoneId", DBNull.Value);
-                }
-
-                if (individual.Person != null)
-                {
-                    _database.setParameter("@PersonId", individual.Person.PersonId);
-                }
-                else
-                {
-                    _database.setParameter("@PersonId", DBNull.Value);
-                }
-
-                if (individual.Organization != null)
-                {
-                    _database.setParameter("@OrganizationId", individual.Organization.OrganizationId);
-                }
-                else
-                {
-                    _database.setParameter("@OrganizationId", DBNull.Value);
-                }
-
+                _database.setQuery("insert into individuals (ActiveStatus, Email, Birth, TaxCodeId, AdressId, PhoneId, PersonId, OrganizationId, ImageId) values (@ActiveStatus, @Email, @Birth, @TaxCodeId, @AdressId, @PhoneId, @PersonId, @OrganizationId, @ImageId)");
+                setParameters(individual);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -189,6 +161,7 @@ namespace BLL
             int dbPhoneId = _phonesManager.getId(individual.Phone);
             int dbPersonId = _peopleManager.getId(individual.Person);
             int dbOrganizationId = _organizationsManager.getId(individual.Organization);
+            int dbImageId = _imagesManager.getId(individual.Image);
 
             if (dbTaxCodeId == individual.TaxCode.TaxCodeId)
             {
@@ -225,15 +198,21 @@ namespace BLL
             else if (dbPhoneId == 0)
             {
                 _phonesManager.add(individual.Phone);
+                individual.Phone.PhoneId = Functions.getLastId("Phones");
             }
             else
             {
                 individual.Phone.PhoneId = dbPhoneId;
             }
 
-            if (dbPersonId == 0) // analizar flujo. definir unicidad de personas.
+            if (dbPersonId == individual.Person.PersonId)
+            {
+                _peopleManager.edit(individual.Person);
+            }
+            else if (dbPersonId == 0)
             {
                 _peopleManager.add(individual.Person);
+                individual.Person.PersonId = Functions.getLastId("People");
             }
             else
             {
@@ -242,29 +221,37 @@ namespace BLL
 
             if (dbOrganizationId == individual.Organization.OrganizationId)
             {
-                //_organizationsManager.edit(individual.Organization);
+                _organizationsManager.edit(individual.Organization);
             }
             else if (dbOrganizationId == 0)
             {
                 _organizationsManager.add(individual.Organization);
+                individual.Organization.OrganizationId = Functions.getLastId("Organizations");
             }
             else
             {
                 individual.Organization.OrganizationId = dbOrganizationId;
             }
 
+            if (dbImageId == individual.Image.ImageId)
+            {
+                _imagesManager.edit(individual.Image);
+            }
+            else if (dbImageId == 0)
+            {
+                _imagesManager.add(individual.Image);
+                individual.Image.ImageId = Functions.getLastId("Images");
+            }
+            else
+            {
+                individual.Image.ImageId = dbImageId;
+            }
+
             try
             {
-                _database.setQuery("update Individuals set ActiveStatus = @ActiveStatus, Email = @Email, Birth = @Birth, TaxCodeId = @TaxCodeId, AdressId = @AdressId, PhoneId = @PhoneId, PersonId = @PersonId, OrganizationId = @OrganizationId where IndividualId = @IndividualId");
+                _database.setQuery("update Individuals set ActiveStatus = @ActiveStatus, Email = @Email, Birth = @Birth, TaxCodeId = @TaxCodeId, AdressId = @AdressId, PhoneId = @PhoneId, PersonId = @PersonId, OrganizationId = @OrganizationId, ImageId = @ImageId where IndividualId = @IndividualId");
                 _database.setParameter("@IndividualId", individual.IndividualId);
-                _database.setParameter("@ActiveStatus", individual.ActiveStatus);
-                _database.setParameter("@Email", individual.Email);
-                _database.setParameter("@Birth", individual.Birth);
-                _database.setParameter("@TaxCodeId", individual.TaxCode.TaxCodeId);
-                _database.setParameter("@AdressId", individual.Adress.AdressId);
-                _database.setParameter("@PhoneId", individual.Phone.PhoneId);
-                _database.setParameter("@PersonId", individual.Person.PersonId);
-                _database.setParameter("@OrganizationId", individual.Organization.OrganizationId);
+                setParameters(individual);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -292,6 +279,67 @@ namespace BLL
             finally
             {
                 _database.closeConnection();
+            }
+        }
+
+        private void setParameters(Individual individual)
+        {
+            _database.setParameter("@ActiveStatus", individual.ActiveStatus);
+            _database.setParameter("@Email", individual.Email);
+            _database.setParameter("@Birth", individual.Birth);
+
+            if (individual.TaxCode != null)
+            {
+                _database.setParameter("@TaxCodeId", individual.TaxCode.TaxCodeId);
+            }
+            else
+            {
+                _database.setParameter("@TaxCodeId", DBNull.Value);
+            }
+
+            if (individual.Adress != null)
+            {
+                _database.setParameter("@AdressId", individual.Adress.AdressId);
+            }
+            else
+            {
+                _database.setParameter("@AdressId", DBNull.Value);
+            }
+
+            if (individual.Phone != null)
+            {
+                _database.setParameter("@PhoneId", individual.Phone.PhoneId);
+            }
+            else
+            {
+                _database.setParameter("@PhoneId", DBNull.Value);
+            }
+
+            if (individual.Person != null)
+            {
+                _database.setParameter("@PersonId", individual.Person.PersonId);
+            }
+            else
+            {
+                _database.setParameter("@PersonId", DBNull.Value);
+            }
+
+            if (individual.Organization != null)
+            {
+                _database.setParameter("@OrganizationId", individual.Organization.OrganizationId);
+            }
+            else
+            {
+                _database.setParameter("@OrganizationId", DBNull.Value);
+            }
+
+            if (individual.Image != null)
+            {
+                _database.setParameter("@ImageId", individual.Image.ImageId);
+            }
+            else
+            {
+                _database.setParameter("@ImageId", DBNull.Value);
             }
         }
     }

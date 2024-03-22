@@ -10,7 +10,6 @@ namespace BLL
         // ATTRIBUTES
 
         private Database _database = new Database();
-        private ImagesManager _imagesManager = new ImagesManager();
 
         // METHODS
 
@@ -20,7 +19,7 @@ namespace BLL
 
             try
             {
-                _database.setQuery("select OrganizationId, OrganizationName, OrganizationDescription, ImageId from Organizations");
+                _database.setQuery("select OrganizationId, OrganizationName, OrganizationDescription from Organizations");
                 _database.executeReader();
 
                 while (_database.Reader.Read())
@@ -33,11 +32,6 @@ namespace BLL
                     if (!(_database.Reader["OrganizationDescription"] is DBNull))
                     {
                         organization.Description = (string)_database.Reader["OrganizationDescription"];
-                    }
-
-                    if (!(_database.Reader["ImageId"] is DBNull))
-                    {
-                        organization.Image.ImageId = (int)_database.Reader["ImageId"];
                     }
 
                     organizationsList.Add(organization);
@@ -61,7 +55,7 @@ namespace BLL
 
             try
             {
-                _database.setQuery("select OrganizationName, OrganizationDescription, ImageId from Organizations where OrganizationId = @OrganizationId");
+                _database.setQuery("select OrganizationName, OrganizationDescription from Organizations where OrganizationId = @OrganizationId");
                 _database.setParameter("@OrganizationId", organizationId);
                 _database.executeReader();
 
@@ -74,11 +68,6 @@ namespace BLL
                     {
                         organization.Description = (string)_database.Reader["OrganizationDescription"];
                     }
-
-                    if (!(_database.Reader["ImageId"] is DBNull))
-                    {
-                        organization.Image.ImageId = (int)_database.Reader["ImageId"];
-                    }
                 }
             }
             catch (Exception ex)
@@ -90,27 +79,36 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            organization.Image = _imagesManager.read(organization.Image.ImageId);
-
             return organization;
         }
 
         public void add(Organization organization)
         {
-            organization.Image.ImageId = _imagesManager.getId(organization.Image);
-
-            if (organization.Image.ImageId == 0)
-            {
-                _imagesManager.add(organization.Image);
-                organization.Image.ImageId = _imagesManager.getId(organization.Image);
-            }
-
             try
             {
-                _database.setQuery("insert into Organizations (OrganizationName, OrganizationDescription, ImageId) values (@OrganizationName, @OrganizationDescription, @ImageId)");
+                _database.setQuery("insert into Organizations (OrganizationName, OrganizationDescription) values (@OrganizationName, @OrganizationDescription)");
                 _database.setParameter("@OrganizationName", organization.Name);
                 _database.setParameter("@OrganizationDescription", organization.Description);
-                _database.setParameter("@ImageId", organization.Image.ImageId);
+                _database.executeAction();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _database.closeConnection();
+            }
+        }
+
+        public void edit(Organization organization)
+        {
+            try
+            {
+                _database.setQuery("update Organizations set OrganizationName = @OrganizationName, OrganizationDescription = @OrganizationDescription where OrganizationId = @OrganizationId");
+                _database.setParameter("@OrganizationId", organization.OrganizationId);
+                _database.setParameter("@OrganizationName", organization.Name);
+                _database.setParameter("@OrganizationDescription", organization.Description);
                 _database.executeAction();
             }
             catch (Exception ex)

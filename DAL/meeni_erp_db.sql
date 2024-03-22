@@ -164,6 +164,48 @@ values
 ('1557736789', '1');
 go
 
+------------
+-- PEOPLE --
+------------
+
+create table People(
+	PersonId int primary key identity(1,1) not null,
+	FirstName varchar(30) not null,
+	LastName varchar(30) not null,
+	Constraint UC_Person unique (FirstName, LastName)
+)
+go
+
+insert into People
+(FirstName, LastName)
+values
+('Federico', 'Bocca'),
+('Carlos', 'Berlinguieri'),
+('Teodoro', 'Figueredo');
+go
+
+-------------------
+-- ORGANIZATIONS --
+-------------------
+
+create table Organizations(
+	OrganizationId int primary key identity(1,1) not null,
+	OrganizationName varchar(30) unique not null,
+	OrganizationDescription varchar(50) null
+)
+go
+
+insert into Organizations
+(OrganizationName, OrganizationDescription)
+values
+('Pisos Click', 'Pisos vinílicos'),
+('Johnson Construction', null),
+('Smith Commercial', 'Comercial Developer'),
+('Greenfield Builders', 'Eco Friendly Construction'),
+('Fierros Ratti', null),
+('Herrajes San Martín', 'Herrajes de todo tipo');
+go
+
 -----------
 -- ITEMS --
 -----------
@@ -224,50 +266,6 @@ create table ImageProductRelations(
 )
 go
 
-------------
--- PEOPLE --
-------------
-
-create table People(
-	PersonId int primary key identity(1,1) not null,
-	FirstName varchar(30) not null,
-	LastName varchar(30) not null,
-	ImageId int foreign key references Images(ImageId) null,
-	Constraint UC_Person unique (FirstName, LastName, ImageId)
-)
-go
-
-insert into People
-(FirstName, LastName, ImageId)
-values
-('Federico', 'Bocca', null),
-('Carlos', 'Berlinguieri', '6'),
-('Teodoro', 'Figueredo', null);
-go
-
--------------------
--- ORGANIZATIONS --
--------------------
-
-create table Organizations(
-	OrganizationId int primary key identity(1,1) not null,
-	OrganizationName varchar(30) unique not null,
-	OrganizationDescription varchar(50) null,
-	ImageId int foreign key references Images(ImageId) null
-)
-go
-
-insert into Organizations
-(OrganizationName, OrganizationDescription, ImageId)
-values
-('Pisos Click', 'Pisos vinílicos', null),
-('Johnson Construction', null, '1'),
-('Smith Commercial', 'Comercial Developer', '2'),
-('Greenfield Builders', 'Eco Friendly Construction', '3'),
-('Fierros Ratti', null, '4'),
-('Herrajes San Martín', 'Herrajes de todo tipo', '5');
-go
-
 -----------------
 -- INDIVIDUALS --
 -----------------
@@ -282,21 +280,22 @@ create table Individuals(
 	PhoneId int foreign key references Phones(PhoneId) null,
 	PersonId int foreign key references People(PersonId) null,
 	OrganizationId int foreign key references Organizations(OrganizationId) null,
+	ImageId int foreign key references Images(ImageId) null,
 	Constraint UC_Person_Organization unique (PersonId, OrganizationId)
 )
 go
 
 insert into Individuals
-(ActiveStatus, Email, Birth, TaxCodeId, AdressId, PhoneId, PersonId, OrganizationId)
+(ActiveStatus, Email, Birth, TaxCodeId, AdressId, PhoneId, PersonId, OrganizationId, ImageId)
 values
-('true', 'pisosclick@gmail.com', '2019-01-26', '1', '1', null, '1', '1'),
-('true', 'johnsonconst@gmail.com', null, '2', '2', null, null, '2'),
-('true', 'contact@smithcommercial.com', null, '3', '3', '1', null, '3'),
-('false', 'info@greenfield.com', null, '4', '4', null, null, '4'),
-('true', 'contacto@hierrosratti.com.ar', null, '5', '5', '2', null, '5'),
-('true', 'contacto@hsm.com.ar', null, '6', '6', '3', null, '6'),
-('false', 'berlinguieric@gmail.com', '1987-05-12', '7', null, '4', '2', null),
-('true', null, '1985-06-18', '8', null, '5', '3', null);
+('true', 'pisosclick@gmail.com', '2019-01-26', '1', '1', null, '1', '1', null),
+('true', 'johnsonconst@gmail.com', null, '2', '2', null, null, '2', '1'),
+('true', 'contact@smithcommercial.com', null, '3', '3', '1', null, '3', '2'),
+('false', 'info@greenfield.com', null, '4', '4', null, null, '4', '3'),
+('true', 'contacto@hierrosratti.com.ar', null, '5', '5', '2', null, '5', '4'),
+('true', 'contacto@hsm.com.ar', null, '6', '6', '3', null, '6', '5'),
+('false', 'berlinguieric@gmail.com', '1987-05-12', '7', null, '4', '2', null, '6'),
+('true', null, '1985-06-18', '8', null, '5', '3', null, null);
 go
 
 -----------------------

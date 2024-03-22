@@ -213,14 +213,17 @@ namespace WindowsForms
             {
                 organizationNameComboBox.SelectedValue = _customer.Organization.OrganizationId;
                 organizationDescriptionTextBox.Text = _customer.Organization.Description;
-                imageUrlTextBox.Text = _customer.Organization.Image.Url;
             }
 
             if (0 < _customer.Person.PersonId)
             {
                 firstNameTextBox.Text = _customer.Person.FirstName;
                 lastNameTextBox.Text = _customer.Person.LastName;
-                imageUrlTextBox.Text = _customer.Person.Image.Url;
+            }
+
+            if (0 < _customer.Image.ImageId)
+            {
+                imageUrlTextBox.Text = _customer.Image.Url;
             }
         }
 
@@ -239,21 +242,37 @@ namespace WindowsForms
         private void setCustomer()
         {
             _customer.ActiveStatus = activeStatusCheckBox.Checked;
-            _customer.Email = emailTextBox.Text;
-            _customer.Birth = birthDateTimePicker.Value;
 
-            if (taxCodeNumberTextBox.Text != "")
+            if (Validations.hasData(emailTextBox.Text))
             {
-                _customer.TaxCode.Prefix = taxCodePrefixTextBox.Text;
+                _customer.Email = emailTextBox.Text;
+            }
+
+            if (birthDateTimePicker.Value < DateTime.Now)
+            {
+                _customer.Birth = birthDateTimePicker.Value;
+            }
+
+            if (Validations.hasData(taxCodeNumberTextBox.Text))
+            {
                 _customer.TaxCode.Number = taxCodeNumberTextBox.Text;
-                _customer.TaxCode.Suffix = taxCodeSuffixTextBox.Text;
+
+                if (Validations.hasData(taxCodePrefixTextBox.Text))
+                {
+                    _customer.TaxCode.Prefix = taxCodePrefixTextBox.Text;
+                }
+
+                if (Validations.hasData(taxCodeSuffixTextBox.Text))
+                {
+                    _customer.TaxCode.Suffix = taxCodeSuffixTextBox.Text;
+                }
             }
             else
             {
                 _customer.TaxCode = null;
             }
 
-            if (adressCityComboBox.Text != "")
+            if (Validations.hasData(adressCityComboBox.Text))
             {
                 _customer.Adress.StreetName = streetNameTextBox.Text;
                 _customer.Adress.StreetNumber = streetNumberTextBox.Text;
@@ -269,7 +288,7 @@ namespace WindowsForms
                 _customer.Adress = null;
             }
 
-            if (phoneNumberTextBox.Text != "")
+            if (Validations.hasData(phoneNumberTextBox.Text))
             {
                 _customer.Phone.Country.PhoneAreaCode = phoneCountryComboBox.Text;
                 _customer.Phone.Province.PhoneAreaCode = phoneProvinceComboBox.Text;
@@ -280,32 +299,48 @@ namespace WindowsForms
                 _customer.Phone = null;
             }
 
-            if (firstNameTextBox.Text != "")
+            if (Validations.hasData(firstNameTextBox.Text) && Validations.hasData(lastNameTextBox.Text))
             {
                 _customer.Person.FirstName = firstNameTextBox.Text;
                 _customer.Person.LastName = lastNameTextBox.Text;
-                _customer.Person.Image.Url = imageUrlTextBox.Text;
             }
             else
             {
-                _customer.Person.Image = null;
                 _customer.Person = null;
             }
 
-            if (organizationNameComboBox.Text != "")
+            if (Validations.hasData(organizationNameComboBox.Text))
             {
                 _customer.Organization.Name = organizationNameComboBox.Text;
-                _customer.Organization.Description = organizationDescriptionTextBox.Text;
-                _customer.Organization.Image.Url = imageUrlTextBox.Text;
+
+                if (Validations.hasData(organizationDescriptionTextBox.Text))
+                {
+                    _customer.Organization.Description = organizationDescriptionTextBox.Text;
+                }
             }
             else
             {
-                _customer.Organization.Image = null;
                 _customer.Organization = null;
             }
 
-            _customer.PaymentMethod = paymentMethodComboBox.Text;
-            _customer.InvoiceCategory = invoiceCategoryComboBox.Text;
+            if (Validations.hasData(imageUrlTextBox.Text))
+            {
+                _customer.Image.Url = imageUrlTextBox.Text;
+            }
+            else
+            {
+                _customer.Image = null;
+            }
+
+            if (Validations.hasData(paymentMethodComboBox.Text))
+            {
+                _customer.PaymentMethod = paymentMethodComboBox.Text;
+            }
+
+            if (Validations.hasData(invoiceCategoryComboBox.Text))
+            {
+                _customer.InvoiceCategory = invoiceCategoryComboBox.Text;
+            }
         }
 
         // EVENTS

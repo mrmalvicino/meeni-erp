@@ -9,6 +9,7 @@ namespace BLL
         // ATTRIBUTES
 
         private Database _database = new Database();
+        private Individual _individual;
         private IndividualsManager _individualsManager = new IndividualsManager();
 
         // METHODS
@@ -49,8 +50,8 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            Individual individual = _individualsManager.read(businessPartner.IndividualId);
-            Functions.assign(businessPartner, individual);
+            _individual = _individualsManager.read(businessPartner.IndividualId);
+            Functions.assign(businessPartner, _individual);
 
             return businessPartner;
         }

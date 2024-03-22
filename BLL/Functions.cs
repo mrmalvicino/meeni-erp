@@ -21,6 +21,7 @@ namespace BLL
             destinyObject.Phone = originObject.Phone;
             destinyObject.Person = originObject.Person;
             destinyObject.Organization = originObject.Organization;
+            destinyObject.Image = originObject.Image;
 
             if (originObject is BusinessPartner && destinyObject is BusinessPartner)
             {

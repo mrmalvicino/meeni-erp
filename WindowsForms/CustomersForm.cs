@@ -53,6 +53,7 @@ namespace WindowsForms
                 dataGridView.Columns["ActiveStatus"].Visible = false;
                 dataGridView.Columns["BusinessPartnerId"].Visible = false;
                 dataGridView.Columns["CustomerId"].Visible = false;
+                dataGridView.Columns["Image"].Visible = false;
 
                 dataGridView.Columns["Person"].Width = 80;
                 dataGridView.Columns["Organization"].Width = 80;
@@ -171,21 +172,8 @@ namespace WindowsForms
             if (dataGridView.CurrentRow != null)
             {
                 _customer = (Customer)dataGridView.CurrentRow.DataBoundItem;
-
-                string imageUrl = "";
-                
-                if (imageUrl == "")
-                {
-                    imageUrl = _customer.Organization.Image.Url;
-                }
-
-                if (imageUrl == "")
-                {
-                    imageUrl = _customer.Person.Image.Url;
-                }
-                
                 loadProfile(_customer.CustomerId, _customer.ToString(), _customer.Organization.Description, _customer.Phone.ToString(), _customer.Email.ToString(), _customer.Adress.ToString());
-                Functions.loadImage(pictureBox, imageUrl);
+                Functions.loadImage(pictureBox, _customer.Image.Url);
             }
         }
 
@@ -255,6 +243,15 @@ namespace WindowsForms
         private void dataGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             setupDataGridView();
+        }
+
+        private void dataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            string columnName = dataGridView.Columns[e.ColumnIndex].HeaderText;
+            string cellValue = dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+            int rowIndex = e.RowIndex;
+
+            MessageBox.Show("Error de formato en la celda: Columna: " + columnName + ", Fila: " + rowIndex + ", Contenido: " + cellValue);
         }
     }
 }

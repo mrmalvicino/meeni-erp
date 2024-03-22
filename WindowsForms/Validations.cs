@@ -1,10 +1,6 @@
 ﻿using Entities;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsForms
@@ -13,11 +9,15 @@ namespace WindowsForms
     {
         // METHODS
 
-        public static bool isNumber(string input)
+        public static bool isNumber(string text)
         {
-            foreach (char c in input)
+            foreach (char c in text)
+            {
                 if (!(char.IsNumber(c)))
+                {
                     return false;
+                }
+            }
 
             return true;
         }
@@ -25,6 +25,26 @@ namespace WindowsForms
         public static void error(string message)
         {
             MessageBox.Show(message, "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        public static bool hasData(string text)
+        {
+            if (text == "")
+            {
+                return false;
+            }
+
+            if (text.Length < 2)
+            {
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(text))
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

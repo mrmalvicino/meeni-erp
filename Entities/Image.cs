@@ -11,5 +11,12 @@ namespace Entities
 
         [DisplayName("URL de imagen")]
         public string Url { get; set; }
+
+        // METHODS
+
+        public override string ToString()
+        {
+            return Url;
+        }
     }
 }

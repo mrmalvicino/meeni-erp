@@ -58,6 +58,25 @@ namespace BLL
             }
         }
 
+        public void edit(Image image)
+        {
+            try
+            {
+                _database.setQuery("update Images set ImageUrl = @ImageUrl where ImageId = @ImageId");
+                _database.setParameter("@ImageId", image.ImageId);
+                _database.setParameter("@ImageUrl", image.Url);
+                _database.executeAction();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _database.closeConnection();
+            }
+        }
+
         public int getId(Image image)
         {
             try
