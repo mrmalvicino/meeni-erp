@@ -1,7 +1,6 @@
-﻿using System;
-using System.Reflection;
-using DAL;
+﻿using DAL;
 using Entities;
+using System;
 
 namespace BLL
 {
@@ -15,7 +14,7 @@ namespace BLL
 
         // METHODS
 
-        public Phone readPhone(int phoneId)
+        public Phone read(int phoneId)
         {
             Phone phone = new Phone();
 
@@ -60,6 +59,7 @@ namespace BLL
             if (phone.Country.CountryId == 0)
             {
                 phone.Country.Name = "default_" + (Functions.getLastId("Individuals") + 1).ToString();
+                phone.Country.Currency.CurrencyId = 1; // Modena por defecto
                 _countriesManager.add(phone.Country);
                 phone.Country.CountryId = Functions.getLastId("Countries");
             }
@@ -108,13 +108,20 @@ namespace BLL
             }
         }
 
-        public void delete(Phone phone)
+        public int getId(Phone phone)
         {
+            phone.PhoneId = 0;
+
             try
             {
-                _database.setQuery("delete from Phones where PhoneId = @PhoneId");
-                _database.setParameter("@PhoneId", phone.PhoneId);
-                _database.executeAction();
+                _database.setQuery("select PhoneId from Phones where Number = @Number");
+                _database.setParameter("@Number", phone.Number);
+                _database.executeReader();
+
+                if (_database.Reader.Read())
+                {
+                    phone.PhoneId = (int)_database.Reader["PhoneId"];
+                }
             }
             catch (Exception ex)
             {
@@ -124,6 +131,8 @@ namespace BLL
             {
                 _database.closeConnection();
             }
+
+            return phone.PhoneId;
         }
     }
 }

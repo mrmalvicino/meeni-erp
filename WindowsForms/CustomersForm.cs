@@ -1,9 +1,9 @@
-﻿using System;
+﻿using BLL;
+using Entities;
+using System;
 using System.Windows.Forms;
 using System.Configuration;
 using System.Collections.Generic;
-using BLL;
-using Entities;
 
 namespace WindowsForms
 {
@@ -11,11 +11,10 @@ namespace WindowsForms
     {
         // ATTRIBUTES
 
-        private Customer _selectedCustomer;
+        private Customer _customer;
+        private CustomersManager _customersManager = new CustomersManager();
         private List<Customer> _customersTable;
         private List<Customer> _filteredCustomers;
-        private CustomersManager _customersManager = new CustomersManager();
-        private ImagesManager _imagesManager = new ImagesManager();
 
         // CONSTRUCT
 
@@ -105,7 +104,7 @@ namespace WindowsForms
         {
             try
             {
-                _customersTable = _customersManager.listCustomers();
+                _customersTable = _customersManager.list();
                 dataGridView.DataSource = _customersTable;
             }
             catch (Exception ex)
@@ -171,10 +170,21 @@ namespace WindowsForms
         {
             if (dataGridView.CurrentRow != null)
             {
-                _selectedCustomer = (Customer)dataGridView.CurrentRow.DataBoundItem;
-                string imageUrl = _imagesManager.readIndividualImage(_selectedCustomer);
+                _customer = (Customer)dataGridView.CurrentRow.DataBoundItem;
 
-                loadProfile(_selectedCustomer.CustomerId, _selectedCustomer.ToString(), _selectedCustomer.Organization.Description, _selectedCustomer.Phone.ToString(), _selectedCustomer.Email.ToString(), _selectedCustomer.Adress.ToString());
+                string imageUrl = "";
+                
+                if (imageUrl == "")
+                {
+                    imageUrl = _customer.Organization.Image.Url;
+                }
+
+                if (imageUrl == "")
+                {
+                    imageUrl = _customer.Person.Image.Url;
+                }
+                
+                loadProfile(_customer.CustomerId, _customer.ToString(), _customer.Organization.Description, _customer.Phone.ToString(), _customer.Email.ToString(), _customer.Adress.ToString());
                 Functions.loadImage(pictureBox, imageUrl);
             }
         }
@@ -189,7 +199,7 @@ namespace WindowsForms
 
         private void editButton_Click(object sender, EventArgs e)
         {
-            CustomerRegisterForm registerForm = new CustomerRegisterForm(_selectedCustomer);
+            CustomerRegisterForm registerForm = new CustomerRegisterForm(_customer);
             registerForm.ShowDialog();
             refreshTable();
             applyFilter();
@@ -203,7 +213,7 @@ namespace WindowsForms
                 
                 if (answer == DialogResult.Yes)
                 {
-                    _customersManager.delete(_selectedCustomer);
+                    _customersManager.delete(_customer);
                     refreshTable();
                     applyFilter();
                 }

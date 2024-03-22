@@ -2,9 +2,6 @@
 using Entities;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL
 {
@@ -23,7 +20,7 @@ namespace BLL
 
             try
             {
-                _database.setQuery("select OrganizationId, OrganizationName, OrganizationDescription from Organizations");
+                _database.setQuery("select OrganizationId, OrganizationName, OrganizationDescription, ImageId from Organizations");
                 _database.executeReader();
 
                 while (_database.Reader.Read())
@@ -32,8 +29,16 @@ namespace BLL
 
                     organization.OrganizationId = (int)_database.Reader["OrganizationId"];
                     organization.Name = (string)_database.Reader["OrganizationName"];
+
                     if (!(_database.Reader["OrganizationDescription"] is DBNull))
+                    {
                         organization.Description = (string)_database.Reader["OrganizationDescription"];
+                    }
+
+                    if (!(_database.Reader["ImageId"] is DBNull))
+                    {
+                        organization.Image.ImageId = (int)_database.Reader["ImageId"];
+                    }
 
                     organizationsList.Add(organization);
                 }
@@ -50,13 +55,13 @@ namespace BLL
             return organizationsList;
         }
 
-        public Organization readOrganization(int organizationId)
+        public Organization read(int organizationId)
         {
             Organization organization = new Organization();
 
             try
             {
-                _database.setQuery("select OrganizationName, OrganizationDescription from Organizations where OrganizationId = @OrganizationId");
+                _database.setQuery("select OrganizationName, OrganizationDescription, ImageId from Organizations where OrganizationId = @OrganizationId");
                 _database.setParameter("@OrganizationId", organizationId);
                 _database.executeReader();
 
@@ -64,8 +69,16 @@ namespace BLL
                 {
                     organization.OrganizationId = organizationId;
                     organization.Name = (string)_database.Reader["OrganizationName"];
+
                     if (!(_database.Reader["OrganizationDescription"] is DBNull))
+                    {
                         organization.Description = (string)_database.Reader["OrganizationDescription"];
+                    }
+
+                    if (!(_database.Reader["ImageId"] is DBNull))
+                    {
+                        organization.Image.ImageId = (int)_database.Reader["ImageId"];
+                    }
                 }
             }
             catch (Exception ex)
@@ -76,6 +89,8 @@ namespace BLL
             {
                 _database.closeConnection();
             }
+
+            organization.Image = _imagesManager.read(organization.Image.ImageId);
 
             return organization;
         }
@@ -119,7 +134,9 @@ namespace BLL
                 _database.executeReader();
 
                 if (_database.Reader.Read())
+                {
                     organization.OrganizationId = (int)_database.Reader["OrganizationId"];
+                }
             }
             catch (Exception ex)
             {

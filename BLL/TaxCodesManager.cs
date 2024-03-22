@@ -12,27 +12,31 @@ namespace BLL
 
         // METHODS
 
-        public TaxCode readTaxCode(int taxCodeId)
+        public TaxCode read(int taxCodeId)
         {
             TaxCode taxCode = new TaxCode();
 
             try
             {
-                _database.setQuery("select TaxCodeId, Prefix, Number, Suffix from TaxCodes where TaxCodeId = @TaxCodeId");
+                _database.setQuery("select Prefix, Number, Suffix from TaxCodes where TaxCodeId = @TaxCodeId");
                 _database.setParameter("@TaxCodeId", taxCodeId);
                 _database.executeReader();
 
                 if (_database.Reader.Read())
                 {
-                    taxCode.TaxCodeId = (int)_database.Reader["TaxCodeId"];
+                    taxCode.TaxCodeId = taxCodeId;
 
                     if (!(_database.Reader["Prefix"] is DBNull))
+                    {
                         taxCode.Prefix = (string)_database.Reader["Prefix"];
+                    }
 
                     taxCode.Number = (string)_database.Reader["Number"];
 
                     if (!(_database.Reader["Suffix"] is DBNull))
+                    {
                         taxCode.Suffix = (string)_database.Reader["Suffix"];
+                    }
                 }
             }
             catch (Exception ex)
@@ -73,27 +77,9 @@ namespace BLL
             {
                 _database.setQuery("update TaxCodes set Prefix = @Prefix, Number = @Number, Suffix = @Suffix where TaxCodeId = @TaxCodeId");
                 _database.setParameter("@TaxCodeId", taxCode.TaxCodeId);
-                _database.setParameter("@TaxCodePrefix", taxCode.Prefix);
-                _database.setParameter("@TaxCodeNumber", taxCode.Number);
-                _database.setParameter("@TaxCodeSuffix", taxCode.Suffix);
-                _database.executeAction();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                _database.closeConnection();
-            }
-        }
-
-        public void delete(int taxCodeId)
-        {
-            try
-            {
-                _database.setQuery("delete from TaxCodes where TaxCodeId = @TaxCodeId");
-                _database.setParameter("@TaxCodeId", taxCodeId);
+                _database.setParameter("@Prefix", taxCode.Prefix);
+                _database.setParameter("@Number", taxCode.Number);
+                _database.setParameter("@Suffix", taxCode.Suffix);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -112,14 +98,14 @@ namespace BLL
 
             try
             {
-                _database.setQuery("select TaxCodeId from TaxCodes where Prefix = @Prefix and Number = @Number and Suffix = @Suffix");
-                _database.setParameter("@Prefix", taxCode.Prefix);
+                _database.setQuery("select TaxCodeId from TaxCodes where Number = @Number");
                 _database.setParameter("@Number", taxCode.Number);
-                _database.setParameter("@Suffix", taxCode.Suffix);
                 _database.executeReader();
 
                 if (_database.Reader.Read())
+                {
                     taxCode.TaxCodeId = (int)_database.Reader["TaxCodeId"];
+                }
             }
             catch (Exception ex)
             {

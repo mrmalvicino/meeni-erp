@@ -1,7 +1,6 @@
-﻿using System;
-using System.Security.Policy;
-using DAL;
+﻿using DAL;
 using Entities;
+using System;
 
 namespace BLL
 {
@@ -16,7 +15,7 @@ namespace BLL
 
         // METHODS
 
-        public Adress readAdress(int adressId)
+        public Adress read(int adressId)
         {
             Adress adress = new Adress();
 
@@ -43,16 +42,22 @@ namespace BLL
                     adress.StreetNumber = (string)_database.Reader["StreetNumber"];
 
                     if (!(_database.Reader["Flat"] is DBNull))
+                    {
                         adress.Flat = (string)_database.Reader["Flat"];
+                    }
 
                     if (!(_database.Reader["Details"] is DBNull))
+                    {
                         adress.Details = (string)_database.Reader["Details"];
+                    }
 
                     adress.City.CityId = Convert.ToInt32(_database.Reader["CityId"]);
                     adress.City.Name = (string)_database.Reader["CityName"];
 
                     if (!(_database.Reader["ZipCode"] is DBNull))
+                    {
                         adress.City.ZipCode = (string)_database.Reader["ZipCode"];
+                    }
 
                     adress.Province.ProvinceId = Convert.ToInt32(_database.Reader["ProvinceId"]);
                     adress.Province.Name = (string)_database.Reader["ProvinceName"];
@@ -81,6 +86,7 @@ namespace BLL
             if (adress.Country.CountryId == 0)
             {
                 adress.Country.PhoneAreaCode = "default_" + (Functions.getLastId("Individuals") + 1).ToString();
+                adress.Country.Currency.CurrencyId = 1; // Modena por defecto
                 _countriesManager.add(adress.Country);
                 adress.Country.CountryId = Functions.getLastId("Countries");
             }
@@ -120,6 +126,58 @@ namespace BLL
 
         public void edit(Adress adress)
         {
+            int dbCountryId = _countriesManager.getIdByName(adress.Country);
+            int dbProvinceId = _provincesManager.getIdByName(adress.Province);
+            int dbCityId = _citiesManager.getId(adress.City);
+
+            if (dbCountryId == adress.Country.CountryId)
+            {
+                adress.Country.PhoneAreaCode = "default_" + (Functions.getLastId("Individuals") + 1).ToString();
+                adress.Country.Currency.CurrencyId = 1; // Modena por defecto
+                _countriesManager.edit(adress.Country);
+            }
+            else if (dbCountryId == 0)
+            {
+                adress.Country.PhoneAreaCode = "default_" + (Functions.getLastId("Individuals") + 1).ToString();
+                adress.Country.Currency.CurrencyId = 1; // Modena por defecto
+                _countriesManager.add(adress.Country);
+                adress.Country.CountryId = Functions.getLastId("Countries");
+            }
+            else
+            {
+                adress.Country.CountryId = dbCountryId;
+            }
+
+            if (dbProvinceId == adress.Province.ProvinceId)
+            {
+                adress.Province.PhoneAreaCode = "default_" + (Functions.getLastId("Individuals") + 1).ToString();
+                _provincesManager.edit(adress.Province, adress.Country.CountryId);
+            }
+            else if (dbProvinceId == 0)
+            {
+                adress.Province.PhoneAreaCode = "default_" + (Functions.getLastId("Individuals") + 1).ToString();
+                _provincesManager.add(adress.Province, adress.Country.CountryId);
+                adress.Province.ProvinceId = Functions.getLastId("Provinces");
+            }
+            else
+            {
+                adress.Province.ProvinceId = dbProvinceId;
+            }
+
+            if (dbCityId == adress.City.CityId)
+            {
+                _citiesManager.edit(adress.City, adress.Province.ProvinceId);
+            }
+            else if (dbCityId == 0)
+            {
+                _citiesManager.add(adress.City, adress.Province.ProvinceId);
+                adress.City.CityId = Functions.getLastId("Cities");
+            }
+            else
+            {
+                adress.City.CityId = dbCityId;
+            }
+
             try
             {
                 _database.setQuery("update Adresses set StreetName = @StreetName, StreetNumber = @StreetNumber, Flat = @Flat, Details = @Details, CityId = @CityId where AdressId = @AdressId");
@@ -141,13 +199,22 @@ namespace BLL
             }
         }
 
-        public void delete(Adress adress)
+        public int getId(Adress adress)
         {
+            adress.AdressId = 0;
+
             try
             {
-                _database.setQuery("delete from Adresses where AdressId = @AdressId");
-                _database.setParameter("@AdressId", adress.AdressId);
-                _database.executeAction();
+                _database.setQuery("select AdressId from Adresses where StreetName = @StreetName and StreetNumber = @StreetNumber and CityId = @CityId");
+                _database.setParameter("@StreetName", adress.StreetName);
+                _database.setParameter("@StreetNumber", adress.StreetNumber);
+                _database.setParameter("@CityId", adress.City.CityId);
+                _database.executeReader();
+
+                if (_database.Reader.Read())
+                {
+                    adress.AdressId = (int)_database.Reader["AdressId"];
+                }
             }
             catch (Exception ex)
             {
@@ -157,6 +224,8 @@ namespace BLL
             {
                 _database.closeConnection();
             }
+
+            return adress.AdressId;
         }
     }
 }

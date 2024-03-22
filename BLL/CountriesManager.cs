@@ -50,9 +50,31 @@ namespace BLL
         {
             try
             {
-                _database.setQuery("insert into Countries (CountryName, PhoneAreaCode) values (@CountryName, @PhoneAreaCode)");
+                _database.setQuery("insert into Countries (CountryName, PhoneAreaCode, CurrencyId) values (@CountryName, @PhoneAreaCode, @CurrencyId)");
                 _database.setParameter("@CountryName", country.Name);
                 _database.setParameter("@PhoneAreaCode", country.PhoneAreaCode);
+                _database.setParameter("@CurrencyId", country.Currency.CurrencyId);
+                _database.executeAction();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _database.closeConnection();
+            }
+        }
+
+        public void edit(Country country)
+        {
+            try
+            {
+                _database.setQuery("update Countries set CountryName = @CountryName, PhoneAreaCode = @PhoneAreaCode, CurrencyId = @CurrencyId where CountryId = @CountryId");
+                _database.setParameter("@CountryId", country.CountryId);
+                _database.setParameter("@CountryName", country.Name);
+                _database.setParameter("@PhoneAreaCode", country.PhoneAreaCode);
+                _database.setParameter("@CurrencyId", country.Currency.CurrencyId);
                 _database.executeAction();
             }
             catch (Exception ex)

@@ -72,6 +72,27 @@ namespace BLL
             }
         }
 
+        public void edit(Province province, int countryId)
+        {
+            try
+            {
+                _database.setQuery("update Provinces set ProvinceName = @ProvinceName, PhoneAreaCode = @PhoneAreaCode, CountryId = @CountryId where ProvinceId = @ProvinceId");
+                _database.setParameter("@ProvinceId", province.ProvinceId);
+                _database.setParameter("@ProvinceName", province.Name);
+                _database.setParameter("@PhoneAreaCode", province.PhoneAreaCode);
+                _database.setParameter("@CountryId", countryId);
+                _database.executeAction();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _database.closeConnection();
+            }
+        }
+
         public int getIdByName(Province province)
         {
             try

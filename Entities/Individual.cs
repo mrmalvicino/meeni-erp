@@ -50,21 +50,17 @@ namespace Entities
 
         public override string ToString()
         {
-            if (this.isPerson())
+            if (Person != null)
+            {
                 return Person.ToString();
-            else
+            }
+
+            if (Organization != null)
+            {
                 return Organization.ToString();
-        }
+            }
 
-        public bool isPerson()
-        {
-            if (Person == null) return false;
-            if (Organization == null) return true;
-
-            if (Person.FirstName != "" && Person.LastName != "" && Person.FirstName != null && Person.LastName != null)
-                return true;
-
-            return false;
+            return IndividualId.ToString();
         }
     }
 }

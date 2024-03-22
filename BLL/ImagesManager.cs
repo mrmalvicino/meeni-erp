@@ -1,7 +1,6 @@
-﻿using System;
-using System.Security.Policy;
-using DAL;
+﻿using DAL;
 using Entities;
+using System;
 
 namespace BLL
 {
@@ -13,32 +12,21 @@ namespace BLL
 
         // METHODS
 
-        public string readIndividualImage<T>(T obj)
-            where T : Individual, new()
+        public Image read(int imageId)
         {
-            string imageUrl = "";
-            string queryString;
-            int filterId;
-            
-            if (obj.isPerson())
-            {
-                queryString = "select I.ImageUrl from Images I inner join People P on P.ImageId = I.ImageId where P.PersonId = @filterId";
-                filterId = obj.Person.PersonId;
-            }
-            else
-            {
-                queryString = "select I.ImageUrl from Images I inner join Organizations O on O.ImageId = I.ImageId where O.OrganizationId = @filterId";
-                filterId = obj.Organization.OrganizationId;
-            }
+            Image image = new Image();
 
             try
             {
-                _database.setQuery(queryString);
-                _database.setParameter("@filterId", filterId);
+                _database.setQuery("select ImageUrl from Images where ImageId = @ImageId");
+                _database.setParameter("@ImageId", imageId);
                 _database.executeReader();
 
                 if (_database.Reader.Read())
-                    imageUrl = (string)_database.Reader["ImageUrl"];
+                {
+                    image.ImageId = imageId;
+                    image.Url = (string)_database.Reader["ImageUrl"];
+                }
             }
             catch (Exception ex)
             {
@@ -49,7 +37,7 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            return imageUrl;
+            return image;
         }
 
         public void add(Image image)
@@ -79,7 +67,9 @@ namespace BLL
                 _database.executeReader();
 
                 if (_database.Reader.Read())
+                {
                     return (int)_database.Reader["ImageId"];
+                }
             }
             catch (Exception ex)
             {

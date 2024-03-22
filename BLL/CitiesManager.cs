@@ -2,10 +2,6 @@
 using Entities;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL
 {
@@ -41,7 +37,9 @@ namespace BLL
                     city.Name = (string)_database.Reader["CityName"];
 
                     if (!(_database.Reader["ZipCode"] is DBNull))
+                    {
                         city.ZipCode = (string)_database.Reader["ZipCode"];
+                    }
 
                     citiesList.Add(city);
                 }
@@ -63,6 +61,27 @@ namespace BLL
             try
             {
                 _database.setQuery("insert into Cities (CityName, ZipCode, ProvinceId) values (@CityName, @ZipCode, @ProvinceId)");
+                _database.setParameter("@CityName", city.Name);
+                _database.setParameter("@ZipCode", city.ZipCode);
+                _database.setParameter("@ProvinceId", provinceId);
+                _database.executeAction();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _database.closeConnection();
+            }
+        }
+
+        public void edit(City city, int provinceId)
+        {
+            try
+            {
+                _database.setQuery("update Cities set CityName = @CityName, ZipCode = @ZipCode, ProvinceId = @ProvinceId where CityId = @CityId");
+                _database.setParameter("@CityId", city.CityId);
                 _database.setParameter("@CityName", city.Name);
                 _database.setParameter("@ZipCode", city.ZipCode);
                 _database.setParameter("@ProvinceId", provinceId);

@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using DAL;
+﻿using DAL;
 using Entities;
+using System;
+using System.Collections.Generic;
 
 namespace BLL
 {
@@ -15,7 +15,7 @@ namespace BLL
 
         // METHODS
 
-        public List<Customer> listCustomers()
+        public List<Customer> list()
         {
             List<Customer> customersList = new List<Customer>();
             
@@ -31,7 +31,9 @@ namespace BLL
                     customer.CustomerId = (int)_database.Reader["CustomerId"];
 
                     if (!(_database.Reader["SalesAmount"] is DBNull))
+                    {
                         customer.SalesAmount = (int)_database.Reader["SalesAmount"];
+                    }
 
                     customer.BusinessPartnerId = (int)_database.Reader["BusinessPartnerId"];
 
@@ -49,7 +51,7 @@ namespace BLL
 
             foreach (Customer customer in customersList)
             {
-                _businessPartner = _businessPartnersManager.readBusinessPartner(customer.BusinessPartnerId);
+                _businessPartner = _businessPartnersManager.read(customer.BusinessPartnerId);
                 Functions.assign(customer, _businessPartner);
             }
 

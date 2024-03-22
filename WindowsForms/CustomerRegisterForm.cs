@@ -1,7 +1,7 @@
-﻿using System;
-using System.Windows.Forms;
-using BLL;
+﻿using BLL;
 using Entities;
+using System;
+using System.Windows.Forms;
 
 namespace WindowsForms
 {
@@ -15,7 +15,6 @@ namespace WindowsForms
         private CountriesManager _countriesManager = new CountriesManager();
         private ProvincesManager _provincesManager = new ProvincesManager();
         private CitiesManager _citiesManager = new CitiesManager();
-        private ImagesManager _imagesManager = new ImagesManager();
 
         //CONSTRUCT
 
@@ -64,19 +63,19 @@ namespace WindowsForms
 
             if (taxCodePrefixTextBox.Text != "" && taxCodeSuffixTextBox.Text == "")
             {
-                Validations.error("Además de un prefijo, el CUIL o CUIT requiere de un sufijo.");
+                Validations.error("El CUIL/CUIT está incompleto.");
                 return false;
             }
 
             if (taxCodePrefixTextBox.Text == "" && taxCodeSuffixTextBox.Text != "")
             {
-                Validations.error("Además de un sufijo, el CUIL o CUIT requiere de un prefijo.");
+                Validations.error("El CUIL/CUIT está incompleto.");
                 return false;
             }
 
             if (taxCodeNumberTextBox.Text == "" && (taxCodePrefixTextBox.Text != "" || taxCodeSuffixTextBox.Text != ""))
             {
-                Validations.error("Además de un prefijo y un sufijo, el CUIL o CUIT requiere de un número de DNI.");
+                Validations.error("El CUIL/CUIT está incompleto.");
                 return false;
             }
 
@@ -171,17 +170,17 @@ namespace WindowsForms
             activeStatusCheckBox.Checked = _customer.ActiveStatus;
             emailTextBox.Text = _customer.Email;
 
-            if (birthDateTimePicker.MinDate < _customer.Birth && _customer.Birth < birthDateTimePicker.MaxDate) // Si tiene, mapear Birth
+            if (birthDateTimePicker.MinDate < _customer.Birth && _customer.Birth < birthDateTimePicker.MaxDate)
                 birthDateTimePicker.Value = DateTime.Parse(_customer.Birth.ToShortDateString());
 
-            if (0 < _customer.TaxCode.TaxCodeId) // Si tiene, mapear TaxCode
+            if (0 < _customer.TaxCode.TaxCodeId)
             {
                 taxCodePrefixTextBox.Text = _customer.TaxCode.Prefix;
                 taxCodeNumberTextBox.Text = _customer.TaxCode.Number.ToString();
                 taxCodeSuffixTextBox.Text = _customer.TaxCode.Suffix;
             }
 
-            if (0 < _customer.Adress.City.CityId) // Si tiene, mapear Adress
+            if (0 < _customer.Adress.City.CityId)
             {
                 streetNameTextBox.Text = _customer.Adress.StreetName;
                 streetNumberTextBox.Text = _customer.Adress.StreetNumber.ToString();
@@ -198,7 +197,7 @@ namespace WindowsForms
                 adressCountryComboBox.SelectedIndex = -1;
             }
             
-            if (0 < _customer.Phone.PhoneId) // Si tiene, mapear Phone
+            if (0 < _customer.Phone.PhoneId)
             {
                 phoneCountryComboBox.SelectedValue = _customer.Adress.Country.CountryId;
                 phoneProvinceComboBox.SelectedValue = _customer.Adress.Province.ProvinceId;
@@ -210,19 +209,19 @@ namespace WindowsForms
                 phoneProvinceComboBox.SelectedIndex = -1;
             }
 
-            if (0 < _customer.Person.PersonId) // Si tiene, mapear Person
-            {
-                firstNameTextBox.Text = _customer.Person.FirstName;
-                lastNameTextBox.Text = _customer.Person.LastName;
-            }
-
-            if (0 < _customer.Organization.OrganizationId) // Si tiene, mapear Organization
+            if (0 < _customer.Organization.OrganizationId)
             {
                 organizationNameComboBox.SelectedValue = _customer.Organization.OrganizationId;
                 organizationDescriptionTextBox.Text = _customer.Organization.Description;
+                imageUrlTextBox.Text = _customer.Organization.Image.Url;
             }
 
-            imageUrlTextBox.Text = _imagesManager.readIndividualImage(_customer);
+            if (0 < _customer.Person.PersonId)
+            {
+                firstNameTextBox.Text = _customer.Person.FirstName;
+                lastNameTextBox.Text = _customer.Person.LastName;
+                imageUrlTextBox.Text = _customer.Person.Image.Url;
+            }
         }
 
         private void mapBusinessPartner()
@@ -283,33 +282,26 @@ namespace WindowsForms
 
             if (firstNameTextBox.Text != "")
             {
-            _customer.Person.FirstName = firstNameTextBox.Text;
-            _customer.Person.LastName = lastNameTextBox.Text;
+                _customer.Person.FirstName = firstNameTextBox.Text;
+                _customer.Person.LastName = lastNameTextBox.Text;
+                _customer.Person.Image.Url = imageUrlTextBox.Text;
             }
             else
             {
+                _customer.Person.Image = null;
                 _customer.Person = null;
             }
 
             if (organizationNameComboBox.Text != "")
             {
-            _customer.Organization.Name = organizationNameComboBox.Text;
-            _customer.Organization.Description = organizationDescriptionTextBox.Text;
-            }
-            else
-            {
-                _customer.Organization = null;
-            }
-
-            if (_customer.isPerson())
-            {
-                _customer.Person.Image.Url = imageUrlTextBox.Text;
-                _customer.Organization.Image.Url = "";
-            }
-            else
-            {
+                _customer.Organization.Name = organizationNameComboBox.Text;
+                _customer.Organization.Description = organizationDescriptionTextBox.Text;
                 _customer.Organization.Image.Url = imageUrlTextBox.Text;
-                _customer.Person.Image.Url = "";
+            }
+            else
+            {
+                _customer.Organization.Image = null;
+                _customer.Organization = null;
             }
 
             _customer.PaymentMethod = paymentMethodComboBox.Text;
@@ -327,13 +319,13 @@ namespace WindowsForms
                 birthDateTimePicker.Value = birthDateTimePicker.MinDate;
                 bindComboBoxes();
 
-                if (_customer == null) // Se está agregando un registro
+                if (_customer == null)
                 {
                     _customer = new Customer();
                     activeStatusCheckBox.Enabled = false;
                     clearComboBoxes();
                 }
-                else // Se está editando un registro
+                else
                 {
                     mapCustomer();
                     Functions.loadImage(profilePictureBox, imageUrlTextBox.Text);
@@ -355,9 +347,13 @@ namespace WindowsForms
                 setCustomer();
 
                 if (0 < _customer.CustomerId)
-                    _customersManager.edit(_customer); // Se está editando un registro
+                {
+                    _customersManager.edit(_customer);
+                }
                 else
-                    _customersManager.add(_customer); // Se está agregando un registro
+                {
+                    _customersManager.add(_customer);
+                }
 
                 MessageBox.Show("Registro guardado exitosamente.");
                 Close();

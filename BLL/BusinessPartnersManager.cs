@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using DAL;
+﻿using DAL;
 using Entities;
+using System;
 
 namespace BLL
 {
@@ -14,7 +13,7 @@ namespace BLL
 
         // METHODS
 
-        public BusinessPartner readBusinessPartner(int businessPartnerId)
+        public BusinessPartner read(int businessPartnerId)
         {
             BusinessPartner businessPartner = new BusinessPartner();
 
@@ -29,10 +28,14 @@ namespace BLL
                     businessPartner.BusinessPartnerId = businessPartnerId;
 
                     if (!(_database.Reader["PaymentMethod"] is DBNull))
+                    {
                         businessPartner.PaymentMethod = (string)_database.Reader["PaymentMethod"];
+                    }
 
                     if (!(_database.Reader["InvoiceCategory"] is DBNull))
+                    {
                         businessPartner.InvoiceCategory = (string)_database.Reader["InvoiceCategory"];
+                    }
 
                     businessPartner.IndividualId = (int)_database.Reader["IndividualId"];
                 }
@@ -46,7 +49,7 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            Individual individual = _individualsManager.readIndividual(businessPartner.IndividualId);
+            Individual individual = _individualsManager.read(businessPartner.IndividualId);
             Functions.assign(businessPartner, individual);
 
             return businessPartner;

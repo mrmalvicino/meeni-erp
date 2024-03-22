@@ -99,9 +99,8 @@ go
 create table TaxCodes(
 	TaxCodeId int primary key identity(1,1) not null,
 	Prefix varchar(10) null,
-	Number varchar(20) not null,
+	Number varchar(20) unique not null,
 	Suffix varchar(10) null
-	Constraint UC_Prefix_Number_Suffix unique (Prefix, Number, Suffix)
 )
 go
 
@@ -128,7 +127,8 @@ create table Adresses(
 	StreetNumber varchar(10) not null,
 	Flat varchar(30) null,
 	Details varchar(300) null,
-	CityId smallint foreign key references Cities(CityId) not null
+	CityId smallint foreign key references Cities(CityId) not null,
+	Constraint UC_Adress unique (StreetName, StreetNumber, CityId)
 )
 go
 
@@ -149,7 +149,7 @@ go
 
 create table Phones(
 	PhoneId int primary key identity(1,1) not null,
-	Number varchar(20) not null,
+	Number varchar(20) unique not null,
 	ProvinceId smallint foreign key references Provinces(ProvinceId) not null
 )
 go
@@ -232,7 +232,8 @@ create table People(
 	PersonId int primary key identity(1,1) not null,
 	FirstName varchar(30) not null,
 	LastName varchar(30) not null,
-	ImageId int foreign key references Images(ImageId) null
+	ImageId int foreign key references Images(ImageId) null,
+	Constraint UC_Person unique (FirstName, LastName, ImageId)
 )
 go
 
