@@ -19,7 +19,7 @@ namespace Entities
 
         public override string ToString()
         {
-            if (Name != "")
+            if (Name != "" && Name != null)
                 return Name;
             else
                 return "";

@@ -1,6 +1,7 @@
 ﻿using DAL;
 using Entities;
 using System;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace BLL
 {
@@ -107,11 +108,7 @@ namespace BLL
             try
             {
                 _database.setQuery("insert into Adresses (StreetName, StreetNumber, Flat, Details, CityId) values (@StreetName, @StreetNumber, @Flat, @Details, @CityId)");
-                _database.setParameter("@StreetName", adress.StreetName);
-                _database.setParameter("@StreetNumber", adress.StreetNumber);
-                _database.setParameter("@Flat", adress.Flat);
-                _database.setParameter("@Details", adress.Details);
-                _database.setParameter("@CityId", adress.City.CityId);
+                setParameters(adress);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -182,11 +179,7 @@ namespace BLL
             {
                 _database.setQuery("update Adresses set StreetName = @StreetName, StreetNumber = @StreetNumber, Flat = @Flat, Details = @Details, CityId = @CityId where AdressId = @AdressId");
                 _database.setParameter("@AdressId", adress.AdressId);
-                _database.setParameter("@StreetName", adress.StreetName);
-                _database.setParameter("@StreetNumber", adress.StreetNumber);
-                _database.setParameter("@Flat", adress.Flat);
-                _database.setParameter("@Details", adress.Details);
-                _database.setParameter("@CityId", adress.City.CityId);
+                setParameters(adress);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -226,6 +219,54 @@ namespace BLL
             }
 
             return adress.AdressId;
+        }
+
+        private void setParameters(Adress adress)
+        {
+            if (Functions.hasData(adress.StreetName))
+            {
+                _database.setParameter("@StreetName", adress.StreetName);
+            }
+            else
+            {
+                _database.setParameter("@StreetName", DBNull.Value);
+            }
+
+            if (Functions.hasData(adress.StreetNumber))
+            {
+                _database.setParameter("@StreetNumber", adress.StreetNumber);
+            }
+            else
+            {
+                _database.setParameter("@StreetNumber", DBNull.Value);
+            }
+
+            if (Functions.hasData(adress.Flat))
+            {
+                _database.setParameter("@Flat", adress.Flat);
+            }
+            else
+            {
+                _database.setParameter("@Flat", DBNull.Value);
+            }
+
+            if (Functions.hasData(adress.Details))
+            {
+                _database.setParameter("@Details", adress.Details);
+            }
+            else
+            {
+                _database.setParameter("@Details", DBNull.Value);
+            }
+
+            if (adress.City != null)
+            {
+                _database.setParameter("@CityId", adress.City.CityId);
+            }
+            else
+            {
+                _database.setParameter("@CityId", DBNull.Value);
+            }
         }
     }
 }

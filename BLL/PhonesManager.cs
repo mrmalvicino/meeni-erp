@@ -1,6 +1,7 @@
 ﻿using DAL;
 using Entities;
 using System;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace BLL
 {
@@ -74,8 +75,7 @@ namespace BLL
             try
             {
                 _database.setQuery("insert into Phones (Number, ProvinceId) values (@Number, @ProvinceId)");
-                _database.setParameter("@Number", phone.Number);
-                _database.setParameter("@ProvinceId", phone.Province.ProvinceId);
+                setParameters(phone);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -94,8 +94,7 @@ namespace BLL
             {
                 _database.setQuery("update Phones set Number = @Number, ProvinceId = @ProvinceId where PhoneId = @PhoneId");
                 _database.setParameter("@PhoneId", phone.PhoneId);
-                _database.setParameter("@Number", phone.Number);
-                _database.setParameter("@ProvinceId", phone.Province.ProvinceId);
+                setParameters(phone);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -133,6 +132,27 @@ namespace BLL
             }
 
             return phone.PhoneId;
+        }
+
+        private void setParameters(Phone phone)
+        {
+            if (Functions.hasData(phone.Number))
+            {
+                _database.setParameter("@Number", phone.Number);
+            }
+            else
+            {
+                _database.setParameter("@Number", DBNull.Value);
+            }
+
+            if (phone.Province != null)
+            {
+                _database.setParameter("@ProvinceId", phone.Province.ProvinceId);
+            }
+            else
+            {
+                _database.setParameter("@ProvinceId", DBNull.Value);
+            }
         }
     }
 }

@@ -54,17 +54,17 @@ namespace Entities
 
         public override string ToString()
         {
-            if (Person != null)
+            if (Person != null && Person.ToString() != "")
             {
                 return Person.ToString();
             }
 
-            if (Organization != null)
+            if (Organization != null && Organization.ToString() != "")
             {
                 return Organization.ToString();
             }
 
-            return IndividualId.ToString();
+            return "IndividualId = " + IndividualId.ToString();
         }
     }
 }

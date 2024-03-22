@@ -2,6 +2,7 @@
 using Entities;
 using System;
 using System.Collections.Generic;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace BLL
 {
@@ -61,13 +62,12 @@ namespace BLL
         public void add(Customer customer)
         {
             _businessPartnersManager.add(customer);
-            int businessPartnerId = Functions.getLastId("BusinessPartners");
+            customer.BusinessPartnerId = Functions.getLastId("BusinessPartners");
 
             try
             {
                 _database.setQuery("insert into Customers (SalesAmount, BusinessPartnerId) values (@SalesAmount, @BusinessPartnerId)");
-                _database.setParameter("@SalesAmount", customer.SalesAmount);
-                _database.setParameter("@BusinessPartnerId", businessPartnerId);
+                setParameters(customer);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -88,8 +88,7 @@ namespace BLL
             {
                 _database.setQuery("update Customers set SalesAmount = @SalesAmount, BusinessPartnerId = @BusinessPartnerId where CustomerId = @CustomerId");
                 _database.setParameter("@CustomerId", customer.CustomerId);
-                _database.setParameter("@SalesAmount", customer.SalesAmount);
-                _database.setParameter("@BusinessPartnerId", customer.BusinessPartnerId);
+                setParameters(customer);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -120,6 +119,12 @@ namespace BLL
             }
 
             _businessPartnersManager.delete(customer);
+        }
+
+        private void setParameters(Customer customer)
+        {
+            _database.setParameter("@SalesAmount", customer.SalesAmount);
+            _database.setParameter("@BusinessPartnerId", customer.BusinessPartnerId);
         }
     }
 }

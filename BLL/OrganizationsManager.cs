@@ -87,8 +87,7 @@ namespace BLL
             try
             {
                 _database.setQuery("insert into Organizations (OrganizationName, OrganizationDescription) values (@OrganizationName, @OrganizationDescription)");
-                _database.setParameter("@OrganizationName", organization.Name);
-                _database.setParameter("@OrganizationDescription", organization.Description);
+                setParameters(organization);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -107,8 +106,7 @@ namespace BLL
             {
                 _database.setQuery("update Organizations set OrganizationName = @OrganizationName, OrganizationDescription = @OrganizationDescription where OrganizationId = @OrganizationId");
                 _database.setParameter("@OrganizationId", organization.OrganizationId);
-                _database.setParameter("@OrganizationName", organization.Name);
-                _database.setParameter("@OrganizationDescription", organization.Description);
+                setParameters(organization);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -146,6 +144,27 @@ namespace BLL
             }
 
             return organization.OrganizationId;
+        }
+
+        private void setParameters(Organization organization)
+        {
+            if (Functions.hasData(organization.Name))
+            {
+                _database.setParameter("@OrganizationName", organization.Name);
+            }
+            else
+            {
+                _database.setParameter("@OrganizationName", DBNull.Value);
+            }
+
+            if (Functions.hasData(organization.Description))
+            {
+                _database.setParameter("@OrganizationDescription", organization.Description);
+            }
+            else
+            {
+                _database.setParameter("@OrganizationDescription", DBNull.Value);
+            }
         }
     }
 }

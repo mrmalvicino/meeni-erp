@@ -47,8 +47,7 @@ namespace BLL
             try
             {
                 _database.setQuery("insert into People (FirstName, LastName) values (@FirstName, @LastName)");
-                _database.setParameter("@FirstName", person.FirstName);
-                _database.setParameter("@LastName", person.LastName);
+                setParameters(person);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -67,8 +66,7 @@ namespace BLL
             {
                 _database.setQuery("update People set FirstName = @FirstName, LastName = @LastName where PersonId = @PersonId");
                 _database.setParameter("@PersonId", person.PersonId);
-                _database.setParameter("@FirstName", person.FirstName);
-                _database.setParameter("@LastName", person.LastName);
+                setParameters(person);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -107,6 +105,27 @@ namespace BLL
             }
 
             return person.PersonId;
+        }
+
+        private void setParameters(Person person)
+        {
+            if (Functions.hasData(person.FirstName))
+            {
+                _database.setParameter("@FirstName", person.FirstName);
+            }
+            else
+            {
+                _database.setParameter("@FirstName", DBNull.Value);
+            }
+
+            if (Functions.hasData(person.LastName))
+            {
+                _database.setParameter("@LastName", person.LastName);
+            }
+            else
+            {
+                _database.setParameter("@LastName", DBNull.Value);
+            }
         }
     }
 }

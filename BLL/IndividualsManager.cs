@@ -285,8 +285,24 @@ namespace BLL
         private void setParameters(Individual individual)
         {
             _database.setParameter("@ActiveStatus", individual.ActiveStatus);
-            _database.setParameter("@Email", individual.Email);
-            _database.setParameter("@Birth", individual.Birth);
+
+            if (Functions.hasData(individual.Email))
+            {
+                _database.setParameter("@Email", individual.Email);
+            }
+            else
+            {
+                _database.setParameter("@Email", DBNull.Value);
+            }
+
+            if (individual.Birth != new DateTime(9000, 1, 1))
+            {
+                _database.setParameter("@Birth", individual.Birth);
+            }
+            else
+            {
+                _database.setParameter("@Birth", DBNull.Value);
+            }
 
             if (individual.TaxCode != null)
             {

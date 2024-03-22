@@ -1,6 +1,7 @@
 ﻿using DAL;
 using Entities;
 using System;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace BLL
 {
@@ -59,14 +60,12 @@ namespace BLL
         public void add(BusinessPartner businessPartner)
         {
             _individualsManager.add(businessPartner);
-            int individualId = Functions.getLastId("Individuals");
+            businessPartner.IndividualId = Functions.getLastId("Individuals");
 
             try
             {
                 _database.setQuery("insert into BusinessPartners (PaymentMethod, InvoiceCategory, IndividualId) values (@PaymentMethod, @InvoiceCategory, @IndividualId)");
-                _database.setParameter("@PaymentMethod", businessPartner.PaymentMethod);
-                _database.setParameter("@InvoiceCategory", businessPartner.InvoiceCategory);
-                _database.setParameter("@IndividualId", individualId);
+                setParameters(businessPartner);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -87,9 +86,7 @@ namespace BLL
             {
                 _database.setQuery("update BusinessPartners set PaymentMethod = @PaymentMethod, InvoiceCategory = @InvoiceCategory, IndividualId = @IndividualId where BusinessPartnerId = @BusinessPartnerId");
                 _database.setParameter("@BusinessPartnerId", businessPartner.BusinessPartnerId);
-                _database.setParameter("@PaymentMethod", businessPartner.PaymentMethod);
-                _database.setParameter("@InvoiceCategory", businessPartner.InvoiceCategory);
-                _database.setParameter("@IndividualId", businessPartner.IndividualId);
+                setParameters(businessPartner);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -120,6 +117,29 @@ namespace BLL
             }
 
             _individualsManager.delete(businessPartner);
+        }
+
+        private void setParameters(BusinessPartner businessPartner)
+        {
+            if (Functions.hasData(businessPartner.PaymentMethod))
+            {
+                _database.setParameter("@PaymentMethod", businessPartner.PaymentMethod);
+            }
+            else
+            {
+                _database.setParameter("@PaymentMethod", DBNull.Value);
+            }
+
+            if (Functions.hasData(businessPartner.InvoiceCategory))
+            {
+                _database.setParameter("@InvoiceCategory", businessPartner.InvoiceCategory);
+            }
+            else
+            {
+                _database.setParameter("@InvoiceCategory", DBNull.Value);
+            }
+
+            _database.setParameter("@IndividualId", businessPartner.IndividualId);
         }
     }
 }

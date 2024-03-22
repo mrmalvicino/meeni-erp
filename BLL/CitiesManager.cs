@@ -2,6 +2,7 @@
 using Entities;
 using System;
 using System.Collections.Generic;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace BLL
 {
@@ -61,9 +62,7 @@ namespace BLL
             try
             {
                 _database.setQuery("insert into Cities (CityName, ZipCode, ProvinceId) values (@CityName, @ZipCode, @ProvinceId)");
-                _database.setParameter("@CityName", city.Name);
-                _database.setParameter("@ZipCode", city.ZipCode);
-                _database.setParameter("@ProvinceId", provinceId);
+                setParameters(city, provinceId);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -82,9 +81,7 @@ namespace BLL
             {
                 _database.setQuery("update Cities set CityName = @CityName, ZipCode = @ZipCode, ProvinceId = @ProvinceId where CityId = @CityId");
                 _database.setParameter("@CityId", city.CityId);
-                _database.setParameter("@CityName", city.Name);
-                _database.setParameter("@ZipCode", city.ZipCode);
-                _database.setParameter("@ProvinceId", provinceId);
+                setParameters(city, provinceId);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -120,6 +117,39 @@ namespace BLL
             }
 
             return city.CityId;
+        }
+
+        private void setParameters(City city, int provinceId)
+        {
+            if (Functions.hasData(city.Name))
+            {
+                _database.setParameter("@CityName", city.Name);
+            }
+            else
+            {
+                _database.setParameter("@CityName", DBNull.Value);
+            }
+
+            if (Functions.hasData(city.ZipCode))
+            {
+                _database.setParameter("@ZipCode", city.ZipCode);
+            }
+            else
+            {
+                _database.setParameter("@ZipCode", DBNull.Value);
+            }
+
+            if (0 < provinceId)
+            {
+                _database.setParameter("@ProvinceId", provinceId);
+            }
+            else
+            {
+                _database.setParameter("@ProvinceId", DBNull.Value);
+            }
+            
+            
+            
         }
     }
 }

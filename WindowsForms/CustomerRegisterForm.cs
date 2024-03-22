@@ -239,33 +239,17 @@ namespace WindowsForms
             mapBusinessPartner();
         }
 
-        private void setCustomer()
+        private void setIndividual()
         {
             _customer.ActiveStatus = activeStatusCheckBox.Checked;
-
-            if (Validations.hasData(emailTextBox.Text))
-            {
-                _customer.Email = emailTextBox.Text;
-            }
-
-            if (birthDateTimePicker.Value < DateTime.Now)
-            {
-                _customer.Birth = birthDateTimePicker.Value;
-            }
+            _customer.Email = emailTextBox.Text;
+            _customer.Birth = birthDateTimePicker.Value;
 
             if (Validations.hasData(taxCodeNumberTextBox.Text))
             {
+                _customer.TaxCode.Prefix = taxCodePrefixTextBox.Text;
                 _customer.TaxCode.Number = taxCodeNumberTextBox.Text;
-
-                if (Validations.hasData(taxCodePrefixTextBox.Text))
-                {
-                    _customer.TaxCode.Prefix = taxCodePrefixTextBox.Text;
-                }
-
-                if (Validations.hasData(taxCodeSuffixTextBox.Text))
-                {
-                    _customer.TaxCode.Suffix = taxCodeSuffixTextBox.Text;
-                }
+                _customer.TaxCode.Suffix = taxCodeSuffixTextBox.Text;
             }
             else
             {
@@ -299,7 +283,7 @@ namespace WindowsForms
                 _customer.Phone = null;
             }
 
-            if (Validations.hasData(firstNameTextBox.Text) && Validations.hasData(lastNameTextBox.Text))
+            if (Validations.hasData(firstNameTextBox.Text))
             {
                 _customer.Person.FirstName = firstNameTextBox.Text;
                 _customer.Person.LastName = lastNameTextBox.Text;
@@ -312,11 +296,7 @@ namespace WindowsForms
             if (Validations.hasData(organizationNameComboBox.Text))
             {
                 _customer.Organization.Name = organizationNameComboBox.Text;
-
-                if (Validations.hasData(organizationDescriptionTextBox.Text))
-                {
-                    _customer.Organization.Description = organizationDescriptionTextBox.Text;
-                }
+                _customer.Organization.Description = organizationDescriptionTextBox.Text;
             }
             else
             {
@@ -331,16 +311,18 @@ namespace WindowsForms
             {
                 _customer.Image = null;
             }
+        }
 
-            if (Validations.hasData(paymentMethodComboBox.Text))
-            {
-                _customer.PaymentMethod = paymentMethodComboBox.Text;
-            }
+        private void setBusinessPartner()
+        {
+            setIndividual();
+            _customer.PaymentMethod = paymentMethodComboBox.Text;
+            _customer.InvoiceCategory = invoiceCategoryComboBox.Text;
+        }
 
-            if (Validations.hasData(invoiceCategoryComboBox.Text))
-            {
-                _customer.InvoiceCategory = invoiceCategoryComboBox.Text;
-            }
+        private void setCustomer()
+        {
+            setBusinessPartner();
         }
 
         // EVENTS

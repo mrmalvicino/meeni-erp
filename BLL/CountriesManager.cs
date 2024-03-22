@@ -51,9 +51,7 @@ namespace BLL
             try
             {
                 _database.setQuery("insert into Countries (CountryName, PhoneAreaCode, CurrencyId) values (@CountryName, @PhoneAreaCode, @CurrencyId)");
-                _database.setParameter("@CountryName", country.Name);
-                _database.setParameter("@PhoneAreaCode", country.PhoneAreaCode);
-                _database.setParameter("@CurrencyId", country.Currency.CurrencyId);
+                setParameters(country);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -72,9 +70,7 @@ namespace BLL
             {
                 _database.setQuery("update Countries set CountryName = @CountryName, PhoneAreaCode = @PhoneAreaCode, CurrencyId = @CurrencyId where CountryId = @CountryId");
                 _database.setParameter("@CountryId", country.CountryId);
-                _database.setParameter("@CountryName", country.Name);
-                _database.setParameter("@PhoneAreaCode", country.PhoneAreaCode);
-                _database.setParameter("@CurrencyId", country.Currency.CurrencyId);
+                setParameters(country);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -135,6 +131,36 @@ namespace BLL
             }
 
             return country.CountryId;
+        }
+
+        private void setParameters(Country country)
+        {
+            if (Functions.hasData(country.Name))
+            {
+                _database.setParameter("@CountryName", country.Name);
+            }
+            else
+            {
+                _database.setParameter("@CountryName", DBNull.Value);
+            }
+
+            if (Functions.hasData(country.PhoneAreaCode))
+            {
+                _database.setParameter("@PhoneAreaCode", country.PhoneAreaCode);
+            }
+            else
+            {
+                _database.setParameter("@PhoneAreaCode", DBNull.Value);
+            }
+
+            if (country.Currency != null)
+            {
+                _database.setParameter("@CurrencyId", country.Currency.CurrencyId);
+            }
+            else
+            {
+                _database.setParameter("@CurrencyId", DBNull.Value);
+            }
         }
     }
 }

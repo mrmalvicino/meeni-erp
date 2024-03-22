@@ -1,6 +1,7 @@
 ﻿using System;
 using DAL;
 using Entities;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace BLL
 {
@@ -56,9 +57,7 @@ namespace BLL
             try
             {
                 _database.setQuery("insert into TaxCodes (Prefix, Number, Suffix) values (@Prefix, @Number, @Suffix)");
-                _database.setParameter("@Prefix", taxCode.Prefix);
-                _database.setParameter("@Number", taxCode.Number);
-                _database.setParameter("@Suffix", taxCode.Suffix);
+                setParameters(taxCode);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -77,9 +76,7 @@ namespace BLL
             {
                 _database.setQuery("update TaxCodes set Prefix = @Prefix, Number = @Number, Suffix = @Suffix where TaxCodeId = @TaxCodeId");
                 _database.setParameter("@TaxCodeId", taxCode.TaxCodeId);
-                _database.setParameter("@Prefix", taxCode.Prefix);
-                _database.setParameter("@Number", taxCode.Number);
-                _database.setParameter("@Suffix", taxCode.Suffix);
+                setParameters(taxCode);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -117,6 +114,36 @@ namespace BLL
             }
 
             return taxCode.TaxCodeId;
+        }
+
+        private void setParameters(TaxCode taxCode)
+        {
+            if (Functions.hasData(taxCode.Prefix))
+            {
+                _database.setParameter("@Prefix", taxCode.Prefix);
+            }
+            else
+            {
+                _database.setParameter("@Prefix", DBNull.Value);
+            }
+
+            if (Functions.hasData(taxCode.Number))
+            {
+                _database.setParameter("@Number", taxCode.Number);
+            }
+            else
+            {
+                _database.setParameter("@Number", DBNull.Value);
+            }
+
+            if (Functions.hasData(taxCode.Suffix))
+            {
+                _database.setParameter("@Suffix", taxCode.Suffix);
+            }
+            else
+            {
+                _database.setParameter("@Suffix", DBNull.Value);
+            }
         }
     }
 }

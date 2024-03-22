@@ -45,7 +45,7 @@ namespace BLL
             try
             {
                 _database.setQuery("insert into Images (ImageUrl) values (@ImageUrl)");
-                _database.setParameter("@ImageUrl", image.Url);
+                setParameters(image);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -64,7 +64,7 @@ namespace BLL
             {
                 _database.setQuery("update Images set ImageUrl = @ImageUrl where ImageId = @ImageId");
                 _database.setParameter("@ImageId", image.ImageId);
-                _database.setParameter("@ImageUrl", image.Url);
+                setParameters(image);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -100,6 +100,18 @@ namespace BLL
             }
 
             return 0;
+        }
+
+        private void setParameters(Image image)
+        {
+            if (Functions.hasData(image.Url))
+            {
+                _database.setParameter("@ImageUrl", image.Url);
+            }
+            else
+            {
+                _database.setParameter("@ImageUrl", DBNull.Value);
+            }
         }
     }
 }

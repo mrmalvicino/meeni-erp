@@ -2,6 +2,7 @@
 using Entities;
 using System;
 using System.Collections.Generic;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace BLL
 {
@@ -57,9 +58,7 @@ namespace BLL
             try
             {
                 _database.setQuery("insert into Provinces (ProvinceName, PhoneAreaCode, CountryId) values (@ProvinceName, @PhoneAreaCode, @CountryId)");
-                _database.setParameter("@ProvinceName", province.Name);
-                _database.setParameter("@PhoneAreaCode", province.PhoneAreaCode);
-                _database.setParameter("@CountryId", countryId);
+                setParameters(province, countryId);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -78,9 +77,7 @@ namespace BLL
             {
                 _database.setQuery("update Provinces set ProvinceName = @ProvinceName, PhoneAreaCode = @PhoneAreaCode, CountryId = @CountryId where ProvinceId = @ProvinceId");
                 _database.setParameter("@ProvinceId", province.ProvinceId);
-                _database.setParameter("@ProvinceName", province.Name);
-                _database.setParameter("@PhoneAreaCode", province.PhoneAreaCode);
-                _database.setParameter("@CountryId", countryId);
+                setParameters(province, countryId);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -141,6 +138,36 @@ namespace BLL
             }
 
             return province.ProvinceId;
+        }
+
+        private void setParameters(Province province, int countryId)
+        {
+            if (Functions.hasData(province.Name))
+            {
+                _database.setParameter("@ProvinceName", province.Name);
+            }
+            else
+            {
+                _database.setParameter("@ProvinceName", DBNull.Value);
+            }
+
+            if (Functions.hasData(province.PhoneAreaCode))
+            {
+                _database.setParameter("@PhoneAreaCode", province.PhoneAreaCode);
+            }
+            else
+            {
+                _database.setParameter("@PhoneAreaCode", DBNull.Value);
+            }
+
+            if (0 < countryId)
+            {
+                _database.setParameter("@CountryId", countryId);
+            }
+            else
+            {
+                _database.setParameter("@CountryId", DBNull.Value);
+            }            
         }
     }
 }

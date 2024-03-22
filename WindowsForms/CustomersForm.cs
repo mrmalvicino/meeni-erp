@@ -150,7 +150,7 @@ namespace WindowsForms
 
         private void loadProfile(int id, string name, string description, string phone, string email, string adress)
         {
-            idTextBox.Text = id.ToString();
+            idTextBox.Text = "Cliente N⁰ " + id.ToString();
             nameTextBox.Text = name;
             descriptionTextBox.Text = description;
             phoneTextBox.Text = phone;
