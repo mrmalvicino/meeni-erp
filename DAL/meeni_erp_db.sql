@@ -1,4 +1,5 @@
 create database meeni_erp_db
+collate Latin1_General_100_CI_AS_SC_UTF8;
 go
 
 use meeni_erp_db

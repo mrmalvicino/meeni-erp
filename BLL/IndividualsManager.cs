@@ -1,6 +1,6 @@
-﻿using DAL;
+﻿using System;
+using DAL;
 using Entities;
-using System;
 
 namespace BLL
 {

@@ -1,9 +1,7 @@
-﻿using DAL;
-using Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Runtime.CompilerServices.RuntimeHelpers;
+using DAL;
+using Entities;
 
 namespace BLL
 {

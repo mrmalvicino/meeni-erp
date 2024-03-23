@@ -1,10 +1,9 @@
-﻿using BLL;
-using Entities;
-using System;
+﻿using System;
 using System.Windows.Forms;
 using System.Configuration;
 using System.Collections.Generic;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using BLL;
+using Entities;
 
 namespace WindowsForms
 {

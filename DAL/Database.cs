@@ -21,7 +21,7 @@ namespace DAL
 
         public Database()
         {
-            _connectionString = ConfigurationManager.ConnectionStrings["connection_string"].ToString();
+            _connectionString = ConfigurationManager.ConnectionStrings["mac"].ToString();
             _connection = new SqlConnection(_connectionString);
             _command = new SqlCommand();
         }
