@@ -29,6 +29,11 @@ namespace WindowsForms
 
         public static bool hasData(string text)
         {
+            if (text == null)
+            {
+                return false;
+            }
+
             if (text == "")
             {
                 return false;

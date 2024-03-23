@@ -91,6 +91,11 @@ namespace BLL
 
         public int getId(TaxCode taxCode)
         {
+            if (taxCode == null)
+            {
+                return 0;
+            }
+
             taxCode.TaxCodeId = 0;
 
             try

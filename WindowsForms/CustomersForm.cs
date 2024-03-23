@@ -4,6 +4,7 @@ using System;
 using System.Windows.Forms;
 using System.Configuration;
 using System.Collections.Generic;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace WindowsForms
 {
@@ -96,7 +97,7 @@ namespace WindowsForms
                 editButton.Enabled = false;
                 deleteButton.Enabled = false;
                 exportCSVButton.Enabled = false;
-                loadProfile(-1, "N/A", "N/A", "N/A", "N/A", "N/A");
+                loadProfile();
                 Functions.loadImage(pictureBox, "");
             }
         }
@@ -148,14 +149,58 @@ namespace WindowsForms
             dataGridView.DataBindingComplete += dataGridView_DataBindingComplete;
         }
 
-        private void loadProfile(int id, string name, string description, string phone, string email, string adress)
+        private void loadProfile(Customer customer = null)
         {
-            idTextBox.Text = "Cliente N⁰ " + id.ToString();
-            nameTextBox.Text = name;
-            descriptionTextBox.Text = description;
-            phoneTextBox.Text = phone;
-            emailTextBox.Text = email;
-            adressTextBox.Text = adress;
+            if (customer != null)
+            {
+                idTextBox.Text = "Cliente N⁰ " + customer.CustomerId.ToString();
+                nameTextBox.Text = customer.ToString();
+
+                if (Validations.hasData(customer.Organization.Description))
+                {
+                    descriptionTextBox.Text = customer.Organization.Description;
+                }
+                else
+                {
+                    descriptionTextBox.Text = "";
+                }
+
+                if (customer.Phone != null)
+                {
+                    phoneTextBox.Text = customer.Phone.ToString();
+                }
+                else
+                {
+                    phoneTextBox.Text = "";
+                }
+
+                if (Validations.hasData(customer.Email))
+                {
+                    emailTextBox.Text = customer.Email;
+                }
+                else
+                {
+                    emailTextBox.Text = "";
+                }
+
+                if (customer.Adress != null)
+                {
+                    adressTextBox.Text = customer.Adress.ToString();
+                }
+                else
+                {
+                    adressTextBox.Text = "";
+                }
+            }
+            else
+            {
+                idTextBox.Text = "No hay clientes disponibles";
+                nameTextBox.Text = "";
+                descriptionTextBox.Text = "";
+                phoneTextBox.Text = "";
+                emailTextBox.Text = "";
+                adressTextBox.Text = "";
+            }
         }
 
         // EVENTS
@@ -172,7 +217,7 @@ namespace WindowsForms
             if (dataGridView.CurrentRow != null)
             {
                 _customer = (Customer)dataGridView.CurrentRow.DataBoundItem;
-                loadProfile(_customer.CustomerId, _customer.ToString(), _customer.Organization.Description, _customer.Phone.ToString(), _customer.Email.ToString(), _customer.Adress.ToString());
+                loadProfile(_customer);
                 Functions.loadImage(pictureBox, _customer.Image.Url);
             }
         }

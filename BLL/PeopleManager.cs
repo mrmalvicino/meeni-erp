@@ -2,6 +2,7 @@
 using Entities;
 using System;
 using static System.Net.Mime.MediaTypeNames;
+using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 namespace BLL
 {
@@ -81,6 +82,11 @@ namespace BLL
 
         public int getId(Person person)
         {
+            if (person == null)
+            {
+                return 0;
+            }
+
             person.PersonId = 0;
 
             try

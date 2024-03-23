@@ -2,6 +2,7 @@
 using Entities;
 using System;
 using System.Collections.Generic;
+using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 namespace BLL
 {
@@ -85,6 +86,13 @@ namespace BLL
 
         public int getIdByName(Country country)
         {
+            if (country == null)
+            {
+                return 0;
+            }
+
+            country.CountryId = 0;
+
             try
             {
                 _database.setQuery("select CountryId from Countries where CountryName = @CountryName");
@@ -110,6 +118,13 @@ namespace BLL
 
         public int getIdByCode(Country country)
         {
+            if (country == null)
+            {
+                return 0;
+            }
+
+            country.CountryId = 0;
+
             try
             {
                 _database.setQuery("select CountryId from Countries where PhoneAreaCode = @PhoneAreaCode");

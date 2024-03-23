@@ -194,6 +194,11 @@ namespace BLL
 
         public int getId(Adress adress)
         {
+            if (adress == null)
+            {
+                return 0;
+            }
+
             adress.AdressId = 0;
 
             try

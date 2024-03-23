@@ -3,6 +3,7 @@ using Entities;
 using System;
 using System.Collections.Generic;
 using static System.Net.Mime.MediaTypeNames;
+using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 namespace BLL
 {
@@ -96,6 +97,13 @@ namespace BLL
 
         public int getId(City city)
         {
+            if (city == null)
+            {
+                return 0;
+            }
+
+            city.CityId = 0;
+
             try
             {
                 _database.setQuery("select CityId from Cities where CityName = @CityName");

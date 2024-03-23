@@ -2,6 +2,7 @@
 using Entities;
 using System;
 using System.Collections.Generic;
+using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 namespace BLL
 {
@@ -121,6 +122,11 @@ namespace BLL
 
         public int getId(Organization organization)
         {
+            if (organization == null)
+            {
+                return 0;
+            }
+
             organization.OrganizationId = 0;
 
             try

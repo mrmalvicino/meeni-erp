@@ -3,6 +3,7 @@ using Entities;
 using System;
 using System.Collections.Generic;
 using static System.Net.Mime.MediaTypeNames;
+using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 namespace BLL
 {
@@ -92,6 +93,13 @@ namespace BLL
 
         public int getIdByName(Province province)
         {
+            if (province == null)
+            {
+                return 0;
+            }
+
+            province.ProvinceId = 0;
+
             try
             {
                 _database.setQuery("select ProvinceId from Provinces where ProvinceName = @ProvinceName");
@@ -117,6 +125,13 @@ namespace BLL
 
         public int getIdByCode(Province province)
         {
+            if (province == null)
+            {
+                return 0;
+            }
+
+            province.ProvinceId = 0;
+
             try
             {
                 _database.setQuery("select ProvinceId from Provinces where PhoneAreaCode = @PhoneAreaCode");

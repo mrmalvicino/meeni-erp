@@ -64,7 +64,7 @@ namespace Entities
                 return Organization.ToString();
             }
 
-            return "IndividualId = " + IndividualId.ToString();
+            return "N/A";
         }
     }
 }

@@ -2,6 +2,7 @@
 using Entities;
 using System;
 using static System.Net.Mime.MediaTypeNames;
+using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 namespace BLL
 {
@@ -109,6 +110,11 @@ namespace BLL
 
         public int getId(Phone phone)
         {
+            if (phone == null)
+            {
+                return 0;
+            }
+
             phone.PhoneId = 0;
 
             try

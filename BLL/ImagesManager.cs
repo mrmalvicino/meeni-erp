@@ -1,6 +1,7 @@
 ﻿using DAL;
 using Entities;
 using System;
+using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 namespace BLL
 {
@@ -79,6 +80,13 @@ namespace BLL
 
         public int getId(Image image)
         {
+            if (image == null)
+            {
+                return 0;
+            }
+
+            image.ImageId = 0;
+
             try
             {
                 _database.setQuery("select ImageId from Images where ImageUrl = @ImageUrl");
@@ -87,7 +95,7 @@ namespace BLL
 
                 if (_database.Reader.Read())
                 {
-                    return (int)_database.Reader["ImageId"];
+                    image.ImageId = (int)_database.Reader["ImageId"];
                 }
             }
             catch (Exception ex)
@@ -99,7 +107,7 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            return 0;
+            return image.ImageId;
         }
 
         private void setParameters(Image image)
