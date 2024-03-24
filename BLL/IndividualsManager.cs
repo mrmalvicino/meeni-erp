@@ -156,95 +156,118 @@ namespace BLL
 
         public void edit(Individual individual)
         {
-            int dbTaxCodeId = _taxCodesManager.getId(individual.TaxCode);
-            int dbAdressId = _adressesManager.getId(individual.Adress);
-            int dbPhoneId = _phonesManager.getId(individual.Phone);
-            int dbPersonId = _peopleManager.getId(individual.Person);
-            int dbOrganizationId = _organizationsManager.getId(individual.Organization);
-            int dbImageId = _imagesManager.getId(individual.Image);
+            if (individual.TaxCode != null)
+            {
+                int dbTaxCodeId = _taxCodesManager.getId(individual.TaxCode);
 
-            if (dbTaxCodeId == individual.TaxCode.TaxCodeId)
-            {
-                _taxCodesManager.edit(individual.TaxCode);
-            }
-            else if (dbTaxCodeId == 0)
-            {
-                _taxCodesManager.add(individual.TaxCode);
-                individual.TaxCode.TaxCodeId = Functions.getLastId("TaxCodes");
-            }
-            else
-            {
-                individual.TaxCode.TaxCodeId = dbTaxCodeId;
+                if (dbTaxCodeId == individual.TaxCode.TaxCodeId)
+                {
+                    _taxCodesManager.edit(individual.TaxCode);
+                }
+                else if (dbTaxCodeId == 0)
+                {
+                    _taxCodesManager.add(individual.TaxCode);
+                    individual.TaxCode.TaxCodeId = Functions.getLastId("TaxCodes");
+                }
+                else
+                {
+                    individual.TaxCode.TaxCodeId = dbTaxCodeId;
+                }
             }
 
-            if (dbAdressId == individual.Adress.AdressId)
+            if (individual.Adress != null)
             {
-                _adressesManager.edit(individual.Adress);
-            }
-            else if (dbAdressId == 0)
-            {
-                _adressesManager.add(individual.Adress);
-                individual.Adress.AdressId = Functions.getLastId("Adresses");
-            }
-            else
-            {
-                individual.Adress.AdressId = dbAdressId;
+                int dbAdressId = _adressesManager.getId(individual.Adress);
+
+                if (dbAdressId == individual.Adress.AdressId)
+                {
+                    _adressesManager.edit(individual.Adress);
+                }
+                else if (dbAdressId == 0)
+                {
+                    _adressesManager.add(individual.Adress);
+                    individual.Adress.AdressId = Functions.getLastId("Adresses");
+                }
+                else
+                {
+                    individual.Adress.AdressId = dbAdressId;
+                }
             }
 
-            if (dbPhoneId == individual.Phone.PhoneId)
+            if (individual.Phone != null)
             {
-                _phonesManager.edit(individual.Phone);
-            }
-            else if (dbPhoneId == 0)
-            {
-                _phonesManager.add(individual.Phone);
-                individual.Phone.PhoneId = Functions.getLastId("Phones");
-            }
-            else
-            {
-                individual.Phone.PhoneId = dbPhoneId;
+                int dbPhoneId = _phonesManager.getId(individual.Phone);
+
+                if (dbPhoneId == individual.Phone.PhoneId)
+                {
+                    _phonesManager.edit(individual.Phone);
+                }
+                else if (dbPhoneId == 0)
+                {
+                    _phonesManager.add(individual.Phone);
+                    individual.Phone.PhoneId = Functions.getLastId("Phones");
+                }
+                else
+                {
+                    individual.Phone.PhoneId = dbPhoneId;
+                }
             }
 
-            if (dbPersonId == individual.Person.PersonId)
+            if (individual.Person != null)
             {
-                _peopleManager.edit(individual.Person);
-            }
-            else if (dbPersonId == 0)
-            {
-                _peopleManager.add(individual.Person);
-                individual.Person.PersonId = Functions.getLastId("People");
-            }
-            else
-            {
-                individual.Person.PersonId = dbPersonId;
+                int dbPersonId = _peopleManager.getId(individual.Person);
+
+                if (dbPersonId == individual.Person.PersonId)
+                {
+                    _peopleManager.edit(individual.Person);
+                }
+                else if (dbPersonId == 0)
+                {
+                    _peopleManager.add(individual.Person);
+                    individual.Person.PersonId = Functions.getLastId("People");
+                }
+                else
+                {
+                    individual.Person.PersonId = dbPersonId;
+                }
             }
 
-            if (dbOrganizationId == individual.Organization.OrganizationId)
+            if ( individual.Organization != null)
             {
-                _organizationsManager.edit(individual.Organization);
-            }
-            else if (dbOrganizationId == 0)
-            {
-                _organizationsManager.add(individual.Organization);
-                individual.Organization.OrganizationId = Functions.getLastId("Organizations");
-            }
-            else
-            {
-                individual.Organization.OrganizationId = dbOrganizationId;
+                int dbOrganizationId = _organizationsManager.getId(individual.Organization);
+
+                if (dbOrganizationId == individual.Organization.OrganizationId)
+                {
+                    _organizationsManager.edit(individual.Organization);
+                }
+                else if (dbOrganizationId == 0)
+                {
+                    _organizationsManager.add(individual.Organization);
+                    individual.Organization.OrganizationId = Functions.getLastId("Organizations");
+                }
+                else
+                {
+                    individual.Organization.OrganizationId = dbOrganizationId;
+                }
             }
 
-            if (dbImageId == individual.Image.ImageId)
+            if (individual.Image != null)
             {
-                _imagesManager.edit(individual.Image);
-            }
-            else if (dbImageId == 0)
-            {
-                _imagesManager.add(individual.Image);
-                individual.Image.ImageId = Functions.getLastId("Images");
-            }
-            else
-            {
-                individual.Image.ImageId = dbImageId;
+                int dbImageId = _imagesManager.getId(individual.Image);
+
+                if (dbImageId == individual.Image.ImageId)
+                {
+                    _imagesManager.edit(individual.Image);
+                }
+                else if (dbImageId == 0)
+                {
+                    _imagesManager.add(individual.Image);
+                    individual.Image.ImageId = Functions.getLastId("Images");
+                }
+                else
+                {
+                    individual.Image.ImageId = dbImageId;
+                }
             }
 
             try

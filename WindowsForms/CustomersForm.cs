@@ -53,7 +53,7 @@ namespace WindowsForms
                 dataGridView.Columns["ActiveStatus"].Visible = false;
                 dataGridView.Columns["BusinessPartnerId"].Visible = false;
                 dataGridView.Columns["CustomerId"].Visible = false;
-                dataGridView.Columns["Image"].Visible = false;
+                //dataGridView.Columns["Image"].Visible = false;
 
                 dataGridView.Columns["Person"].Width = 80;
                 dataGridView.Columns["Organization"].Width = 80;
