@@ -158,7 +158,7 @@ namespace BLL
             {
                 _database.setParameter("@CountryName", DBNull.Value);
             }
-
+            
             if (Validations.hasData(country.PhoneAreaCode))
             {
                 _database.setParameter("@PhoneAreaCode", country.PhoneAreaCode);
