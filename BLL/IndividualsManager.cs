@@ -161,14 +161,14 @@ namespace BLL
             {
                 int dbTaxCodeId = _taxCodesManager.getId(individual.TaxCode);
 
-                if (dbTaxCodeId == individual.TaxCode.TaxCodeId)
-                {
-                    _taxCodesManager.edit(individual.TaxCode);
-                }
-                else if (dbTaxCodeId == 0)
+                if (dbTaxCodeId == 0)
                 {
                     _taxCodesManager.add(individual.TaxCode);
                     individual.TaxCode.TaxCodeId = Helper.getLastId("TaxCodes");
+                }
+                else if (dbTaxCodeId == individual.TaxCode.TaxCodeId)
+                {
+                    _taxCodesManager.edit(individual.TaxCode);
                 }
                 else
                 {
@@ -180,14 +180,14 @@ namespace BLL
             {
                 int dbAdressId = _adressesManager.getId(individual.Adress);
 
-                if (dbAdressId == individual.Adress.AdressId)
-                {
-                    _adressesManager.edit(individual.Adress);
-                }
-                else if (dbAdressId == 0)
+                if (dbAdressId == 0)
                 {
                     _adressesManager.add(individual.Adress);
                     individual.Adress.AdressId = Helper.getLastId("Adresses");
+                }
+                else if (dbAdressId == individual.Adress.AdressId)
+                {
+                    _adressesManager.edit(individual.Adress);
                 }
                 else
                 {
@@ -199,14 +199,14 @@ namespace BLL
             {
                 int dbPhoneId = _phonesManager.getId(individual.Phone);
 
-                if (dbPhoneId == individual.Phone.PhoneId)
-                {
-                    _phonesManager.edit(individual.Phone);
-                }
-                else if (dbPhoneId == 0)
+                if (dbPhoneId == 0)
                 {
                     _phonesManager.add(individual.Phone);
                     individual.Phone.PhoneId = Helper.getLastId("Phones");
+                }
+                else if (dbPhoneId == individual.Phone.PhoneId)
+                {
+                    _phonesManager.edit(individual.Phone);
                 }
                 else
                 {
@@ -218,14 +218,14 @@ namespace BLL
             {
                 int dbPersonId = _peopleManager.getId(individual.Person);
 
-                if (dbPersonId == individual.Person.PersonId)
-                {
-                    _peopleManager.edit(individual.Person);
-                }
-                else if (dbPersonId == 0)
+                if (dbPersonId == 0)
                 {
                     _peopleManager.add(individual.Person);
                     individual.Person.PersonId = Helper.getLastId("People");
+                }
+                else if (dbPersonId == individual.Person.PersonId)
+                {
+                    _peopleManager.edit(individual.Person);
                 }
                 else
                 {
@@ -237,14 +237,14 @@ namespace BLL
             {
                 int dbOrganizationId = _organizationsManager.getId(individual.Organization);
 
-                if (dbOrganizationId == individual.Organization.OrganizationId)
-                {
-                    _organizationsManager.edit(individual.Organization);
-                }
-                else if (dbOrganizationId == 0)
+                if (dbOrganizationId == 0)
                 {
                     _organizationsManager.add(individual.Organization);
                     individual.Organization.OrganizationId = Helper.getLastId("Organizations");
+                }
+                else if (dbOrganizationId == individual.Organization.OrganizationId)
+                {
+                    _organizationsManager.edit(individual.Organization);
                 }
                 else
                 {
@@ -256,14 +256,14 @@ namespace BLL
             {
                 int dbImageId = _imagesManager.getId(individual.Image);
 
-                if (dbImageId == individual.Image.ImageId)
-                {
-                    _imagesManager.edit(individual.Image);
-                }
-                else if (dbImageId == 0)
+                if (dbImageId == 0)
                 {
                     _imagesManager.add(individual.Image);
                     individual.Image.ImageId = Helper.getLastId("Images");
+                }
+                else if (dbImageId == individual.Image.ImageId)
+                {
+                    _imagesManager.edit(individual.Image);
                 }
                 else
                 {

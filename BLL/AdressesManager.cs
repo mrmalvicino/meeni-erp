@@ -124,51 +124,53 @@ namespace BLL
         public void edit(Adress adress)
         {
             int dbCountryId = _countriesManager.getIdByName(adress.Country);
-            int dbProvinceId = _provincesManager.getIdByName(adress.Province);
-            int dbCityId = _citiesManager.getId(adress.City);
 
-            if (dbCountryId == adress.Country.CountryId)
-            {
-                adress.Country.PhoneAreaCode = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
-                adress.Country.Currency.CurrencyId = 1; // Modena por defecto
-                _countriesManager.edit(adress.Country);
-            }
-            else if (dbCountryId == 0)
+            if (dbCountryId == 0)
             {
                 adress.Country.PhoneAreaCode = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
                 adress.Country.Currency.CurrencyId = 1; // Modena por defecto
                 _countriesManager.add(adress.Country);
                 adress.Country.CountryId = Helper.getLastId("Countries");
             }
+            else if (dbCountryId == adress.Country.CountryId)
+            {
+                adress.Country.PhoneAreaCode = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
+                adress.Country.Currency.CurrencyId = 1; // Modena por defecto
+                _countriesManager.edit(adress.Country);
+            }
             else
             {
                 adress.Country.CountryId = dbCountryId;
             }
 
-            if (dbProvinceId == adress.Province.ProvinceId)
-            {
-                adress.Province.PhoneAreaCode = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
-                _provincesManager.edit(adress.Province, adress.Country.CountryId);
-            }
-            else if (dbProvinceId == 0)
+            int dbProvinceId = _provincesManager.getIdByName(adress.Province);
+
+            if (dbProvinceId == 0)
             {
                 adress.Province.PhoneAreaCode = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
                 _provincesManager.add(adress.Province, adress.Country.CountryId);
                 adress.Province.ProvinceId = Helper.getLastId("Provinces");
+            }
+            else if (dbProvinceId == adress.Province.ProvinceId)
+            {
+                adress.Province.PhoneAreaCode = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
+                _provincesManager.edit(adress.Province, adress.Country.CountryId);
             }
             else
             {
                 adress.Province.ProvinceId = dbProvinceId;
             }
 
-            if (dbCityId == adress.City.CityId)
-            {
-                _citiesManager.edit(adress.City, adress.Province.ProvinceId);
-            }
-            else if (dbCityId == 0)
+            int dbCityId = _citiesManager.getId(adress.City);
+
+            if (dbCityId == 0)
             {
                 _citiesManager.add(adress.City, adress.Province.ProvinceId);
                 adress.City.CityId = Helper.getLastId("Cities");
+            }
+            else if (dbCityId == adress.City.CityId)
+            {
+                _citiesManager.edit(adress.City, adress.Province.ProvinceId);
             }
             else
             {
