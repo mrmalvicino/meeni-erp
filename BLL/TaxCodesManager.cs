@@ -72,6 +72,7 @@ namespace BLL
 
         public void edit(TaxCode taxCode)
         {
+            Console.WriteLine("pr=" + taxCode.Prefix + " nu=" + taxCode.Number + " su=" + taxCode.Suffix + " id=" + taxCode.TaxCodeId);
             try
             {
                 _database.setQuery("update TaxCodes set Prefix = @Prefix, Number = @Number, Suffix = @Suffix where TaxCodeId = @TaxCodeId");
@@ -123,7 +124,7 @@ namespace BLL
 
         private void setParameters(TaxCode taxCode)
         {
-            if (Validations.hasData(taxCode.Prefix))
+            if (Validations.hasData(taxCode.Prefix, 2, 2))
             {
                 _database.setParameter("@Prefix", taxCode.Prefix);
             }
@@ -141,7 +142,7 @@ namespace BLL
                 _database.setParameter("@Number", DBNull.Value);
             }
 
-            if (Validations.hasData(taxCode.Suffix))
+            if (Validations.hasData(taxCode.Suffix, 1, 1))
             {
                 _database.setParameter("@Suffix", taxCode.Suffix);
             }

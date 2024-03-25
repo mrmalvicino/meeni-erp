@@ -130,7 +130,7 @@ namespace BLL
                 _database.setParameter("@PaymentMethod", DBNull.Value);
             }
 
-            if (Validations.hasData(businessPartner.InvoiceCategory))
+            if (Validations.hasData(businessPartner.InvoiceCategory, 0))
             {
                 _database.setParameter("@InvoiceCategory", businessPartner.InvoiceCategory);
             }

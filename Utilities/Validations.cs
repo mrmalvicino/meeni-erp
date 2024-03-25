@@ -24,7 +24,7 @@ namespace Utilities
             MessageBox.Show(message, "Error de validación", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        public static bool hasData(string text)
+        public static bool hasData(string text, int minimumLength = 2, int maximumLength = 0)
         {
             if (string.IsNullOrEmpty(text))
             {
@@ -36,7 +36,12 @@ namespace Utilities
                 return false;
             }
 
-            if (text.Length < 2)
+            if (text.Length < minimumLength)
+            {
+                return false;
+            }
+
+            if (maximumLength != 0 && maximumLength < text.Length)
             {
                 return false;
             }
