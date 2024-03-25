@@ -96,7 +96,7 @@ namespace BLL
                 return 0;
             }
 
-            taxCode.TaxCodeId = 0;
+            int taxCodeId = 0;
 
             try
             {
@@ -106,7 +106,7 @@ namespace BLL
 
                 if (_database.Reader.Read())
                 {
-                    taxCode.TaxCodeId = (int)_database.Reader["TaxCodeId"];
+                    taxCodeId = (int)_database.Reader["TaxCodeId"];
                 }
             }
             catch (Exception ex)
@@ -118,7 +118,7 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            return taxCode.TaxCodeId;
+            return taxCodeId;
         }
 
         private void setParameters(TaxCode taxCode)

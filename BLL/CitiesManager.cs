@@ -101,7 +101,7 @@ namespace BLL
                 return 0;
             }
 
-            city.CityId = 0;
+            int cityId = 0;
 
             try
             {
@@ -111,7 +111,7 @@ namespace BLL
 
                 if (_database.Reader.Read())
                 {
-                    city.CityId = Convert.ToInt32(_database.Reader["CityId"]);
+                    cityId = Convert.ToInt32(_database.Reader["CityId"]);
                 }
             }
             catch (Exception ex)
@@ -123,7 +123,7 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            return city.CityId;
+            return cityId;
         }
 
         private void setParameters(City city, int provinceId)
@@ -154,9 +154,6 @@ namespace BLL
             {
                 _database.setParameter("@ProvinceId", DBNull.Value);
             }
-            
-            
-            
         }
     }
 }

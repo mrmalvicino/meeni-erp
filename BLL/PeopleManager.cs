@@ -86,7 +86,7 @@ namespace BLL
                 return 0;
             }
 
-            person.PersonId = 0;
+            int personId = 0;
 
             try
             {
@@ -97,7 +97,7 @@ namespace BLL
 
                 if (_database.Reader.Read())
                 {
-                    person.PersonId = (int)_database.Reader["PersonId"];
+                    personId = (int)_database.Reader["PersonId"];
                 }
             }
             catch (Exception ex)
@@ -109,7 +109,7 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            return person.PersonId;
+            return personId;
         }
 
         private void setParameters(Person person)

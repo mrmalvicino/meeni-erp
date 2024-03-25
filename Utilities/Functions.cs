@@ -2,6 +2,7 @@
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
+using Entities;
 
 namespace Utilities
 {
@@ -18,6 +19,18 @@ namespace Utilities
             catch (Exception)
             {
                 pictureBox.Load(".\\..\\..\\..\\images\\profile.png");
+            }
+        }
+
+        public static void loadImage(PictureBox pictureBox, Image image)
+        {
+            if (image != null)
+            {
+                loadImage(pictureBox, image.Url);
+            }
+            else
+            {
+                loadImage(pictureBox, "");
             }
         }
 

@@ -114,7 +114,7 @@ namespace BLL
                 return 0;
             }
 
-            phone.PhoneId = 0;
+            int phoneId = 0;
 
             try
             {
@@ -124,7 +124,7 @@ namespace BLL
 
                 if (_database.Reader.Read())
                 {
-                    phone.PhoneId = (int)_database.Reader["PhoneId"];
+                    phoneId = (int)_database.Reader["PhoneId"];
                 }
             }
             catch (Exception ex)
@@ -136,7 +136,7 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            return phone.PhoneId;
+            return phoneId;
         }
 
         private void setParameters(Phone phone)

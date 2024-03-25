@@ -98,7 +98,7 @@ namespace WindowsForms
                 deleteButton.Enabled = false;
                 exportCSVButton.Enabled = false;
                 loadProfile();
-                Functions.loadImage(pictureBox, "");
+                Functions.loadImage(profilePictureBox, "");
             }
         }
 
@@ -218,7 +218,7 @@ namespace WindowsForms
             {
                 _customer = (Customer)dataGridView.CurrentRow.DataBoundItem;
                 loadProfile(_customer);
-                Functions.loadImage(pictureBox, _customer.Image.Url);
+                Functions.loadImage(profilePictureBox, _customer.Image);
             }
         }
 

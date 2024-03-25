@@ -127,7 +127,7 @@ namespace BLL
                 return 0;
             }
 
-            organization.OrganizationId = 0;
+            int organizationId = 0;
 
             try
             {
@@ -137,7 +137,7 @@ namespace BLL
 
                 if (_database.Reader.Read())
                 {
-                    organization.OrganizationId = (int)_database.Reader["OrganizationId"];
+                    organizationId = (int)_database.Reader["OrganizationId"];
                 }
             }
             catch (Exception ex)
@@ -149,7 +149,7 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            return organization.OrganizationId;
+            return organizationId;
         }
 
         private void setParameters(Organization organization)

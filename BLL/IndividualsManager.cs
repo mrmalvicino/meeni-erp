@@ -232,7 +232,7 @@ namespace BLL
                     individual.Person.PersonId = dbPersonId;
                 }
             }
-
+            
             if ( individual.Organization != null)
             {
                 int dbOrganizationId = _organizationsManager.getId(individual.Organization);

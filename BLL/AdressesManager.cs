@@ -199,7 +199,7 @@ namespace BLL
                 return 0;
             }
 
-            adress.AdressId = 0;
+            int adressId = 0;
 
             try
             {
@@ -211,7 +211,7 @@ namespace BLL
 
                 if (_database.Reader.Read())
                 {
-                    adress.AdressId = (int)_database.Reader["AdressId"];
+                    adressId = (int)_database.Reader["AdressId"];
                 }
             }
             catch (Exception ex)
@@ -223,7 +223,7 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            return adress.AdressId;
+            return adressId;
         }
 
         private void setParameters(Adress adress)

@@ -91,7 +91,7 @@ namespace BLL
                 return 0;
             }
 
-            country.CountryId = 0;
+            int countryId = 0;
 
             try
             {
@@ -101,7 +101,7 @@ namespace BLL
 
                 if (_database.Reader.Read())
                 {
-                    country.CountryId = Convert.ToInt32(_database.Reader["CountryId"]);
+                    countryId = Convert.ToInt32(_database.Reader["CountryId"]);
                 }
             }
             catch (Exception ex)
@@ -113,7 +113,7 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            return country.CountryId;
+            return countryId;
         }
 
         public int getIdByCode(Country country)
@@ -123,7 +123,7 @@ namespace BLL
                 return 0;
             }
 
-            country.CountryId = 0;
+            int countryId = 0;
 
             try
             {
@@ -133,7 +133,7 @@ namespace BLL
 
                 if (_database.Reader.Read())
                 {
-                    country.CountryId = Convert.ToInt32(_database.Reader["CountryId"]);
+                    countryId = Convert.ToInt32(_database.Reader["CountryId"]);
                 }
             }
             catch (Exception ex)
@@ -145,7 +145,7 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            return country.CountryId;
+            return countryId;
         }
 
         private void setParameters(Country country)

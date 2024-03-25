@@ -298,6 +298,7 @@ namespace WindowsForms
             {
                 _customer.Organization.Name = organizationNameComboBox.Text;
                 _customer.Organization.Description = organizationDescriptionTextBox.Text;
+                MessageBox.Show(_customer.Organization.OrganizationId.ToString());
             }
             else
             {

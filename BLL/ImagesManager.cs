@@ -85,7 +85,7 @@ namespace BLL
                 return 0;
             }
 
-            image.ImageId = 0;
+            int imageId = 0;
 
             try
             {
@@ -95,7 +95,7 @@ namespace BLL
 
                 if (_database.Reader.Read())
                 {
-                    image.ImageId = (int)_database.Reader["ImageId"];
+                    imageId = (int)_database.Reader["ImageId"];
                 }
             }
             catch (Exception ex)
@@ -107,7 +107,7 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            return image.ImageId;
+            return imageId;
         }
 
         private void setParameters(Image image)

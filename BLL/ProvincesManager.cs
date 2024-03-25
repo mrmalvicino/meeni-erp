@@ -97,7 +97,7 @@ namespace BLL
                 return 0;
             }
 
-            province.ProvinceId = 0;
+            int provinceId = 0;
 
             try
             {
@@ -107,7 +107,7 @@ namespace BLL
 
                 if (_database.Reader.Read())
                 {
-                    province.ProvinceId = Convert.ToInt32(_database.Reader["ProvinceId"]);
+                    provinceId = Convert.ToInt32(_database.Reader["ProvinceId"]);
                 }
             }
             catch (Exception ex)
@@ -119,7 +119,7 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            return province.ProvinceId;
+            return provinceId;
         }
 
         public int getIdByCode(Province province)
@@ -129,7 +129,7 @@ namespace BLL
                 return 0;
             }
 
-            province.ProvinceId = 0;
+            int provinceId = 0;
 
             try
             {
@@ -139,7 +139,7 @@ namespace BLL
 
                 if (_database.Reader.Read())
                 {
-                    province.ProvinceId = Convert.ToInt32(_database.Reader["ProvinceId"]);
+                    provinceId = Convert.ToInt32(_database.Reader["ProvinceId"]);
                 }
             }
             catch (Exception ex)
@@ -151,7 +151,7 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            return province.ProvinceId;
+            return provinceId;
         }
 
         private void setParameters(Province province, int countryId)
