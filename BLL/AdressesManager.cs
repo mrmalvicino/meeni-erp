@@ -80,26 +80,28 @@ namespace BLL
 
         public void add(Adress adress)
         {
-            adress.Country.CountryId = _countriesManager.getIdByName(adress.Country);
-            adress.Province.ProvinceId = _provincesManager.getIdByName(adress.Province);
-            adress.City.CityId = _citiesManager.getId(adress.City);
+            int dbCountryId = _countriesManager.getIdByName(adress.Country);
 
-            if (adress.Country.CountryId == 0)
+            if (dbCountryId == 0)
             {
                 adress.Country.PhoneAreaCode = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
-                adress.Country.Currency.CurrencyId = 1; // Modena por defecto
+                adress.Country.Currency.CurrencyId = 1; // Moneda por defecto
                 _countriesManager.add(adress.Country);
                 adress.Country.CountryId = Helper.getLastId("Countries");
             }
 
-            if (adress.Province.ProvinceId == 0)
+            int dbProvinceId = _provincesManager.getIdByName(adress.Province);
+            
+            if (dbProvinceId == 0)
             {
                 adress.Province.PhoneAreaCode = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
                 _provincesManager.add(adress.Province, adress.Country.CountryId);
                 adress.Province.ProvinceId = Helper.getLastId("Provinces");
             }
 
-            if (adress.City.CityId == 0)
+            int dbCityId = _citiesManager.getId(adress.City);
+
+            if (dbCityId == 0)
             {
                 _citiesManager.add(adress.City, adress.Province.ProvinceId);
                 adress.City.CityId = Helper.getLastId("Cities");
@@ -128,14 +130,14 @@ namespace BLL
             if (dbCountryId == 0)
             {
                 adress.Country.PhoneAreaCode = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
-                adress.Country.Currency.CurrencyId = 1; // Modena por defecto
+                adress.Country.Currency.CurrencyId = 1; // Moneda por defecto
                 _countriesManager.add(adress.Country);
                 adress.Country.CountryId = Helper.getLastId("Countries");
             }
             else if (dbCountryId == adress.Country.CountryId)
             {
                 adress.Country.PhoneAreaCode = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
-                adress.Country.Currency.CurrencyId = 1; // Modena por defecto
+                adress.Country.Currency.CurrencyId = 1; // Moneda por defecto
                 _countriesManager.edit(adress.Country);
             }
             else
