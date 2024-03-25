@@ -14,6 +14,10 @@ namespace BLL
         private ProvincesManager _provincesManager = new ProvincesManager();
         private CitiesManager _citiesManager = new CitiesManager();
 
+        // PROPERTIES
+
+        public string Default { get; set; }
+
         // METHODS
 
         public Adress read(int adressId)
@@ -84,8 +88,8 @@ namespace BLL
 
             if (dbCountryId == 0)
             {
-                adress.Country.PhoneAreaCode = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
-                adress.Country.Currency.CurrencyId = 1; // Moneda por defecto
+                adress.Country.PhoneAreaCode = Default;
+                adress.Country.Currency.CurrencyId = 1;
                 _countriesManager.add(adress.Country);
                 adress.Country.CountryId = Helper.getLastId("Countries");
             }
@@ -94,7 +98,7 @@ namespace BLL
             
             if (dbProvinceId == 0)
             {
-                adress.Province.PhoneAreaCode = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
+                adress.Province.PhoneAreaCode = Default;
                 _provincesManager.add(adress.Province, adress.Country.CountryId);
                 adress.Province.ProvinceId = Helper.getLastId("Provinces");
             }
@@ -129,15 +133,15 @@ namespace BLL
 
             if (dbCountryId == 0)
             {
-                adress.Country.PhoneAreaCode = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
-                adress.Country.Currency.CurrencyId = 1; // Moneda por defecto
+                adress.Country.PhoneAreaCode = Default;
+                adress.Country.Currency.CurrencyId = 1;
                 _countriesManager.add(adress.Country);
                 adress.Country.CountryId = Helper.getLastId("Countries");
             }
             else if (dbCountryId == adress.Country.CountryId)
             {
-                adress.Country.PhoneAreaCode = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
-                adress.Country.Currency.CurrencyId = 1; // Moneda por defecto
+                adress.Country.PhoneAreaCode = Default;
+                adress.Country.Currency.CurrencyId = 1;
                 _countriesManager.edit(adress.Country);
             }
             else
@@ -149,13 +153,13 @@ namespace BLL
 
             if (dbProvinceId == 0)
             {
-                adress.Province.PhoneAreaCode = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
+                adress.Province.PhoneAreaCode = Default;
                 _provincesManager.add(adress.Province, adress.Country.CountryId);
                 adress.Province.ProvinceId = Helper.getLastId("Provinces");
             }
             else if (dbProvinceId == adress.Province.ProvinceId)
             {
-                adress.Province.PhoneAreaCode = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
+                adress.Province.PhoneAreaCode = Default;
                 _provincesManager.edit(adress.Province, adress.Country.CountryId);
             }
             else

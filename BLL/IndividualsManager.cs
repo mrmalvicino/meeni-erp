@@ -104,12 +104,14 @@ namespace BLL
 
             if (individual.Adress != null)
             {
+                _phonesManager.Default = "i" + individual.IndividualId;
                 _adressesManager.add(individual.Adress);
                 individual.Adress.AdressId = Helper.getLastId("Adresses");
             }
 
             if (individual.Phone != null)
             {
+                _phonesManager.Default = "i" + individual.IndividualId;
                 _phonesManager.add(individual.Phone);
                 individual.Phone.PhoneId = Helper.getLastId("Phones");
             }
@@ -179,6 +181,7 @@ namespace BLL
             if (individual.Adress != null)
             {
                 int dbAdressId = _adressesManager.getId(individual.Adress);
+                _phonesManager.Default = "i" + individual.IndividualId;
 
                 if (dbAdressId == 0)
                 {
@@ -198,6 +201,7 @@ namespace BLL
             if (individual.Phone != null)
             {
                 int dbPhoneId = _phonesManager.getId(individual.Phone);
+                _phonesManager.Default = "i" + individual.IndividualId;
 
                 if (dbPhoneId == 0)
                 {

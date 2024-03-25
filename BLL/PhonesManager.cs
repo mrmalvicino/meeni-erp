@@ -15,7 +15,7 @@ namespace BLL
 
         // PROPERTIES
 
-        public int DefaultProvinceName { get; set; }
+        public string Default { get; set; }
 
         // METHODS
 
@@ -62,8 +62,8 @@ namespace BLL
 
             if (dbCountryId == 0)
             {
-                phone.Country.Name = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
-                phone.Country.Currency.CurrencyId = 1; // Moneda por defecto
+                phone.Country.Name = Default;
+                phone.Country.Currency.CurrencyId = 1;
                 _countriesManager.add(phone.Country);
                 phone.Country.CountryId = Helper.getLastId("Countries");
             }
@@ -72,7 +72,7 @@ namespace BLL
 
             if (dbProvinceId == 0)
             {
-                phone.Province.Name = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
+                phone.Province.Name = Default;
                 _provincesManager.add(phone.Province, phone.Country.CountryId);
                 phone.Province.ProvinceId = Helper.getLastId("Provinces");
             }
@@ -99,15 +99,15 @@ namespace BLL
 
             if (dbCountryId == 0)
             {
-                phone.Country.Name = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
-                phone.Country.Currency.CurrencyId = 1; // Moneda por defecto
+                phone.Country.Name = Default;
+                phone.Country.Currency.CurrencyId = 1;
                 _countriesManager.add(phone.Country);
                 phone.Country.CountryId = Helper.getLastId("Countries");
             }
             else if (dbCountryId == phone.Country.CountryId)
             {
-                phone.Country.Name = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
-                phone.Country.Currency.CurrencyId = 1; // Moneda por defecto
+                phone.Country.Name = Default;
+                phone.Country.Currency.CurrencyId = 1;
                 _countriesManager.edit(phone.Country);
             }
             else
@@ -119,13 +119,13 @@ namespace BLL
 
             if (dbProvinceId == 0)
             {
-                phone.Province.Name = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
+                phone.Province.Name = Default;
                 _provincesManager.add(phone.Province, phone.Country.CountryId);
                 phone.Province.ProvinceId = Helper.getLastId("Provinces");
             }
             else if (dbProvinceId == phone.Province.ProvinceId)
             {
-                phone.Province.Name = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
+                phone.Province.Name = Default;
                 _provincesManager.edit(phone.Province, phone.Country.CountryId);
             }
             else
