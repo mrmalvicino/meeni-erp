@@ -13,6 +13,10 @@ namespace BLL
         private CountriesManager _countriesManager = new CountriesManager();
         private ProvincesManager _provincesManager = new ProvincesManager();
 
+        // PROPERTIES
+
+        public int DefaultProvinceName { get; set; }
+
         // METHODS
 
         public Phone read(int phoneId)
@@ -95,14 +99,14 @@ namespace BLL
 
             if (dbCountryId == 0)
             {
-                phone.Country.PhoneAreaCode = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
+                phone.Country.Name = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
                 phone.Country.Currency.CurrencyId = 1; // Moneda por defecto
                 _countriesManager.add(phone.Country);
                 phone.Country.CountryId = Helper.getLastId("Countries");
             }
             else if (dbCountryId == phone.Country.CountryId)
             {
-                phone.Country.PhoneAreaCode = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
+                phone.Country.Name = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
                 phone.Country.Currency.CurrencyId = 1; // Moneda por defecto
                 _countriesManager.edit(phone.Country);
             }
@@ -115,13 +119,13 @@ namespace BLL
 
             if (dbProvinceId == 0)
             {
-                phone.Province.PhoneAreaCode = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
+                phone.Province.Name = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
                 _provincesManager.add(phone.Province, phone.Country.CountryId);
                 phone.Province.ProvinceId = Helper.getLastId("Provinces");
             }
             else if (dbProvinceId == phone.Province.ProvinceId)
             {
-                phone.Province.PhoneAreaCode = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
+                phone.Province.Name = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
                 _provincesManager.edit(phone.Province, phone.Country.CountryId);
             }
             else

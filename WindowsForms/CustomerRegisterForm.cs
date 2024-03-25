@@ -177,14 +177,14 @@ namespace WindowsForms
             if (0 < _customer.TaxCode.TaxCodeId)
             {
                 taxCodePrefixTextBox.Text = _customer.TaxCode.Prefix;
-                taxCodeNumberTextBox.Text = _customer.TaxCode.Number.ToString();
+                taxCodeNumberTextBox.Text = _customer.TaxCode.Number;
                 taxCodeSuffixTextBox.Text = _customer.TaxCode.Suffix;
             }
 
             if (0 < _customer.Adress.City.CityId)
             {
                 streetNameTextBox.Text = _customer.Adress.StreetName;
-                streetNumberTextBox.Text = _customer.Adress.StreetNumber.ToString();
+                streetNumberTextBox.Text = _customer.Adress.StreetNumber;
                 flatTextBox.Text = _customer.Adress.Flat;
                 detailsTextBox.Text = _customer.Adress.Details;
                 adressCityComboBox.SelectedValue = _customer.Adress.City.CityId;
@@ -202,7 +202,7 @@ namespace WindowsForms
             {
                 phoneCountryComboBox.SelectedValue = _customer.Phone.Country.CountryId;
                 phoneProvinceComboBox.SelectedValue = _customer.Phone.Province.ProvinceId;
-                phoneNumberTextBox.Text = _customer.Phone.Number.ToString();
+                phoneNumberTextBox.Text = _customer.Phone.Number;
             }
             else
             {
