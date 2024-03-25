@@ -2,9 +2,9 @@
 using DAL;
 using Entities;
 
-namespace BLL
+namespace Utilities
 {
-    public static class Functions
+    public static class Helper
     {
         // METHODS
 
@@ -61,26 +61,6 @@ namespace BLL
             }
 
             return lastId;
-        }
-
-        public static bool hasData(string text)
-        {
-            if (text == "")
-            {
-                return false;
-            }
-
-            if (text.Length < 2)
-            {
-                return false;
-            }
-
-            if (string.IsNullOrEmpty(text))
-            {
-                return false;
-            }
-
-            return true;
         }
     }
 }

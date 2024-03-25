@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Collections.Generic;
 using BLL;
 using Entities;
+using Utilities;
 
 namespace WindowsForms
 {

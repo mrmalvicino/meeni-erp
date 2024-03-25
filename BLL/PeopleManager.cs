@@ -1,6 +1,7 @@
 ﻿using System;
 using DAL;
 using Entities;
+using Utilities;
 
 namespace BLL
 {
@@ -113,7 +114,7 @@ namespace BLL
 
         private void setParameters(Person person)
         {
-            if (Functions.hasData(person.FirstName))
+            if (Validations.hasData(person.FirstName))
             {
                 _database.setParameter("@FirstName", person.FirstName);
             }
@@ -122,7 +123,7 @@ namespace BLL
                 _database.setParameter("@FirstName", DBNull.Value);
             }
 
-            if (Functions.hasData(person.LastName))
+            if (Validations.hasData(person.LastName))
             {
                 _database.setParameter("@LastName", person.LastName);
             }

@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace WindowsForms
+namespace Utilities
 {
     public class FormsManager
     {

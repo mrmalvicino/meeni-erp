@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DAL;
 using Entities;
+using Utilities;
 
 namespace BLL
 {
@@ -155,7 +156,7 @@ namespace BLL
 
         private void setParameters(Province province, int countryId)
         {
-            if (Functions.hasData(province.Name))
+            if (Validations.hasData(province.Name))
             {
                 _database.setParameter("@ProvinceName", province.Name);
             }
@@ -164,7 +165,7 @@ namespace BLL
                 _database.setParameter("@ProvinceName", DBNull.Value);
             }
 
-            if (Functions.hasData(province.PhoneAreaCode))
+            if (Validations.hasData(province.PhoneAreaCode))
             {
                 _database.setParameter("@PhoneAreaCode", province.PhoneAreaCode);
             }

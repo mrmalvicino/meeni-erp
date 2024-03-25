@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DAL;
 using Entities;
+using Utilities;
 
 namespace BLL
 {
@@ -52,7 +53,7 @@ namespace BLL
             foreach (Customer customer in customersList)
             {
                 _businessPartner = _businessPartnersManager.read(customer.BusinessPartnerId);
-                Functions.assign(customer, _businessPartner);
+                Helper.assign(customer, _businessPartner);
             }
 
             return customersList;
@@ -61,7 +62,7 @@ namespace BLL
         public void add(Customer customer)
         {
             _businessPartnersManager.add(customer);
-            customer.BusinessPartnerId = Functions.getLastId("BusinessPartners");
+            customer.BusinessPartnerId = Helper.getLastId("BusinessPartners");
 
             try
             {

@@ -1,6 +1,7 @@
 ﻿using System;
 using DAL;
 using Entities;
+using Utilities;
 
 namespace BLL
 {
@@ -98,25 +99,25 @@ namespace BLL
             if (individual.TaxCode != null)
             {
                 _taxCodesManager.add(individual.TaxCode);
-                individual.TaxCode.TaxCodeId = Functions.getLastId("TaxCodes");
+                individual.TaxCode.TaxCodeId = Helper.getLastId("TaxCodes");
             }
 
             if (individual.Adress != null)
             {
                 _adressesManager.add(individual.Adress);
-                individual.Adress.AdressId = Functions.getLastId("Adresses");
+                individual.Adress.AdressId = Helper.getLastId("Adresses");
             }
 
             if (individual.Phone != null)
             {
                 _phonesManager.add(individual.Phone);
-                individual.Phone.PhoneId = Functions.getLastId("Phones");
+                individual.Phone.PhoneId = Helper.getLastId("Phones");
             }
 
             if (individual.Person != null)
             {
                 _peopleManager.add(individual.Person);
-                individual.Person.PersonId = Functions.getLastId("People");
+                individual.Person.PersonId = Helper.getLastId("People");
             }
 
             if (individual.Organization != null)
@@ -124,7 +125,7 @@ namespace BLL
                 if (_organizationsManager.getId(individual.Organization) == 0)
                 {
                     _organizationsManager.add(individual.Organization);
-                    individual.Organization.OrganizationId = Functions.getLastId("Organizations");
+                    individual.Organization.OrganizationId = Helper.getLastId("Organizations");
                 }
                 else
                 {
@@ -135,7 +136,7 @@ namespace BLL
             if (individual.Image != null)
             {
                 _imagesManager.add(individual.Image);
-                individual.Image.ImageId = Functions.getLastId("Images");
+                individual.Image.ImageId = Helper.getLastId("Images");
             }
 
             try
@@ -167,7 +168,7 @@ namespace BLL
                 else if (dbTaxCodeId == 0)
                 {
                     _taxCodesManager.add(individual.TaxCode);
-                    individual.TaxCode.TaxCodeId = Functions.getLastId("TaxCodes");
+                    individual.TaxCode.TaxCodeId = Helper.getLastId("TaxCodes");
                 }
                 else
                 {
@@ -186,7 +187,7 @@ namespace BLL
                 else if (dbAdressId == 0)
                 {
                     _adressesManager.add(individual.Adress);
-                    individual.Adress.AdressId = Functions.getLastId("Adresses");
+                    individual.Adress.AdressId = Helper.getLastId("Adresses");
                 }
                 else
                 {
@@ -205,7 +206,7 @@ namespace BLL
                 else if (dbPhoneId == 0)
                 {
                     _phonesManager.add(individual.Phone);
-                    individual.Phone.PhoneId = Functions.getLastId("Phones");
+                    individual.Phone.PhoneId = Helper.getLastId("Phones");
                 }
                 else
                 {
@@ -224,7 +225,7 @@ namespace BLL
                 else if (dbPersonId == 0)
                 {
                     _peopleManager.add(individual.Person);
-                    individual.Person.PersonId = Functions.getLastId("People");
+                    individual.Person.PersonId = Helper.getLastId("People");
                 }
                 else
                 {
@@ -243,7 +244,7 @@ namespace BLL
                 else if (dbOrganizationId == 0)
                 {
                     _organizationsManager.add(individual.Organization);
-                    individual.Organization.OrganizationId = Functions.getLastId("Organizations");
+                    individual.Organization.OrganizationId = Helper.getLastId("Organizations");
                 }
                 else
                 {
@@ -262,7 +263,7 @@ namespace BLL
                 else if (dbImageId == 0)
                 {
                     _imagesManager.add(individual.Image);
-                    individual.Image.ImageId = Functions.getLastId("Images");
+                    individual.Image.ImageId = Helper.getLastId("Images");
                 }
                 else
                 {
@@ -309,7 +310,7 @@ namespace BLL
         {
             _database.setParameter("@ActiveStatus", individual.ActiveStatus);
 
-            if (Functions.hasData(individual.Email))
+            if (Validations.hasData(individual.Email))
             {
                 _database.setParameter("@Email", individual.Email);
             }

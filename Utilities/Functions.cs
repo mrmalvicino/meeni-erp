@@ -3,7 +3,7 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
-namespace WindowsForms
+namespace Utilities
 {
     public static class Functions
     {

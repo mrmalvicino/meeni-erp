@@ -65,9 +65,6 @@
     <Compile Include="EmployeesForm.Designer.cs">
       <DependentUpon>EmployeesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormsManager.cs" />
-    <Compile Include="Functions.cs" />
-    <Compile Include="Palette.cs" />
     <Compile Include="ProductRegisterForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,7 +151,6 @@
     <Compile Include="UserRegisterForm.Designer.cs">
       <DependentUpon>UserRegisterForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Validations.cs" />
     <Compile Include="WarehouseRegisterForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -260,6 +256,10 @@
     <ProjectReference Include="..\Entities\Entities.csproj">
       <Project>{07f4103f-fc2a-4b84-a2ef-a69d4ced36db}</Project>
       <Name>Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{ed61e93e-54b2-4680-aa66-a507cea46f32}</Project>
+      <Name>Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

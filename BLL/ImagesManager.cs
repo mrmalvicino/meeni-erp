@@ -1,7 +1,7 @@
 ﻿using DAL;
 using Entities;
 using System;
-using static System.Runtime.CompilerServices.RuntimeHelpers;
+using Utilities;
 
 namespace BLL
 {
@@ -112,7 +112,7 @@ namespace BLL
 
         private void setParameters(Image image)
         {
-            if (Functions.hasData(image.Url))
+            if (Validations.hasData(image.Url))
             {
                 _database.setParameter("@ImageUrl", image.Url);
             }

@@ -1,6 +1,7 @@
 ﻿using System;
 using DAL;
 using Entities;
+using Utilities;
 
 namespace BLL
 {
@@ -85,23 +86,23 @@ namespace BLL
 
             if (adress.Country.CountryId == 0)
             {
-                adress.Country.PhoneAreaCode = "default_" + (Functions.getLastId("Individuals") + 1).ToString();
+                adress.Country.PhoneAreaCode = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
                 adress.Country.Currency.CurrencyId = 1; // Modena por defecto
                 _countriesManager.add(adress.Country);
-                adress.Country.CountryId = Functions.getLastId("Countries");
+                adress.Country.CountryId = Helper.getLastId("Countries");
             }
 
             if (adress.Province.ProvinceId == 0)
             {
-                adress.Province.PhoneAreaCode = "default_" + (Functions.getLastId("Individuals") + 1).ToString();
+                adress.Province.PhoneAreaCode = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
                 _provincesManager.add(adress.Province, adress.Country.CountryId);
-                adress.Province.ProvinceId = Functions.getLastId("Provinces");
+                adress.Province.ProvinceId = Helper.getLastId("Provinces");
             }
 
             if (adress.City.CityId == 0)
             {
                 _citiesManager.add(adress.City, adress.Province.ProvinceId);
-                adress.City.CityId = Functions.getLastId("Cities");
+                adress.City.CityId = Helper.getLastId("Cities");
             }
 
             try
@@ -128,16 +129,16 @@ namespace BLL
 
             if (dbCountryId == adress.Country.CountryId)
             {
-                adress.Country.PhoneAreaCode = "default_" + (Functions.getLastId("Individuals") + 1).ToString();
+                adress.Country.PhoneAreaCode = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
                 adress.Country.Currency.CurrencyId = 1; // Modena por defecto
                 _countriesManager.edit(adress.Country);
             }
             else if (dbCountryId == 0)
             {
-                adress.Country.PhoneAreaCode = "default_" + (Functions.getLastId("Individuals") + 1).ToString();
+                adress.Country.PhoneAreaCode = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
                 adress.Country.Currency.CurrencyId = 1; // Modena por defecto
                 _countriesManager.add(adress.Country);
-                adress.Country.CountryId = Functions.getLastId("Countries");
+                adress.Country.CountryId = Helper.getLastId("Countries");
             }
             else
             {
@@ -146,14 +147,14 @@ namespace BLL
 
             if (dbProvinceId == adress.Province.ProvinceId)
             {
-                adress.Province.PhoneAreaCode = "default_" + (Functions.getLastId("Individuals") + 1).ToString();
+                adress.Province.PhoneAreaCode = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
                 _provincesManager.edit(adress.Province, adress.Country.CountryId);
             }
             else if (dbProvinceId == 0)
             {
-                adress.Province.PhoneAreaCode = "default_" + (Functions.getLastId("Individuals") + 1).ToString();
+                adress.Province.PhoneAreaCode = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
                 _provincesManager.add(adress.Province, adress.Country.CountryId);
-                adress.Province.ProvinceId = Functions.getLastId("Provinces");
+                adress.Province.ProvinceId = Helper.getLastId("Provinces");
             }
             else
             {
@@ -167,7 +168,7 @@ namespace BLL
             else if (dbCityId == 0)
             {
                 _citiesManager.add(adress.City, adress.Province.ProvinceId);
-                adress.City.CityId = Functions.getLastId("Cities");
+                adress.City.CityId = Helper.getLastId("Cities");
             }
             else
             {
@@ -227,7 +228,7 @@ namespace BLL
 
         private void setParameters(Adress adress)
         {
-            if (Functions.hasData(adress.StreetName))
+            if (Validations.hasData(adress.StreetName))
             {
                 _database.setParameter("@StreetName", adress.StreetName);
             }
@@ -236,7 +237,7 @@ namespace BLL
                 _database.setParameter("@StreetName", DBNull.Value);
             }
 
-            if (Functions.hasData(adress.StreetNumber))
+            if (Validations.hasData(adress.StreetNumber))
             {
                 _database.setParameter("@StreetNumber", adress.StreetNumber);
             }
@@ -245,7 +246,7 @@ namespace BLL
                 _database.setParameter("@StreetNumber", DBNull.Value);
             }
 
-            if (Functions.hasData(adress.Flat))
+            if (Validations.hasData(adress.Flat))
             {
                 _database.setParameter("@Flat", adress.Flat);
             }
@@ -254,7 +255,7 @@ namespace BLL
                 _database.setParameter("@Flat", DBNull.Value);
             }
 
-            if (Functions.hasData(adress.Details))
+            if (Validations.hasData(adress.Details))
             {
                 _database.setParameter("@Details", adress.Details);
             }

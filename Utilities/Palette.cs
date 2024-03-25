@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace WindowsForms
+namespace Utilities
 {
     public static class Palette
     {

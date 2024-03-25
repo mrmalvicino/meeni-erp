@@ -1,6 +1,7 @@
 ﻿using System;
 using DAL;
 using Entities;
+using Utilities;
 
 namespace BLL
 {
@@ -51,7 +52,7 @@ namespace BLL
             }
 
             _individual = _individualsManager.read(businessPartner.IndividualId);
-            Functions.assign(businessPartner, _individual);
+            Helper.assign(businessPartner, _individual);
 
             return businessPartner;
         }
@@ -59,7 +60,7 @@ namespace BLL
         public void add(BusinessPartner businessPartner)
         {
             _individualsManager.add(businessPartner);
-            businessPartner.IndividualId = Functions.getLastId("Individuals");
+            businessPartner.IndividualId = Helper.getLastId("Individuals");
 
             try
             {
@@ -120,7 +121,7 @@ namespace BLL
 
         private void setParameters(BusinessPartner businessPartner)
         {
-            if (Functions.hasData(businessPartner.PaymentMethod))
+            if (Validations.hasData(businessPartner.PaymentMethod))
             {
                 _database.setParameter("@PaymentMethod", businessPartner.PaymentMethod);
             }
@@ -129,7 +130,7 @@ namespace BLL
                 _database.setParameter("@PaymentMethod", DBNull.Value);
             }
 
-            if (Functions.hasData(businessPartner.InvoiceCategory))
+            if (Validations.hasData(businessPartner.InvoiceCategory))
             {
                 _database.setParameter("@InvoiceCategory", businessPartner.InvoiceCategory);
             }

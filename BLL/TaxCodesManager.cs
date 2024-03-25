@@ -1,6 +1,7 @@
 ﻿using System;
 using DAL;
 using Entities;
+using Utilities;
 
 namespace BLL
 {
@@ -122,7 +123,7 @@ namespace BLL
 
         private void setParameters(TaxCode taxCode)
         {
-            if (Functions.hasData(taxCode.Prefix))
+            if (Validations.hasData(taxCode.Prefix))
             {
                 _database.setParameter("@Prefix", taxCode.Prefix);
             }
@@ -131,7 +132,7 @@ namespace BLL
                 _database.setParameter("@Prefix", DBNull.Value);
             }
 
-            if (Functions.hasData(taxCode.Number))
+            if (Validations.hasData(taxCode.Number))
             {
                 _database.setParameter("@Number", taxCode.Number);
             }
@@ -140,7 +141,7 @@ namespace BLL
                 _database.setParameter("@Number", DBNull.Value);
             }
 
-            if (Functions.hasData(taxCode.Suffix))
+            if (Validations.hasData(taxCode.Suffix))
             {
                 _database.setParameter("@Suffix", taxCode.Suffix);
             }

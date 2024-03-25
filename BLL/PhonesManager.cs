@@ -1,6 +1,7 @@
 ﻿using System;
 using DAL;
 using Entities;
+using Utilities;
 
 namespace BLL
 {
@@ -58,17 +59,17 @@ namespace BLL
 
             if (phone.Country.CountryId == 0)
             {
-                phone.Country.Name = "default_" + (Functions.getLastId("Individuals") + 1).ToString();
+                phone.Country.Name = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
                 phone.Country.Currency.CurrencyId = 1; // Modena por defecto
                 _countriesManager.add(phone.Country);
-                phone.Country.CountryId = Functions.getLastId("Countries");
+                phone.Country.CountryId = Helper.getLastId("Countries");
             }
 
             if (phone.Province.ProvinceId == 0)
             {
-                phone.Province.Name = "default_" + (Functions.getLastId("Individuals") + 1).ToString();
+                phone.Province.Name = "default_" + (Helper.getLastId("Individuals") + 1).ToString();
                 _provincesManager.add(phone.Province, phone.Country.CountryId);
-                phone.Province.ProvinceId = Functions.getLastId("Provinces");
+                phone.Province.ProvinceId = Helper.getLastId("Provinces");
             }
 
             try
@@ -140,7 +141,7 @@ namespace BLL
 
         private void setParameters(Phone phone)
         {
-            if (Functions.hasData(phone.Number))
+            if (Validations.hasData(phone.Number))
             {
                 _database.setParameter("@Number", phone.Number);
             }

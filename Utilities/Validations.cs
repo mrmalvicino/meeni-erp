@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace WindowsForms
+namespace Utilities
 {
     public static class Validations
     {
@@ -26,7 +26,7 @@ namespace WindowsForms
 
         public static bool hasData(string text)
         {
-            if (text == null)
+            if (string.IsNullOrEmpty(text))
             {
                 return false;
             }
@@ -37,11 +37,6 @@ namespace WindowsForms
             }
 
             if (text.Length < 2)
-            {
-                return false;
-            }
-
-            if (string.IsNullOrEmpty(text))
             {
                 return false;
             }

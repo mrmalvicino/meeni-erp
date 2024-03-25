@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DAL;
 using Entities;
+using Utilities;
 
 namespace BLL
 {
@@ -153,7 +154,7 @@ namespace BLL
 
         private void setParameters(Organization organization)
         {
-            if (Functions.hasData(organization.Name))
+            if (Validations.hasData(organization.Name))
             {
                 _database.setParameter("@OrganizationName", organization.Name);
             }
@@ -162,7 +163,7 @@ namespace BLL
                 _database.setParameter("@OrganizationName", DBNull.Value);
             }
 
-            if (Functions.hasData(organization.Description))
+            if (Validations.hasData(organization.Description))
             {
                 _database.setParameter("@OrganizationDescription", organization.Description);
             }
