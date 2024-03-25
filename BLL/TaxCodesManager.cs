@@ -72,7 +72,6 @@ namespace BLL
 
         public void edit(TaxCode taxCode)
         {
-            Console.WriteLine("pr=" + taxCode.Prefix + " nu=" + taxCode.Number + " su=" + taxCode.Suffix + " id=" + taxCode.TaxCodeId);
             try
             {
                 _database.setQuery("update TaxCodes set Prefix = @Prefix, Number = @Number, Suffix = @Suffix where TaxCodeId = @TaxCodeId");

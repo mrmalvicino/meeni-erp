@@ -2,6 +2,7 @@
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
+using System.Configuration;
 using Entities;
 
 namespace Utilities
@@ -18,7 +19,7 @@ namespace Utilities
             }
             catch (Exception)
             {
-                pictureBox.Load(".\\..\\..\\..\\images\\profile.png");
+                pictureBox.Load(ConfigurationManager.AppSettings["default_image"]);
             }
         }
 

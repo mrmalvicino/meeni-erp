@@ -200,8 +200,8 @@ namespace WindowsForms
             
             if (0 < _customer.Phone.PhoneId)
             {
-                phoneCountryComboBox.SelectedValue = _customer.Adress.Country.CountryId;
-                phoneProvinceComboBox.SelectedValue = _customer.Adress.Province.ProvinceId;
+                phoneCountryComboBox.SelectedValue = _customer.Phone.Country.CountryId;
+                phoneProvinceComboBox.SelectedValue = _customer.Phone.Province.ProvinceId;
                 phoneNumberTextBox.Text = _customer.Phone.Number.ToString();
             }
             else

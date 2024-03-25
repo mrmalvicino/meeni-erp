@@ -54,7 +54,7 @@ namespace WindowsForms
                 dataGridView.Columns["ActiveStatus"].Visible = false;
                 dataGridView.Columns["BusinessPartnerId"].Visible = false;
                 dataGridView.Columns["CustomerId"].Visible = false;
-                //dataGridView.Columns["Image"].Visible = false;
+                dataGridView.Columns["Image"].Visible = false;
 
                 dataGridView.Columns["Person"].Width = 80;
                 dataGridView.Columns["Organization"].Width = 80;
@@ -259,7 +259,7 @@ namespace WindowsForms
 
         private void exportCSVButton_Click(object sender, EventArgs e)
         {
-            Functions.exportCSV(dataGridView, ConfigurationManager.AppSettings["csv_path"] + "Clientes.csv");
+            Functions.exportCSV(dataGridView, ConfigurationManager.AppSettings["csv_folder"] + "Clientes.csv");
         }
 
         private void filterButton_Click(object sender, EventArgs e)
