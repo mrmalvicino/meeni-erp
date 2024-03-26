@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using BLL;
 using Entities;
 using Utilities;
+using System.Diagnostics;
 
 namespace WindowsForms
 {
@@ -207,13 +208,15 @@ namespace WindowsForms
 
         private void CustomersForm_Load(object sender, EventArgs e)
         {
+            dataGridView.SelectionChanged -= dataGridView_SelectionChanged;
             setupStyle();
             refreshTable();
             applyFilter();
+            dataGridView.SelectionChanged += dataGridView_SelectionChanged;
         }
 
         private void dataGridView_SelectionChanged(object sender, EventArgs e)
-        {
+        {           
             if (dataGridView.CurrentRow != null)
             {
                 _customer = (Customer)dataGridView.CurrentRow.DataBoundItem;
@@ -288,15 +291,6 @@ namespace WindowsForms
         private void dataGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             setupDataGridView();
-        }
-
-        private void dataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
-        {
-            string columnName = dataGridView.Columns[e.ColumnIndex].HeaderText;
-            string cellValue = dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-            int rowIndex = e.RowIndex;
-
-            MessageBox.Show("Error de formato en la celda: Columna: " + columnName + ", Fila: " + rowIndex + ", Contenido: " + cellValue);
         }
     }
 }
