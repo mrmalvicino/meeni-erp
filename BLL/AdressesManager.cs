@@ -14,10 +14,6 @@ namespace BLL
         private ProvincesManager _provincesManager = new ProvincesManager();
         private CitiesManager _citiesManager = new CitiesManager();
 
-        // PROPERTIES
-
-        public string Default { get; set; }
-
         // METHODS
 
         public Adress read(int adressId)
@@ -84,21 +80,18 @@ namespace BLL
 
         public void add(Adress adress)
         {
-            int dbCountryId = _countriesManager.getIdByName(adress.Country);
+            int dbCountryId = _countriesManager.getId(adress.Country);
 
             if (dbCountryId == 0)
             {
-                adress.Country.PhoneAreaCode = Default;
-                adress.Country.Currency.CurrencyId = 1;
                 _countriesManager.add(adress.Country);
                 adress.Country.CountryId = Helper.getLastId("Countries");
             }
 
-            int dbProvinceId = _provincesManager.getIdByName(adress.Province);
+            int dbProvinceId = _provincesManager.getId(adress.Province);
             
             if (dbProvinceId == 0)
             {
-                adress.Province.PhoneAreaCode = Default;
                 _provincesManager.add(adress.Province, adress.Country.CountryId);
                 adress.Province.ProvinceId = Helper.getLastId("Provinces");
             }
@@ -129,19 +122,15 @@ namespace BLL
 
         public void edit(Adress adress)
         {
-            int dbCountryId = _countriesManager.getIdByName(adress.Country);
+            int dbCountryId = _countriesManager.getId(adress.Country);
 
             if (dbCountryId == 0)
             {
-                adress.Country.PhoneAreaCode = Default;
-                adress.Country.Currency.CurrencyId = 1;
                 _countriesManager.add(adress.Country);
                 adress.Country.CountryId = Helper.getLastId("Countries");
             }
             else if (dbCountryId == adress.Country.CountryId)
             {
-                adress.Country.PhoneAreaCode = Default;
-                adress.Country.Currency.CurrencyId = 1;
                 _countriesManager.edit(adress.Country);
             }
             else
@@ -149,17 +138,15 @@ namespace BLL
                 adress.Country.CountryId = dbCountryId;
             }
 
-            int dbProvinceId = _provincesManager.getIdByName(adress.Province);
+            int dbProvinceId = _provincesManager.getId(adress.Province);
 
             if (dbProvinceId == 0)
             {
-                adress.Province.PhoneAreaCode = Default;
                 _provincesManager.add(adress.Province, adress.Country.CountryId);
                 adress.Province.ProvinceId = Helper.getLastId("Provinces");
             }
             else if (dbProvinceId == adress.Province.ProvinceId)
             {
-                adress.Province.PhoneAreaCode = Default;
                 _provincesManager.edit(adress.Province, adress.Country.CountryId);
             }
             else

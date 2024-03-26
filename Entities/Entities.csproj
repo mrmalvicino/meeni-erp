@@ -57,7 +57,6 @@
     <Compile Include="Province.cs" />
     <Compile Include="Seniority.cs" />
     <Compile Include="TaxCode.cs" />
-    <Compile Include="Phone.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="Service.cs" />

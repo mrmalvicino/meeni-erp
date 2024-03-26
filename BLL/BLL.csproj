@@ -49,7 +49,6 @@
     <Compile Include="ImagesManager.cs" />
     <Compile Include="OrganizationsManager.cs" />
     <Compile Include="PeopleManager.cs" />
-    <Compile Include="PhonesManager.cs" />
     <Compile Include="PositionsManager.cs" />
     <Compile Include="CustomersManager.cs" />
     <Compile Include="EmployeesManager.cs" />

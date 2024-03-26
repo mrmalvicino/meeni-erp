@@ -14,11 +14,11 @@ namespace Utilities
         {
             destinyObject.IndividualId = originObject.IndividualId;
             destinyObject.ActiveStatus = originObject.ActiveStatus;
+            destinyObject.Phone = originObject.Phone;
             destinyObject.Email = originObject.Email;
             destinyObject.Birth = originObject.Birth;
             destinyObject.TaxCode = originObject.TaxCode;
             destinyObject.Adress = originObject.Adress;
-            destinyObject.Phone = originObject.Phone;
             destinyObject.Person = originObject.Person;
             destinyObject.Organization = originObject.Organization;
             destinyObject.Image = originObject.Image;

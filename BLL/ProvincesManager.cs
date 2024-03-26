@@ -17,7 +17,7 @@ namespace BLL
         public List<Province> list(int countryId = 0)
         {
             List<Province> provincesList = new List<Province>();
-            string query = "select ProvinceId, ProvinceName, PhoneAreaCode from Provinces";
+            string query = "select ProvinceId, ProvinceName from Provinces";
 
             if (0 < countryId)
             {
@@ -36,7 +36,6 @@ namespace BLL
 
                     province.ProvinceId = Convert.ToInt32(_database.Reader["ProvinceId"]);
                     province.Name = (string)_database.Reader["ProvinceName"];
-                    province.PhoneAreaCode = (string)_database.Reader["PhoneAreaCode"];
 
                     provincesList.Add(province);
                 }
@@ -57,7 +56,7 @@ namespace BLL
         {
             try
             {
-                _database.setQuery("insert into Provinces (ProvinceName, PhoneAreaCode, CountryId) values (@ProvinceName, @PhoneAreaCode, @CountryId)");
+                _database.setQuery("insert into Provinces (ProvinceName, CountryId) values (@ProvinceName, @CountryId)");
                 setParameters(province, countryId);
                 _database.executeAction();
             }
@@ -75,7 +74,7 @@ namespace BLL
         {
             try
             {
-                _database.setQuery("update Provinces set ProvinceName = @ProvinceName, PhoneAreaCode = @PhoneAreaCode, CountryId = @CountryId where ProvinceId = @ProvinceId");
+                _database.setQuery("update Provinces set ProvinceName = @ProvinceName, CountryId = @CountryId where ProvinceId = @ProvinceId");
                 _database.setParameter("@ProvinceId", province.ProvinceId);
                 setParameters(province, countryId);
                 _database.executeAction();
@@ -90,7 +89,7 @@ namespace BLL
             }
         }
 
-        public int getIdByName(Province province)
+        public int getId(Province province)
         {
             if (province == null)
             {
@@ -122,38 +121,6 @@ namespace BLL
             return provinceId;
         }
 
-        public int getIdByCode(Province province)
-        {
-            if (province == null)
-            {
-                return 0;
-            }
-
-            int provinceId = 0;
-
-            try
-            {
-                _database.setQuery("select ProvinceId from Provinces where PhoneAreaCode = @PhoneAreaCode");
-                _database.setParameter("@PhoneAreaCode", province.PhoneAreaCode);
-                _database.executeReader();
-
-                if (_database.Reader.Read())
-                {
-                    provinceId = Convert.ToInt32(_database.Reader["ProvinceId"]);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                _database.closeConnection();
-            }
-
-            return provinceId;
-        }
-
         private void setParameters(Province province, int countryId)
         {
             if (Validations.hasData(province.Name))
@@ -163,15 +130,6 @@ namespace BLL
             else
             {
                 _database.setParameter("@ProvinceName", DBNull.Value);
-            }
-
-            if (Validations.hasData(province.PhoneAreaCode))
-            {
-                _database.setParameter("@PhoneAreaCode", province.PhoneAreaCode);
-            }
-            else
-            {
-                _database.setParameter("@PhoneAreaCode", DBNull.Value);
             }
 
             if (0 < countryId)

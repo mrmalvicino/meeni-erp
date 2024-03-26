@@ -12,7 +12,6 @@ namespace BLL
         private Database _database = new Database();
         private TaxCodesManager _taxCodesManager = new TaxCodesManager();
         private AdressesManager _adressesManager = new AdressesManager();
-        private PhonesManager _phonesManager = new PhonesManager();
         private PeopleManager _peopleManager = new PeopleManager();
         private OrganizationsManager _organizationsManager = new OrganizationsManager();
         private ImagesManager _imagesManager = new ImagesManager();
@@ -25,7 +24,7 @@ namespace BLL
 
             try
             {
-                _database.setQuery("select ActiveStatus, Email, Birth, TaxCodeId, AdressId, PhoneId, PersonId, OrganizationId, ImageId from Individuals where IndividualId = @IndividualId");
+                _database.setQuery("select ActiveStatus, Phone, Email, Birth, TaxCodeId, AdressId, PersonId, OrganizationId, ImageId from Individuals where IndividualId = @IndividualId");
                 _database.setParameter("@IndividualId", individualId);
                 _database.executeReader();
 
@@ -33,6 +32,11 @@ namespace BLL
                 {
                     individual.IndividualId = individualId;
                     individual.ActiveStatus = (bool)_database.Reader["ActiveStatus"];
+
+                    if (!(_database.Reader["Phone"] is DBNull))
+                    {
+                        individual.Phone = (string)_database.Reader["Phone"];
+                    }
 
                     if (!(_database.Reader["Email"] is DBNull))
                     {
@@ -52,11 +56,6 @@ namespace BLL
                     if (!(_database.Reader["AdressId"] is DBNull))
                     {
                         individual.Adress.AdressId = (int)_database.Reader["AdressId"];
-                    }
-
-                    if (!(_database.Reader["PhoneId"] is DBNull))
-                    {
-                        individual.Phone.PhoneId = (int)_database.Reader["PhoneId"];
                     }
 
                     if (!(_database.Reader["PersonId"] is DBNull))
@@ -86,7 +85,6 @@ namespace BLL
 
             individual.TaxCode = _taxCodesManager.read(individual.TaxCode.TaxCodeId);
             individual.Adress = _adressesManager.read(individual.Adress.AdressId);
-            individual.Phone = _phonesManager.read(individual.Phone.PhoneId);
             individual.Person = _peopleManager.read(individual.Person.PersonId);
             individual.Organization = _organizationsManager.read(individual.Organization.OrganizationId);
             individual.Image = _imagesManager.read(individual.Image.ImageId);
@@ -104,16 +102,8 @@ namespace BLL
 
             if (individual.Adress != null)
             {
-                _adressesManager.Default = "id" + individual.IndividualId;
                 _adressesManager.add(individual.Adress);
                 individual.Adress.AdressId = Helper.getLastId("Adresses");
-            }
-
-            if (individual.Phone != null)
-            {
-                _phonesManager.Default = "id" + individual.IndividualId;
-                _phonesManager.add(individual.Phone);
-                individual.Phone.PhoneId = Helper.getLastId("Phones");
             }
 
             if (individual.Person != null)
@@ -143,7 +133,7 @@ namespace BLL
 
             try
             {
-                _database.setQuery("insert into individuals (ActiveStatus, Email, Birth, TaxCodeId, AdressId, PhoneId, PersonId, OrganizationId, ImageId) values (@ActiveStatus, @Email, @Birth, @TaxCodeId, @AdressId, @PhoneId, @PersonId, @OrganizationId, @ImageId)");
+                _database.setQuery("insert into individuals (ActiveStatus, Phone, Email, Birth, TaxCodeId, AdressId, PersonId, OrganizationId, ImageId) values (@ActiveStatus, @Phone, @Email, @Birth, @TaxCodeId, @AdressId, @PersonId, @OrganizationId, @ImageId)");
                 setParameters(individual);
                 _database.executeAction();
             }
@@ -181,7 +171,6 @@ namespace BLL
             if (individual.Adress != null)
             {
                 int dbAdressId = _adressesManager.getId(individual.Adress);
-                _adressesManager.Default = "id" + individual.IndividualId;
 
                 if (dbAdressId == 0)
                 {
@@ -195,26 +184,6 @@ namespace BLL
                 else
                 {
                     individual.Adress.AdressId = dbAdressId;
-                }
-            }
-
-            if (individual.Phone != null)
-            {
-                int dbPhoneId = _phonesManager.getId(individual.Phone);
-                _phonesManager.Default = "id" + individual.IndividualId;
-
-                if (dbPhoneId == 0)
-                {
-                    _phonesManager.add(individual.Phone);
-                    individual.Phone.PhoneId = Helper.getLastId("Phones");
-                }
-                else if (dbPhoneId == individual.Phone.PhoneId)
-                {
-                    _phonesManager.edit(individual.Phone);
-                }
-                else
-                {
-                    individual.Phone.PhoneId = dbPhoneId;
                 }
             }
 
@@ -277,7 +246,7 @@ namespace BLL
 
             try
             {
-                _database.setQuery("update Individuals set ActiveStatus = @ActiveStatus, Email = @Email, Birth = @Birth, TaxCodeId = @TaxCodeId, AdressId = @AdressId, PhoneId = @PhoneId, PersonId = @PersonId, OrganizationId = @OrganizationId, ImageId = @ImageId where IndividualId = @IndividualId");
+                _database.setQuery("update Individuals set ActiveStatus = @ActiveStatus, Phone = @Phone, Email = @Email, Birth = @Birth, TaxCodeId = @TaxCodeId, AdressId = @AdressId, PersonId = @PersonId, OrganizationId = @OrganizationId, ImageId = @ImageId where IndividualId = @IndividualId");
                 _database.setParameter("@IndividualId", individual.IndividualId);
                 setParameters(individual);
                 _database.executeAction();
@@ -314,6 +283,15 @@ namespace BLL
         {
             _database.setParameter("@ActiveStatus", individual.ActiveStatus);
 
+            if (Validations.hasData(individual.Phone))
+            {
+                _database.setParameter("@Phone", individual.Phone);
+            }
+            else
+            {
+                _database.setParameter("@Phone", DBNull.Value);
+            }
+
             if (Validations.hasData(individual.Email))
             {
                 _database.setParameter("@Email", individual.Email);
@@ -348,15 +326,6 @@ namespace BLL
             else
             {
                 _database.setParameter("@AdressId", DBNull.Value);
-            }
-
-            if (individual.Phone != null)
-            {
-                _database.setParameter("@PhoneId", individual.Phone.PhoneId);
-            }
-            else
-            {
-                _database.setParameter("@PhoneId", DBNull.Value);
             }
 
             if (individual.Person != null)

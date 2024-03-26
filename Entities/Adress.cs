@@ -16,7 +16,7 @@ namespace Entities
         public string StreetNumber { get; set; }
 
         [DisplayName("Depto. o lote")]
-        public string Flat {  get; set; }
+        public string Flat { get; set; }
 
         [DisplayName("Detalles")]
         public string Details { get; set; }

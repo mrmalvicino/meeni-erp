@@ -5,94 +5,6 @@ go
 use meeni_erp_db
 go
 
-----------------
--- CURRENCIES --
-----------------
-
-create table Currencies(
-	CurrencyId tinyint primary key identity(1,1) not null,
-	Code varchar(3) unique check(len(trim(Code)) = 3) not null,
-	CurrencyName varchar(30) not null,
-	Rate decimal(15,2) not null,
-	BlackRate decimal(15,2) null
-)
-go
-
-insert into Currencies
-(Code, CurrencyName, Rate, BlackRate)
-values
-('USD', 'Dólar', '1', '1'),
-('EUR', 'Euro', '0.93', '0.93'),
-('ARS', 'Peso', '830', '1130'),
-('BRL', 'Real', '5', '5');
-go
-
----------------
--- COUNTRIES --
----------------
-
-create table Countries(
-	CountryId tinyint primary key identity(1,1) not null,
-	CountryName varchar(30) unique not null,
-	PhoneAreaCode varchar(10) unique not null,
-	CurrencyId tinyint foreign key references Currencies(CurrencyId) not null default(1)
-)
-go
-
-insert into Countries
-(CountryName, PhoneAreaCode, CurrencyId)
-values
-('Argentina', '54', '3'),
-('Estados Unidos', '1', '1'),
-('España', '34', '2'),
-('Brasil', '55', '4');
-go
-
----------------
--- PROVINCES --
----------------
-
-create table Provinces(
-	ProvinceId smallint primary key identity(1,1) not null,
-	ProvinceName varchar(30) not null,
-	PhoneAreaCode varchar(10) not null,
-	CountryId tinyint foreign key references Countries(CountryId) not null
-)
-go
-
-insert into Provinces
-(ProvinceName, PhoneAreaCode, CountryId)
-values
-('Buenos Aires', '911', '1'),
-('Córdoba', '351', '1'),
-('Río Negro', '02920', '1');
-go
-
-------------
--- CITIES --
-------------
-
-create table Cities(
-	CityId smallint primary key identity(1,1) not null,
-	CityName varchar(30) not null,
-	ZipCode varchar(30) null,
-	ProvinceId smallint foreign key references Provinces(ProvinceId) not null
-)
-go
-
-insert into Cities
-(CityName, ZipCode, ProvinceId)
-values
-('CABA', '1000', '1'),
-('Villa Adelina', '1607', '1'),
-('General Pacheco', '1617', '1'),
-('San Fernando', '1646', '1'),
-('Tigre', '1648', '1'),
-('Don Torcuato', '1617', '1'),
-('Villa Carlos Paz', '5152', '2'),
-('San Carlos de Bariloche', '8400', '3');
-go
-
 --------------
 -- TAXCODES --
 --------------
@@ -116,6 +28,71 @@ values
 ('30', '34726195', '9'),
 (null, '29383857', null),
 (null, '38474878', null);
+go
+
+---------------
+-- COUNTRIES --
+---------------
+
+create table Countries(
+	CountryId tinyint primary key identity(1,1) not null,
+	CountryName varchar(30) unique not null
+)
+go
+
+insert into Countries
+(CountryName)
+values
+('Argentina'),
+('Estados Unidos'),
+('España'),
+('Brasil');
+go
+
+---------------
+-- PROVINCES --
+---------------
+
+create table Provinces(
+	ProvinceId smallint primary key identity(1,1) not null,
+	ProvinceName varchar(30) not null,
+	CountryId tinyint foreign key references Countries(CountryId) not null,
+	Constraint UC_Province unique (ProvinceName, CountryId)
+)
+go
+
+insert into Provinces
+(ProvinceName, CountryId)
+values
+('Buenos Aires', '1'),
+('Córdoba', '1'),
+('Río Negro', '1');
+go
+
+------------
+-- CITIES --
+------------
+
+create table Cities(
+	CityId smallint primary key identity(1,1) not null,
+	CityName varchar(30) not null,
+	ZipCode varchar(30) null,
+	ProvinceId smallint foreign key references Provinces(ProvinceId) not null,
+	Constraint UC_City unique (CityName, ProvinceId)
+)
+go
+
+insert into Cities
+(CityName, ZipCode, ProvinceId)
+values
+('CABA', '1000', '1'),
+('Villa Adelina', '1607', '1'),
+('General Pacheco', '1617', '1'),
+('San Fernando', '1646', '1'),
+('Tigre', '1648', '1'),
+('Don Torcuato', '1617', '1'),
+('Villa Carlos Paz', '5152', '2'),
+('San Carlos de Bariloche', '8400', '3');
 go
 
 --------------
@@ -142,27 +119,6 @@ values
 ('Perón', '345', '', '', '4'),
 ('Cazón', '768', '', '', '5'),
 ('Santa Fé', '1290', '', '', '3');
-go
-
-------------
--- PHONES --
-------------
-
-create table Phones(
-	PhoneId int primary key identity(1,1) not null,
-	Number varchar(20) unique not null,
-	ProvinceId smallint foreign key references Provinces(ProvinceId) not null
-)
-go
-
-insert into Phones
-(Number, ProvinceId)
-values
-('1527863846', '1'),
-('1547873654', '1'),
-('1568994786', '1'),
-('1558897263', '1'),
-('1557736789', '1');
 go
 
 ------------
@@ -274,11 +230,11 @@ go
 create table Individuals(
 	IndividualId int primary key identity(1,1) not null,
 	ActiveStatus bit not null default(1),
+	Phone varchar(30) null,
 	Email varchar(30) null,
 	Birth date null,
 	TaxCodeId int foreign key references TaxCodes(TaxCodeId) null,
 	AdressId int foreign key references Adresses(AdressId) null,
-	PhoneId int foreign key references Phones(PhoneId) null,
 	PersonId int foreign key references People(PersonId) null,
 	OrganizationId int foreign key references Organizations(OrganizationId) null,
 	ImageId int foreign key references Images(ImageId) null,
@@ -287,16 +243,16 @@ create table Individuals(
 go
 
 insert into Individuals
-(ActiveStatus, Email, Birth, TaxCodeId, AdressId, PhoneId, PersonId, OrganizationId, ImageId)
+(ActiveStatus, Phone, Email, Birth, TaxCodeId, AdressId, PersonId, OrganizationId, ImageId)
 values
-('true', 'pisosclick@gmail.com', '2019-01-26', '1', '1', null, '1', '1', null),
-('true', 'johnsonconst@gmail.com', null, '2', '2', null, null, '2', '1'),
-('true', 'contact@smithcommercial.com', null, '3', '3', '1', null, '3', '2'),
-('false', 'info@greenfield.com', null, '4', '4', null, null, '4', '3'),
-('true', 'contacto@hierrosratti.com.ar', null, '5', '5', '2', null, '5', '4'),
-('true', 'contacto@hsm.com.ar', null, '6', '6', '3', null, '6', '5'),
-('false', 'berlinguieric@gmail.com', '1987-05-12', '7', null, '4', '2', null, '6'),
-('true', null, '1985-06-18', '8', null, '5', '3', null, null);
+('true', null, 'pisosclick@gmail.com', '2019-01-26', '1', '1', '1', '1', null),
+('true', null, 'johnsonconst@gmail.com', null, '2', '2', null, '2', '1'),
+('true', '1189873789', 'contact@smithcommercial.com', null, '3', '3', null, '3', '2'),
+('false', null, 'info@greenfield.com', null, '4', '4', null, '4', '3'),
+('true', null, 'contacto@hierrosratti.com.ar', null, '5', '5', null, '5', '4'),
+('true', null, 'contacto@hsm.com.ar', null, '6', '6', null, '6', '5'),
+('false', null, 'berlinguieric@gmail.com', '1987-05-12', '7', null, '2', null, '6'),
+('true', null, null, '1985-06-18', '8', null, '3', null, null);
 go
 
 -----------------------
@@ -503,4 +459,26 @@ insert into Warehouses
 values
 ('true', 'Depósito de 197', '6'),
 ('false', 'Showroom Villa Adelina', '1');
+go
+
+----------------
+-- CURRENCIES --
+----------------
+
+create table Currencies(
+	CurrencyId tinyint primary key identity(1,1) not null,
+	Code varchar(3) unique check(len(trim(Code)) = 3) not null,
+	CurrencyName varchar(30) not null,
+	Rate decimal(15,2) not null,
+	BlackRate decimal(15,2) null
+)
+go
+
+insert into Currencies
+(Code, CurrencyName, Rate, BlackRate)
+values
+('USD', 'Dólar', '1', '1'),
+('EUR', 'Euro', '0.93', '0.93'),
+('ARS', 'Peso', '830', '1130'),
+('BRL', 'Real', '5', '5');
 go

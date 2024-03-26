@@ -21,7 +21,7 @@ namespace BLL
 
             try
             {
-                _database.setQuery("select CountryId, CountryName, PhoneAreaCode from Countries");
+                _database.setQuery("select CountryId, CountryName from Countries");
                 _database.executeReader();
 
                 while (_database.Reader.Read())
@@ -30,7 +30,6 @@ namespace BLL
 
                     country.CountryId = Convert.ToInt32(_database.Reader["CountryId"]);
                     country.Name = (string)_database.Reader["CountryName"];
-                    country.PhoneAreaCode = (string)_database.Reader["PhoneAreaCode"];
 
                     countriesList.Add(country);
                 }
@@ -51,7 +50,7 @@ namespace BLL
         {
             try
             {
-                _database.setQuery("insert into Countries (CountryName, PhoneAreaCode, CurrencyId) values (@CountryName, @PhoneAreaCode, @CurrencyId)");
+                _database.setQuery("insert into Countries (CountryName) values (@CountryName)");
                 setParameters(country);
                 _database.executeAction();
             }
@@ -69,7 +68,7 @@ namespace BLL
         {
             try
             {
-                _database.setQuery("update Countries set CountryName = @CountryName, PhoneAreaCode = @PhoneAreaCode, CurrencyId = @CurrencyId where CountryId = @CountryId");
+                _database.setQuery("update Countries set CountryName = @CountryName where CountryId = @CountryId");
                 _database.setParameter("@CountryId", country.CountryId);
                 setParameters(country);
                 _database.executeAction();
@@ -84,7 +83,7 @@ namespace BLL
             }
         }
 
-        public int getIdByName(Country country)
+        public int getId(Country country)
         {
             if (country == null)
             {
@@ -116,38 +115,6 @@ namespace BLL
             return countryId;
         }
 
-        public int getIdByCode(Country country)
-        {
-            if (country == null)
-            {
-                return 0;
-            }
-
-            int countryId = 0;
-
-            try
-            {
-                _database.setQuery("select CountryId from Countries where PhoneAreaCode = @PhoneAreaCode");
-                _database.setParameter("@PhoneAreaCode", country.PhoneAreaCode);
-                _database.executeReader();
-
-                if (_database.Reader.Read())
-                {
-                    countryId = Convert.ToInt32(_database.Reader["CountryId"]);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                _database.closeConnection();
-            }
-
-            return countryId;
-        }
-
         private void setParameters(Country country)
         {
             if (Validations.hasData(country.Name))
@@ -157,24 +124,6 @@ namespace BLL
             else
             {
                 _database.setParameter("@CountryName", DBNull.Value);
-            }
-            
-            if (Validations.hasData(country.PhoneAreaCode))
-            {
-                _database.setParameter("@PhoneAreaCode", country.PhoneAreaCode);
-            }
-            else
-            {
-                _database.setParameter("@PhoneAreaCode", DBNull.Value);
-            }
-
-            if (country.Currency != null)
-            {
-                _database.setParameter("@CurrencyId", country.Currency.CurrencyId);
-            }
-            else
-            {
-                _database.setParameter("@CurrencyId", DBNull.Value);
             }
         }
     }

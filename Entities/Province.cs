@@ -12,9 +12,6 @@ namespace Entities
         [DisplayName("Provincia")]
         public string Name { get; set; }
 
-        [DisplayName("Código de área telefónico")]
-        public string PhoneAreaCode { get; set; }
-
         // METHODS
 
         public override string ToString()

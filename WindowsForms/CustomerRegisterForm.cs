@@ -90,21 +90,9 @@ namespace WindowsForms
 
             // Phone
 
-            if (!Validations.isNumber(phoneNumberTextBox.Text))
+            if (!Validations.isNumber(phoneTextBox.Text))
             {
                 Validations.error("El número de teléfono solo admite caracteres numéricos.");
-                return false;
-            }
-
-            if (phoneNumberTextBox.Text != "" && phoneCountryComboBox.Text == "")
-            {
-                Validations.error("Especificar el código de área de país del teléfono.");
-                return false;
-            }
-
-            if (phoneNumberTextBox.Text != "" && phoneProvinceComboBox.Text == "")
-            {
-                Validations.error("Especificar el código de área de provincia del teléfono.");
                 return false;
             }
 
@@ -134,14 +122,6 @@ namespace WindowsForms
             organizationNameComboBox.DataSource = _organizationsManager.list(); ;
             organizationNameComboBox.ValueMember = "OrganizationId";
             organizationNameComboBox.DisplayMember = "Name";
-
-            phoneCountryComboBox.DataSource = _countriesManager.list();
-            phoneCountryComboBox.ValueMember = "CountryId";
-            phoneCountryComboBox.DisplayMember = "PhoneAreaCode";
-
-            phoneProvinceComboBox.DataSource = _provincesManager.list();
-            phoneProvinceComboBox.ValueMember = "ProvinceId";
-            phoneProvinceComboBox.DisplayMember = "PhoneAreaCode";
             
             adressCountryComboBox.DataSource = _countriesManager.list();
             adressCountryComboBox.ValueMember = "CountryId";
@@ -159,8 +139,6 @@ namespace WindowsForms
         private void clearComboBoxes()
         {
             organizationNameComboBox.SelectedIndex = -1;
-            phoneCountryComboBox.SelectedIndex = -1;
-            phoneProvinceComboBox.SelectedIndex = -1;
             adressCountryComboBox.SelectedIndex = -1;
             adressProvinceComboBox.SelectedIndex = -1;
             adressCityComboBox.SelectedIndex = -1;
@@ -169,10 +147,13 @@ namespace WindowsForms
         private void mapIndividual()
         {
             activeStatusCheckBox.Checked = _customer.ActiveStatus;
+            phoneTextBox.Text = _customer.Phone;
             emailTextBox.Text = _customer.Email;
 
             if (birthDateTimePicker.MinDate < _customer.Birth && _customer.Birth < birthDateTimePicker.MaxDate)
+            {
                 birthDateTimePicker.Value = DateTime.Parse(_customer.Birth.ToShortDateString());
+            }
 
             if (0 < _customer.TaxCode.TaxCodeId)
             {
@@ -188,6 +169,7 @@ namespace WindowsForms
                 flatTextBox.Text = _customer.Adress.Flat;
                 detailsTextBox.Text = _customer.Adress.Details;
                 adressCityComboBox.SelectedValue = _customer.Adress.City.CityId;
+                zipCodeTextBox.Text = _customer.Adress.City.ZipCode;
                 adressProvinceComboBox.SelectedValue = _customer.Adress.Province.ProvinceId;
                 adressCountryComboBox.SelectedValue = _customer.Adress.Country.CountryId;
             }
@@ -198,18 +180,6 @@ namespace WindowsForms
                 adressCountryComboBox.SelectedIndex = -1;
             }
             
-            if (0 < _customer.Phone.PhoneId)
-            {
-                phoneCountryComboBox.SelectedValue = _customer.Phone.Country.CountryId;
-                phoneProvinceComboBox.SelectedValue = _customer.Phone.Province.ProvinceId;
-                phoneNumberTextBox.Text = _customer.Phone.Number;
-            }
-            else
-            {
-                phoneCountryComboBox.SelectedIndex = -1;
-                phoneProvinceComboBox.SelectedIndex = -1;
-            }
-
             if (0 < _customer.Organization.OrganizationId)
             {
                 organizationNameComboBox.SelectedValue = _customer.Organization.OrganizationId;
@@ -243,6 +213,7 @@ namespace WindowsForms
         private void setIndividual()
         {
             _customer.ActiveStatus = activeStatusCheckBox.Checked;
+            _customer.Phone = phoneTextBox.Text;
             _customer.Email = emailTextBox.Text;
             _customer.Birth = birthDateTimePicker.Value;
 
@@ -271,17 +242,6 @@ namespace WindowsForms
             else
             {
                 _customer.Adress = null;
-            }
-
-            if (Validations.hasData(phoneNumberTextBox.Text))
-            {
-                _customer.Phone.Country.PhoneAreaCode = phoneCountryComboBox.Text;
-                _customer.Phone.Province.PhoneAreaCode = phoneProvinceComboBox.Text;
-                _customer.Phone.Number = phoneNumberTextBox.Text;
-            }
-            else
-            {
-                _customer.Phone = null;
             }
 
             if (Validations.hasData(firstNameTextBox.Text))
