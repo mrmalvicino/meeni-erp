@@ -81,11 +81,15 @@ namespace BLL
         public void add(Adress adress)
         {
             int dbCountryId = _countriesManager.getId(adress.Country);
-
+            
             if (dbCountryId == 0)
             {
                 _countriesManager.add(adress.Country);
                 adress.Country.CountryId = Helper.getLastId("Countries");
+            }
+            else
+            {
+                adress.Country.CountryId = dbCountryId;
             }
 
             int dbProvinceId = _provincesManager.getId(adress.Province);
@@ -95,13 +99,21 @@ namespace BLL
                 _provincesManager.add(adress.Province, adress.Country.CountryId);
                 adress.Province.ProvinceId = Helper.getLastId("Provinces");
             }
+            else
+            {
+                adress.Province.ProvinceId = dbProvinceId;
+            }
 
             int dbCityId = _citiesManager.getId(adress.City);
-
+            
             if (dbCityId == 0)
             {
                 _citiesManager.add(adress.City, adress.Province.ProvinceId);
                 adress.City.CityId = Helper.getLastId("Cities");
+            }
+            else
+            {
+                adress.City.CityId = dbCityId;
             }
 
             try

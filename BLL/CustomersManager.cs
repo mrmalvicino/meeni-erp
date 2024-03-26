@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using DAL;
 using Entities;
 using Utilities;
@@ -18,6 +19,9 @@ namespace BLL
 
         public List<Customer> list()
         {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+
             List<Customer> customersList = new List<Customer>();
             
             try
@@ -55,6 +59,9 @@ namespace BLL
                 _businessPartner = _businessPartnersManager.read(customer.BusinessPartnerId);
                 Helper.assign(customer, _businessPartner);
             }
+
+            stopwatch.Stop();
+            Console.WriteLine("list: " + stopwatch.ElapsedMilliseconds + "ms");
 
             return customersList;
         }
