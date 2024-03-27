@@ -219,7 +219,8 @@ go
 
 create table ImageProductRelations(
 	ImageId int foreign key references Images(ImageId) not null,
-	ProductId int foreign key references Products(ProductId) not null
+	ProductId int foreign key references Products(ProductId) not null,
+	primary key (ImageId, ProductId)
 )
 go
 
@@ -449,8 +450,8 @@ go
 create table Warehouses(
 	WarehouseId int primary key identity(1,1) not null,
 	ActiveStatus bit not null default(1),
-	WarehouseName varchar(30) not null,
-	AdressId int foreign key references Adresses(AdressId) null
+	WarehouseName varchar(30) unique not null,
+	AdressId int foreign key references Adresses(AdressId) not null
 )
 go
 
@@ -460,6 +461,24 @@ values
 ('true', 'Depósito de 197', '6'),
 ('false', 'Showroom Villa Adelina', '1');
 go
+
+---------------------
+-- WAREHOUSESTOCK1 --
+---------------------
+
+create table WarehouseStock1(
+	ProductId int primary key identity(1,1) not null,
+	Stock int check(0 < Stock) not null
+)
+
+---------------------
+-- WAREHOUSESTOCK2 --
+---------------------
+
+create table WarehouseStock2(
+	ProductId int primary key identity(1,1) not null,
+	Stock int check(0 < Stock) not null
+)
 
 ----------------
 -- CURRENCIES --

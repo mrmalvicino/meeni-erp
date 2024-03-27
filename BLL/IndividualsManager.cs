@@ -96,39 +96,77 @@ namespace BLL
         {
             if (individual.TaxCode != null)
             {
-                _taxCodesManager.add(individual.TaxCode);
-                individual.TaxCode.TaxCodeId = Helper.getLastId("TaxCodes");
+                int dbTaxCodeId = _taxCodesManager.getId(individual.TaxCode);
+
+                if (dbTaxCodeId == 0)
+                {
+                    _taxCodesManager.add(individual.TaxCode);
+                    individual.TaxCode.TaxCodeId = Helper.getLastId("TaxCodes");
+                }
+                else
+                {
+                    individual.TaxCode.TaxCodeId = dbTaxCodeId;
+                }
             }
 
             if (individual.Adress != null)
             {
-                _adressesManager.add(individual.Adress);
-                individual.Adress.AdressId = Helper.getLastId("Adresses");
+                int dbAdressId = _adressesManager.getId(individual.Adress);
+
+                if (dbAdressId == 0)
+                {
+                    _adressesManager.add(individual.Adress);
+                    individual.Adress.AdressId = Helper.getLastId("Adresses");
+                }
+                else
+                {
+                    individual.Adress.AdressId= dbAdressId;
+                }
             }
 
             if (individual.Person != null)
             {
-                _peopleManager.add(individual.Person);
-                individual.Person.PersonId = Helper.getLastId("People");
+                int dbPersonId = _peopleManager.getId(individual.Person);
+
+                if (dbPersonId == 0)
+                {
+                    _peopleManager.add(individual.Person);
+                    individual.Person.PersonId = Helper.getLastId("People");
+                }
+                else
+                {
+                    individual.Person.PersonId = dbPersonId;
+                }
             }
 
             if (individual.Organization != null)
             {
-                if (_organizationsManager.getId(individual.Organization) == 0)
+                int dbOrganizationId = _organizationsManager.getId(individual.Organization);
+
+                if (dbOrganizationId == 0)
                 {
                     _organizationsManager.add(individual.Organization);
                     individual.Organization.OrganizationId = Helper.getLastId("Organizations");
                 }
                 else
                 {
-                    individual.Organization.OrganizationId = _organizationsManager.getId(individual.Organization);
+                    individual.Organization.OrganizationId = dbOrganizationId;
                 }
             }
 
             if (individual.Image != null)
             {
-                _imagesManager.add(individual.Image);
-                individual.Image.ImageId = Helper.getLastId("Images");
+                int dbImageId = _imagesManager.getId(individual.Image);
+
+                if (dbImageId == 0)
+                {
+                    _imagesManager.add(individual.Image);
+                    individual.Image.ImageId = Helper.getLastId("Images");
+                }
+                else
+                {
+                    individual.Image.ImageId = dbImageId;
+                }
             }
 
             try

@@ -82,5 +82,22 @@ namespace DAL
             if (_reader != null) _reader.Close();
             _connection.Close();
         }
+
+        public void createTable(string tableName, string tableDefinition)
+        {
+            try
+            {
+                setQuery($"if not exists (select * from information_schema.tables where table_name = '{tableName}') create table {tableName} ({tableDefinition})");
+                executeAction();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                closeConnection();
+            }
+        }
     }
 }
