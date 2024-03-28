@@ -16,6 +16,9 @@ namespace Entities
         [DisplayName("Modelo")]
         public Model Model { get; set; }
 
+        [DisplayName("Imagen")]
+        public Image Image { get; set; }
+
         // METHODS
 
         public override string ToString()

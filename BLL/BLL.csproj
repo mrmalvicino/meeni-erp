@@ -56,7 +56,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProvincesManager.cs" />
     <Compile Include="RolesManager.cs" />
-    <Compile Include="StockManager.cs" />
     <Compile Include="SuppliersManager.cs" />
     <Compile Include="TaxCodesManager.cs" />
     <Compile Include="UsersManager.cs" />

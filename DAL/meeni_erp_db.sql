@@ -5,34 +5,62 @@ go
 use meeni_erp_db
 go
 
---------------
--- CATEGORY --
---------------
+----------------
+-- CATEGORIES --
+----------------
 
 create table Categories(
 	CategoryId int primary key identity(1,1) not null,
 	CategoryName varchar(30) unique not null
 )
+go
 
------------
--- BRAND --
------------
+insert into Categories
+(CategoryName)
+values
+('Zócalo'),
+('Piso vinílico'),
+('Sellador'),
+('Flete');
+go
+
+------------
+-- BRANDS --
+------------
 
 create table Brands(
 	BrandId int primary key identity(1,1) not null,
 	BrandName varchar(30) unique not null
 )
+go
 
------------
--- MODEL --
------------
+insert into Brands
+(BrandName)
+values
+('Boden Design'),
+('Harte Flooring'),
+('Fastix');
+go
+
+------------
+-- MODELS --
+------------
 
 create table Models(
 	ModelId int primary key identity(1,1) not null,
-	ModelName varchar(30) unique not null,
+	ModelName varchar(100) unique not null,
 	BrandId int foreign key references Brands(BrandId) not null,
 	constraint UC_Model unique (ModelName, BrandId)
 )
+go
+
+insert into Models
+(ModelName, BrandId)
+values
+('Prepintado Blanco 7,5cm MDF tira 2m', '1'),
+('Roble oscuro SCP 5mm caja 10u', '2'),
+('Transparente 25g', '3');
+go
 
 -----------
 -- ITEMS --
@@ -46,15 +74,33 @@ create table Items(
 )
 go
 
+insert into Items
+(Price, Cost, CategoryId)
+values
+('15000', '14000', '1'),
+('50000', '50000', '2'),
+('5000', '5000', '3'),
+('40000', '40000', '4'),
+('60000', '60000', '4');
+go
+
 --------------
 -- PRODUCTS --
 --------------
 
 create table Products(
 	ProductId int primary key identity(1,1) not null,
-	BrandId int foreign key references Brands(BrandId) not null,
+	ModelId int foreign key references Models(ModelId) not null,
 	ItemId int foreign key references Items(ItemId) not null
 )
+go
+
+insert into Products
+(ModelId, ItemId)
+values
+('1', '1'),
+('2', '2'),
+('3', '3');
 go
 
 --------------
@@ -63,66 +109,16 @@ go
 
 create table Services(
 	ServiceId int primary key identity(1,1) not null,
-	ServiceName varchar(30) unique not null,
+	ServiceName varchar(50) unique not null,
 	ItemId int foreign key references Items(ItemId) not null
 )
 go
 
-------------
--- IMAGES --
-------------
-
-create table Images(
-	ImageId int primary key identity(1,1) not null,
-	ImageUrl varchar(300) unique not null
-)
-go
-
-insert into Images
-(ImageUrl)
+insert into Services
+(ServiceName, ItemId)
 values
-('https://img.freepik.com/vector-gratis/logotipo-empresa-construccion-diseno-plano_23-2150051909.jpg?size=338&ext=jpg&ga=GA1.1.1412446893.1705449600&semt=ais'),
-('https://img.freepik.com/vector-gratis/logotipo-excavadora-construccion-edificios_23-2148657768.jpg?size=338&ext=jpg&ga=GA1.1.1412446893.1705449600&semt=ais'),
-('https://img.freepik.com/vector-premium/logotipo-enlucido-construccion-diseno-ladrillo-paleta_501861-302.jpg?size=338&ext=jpg&ga=GA1.1.1412446893.1705449600&semt=ais'),
-('https://hierrosratti.com.ar/images/productos/tubos.jpg'),
-('https://www.herrajessanmartin.com/Pubs/Sites/Default/Config/logo-hsm-invertido-02.png'),
-('https://img.freepik.com/foto-gratis/chico-guapo-seguro-posando-contra-pared-blanca_176420-32936.jpg?size=626&ext=jpg&ga=GA1.1.1224184972.1708992000&semt=sph');
-go
-
-----------------------------
--- IMAGE-PRODUCT RELATION --
-----------------------------
-
-create table ImageProductRelations(
-	ImageId int foreign key references Images(ImageId) not null,
-	ProductId int foreign key references Products(ProductId) not null,
-	primary key (ImageId, ProductId)
-)
-go
-
---------------
--- TAXCODES --
---------------
-
-create table TaxCodes(
-	TaxCodeId int primary key identity(1,1) not null,
-	Prefix varchar(10) null,
-	Number varchar(20) unique not null,
-	Suffix varchar(10) null
-)
-go
-
-insert into TaxCodes
-(Prefix, Number, Suffix)
-values
-('20', '37455376', '9'),
-('20', '20288746', '3'),
-('30', '34468435', '9'),
-('20', '37196796', '9'),
-('20', '20878716', '3'),
-('30', '34726195', '9'),
-(null, '29383857', null),
-(null, '38474878', null);
+('Zona norte ida y vuelta', '4'),
+('CABA Ida y vuelta', '5');
 go
 
 ---------------
@@ -214,6 +210,114 @@ values
 ('Perón', '345', '', '', '4'),
 ('Cazón', '768', '', '', '5'),
 ('Santa Fé', '1290', '', '', '3');
+go
+
+----------------
+-- WAREHOUSES --
+----------------
+
+create table Warehouses(
+	WarehouseId int primary key identity(1,1) not null,
+	ActiveStatus bit not null default(1),
+	WarehouseName varchar(30) unique not null,
+	AdressId int foreign key references Adresses(AdressId) not null
+)
+go
+
+insert into Warehouses
+(ActiveStatus, WarehouseName, AdressId)
+values
+('true', 'Depósito de 197', '6'),
+('false', 'Showroom Villa Adelina', '1');
+go
+
+--------------------------------
+-- WAREHOUSE-PRODUCT RELATION --
+--------------------------------
+
+create table WarehouseProductRelations(
+	WarehouseId int foreign key references Warehouses(WarehouseId) not null,
+	ProductId int foreign key references Products(ProductId) not null,
+	Stock int check(0 <= Stock) not null default(0),
+	primary key (WarehouseId, ProductId)
+)
+go
+
+insert into WarehouseProductRelations
+(WarehouseId, ProductId, Stock)
+values
+('1', '1', '1'),
+('1', '2', '2'),
+('2', '1', '3'),
+('2', '3', '4');
+go
+
+------------
+-- IMAGES --
+------------
+
+create table Images(
+	ImageId int primary key identity(1,1) not null,
+	ImageUrl varchar(300) unique not null
+)
+go
+
+insert into Images
+(ImageUrl)
+values
+('https://img.freepik.com/vector-gratis/logotipo-empresa-construccion-diseno-plano_23-2150051909.jpg?size=338&ext=jpg&ga=GA1.1.1412446893.1705449600&semt=ais'),
+('https://img.freepik.com/vector-gratis/logotipo-excavadora-construccion-edificios_23-2148657768.jpg?size=338&ext=jpg&ga=GA1.1.1412446893.1705449600&semt=ais'),
+('https://img.freepik.com/vector-premium/logotipo-enlucido-construccion-diseno-ladrillo-paleta_501861-302.jpg?size=338&ext=jpg&ga=GA1.1.1412446893.1705449600&semt=ais'),
+('https://hierrosratti.com.ar/images/productos/tubos.jpg'),
+('https://www.herrajessanmartin.com/Pubs/Sites/Default/Config/logo-hsm-invertido-02.png'),
+('https://img.freepik.com/foto-gratis/chico-guapo-seguro-posando-contra-pared-blanca_176420-32936.jpg?size=626&ext=jpg&ga=GA1.1.1224184972.1708992000&semt=sph'),
+('https://www.atrimglobal.com.ar/wp-content/uploads/2016/08/Zocalo-Plain-2310.jpg'),
+('https://http2.mlstatic.com/D_NQ_NP_948343-MLA51717745562_092022-O.jpg'),
+('https://arcencohogar.vtexassets.com/arquivos/ids/274900/1054642.jpg?v=637651585258230000');
+go
+
+----------------------------
+-- IMAGE-PRODUCT RELATION --
+----------------------------
+
+create table ImageProductRelations(
+	ImageId int foreign key references Images(ImageId) not null,
+	ProductId int foreign key references Products(ProductId) not null,
+	primary key (ImageId, ProductId)
+)
+go
+
+insert into ImageProductRelations
+(ImageId, ProductId)
+values
+('7', '1'),
+('8', '2'),
+('9', '3');
+go
+
+--------------
+-- TAXCODES --
+--------------
+
+create table TaxCodes(
+	TaxCodeId int primary key identity(1,1) not null,
+	Prefix varchar(10) null,
+	Number varchar(20) unique not null,
+	Suffix varchar(10) null
+)
+go
+
+insert into TaxCodes
+(Prefix, Number, Suffix)
+values
+('20', '37455376', '9'),
+('20', '20288746', '3'),
+('30', '34468435', '9'),
+('20', '37196796', '9'),
+('20', '20878716', '3'),
+('30', '34726195', '9'),
+(null, '29383857', null),
+(null, '38474878', null);
 go
 
 ------------
@@ -498,40 +602,3 @@ values
 ('ARS', 'Peso', '830', '1130'),
 ('BRL', 'Real', '5', '5');
 go
-
-----------------
--- WAREHOUSES --
-----------------
-
-create table Warehouses(
-	WarehouseId int primary key identity(1,1) not null,
-	ActiveStatus bit not null default(1),
-	WarehouseName varchar(30) unique not null,
-	AdressId int foreign key references Adresses(AdressId) not null
-)
-go
-
-insert into Warehouses
-(ActiveStatus, WarehouseName, AdressId)
-values
-('true', 'Depósito de 197', '6'),
-('false', 'Showroom Villa Adelina', '1');
-go
-
-------------
--- STOCK1 --
-------------
-
-create table Stock1(
-	ProductId int primary key not null,
-	Stock int check(0 <= Stock) not null default(0)
-)
-
-------------
--- STOCK2 --
-------------
-
-create table Stock2(
-	ProductId int primary key not null,
-	Stock int check(0 <= Stock) not null default(0)
-)

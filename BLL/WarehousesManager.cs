@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.Remoting.Messaging;
 using DAL;
 using Entities;
 using Utilities;
@@ -13,7 +12,6 @@ namespace BLL
 
         private Database _database = new Database();
         private AdressesManager _adressesManager = new AdressesManager();
-        private StockManager _stockManager = new StockManager();
 
         // METHODS
 
@@ -83,8 +81,6 @@ namespace BLL
             {
                 _database.closeConnection();
             }
-
-            _stockManager.generateTable();
         }
 
         public void edit(Warehouse warehouse)
