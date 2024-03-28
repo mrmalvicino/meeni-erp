@@ -6,7 +6,7 @@ using Utilities;
 
 namespace BLL
 {
-    public class CountriesManager
+    public class CategoriesManager
     {
         // ATTRIBUTES
 

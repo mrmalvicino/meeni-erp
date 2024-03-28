@@ -16,5 +16,10 @@ namespace WindowsForms
         {
             InitializeComponent();
         }
+
+        private void ProductRegisterForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
