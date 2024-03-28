@@ -14,23 +14,23 @@ namespace BLL
 
         // METHODS
 
-        public List<Warehouse> list()
+        public List<Product> list()
         {
             List<Product> productsList = new List<Product>();
 
             try
             {
-                _database.setQuery("select WarehouseId, ActiveStatus, WarehouseName, AdressId from Warehouses");
+                _database.setQuery("select ProductId, ActiveStatus, ProductName, AdressId from Products");
                 _database.executeReader();
 
                 while (_database.Reader.Read())
                 {
-                    Product product = new Warehouse();
+                    Product product = new Product();
 
-                    product.WarehouseId = (int)_database.Reader["WarehouseId"];
-                    warehouse.ActiveStatus = (bool)_database.Reader["ActiveStatus"];
-                    warehouse.Name = (string)_database.Reader["WarehouseName"];
-                    warehouse.Adress.AdressId = (int)_database.Reader["AdressId"];
+                    product.ProductId = (int)_database.Reader["ProductId"];
+                    product.ActiveStatus = (bool)_database.Reader["ActiveStatus"];
+                    product.Name = (string)_database.Reader["ProductName"];
+                    product.Adress.AdressId = (int)_database.Reader["AdressId"];
 
                     productsList.Add(product);
                 }
@@ -47,24 +47,24 @@ namespace BLL
             return productsList;
         }
 
-        public void add(Warehouse warehouse)
+        public void add(Product product)
         {
-            int dbAdressId = _adressesManager.getId(warehouse.Adress);
+            int dbAdressId = _adressesManager.getId(product.Adress);
 
             if (dbAdressId == 0)
             {
-                _adressesManager.add(warehouse.Adress);
-                warehouse.Adress.AdressId = Helper.getLastId("Adresses");
+                _adressesManager.add(product.Adress);
+                product.Adress.AdressId = Helper.getLastId("Adresses");
             }
             else
             {
-                warehouse.Adress.AdressId = dbAdressId;
+                product.Adress.AdressId = dbAdressId;
             }
 
             try
             {
-                _database.setQuery("insert into Warehouses (ActiveStatus, WarehouseName, AdressId) values (@ActiveStatus, @WarehouseName, @AdressId)");
-                setParameters(warehouse);
+                _database.setQuery("insert into Products (ActiveStatus, ProductName, AdressId) values (@ActiveStatus, @ProductName, @AdressId)");
+                setParameters(product);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -77,29 +77,29 @@ namespace BLL
             }
         }
 
-        public void edit(Warehouse warehouse)
+        public void edit(Product product)
         {
-            int dbAdressId = _adressesManager.getId(warehouse.Adress);
+            int dbAdressId = _adressesManager.getId(product.Adress);
 
             if (dbAdressId == 0)
             {
-                _adressesManager.add(warehouse.Adress);
-                warehouse.Adress.AdressId = Helper.getLastId("Adresses");
+                _adressesManager.add(product.Adress);
+                product.Adress.AdressId = Helper.getLastId("Adresses");
             }
-            else if (dbAdressId == warehouse.Adress.AdressId)
+            else if (dbAdressId == product.Adress.AdressId)
             {
-                _adressesManager.edit(warehouse.Adress);
+                _adressesManager.edit(product.Adress);
             }
             else
             {
-                warehouse.Adress.AdressId = dbAdressId;
+                product.Adress.AdressId = dbAdressId;
             }
 
             try
             {
-                _database.setQuery("update Warehouses set ActiveStatus = @ActiveStatus, WarehouseName = @WarehouseName, AdressId = @AdressId where WarehouseId = @WarehouseId");
-                _database.setParameter("@WarehouseId", warehouse.WarehouseId);
-                setParameters(warehouse);
+                _database.setQuery("update Products set ActiveStatus = @ActiveStatus, ProductName = @ProductName, AdressId = @AdressId where ProductId = @ProductId");
+                _database.setParameter("@ProductId", product.ProductId);
+                setParameters(product);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -112,12 +112,12 @@ namespace BLL
             }
         }
 
-        public void delete(Warehouse warehouse)
+        public void delete(Product product)
         {
             try
             {
-                _database.setQuery("delete from Warehouses where WarehouseId = @WarehouseId");
-                _database.setParameter("@WarehouseId", warehouse.WarehouseId);
+                _database.setQuery("delete from Products where ProductId = @ProductId");
+                _database.setParameter("@ProductId", product.ProductId);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -130,11 +130,11 @@ namespace BLL
             }
         }
 
-        private void setParameters(Warehouse warehouse)
+        private void setParameters(Product product)
         {
-            _database.setParameter("@ActiveStatus", warehouse.ActiveStatus);
-            _database.setParameter("@WarehouseName", warehouse.Name);
-            _database.setParameter("@AdressId", warehouse.Adress.AdressId);
+            _database.setParameter("@ActiveStatus", product.ActiveStatus);
+            _database.setParameter("@ProductName", product.Name);
+            _database.setParameter("@AdressId", product.Adress.AdressId);
         }
     }
 }
