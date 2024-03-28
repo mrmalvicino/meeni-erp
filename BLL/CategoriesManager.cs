@@ -14,23 +14,23 @@ namespace BLL
 
         // METHODS
 
-        public List<Country> list()
+        public List<Category> list()
         {
-            List<Country> countriesList = new List<Country>();
+            List<Category> categoriesList = new List<Category>();
 
             try
             {
-                _database.setQuery("select CountryId, CountryName from Countries");
+                _database.setQuery("select CategoryId, CategoryName from Categories");
                 _database.executeReader();
 
                 while (_database.Reader.Read())
                 {
-                    Country country = new Country();
+                    Category category = new Category();
 
-                    country.CountryId = Convert.ToInt32(_database.Reader["CountryId"]);
-                    country.Name = (string)_database.Reader["CountryName"];
+                    category.CategoryId = Convert.ToInt32(_database.Reader["CategoryId"]);
+                    category.Name = (string)_database.Reader["CategoryName"];
 
-                    countriesList.Add(country);
+                    categoriesList.Add(category);
                 }
             }
             catch (Exception ex)
@@ -42,15 +42,15 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            return countriesList;
+            return categoriesList;
         }
 
-        public void add(Country country)
+        public void add(Category category)
         {
             try
             {
-                _database.setQuery("insert into Countries (CountryName) values (@CountryName)");
-                setParameters(country);
+                _database.setQuery("insert into Categories (CategoryName) values (@CategoryName)");
+                setParameters(category);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -63,13 +63,13 @@ namespace BLL
             }
         }
 
-        public void edit(Country country)
+        public void edit(Category category)
         {
             try
             {
-                _database.setQuery("update Countries set CountryName = @CountryName where CountryId = @CountryId");
-                _database.setParameter("@CountryId", country.CountryId);
-                setParameters(country);
+                _database.setQuery("update Categories set CategoryName = @CategoryName where CategoryId = @CategoryId");
+                _database.setParameter("@CategoryId", category.CategoryId);
+                setParameters(category);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -82,24 +82,24 @@ namespace BLL
             }
         }
 
-        public int getId(Country country)
+        public int getId(Category category)
         {
-            if (country == null)
+            if (category == null)
             {
                 return 0;
             }
 
-            int countryId = 0;
+            int categoryId = 0;
 
             try
             {
-                _database.setQuery("select CountryId from Countries where CountryName = @CountryName");
-                _database.setParameter("@CountryName", country.Name);
+                _database.setQuery("select CategoryId from Categories where CategoryName = @CategoryName");
+                _database.setParameter("@CategoryName", category.Name);
                 _database.executeReader();
 
                 if (_database.Reader.Read())
                 {
-                    countryId = Convert.ToInt32(_database.Reader["CountryId"]);
+                    categoryId = Convert.ToInt32(_database.Reader["CategoryId"]);
                 }
             }
             catch (Exception ex)
@@ -111,18 +111,18 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            return countryId;
+            return categoryId;
         }
 
-        private void setParameters(Country country)
+        private void setParameters(Category category)
         {
-            if (Validations.hasData(country.Name))
+            if (Validations.hasData(category.Name))
             {
-                _database.setParameter("@CountryName", country.Name);
+                _database.setParameter("@CategoryName", category.Name);
             }
             else
             {
-                _database.setParameter("@CountryName", DBNull.Value);
+                _database.setParameter("@CategoryName", DBNull.Value);
             }
         }
     }
