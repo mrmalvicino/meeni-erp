@@ -224,6 +224,11 @@ namespace WindowsForms
             }
         }
 
+        private void dataGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            setupDataGridView();
+        }
+
         private void newButton_Click(object sender, EventArgs e)
         {
             CustomerRegisterForm registerForm = new CustomerRegisterForm();
@@ -285,11 +290,6 @@ namespace WindowsForms
         private void showInactiveCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             applyFilter();
-        }
-
-        private void dataGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            setupDataGridView();
         }
     }
 }

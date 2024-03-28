@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Xml.Linq;
 
 namespace Entities
 {
@@ -10,9 +11,16 @@ namespace Entities
         public int ProductId { get; set; }
 
         [DisplayName("Marca")]
-        public string Brand { get; set; }
+        public Brand Brand { get; set; }
 
         [DisplayName("Modelo")]
-        public string Model { get; set; }
+        public Model Model { get; set; }
+
+        // METHODS
+
+        public override string ToString()
+        {
+            return Category.ToString() + " " + Brand.ToString() + " " + Model.ToString();
+        }
     }
 }

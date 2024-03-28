@@ -13,6 +13,7 @@ namespace BLL
 
         private Database _database = new Database();
         private AdressesManager _adressesManager = new AdressesManager();
+        private StockManager _stockManager = new StockManager();
 
         // METHODS
 
@@ -83,7 +84,7 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            generateTable();
+            _stockManager.generateTable();
         }
 
         public void edit(Warehouse warehouse)
@@ -144,13 +145,6 @@ namespace BLL
             _database.setParameter("@ActiveStatus", warehouse.ActiveStatus);
             _database.setParameter("@WarehouseName", warehouse.Name);
             _database.setParameter("@AdressId", warehouse.Adress.AdressId);
-        }
-
-        private void generateTable()
-        {
-            string tableName = "Warehouse" + Helper.getLastId("Warehouses").ToString();
-            string tableDefinition = "ProductId int primary key identity(1,1) not null, Stock int check(0 < Stock) not null";
-            _database.createTable(tableName, tableDefinition);
         }
     }
 }

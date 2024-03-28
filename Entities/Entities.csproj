@@ -43,11 +43,14 @@
   <ItemGroup>
     <Compile Include="Account.cs" />
     <Compile Include="Adress.cs" />
+    <Compile Include="Brand.cs" />
     <Compile Include="BusinessPartner.cs" />
+    <Compile Include="Category.cs" />
     <Compile Include="City.cs" />
     <Compile Include="Country.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="Image.cs" />
+    <Compile Include="Model.cs" />
     <Compile Include="Organization.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Position.cs" />

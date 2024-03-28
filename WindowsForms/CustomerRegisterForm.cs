@@ -119,7 +119,7 @@ namespace WindowsForms
 
         private void bindComboBoxes()
         {
-            organizationNameComboBox.DataSource = _organizationsManager.list(); ;
+            organizationNameComboBox.DataSource = _organizationsManager.list();
             organizationNameComboBox.ValueMember = "OrganizationId";
             organizationNameComboBox.DisplayMember = "Name";
             

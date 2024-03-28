@@ -11,5 +11,12 @@ namespace Entities
 
         [DisplayName("Nombre")]
         public string Name { get; set; }
+
+        // METHODS
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

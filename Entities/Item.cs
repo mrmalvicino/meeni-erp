@@ -6,10 +6,16 @@ namespace Entities
     {
         // PROPERTIES
 
-        [DisplayName("Rubro")]
-        public string Category { get; set; }
+        [DisplayName("ID de item")]
+        public int ItemId { get; set; }
 
         [DisplayName("Precio")]
         public decimal Price { get; set; }
+
+        [DisplayName("Costo")]
+        public decimal Cost { get; set; }
+
+        [DisplayName("Rubro")]
+        public Category Category { get; set; }
     }
 }
