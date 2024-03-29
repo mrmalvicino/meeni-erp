@@ -51,12 +51,15 @@ namespace BLL
             {
                 _item = _itemsManager.read(product.ItemId);
                 Helper.assignItem(product, _item);
+                product.Model = _modelsManager.read(product.Model.ModelId);
+                product.Brand.BrandId = _modelsManager.getBrandId(product.Model);
+                product.Brand = _brandsManager.read(product.Brand.BrandId);
             }
 
             return productsList;
         }
 
-        public void add(Product product)
+        public void add(Product product) // y la Brand cuando se agrega?
         {
             _itemsManager.add(product);
             product.ItemId = Helper.getLastId("Items");

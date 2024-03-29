@@ -10,6 +10,7 @@ namespace BLL
         // ATTRIBUTES
 
         private Database _database = new Database();
+        private CategoriesManager _categoriesManager = new CategoriesManager();
 
         // METHODS
 
@@ -19,25 +20,17 @@ namespace BLL
 
             try
             {
-                _database.setQuery("select Prefix, Number, Suffix from Items where ItemId = @ItemId");
+                _database.setQuery("select Price, Cost, CategoryId from Items where ItemId = @ItemId");
                 _database.setParameter("@ItemId", itemId);
                 _database.executeReader();
 
                 if (_database.Reader.Read())
                 {
                     item.ItemId = itemId;
+                    item.Price = (decimal)_database.Reader["Price"];
+                    item.Cost = (decimal)_database.Reader["Cost"];
+                    item.Category.CategoryId = (int)_database.Reader["CategoryId"];
 
-                    if (!(_database.Reader["Prefix"] is DBNull))
-                    {
-                        item.Prefix = (string)_database.Reader["Prefix"];
-                    }
-
-                    item.Number = (string)_database.Reader["Number"];
-
-                    if (!(_database.Reader["Suffix"] is DBNull))
-                    {
-                        item.Suffix = (string)_database.Reader["Suffix"];
-                    }
                 }
             }
             catch (Exception ex)
@@ -49,14 +42,28 @@ namespace BLL
                 _database.closeConnection();
             }
 
+            item.Category = _categoriesManager.read(item.Category.CategoryId);
+
             return item;
         }
 
         public void add(Item item)
         {
+            int dbCategoryId = _categoriesManager.getId(item.Category);
+
+            if (dbCategoryId == 0)
+            {
+                _categoriesManager.add(item.Category);
+                item.Category.CategoryId = Helper.getLastId("Categories");
+            }
+            else
+            {
+                item.Category.CategoryId = dbCategoryId;
+            }
+
             try
             {
-                _database.setQuery("insert into Items (Prefix, Number, Suffix) values (@Prefix, @Number, @Suffix)");
+                _database.setQuery("insert into Items (Price, Cost, CategoryId) values (@Price, @Cost, @CategoryId)");
                 setParameters(item);
                 _database.executeAction();
             }
@@ -72,9 +79,25 @@ namespace BLL
 
         public void edit(Item item)
         {
+            int dbCategoryId = _categoriesManager.getId(item.Category);
+
+            if (dbCategoryId == 0)
+            {
+                _categoriesManager.add(item.Category);
+                item.Category.CategoryId = Helper.getLastId("Categories");
+            }
+            else if (dbCategoryId == item.Category.CategoryId)
+            {
+                _categoriesManager.edit(item.Category);
+            }
+            else
+            {
+                item.Category.CategoryId = dbCategoryId;
+            }
+
             try
             {
-                _database.setQuery("update Items set Prefix = @Prefix, Number = @Number, Suffix = @Suffix where ItemId = @ItemId");
+                _database.setQuery("update Items set Price = @Price, Cost = @Cost, CategoryId = @CategoryId where ItemId = @ItemId");
                 _database.setParameter("@ItemId", item.ItemId);
                 setParameters(item);
                 _database.executeAction();
@@ -107,66 +130,11 @@ namespace BLL
             }
         }
 
-        public int getId(Item item)
-        {
-            if (item == null)
-            {
-                return 0;
-            }
-
-            int itemId = 0;
-
-            try
-            {
-                _database.setQuery("select ItemId from Items where Number = @Number");
-                _database.setParameter("@Number", item.Number);
-                _database.executeReader();
-
-                if (_database.Reader.Read())
-                {
-                    itemId = (int)_database.Reader["ItemId"];
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                _database.closeConnection();
-            }
-
-            return itemId;
-        }
-
         private void setParameters(Item item)
         {
-            if (Validations.hasData(item.Prefix, 2, 2))
-            {
-                _database.setParameter("@Prefix", item.Prefix);
-            }
-            else
-            {
-                _database.setParameter("@Prefix", DBNull.Value);
-            }
-
-            if (Validations.hasData(item.Number))
-            {
-                _database.setParameter("@Number", item.Number);
-            }
-            else
-            {
-                _database.setParameter("@Number", DBNull.Value);
-            }
-
-            if (Validations.hasData(item.Suffix, 1, 1))
-            {
-                _database.setParameter("@Suffix", item.Suffix);
-            }
-            else
-            {
-                _database.setParameter("@Suffix", DBNull.Value);
-            }
+            _database.setParameter("@Price", item.Price);
+            _database.setParameter("@Cost", item.Cost);
+            _database.setParameter("@CategoryId", item.Category.CategoryId);
         }
     }
 }

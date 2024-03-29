@@ -153,6 +153,38 @@ namespace BLL
             return modelId;
         }
 
+        public int getBrandId(Model model)
+        {
+            if (model == null)
+            {
+                return 0;
+            }
+
+            int brandId = 0;
+
+            try
+            {
+                _database.setQuery("select BrandId from Models where ModelId = @ModelId");
+                _database.setParameter("@ModelId", model.ModelId);
+                _database.executeReader();
+
+                if (_database.Reader.Read())
+                {
+                    brandId = (int)_database.Reader["BrandId"];
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _database.closeConnection();
+            }
+
+            return brandId;
+        }
+
         private void setParameters(Model model)
         {
             if (Validations.hasData(model.Prefix, 2, 2))
