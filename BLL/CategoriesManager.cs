@@ -45,6 +45,34 @@ namespace BLL
             return categoriesList;
         }
 
+        public Category read(int categoryId)
+        {
+            Category category = new Category();
+
+            try
+            {
+                _database.setQuery("select CategoryName from Categories where CategoryId = @CategoryId");
+                _database.setParameter("@CategoryId", categoryId);
+                _database.executeReader();
+
+                if (_database.Reader.Read())
+                {
+                    category.CategoryId = categoryId;
+                    category.Name = (string)_database.Reader["CategoryName"];
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _database.closeConnection();
+            }
+
+            return category;
+        }
+
         public void add(Category category)
         {
             try

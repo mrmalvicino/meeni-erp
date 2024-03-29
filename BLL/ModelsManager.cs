@@ -51,25 +51,14 @@ namespace BLL
 
             try
             {
-                _database.setQuery("select Prefix, Number, Suffix from Models where ModelId = @ModelId");
+                _database.setQuery("select ModelName from Models where ModelId = @ModelId");
                 _database.setParameter("@ModelId", modelId);
                 _database.executeReader();
 
                 if (_database.Reader.Read())
                 {
                     model.ModelId = modelId;
-
-                    if (!(_database.Reader["Prefix"] is DBNull))
-                    {
-                        model.Prefix = (string)_database.Reader["Prefix"];
-                    }
-
-                    model.Number = (string)_database.Reader["Number"];
-
-                    if (!(_database.Reader["Suffix"] is DBNull))
-                    {
-                        model.Suffix = (string)_database.Reader["Suffix"];
-                    }
+                    model.Name = (string)_database.Reader["ModelName"];
                 }
             }
             catch (Exception ex)
@@ -88,7 +77,7 @@ namespace BLL
         {
             try
             {
-                _database.setQuery("insert into Models (Prefix, Number, Suffix) values (@Prefix, @Number, @Suffix)");
+                _database.setQuery("insert into Models (ModelName) values (@ModelName)");
                 setParameters(model);
                 _database.executeAction();
             }
@@ -106,7 +95,7 @@ namespace BLL
         {
             try
             {
-                _database.setQuery("update Models set Prefix = @Prefix, Number = @Number, Suffix = @Suffix where ModelId = @ModelId");
+                _database.setQuery("update Models set ModelName = @ModelName where ModelId = @ModelId");
                 _database.setParameter("@ModelId", model.ModelId);
                 setParameters(model);
                 _database.executeAction();
@@ -132,8 +121,8 @@ namespace BLL
 
             try
             {
-                _database.setQuery("select ModelId from Models where Number = @Number");
-                _database.setParameter("@Number", model.Number);
+                _database.setQuery("select ModelId from Models where ModelName = @ModelName");
+                _database.setParameter("@ModelName", model.Name);
                 _database.executeReader();
 
                 if (_database.Reader.Read())
@@ -187,32 +176,7 @@ namespace BLL
 
         private void setParameters(Model model)
         {
-            if (Validations.hasData(model.Prefix, 2, 2))
-            {
-                _database.setParameter("@Prefix", model.Prefix);
-            }
-            else
-            {
-                _database.setParameter("@Prefix", DBNull.Value);
-            }
-
-            if (Validations.hasData(model.Number))
-            {
-                _database.setParameter("@Number", model.Number);
-            }
-            else
-            {
-                _database.setParameter("@Number", DBNull.Value);
-            }
-
-            if (Validations.hasData(model.Suffix, 1, 1))
-            {
-                _database.setParameter("@Suffix", model.Suffix);
-            }
-            else
-            {
-                _database.setParameter("@Suffix", DBNull.Value);
-            }
+            _database.setParameter("@ModelName", model.Name);
         }
     }
 }

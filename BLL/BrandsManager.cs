@@ -51,25 +51,14 @@ namespace BLL
 
             try
             {
-                _database.setQuery("select Prefix, Number, Suffix from Brands where BrandId = @BrandId");
+                _database.setQuery("select BrandName from Brands where BrandId = @BrandId");
                 _database.setParameter("@BrandId", brandId);
                 _database.executeReader();
 
                 if (_database.Reader.Read())
                 {
                     brand.BrandId = brandId;
-
-                    if (!(_database.Reader["Prefix"] is DBNull))
-                    {
-                        brand.Prefix = (string)_database.Reader["Prefix"];
-                    }
-
-                    brand.Number = (string)_database.Reader["Number"];
-
-                    if (!(_database.Reader["Suffix"] is DBNull))
-                    {
-                        brand.Suffix = (string)_database.Reader["Suffix"];
-                    }
+                    brand.Name = (string)_database.Reader["BrandName"];
                 }
             }
             catch (Exception ex)
@@ -88,7 +77,7 @@ namespace BLL
         {
             try
             {
-                _database.setQuery("insert into Brands (Prefix, Number, Suffix) values (@Prefix, @Number, @Suffix)");
+                _database.setQuery("insert into Brands (BrandName) values (@BrandName)");
                 setParameters(brand);
                 _database.executeAction();
             }
@@ -106,7 +95,7 @@ namespace BLL
         {
             try
             {
-                _database.setQuery("update Brands set Prefix = @Prefix, Number = @Number, Suffix = @Suffix where BrandId = @BrandId");
+                _database.setQuery("update Brands set BrandName = @BrandName where BrandId = @BrandId");
                 _database.setParameter("@BrandId", brand.BrandId);
                 setParameters(brand);
                 _database.executeAction();
@@ -132,8 +121,8 @@ namespace BLL
 
             try
             {
-                _database.setQuery("select BrandId from Brands where Number = @Number");
-                _database.setParameter("@Number", brand.Number);
+                _database.setQuery("select BrandId from Brands where BrandName = @BrandName");
+                _database.setParameter("@BrandName", brand.Name);
                 _database.executeReader();
 
                 if (_database.Reader.Read())
@@ -155,32 +144,7 @@ namespace BLL
 
         private void setParameters(Brand brand)
         {
-            if (Validations.hasData(brand.Prefix, 2, 2))
-            {
-                _database.setParameter("@Prefix", brand.Prefix);
-            }
-            else
-            {
-                _database.setParameter("@Prefix", DBNull.Value);
-            }
-
-            if (Validations.hasData(brand.Number))
-            {
-                _database.setParameter("@Number", brand.Number);
-            }
-            else
-            {
-                _database.setParameter("@Number", DBNull.Value);
-            }
-
-            if (Validations.hasData(brand.Suffix, 1, 1))
-            {
-                _database.setParameter("@Suffix", brand.Suffix);
-            }
-            else
-            {
-                _database.setParameter("@Suffix", DBNull.Value);
-            }
+            _database.setParameter("@BrandName", brand.Name);
         }
     }
 }
