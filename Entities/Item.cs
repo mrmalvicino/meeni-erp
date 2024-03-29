@@ -9,6 +9,9 @@ namespace Entities
         [DisplayName("ID de item")]
         public int ItemId { get; set; }
 
+        [DisplayName("Está activo")]
+        public bool ActiveStatus { get; set; }
+
         [DisplayName("Precio")]
         public decimal Price { get; set; }
 

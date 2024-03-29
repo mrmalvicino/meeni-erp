@@ -54,7 +54,7 @@ namespace BLL
             foreach (Customer customer in customersList)
             {
                 _businessPartner = _businessPartnersManager.read(customer.BusinessPartnerId);
-                Helper.assign(customer, _businessPartner);
+                Helper.assignIndividual(customer, _businessPartner);
             }
 
             return customersList;

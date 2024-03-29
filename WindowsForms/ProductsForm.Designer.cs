@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductsForm));
             this.actionsPanel = new System.Windows.Forms.Panel();
-            this.viewEmployeeButton = new System.Windows.Forms.Button();
             this.showInactiveCheckBox = new System.Windows.Forms.CheckBox();
             this.showActiveCheckBox = new System.Windows.Forms.CheckBox();
             this.filterButton = new System.Windows.Forms.Button();
@@ -42,11 +41,9 @@
             this.newButton = new System.Windows.Forms.Button();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.idTextBox = new System.Windows.Forms.TextBox();
-            this.adressTextBox = new System.Windows.Forms.TextBox();
-            this.emailTextBox = new System.Windows.Forms.TextBox();
-            this.phoneTextBox = new System.Windows.Forms.TextBox();
-            this.descriptionTextBox = new System.Windows.Forms.TextBox();
-            this.nameTextBox = new System.Windows.Forms.TextBox();
+            this.categoryTextBox = new System.Windows.Forms.TextBox();
+            this.brandTextBox = new System.Windows.Forms.TextBox();
+            this.modelTextBox = new System.Windows.Forms.TextBox();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.actionsPanel.SuspendLayout();
@@ -58,7 +55,6 @@
             // actionsPanel
             // 
             this.actionsPanel.BackColor = System.Drawing.SystemColors.Control;
-            this.actionsPanel.Controls.Add(this.viewEmployeeButton);
             this.actionsPanel.Controls.Add(this.showInactiveCheckBox);
             this.actionsPanel.Controls.Add(this.showActiveCheckBox);
             this.actionsPanel.Controls.Add(this.filterButton);
@@ -74,17 +70,6 @@
             this.actionsPanel.Size = new System.Drawing.Size(1072, 277);
             this.actionsPanel.TabIndex = 8;
             // 
-            // viewEmployeeButton
-            // 
-            this.viewEmployeeButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.viewEmployeeButton.Location = new System.Drawing.Point(604, 62);
-            this.viewEmployeeButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.viewEmployeeButton.Name = "viewEmployeeButton";
-            this.viewEmployeeButton.Size = new System.Drawing.Size(180, 54);
-            this.viewEmployeeButton.TabIndex = 71;
-            this.viewEmployeeButton.Text = "Ver empleado";
-            this.viewEmployeeButton.UseVisualStyleBackColor = true;
-            // 
             // showInactiveCheckBox
             // 
             this.showInactiveCheckBox.AutoSize = true;
@@ -96,6 +81,7 @@
             this.showInactiveCheckBox.TabIndex = 6;
             this.showInactiveCheckBox.Text = "Inactivos";
             this.showInactiveCheckBox.UseVisualStyleBackColor = true;
+            this.showInactiveCheckBox.CheckedChanged += new System.EventHandler(this.showInactiveCheckBox_CheckedChanged);
             // 
             // showActiveCheckBox
             // 
@@ -110,6 +96,7 @@
             this.showActiveCheckBox.TabIndex = 5;
             this.showActiveCheckBox.Text = "Activos";
             this.showActiveCheckBox.UseVisualStyleBackColor = true;
+            this.showActiveCheckBox.CheckedChanged += new System.EventHandler(this.showActiveCheckBox_CheckedChanged);
             // 
             // filterButton
             // 
@@ -121,6 +108,7 @@
             this.filterButton.TabIndex = 7;
             this.filterButton.Text = "Restablecer";
             this.filterButton.UseVisualStyleBackColor = true;
+            this.filterButton.Click += new System.EventHandler(this.filterButton_Click);
             // 
             // filterLabel
             // 
@@ -141,6 +129,7 @@
             this.filterTextBox.Name = "filterTextBox";
             this.filterTextBox.Size = new System.Drawing.Size(403, 35);
             this.filterTextBox.TabIndex = 4;
+            this.filterTextBox.TextChanged += new System.EventHandler(this.filterTextBox_TextChanged);
             // 
             // exportCSVButton
             // 
@@ -152,6 +141,7 @@
             this.exportCSVButton.TabIndex = 3;
             this.exportCSVButton.Text = "Exportar CSV";
             this.exportCSVButton.UseVisualStyleBackColor = true;
+            this.exportCSVButton.Click += new System.EventHandler(this.exportCSVButton_Click);
             // 
             // deleteButton
             // 
@@ -163,6 +153,7 @@
             this.deleteButton.TabIndex = 2;
             this.deleteButton.Text = "Eliminar";
             this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
             // editButton
             // 
@@ -174,6 +165,7 @@
             this.editButton.TabIndex = 1;
             this.editButton.Text = "Editar";
             this.editButton.UseVisualStyleBackColor = true;
+            this.editButton.Click += new System.EventHandler(this.editButton_Click);
             // 
             // newButton
             // 
@@ -185,16 +177,15 @@
             this.newButton.TabIndex = 0;
             this.newButton.Text = "Nuevo";
             this.newButton.UseVisualStyleBackColor = true;
+            this.newButton.Click += new System.EventHandler(this.newButton_Click);
             // 
             // mainPanel
             // 
             this.mainPanel.BackColor = System.Drawing.SystemColors.Control;
             this.mainPanel.Controls.Add(this.idTextBox);
-            this.mainPanel.Controls.Add(this.adressTextBox);
-            this.mainPanel.Controls.Add(this.emailTextBox);
-            this.mainPanel.Controls.Add(this.phoneTextBox);
-            this.mainPanel.Controls.Add(this.descriptionTextBox);
-            this.mainPanel.Controls.Add(this.nameTextBox);
+            this.mainPanel.Controls.Add(this.categoryTextBox);
+            this.mainPanel.Controls.Add(this.brandTextBox);
+            this.mainPanel.Controls.Add(this.modelTextBox);
             this.mainPanel.Controls.Add(this.pictureBox);
             this.mainPanel.Location = new System.Drawing.Point(22, 23);
             this.mainPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -215,71 +206,45 @@
             this.idTextBox.TabIndex = 0;
             this.idTextBox.Text = "1";
             // 
-            // adressTextBox
+            // categoryTextBox
             // 
-            this.adressTextBox.BackColor = System.Drawing.SystemColors.Control;
-            this.adressTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.adressTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.adressTextBox.Location = new System.Drawing.Point(296, 220);
-            this.adressTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.adressTextBox.Name = "adressTextBox";
-            this.adressTextBox.ReadOnly = true;
-            this.adressTextBox.Size = new System.Drawing.Size(450, 28);
-            this.adressTextBox.TabIndex = 5;
-            this.adressTextBox.Text = "Calle 1234, Ciudad";
+            this.categoryTextBox.BackColor = System.Drawing.SystemColors.Control;
+            this.categoryTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.categoryTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.categoryTextBox.Location = new System.Drawing.Point(296, 143);
+            this.categoryTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.categoryTextBox.Name = "categoryTextBox";
+            this.categoryTextBox.ReadOnly = true;
+            this.categoryTextBox.Size = new System.Drawing.Size(450, 28);
+            this.categoryTextBox.TabIndex = 3;
+            this.categoryTextBox.Text = "Categoría";
             // 
-            // emailTextBox
+            // brandTextBox
             // 
-            this.emailTextBox.BackColor = System.Drawing.SystemColors.Control;
-            this.emailTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.emailTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emailTextBox.Location = new System.Drawing.Point(296, 143);
-            this.emailTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.emailTextBox.Name = "emailTextBox";
-            this.emailTextBox.ReadOnly = true;
-            this.emailTextBox.Size = new System.Drawing.Size(450, 28);
-            this.emailTextBox.TabIndex = 3;
-            this.emailTextBox.Text = "mail@gmail.com";
+            this.brandTextBox.BackColor = System.Drawing.SystemColors.Control;
+            this.brandTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.brandTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.brandTextBox.Location = new System.Drawing.Point(296, 105);
+            this.brandTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.brandTextBox.Name = "brandTextBox";
+            this.brandTextBox.ReadOnly = true;
+            this.brandTextBox.Size = new System.Drawing.Size(450, 28);
+            this.brandTextBox.TabIndex = 2;
+            this.brandTextBox.Text = "Marca";
             // 
-            // phoneTextBox
+            // modelTextBox
             // 
-            this.phoneTextBox.BackColor = System.Drawing.SystemColors.Control;
-            this.phoneTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.phoneTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.phoneTextBox.Location = new System.Drawing.Point(296, 182);
-            this.phoneTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.phoneTextBox.Name = "phoneTextBox";
-            this.phoneTextBox.ReadOnly = true;
-            this.phoneTextBox.Size = new System.Drawing.Size(450, 28);
-            this.phoneTextBox.TabIndex = 4;
-            this.phoneTextBox.Text = "1512345678";
-            // 
-            // descriptionTextBox
-            // 
-            this.descriptionTextBox.BackColor = System.Drawing.SystemColors.Control;
-            this.descriptionTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.descriptionTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.descriptionTextBox.Location = new System.Drawing.Point(296, 105);
-            this.descriptionTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.descriptionTextBox.Name = "descriptionTextBox";
-            this.descriptionTextBox.ReadOnly = true;
-            this.descriptionTextBox.Size = new System.Drawing.Size(450, 28);
-            this.descriptionTextBox.TabIndex = 2;
-            this.descriptionTextBox.Text = "Descripción";
-            // 
-            // nameTextBox
-            // 
-            this.nameTextBox.BackColor = System.Drawing.SystemColors.Control;
-            this.nameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.nameTextBox.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nameTextBox.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.nameTextBox.Location = new System.Drawing.Point(296, 60);
-            this.nameTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.ReadOnly = true;
-            this.nameTextBox.Size = new System.Drawing.Size(450, 34);
-            this.nameTextBox.TabIndex = 1;
-            this.nameTextBox.Text = "Nombre";
+            this.modelTextBox.BackColor = System.Drawing.SystemColors.Control;
+            this.modelTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.modelTextBox.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modelTextBox.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.modelTextBox.Location = new System.Drawing.Point(296, 60);
+            this.modelTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.modelTextBox.Name = "modelTextBox";
+            this.modelTextBox.ReadOnly = true;
+            this.modelTextBox.Size = new System.Drawing.Size(450, 34);
+            this.modelTextBox.TabIndex = 1;
+            this.modelTextBox.Text = "Modelo";
             // 
             // pictureBox
             // 
@@ -307,6 +272,8 @@
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView.Size = new System.Drawing.Size(1845, 623);
             this.dataGridView.TabIndex = 6;
+            this.dataGridView.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView_DataBindingComplete);
+            this.dataGridView.SelectionChanged += new System.EventHandler(this.dataGridView_SelectionChanged);
             // 
             // ProductsForm
             // 
@@ -335,7 +302,6 @@
         #endregion
 
         private System.Windows.Forms.Panel actionsPanel;
-        private System.Windows.Forms.Button viewEmployeeButton;
         private System.Windows.Forms.CheckBox showInactiveCheckBox;
         private System.Windows.Forms.CheckBox showActiveCheckBox;
         private System.Windows.Forms.Button filterButton;
@@ -347,11 +313,9 @@
         private System.Windows.Forms.Button newButton;
         private System.Windows.Forms.Panel mainPanel;
         private System.Windows.Forms.TextBox idTextBox;
-        private System.Windows.Forms.TextBox adressTextBox;
-        private System.Windows.Forms.TextBox emailTextBox;
-        private System.Windows.Forms.TextBox phoneTextBox;
-        private System.Windows.Forms.TextBox descriptionTextBox;
-        private System.Windows.Forms.TextBox nameTextBox;
+        private System.Windows.Forms.TextBox categoryTextBox;
+        private System.Windows.Forms.TextBox brandTextBox;
+        private System.Windows.Forms.TextBox modelTextBox;
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.DataGridView dataGridView;
     }

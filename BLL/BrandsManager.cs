@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using DAL;
 using Entities;
 using Utilities;
@@ -12,6 +13,37 @@ namespace BLL
         private Database _database = new Database();
 
         // METHODS
+
+        public List<Brand> list()
+        {
+            List<Brand> brandsList = new List<Brand>();
+
+            try
+            {
+                _database.setQuery("select BrandId, BrandName from Brands");
+                _database.executeReader();
+
+                while (_database.Reader.Read())
+                {
+                    Brand brand = new Brand();
+
+                    brand.BrandId = Convert.ToInt32(_database.Reader["BrandId"]);
+                    brand.Name = (string)_database.Reader["BrandName"];
+
+                    brandsList.Add(brand);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _database.closeConnection();
+            }
+
+            return brandsList;
+        }
 
         public Brand read(int brandId)
         {

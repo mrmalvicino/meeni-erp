@@ -8,7 +8,7 @@ namespace Utilities
     {
         // METHODS
 
-        public static void assign<DestinyClass, OriginClass>(DestinyClass destinyObject, OriginClass originObject)
+        public static void assignIndividual<DestinyClass, OriginClass>(DestinyClass destinyObject, OriginClass originObject)
             where DestinyClass : Individual, new()
             where OriginClass : Individual, new()
         {
@@ -34,6 +34,25 @@ namespace Utilities
             {
                 (destinyObject as Customer).CustomerId = (originObject as Customer).CustomerId;
                 (destinyObject as Customer).SalesAmount = (originObject as Customer).SalesAmount;
+            }
+        }
+
+        public static void assignItem<DestinyClass, OriginClass>(DestinyClass destinyObject, OriginClass originObject)
+            where DestinyClass : Item, new()
+            where OriginClass : Item, new()
+        {
+            destinyObject.ItemId = originObject.ItemId;
+            destinyObject.ActiveStatus = originObject.ActiveStatus;
+            destinyObject.Price = originObject.Price;
+            destinyObject.Cost = originObject.Cost;
+            destinyObject.Category = originObject.Category;
+
+            if (originObject is Product && destinyObject is Product)
+            {
+                (destinyObject as Product).ProductId = (originObject as Product).ProductId;
+                (destinyObject as Product).Brand = (originObject as Product).Brand;
+                (destinyObject as Product).Model = (originObject as Product).Model;
+                (destinyObject as Product).Image = (originObject as Product).Image;
             }
         }
 

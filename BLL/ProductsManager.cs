@@ -11,6 +11,10 @@ namespace BLL
         // ATTRIBUTES
 
         private Database _database = new Database();
+        private Item _item;
+        private ItemsManager _itemsManager = new ItemsManager();
+        private BrandsManager _brandsManager = new BrandsManager();
+        private ModelsManager _modelsManager = new ModelsManager();
 
         // METHODS
 
@@ -20,7 +24,7 @@ namespace BLL
 
             try
             {
-                _database.setQuery("select ProductId, ActiveStatus, ProductName, AdressId from Products");
+                _database.setQuery("select ProductId, ModelId, ItemId from Products");
                 _database.executeReader();
 
                 while (_database.Reader.Read())
@@ -28,9 +32,8 @@ namespace BLL
                     Product product = new Product();
 
                     product.ProductId = (int)_database.Reader["ProductId"];
-                    product.ActiveStatus = (bool)_database.Reader["ActiveStatus"];
-                    product.Name = (string)_database.Reader["ProductName"];
-                    product.Adress.AdressId = (int)_database.Reader["AdressId"];
+                    product.Model.ModelId = (int)_database.Reader["ModelId"];
+                    product.ItemId = (int)_database.Reader["ItemId"];
 
                     productsList.Add(product);
                 }
@@ -44,26 +47,35 @@ namespace BLL
                 _database.closeConnection();
             }
 
+            foreach (Product product in productsList)
+            {
+                _item = _itemsManager.read(product.ItemId);
+                Helper.assignItem(product, _item);
+            }
+
             return productsList;
         }
 
         public void add(Product product)
         {
-            int dbAdressId = _adressesManager.getId(product.Adress);
+            _itemsManager.add(product);
+            product.ItemId = Helper.getLastId("Items");
 
-            if (dbAdressId == 0)
+            int dbModelId = _modelsManager.getId(product.Model);
+
+            if (dbModelId == 0)
             {
-                _adressesManager.add(product.Adress);
-                product.Adress.AdressId = Helper.getLastId("Adresses");
+                _modelsManager.add(product.Model);
+                product.Model.ModelId = Helper.getLastId("Models");
             }
             else
             {
-                product.Adress.AdressId = dbAdressId;
+                product.Model.ModelId = dbModelId;
             }
 
             try
             {
-                _database.setQuery("insert into Products (ActiveStatus, ProductName, AdressId) values (@ActiveStatus, @ProductName, @AdressId)");
+                _database.setQuery("insert into Products (ModelId, ItemId) values (@ModelId, @ItemId)");
                 setParameters(product);
                 _database.executeAction();
             }
@@ -79,25 +91,27 @@ namespace BLL
 
         public void edit(Product product)
         {
-            int dbAdressId = _adressesManager.getId(product.Adress);
+            _itemsManager.edit(product);
 
-            if (dbAdressId == 0)
+            int dbModelId = _modelsManager.getId(product.Model);
+
+            if (dbModelId == 0)
             {
-                _adressesManager.add(product.Adress);
-                product.Adress.AdressId = Helper.getLastId("Adresses");
+                _modelsManager.add(product.Model);
+                product.Model.ModelId = Helper.getLastId("Models");
             }
-            else if (dbAdressId == product.Adress.AdressId)
+            else if (dbModelId == product.Model.ModelId)
             {
-                _adressesManager.edit(product.Adress);
+                _modelsManager.edit(product.Model);
             }
             else
             {
-                product.Adress.AdressId = dbAdressId;
+                product.Model.ModelId = dbModelId;
             }
 
             try
             {
-                _database.setQuery("update Products set ActiveStatus = @ActiveStatus, ProductName = @ProductName, AdressId = @AdressId where ProductId = @ProductId");
+                _database.setQuery("update Products set ModelId = @ModelId, ItemId = @ItemId where ProductId = @ProductId");
                 _database.setParameter("@ProductId", product.ProductId);
                 setParameters(product);
                 _database.executeAction();
@@ -128,13 +142,14 @@ namespace BLL
             {
                 _database.closeConnection();
             }
+
+            _itemsManager.delete(product);
         }
 
         private void setParameters(Product product)
         {
-            _database.setParameter("@ActiveStatus", product.ActiveStatus);
-            _database.setParameter("@ProductName", product.Name);
-            _database.setParameter("@AdressId", product.Adress.AdressId);
+            _database.setParameter("@ModelId", product.Model.ModelId);
+            _database.setParameter("@ItemId", product.ItemId);
         }
     }
 }

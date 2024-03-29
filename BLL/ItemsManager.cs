@@ -89,6 +89,24 @@ namespace BLL
             }
         }
 
+        public void delete(Item item)
+        {
+            try
+            {
+                _database.setQuery("delete from Items where ItemId = @ItemId");
+                _database.setParameter("@ItemId", item.ItemId);
+                _database.executeAction();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _database.closeConnection();
+            }
+        }
+
         public int getId(Item item)
         {
             if (item == null)

@@ -52,7 +52,7 @@ namespace BLL
             }
 
             _individual = _individualsManager.read(businessPartner.IndividualId);
-            Helper.assign(businessPartner, _individual);
+            Helper.assignIndividual(businessPartner, _individual);
 
             return businessPartner;
         }
