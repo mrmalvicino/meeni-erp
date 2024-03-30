@@ -103,6 +103,7 @@
             this.filterButton.TabIndex = 73;
             this.filterButton.Text = "Filtrar";
             this.filterButton.UseVisualStyleBackColor = true;
+            this.filterButton.Click += new System.EventHandler(this.filterButton_Click);
             // 
             // warehouseFilterLabel
             // 
@@ -177,6 +178,7 @@
             this.moveButton.TabIndex = 9;
             this.moveButton.Text = "Mover";
             this.moveButton.UseVisualStyleBackColor = true;
+            this.moveButton.Click += new System.EventHandler(this.moveButton_Click);
             // 
             // stockTextBox
             // 
@@ -206,6 +208,7 @@
             this.stockButton.TabIndex = 0;
             this.stockButton.Text = "Ajustar stock";
             this.stockButton.UseVisualStyleBackColor = true;
+            this.stockButton.Click += new System.EventHandler(this.stockButton_Click);
             // 
             // mainPanel
             // 

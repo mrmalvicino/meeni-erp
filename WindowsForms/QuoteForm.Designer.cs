@@ -190,6 +190,7 @@
             this.addProductButton.TabIndex = 13;
             this.addProductButton.Text = "Agregar producto";
             this.addProductButton.UseVisualStyleBackColor = true;
+            this.addProductButton.Click += new System.EventHandler(this.addProductButton_Click);
             // 
             // addingPanel
             // 
@@ -230,6 +231,7 @@
             this.eraseAllButton.TabIndex = 14;
             this.eraseAllButton.Text = "Borrar todo";
             this.eraseAllButton.UseVisualStyleBackColor = true;
+            this.eraseAllButton.Click += new System.EventHandler(this.eraseAllButton_Click);
             // 
             // nameTextBox
             // 
@@ -274,6 +276,7 @@
             this.addServiceButton.TabIndex = 19;
             this.addServiceButton.Text = "Agregar servicio";
             this.addServiceButton.UseVisualStyleBackColor = true;
+            this.addServiceButton.Click += new System.EventHandler(this.addServiceButton_Click);
             // 
             // upButton
             // 
@@ -284,6 +287,7 @@
             this.upButton.TabIndex = 20;
             this.upButton.Text = "↑";
             this.upButton.UseVisualStyleBackColor = true;
+            this.upButton.Click += new System.EventHandler(this.upButton_Click);
             // 
             // downButton
             // 
@@ -294,6 +298,7 @@
             this.downButton.TabIndex = 21;
             this.downButton.Text = "↓";
             this.downButton.UseVisualStyleBackColor = true;
+            this.downButton.Click += new System.EventHandler(this.downButton_Click);
             // 
             // saveButton
             // 
@@ -304,6 +309,7 @@
             this.saveButton.TabIndex = 16;
             this.saveButton.Text = "Guardar";
             this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // actionsPanel
             // 
@@ -369,6 +375,7 @@
             this.addDiscountButton.TabIndex = 25;
             this.addDiscountButton.Text = "Agregar descuento";
             this.addDiscountButton.UseVisualStyleBackColor = true;
+            this.addDiscountButton.Click += new System.EventHandler(this.addDiscountButton_Click);
             // 
             // descriptionValueTextBox
             // 
@@ -539,6 +546,7 @@
             this.eraseButton.TabIndex = 22;
             this.eraseButton.Text = "Borrar";
             this.eraseButton.UseVisualStyleBackColor = true;
+            this.eraseButton.Click += new System.EventHandler(this.eraseButton_Click);
             // 
             // statusTextBox
             // 
