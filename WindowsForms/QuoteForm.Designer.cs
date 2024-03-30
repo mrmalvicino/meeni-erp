@@ -37,9 +37,6 @@
             this.modelTextBox = new System.Windows.Forms.TextBox();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.quoteIdTextBox = new System.Windows.Forms.TextBox();
-            this.actionsPanel = new System.Windows.Forms.Panel();
-            this.exportButton = new System.Windows.Forms.Button();
-            this.newButton = new System.Windows.Forms.Button();
             this.addProductButton = new System.Windows.Forms.Button();
             this.addingPanel = new System.Windows.Forms.Panel();
             this.eraseAllButton = new System.Windows.Forms.Button();
@@ -50,7 +47,7 @@
             this.upButton = new System.Windows.Forms.Button();
             this.downButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
-            this.selectionPanel = new System.Windows.Forms.Panel();
+            this.actionsPanel = new System.Windows.Forms.Panel();
             this.warehouseComboBox = new System.Windows.Forms.ComboBox();
             this.warehouseTextBox = new System.Windows.Forms.TextBox();
             this.productAmountTextBox = new System.Windows.Forms.TextBox();
@@ -63,21 +60,17 @@
             this.customerComboBox = new System.Windows.Forms.ComboBox();
             this.customerTextBox = new System.Windows.Forms.TextBox();
             this.statusComboBox = new System.Windows.Forms.ComboBox();
-            this.statusTextBox = new System.Windows.Forms.TextBox();
-            this.dateTextBox = new System.Windows.Forms.TextBox();
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.deleteButton = new System.Windows.Forms.Button();
             this.nameComboBox = new System.Windows.Forms.ComboBox();
             this.serviceAmountNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.serviceAmountTextBox = new System.Windows.Forms.TextBox();
             this.versionTextBox = new System.Windows.Forms.TextBox();
             this.versionNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.eraseButton = new System.Windows.Forms.Button();
-            this.moveTextBox = new System.Windows.Forms.TextBox();
+            this.statusTextBox = new System.Windows.Forms.TextBox();
             this.mainPanel.SuspendLayout();
-            this.actionsPanel.SuspendLayout();
             this.addingPanel.SuspendLayout();
-            this.selectionPanel.SuspendLayout();
+            this.actionsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productAmountNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceAmountNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.versionNumericUpDown)).BeginInit();
@@ -88,9 +81,9 @@
             this.listBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBox.FormattingEnabled = true;
             this.listBox.ItemHeight = 18;
-            this.listBox.Location = new System.Drawing.Point(530, 210);
+            this.listBox.Location = new System.Drawing.Point(530, 107);
             this.listBox.Name = "listBox";
-            this.listBox.Size = new System.Drawing.Size(715, 310);
+            this.listBox.Size = new System.Drawing.Size(715, 508);
             this.listBox.TabIndex = 0;
             // 
             // productCategoryComboBox
@@ -98,7 +91,7 @@
             this.productCategoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.productCategoryComboBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.productCategoryComboBox.FormattingEnabled = true;
-            this.productCategoryComboBox.Location = new System.Drawing.Point(95, 50);
+            this.productCategoryComboBox.Location = new System.Drawing.Point(95, 52);
             this.productCategoryComboBox.Name = "productCategoryComboBox";
             this.productCategoryComboBox.Size = new System.Drawing.Size(380, 26);
             this.productCategoryComboBox.TabIndex = 3;
@@ -108,7 +101,7 @@
             this.brandComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.brandComboBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.brandComboBox.FormattingEnabled = true;
-            this.brandComboBox.Location = new System.Drawing.Point(95, 82);
+            this.brandComboBox.Location = new System.Drawing.Point(95, 84);
             this.brandComboBox.Name = "brandComboBox";
             this.brandComboBox.Size = new System.Drawing.Size(380, 26);
             this.brandComboBox.TabIndex = 4;
@@ -118,7 +111,7 @@
             this.modelComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.modelComboBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.modelComboBox.FormattingEnabled = true;
-            this.modelComboBox.Location = new System.Drawing.Point(95, 114);
+            this.modelComboBox.Location = new System.Drawing.Point(95, 116);
             this.modelComboBox.Name = "modelComboBox";
             this.modelComboBox.Size = new System.Drawing.Size(380, 26);
             this.modelComboBox.TabIndex = 5;
@@ -128,7 +121,7 @@
             this.productCategoryTextBox.BackColor = System.Drawing.SystemColors.Control;
             this.productCategoryTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.productCategoryTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productCategoryTextBox.Location = new System.Drawing.Point(25, 53);
+            this.productCategoryTextBox.Location = new System.Drawing.Point(25, 55);
             this.productCategoryTextBox.Name = "productCategoryTextBox";
             this.productCategoryTextBox.ReadOnly = true;
             this.productCategoryTextBox.Size = new System.Drawing.Size(64, 19);
@@ -140,7 +133,7 @@
             this.brandTextBox.BackColor = System.Drawing.SystemColors.Control;
             this.brandTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.brandTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.brandTextBox.Location = new System.Drawing.Point(25, 85);
+            this.brandTextBox.Location = new System.Drawing.Point(25, 87);
             this.brandTextBox.Name = "brandTextBox";
             this.brandTextBox.ReadOnly = true;
             this.brandTextBox.Size = new System.Drawing.Size(64, 19);
@@ -152,7 +145,7 @@
             this.modelTextBox.BackColor = System.Drawing.SystemColors.Control;
             this.modelTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.modelTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.modelTextBox.Location = new System.Drawing.Point(25, 117);
+            this.modelTextBox.Location = new System.Drawing.Point(25, 119);
             this.modelTextBox.Name = "modelTextBox";
             this.modelTextBox.ReadOnly = true;
             this.modelTextBox.Size = new System.Drawing.Size(64, 19);
@@ -162,13 +155,12 @@
             // mainPanel
             // 
             this.mainPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.mainPanel.Controls.Add(this.customerTextBox);
+            this.mainPanel.Controls.Add(this.dateTimePicker);
+            this.mainPanel.Controls.Add(this.customerComboBox);
             this.mainPanel.Controls.Add(this.versionNumericUpDown);
             this.mainPanel.Controls.Add(this.versionTextBox);
             this.mainPanel.Controls.Add(this.quoteIdTextBox);
-            this.mainPanel.Controls.Add(this.dateTimePicker);
-            this.mainPanel.Controls.Add(this.customerComboBox);
-            this.mainPanel.Controls.Add(this.dateTextBox);
-            this.mainPanel.Controls.Add(this.customerTextBox);
             this.mainPanel.Controls.Add(this.statusComboBox);
             this.mainPanel.Controls.Add(this.statusTextBox);
             this.mainPanel.Location = new System.Drawing.Point(15, 15);
@@ -185,46 +177,14 @@
             this.quoteIdTextBox.Location = new System.Drawing.Point(25, 20);
             this.quoteIdTextBox.Name = "quoteIdTextBox";
             this.quoteIdTextBox.ReadOnly = true;
-            this.quoteIdTextBox.Size = new System.Drawing.Size(450, 23);
+            this.quoteIdTextBox.Size = new System.Drawing.Size(294, 23);
             this.quoteIdTextBox.TabIndex = 1;
             this.quoteIdTextBox.Text = "Presupuesto N⁰ 0";
-            // 
-            // actionsPanel
-            // 
-            this.actionsPanel.BackColor = System.Drawing.SystemColors.Control;
-            this.actionsPanel.Controls.Add(this.deleteButton);
-            this.actionsPanel.Controls.Add(this.saveButton);
-            this.actionsPanel.Controls.Add(this.exportButton);
-            this.actionsPanel.Controls.Add(this.newButton);
-            this.actionsPanel.Location = new System.Drawing.Point(530, 15);
-            this.actionsPanel.Name = "actionsPanel";
-            this.actionsPanel.Size = new System.Drawing.Size(715, 180);
-            this.actionsPanel.TabIndex = 12;
-            // 
-            // exportButton
-            // 
-            this.exportButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exportButton.Location = new System.Drawing.Point(570, 75);
-            this.exportButton.Name = "exportButton";
-            this.exportButton.Size = new System.Drawing.Size(120, 35);
-            this.exportButton.TabIndex = 3;
-            this.exportButton.Text = "Exportar PDF";
-            this.exportButton.UseVisualStyleBackColor = true;
-            // 
-            // newButton
-            // 
-            this.newButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.newButton.Location = new System.Drawing.Point(25, 75);
-            this.newButton.Name = "newButton";
-            this.newButton.Size = new System.Drawing.Size(120, 35);
-            this.newButton.TabIndex = 0;
-            this.newButton.Text = "Nuevo";
-            this.newButton.UseVisualStyleBackColor = true;
             // 
             // addProductButton
             // 
             this.addProductButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addProductButton.Location = new System.Drawing.Point(325, 146);
+            this.addProductButton.Location = new System.Drawing.Point(325, 148);
             this.addProductButton.Name = "addProductButton";
             this.addProductButton.Size = new System.Drawing.Size(150, 35);
             this.addProductButton.TabIndex = 13;
@@ -264,9 +224,9 @@
             // eraseAllButton
             // 
             this.eraseAllButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.eraseAllButton.Location = new System.Drawing.Point(540, 17);
+            this.eraseAllButton.Location = new System.Drawing.Point(233, 20);
             this.eraseAllButton.Name = "eraseAllButton";
-            this.eraseAllButton.Size = new System.Drawing.Size(150, 35);
+            this.eraseAllButton.Size = new System.Drawing.Size(120, 35);
             this.eraseAllButton.TabIndex = 14;
             this.eraseAllButton.Text = "Borrar todo";
             this.eraseAllButton.UseVisualStyleBackColor = true;
@@ -276,7 +236,7 @@
             this.nameTextBox.BackColor = System.Drawing.SystemColors.Control;
             this.nameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.nameTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nameTextBox.Location = new System.Drawing.Point(25, 235);
+            this.nameTextBox.Location = new System.Drawing.Point(25, 237);
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.ReadOnly = true;
             this.nameTextBox.Size = new System.Drawing.Size(64, 19);
@@ -288,7 +248,7 @@
             this.serviceCategoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.serviceCategoryComboBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.serviceCategoryComboBox.FormattingEnabled = true;
-            this.serviceCategoryComboBox.Location = new System.Drawing.Point(95, 200);
+            this.serviceCategoryComboBox.Location = new System.Drawing.Point(95, 202);
             this.serviceCategoryComboBox.Name = "serviceCategoryComboBox";
             this.serviceCategoryComboBox.Size = new System.Drawing.Size(380, 26);
             this.serviceCategoryComboBox.TabIndex = 17;
@@ -298,7 +258,7 @@
             this.serviceCategoryTextBox.BackColor = System.Drawing.SystemColors.Control;
             this.serviceCategoryTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.serviceCategoryTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.serviceCategoryTextBox.Location = new System.Drawing.Point(25, 203);
+            this.serviceCategoryTextBox.Location = new System.Drawing.Point(25, 205);
             this.serviceCategoryTextBox.Name = "serviceCategoryTextBox";
             this.serviceCategoryTextBox.ReadOnly = true;
             this.serviceCategoryTextBox.Size = new System.Drawing.Size(64, 19);
@@ -308,7 +268,7 @@
             // addServiceButton
             // 
             this.addServiceButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addServiceButton.Location = new System.Drawing.Point(325, 264);
+            this.addServiceButton.Location = new System.Drawing.Point(325, 266);
             this.addServiceButton.Name = "addServiceButton";
             this.addServiceButton.Size = new System.Drawing.Size(150, 35);
             this.addServiceButton.TabIndex = 19;
@@ -318,7 +278,7 @@
             // upButton
             // 
             this.upButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.upButton.Location = new System.Drawing.Point(95, 17);
+            this.upButton.Location = new System.Drawing.Point(25, 20);
             this.upButton.Name = "upButton";
             this.upButton.Size = new System.Drawing.Size(35, 35);
             this.upButton.TabIndex = 20;
@@ -328,7 +288,7 @@
             // downButton
             // 
             this.downButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.downButton.Location = new System.Drawing.Point(136, 17);
+            this.downButton.Location = new System.Drawing.Point(66, 20);
             this.downButton.Name = "downButton";
             this.downButton.Size = new System.Drawing.Size(35, 35);
             this.downButton.TabIndex = 21;
@@ -338,31 +298,31 @@
             // saveButton
             // 
             this.saveButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveButton.Location = new System.Drawing.Point(151, 75);
+            this.saveButton.Location = new System.Drawing.Point(570, 20);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(120, 35);
             this.saveButton.TabIndex = 16;
             this.saveButton.Text = "Guardar";
             this.saveButton.UseVisualStyleBackColor = true;
             // 
-            // selectionPanel
+            // actionsPanel
             // 
-            this.selectionPanel.Controls.Add(this.moveTextBox);
-            this.selectionPanel.Controls.Add(this.eraseButton);
-            this.selectionPanel.Controls.Add(this.downButton);
-            this.selectionPanel.Controls.Add(this.eraseAllButton);
-            this.selectionPanel.Controls.Add(this.upButton);
-            this.selectionPanel.Location = new System.Drawing.Point(530, 545);
-            this.selectionPanel.Name = "selectionPanel";
-            this.selectionPanel.Size = new System.Drawing.Size(715, 70);
-            this.selectionPanel.TabIndex = 15;
+            this.actionsPanel.Controls.Add(this.saveButton);
+            this.actionsPanel.Controls.Add(this.eraseButton);
+            this.actionsPanel.Controls.Add(this.downButton);
+            this.actionsPanel.Controls.Add(this.eraseAllButton);
+            this.actionsPanel.Controls.Add(this.upButton);
+            this.actionsPanel.Location = new System.Drawing.Point(530, 15);
+            this.actionsPanel.Name = "actionsPanel";
+            this.actionsPanel.Size = new System.Drawing.Size(715, 75);
+            this.actionsPanel.TabIndex = 15;
             // 
             // warehouseComboBox
             // 
             this.warehouseComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.warehouseComboBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.warehouseComboBox.FormattingEnabled = true;
-            this.warehouseComboBox.Location = new System.Drawing.Point(95, 18);
+            this.warehouseComboBox.Location = new System.Drawing.Point(95, 20);
             this.warehouseComboBox.Name = "warehouseComboBox";
             this.warehouseComboBox.Size = new System.Drawing.Size(380, 26);
             this.warehouseComboBox.TabIndex = 20;
@@ -372,7 +332,7 @@
             this.warehouseTextBox.BackColor = System.Drawing.SystemColors.Control;
             this.warehouseTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.warehouseTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.warehouseTextBox.Location = new System.Drawing.Point(25, 21);
+            this.warehouseTextBox.Location = new System.Drawing.Point(25, 23);
             this.warehouseTextBox.Name = "warehouseTextBox";
             this.warehouseTextBox.ReadOnly = true;
             this.warehouseTextBox.Size = new System.Drawing.Size(64, 19);
@@ -384,7 +344,7 @@
             this.productAmountTextBox.BackColor = System.Drawing.SystemColors.Control;
             this.productAmountTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.productAmountTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productAmountTextBox.Location = new System.Drawing.Point(25, 154);
+            this.productAmountTextBox.Location = new System.Drawing.Point(25, 156);
             this.productAmountTextBox.Name = "productAmountTextBox";
             this.productAmountTextBox.ReadOnly = true;
             this.productAmountTextBox.Size = new System.Drawing.Size(64, 19);
@@ -394,7 +354,7 @@
             // productAmountNumericUpDown
             // 
             this.productAmountNumericUpDown.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productAmountNumericUpDown.Location = new System.Drawing.Point(95, 152);
+            this.productAmountNumericUpDown.Location = new System.Drawing.Point(95, 154);
             this.productAmountNumericUpDown.Name = "productAmountNumericUpDown";
             this.productAmountNumericUpDown.Size = new System.Drawing.Size(120, 26);
             this.productAmountNumericUpDown.TabIndex = 24;
@@ -460,7 +420,7 @@
             "Cotizado",
             "Señado",
             "Vendido"});
-            this.customerComboBox.Location = new System.Drawing.Point(95, 130);
+            this.customerComboBox.Location = new System.Drawing.Point(95, 80);
             this.customerComboBox.Name = "customerComboBox";
             this.customerComboBox.Size = new System.Drawing.Size(380, 26);
             this.customerComboBox.TabIndex = 30;
@@ -470,7 +430,7 @@
             this.customerTextBox.BackColor = System.Drawing.SystemColors.Control;
             this.customerTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.customerTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customerTextBox.Location = new System.Drawing.Point(25, 133);
+            this.customerTextBox.Location = new System.Drawing.Point(25, 83);
             this.customerTextBox.Name = "customerTextBox";
             this.customerTextBox.ReadOnly = true;
             this.customerTextBox.Size = new System.Drawing.Size(64, 19);
@@ -487,39 +447,15 @@
             "Cotizado",
             "Señado",
             "Vendido"});
-            this.statusComboBox.Location = new System.Drawing.Point(95, 98);
+            this.statusComboBox.Location = new System.Drawing.Point(355, 112);
             this.statusComboBox.Name = "statusComboBox";
-            this.statusComboBox.Size = new System.Drawing.Size(380, 26);
+            this.statusComboBox.Size = new System.Drawing.Size(120, 26);
             this.statusComboBox.TabIndex = 32;
-            // 
-            // statusTextBox
-            // 
-            this.statusTextBox.BackColor = System.Drawing.SystemColors.Control;
-            this.statusTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.statusTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.statusTextBox.Location = new System.Drawing.Point(25, 101);
-            this.statusTextBox.Name = "statusTextBox";
-            this.statusTextBox.ReadOnly = true;
-            this.statusTextBox.Size = new System.Drawing.Size(64, 19);
-            this.statusTextBox.TabIndex = 33;
-            this.statusTextBox.Text = "Estado:";
-            // 
-            // dateTextBox
-            // 
-            this.dateTextBox.BackColor = System.Drawing.SystemColors.Control;
-            this.dateTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dateTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTextBox.Location = new System.Drawing.Point(285, 69);
-            this.dateTextBox.Name = "dateTextBox";
-            this.dateTextBox.ReadOnly = true;
-            this.dateTextBox.Size = new System.Drawing.Size(64, 19);
-            this.dateTextBox.TabIndex = 34;
-            this.dateTextBox.Text = "Fecha:";
             // 
             // dateTimePicker
             // 
             this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker.Location = new System.Drawing.Point(355, 68);
+            this.dateTimePicker.Location = new System.Drawing.Point(355, 23);
             this.dateTimePicker.MaxDate = new System.DateTime(9000, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker.MinDate = new System.DateTime(1800, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker.Name = "dateTimePicker";
@@ -527,22 +463,12 @@
             this.dateTimePicker.TabIndex = 35;
             this.dateTimePicker.Value = new System.DateTime(9000, 1, 1, 0, 0, 0, 0);
             // 
-            // deleteButton
-            // 
-            this.deleteButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deleteButton.Location = new System.Drawing.Point(277, 75);
-            this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(120, 35);
-            this.deleteButton.TabIndex = 36;
-            this.deleteButton.Text = "Eliminar";
-            this.deleteButton.UseVisualStyleBackColor = true;
-            // 
             // nameComboBox
             // 
             this.nameComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.nameComboBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nameComboBox.FormattingEnabled = true;
-            this.nameComboBox.Location = new System.Drawing.Point(95, 232);
+            this.nameComboBox.Location = new System.Drawing.Point(95, 234);
             this.nameComboBox.Name = "nameComboBox";
             this.nameComboBox.Size = new System.Drawing.Size(380, 26);
             this.nameComboBox.TabIndex = 30;
@@ -550,7 +476,7 @@
             // serviceAmountNumericUpDown
             // 
             this.serviceAmountNumericUpDown.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.serviceAmountNumericUpDown.Location = new System.Drawing.Point(95, 270);
+            this.serviceAmountNumericUpDown.Location = new System.Drawing.Point(95, 272);
             this.serviceAmountNumericUpDown.Name = "serviceAmountNumericUpDown";
             this.serviceAmountNumericUpDown.Size = new System.Drawing.Size(120, 26);
             this.serviceAmountNumericUpDown.TabIndex = 32;
@@ -561,7 +487,7 @@
             this.serviceAmountTextBox.BackColor = System.Drawing.SystemColors.Control;
             this.serviceAmountTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.serviceAmountTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.serviceAmountTextBox.Location = new System.Drawing.Point(25, 272);
+            this.serviceAmountTextBox.Location = new System.Drawing.Point(25, 274);
             this.serviceAmountTextBox.Name = "serviceAmountTextBox";
             this.serviceAmountTextBox.ReadOnly = true;
             this.serviceAmountTextBox.Size = new System.Drawing.Size(64, 19);
@@ -573,7 +499,7 @@
             this.versionTextBox.BackColor = System.Drawing.SystemColors.Control;
             this.versionTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.versionTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.versionTextBox.Location = new System.Drawing.Point(25, 68);
+            this.versionTextBox.Location = new System.Drawing.Point(25, 114);
             this.versionTextBox.Name = "versionTextBox";
             this.versionTextBox.ReadOnly = true;
             this.versionTextBox.Size = new System.Drawing.Size(64, 19);
@@ -583,42 +509,56 @@
             // versionNumericUpDown
             // 
             this.versionNumericUpDown.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.versionNumericUpDown.Location = new System.Drawing.Point(95, 66);
+            this.versionNumericUpDown.Location = new System.Drawing.Point(95, 112);
+            this.versionNumericUpDown.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.versionNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.versionNumericUpDown.Name = "versionNumericUpDown";
             this.versionNumericUpDown.Size = new System.Drawing.Size(120, 26);
             this.versionNumericUpDown.TabIndex = 33;
             this.versionNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.versionNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // eraseButton
             // 
             this.eraseButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.eraseButton.Location = new System.Drawing.Point(384, 17);
+            this.eraseButton.Location = new System.Drawing.Point(107, 20);
             this.eraseButton.Name = "eraseButton";
-            this.eraseButton.Size = new System.Drawing.Size(150, 35);
+            this.eraseButton.Size = new System.Drawing.Size(120, 35);
             this.eraseButton.TabIndex = 22;
             this.eraseButton.Text = "Borrar";
             this.eraseButton.UseVisualStyleBackColor = true;
             // 
-            // moveTextBox
+            // statusTextBox
             // 
-            this.moveTextBox.BackColor = System.Drawing.SystemColors.Control;
-            this.moveTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.moveTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.moveTextBox.Location = new System.Drawing.Point(25, 25);
-            this.moveTextBox.Name = "moveTextBox";
-            this.moveTextBox.ReadOnly = true;
-            this.moveTextBox.Size = new System.Drawing.Size(64, 19);
-            this.moveTextBox.TabIndex = 33;
-            this.moveTextBox.Text = "Mover:";
+            this.statusTextBox.BackColor = System.Drawing.SystemColors.Control;
+            this.statusTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.statusTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statusTextBox.Location = new System.Drawing.Point(285, 115);
+            this.statusTextBox.Name = "statusTextBox";
+            this.statusTextBox.ReadOnly = true;
+            this.statusTextBox.Size = new System.Drawing.Size(64, 19);
+            this.statusTextBox.TabIndex = 33;
+            this.statusTextBox.Text = "Estado:";
             // 
             // QuoteForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1260, 631);
-            this.Controls.Add(this.selectionPanel);
-            this.Controls.Add(this.addingPanel);
             this.Controls.Add(this.actionsPanel);
+            this.Controls.Add(this.addingPanel);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.listBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -628,11 +568,9 @@
             this.Load += new System.EventHandler(this.QuoteForm_Load);
             this.mainPanel.ResumeLayout(false);
             this.mainPanel.PerformLayout();
-            this.actionsPanel.ResumeLayout(false);
             this.addingPanel.ResumeLayout(false);
             this.addingPanel.PerformLayout();
-            this.selectionPanel.ResumeLayout(false);
-            this.selectionPanel.PerformLayout();
+            this.actionsPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.productAmountNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceAmountNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.versionNumericUpDown)).EndInit();
@@ -651,9 +589,6 @@
         private System.Windows.Forms.TextBox modelTextBox;
         private System.Windows.Forms.Panel mainPanel;
         private System.Windows.Forms.TextBox quoteIdTextBox;
-        private System.Windows.Forms.Panel actionsPanel;
-        private System.Windows.Forms.Button exportButton;
-        private System.Windows.Forms.Button newButton;
         private System.Windows.Forms.Button addProductButton;
         private System.Windows.Forms.Panel addingPanel;
         private System.Windows.Forms.Button eraseAllButton;
@@ -664,7 +599,7 @@
         private System.Windows.Forms.Button upButton;
         private System.Windows.Forms.Button addServiceButton;
         private System.Windows.Forms.Button saveButton;
-        private System.Windows.Forms.Panel selectionPanel;
+        private System.Windows.Forms.Panel actionsPanel;
         private System.Windows.Forms.ComboBox warehouseComboBox;
         private System.Windows.Forms.TextBox warehouseTextBox;
         private System.Windows.Forms.TextBox productAmountTextBox;
@@ -677,16 +612,13 @@
         private System.Windows.Forms.TextBox customerTextBox;
         private System.Windows.Forms.ComboBox customerComboBox;
         private System.Windows.Forms.ComboBox statusComboBox;
-        private System.Windows.Forms.TextBox statusTextBox;
-        private System.Windows.Forms.TextBox dateTextBox;
         private System.Windows.Forms.DateTimePicker dateTimePicker;
-        private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.ComboBox nameComboBox;
         private System.Windows.Forms.NumericUpDown serviceAmountNumericUpDown;
         private System.Windows.Forms.TextBox serviceAmountTextBox;
         private System.Windows.Forms.NumericUpDown versionNumericUpDown;
         private System.Windows.Forms.TextBox versionTextBox;
         private System.Windows.Forms.Button eraseButton;
-        private System.Windows.Forms.TextBox moveTextBox;
+        private System.Windows.Forms.TextBox statusTextBox;
     }
 }
