@@ -42,6 +42,11 @@ namespace WindowsForms
             _formsManager.loadParentForm<OverviewForm>(this);
         }
 
+        private void quotationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void quoteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _formsManager.loadParentForm<QuoteForm>(this);

@@ -16,7 +16,7 @@ namespace Entities
 
         public override string ToString()
         {
-            return Name;
+            return Category + " " + Name;
         }
     }
 }

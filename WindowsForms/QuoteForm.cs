@@ -21,9 +21,9 @@ namespace WindowsForms
 
         // EVENTS
 
-        private void addButton_Click(object sender, EventArgs e)
+        private void QuoteForm_Load(object sender, EventArgs e)
         {
-            listBox1.Items.Add(textBox1.Text);
+
         }
     }
 }

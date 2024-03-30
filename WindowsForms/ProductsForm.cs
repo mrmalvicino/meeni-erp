@@ -64,13 +64,13 @@ namespace WindowsForms
             {
                 editButton.Enabled = true;
                 deleteButton.Enabled = true;
-                exportCSVButton.Enabled = true;
+                exportButton.Enabled = true;
             }
             else
             {
                 editButton.Enabled = false;
                 deleteButton.Enabled = false;
-                exportCSVButton.Enabled = false;
+                exportButton.Enabled = false;
                 loadProfile();
             }
         }
@@ -197,7 +197,7 @@ namespace WindowsForms
             }
         }
 
-        private void exportCSVButton_Click(object sender, EventArgs e)
+        private void exportButton_Click(object sender, EventArgs e)
         {
             Functions.exportCSV(dataGridView, ConfigurationManager.AppSettings["csv_folder"] + "Warehouses.csv");
         }
