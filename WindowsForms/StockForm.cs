@@ -63,10 +63,10 @@ namespace WindowsForms
         {
             if (0 < dataGridView.RowCount)
             {
-                //dataGridView.Columns["WarehouseId"].Visible = false;
-                //dataGridView.Columns["ActiveStatus"].Visible = false;
-                //dataGridView.Columns["Name"].DisplayIndex = 0;
-                //dataGridView.Columns["Adress"].DisplayIndex = 1;
+                dataGridView.Columns["Product"].Width = 500;
+                dataGridView.Columns["Warehouse"].DisplayIndex = 0;
+                dataGridView.Columns["Product"].DisplayIndex = 1;
+                dataGridView.Columns["Amount"].DisplayIndex = 2;
 
                 Functions.fillDataGrid(dataGridView);
             }

@@ -59,7 +59,7 @@ namespace BLL
 
             try
             {
-                _database.setQuery("select WarehouseId, ActiveStatus, WarehouseName, AdressId from Warehouses");
+                _database.setQuery("select ActiveStatus, WarehouseName, AdressId from Warehouses");
                 _database.setParameter("@WarehouseId", warehouseId);
                 _database.executeReader();
 
@@ -79,6 +79,8 @@ namespace BLL
             {
                 _database.closeConnection();
             }
+
+            warehouse.Adress = _adressesManager.read(warehouse.Adress.AdressId);
 
             return warehouse;
         }

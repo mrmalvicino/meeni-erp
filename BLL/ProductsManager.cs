@@ -65,7 +65,7 @@ namespace BLL
 
             try
             {
-                _database.setQuery("select ProductId, ModelId, ItemId from Products");
+                _database.setQuery("select ModelId, ItemId from Products");
                 _database.setParameter("@ProductId", productId);
                 _database.executeReader();
 
@@ -84,6 +84,12 @@ namespace BLL
             {
                 _database.closeConnection();
             }
+
+            _item = _itemsManager.read(product.ItemId);
+            Helper.assignItem(product, _item);
+            product.Model = _modelsManager.read(product.Model.ModelId);
+            product.Brand.BrandId = _modelsManager.getBrandId(product.Model);
+            product.Brand = _brandsManager.read(product.Brand.BrandId);
 
             return product;
         }
