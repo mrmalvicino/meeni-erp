@@ -1,14 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entities;
 using System;
 using Utilities;
+using BLL;
+using System.Collections;
+using System.Configuration;
 
 namespace WindowsForms
 {
@@ -18,6 +15,9 @@ namespace WindowsForms
 
         private int _warehouseIdFilter;
         private int _stockIdFilter;
+        private Stock _stock;
+        private StockManager _stockManager = new StockManager();
+        private List<Stock> _stockList;
 
         // CONSTRUCT
 
@@ -63,10 +63,10 @@ namespace WindowsForms
         {
             if (0 < dataGridView.RowCount)
             {
-                dataGridView.Columns["WarehouseId"].Visible = false;
-                dataGridView.Columns["ActiveStatus"].Visible = false;
-                dataGridView.Columns["Name"].DisplayIndex = 0;
-                dataGridView.Columns["Adress"].DisplayIndex = 1;
+                //dataGridView.Columns["WarehouseId"].Visible = false;
+                //dataGridView.Columns["ActiveStatus"].Visible = false;
+                //dataGridView.Columns["Name"].DisplayIndex = 0;
+                //dataGridView.Columns["Adress"].DisplayIndex = 1;
 
                 Functions.fillDataGrid(dataGridView);
             }
@@ -93,60 +93,32 @@ namespace WindowsForms
         {
             try
             {
-                _warehousesTable = _warehousesManager.list();
-                dataGridView.DataSource = _warehousesTable;
+                _stockList = _stockManager.list();
+                dataGridView.DataSource = _stockList;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
-        }
 
-        private void applyFilter()
-        {
-            string filter = warehouseFilterTextBox.Text;
-            bool showActive = showActiveCheckBox.Checked;
-            bool showInactive = showInactiveCheckBox.Checked;
-
-            if (2 < filter.Length)
-            {
-                _filteredWarehouses = _warehousesTable.FindAll(reg =>
-                    (
-                        (reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)
-                    )
-                    &&
-                    (
-                        reg.Name.ToUpper().Contains(filter.ToUpper()) ||
-                        reg.Adress.ToString().ToUpper().Contains(filter.ToUpper())
-                    )
-                );
-            }
-            else
-            {
-                _filteredWarehouses = _warehousesTable.FindAll(reg =>
-                    (reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)
-                );
-            }
-
-            dataGridView.DataSource = null;
-            dataGridView.DataSource = _filteredWarehouses;
             validateDataGridView();
-            dataGridView.DataBindingComplete += dataGridView_DataBindingComplete;
         }
 
-        private void loadProfile(Warehouse warehouse = null)
+        private void loadProfile(Stock stock = null)
         {
-            if (warehouse != null)
+            if (_stock != null)
             {
-                idTextBox.Text = "Depósito N⁰ " + warehouse.WarehouseId.ToString();
-                productIdTextBox.Text = warehouse.ToString();
-                adressTextBox.Text = warehouse.Adress.ToString();
+                productIdTextBox.Text = stock.Product.ProductId.ToString();
+                productNameTextBox.Text = stock.Product.ToString();
+                warehouseIdTextBox.Text = stock.Warehouse.WarehouseId.ToString();
+                warehouseNameTextBox.Text = stock.Warehouse.ToString();
             }
             else
             {
-                idTextBox.Text = "No hay depósitos disponibles";
-                productIdTextBox.Text = "";
-                adressTextBox.Text = "";
+                productIdTextBox.Text = "No hay productos disponibles";
+                productNameTextBox.Text = "";
+                warehouseIdTextBox.Text = "";
+                warehouseNameTextBox.Text = "";
             }
         }
 
@@ -154,12 +126,29 @@ namespace WindowsForms
 
         private void StockForm_Load(object sender, EventArgs e)
         {
-
+            dataGridView.SelectionChanged -= dataGridView_SelectionChanged;
+            setupStyle();
+            refreshTable();
+            dataGridView.SelectionChanged += dataGridView_SelectionChanged;
         }
 
-        private void stockButton_Click(object sender, EventArgs e)
+        private void dataGridView_SelectionChanged(object sender, EventArgs e)
         {
+            if (dataGridView.CurrentRow != null)
+            {
+                _stock = (Stock)dataGridView.CurrentRow.DataBoundItem;
+                loadProfile(_stock);
+            }
+        }
 
+        private void dataGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            setupDataGridView();
+        }
+
+        private void exportCSVButton_Click(object sender, EventArgs e)
+        {
+            Functions.exportCSV(dataGridView, ConfigurationManager.AppSettings["csv_folder"] + "Stock.csv");
         }
     }
 }

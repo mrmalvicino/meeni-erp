@@ -29,26 +29,26 @@
         private void InitializeComponent()
         {
             this.actionsPanel = new System.Windows.Forms.Panel();
+            this.productFilterTextBox = new System.Windows.Forms.TextBox();
+            this.productFilterLabel = new System.Windows.Forms.Label();
+            this.filterButton = new System.Windows.Forms.Button();
+            this.warehouseFilterLabel = new System.Windows.Forms.Label();
+            this.warehouseFilterTextBox = new System.Windows.Forms.TextBox();
+            this.toComboBox = new System.Windows.Forms.ComboBox();
+            this.fromComboBox = new System.Windows.Forms.ComboBox();
+            this.toLabel = new System.Windows.Forms.Label();
+            this.fromLabel = new System.Windows.Forms.Label();
+            this.moveTextBox = new System.Windows.Forms.TextBox();
+            this.moveButton = new System.Windows.Forms.Button();
+            this.stockTextBox = new System.Windows.Forms.TextBox();
             this.exportCSVButton = new System.Windows.Forms.Button();
             this.stockButton = new System.Windows.Forms.Button();
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.warehouseNameTextBox = new System.Windows.Forms.TextBox();
+            this.productNameTextBox = new System.Windows.Forms.TextBox();
+            this.warehouseIdTextBox = new System.Windows.Forms.TextBox();
             this.productIdTextBox = new System.Windows.Forms.TextBox();
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.warehouseIdTextBox = new System.Windows.Forms.TextBox();
-            this.stockTextBox = new System.Windows.Forms.TextBox();
-            this.moveButton = new System.Windows.Forms.Button();
-            this.moveTextBox = new System.Windows.Forms.TextBox();
-            this.fromLabel = new System.Windows.Forms.Label();
-            this.toLabel = new System.Windows.Forms.Label();
-            this.fromComboBox = new System.Windows.Forms.ComboBox();
-            this.toComboBox = new System.Windows.Forms.ComboBox();
-            this.productNameTextBox = new System.Windows.Forms.TextBox();
-            this.warehouseNameTextBox = new System.Windows.Forms.TextBox();
-            this.warehouseFilterLabel = new System.Windows.Forms.Label();
-            this.warehouseFilterTextBox = new System.Windows.Forms.TextBox();
-            this.filterButton = new System.Windows.Forms.Button();
-            this.productFilterLabel = new System.Windows.Forms.Label();
-            this.productFilterTextBox = new System.Windows.Forms.TextBox();
             this.actionsPanel.SuspendLayout();
             this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
@@ -76,6 +76,116 @@
             this.actionsPanel.Size = new System.Drawing.Size(715, 180);
             this.actionsPanel.TabIndex = 5;
             // 
+            // productFilterTextBox
+            // 
+            this.productFilterTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.productFilterTextBox.Location = new System.Drawing.Point(570, 130);
+            this.productFilterTextBox.Name = "productFilterTextBox";
+            this.productFilterTextBox.Size = new System.Drawing.Size(120, 26);
+            this.productFilterTextBox.TabIndex = 75;
+            // 
+            // productFilterLabel
+            // 
+            this.productFilterLabel.AutoSize = true;
+            this.productFilterLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.productFilterLabel.Location = new System.Drawing.Point(425, 133);
+            this.productFilterLabel.Name = "productFilterLabel";
+            this.productFilterLabel.Size = new System.Drawing.Size(142, 18);
+            this.productFilterLabel.TabIndex = 74;
+            this.productFilterLabel.Text = "por N⁰ de producto:";
+            // 
+            // filterButton
+            // 
+            this.filterButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.filterButton.Location = new System.Drawing.Point(25, 125);
+            this.filterButton.Name = "filterButton";
+            this.filterButton.Size = new System.Drawing.Size(120, 35);
+            this.filterButton.TabIndex = 73;
+            this.filterButton.Text = "Filtrar";
+            this.filterButton.UseVisualStyleBackColor = true;
+            // 
+            // warehouseFilterLabel
+            // 
+            this.warehouseFilterLabel.AutoSize = true;
+            this.warehouseFilterLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.warehouseFilterLabel.Location = new System.Drawing.Point(151, 133);
+            this.warehouseFilterLabel.Name = "warehouseFilterLabel";
+            this.warehouseFilterLabel.Size = new System.Drawing.Size(142, 18);
+            this.warehouseFilterLabel.TabIndex = 72;
+            this.warehouseFilterLabel.Text = "por N⁰ de depósito:";
+            // 
+            // warehouseFilterTextBox
+            // 
+            this.warehouseFilterTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.warehouseFilterTextBox.Location = new System.Drawing.Point(299, 130);
+            this.warehouseFilterTextBox.Name = "warehouseFilterTextBox";
+            this.warehouseFilterTextBox.Size = new System.Drawing.Size(120, 26);
+            this.warehouseFilterTextBox.TabIndex = 71;
+            // 
+            // toComboBox
+            // 
+            this.toComboBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toComboBox.FormattingEnabled = true;
+            this.toComboBox.Location = new System.Drawing.Point(515, 80);
+            this.toComboBox.Name = "toComboBox";
+            this.toComboBox.Size = new System.Drawing.Size(175, 26);
+            this.toComboBox.TabIndex = 14;
+            // 
+            // fromComboBox
+            // 
+            this.fromComboBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fromComboBox.FormattingEnabled = true;
+            this.fromComboBox.Location = new System.Drawing.Point(309, 80);
+            this.fromComboBox.Name = "fromComboBox";
+            this.fromComboBox.Size = new System.Drawing.Size(175, 26);
+            this.fromComboBox.TabIndex = 13;
+            // 
+            // toLabel
+            // 
+            this.toLabel.AutoSize = true;
+            this.toLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toLabel.Location = new System.Drawing.Point(492, 83);
+            this.toLabel.Name = "toLabel";
+            this.toLabel.Size = new System.Drawing.Size(17, 18);
+            this.toLabel.TabIndex = 12;
+            this.toLabel.Text = "a";
+            // 
+            // fromLabel
+            // 
+            this.fromLabel.AutoSize = true;
+            this.fromLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fromLabel.Location = new System.Drawing.Point(277, 83);
+            this.fromLabel.Name = "fromLabel";
+            this.fromLabel.Size = new System.Drawing.Size(26, 18);
+            this.fromLabel.TabIndex = 11;
+            this.fromLabel.Text = "de";
+            // 
+            // moveTextBox
+            // 
+            this.moveTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.moveTextBox.Location = new System.Drawing.Point(151, 80);
+            this.moveTextBox.Name = "moveTextBox";
+            this.moveTextBox.Size = new System.Drawing.Size(120, 26);
+            this.moveTextBox.TabIndex = 10;
+            // 
+            // moveButton
+            // 
+            this.moveButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.moveButton.Location = new System.Drawing.Point(25, 75);
+            this.moveButton.Name = "moveButton";
+            this.moveButton.Size = new System.Drawing.Size(120, 35);
+            this.moveButton.TabIndex = 9;
+            this.moveButton.Text = "Mover";
+            this.moveButton.UseVisualStyleBackColor = true;
+            // 
+            // stockTextBox
+            // 
+            this.stockTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stockTextBox.Location = new System.Drawing.Point(151, 30);
+            this.stockTextBox.Name = "stockTextBox";
+            this.stockTextBox.Size = new System.Drawing.Size(120, 26);
+            this.stockTextBox.TabIndex = 4;
+            // 
             // exportCSVButton
             // 
             this.exportCSVButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -85,6 +195,7 @@
             this.exportCSVButton.TabIndex = 3;
             this.exportCSVButton.Text = "Exportar CSV";
             this.exportCSVButton.UseVisualStyleBackColor = true;
+            this.exportCSVButton.Click += new System.EventHandler(this.exportCSVButton_Click);
             // 
             // stockButton
             // 
@@ -95,7 +206,6 @@
             this.stockButton.TabIndex = 0;
             this.stockButton.Text = "Ajustar stock";
             this.stockButton.UseVisualStyleBackColor = true;
-            this.stockButton.Click += new System.EventHandler(this.stockButton_Click);
             // 
             // mainPanel
             // 
@@ -108,6 +218,43 @@
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(500, 180);
             this.mainPanel.TabIndex = 4;
+            // 
+            // warehouseNameTextBox
+            // 
+            this.warehouseNameTextBox.BackColor = System.Drawing.SystemColors.Control;
+            this.warehouseNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.warehouseNameTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.warehouseNameTextBox.Location = new System.Drawing.Point(10, 93);
+            this.warehouseNameTextBox.Name = "warehouseNameTextBox";
+            this.warehouseNameTextBox.ReadOnly = true;
+            this.warehouseNameTextBox.Size = new System.Drawing.Size(471, 19);
+            this.warehouseNameTextBox.TabIndex = 5;
+            this.warehouseNameTextBox.Text = "WarehouseName";
+            // 
+            // productNameTextBox
+            // 
+            this.productNameTextBox.BackColor = System.Drawing.SystemColors.Control;
+            this.productNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.productNameTextBox.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.productNameTextBox.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.productNameTextBox.Location = new System.Drawing.Point(10, 39);
+            this.productNameTextBox.Name = "productNameTextBox";
+            this.productNameTextBox.ReadOnly = true;
+            this.productNameTextBox.Size = new System.Drawing.Size(471, 23);
+            this.productNameTextBox.TabIndex = 4;
+            this.productNameTextBox.Text = "ProductName";
+            // 
+            // warehouseIdTextBox
+            // 
+            this.warehouseIdTextBox.BackColor = System.Drawing.SystemColors.Control;
+            this.warehouseIdTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.warehouseIdTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.warehouseIdTextBox.Location = new System.Drawing.Point(10, 68);
+            this.warehouseIdTextBox.Name = "warehouseIdTextBox";
+            this.warehouseIdTextBox.ReadOnly = true;
+            this.warehouseIdTextBox.Size = new System.Drawing.Size(471, 19);
+            this.warehouseIdTextBox.TabIndex = 3;
+            this.warehouseIdTextBox.Text = "WarehouseId";
             // 
             // productIdTextBox
             // 
@@ -136,153 +283,8 @@
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView.Size = new System.Drawing.Size(1230, 405);
             this.dataGridView.TabIndex = 3;
-            // 
-            // warehouseIdTextBox
-            // 
-            this.warehouseIdTextBox.BackColor = System.Drawing.SystemColors.Control;
-            this.warehouseIdTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.warehouseIdTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.warehouseIdTextBox.Location = new System.Drawing.Point(10, 68);
-            this.warehouseIdTextBox.Name = "warehouseIdTextBox";
-            this.warehouseIdTextBox.ReadOnly = true;
-            this.warehouseIdTextBox.Size = new System.Drawing.Size(471, 19);
-            this.warehouseIdTextBox.TabIndex = 3;
-            this.warehouseIdTextBox.Text = "WarehouseId";
-            // 
-            // stockTextBox
-            // 
-            this.stockTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stockTextBox.Location = new System.Drawing.Point(151, 30);
-            this.stockTextBox.Name = "stockTextBox";
-            this.stockTextBox.Size = new System.Drawing.Size(120, 26);
-            this.stockTextBox.TabIndex = 4;
-            // 
-            // moveButton
-            // 
-            this.moveButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.moveButton.Location = new System.Drawing.Point(25, 75);
-            this.moveButton.Name = "moveButton";
-            this.moveButton.Size = new System.Drawing.Size(120, 35);
-            this.moveButton.TabIndex = 9;
-            this.moveButton.Text = "Mover";
-            this.moveButton.UseVisualStyleBackColor = true;
-            // 
-            // moveTextBox
-            // 
-            this.moveTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.moveTextBox.Location = new System.Drawing.Point(151, 80);
-            this.moveTextBox.Name = "moveTextBox";
-            this.moveTextBox.Size = new System.Drawing.Size(120, 26);
-            this.moveTextBox.TabIndex = 10;
-            // 
-            // fromLabel
-            // 
-            this.fromLabel.AutoSize = true;
-            this.fromLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fromLabel.Location = new System.Drawing.Point(277, 83);
-            this.fromLabel.Name = "fromLabel";
-            this.fromLabel.Size = new System.Drawing.Size(26, 18);
-            this.fromLabel.TabIndex = 11;
-            this.fromLabel.Text = "de";
-            // 
-            // toLabel
-            // 
-            this.toLabel.AutoSize = true;
-            this.toLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toLabel.Location = new System.Drawing.Point(492, 83);
-            this.toLabel.Name = "toLabel";
-            this.toLabel.Size = new System.Drawing.Size(17, 18);
-            this.toLabel.TabIndex = 12;
-            this.toLabel.Text = "a";
-            // 
-            // fromComboBox
-            // 
-            this.fromComboBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fromComboBox.FormattingEnabled = true;
-            this.fromComboBox.Location = new System.Drawing.Point(309, 80);
-            this.fromComboBox.Name = "fromComboBox";
-            this.fromComboBox.Size = new System.Drawing.Size(175, 26);
-            this.fromComboBox.TabIndex = 13;
-            // 
-            // toComboBox
-            // 
-            this.toComboBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toComboBox.FormattingEnabled = true;
-            this.toComboBox.Location = new System.Drawing.Point(515, 80);
-            this.toComboBox.Name = "toComboBox";
-            this.toComboBox.Size = new System.Drawing.Size(175, 26);
-            this.toComboBox.TabIndex = 14;
-            // 
-            // productNameTextBox
-            // 
-            this.productNameTextBox.BackColor = System.Drawing.SystemColors.Control;
-            this.productNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.productNameTextBox.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productNameTextBox.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.productNameTextBox.Location = new System.Drawing.Point(10, 39);
-            this.productNameTextBox.Name = "productNameTextBox";
-            this.productNameTextBox.ReadOnly = true;
-            this.productNameTextBox.Size = new System.Drawing.Size(471, 23);
-            this.productNameTextBox.TabIndex = 4;
-            this.productNameTextBox.Text = "ProductName";
-            // 
-            // warehouseNameTextBox
-            // 
-            this.warehouseNameTextBox.BackColor = System.Drawing.SystemColors.Control;
-            this.warehouseNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.warehouseNameTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.warehouseNameTextBox.Location = new System.Drawing.Point(10, 93);
-            this.warehouseNameTextBox.Name = "warehouseNameTextBox";
-            this.warehouseNameTextBox.ReadOnly = true;
-            this.warehouseNameTextBox.Size = new System.Drawing.Size(471, 19);
-            this.warehouseNameTextBox.TabIndex = 5;
-            this.warehouseNameTextBox.Text = "WarehouseName";
-            // 
-            // warehouseFilterLabel
-            // 
-            this.warehouseFilterLabel.AutoSize = true;
-            this.warehouseFilterLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.warehouseFilterLabel.Location = new System.Drawing.Point(151, 133);
-            this.warehouseFilterLabel.Name = "warehouseFilterLabel";
-            this.warehouseFilterLabel.Size = new System.Drawing.Size(142, 18);
-            this.warehouseFilterLabel.TabIndex = 72;
-            this.warehouseFilterLabel.Text = "por N⁰ de depósito:";
-            // 
-            // warehouseFilterTextBox
-            // 
-            this.warehouseFilterTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.warehouseFilterTextBox.Location = new System.Drawing.Point(299, 130);
-            this.warehouseFilterTextBox.Name = "warehouseFilterTextBox";
-            this.warehouseFilterTextBox.Size = new System.Drawing.Size(120, 26);
-            this.warehouseFilterTextBox.TabIndex = 71;
-            // 
-            // filterButton
-            // 
-            this.filterButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.filterButton.Location = new System.Drawing.Point(25, 125);
-            this.filterButton.Name = "filterButton";
-            this.filterButton.Size = new System.Drawing.Size(120, 35);
-            this.filterButton.TabIndex = 73;
-            this.filterButton.Text = "Filtrar";
-            this.filterButton.UseVisualStyleBackColor = true;
-            // 
-            // productFilterLabel
-            // 
-            this.productFilterLabel.AutoSize = true;
-            this.productFilterLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productFilterLabel.Location = new System.Drawing.Point(425, 133);
-            this.productFilterLabel.Name = "productFilterLabel";
-            this.productFilterLabel.Size = new System.Drawing.Size(142, 18);
-            this.productFilterLabel.TabIndex = 74;
-            this.productFilterLabel.Text = "por N⁰ de producto:";
-            // 
-            // productFilterTextBox
-            // 
-            this.productFilterTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productFilterTextBox.Location = new System.Drawing.Point(570, 130);
-            this.productFilterTextBox.Name = "productFilterTextBox";
-            this.productFilterTextBox.Size = new System.Drawing.Size(120, 26);
-            this.productFilterTextBox.TabIndex = 75;
+            this.dataGridView.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView_DataBindingComplete);
+            this.dataGridView.SelectionChanged += new System.EventHandler(this.dataGridView_SelectionChanged);
             // 
             // StockForm
             // 

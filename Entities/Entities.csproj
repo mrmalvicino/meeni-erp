@@ -59,6 +59,7 @@
     <Compile Include="Item.cs" />
     <Compile Include="Province.cs" />
     <Compile Include="Seniority.cs" />
+    <Compile Include="Stock.cs" />
     <Compile Include="TaxCode.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Role.cs" />

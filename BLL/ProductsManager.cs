@@ -59,6 +59,35 @@ namespace BLL
             return productsList;
         }
 
+        public Product read(int productId)
+        {
+            Product product = new Product();
+
+            try
+            {
+                _database.setQuery("select ProductId, ModelId, ItemId from Products");
+                _database.setParameter("@ProductId", productId);
+                _database.executeReader();
+
+                if (_database.Reader.Read())
+                {
+                    product.ProductId = productId;
+                    product.Model.ModelId = (int)_database.Reader["ModelId"];
+                    product.ItemId = (int)_database.Reader["ItemId"];
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _database.closeConnection();
+            }
+
+            return product;
+        }
+
         public void add(Product product)
         {
             _itemsManager.add(product);

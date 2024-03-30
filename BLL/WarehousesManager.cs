@@ -53,6 +53,36 @@ namespace BLL
             return warehousesList;
         }
 
+        public Warehouse read(int warehouseId)
+        {
+            Warehouse warehouse = new Warehouse();
+
+            try
+            {
+                _database.setQuery("select WarehouseId, ActiveStatus, WarehouseName, AdressId from Warehouses");
+                _database.setParameter("@WarehouseId", warehouseId);
+                _database.executeReader();
+
+                if (_database.Reader.Read())
+                {
+                    warehouse.WarehouseId = warehouseId;
+                    warehouse.ActiveStatus = (bool)_database.Reader["ActiveStatus"];
+                    warehouse.Name = (string)_database.Reader["WarehouseName"];
+                    warehouse.Adress.AdressId = (int)_database.Reader["AdressId"];
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _database.closeConnection();
+            }
+
+            return warehouse;
+        }
+
         public void add(Warehouse warehouse)
         {
             int dbAdressId = _adressesManager.getId(warehouse.Adress);
