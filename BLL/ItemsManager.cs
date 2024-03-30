@@ -20,13 +20,14 @@ namespace BLL
 
             try
             {
-                _database.setQuery("select Price, Cost, CategoryId from Items where ItemId = @ItemId");
+                _database.setQuery("select ActiveStatus, Price, Cost, CategoryId from Items where ItemId = @ItemId");
                 _database.setParameter("@ItemId", itemId);
                 _database.executeReader();
 
                 if (_database.Reader.Read())
                 {
                     item.ItemId = itemId;
+                    item.ActiveStatus = (bool)_database.Reader["ActiveStatus"];
                     item.Price = (decimal)_database.Reader["Price"];
                     item.Cost = (decimal)_database.Reader["Cost"];
                     item.Category.CategoryId = (int)_database.Reader["CategoryId"];
@@ -63,7 +64,7 @@ namespace BLL
 
             try
             {
-                _database.setQuery("insert into Items (Price, Cost, CategoryId) values (@Price, @Cost, @CategoryId)");
+                _database.setQuery("insert into Items (ActiveStatus, Price, Cost, CategoryId) values (@ActiveStatus, @Price, @Cost, @CategoryId)");
                 setParameters(item);
                 _database.executeAction();
             }
@@ -132,6 +133,7 @@ namespace BLL
 
         private void setParameters(Item item)
         {
+            _database.setParameter("@ActiveStatus", item.ActiveStatus);
             _database.setParameter("@Price", item.Price);
             _database.setParameter("@Cost", item.Cost);
             _database.setParameter("@CategoryId", item.Category.CategoryId);

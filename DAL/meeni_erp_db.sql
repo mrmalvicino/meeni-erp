@@ -68,6 +68,7 @@ go
 
 create table Items(
 	ItemId int primary key identity(1,1) not null,
+	ActiveStatus bit not null default(1),
 	Price decimal(15,2) not null,
 	Cost decimal(15,2) not null Default(0),
 	CategoryId int foreign key references Categories(CategoryId) not null

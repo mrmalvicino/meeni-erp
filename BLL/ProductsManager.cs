@@ -59,16 +59,28 @@ namespace BLL
             return productsList;
         }
 
-        public void add(Product product) // y la Brand cuando se agrega?
+        public void add(Product product)
         {
             _itemsManager.add(product);
             product.ItemId = Helper.getLastId("Items");
+
+            int dbBrandId = _brandsManager.getId(product.Brand);
+
+            if (dbBrandId == 0)
+            {
+                _brandsManager.add(product.Brand);
+                product.Brand.BrandId = Helper.getLastId("Brands");
+            }
+            else
+            {
+                product.Brand.BrandId = dbBrandId;
+            }
 
             int dbModelId = _modelsManager.getId(product.Model);
 
             if (dbModelId == 0)
             {
-                _modelsManager.add(product.Model);
+                _modelsManager.add(product.Model, product.Brand.BrandId);
                 product.Model.ModelId = Helper.getLastId("Models");
             }
             else
@@ -96,16 +108,32 @@ namespace BLL
         {
             _itemsManager.edit(product);
 
+            int dbBrandId = _brandsManager.getId(product.Brand);
+
+            if (dbBrandId == 0)
+            {
+                _brandsManager.add(product.Brand);
+                product.Brand.BrandId = Helper.getLastId("Brands");
+            }
+            else if (dbBrandId == product.Brand.BrandId)
+            {
+                _brandsManager.edit(product.Brand);
+            }
+            else
+            {
+                product.Brand.BrandId = dbBrandId;
+            }
+
             int dbModelId = _modelsManager.getId(product.Model);
 
             if (dbModelId == 0)
             {
-                _modelsManager.add(product.Model);
+                _modelsManager.add(product.Model, product.Brand.BrandId);
                 product.Model.ModelId = Helper.getLastId("Models");
             }
             else if (dbModelId == product.Model.ModelId)
             {
-                _modelsManager.edit(product.Model);
+                _modelsManager.edit(product.Model, product.Brand.BrandId);
             }
             else
             {

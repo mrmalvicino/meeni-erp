@@ -73,12 +73,12 @@ namespace BLL
             return model;
         }
 
-        public void add(Model model)
+        public void add(Model model, int brandId)
         {
             try
             {
-                _database.setQuery("insert into Models (ModelName) values (@ModelName)");
-                setParameters(model);
+                _database.setQuery("insert into Models (ModelName, BrandId) values (@ModelName, @BrandId)");
+                setParameters(model, brandId);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -91,13 +91,13 @@ namespace BLL
             }
         }
 
-        public void edit(Model model)
+        public void edit(Model model, int brandId)
         {
             try
             {
-                _database.setQuery("update Models set ModelName = @ModelName where ModelId = @ModelId");
+                _database.setQuery("update Models set ModelName = @ModelName, BrandId = @BrandId where ModelId = @ModelId");
                 _database.setParameter("@ModelId", model.ModelId);
-                setParameters(model);
+                setParameters(model, brandId);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -174,9 +174,10 @@ namespace BLL
             return brandId;
         }
 
-        private void setParameters(Model model)
+        private void setParameters(Model model, int brandId)
         {
             _database.setParameter("@ModelName", model.Name);
+            _database.setParameter("@BrandId", brandId);
         }
     }
 }

@@ -161,7 +161,7 @@ namespace WindowsForms
 
         private void newButton_Click(object sender, EventArgs e)
         {
-            WarehouseRegisterForm registerForm = new WarehouseRegisterForm();
+            ProductRegisterForm registerForm = new ProductRegisterForm();
             registerForm.ShowDialog();
             refreshTable();
             applyFilter();

@@ -18,6 +18,15 @@ namespace Entities
         [DisplayName("Imagen")]
         public Image Image { get; set; }
 
+        // CONSTRUCT
+
+        public Product()
+        {
+            Brand = new Brand();
+            Model = new Model();
+            Image = new Image();
+        }
+
         // METHODS
 
         public override string ToString()

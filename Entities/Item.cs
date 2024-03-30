@@ -20,5 +20,12 @@ namespace Entities
 
         [DisplayName("Rubro")]
         public Category Category { get; set; }
+
+        // CONSTRUCT
+
+        public Item()
+        {
+            Category = new Category();
+        }
     }
 }
