@@ -52,6 +52,7 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.infoToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.helpToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.stockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -154,7 +155,7 @@
             // employeesToolStripMenuItem
             // 
             this.employeesToolStripMenuItem.Name = "employeesToolStripMenuItem";
-            this.employeesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.employeesToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.employeesToolStripMenuItem.Text = "Empleados";
             this.employeesToolStripMenuItem.Click += new System.EventHandler(this.employeesToolStripMenuItem_Click);
             // 
@@ -162,6 +163,7 @@
             // 
             this.inventoryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.warehousesToolStripMenuItem,
+            this.stockToolStripMenuItem,
             this.productsToolStripMenuItem,
             this.servicesToolStripMenuItem});
             this.inventoryToolStripMenuItem.Name = "inventoryToolStripMenuItem";
@@ -241,6 +243,13 @@
             this.helpToolStripStatusLabel.Size = new System.Drawing.Size(44, 17);
             this.helpToolStripStatusLabel.Text = "Ayuda:";
             // 
+            // stockToolStripMenuItem
+            // 
+            this.stockToolStripMenuItem.Name = "stockToolStripMenuItem";
+            this.stockToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.stockToolStripMenuItem.Text = "Inventario";
+            this.stockToolStripMenuItem.Click += new System.EventHandler(this.stockToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -291,6 +300,7 @@
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem overviewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newSessionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem stockToolStripMenuItem;
     }
 }
 

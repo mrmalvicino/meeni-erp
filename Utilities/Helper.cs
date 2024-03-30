@@ -1,7 +1,6 @@
 ﻿using System;
 using DAL;
 using Entities;
-using Utilities;
 
 namespace Utilities
 {
@@ -82,7 +81,5 @@ namespace Utilities
 
             return lastId;
         }
-
-
     }
 }
