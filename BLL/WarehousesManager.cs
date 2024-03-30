@@ -59,7 +59,7 @@ namespace BLL
 
             try
             {
-                _database.setQuery("select ActiveStatus, WarehouseName, AdressId from Warehouses");
+                _database.setQuery("select ActiveStatus, WarehouseName, AdressId from Warehouses where WarehouseId = @WarehouseId");
                 _database.setParameter("@WarehouseId", warehouseId);
                 _database.executeReader();
 

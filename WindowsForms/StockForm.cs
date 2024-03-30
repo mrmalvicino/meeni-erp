@@ -108,9 +108,9 @@ namespace WindowsForms
         {
             if (_stock != null)
             {
-                productIdTextBox.Text = stock.Product.ProductId.ToString();
+                productIdTextBox.Text = "Producto N⁰ " + stock.Product.ProductId.ToString();
                 productNameTextBox.Text = stock.Product.ToString();
-                warehouseIdTextBox.Text = stock.Warehouse.WarehouseId.ToString();
+                warehouseIdTextBox.Text = "Depósito N⁰ " + stock.Warehouse.WarehouseId.ToString();
                 warehouseNameTextBox.Text = stock.Warehouse.ToString();
             }
             else

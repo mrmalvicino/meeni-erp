@@ -65,7 +65,7 @@ namespace BLL
 
             try
             {
-                _database.setQuery("select ModelId, ItemId from Products");
+                _database.setQuery("select ModelId, ItemId from Products where ProductId = @ProductId");
                 _database.setParameter("@ProductId", productId);
                 _database.executeReader();
 
