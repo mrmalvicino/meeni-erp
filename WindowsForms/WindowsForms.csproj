@@ -95,6 +95,12 @@
     <Compile Include="CustomerRegisterForm.Designer.cs">
       <DependentUpon>CustomerRegisterForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="QuotesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuotesForm.Designer.cs">
+      <DependentUpon>QuotesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ServiceRegisterForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -210,6 +216,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomerRegisterForm.resx">
       <DependentUpon>CustomerRegisterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuotesForm.resx">
+      <DependentUpon>QuotesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ServiceRegisterForm.resx">
       <DependentUpon>ServiceRegisterForm.cs</DependentUpon>

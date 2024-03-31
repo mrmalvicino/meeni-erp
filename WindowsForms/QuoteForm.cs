@@ -11,11 +11,13 @@ namespace WindowsForms
     {
         // ATTRIBUTES
 
-        private Customer _customer;
+        private Quote _quote;
+        private QuoteRow _quoteRow = new QuoteRow();
         private CustomersManager _customersManager = new CustomersManager();
-        private List<Customer> _customersTable;
         private WarehousesManager _warehousesManager = new WarehousesManager();
-        private List<Warehouse> _warehousesTable;
+        private CategoriesManager _categoriesManager = new CategoriesManager();
+        private BrandsManager _brandsManager = new BrandsManager();
+        private ModelsManager _modelsManager = new ModelsManager();
 
         // CONSTRUCT
 
@@ -33,6 +35,7 @@ namespace WindowsForms
             actionsPanel.BackColor = Palette.LightBackColor;
             addingPanel.BackColor = Palette.LightBackColor;
 
+            quoteIdTextBox.ForeColor = Palette.ForeColor;
             customerTextBox.ForeColor = Palette.ForeColor;
             versionTextBox.ForeColor = Palette.ForeColor;
             statusTextBox.ForeColor = Palette.ForeColor;
@@ -47,6 +50,7 @@ namespace WindowsForms
             descriptionLabelTextBox.ForeColor = Palette.ForeColor;
             discountLabelTextBox.ForeColor = Palette.ForeColor;
 
+            quoteIdTextBox.BackColor = Palette.LightBackColor;
             customerTextBox.BackColor = Palette.LightBackColor;
             versionTextBox.BackColor = Palette.LightBackColor;
             statusTextBox.BackColor = Palette.LightBackColor;
@@ -62,15 +66,47 @@ namespace WindowsForms
             discountLabelTextBox.BackColor = Palette.LightBackColor;
         }
 
+        private void bindComboBoxes()
+        {
+            customerComboBox.DataSource = _customersManager.list();
+            //customerComboBox.ValueMember = "CustomerId";
+            //customerComboBox.DisplayMember = "Name";
+
+            warehouseComboBox.DataSource = _warehousesManager.list();
+            //warehouseComboBox.ValueMember = "WarehouseId";
+            //warehouseComboBox.DisplayMember = "Name";
+
+            productCategoryComboBox.DataSource = _categoriesManager.list();
+            //productCategoryComboBox.ValueMember = "CategoryId";
+            //productCategoryComboBox.DisplayMember = "Name";
+
+            brandComboBox.DataSource = _brandsManager.list();
+            //brandComboBox.ValueMember = "BrandId";
+            //brandComboBox.DisplayMember = "Name";
+
+            modelComboBox.DataSource = _modelsManager.list();
+            //modelComboBox.ValueMember = "ModelId";
+            //modelComboBox.DisplayMember = "Name";
+        }
+
+        private void clearComboBoxes()
+        {
+            customerComboBox.SelectedIndex = -1;
+            warehouseComboBox.SelectedIndex = -1;
+            productCategoryComboBox.SelectedIndex = -1;
+            brandComboBox.SelectedIndex = -1;
+            modelComboBox.SelectedIndex = -1;
+        }
+
         private void loadProfile(Quote quote = null)
         {
             if (quote != null)
             {
                 quoteIdTextBox.Text = "Cotización N⁰ " + quote.QuoteId.ToString();
-                dateTimePicker.Value = quote.Date;
+                dateTimePicker.Value = quote.JobDate;
                 customerTextBox.Text = quote.Customer.ToString();
-                versionTextBox.Text = quote.Version.ToString();
-                statusTextBox.Text = quote.Status;
+                versionTextBox.Text = quote.VariantVersion.ToString();
+                statusTextBox.Text = quote.ActiveStatus;
             }
             else
             {
@@ -82,11 +118,42 @@ namespace WindowsForms
             }
         }
 
+        private void mapQuote()
+        {
+
+        }
+
+        private void setQuote()
+        {
+
+        }
+
         // EVENTS
 
         private void QuoteForm_Load(object sender, EventArgs e)
         {
             setupStyle();
+
+            try
+            {
+                bindComboBoxes();
+
+                if (_quote == null)
+                {
+                    _quote = new Quote();
+                    statusComboBox.SelectedIndex = 1;
+                    statusComboBox.Enabled = false;
+                    clearComboBoxes();
+                }
+                else
+                {
+                    mapQuote();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -106,17 +173,22 @@ namespace WindowsForms
 
         private void eraseButton_Click(object sender, EventArgs e)
         {
-
+            if (0 <= listBox.SelectedIndex)
+            {
+                listBox.Items.RemoveAt(listBox.SelectedIndex);
+            }
         }
 
         private void eraseAllButton_Click(object sender, EventArgs e)
         {
-
+            listBox.Items.Clear();
         }
 
         private void addProductButton_Click(object sender, EventArgs e)
         {
+            _quoteRow.Amount = (int)productAmountNumericUpDown.Value;
 
+            listBox.Items.Add(_quoteRow);
         }
 
         private void addServiceButton_Click(object sender, EventArgs e)

@@ -11,13 +11,13 @@ namespace Entities
         public int QuoteId { get; set; }
 
         [DisplayName("Estado")]
-        public string Status { get; set; }
+        public string ActiveStatus { get; set; }
 
         [DisplayName("Versión")]
-        public int Version { get; set; }
+        public int VariantVersion { get; set; }
 
         [DisplayName("Fecha")]
-        public DateTime Date { get; set; }
+        public DateTime JobDate { get; set; }
 
         [DisplayName("Cliente")]
         public Customer Customer { get; set; }

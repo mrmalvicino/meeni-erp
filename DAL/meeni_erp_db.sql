@@ -603,3 +603,16 @@ values
 ('ARS', 'Peso', '830', '1130'),
 ('BRL', 'Real', '5', '5');
 go
+
+------------
+-- QUOTES --
+------------
+
+create table Quotes(
+	QuoteId int primary key identity(1,1) not null,
+	ActiveStatus varchar(20) default('Cotizado') not null,
+	VariantVersion tinyint default('1') not null,
+	JobDate datetime default(getdate()) not null,
+	CustomerId int foreign key references Customers(CustomerId) not null,
+	constraint UC_Quote unique (VariantVersion, JobDate, CustomerId)
+)

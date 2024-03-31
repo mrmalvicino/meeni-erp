@@ -10,7 +10,7 @@ namespace Entities
         [DisplayName("ID de individuo")]
         public int IndividualId { get; set; }
 
-        [DisplayName("Está activo")]
+        [DisplayName("Estado")]
         public bool ActiveStatus { get; set; }
 
         [DisplayName("Teléfono")]

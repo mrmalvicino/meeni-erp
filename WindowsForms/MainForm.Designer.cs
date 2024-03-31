@@ -37,7 +37,7 @@
             this.overviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quotationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.quotationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.quotesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.businessPartnersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.suppliersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -86,14 +86,14 @@
             // newSessionToolStripMenuItem
             // 
             this.newSessionToolStripMenuItem.Name = "newSessionToolStripMenuItem";
-            this.newSessionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newSessionToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.newSessionToolStripMenuItem.Text = "Nueva sesión";
             this.newSessionToolStripMenuItem.Click += new System.EventHandler(this.newSessionToolStripMenuItem_Click);
             // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.settingsToolStripMenuItem.Text = "Configuración";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
@@ -108,7 +108,7 @@
             // overviewToolStripMenuItem
             // 
             this.overviewToolStripMenuItem.Name = "overviewToolStripMenuItem";
-            this.overviewToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.overviewToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.overviewToolStripMenuItem.Text = "Pantalla inicial";
             this.overviewToolStripMenuItem.Click += new System.EventHandler(this.overviewToolStripMenuItem_Click);
             // 
@@ -116,7 +116,7 @@
             // 
             this.quotationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.quoteToolStripMenuItem,
-            this.quotationsToolStripMenuItem});
+            this.quotesToolStripMenuItem});
             this.quotationToolStripMenuItem.Name = "quotationToolStripMenuItem";
             this.quotationToolStripMenuItem.Size = new System.Drawing.Size(80, 22);
             this.quotationToolStripMenuItem.Text = "Cotización";
@@ -128,12 +128,12 @@
             this.quoteToolStripMenuItem.Text = "Cotizar";
             this.quoteToolStripMenuItem.Click += new System.EventHandler(this.quoteToolStripMenuItem_Click);
             // 
-            // quotationsToolStripMenuItem
+            // quotesToolStripMenuItem
             // 
-            this.quotationsToolStripMenuItem.Name = "quotationsToolStripMenuItem";
-            this.quotationsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.quotationsToolStripMenuItem.Text = "Cotizaciones";
-            this.quotationsToolStripMenuItem.Click += new System.EventHandler(this.quotationsToolStripMenuItem_Click);
+            this.quotesToolStripMenuItem.Name = "quotesToolStripMenuItem";
+            this.quotesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.quotesToolStripMenuItem.Text = "Cotizaciones";
+            this.quotesToolStripMenuItem.Click += new System.EventHandler(this.quotesToolStripMenuItem_Click);
             // 
             // businessPartnersToolStripMenuItem
             // 
@@ -288,7 +288,7 @@
         private System.Windows.Forms.ToolStripMenuItem newSessionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem stockToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quoteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem quotationsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem quotesToolStripMenuItem;
     }
 }
 

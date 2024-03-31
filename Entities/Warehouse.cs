@@ -9,7 +9,7 @@ namespace Entities
         [DisplayName("ID de depósito")]
         public int WarehouseId { get; set; }
 
-        [DisplayName("Está activo")]
+        [DisplayName("Estado")]
         public bool ActiveStatus { get; set; }
 
         [DisplayName("Nombre")]
