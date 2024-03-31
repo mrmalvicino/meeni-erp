@@ -12,10 +12,10 @@ namespace WindowsForms
     {
         // ATTRIBUTES
 
-        private Warehouse _warehouse;
-        private WarehousesManager _warehousesManager = new WarehousesManager();
-        private List<Warehouse> _warehousesTable;
-        private List<Warehouse> _filteredWarehouses;
+        private Quote _quote;
+        private QuotesManager _quotesManager = new QuotesManager();
+        private List<Quote> _quotesTable;
+        private List<Quote> _filteredQuotes;
 
         // CONSTRUCT
 
@@ -44,7 +44,7 @@ namespace WindowsForms
         {
             if (0 < dataGridView.RowCount)
             {
-                dataGridView.Columns["WarehouseId"].Visible = false;
+                dataGridView.Columns["QuoteId"].Visible = false;
                 dataGridView.Columns["ActiveStatus"].Visible = false;
                 dataGridView.Columns["Name"].DisplayIndex = 0;
                 dataGridView.Columns["Adress"].DisplayIndex = 1;
@@ -74,8 +74,8 @@ namespace WindowsForms
         {
             try
             {
-                _warehousesTable = _warehousesManager.list();
-                dataGridView.DataSource = _warehousesTable;
+                _quotesTable = _quotesManager.list();
+                dataGridView.DataSource = _quotesTable;
             }
             catch (Exception ex)
             {
@@ -91,7 +91,7 @@ namespace WindowsForms
 
             if (2 < filter.Length)
             {
-                _filteredWarehouses = _warehousesTable.FindAll(reg =>
+                _filteredQuotes = _quotesTable.FindAll(reg =>
                     (
                         (reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)
                     )
@@ -104,24 +104,24 @@ namespace WindowsForms
             }
             else
             {
-                _filteredWarehouses = _warehousesTable.FindAll(reg =>
+                _filteredQuotes = _quotesTable.FindAll(reg =>
                     (reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)
                 );
             }
 
             dataGridView.DataSource = null;
-            dataGridView.DataSource = _filteredWarehouses;
+            dataGridView.DataSource = _filteredQuotes;
             validateDataGridView();
             dataGridView.DataBindingComplete += dataGridView_DataBindingComplete;
         }
 
-        private void loadProfile(Warehouse warehouse = null)
+        private void loadProfile(Quote quote = null)
         {
-            if (warehouse != null)
+            if (quote != null)
             {
-                idTextBox.Text = "Depósito N⁰ " + warehouse.WarehouseId.ToString();
-                nameTextBox.Text = warehouse.ToString();
-                adressTextBox.Text = warehouse.Adress.ToString();
+                idTextBox.Text = "Depósito N⁰ " + quote.QuoteId.ToString();
+                nameTextBox.Text = quote.ToString();
+                adressTextBox.Text = quote.Adress.ToString();
             }
             else
             {
@@ -146,8 +146,8 @@ namespace WindowsForms
         {
             if (dataGridView.CurrentRow != null)
             {
-                _warehouse = (Warehouse)dataGridView.CurrentRow.DataBoundItem;
-                loadProfile(_warehouse);
+                _quote = (Quote)dataGridView.CurrentRow.DataBoundItem;
+                loadProfile(_quote);
             }
         }
 
@@ -158,7 +158,7 @@ namespace WindowsForms
 
         private void newButton_Click(object sender, EventArgs e)
         {
-            WarehouseRegisterForm registerForm = new WarehouseRegisterForm();
+            QuoteRegisterForm registerForm = new QuoteRegisterForm();
             registerForm.ShowDialog();
             refreshTable();
             applyFilter();
@@ -166,7 +166,7 @@ namespace WindowsForms
 
         private void editButton_Click(object sender, EventArgs e)
         {
-            WarehouseRegisterForm registerForm = new WarehouseRegisterForm(_warehouse);
+            QuoteRegisterForm registerForm = new QuoteRegisterForm(_quote);
             registerForm.ShowDialog();
             refreshTable();
             applyFilter();
@@ -180,7 +180,7 @@ namespace WindowsForms
 
                 if (answer == DialogResult.Yes)
                 {
-                    _warehousesManager.delete(_warehouse);
+                    _quotesManager.delete(_quote);
                     refreshTable();
                     applyFilter();
                 }
@@ -193,7 +193,7 @@ namespace WindowsForms
 
         private void exportButton_Click(object sender, EventArgs e)
         {
-            Functions.exportCSV(dataGridView, ConfigurationManager.AppSettings["csv_folder"] + "Warehouses.csv");
+            Functions.exportCSV(dataGridView, ConfigurationManager.AppSettings["csv_folder"] + "Quotes.csv");
         }
 
         private void filterButton_Click(object sender, EventArgs e)
