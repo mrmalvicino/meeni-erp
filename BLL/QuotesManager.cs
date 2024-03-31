@@ -11,6 +11,7 @@ namespace BLL
         // ATTRIBUTES
 
         private Database _database = new Database();
+        private CustomersManager _customersManager = new CustomersManager();
 
         // METHODS
 
@@ -20,7 +21,7 @@ namespace BLL
 
             try
             {
-                _database.setQuery("select QuoteId, ActiveStatus, QuoteName, AdressId from Quotes");
+                _database.setQuery("select QuoteId, ActiveStatus, VariantVersion, JobDate, CustomerId from Quotes");
                 _database.executeReader();
 
                 while (_database.Reader.Read())
@@ -28,9 +29,10 @@ namespace BLL
                     Quote quote = new Quote();
 
                     quote.QuoteId = (int)_database.Reader["QuoteId"];
-                    quote.ActiveStatus = (bool)_database.Reader["ActiveStatus"];
-                    quote.Name = (string)_database.Reader["QuoteName"];
-                    quote.Adress.AdressId = (int)_database.Reader["AdressId"];
+                    quote.ActiveStatus = (string)_database.Reader["ActiveStatus"];
+                    quote.VariantVersion = Convert.ToInt32(_database.Reader["VariantVersion"]);
+                    quote.JobDate = (DateTime)_database.Reader["JobDate"];
+                    quote.Customer.CustomerId = (int)_database.Reader["CustomerId"];
 
                     quotesList.Add(quote);
                 }
@@ -46,7 +48,7 @@ namespace BLL
 
             foreach (Quote quote in quotesList)
             {
-                quote.Adress = _adressesManager.read(quote.Adress.AdressId);
+                quote.Customer = _customersManager.read(quote.Customer.CustomerId);
             }
 
             return quotesList;
@@ -58,16 +60,17 @@ namespace BLL
 
             try
             {
-                _database.setQuery("select ActiveStatus, QuoteName, AdressId from Quotes where QuoteId = @QuoteId");
+                _database.setQuery("select QuoteId, ActiveStatus, VariantVersion, JobDate, CustomerId from Quotes where QuoteId = @QuoteId");
                 _database.setParameter("@QuoteId", quoteId);
                 _database.executeReader();
 
                 if (_database.Reader.Read())
                 {
-                    quote.QuoteId = quoteId;
-                    quote.ActiveStatus = (bool)_database.Reader["ActiveStatus"];
-                    quote.Name = (string)_database.Reader["QuoteName"];
-                    quote.Adress.AdressId = (int)_database.Reader["AdressId"];
+                    quote.QuoteId = (int)_database.Reader["QuoteId"];
+                    quote.ActiveStatus = (string)_database.Reader["ActiveStatus"];
+                    quote.VariantVersion = Convert.ToInt32(_database.Reader["VariantVersion"]);
+                    quote.JobDate = (DateTime)_database.Reader["JobDate"];
+                    quote.Customer.CustomerId = (int)_database.Reader["CustomerId"];
                 }
             }
             catch (Exception ex)
@@ -79,74 +82,7 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            quote.Adress = _adressesManager.read(quote.Adress.AdressId);
-
             return quote;
-        }
-
-        public void add(Quote quote)
-        {
-            int dbAdressId = _adressesManager.getId(quote.Adress);
-
-            if (dbAdressId == 0)
-            {
-                _adressesManager.add(quote.Adress);
-                quote.Adress.AdressId = Helper.getLastId("Adresses");
-            }
-            else
-            {
-                quote.Adress.AdressId = dbAdressId;
-            }
-
-            try
-            {
-                _database.setQuery("insert into Quotes (ActiveStatus, QuoteName, AdressId) values (@ActiveStatus, @QuoteName, @AdressId)");
-                setParameters(quote);
-                _database.executeAction();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                _database.closeConnection();
-            }
-        }
-
-        public void edit(Quote quote)
-        {
-            int dbAdressId = _adressesManager.getId(quote.Adress);
-
-            if (dbAdressId == 0)
-            {
-                _adressesManager.add(quote.Adress);
-                quote.Adress.AdressId = Helper.getLastId("Adresses");
-            }
-            else if (dbAdressId == quote.Adress.AdressId)
-            {
-                _adressesManager.edit(quote.Adress);
-            }
-            else
-            {
-                quote.Adress.AdressId = dbAdressId;
-            }
-
-            try
-            {
-                _database.setQuery("update Quotes set ActiveStatus = @ActiveStatus, QuoteName = @QuoteName, AdressId = @AdressId where QuoteId = @QuoteId");
-                _database.setParameter("@QuoteId", quote.QuoteId);
-                setParameters(quote);
-                _database.executeAction();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                _database.closeConnection();
-            }
         }
 
         public void delete(Quote quote)
@@ -165,13 +101,6 @@ namespace BLL
             {
                 _database.closeConnection();
             }
-        }
-
-        private void setParameters(Quote quote)
-        {
-            _database.setParameter("@ActiveStatus", quote.ActiveStatus);
-            _database.setParameter("@QuoteName", quote.Name);
-            _database.setParameter("@AdressId", quote.Adress.AdressId);
         }
     }
 }

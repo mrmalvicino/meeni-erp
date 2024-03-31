@@ -8,14 +8,13 @@ namespace WindowsForms
     {
         // ATTRIBUTES
 
-        FormsManager _formsManager = null;
+        private FormsManager _formsManager = new FormsManager();
 
         // CONSTRUCT
 
         public OverviewForm()
         {
             InitializeComponent();
-            _formsManager = new FormsManager();
         }
 
         // METHODS
@@ -37,7 +36,8 @@ namespace WindowsForms
 
         private void quoteButton_Click(object sender, EventArgs e)
         {
-            _formsManager.loadParentForm<QuoteForm>(this.MdiParent);
+            QuoteForm registerForm = new QuoteForm();
+            registerForm.ShowDialog();
         }
 
         private void customersButton_Click(object sender, EventArgs e)

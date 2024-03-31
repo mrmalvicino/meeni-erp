@@ -30,8 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuotesForm));
             this.actionsPanel = new System.Windows.Forms.Panel();
-            this.showInactiveCheckBox = new System.Windows.Forms.CheckBox();
-            this.showActiveCheckBox = new System.Windows.Forms.CheckBox();
             this.filterButton = new System.Windows.Forms.Button();
             this.filterLabel = new System.Windows.Forms.Label();
             this.filterTextBox = new System.Windows.Forms.TextBox();
@@ -53,8 +51,6 @@
             // actionsPanel
             // 
             this.actionsPanel.BackColor = System.Drawing.SystemColors.Control;
-            this.actionsPanel.Controls.Add(this.showInactiveCheckBox);
-            this.actionsPanel.Controls.Add(this.showActiveCheckBox);
             this.actionsPanel.Controls.Add(this.filterButton);
             this.actionsPanel.Controls.Add(this.filterLabel);
             this.actionsPanel.Controls.Add(this.filterTextBox);
@@ -67,36 +63,10 @@
             this.actionsPanel.Size = new System.Drawing.Size(715, 180);
             this.actionsPanel.TabIndex = 5;
             // 
-            // showInactiveCheckBox
-            // 
-            this.showInactiveCheckBox.AutoSize = true;
-            this.showInactiveCheckBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.showInactiveCheckBox.Location = new System.Drawing.Point(464, 117);
-            this.showInactiveCheckBox.Name = "showInactiveCheckBox";
-            this.showInactiveCheckBox.Size = new System.Drawing.Size(87, 22);
-            this.showInactiveCheckBox.TabIndex = 6;
-            this.showInactiveCheckBox.Text = "Inactivos";
-            this.showInactiveCheckBox.UseVisualStyleBackColor = true;
-            this.showInactiveCheckBox.CheckedChanged += new System.EventHandler(this.showInactiveCheckBox_CheckedChanged);
-            // 
-            // showActiveCheckBox
-            // 
-            this.showActiveCheckBox.AutoSize = true;
-            this.showActiveCheckBox.Checked = true;
-            this.showActiveCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.showActiveCheckBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.showActiveCheckBox.Location = new System.Drawing.Point(374, 117);
-            this.showActiveCheckBox.Name = "showActiveCheckBox";
-            this.showActiveCheckBox.Size = new System.Drawing.Size(78, 22);
-            this.showActiveCheckBox.TabIndex = 5;
-            this.showActiveCheckBox.Text = "Activos";
-            this.showActiveCheckBox.UseVisualStyleBackColor = true;
-            this.showActiveCheckBox.CheckedChanged += new System.EventHandler(this.showActiveCheckBox_CheckedChanged);
-            // 
             // filterButton
             // 
             this.filterButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.filterButton.Location = new System.Drawing.Point(570, 110);
+            this.filterButton.Location = new System.Drawing.Point(277, 110);
             this.filterButton.Name = "filterButton";
             this.filterButton.Size = new System.Drawing.Size(120, 35);
             this.filterButton.TabIndex = 7;
@@ -117,9 +87,9 @@
             // filterTextBox
             // 
             this.filterTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.filterTextBox.Location = new System.Drawing.Point(86, 115);
+            this.filterTextBox.Location = new System.Drawing.Point(75, 115);
             this.filterTextBox.Name = "filterTextBox";
-            this.filterTextBox.Size = new System.Drawing.Size(270, 26);
+            this.filterTextBox.Size = new System.Drawing.Size(196, 26);
             this.filterTextBox.TabIndex = 4;
             this.filterTextBox.TextChanged += new System.EventHandler(this.filterTextBox_TextChanged);
             // 
@@ -254,8 +224,6 @@
         #endregion
 
         private System.Windows.Forms.Panel actionsPanel;
-        private System.Windows.Forms.CheckBox showInactiveCheckBox;
-        private System.Windows.Forms.CheckBox showActiveCheckBox;
         private System.Windows.Forms.Button filterButton;
         private System.Windows.Forms.Label filterLabel;
         private System.Windows.Forms.TextBox filterTextBox;

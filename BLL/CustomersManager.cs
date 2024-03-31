@@ -60,6 +60,43 @@ namespace BLL
             return customersList;
         }
 
+        public Customer read(int customerId)
+        {
+            Customer customer = new Customer();
+
+            try
+            {
+                _database.setQuery("select CustomerId, SalesAmount, BusinessPartnerId from Customers where CustomerId = @CustomerId");
+                _database.setParameter("@CustomerId", customerId);
+                _database.executeReader();
+
+                if (_database.Reader.Read())
+                {
+                    customer.CustomerId = (int)_database.Reader["CustomerId"];
+
+                    if (!(_database.Reader["SalesAmount"] is DBNull))
+                    {
+                        customer.SalesAmount = (int)_database.Reader["SalesAmount"];
+                    }
+
+                    customer.BusinessPartnerId = (int)_database.Reader["BusinessPartnerId"];
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _database.closeConnection();
+            }
+
+            _businessPartner = _businessPartnersManager.read(customer.BusinessPartnerId);
+            Helper.assignIndividual(customer, _businessPartner);
+
+            return customer;
+        }
+
         public void add(Customer customer)
         {
             _businessPartnersManager.add(customer);

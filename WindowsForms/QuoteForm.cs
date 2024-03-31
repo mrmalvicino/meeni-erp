@@ -75,24 +75,10 @@ namespace WindowsForms
         private void bindComboBoxes()
         {
             customerComboBox.DataSource = _customersManager.list();
-            //customerComboBox.ValueMember = "CustomerId";
-            //customerComboBox.DisplayMember = "Name";
-
             warehouseComboBox.DataSource = _warehousesManager.list();
-            //warehouseComboBox.ValueMember = "WarehouseId";
-            //warehouseComboBox.DisplayMember = "Name";
-
             productCategoryComboBox.DataSource = _categoriesManager.list();
-            //productCategoryComboBox.ValueMember = "CategoryId";
-            //productCategoryComboBox.DisplayMember = "Name";
-
             brandComboBox.DataSource = _brandsManager.list();
-            //brandComboBox.ValueMember = "BrandId";
-            //brandComboBox.DisplayMember = "Name";
-
             modelComboBox.DataSource = _modelsManager.list();
-            //modelComboBox.ValueMember = "ModelId";
-            //modelComboBox.DisplayMember = "Name";
         }
 
         private void clearComboBoxes()
@@ -109,7 +95,7 @@ namespace WindowsForms
             if (quote != null)
             {
                 quoteIdTextBox.Text = "Cotización N⁰ " + quote.QuoteId.ToString();
-                dateTimePicker.Value = quote.JobDate;
+                jobDateTimePicker.Value = quote.JobDate;
                 customerTextBox.Text = quote.Customer.ToString();
                 versionTextBox.Text = quote.VariantVersion.ToString();
                 statusTextBox.Text = quote.ActiveStatus;
@@ -117,7 +103,7 @@ namespace WindowsForms
             else
             {
                 quoteIdTextBox.Text = "No hay clientes disponibles";
-                dateTimePicker.Value = DateTime.Today;
+                jobDateTimePicker.Value = DateTime.Today;
                 customerTextBox.Text = "";
                 versionTextBox.Text = "";
                 statusTextBox.Text = "";
@@ -126,6 +112,11 @@ namespace WindowsForms
 
         private void mapQuote()
         {
+            quoteIdTextBox.Text = "Cotización N⁰ " + _quote.QuoteId.ToString();
+            jobDateTimePicker.Value = _quote.JobDate;
+            customerComboBox.Text = _quote.Customer.ToString();
+            variantVersionNumericUpDown.Value = _quote.VariantVersion;
+            activeStatusComboBox.Text = _quote.ActiveStatus;
 
         }
 
@@ -147,8 +138,8 @@ namespace WindowsForms
                 if (_quote == null)
                 {
                     _quote = new Quote();
-                    statusComboBox.SelectedIndex = 1;
-                    statusComboBox.Enabled = false;
+                    activeStatusComboBox.SelectedIndex = 1;
+                    activeStatusComboBox.Enabled = false;
                     clearComboBoxes();
                 }
                 else

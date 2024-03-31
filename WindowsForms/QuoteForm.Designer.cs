@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuoteForm));
             this.listBox = new System.Windows.Forms.ListBox();
             this.productCategoryComboBox = new System.Windows.Forms.ComboBox();
             this.brandComboBox = new System.Windows.Forms.ComboBox();
@@ -37,12 +38,12 @@
             this.modelTextBox = new System.Windows.Forms.TextBox();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.customerTextBox = new System.Windows.Forms.TextBox();
-            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.jobDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.customerComboBox = new System.Windows.Forms.ComboBox();
-            this.versionNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.variantVersionNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.versionTextBox = new System.Windows.Forms.TextBox();
             this.quoteIdTextBox = new System.Windows.Forms.TextBox();
-            this.statusComboBox = new System.Windows.Forms.ComboBox();
+            this.activeStatusComboBox = new System.Windows.Forms.ComboBox();
             this.statusTextBox = new System.Windows.Forms.TextBox();
             this.addProductButton = new System.Windows.Forms.Button();
             this.addingPanel = new System.Windows.Forms.Panel();
@@ -69,7 +70,7 @@
             this.actionsPanel = new System.Windows.Forms.Panel();
             this.eraseButton = new System.Windows.Forms.Button();
             this.mainPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.versionNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.variantVersionNumericUpDown)).BeginInit();
             this.addingPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.serviceAmountNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productAmountNumericUpDown)).BeginInit();
@@ -156,12 +157,12 @@
             // 
             this.mainPanel.BackColor = System.Drawing.SystemColors.Control;
             this.mainPanel.Controls.Add(this.customerTextBox);
-            this.mainPanel.Controls.Add(this.dateTimePicker);
+            this.mainPanel.Controls.Add(this.jobDateTimePicker);
             this.mainPanel.Controls.Add(this.customerComboBox);
-            this.mainPanel.Controls.Add(this.versionNumericUpDown);
+            this.mainPanel.Controls.Add(this.variantVersionNumericUpDown);
             this.mainPanel.Controls.Add(this.versionTextBox);
             this.mainPanel.Controls.Add(this.quoteIdTextBox);
-            this.mainPanel.Controls.Add(this.statusComboBox);
+            this.mainPanel.Controls.Add(this.activeStatusComboBox);
             this.mainPanel.Controls.Add(this.statusTextBox);
             this.mainPanel.Location = new System.Drawing.Point(15, 15);
             this.mainPanel.Name = "mainPanel";
@@ -180,16 +181,16 @@
             this.customerTextBox.TabIndex = 31;
             this.customerTextBox.Text = "Cliente:";
             // 
-            // dateTimePicker
+            // jobDateTimePicker
             // 
-            this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker.Location = new System.Drawing.Point(355, 23);
-            this.dateTimePicker.MaxDate = new System.DateTime(9000, 1, 1, 0, 0, 0, 0);
-            this.dateTimePicker.MinDate = new System.DateTime(1800, 1, 1, 0, 0, 0, 0);
-            this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(120, 20);
-            this.dateTimePicker.TabIndex = 35;
-            this.dateTimePicker.Value = new System.DateTime(9000, 1, 1, 0, 0, 0, 0);
+            this.jobDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.jobDateTimePicker.Location = new System.Drawing.Point(355, 23);
+            this.jobDateTimePicker.MaxDate = new System.DateTime(9000, 1, 1, 0, 0, 0, 0);
+            this.jobDateTimePicker.MinDate = new System.DateTime(1800, 1, 1, 0, 0, 0, 0);
+            this.jobDateTimePicker.Name = "jobDateTimePicker";
+            this.jobDateTimePicker.Size = new System.Drawing.Size(120, 20);
+            this.jobDateTimePicker.TabIndex = 35;
+            this.jobDateTimePicker.Value = new System.DateTime(9000, 1, 1, 0, 0, 0, 0);
             // 
             // customerComboBox
             // 
@@ -206,25 +207,25 @@
             this.customerComboBox.Size = new System.Drawing.Size(380, 26);
             this.customerComboBox.TabIndex = 30;
             // 
-            // versionNumericUpDown
+            // variantVersionNumericUpDown
             // 
-            this.versionNumericUpDown.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.versionNumericUpDown.Location = new System.Drawing.Point(95, 112);
-            this.versionNumericUpDown.Maximum = new decimal(new int[] {
+            this.variantVersionNumericUpDown.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.variantVersionNumericUpDown.Location = new System.Drawing.Point(95, 112);
+            this.variantVersionNumericUpDown.Maximum = new decimal(new int[] {
             255,
             0,
             0,
             0});
-            this.versionNumericUpDown.Minimum = new decimal(new int[] {
+            this.variantVersionNumericUpDown.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.versionNumericUpDown.Name = "versionNumericUpDown";
-            this.versionNumericUpDown.Size = new System.Drawing.Size(120, 26);
-            this.versionNumericUpDown.TabIndex = 33;
-            this.versionNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.versionNumericUpDown.Value = new decimal(new int[] {
+            this.variantVersionNumericUpDown.Name = "variantVersionNumericUpDown";
+            this.variantVersionNumericUpDown.Size = new System.Drawing.Size(120, 26);
+            this.variantVersionNumericUpDown.TabIndex = 33;
+            this.variantVersionNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.variantVersionNumericUpDown.Value = new decimal(new int[] {
             1,
             0,
             0,
@@ -253,22 +254,22 @@
             this.quoteIdTextBox.ReadOnly = true;
             this.quoteIdTextBox.Size = new System.Drawing.Size(294, 23);
             this.quoteIdTextBox.TabIndex = 1;
-            this.quoteIdTextBox.Text = "Presupuesto N⁰ 0";
+            this.quoteIdTextBox.Text = "Cotización N⁰ 0";
             // 
-            // statusComboBox
+            // activeStatusComboBox
             // 
-            this.statusComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.statusComboBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.statusComboBox.FormattingEnabled = true;
-            this.statusComboBox.Items.AddRange(new object[] {
+            this.activeStatusComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.activeStatusComboBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.activeStatusComboBox.FormattingEnabled = true;
+            this.activeStatusComboBox.Items.AddRange(new object[] {
             "Cancelado",
             "Cotizado",
             "Señado",
             "Vendido"});
-            this.statusComboBox.Location = new System.Drawing.Point(355, 112);
-            this.statusComboBox.Name = "statusComboBox";
-            this.statusComboBox.Size = new System.Drawing.Size(120, 26);
-            this.statusComboBox.TabIndex = 32;
+            this.activeStatusComboBox.Location = new System.Drawing.Point(355, 112);
+            this.activeStatusComboBox.Name = "activeStatusComboBox";
+            this.activeStatusComboBox.Size = new System.Drawing.Size(120, 26);
+            this.activeStatusComboBox.TabIndex = 32;
             // 
             // statusTextBox
             // 
@@ -569,14 +570,16 @@
             this.Controls.Add(this.addingPanel);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.listBox);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "QuoteForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Cotización";
             this.Load += new System.EventHandler(this.QuoteForm_Load);
             this.mainPanel.ResumeLayout(false);
             this.mainPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.versionNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.variantVersionNumericUpDown)).EndInit();
             this.addingPanel.ResumeLayout(false);
             this.addingPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.serviceAmountNumericUpDown)).EndInit();
@@ -619,12 +622,12 @@
         private System.Windows.Forms.Button addDiscountButton;
         private System.Windows.Forms.TextBox customerTextBox;
         private System.Windows.Forms.ComboBox customerComboBox;
-        private System.Windows.Forms.ComboBox statusComboBox;
-        private System.Windows.Forms.DateTimePicker dateTimePicker;
+        private System.Windows.Forms.ComboBox activeStatusComboBox;
+        private System.Windows.Forms.DateTimePicker jobDateTimePicker;
         private System.Windows.Forms.ComboBox nameComboBox;
         private System.Windows.Forms.NumericUpDown serviceAmountNumericUpDown;
         private System.Windows.Forms.TextBox serviceAmountTextBox;
-        private System.Windows.Forms.NumericUpDown versionNumericUpDown;
+        private System.Windows.Forms.NumericUpDown variantVersionNumericUpDown;
         private System.Windows.Forms.TextBox versionTextBox;
         private System.Windows.Forms.Button eraseButton;
         private System.Windows.Forms.TextBox statusTextBox;

@@ -80,8 +80,6 @@ namespace WindowsForms
         private void applyFilter()
         {
             string filter = filterTextBox.Text;
-            bool showActive = showActiveCheckBox.Checked;
-            bool showInactive = showInactiveCheckBox.Checked;
 
             if (2 < filter.Length)
             {
@@ -89,6 +87,10 @@ namespace WindowsForms
                         reg.JobDate.ToString().ToUpper().Contains(filter.ToUpper()) ||
                         reg.Customer.ToString().ToUpper().Contains(filter.ToUpper())
                 );
+            }
+            else
+            {
+                _filteredQuotes = _quotesTable;
             }
 
             dataGridView.DataSource = null;
@@ -179,22 +181,10 @@ namespace WindowsForms
         private void filterButton_Click(object sender, EventArgs e)
         {
             filterTextBox.Text = "";
-            showActiveCheckBox.Checked = true;
-            showInactiveCheckBox.Checked = false;
             applyFilter();
         }
 
         private void filterTextBox_TextChanged(object sender, EventArgs e)
-        {
-            applyFilter();
-        }
-
-        private void showActiveCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            applyFilter();
-        }
-
-        private void showInactiveCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             applyFilter();
         }

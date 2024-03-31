@@ -9,14 +9,13 @@ namespace WindowsForms
     {
         // ATTRIBUTES
 
-        FormsManager _formsManager = null;
+        private FormsManager _formsManager = new FormsManager();
 
         // CONSTRUCT
 
         public MainForm()
         {
             InitializeComponent();
-            _formsManager = new FormsManager();
         }
 
         // EVENTS
@@ -44,12 +43,13 @@ namespace WindowsForms
 
         private void quotesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            _formsManager.loadParentForm<QuotesForm>(this);
         }
 
         private void quoteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _formsManager.loadParentForm<QuoteForm>(this);
+            QuoteForm registerForm = new QuoteForm();
+            registerForm.ShowDialog();
         }
 
         private void customersToolStripMenuItem_Click(object sender, EventArgs e)
