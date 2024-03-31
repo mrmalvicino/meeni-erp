@@ -26,6 +26,12 @@ namespace WindowsForms
             InitializeComponent();
         }
 
+        public QuoteForm(Quote quote)
+        {
+            _quote = quote;
+            InitializeComponent();
+        }
+
         // METHODS
 
         private void setupStyle()

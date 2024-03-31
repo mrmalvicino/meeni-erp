@@ -78,6 +78,11 @@ namespace Utilities
             }
         }
 
+        public static void exportPDF()
+        {
+
+        }
+
         public static void fillDataGrid(DataGridView dataGridView)
         {
             dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;

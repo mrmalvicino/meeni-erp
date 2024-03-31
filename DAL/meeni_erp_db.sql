@@ -616,3 +616,10 @@ create table Quotes(
 	CustomerId int foreign key references Customers(CustomerId) not null,
 	constraint UC_Quote unique (VariantVersion, JobDate, CustomerId)
 )
+go
+
+insert into Quotes
+(ActiveStatus, VariantVersion, JobDate, CustomerId)
+values
+('Cotizado', '1', '2024-04-06', '1');
+go

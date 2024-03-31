@@ -32,12 +32,10 @@ namespace WindowsForms
             mainPanel.BackColor = Palette.LightBackColor;
             actionsPanel.BackColor = Palette.LightBackColor;
             dataGridView.BackgroundColor = Palette.LightBackColor;
-            idTextBox.ForeColor = Palette.ForeColor;
-            nameTextBox.ForeColor = Palette.ForeColor;
-            adressTextBox.ForeColor = Palette.ForeColor;
-            idTextBox.BackColor = Palette.LightBackColor;
-            nameTextBox.BackColor = Palette.LightBackColor;
-            adressTextBox.BackColor = Palette.LightBackColor;
+            quoteIdTextBox.ForeColor = Palette.ForeColor;
+            customerTextBox.ForeColor = Palette.ForeColor;
+            quoteIdTextBox.BackColor = Palette.LightBackColor;
+            customerTextBox.BackColor = Palette.LightBackColor;
         }
 
         private void setupDataGridView()
@@ -45,10 +43,6 @@ namespace WindowsForms
             if (0 < dataGridView.RowCount)
             {
                 dataGridView.Columns["QuoteId"].Visible = false;
-                dataGridView.Columns["ActiveStatus"].Visible = false;
-                dataGridView.Columns["Name"].DisplayIndex = 0;
-                dataGridView.Columns["Adress"].DisplayIndex = 1;
-
                 Functions.fillDataGrid(dataGridView);
             }
         }
@@ -92,20 +86,8 @@ namespace WindowsForms
             if (2 < filter.Length)
             {
                 _filteredQuotes = _quotesTable.FindAll(reg =>
-                    (
-                        (reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)
-                    )
-                    &&
-                    (
-                        reg.Name.ToUpper().Contains(filter.ToUpper()) ||
-                        reg.Adress.ToString().ToUpper().Contains(filter.ToUpper())
-                    )
-                );
-            }
-            else
-            {
-                _filteredQuotes = _quotesTable.FindAll(reg =>
-                    (reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)
+                        reg.JobDate.ToString().ToUpper().Contains(filter.ToUpper()) ||
+                        reg.Customer.ToString().ToUpper().Contains(filter.ToUpper())
                 );
             }
 
@@ -119,15 +101,13 @@ namespace WindowsForms
         {
             if (quote != null)
             {
-                idTextBox.Text = "Depósito N⁰ " + quote.QuoteId.ToString();
-                nameTextBox.Text = quote.ToString();
-                adressTextBox.Text = quote.Adress.ToString();
+                quoteIdTextBox.Text = "Cotización N⁰ " + quote.QuoteId.ToString();
+                customerTextBox.Text = quote.Customer.ToString();
             }
             else
             {
-                idTextBox.Text = "No hay depósitos disponibles";
-                nameTextBox.Text = "";
-                adressTextBox.Text = "";
+                quoteIdTextBox.Text = "No hay cotizaciones disponibles";
+                customerTextBox.Text = "";
             }
         }
 
@@ -158,7 +138,7 @@ namespace WindowsForms
 
         private void newButton_Click(object sender, EventArgs e)
         {
-            QuoteRegisterForm registerForm = new QuoteRegisterForm();
+            QuoteForm registerForm = new QuoteForm();
             registerForm.ShowDialog();
             refreshTable();
             applyFilter();
@@ -166,7 +146,7 @@ namespace WindowsForms
 
         private void editButton_Click(object sender, EventArgs e)
         {
-            QuoteRegisterForm registerForm = new QuoteRegisterForm(_quote);
+            QuoteForm registerForm = new QuoteForm(_quote);
             registerForm.ShowDialog();
             refreshTable();
             applyFilter();
@@ -193,7 +173,7 @@ namespace WindowsForms
 
         private void exportButton_Click(object sender, EventArgs e)
         {
-            Functions.exportCSV(dataGridView, ConfigurationManager.AppSettings["csv_folder"] + "Quotes.csv");
+            Functions.exportPDF();
         }
 
         private void filterButton_Click(object sender, EventArgs e)
