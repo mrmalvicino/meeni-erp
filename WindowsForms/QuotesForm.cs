@@ -104,7 +104,7 @@ namespace WindowsForms
             if (quote != null)
             {
                 quoteIdTextBox.Text = "Cotización N⁰ " + quote.QuoteId.ToString();
-                customerTextBox.Text = quote.Customer.ToString();
+                customerTextBox.Text = "Cliente: " + quote.Customer.ToString();
             }
             else
             {

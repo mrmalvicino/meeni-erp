@@ -621,5 +621,6 @@ go
 insert into Quotes
 (ActiveStatus, VariantVersion, JobDate, CustomerId)
 values
-('Cotizado', '1', '2024-04-06', '1');
+('Cotizado', '1', '2024-04-06', '1'),
+('Cancelado', '3', '2024-04-13', '3');
 go
