@@ -7,7 +7,7 @@ namespace Entities
         // PROPERTIES
 
         [DisplayName("Descripción")]
-        public string Description { get; set; }
+        public string RowDescription { get; set; }
 
         [DisplayName("Cantidad")]
         public int Amount { get; set; }
@@ -19,7 +19,7 @@ namespace Entities
 
         public override string ToString()
         {
-            return Description + " Cant.: " + Amount + " Precio: $" + Price + " Total: $" + Amount * Price;
+            return Amount + " x " + RowDescription + "x $" + Price;
         }
     }
 }

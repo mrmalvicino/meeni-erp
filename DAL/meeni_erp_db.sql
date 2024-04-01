@@ -624,3 +624,10 @@ values
 ('Cotizado', '1', '2024-04-06', '1'),
 ('Cancelado', '3', '2024-04-13', '3');
 go
+
+create table QuoteRows(
+	RowDescription varchar(100) not null,
+	Amount smallint check(0 < Amount) not null,
+	Price decimal(15,2) check(0 <= Price) default(0) not null,
+	QuoteId int foreign key references Quotes(QuoteId) not null
+)

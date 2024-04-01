@@ -183,7 +183,7 @@ namespace WindowsForms
 
         private void addProductButton_Click(object sender, EventArgs e)
         {
-            _quoteRow.Description = productCategoryComboBox.Text + " " + brandComboBox.Text + " " + modelComboBox.Text;
+            _quoteRow.RowDescription = productCategoryComboBox.Text + " " + brandComboBox.Text + " " + modelComboBox.Text;
             _quoteRow.Amount = (int)productAmountNumericUpDown.Value;
             _quoteRow.Price = 85000;
 
