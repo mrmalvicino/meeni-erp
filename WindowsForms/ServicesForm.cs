@@ -18,10 +18,10 @@ namespace WindowsForms
     {
         // ATTRIBUTES
 
-        private Product _product;
-        private ProductsManager _productsManager = new ProductsManager();
-        private List<Product> _productsTable;
-        private List<Product> _filteredProducts;
+        private Service _service;
+        private ServicesManager _servicesManager = new ServicesManager();
+        private List<Service> _servicesTable;
+        private List<Service> _filteredServices;
 
         // CONSTRUCT
 
@@ -53,7 +53,7 @@ namespace WindowsForms
             if (0 < dataGridView.RowCount)
             {
                 dataGridView.Columns["ItemId"].Visible = false;
-                dataGridView.Columns["ProductId"].Visible = false;
+                dataGridView.Columns["ServiceId"].Visible = false;
                 dataGridView.Columns["ActiveStatus"].Visible = false;
                 dataGridView.Columns["image"].Visible = false;
                 dataGridView.Columns["Category"].DisplayIndex = 0;
@@ -85,8 +85,8 @@ namespace WindowsForms
         {
             try
             {
-                _productsTable = _productsManager.list();
-                dataGridView.DataSource = _productsTable;
+                _servicesTable = _servicesManager.list();
+                dataGridView.DataSource = _servicesTable;
             }
             catch (Exception ex)
             {
@@ -102,7 +102,7 @@ namespace WindowsForms
 
             if (2 < filter.Length)
             {
-                _filteredProducts = _productsTable.FindAll(reg =>
+                _filteredServices = _servicesTable.FindAll(reg =>
                     (
                         (reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)
                     )
@@ -114,29 +114,29 @@ namespace WindowsForms
             }
             else
             {
-                _filteredProducts = _productsTable.FindAll(reg =>
+                _filteredServices = _servicesTable.FindAll(reg =>
                     (reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)
                 );
             }
 
             dataGridView.DataSource = null;
-            dataGridView.DataSource = _filteredProducts;
+            dataGridView.DataSource = _filteredServices;
             validateDataGridView();
             dataGridView.DataBindingComplete += dataGridView_DataBindingComplete;
         }
 
-        private void loadProfile(Product product = null)
+        private void loadProfile(Service service = null)
         {
-            if (product != null)
+            if (service != null)
             {
-                idTextBox.Text = "Producto N⁰ " + product.ProductId.ToString();
-                modelTextBox.Text = product.Model.ToString();
-                brandTextBox.Text = product.Brand.ToString();
-                categoryTextBox.Text = product.Category.ToString();
+                idTextBox.Text = "Serviceo N⁰ " + service.ServiceId.ToString();
+                modelTextBox.Text = service.Model.ToString();
+                brandTextBox.Text = service.Brand.ToString();
+                categoryTextBox.Text = service.Category.ToString();
             }
             else
             {
-                idTextBox.Text = "No hay productos disponibles";
+                idTextBox.Text = "No hay serviceos disponibles";
                 modelTextBox.Text = "";
                 brandTextBox.Text = "";
                 categoryTextBox.Text = "";
@@ -158,8 +158,8 @@ namespace WindowsForms
         {
             if (dataGridView.CurrentRow != null)
             {
-                _product = (Product)dataGridView.CurrentRow.DataBoundItem;
-                loadProfile(_product);
+                _service = (Service)dataGridView.CurrentRow.DataBoundItem;
+                loadProfile(_service);
             }
         }
 
@@ -170,7 +170,7 @@ namespace WindowsForms
 
         private void newButton_Click(object sender, EventArgs e)
         {
-            ProductRegisterForm registerForm = new ProductRegisterForm();
+            ServiceRegisterForm registerForm = new ServiceRegisterForm();
             registerForm.ShowDialog();
             refreshTable();
             applyFilter();
@@ -178,7 +178,7 @@ namespace WindowsForms
 
         private void editButton_Click(object sender, EventArgs e)
         {
-            ProductRegisterForm registerForm = new ProductRegisterForm(_product);
+            ServiceRegisterForm registerForm = new ServiceRegisterForm(_service);
             registerForm.ShowDialog();
             refreshTable();
             applyFilter();
@@ -192,7 +192,7 @@ namespace WindowsForms
 
                 if (answer == DialogResult.Yes)
                 {
-                    _productsManager.delete(_product);
+                    _servicesManager.delete(_service);
                     refreshTable();
                     applyFilter();
                 }

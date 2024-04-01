@@ -14,10 +14,10 @@ namespace WindowsForms
     {
         // ATTRIBUTES
 
-        private Customer _customer;
-        private CustomersManager _customersManager = new CustomersManager();
-        private List<Customer> _customersTable;
-        private List<Customer> _filteredCustomers;
+        private Supplier _supplier;
+        private SuppliersManager _suppliersManager = new SuppliersManager();
+        private List<Supplier> _suppliersTable;
+        private List<Supplier> _filteredSuppliers;
 
         // CONSTRUCT
 
@@ -55,7 +55,7 @@ namespace WindowsForms
                 dataGridView.Columns["IndividualId"].Visible = false;
                 dataGridView.Columns["ActiveStatus"].Visible = false;
                 dataGridView.Columns["BusinessPartnerId"].Visible = false;
-                dataGridView.Columns["CustomerId"].Visible = false;
+                dataGridView.Columns["SupplierId"].Visible = false;
                 dataGridView.Columns["Image"].Visible = false;
 
                 dataGridView.Columns["Person"].Width = 80;
@@ -108,8 +108,8 @@ namespace WindowsForms
         {
             try
             {
-                _customersTable = _customersManager.list();
-                dataGridView.DataSource = _customersTable;
+                _suppliersTable = _suppliersManager.list();
+                dataGridView.DataSource = _suppliersTable;
             }
             catch (Exception ex)
             {
@@ -125,7 +125,7 @@ namespace WindowsForms
 
             if (2 < filter.Length)
             {
-                _filteredCustomers = _customersTable.FindAll(reg =>
+                _filteredSuppliers = _suppliersTable.FindAll(reg =>
                     (
                         (reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)
                     )
@@ -140,54 +140,54 @@ namespace WindowsForms
             }
             else
             {
-                _filteredCustomers = _customersTable.FindAll(reg =>
+                _filteredSuppliers = _suppliersTable.FindAll(reg =>
                     (reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)
                 );
             }
 
             dataGridView.DataSource = null;
-            dataGridView.DataSource = _filteredCustomers;
+            dataGridView.DataSource = _filteredSuppliers;
             validateDataGridView();
             dataGridView.DataBindingComplete += dataGridView_DataBindingComplete;
         }
 
-        private void loadProfile(Customer customer = null)
+        private void loadProfile(Supplier supplier = null)
         {
-            if (customer != null)
+            if (supplier != null)
             {
-                idTextBox.Text = "Cliente N⁰ " + customer.CustomerId.ToString();
-                nameTextBox.Text = customer.ToString();
+                idTextBox.Text = "Cliente N⁰ " + supplier.SupplierId.ToString();
+                nameTextBox.Text = supplier.ToString();
 
-                if (Validations.hasData(customer.Organization.Description))
+                if (Validations.hasData(supplier.Organization.Description))
                 {
-                    descriptionTextBox.Text = customer.Organization.Description;
+                    descriptionTextBox.Text = supplier.Organization.Description;
                 }
                 else
                 {
                     descriptionTextBox.Text = "";
                 }
 
-                if (customer.Phone != null)
+                if (supplier.Phone != null)
                 {
-                    phoneTextBox.Text = customer.Phone.ToString();
+                    phoneTextBox.Text = supplier.Phone.ToString();
                 }
                 else
                 {
                     phoneTextBox.Text = "";
                 }
 
-                if (Validations.hasData(customer.Email))
+                if (Validations.hasData(supplier.Email))
                 {
-                    emailTextBox.Text = customer.Email;
+                    emailTextBox.Text = supplier.Email;
                 }
                 else
                 {
                     emailTextBox.Text = "";
                 }
 
-                if (customer.Adress != null)
+                if (supplier.Adress != null)
                 {
-                    adressTextBox.Text = customer.Adress.ToString();
+                    adressTextBox.Text = supplier.Adress.ToString();
                 }
                 else
                 {
@@ -220,9 +220,9 @@ namespace WindowsForms
         {
             if (dataGridView.CurrentRow != null)
             {
-                _customer = (Customer)dataGridView.CurrentRow.DataBoundItem;
-                loadProfile(_customer);
-                Functions.loadImage(profilePictureBox, _customer.Image);
+                _supplier = (Supplier)dataGridView.CurrentRow.DataBoundItem;
+                loadProfile(_supplier);
+                Functions.loadImage(profilePictureBox, _supplier.Image);
             }
         }
 
@@ -233,7 +233,7 @@ namespace WindowsForms
 
         private void newButton_Click(object sender, EventArgs e)
         {
-            CustomerRegisterForm registerForm = new CustomerRegisterForm();
+            SupplierRegisterForm registerForm = new SupplierRegisterForm();
             registerForm.ShowDialog();
             refreshTable();
             applyFilter();
@@ -241,7 +241,7 @@ namespace WindowsForms
 
         private void editButton_Click(object sender, EventArgs e)
         {
-            CustomerRegisterForm registerForm = new CustomerRegisterForm(_customer);
+            SupplierRegisterForm registerForm = new SupplierRegisterForm(_supplier);
             registerForm.ShowDialog();
             refreshTable();
             applyFilter();
@@ -255,7 +255,7 @@ namespace WindowsForms
 
                 if (answer == DialogResult.Yes)
                 {
-                    _customersManager.delete(_customer);
+                    _suppliersManager.delete(_supplier);
                     refreshTable();
                     applyFilter();
                 }

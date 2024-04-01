@@ -21,24 +21,24 @@ namespace BLL
 
         // METHODS
 
-        public List<Product> list()
+        public List<Service> list()
         {
-            List<Product> productsList = new List<Product>();
+            List<Service> servicesList = new List<Service>();
 
             try
             {
-                _database.setQuery("select ProductId, ModelId, ItemId from Products");
+                _database.setQuery("select ServiceId, ModelId, ItemId from Services");
                 _database.executeReader();
 
                 while (_database.Reader.Read())
                 {
-                    Product product = new Product();
+                    Service service = new Service();
 
-                    product.ProductId = (int)_database.Reader["ProductId"];
-                    product.Model.ModelId = (int)_database.Reader["ModelId"];
-                    product.ItemId = (int)_database.Reader["ItemId"];
+                    service.ServiceId = (int)_database.Reader["ServiceId"];
+                    service.Model.ModelId = (int)_database.Reader["ModelId"];
+                    service.ItemId = (int)_database.Reader["ItemId"];
 
-                    productsList.Add(product);
+                    servicesList.Add(service);
                 }
             }
             catch (Exception ex)
@@ -50,33 +50,33 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            foreach (Product product in productsList)
+            foreach (Service service in servicesList)
             {
-                _item = _itemsManager.read(product.ItemId);
-                Helper.assignItem(product, _item);
-                product.Model = _modelsManager.read(product.Model.ModelId);
-                product.Brand.BrandId = _modelsManager.getBrandId(product.Model);
-                product.Brand = _brandsManager.read(product.Brand.BrandId);
+                _item = _itemsManager.read(service.ItemId);
+                Helper.assignItem(service, _item);
+                service.Model = _modelsManager.read(service.Model.ModelId);
+                service.Brand.BrandId = _modelsManager.getBrandId(service.Model);
+                service.Brand = _brandsManager.read(service.Brand.BrandId);
             }
 
-            return productsList;
+            return servicesList;
         }
 
-        public Product read(int productId)
+        public Service read(int serviceId)
         {
-            Product product = new Product();
+            Service service = new Service();
 
             try
             {
-                _database.setQuery("select ModelId, ItemId from Products where ProductId = @ProductId");
-                _database.setParameter("@ProductId", productId);
+                _database.setQuery("select ModelId, ItemId from Services where ServiceId = @ServiceId");
+                _database.setParameter("@ServiceId", serviceId);
                 _database.executeReader();
 
                 if (_database.Reader.Read())
                 {
-                    product.ProductId = productId;
-                    product.Model.ModelId = (int)_database.Reader["ModelId"];
-                    product.ItemId = (int)_database.Reader["ItemId"];
+                    service.ServiceId = serviceId;
+                    service.Model.ModelId = (int)_database.Reader["ModelId"];
+                    service.ItemId = (int)_database.Reader["ItemId"];
                 }
             }
             catch (Exception ex)
@@ -88,48 +88,48 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            _item = _itemsManager.read(product.ItemId);
-            Helper.assignItem(product, _item);
-            product.Model = _modelsManager.read(product.Model.ModelId);
-            product.Brand.BrandId = _modelsManager.getBrandId(product.Model);
-            product.Brand = _brandsManager.read(product.Brand.BrandId);
+            _item = _itemsManager.read(service.ItemId);
+            Helper.assignItem(service, _item);
+            service.Model = _modelsManager.read(service.Model.ModelId);
+            service.Brand.BrandId = _modelsManager.getBrandId(service.Model);
+            service.Brand = _brandsManager.read(service.Brand.BrandId);
 
-            return product;
+            return service;
         }
 
-        public void add(Product product)
+        public void add(Service service)
         {
-            _itemsManager.add(product);
-            product.ItemId = Helper.getLastId("Items");
+            _itemsManager.add(service);
+            service.ItemId = Helper.getLastId("Items");
 
-            int dbBrandId = _brandsManager.getId(product.Brand);
+            int dbBrandId = _brandsManager.getId(service.Brand);
 
             if (dbBrandId == 0)
             {
-                _brandsManager.add(product.Brand);
-                product.Brand.BrandId = Helper.getLastId("Brands");
+                _brandsManager.add(service.Brand);
+                service.Brand.BrandId = Helper.getLastId("Brands");
             }
             else
             {
-                product.Brand.BrandId = dbBrandId;
+                service.Brand.BrandId = dbBrandId;
             }
 
-            int dbModelId = _modelsManager.getId(product.Model);
+            int dbModelId = _modelsManager.getId(service.Model);
 
             if (dbModelId == 0)
             {
-                _modelsManager.add(product.Model, product.Brand.BrandId);
-                product.Model.ModelId = Helper.getLastId("Models");
+                _modelsManager.add(service.Model, service.Brand.BrandId);
+                service.Model.ModelId = Helper.getLastId("Models");
             }
             else
             {
-                product.Model.ModelId = dbModelId;
+                service.Model.ModelId = dbModelId;
             }
 
             try
             {
-                _database.setQuery("insert into Products (ModelId, ItemId) values (@ModelId, @ItemId)");
-                setParameters(product);
+                _database.setQuery("insert into Services (ModelId, ItemId) values (@ModelId, @ItemId)");
+                setParameters(service);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -142,47 +142,47 @@ namespace BLL
             }
         }
 
-        public void edit(Product product)
+        public void edit(Service service)
         {
-            _itemsManager.edit(product);
+            _itemsManager.edit(service);
 
-            int dbBrandId = _brandsManager.getId(product.Brand);
+            int dbBrandId = _brandsManager.getId(service.Brand);
 
             if (dbBrandId == 0)
             {
-                _brandsManager.add(product.Brand);
-                product.Brand.BrandId = Helper.getLastId("Brands");
+                _brandsManager.add(service.Brand);
+                service.Brand.BrandId = Helper.getLastId("Brands");
             }
-            else if (dbBrandId == product.Brand.BrandId)
+            else if (dbBrandId == service.Brand.BrandId)
             {
-                _brandsManager.edit(product.Brand);
+                _brandsManager.edit(service.Brand);
             }
             else
             {
-                product.Brand.BrandId = dbBrandId;
+                service.Brand.BrandId = dbBrandId;
             }
 
-            int dbModelId = _modelsManager.getId(product.Model);
+            int dbModelId = _modelsManager.getId(service.Model);
 
             if (dbModelId == 0)
             {
-                _modelsManager.add(product.Model, product.Brand.BrandId);
-                product.Model.ModelId = Helper.getLastId("Models");
+                _modelsManager.add(service.Model, service.Brand.BrandId);
+                service.Model.ModelId = Helper.getLastId("Models");
             }
-            else if (dbModelId == product.Model.ModelId)
+            else if (dbModelId == service.Model.ModelId)
             {
-                _modelsManager.edit(product.Model, product.Brand.BrandId);
+                _modelsManager.edit(service.Model, service.Brand.BrandId);
             }
             else
             {
-                product.Model.ModelId = dbModelId;
+                service.Model.ModelId = dbModelId;
             }
 
             try
             {
-                _database.setQuery("update Products set ModelId = @ModelId, ItemId = @ItemId where ProductId = @ProductId");
-                _database.setParameter("@ProductId", product.ProductId);
-                setParameters(product);
+                _database.setQuery("update Services set ModelId = @ModelId, ItemId = @ItemId where ServiceId = @ServiceId");
+                _database.setParameter("@ServiceId", service.ServiceId);
+                setParameters(service);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -195,12 +195,12 @@ namespace BLL
             }
         }
 
-        public void delete(Product product)
+        public void delete(Service service)
         {
             try
             {
-                _database.setQuery("delete from Products where ProductId = @ProductId");
-                _database.setParameter("@ProductId", product.ProductId);
+                _database.setQuery("delete from Services where ServiceId = @ServiceId");
+                _database.setParameter("@ServiceId", service.ServiceId);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -212,13 +212,13 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            _itemsManager.delete(product);
+            _itemsManager.delete(service);
         }
 
-        private void setParameters(Product product)
+        private void setParameters(Service service)
         {
-            _database.setParameter("@ModelId", product.Model.ModelId);
-            _database.setParameter("@ItemId", product.ItemId);
+            _database.setParameter("@ModelId", service.Model.ModelId);
+            _database.setParameter("@ItemId", service.ItemId);
         }
     }
 }

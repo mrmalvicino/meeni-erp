@@ -17,8 +17,8 @@ namespace WindowsForms
     {
         // ATTRIBUTES
 
-        private Product _product = null;
-        private ProductsManager _productsManager = new ProductsManager();
+        private Service _service = null;
+        private ServicesManager _servicesManager = new ServicesManager();
         private CategoriesManager _categoriesManager = new CategoriesManager();
         private BrandsManager _brandsManager = new BrandsManager();
         private ModelsManager _modelsManager = new ModelsManager();
@@ -30,10 +30,10 @@ namespace WindowsForms
             InitializeComponent();
         }
 
-        public ServiceRegisterForm(Product product)
+        public ServiceRegisterForm(Service service)
         {
             InitializeComponent();
-            _product = product;
+            _service = service;
         }
 
         // METHODS
@@ -75,32 +75,32 @@ namespace WindowsForms
 
         private void mapItem()
         {
-            activeStatusCheckBox.Checked = _product.ActiveStatus;
-            priceTextBox.Text = _product.Price.ToString();
-            costTextBox.Text = _product.Cost.ToString();
-            categoryComboBox.SelectedValue = _product.Category.CategoryId;
+            activeStatusCheckBox.Checked = _service.ActiveStatus;
+            priceTextBox.Text = _service.Price.ToString();
+            costTextBox.Text = _service.Cost.ToString();
+            categoryComboBox.SelectedValue = _service.Category.CategoryId;
         }
 
-        private void mapProduct()
+        private void mapService()
         {
             mapItem();
-            brandComboBox.SelectedValue = _product.Brand.BrandId;
-            modelComboBox.SelectedValue = _product.Model.ModelId;
+            brandComboBox.SelectedValue = _service.Brand.BrandId;
+            modelComboBox.SelectedValue = _service.Model.ModelId;
         }
 
         private void setItem()
         {
-            _product.ActiveStatus = activeStatusCheckBox.Checked;
-            _product.Price = Decimal.Parse(priceTextBox.Text);
-            _product.Cost = Decimal.Parse(costTextBox.Text);
-            _product.Category.Name = categoryComboBox.Text;
+            _service.ActiveStatus = activeStatusCheckBox.Checked;
+            _service.Price = Decimal.Parse(priceTextBox.Text);
+            _service.Cost = Decimal.Parse(costTextBox.Text);
+            _service.Category.Name = categoryComboBox.Text;
         }
 
-        private void setProduct()
+        private void setService()
         {
             setItem();
-            _product.Brand.Name = brandComboBox.Text;
-            _product.Model.Name = modelComboBox.Text;
+            _service.Brand.Name = brandComboBox.Text;
+            _service.Model.Name = modelComboBox.Text;
         }
 
         // EVENTS
@@ -113,15 +113,15 @@ namespace WindowsForms
             {
                 bindComboBoxes();
 
-                if (_product == null)
+                if (_service == null)
                 {
-                    _product = new Product();
+                    _service = new Service();
                     activeStatusCheckBox.Enabled = false;
                     clearComboBoxes();
                 }
                 else
                 {
-                    mapProduct();
+                    mapService();
                     Functions.loadImage(profilePictureBox, imageUrlTextBox.Text);
                 }
             }
@@ -138,15 +138,15 @@ namespace WindowsForms
 
             try
             {
-                setProduct();
+                setService();
 
-                if (0 < _product.ProductId)
+                if (0 < _service.ServiceId)
                 {
-                    _productsManager.edit(_product);
+                    _servicesManager.edit(_service);
                 }
                 else
                 {
-                    _productsManager.add(_product);
+                    _servicesManager.add(_service);
                 }
 
                 MessageBox.Show("Registro guardado exitosamente.");

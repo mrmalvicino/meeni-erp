@@ -16,23 +16,23 @@ namespace BLL
 
         // METHODS
 
-        public List<Customer> list()
+        public List<Supplier> list()
         {
-            List<Customer> customersList = new List<Customer>();
+            List<Supplier> suppliersList = new List<Supplier>();
 
             try
             {
-                _database.setQuery("select CustomerId, BusinessPartnerId from Customers");
+                _database.setQuery("select SupplierId, BusinessPartnerId from Suppliers");
                 _database.executeReader();
 
                 while (_database.Reader.Read())
                 {
-                    Customer customer = new Customer();
+                    Supplier supplier = new Supplier();
 
-                    customer.CustomerId = (int)_database.Reader["CustomerId"];
-                    customer.BusinessPartnerId = (int)_database.Reader["BusinessPartnerId"];
+                    supplier.SupplierId = (int)_database.Reader["SupplierId"];
+                    supplier.BusinessPartnerId = (int)_database.Reader["BusinessPartnerId"];
 
-                    customersList.Add(customer);
+                    suppliersList.Add(supplier);
                 }
             }
             catch (Exception ex)
@@ -44,29 +44,29 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            foreach (Customer customer in customersList)
+            foreach (Supplier supplier in suppliersList)
             {
-                _businessPartner = _businessPartnersManager.read(customer.BusinessPartnerId);
-                Helper.assignIndividual(customer, _businessPartner);
+                _businessPartner = _businessPartnersManager.read(supplier.BusinessPartnerId);
+                Helper.assignIndividual(supplier, _businessPartner);
             }
 
-            return customersList;
+            return suppliersList;
         }
 
-        public Customer read(int customerId)
+        public Supplier read(int supplierId)
         {
-            Customer customer = new Customer();
+            Supplier supplier = new Supplier();
 
             try
             {
-                _database.setQuery("select CustomerId, BusinessPartnerId from Customers where CustomerId = @CustomerId");
-                _database.setParameter("@CustomerId", customerId);
+                _database.setQuery("select SupplierId, BusinessPartnerId from Suppliers where SupplierId = @SupplierId");
+                _database.setParameter("@SupplierId", supplierId);
                 _database.executeReader();
 
                 if (_database.Reader.Read())
                 {
-                    customer.CustomerId = (int)_database.Reader["CustomerId"];
-                    customer.BusinessPartnerId = (int)_database.Reader["BusinessPartnerId"];
+                    supplier.SupplierId = (int)_database.Reader["SupplierId"];
+                    supplier.BusinessPartnerId = (int)_database.Reader["BusinessPartnerId"];
                 }
             }
             catch (Exception ex)
@@ -78,21 +78,21 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            _businessPartner = _businessPartnersManager.read(customer.BusinessPartnerId);
-            Helper.assignIndividual(customer, _businessPartner);
+            _businessPartner = _businessPartnersManager.read(supplier.BusinessPartnerId);
+            Helper.assignIndividual(supplier, _businessPartner);
 
-            return customer;
+            return supplier;
         }
 
-        public void add(Customer customer)
+        public void add(Supplier supplier)
         {
-            _businessPartnersManager.add(customer);
-            customer.BusinessPartnerId = Helper.getLastId("BusinessPartners");
+            _businessPartnersManager.add(supplier);
+            supplier.BusinessPartnerId = Helper.getLastId("BusinessPartners");
 
             try
             {
-                _database.setQuery("insert into Customers (BusinessPartnerId) values (@BusinessPartnerId)");
-                setParameters(customer);
+                _database.setQuery("insert into Suppliers (BusinessPartnerId) values (@BusinessPartnerId)");
+                setParameters(supplier);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -105,15 +105,15 @@ namespace BLL
             }
         }
 
-        public void edit(Customer customer)
+        public void edit(Supplier supplier)
         {
-            _businessPartnersManager.edit(customer);
+            _businessPartnersManager.edit(supplier);
 
             try
             {
-                _database.setQuery("update Customers set BusinessPartnerId = @BusinessPartnerId where CustomerId = @CustomerId");
-                _database.setParameter("@CustomerId", customer.CustomerId);
-                setParameters(customer);
+                _database.setQuery("update Suppliers set BusinessPartnerId = @BusinessPartnerId where SupplierId = @SupplierId");
+                _database.setParameter("@SupplierId", supplier.SupplierId);
+                setParameters(supplier);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -126,12 +126,12 @@ namespace BLL
             }
         }
 
-        public void delete(Customer customer)
+        public void delete(Supplier supplier)
         {
             try
             {
-                _database.setQuery("delete from Customers where CustomerId = @CustomerId");
-                _database.setParameter("@CustomerId", customer.CustomerId);
+                _database.setQuery("delete from Suppliers where SupplierId = @SupplierId");
+                _database.setParameter("@SupplierId", supplier.SupplierId);
                 _database.executeAction();
             }
             catch (Exception ex)
@@ -143,12 +143,12 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            _businessPartnersManager.delete(customer);
+            _businessPartnersManager.delete(supplier);
         }
 
-        private void setParameters(Customer customer)
+        private void setParameters(Supplier supplier)
         {
-            _database.setParameter("@BusinessPartnerId", customer.BusinessPartnerId);
+            _database.setParameter("@BusinessPartnerId", supplier.BusinessPartnerId);
         }
     }
 }
