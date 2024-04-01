@@ -30,13 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ServicesForm));
             this.actionsPanel = new System.Windows.Forms.Panel();
-            this.viewEmployeeButton = new System.Windows.Forms.Button();
             this.showInactiveCheckBox = new System.Windows.Forms.CheckBox();
             this.showActiveCheckBox = new System.Windows.Forms.CheckBox();
             this.filterButton = new System.Windows.Forms.Button();
             this.filterLabel = new System.Windows.Forms.Label();
             this.filterTextBox = new System.Windows.Forms.TextBox();
-            this.exportCSVButton = new System.Windows.Forms.Button();
+            this.exportButton = new System.Windows.Forms.Button();
             this.deleteButton = new System.Windows.Forms.Button();
             this.editButton = new System.Windows.Forms.Button();
             this.newButton = new System.Windows.Forms.Button();
@@ -58,13 +57,12 @@
             // actionsPanel
             // 
             this.actionsPanel.BackColor = System.Drawing.SystemColors.Control;
-            this.actionsPanel.Controls.Add(this.viewEmployeeButton);
             this.actionsPanel.Controls.Add(this.showInactiveCheckBox);
             this.actionsPanel.Controls.Add(this.showActiveCheckBox);
             this.actionsPanel.Controls.Add(this.filterButton);
             this.actionsPanel.Controls.Add(this.filterLabel);
             this.actionsPanel.Controls.Add(this.filterTextBox);
-            this.actionsPanel.Controls.Add(this.exportCSVButton);
+            this.actionsPanel.Controls.Add(this.exportButton);
             this.actionsPanel.Controls.Add(this.deleteButton);
             this.actionsPanel.Controls.Add(this.editButton);
             this.actionsPanel.Controls.Add(this.newButton);
@@ -72,16 +70,6 @@
             this.actionsPanel.Name = "actionsPanel";
             this.actionsPanel.Size = new System.Drawing.Size(715, 180);
             this.actionsPanel.TabIndex = 8;
-            // 
-            // viewEmployeeButton
-            // 
-            this.viewEmployeeButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.viewEmployeeButton.Location = new System.Drawing.Point(403, 40);
-            this.viewEmployeeButton.Name = "viewEmployeeButton";
-            this.viewEmployeeButton.Size = new System.Drawing.Size(120, 35);
-            this.viewEmployeeButton.TabIndex = 71;
-            this.viewEmployeeButton.Text = "Ver empleado";
-            this.viewEmployeeButton.UseVisualStyleBackColor = true;
             // 
             // showInactiveCheckBox
             // 
@@ -93,6 +81,7 @@
             this.showInactiveCheckBox.TabIndex = 6;
             this.showInactiveCheckBox.Text = "Inactivos";
             this.showInactiveCheckBox.UseVisualStyleBackColor = true;
+            this.showInactiveCheckBox.CheckedChanged += new System.EventHandler(this.showInactiveCheckBox_CheckedChanged);
             // 
             // showActiveCheckBox
             // 
@@ -106,6 +95,7 @@
             this.showActiveCheckBox.TabIndex = 5;
             this.showActiveCheckBox.Text = "Activos";
             this.showActiveCheckBox.UseVisualStyleBackColor = true;
+            this.showActiveCheckBox.CheckedChanged += new System.EventHandler(this.showActiveCheckBox_CheckedChanged);
             // 
             // filterButton
             // 
@@ -116,6 +106,7 @@
             this.filterButton.TabIndex = 7;
             this.filterButton.Text = "Restablecer";
             this.filterButton.UseVisualStyleBackColor = true;
+            this.filterButton.Click += new System.EventHandler(this.filterButton_Click);
             // 
             // filterLabel
             // 
@@ -134,16 +125,18 @@
             this.filterTextBox.Name = "filterTextBox";
             this.filterTextBox.Size = new System.Drawing.Size(270, 26);
             this.filterTextBox.TabIndex = 4;
+            this.filterTextBox.TextChanged += new System.EventHandler(this.filterTextBox_TextChanged);
             // 
-            // exportCSVButton
+            // exportButton
             // 
-            this.exportCSVButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exportCSVButton.Location = new System.Drawing.Point(570, 40);
-            this.exportCSVButton.Name = "exportCSVButton";
-            this.exportCSVButton.Size = new System.Drawing.Size(120, 35);
-            this.exportCSVButton.TabIndex = 3;
-            this.exportCSVButton.Text = "Exportar CSV";
-            this.exportCSVButton.UseVisualStyleBackColor = true;
+            this.exportButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.exportButton.Location = new System.Drawing.Point(570, 40);
+            this.exportButton.Name = "exportButton";
+            this.exportButton.Size = new System.Drawing.Size(120, 35);
+            this.exportButton.TabIndex = 3;
+            this.exportButton.Text = "Exportar CSV";
+            this.exportButton.UseVisualStyleBackColor = true;
+            this.exportButton.Click += new System.EventHandler(this.exportButton_Click);
             // 
             // deleteButton
             // 
@@ -154,6 +147,7 @@
             this.deleteButton.TabIndex = 2;
             this.deleteButton.Text = "Eliminar";
             this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
             // editButton
             // 
@@ -164,6 +158,7 @@
             this.editButton.TabIndex = 1;
             this.editButton.Text = "Editar";
             this.editButton.UseVisualStyleBackColor = true;
+            this.editButton.Click += new System.EventHandler(this.editButton_Click);
             // 
             // newButton
             // 
@@ -174,6 +169,7 @@
             this.newButton.TabIndex = 0;
             this.newButton.Text = "Nuevo";
             this.newButton.UseVisualStyleBackColor = true;
+            this.newButton.Click += new System.EventHandler(this.newButton_Click);
             // 
             // mainPanel
             // 
@@ -286,6 +282,8 @@
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView.Size = new System.Drawing.Size(1230, 405);
             this.dataGridView.TabIndex = 6;
+            this.dataGridView.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView_DataBindingComplete);
+            this.dataGridView.SelectionChanged += new System.EventHandler(this.dataGridView_SelectionChanged);
             // 
             // ServicesForm
             // 
@@ -299,6 +297,7 @@
             this.MaximizeBox = false;
             this.Name = "ServicesForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.ServicesForm_Load);
             this.actionsPanel.ResumeLayout(false);
             this.actionsPanel.PerformLayout();
             this.mainPanel.ResumeLayout(false);
@@ -312,13 +311,12 @@
         #endregion
 
         private System.Windows.Forms.Panel actionsPanel;
-        private System.Windows.Forms.Button viewEmployeeButton;
         private System.Windows.Forms.CheckBox showInactiveCheckBox;
         private System.Windows.Forms.CheckBox showActiveCheckBox;
         private System.Windows.Forms.Button filterButton;
         private System.Windows.Forms.Label filterLabel;
         private System.Windows.Forms.TextBox filterTextBox;
-        private System.Windows.Forms.Button exportCSVButton;
+        private System.Windows.Forms.Button exportButton;
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.Button editButton;
         private System.Windows.Forms.Button newButton;

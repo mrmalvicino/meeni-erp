@@ -6,6 +6,9 @@ namespace Entities
     {
         // PROPERTIES
 
+        [DisplayName("Índice")]
+        public int RowIndex { get; set; }
+
         [DisplayName("Descripción")]
         public string RowDescription { get; set; }
 
