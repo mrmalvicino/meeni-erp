@@ -62,6 +62,7 @@
     <Compile Include="ProvincesManager.cs" />
     <Compile Include="QuotesManager.cs" />
     <Compile Include="RolesManager.cs" />
+    <Compile Include="ServicesManager.cs" />
     <Compile Include="StockManager.cs" />
     <Compile Include="SuppliersManager.cs" />
     <Compile Include="TaxCodesManager.cs" />

@@ -23,7 +23,7 @@ namespace BLL
             
             try
             {
-                _database.setQuery("select CustomerId, SalesAmount, BusinessPartnerId from Customers");
+                _database.setQuery("select CustomerId, BusinessPartnerId from Customers");
                 _database.executeReader();
 
                 while (_database.Reader.Read())
@@ -31,12 +31,6 @@ namespace BLL
                     Customer customer = new Customer();
 
                     customer.CustomerId = (int)_database.Reader["CustomerId"];
-
-                    if (!(_database.Reader["SalesAmount"] is DBNull))
-                    {
-                        customer.SalesAmount = (int)_database.Reader["SalesAmount"];
-                    }
-
                     customer.BusinessPartnerId = (int)_database.Reader["BusinessPartnerId"];
 
                     customersList.Add(customer);
@@ -66,19 +60,13 @@ namespace BLL
 
             try
             {
-                _database.setQuery("select CustomerId, SalesAmount, BusinessPartnerId from Customers where CustomerId = @CustomerId");
+                _database.setQuery("select CustomerId, BusinessPartnerId from Customers where CustomerId = @CustomerId");
                 _database.setParameter("@CustomerId", customerId);
                 _database.executeReader();
 
                 if (_database.Reader.Read())
                 {
                     customer.CustomerId = (int)_database.Reader["CustomerId"];
-
-                    if (!(_database.Reader["SalesAmount"] is DBNull))
-                    {
-                        customer.SalesAmount = (int)_database.Reader["SalesAmount"];
-                    }
-
                     customer.BusinessPartnerId = (int)_database.Reader["BusinessPartnerId"];
                 }
             }
@@ -104,7 +92,7 @@ namespace BLL
 
             try
             {
-                _database.setQuery("insert into Customers (SalesAmount, BusinessPartnerId) values (@SalesAmount, @BusinessPartnerId)");
+                _database.setQuery("insert into Customers (BusinessPartnerId) values (@BusinessPartnerId)");
                 setParameters(customer);
                 _database.executeAction();
             }
@@ -124,7 +112,7 @@ namespace BLL
 
             try
             {
-                _database.setQuery("update Customers set SalesAmount = @SalesAmount, BusinessPartnerId = @BusinessPartnerId where CustomerId = @CustomerId");
+                _database.setQuery("update Customers set BusinessPartnerId = @BusinessPartnerId where CustomerId = @CustomerId");
                 _database.setParameter("@CustomerId", customer.CustomerId);
                 setParameters(customer);
                 _database.executeAction();
@@ -161,7 +149,6 @@ namespace BLL
 
         private void setParameters(Customer customer)
         {
-            _database.setParameter("@SalesAmount", customer.SalesAmount);
             _database.setParameter("@BusinessPartnerId", customer.BusinessPartnerId);
         }
     }
