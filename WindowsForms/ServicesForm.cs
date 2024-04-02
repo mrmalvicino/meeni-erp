@@ -1,15 +1,9 @@
-﻿using BLL;
-using Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using BLL;
+using Entities;
 using Utilities;
 
 namespace WindowsForms
@@ -39,12 +33,8 @@ namespace WindowsForms
             actionsPanel.BackColor = Palette.LightBackColor;
             dataGridView.BackgroundColor = Palette.LightBackColor;
             idTextBox.ForeColor = Palette.ForeColor;
-            modelTextBox.ForeColor = Palette.ForeColor;
-            brandTextBox.ForeColor = Palette.ForeColor;
             categoryTextBox.ForeColor = Palette.ForeColor;
             idTextBox.BackColor = Palette.LightBackColor;
-            modelTextBox.BackColor = Palette.LightBackColor;
-            brandTextBox.BackColor = Palette.LightBackColor;
             categoryTextBox.BackColor = Palette.LightBackColor;
         }
 
@@ -55,10 +45,8 @@ namespace WindowsForms
                 dataGridView.Columns["ItemId"].Visible = false;
                 dataGridView.Columns["ServiceId"].Visible = false;
                 dataGridView.Columns["ActiveStatus"].Visible = false;
-                dataGridView.Columns["image"].Visible = false;
                 dataGridView.Columns["Category"].DisplayIndex = 0;
-                dataGridView.Columns["Brand"].DisplayIndex = 1;
-                dataGridView.Columns["Model"].DisplayIndex = 3;
+                dataGridView.Columns["Description"].DisplayIndex = 1;
 
                 Functions.fillDataGrid(dataGridView);
             }
@@ -129,16 +117,12 @@ namespace WindowsForms
         {
             if (service != null)
             {
-                idTextBox.Text = "Serviceo N⁰ " + service.ServiceId.ToString();
-                modelTextBox.Text = service.Model.ToString();
-                brandTextBox.Text = service.Brand.ToString();
+                idTextBox.Text = "Servicio N⁰ " + service.ServiceId.ToString();
                 categoryTextBox.Text = service.Category.ToString();
             }
             else
             {
-                idTextBox.Text = "No hay serviceos disponibles";
-                modelTextBox.Text = "";
-                brandTextBox.Text = "";
+                idTextBox.Text = "No hay servicios disponibles";
                 categoryTextBox.Text = "";
             }
         }

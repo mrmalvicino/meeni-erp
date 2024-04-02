@@ -41,14 +41,12 @@
             this.priceLabel = new System.Windows.Forms.Label();
             this.priceTextBox = new System.Windows.Forms.TextBox();
             this.mainPanel = new System.Windows.Forms.Panel();
-            this.modelComboBox = new System.Windows.Forms.ComboBox();
-            this.modelLabel = new System.Windows.Forms.Label();
-            this.brandComboBox = new System.Windows.Forms.ComboBox();
-            this.brandLabel = new System.Windows.Forms.Label();
+            this.descriptionLabel = new System.Windows.Forms.Label();
             this.categoryComboBox = new System.Windows.Forms.ComboBox();
             this.activeStatusCheckBox = new System.Windows.Forms.CheckBox();
             this.categoryLabel = new System.Windows.Forms.Label();
             this.saveButton = new System.Windows.Forms.Button();
+            this.descriptionTextBox = new System.Windows.Forms.TextBox();
             this.imagePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.profilePictureBox)).BeginInit();
             this.valuesPanel.SuspendLayout();
@@ -162,10 +160,8 @@
             // 
             // mainPanel
             // 
-            this.mainPanel.Controls.Add(this.modelComboBox);
-            this.mainPanel.Controls.Add(this.modelLabel);
-            this.mainPanel.Controls.Add(this.brandComboBox);
-            this.mainPanel.Controls.Add(this.brandLabel);
+            this.mainPanel.Controls.Add(this.descriptionTextBox);
+            this.mainPanel.Controls.Add(this.descriptionLabel);
             this.mainPanel.Controls.Add(this.categoryComboBox);
             this.mainPanel.Controls.Add(this.activeStatusCheckBox);
             this.mainPanel.Controls.Add(this.categoryLabel);
@@ -174,41 +170,14 @@
             this.mainPanel.Size = new System.Drawing.Size(332, 160);
             this.mainPanel.TabIndex = 40;
             // 
-            // modelComboBox
+            // descriptionLabel
             // 
-            this.modelComboBox.FormattingEnabled = true;
-            this.modelComboBox.Location = new System.Drawing.Point(91, 110);
-            this.modelComboBox.Margin = new System.Windows.Forms.Padding(2);
-            this.modelComboBox.Name = "modelComboBox";
-            this.modelComboBox.Size = new System.Drawing.Size(213, 21);
-            this.modelComboBox.TabIndex = 32;
-            // 
-            // modelLabel
-            // 
-            this.modelLabel.AutoSize = true;
-            this.modelLabel.Location = new System.Drawing.Point(19, 112);
-            this.modelLabel.Name = "modelLabel";
-            this.modelLabel.Size = new System.Drawing.Size(45, 13);
-            this.modelLabel.TabIndex = 33;
-            this.modelLabel.Text = "Modelo:";
-            // 
-            // brandComboBox
-            // 
-            this.brandComboBox.FormattingEnabled = true;
-            this.brandComboBox.Location = new System.Drawing.Point(91, 78);
-            this.brandComboBox.Margin = new System.Windows.Forms.Padding(2);
-            this.brandComboBox.Name = "brandComboBox";
-            this.brandComboBox.Size = new System.Drawing.Size(213, 21);
-            this.brandComboBox.TabIndex = 30;
-            // 
-            // brandLabel
-            // 
-            this.brandLabel.AutoSize = true;
-            this.brandLabel.Location = new System.Drawing.Point(19, 80);
-            this.brandLabel.Name = "brandLabel";
-            this.brandLabel.Size = new System.Drawing.Size(40, 13);
-            this.brandLabel.TabIndex = 31;
-            this.brandLabel.Text = "Marca:";
+            this.descriptionLabel.AutoSize = true;
+            this.descriptionLabel.Location = new System.Drawing.Point(19, 80);
+            this.descriptionLabel.Name = "descriptionLabel";
+            this.descriptionLabel.Size = new System.Drawing.Size(66, 13);
+            this.descriptionLabel.TabIndex = 31;
+            this.descriptionLabel.Text = "Descripción:";
             // 
             // categoryComboBox
             // 
@@ -249,6 +218,13 @@
             this.saveButton.Text = "Guardar";
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            // 
+            // descriptionTextBox
+            // 
+            this.descriptionTextBox.Location = new System.Drawing.Point(91, 77);
+            this.descriptionTextBox.Name = "descriptionTextBox";
+            this.descriptionTextBox.Size = new System.Drawing.Size(213, 20);
+            this.descriptionTextBox.TabIndex = 32;
             // 
             // ServiceRegisterForm
             // 
@@ -291,13 +267,11 @@
         private System.Windows.Forms.Label priceLabel;
         private System.Windows.Forms.TextBox priceTextBox;
         private System.Windows.Forms.Panel mainPanel;
-        private System.Windows.Forms.ComboBox modelComboBox;
-        private System.Windows.Forms.Label modelLabel;
-        private System.Windows.Forms.ComboBox brandComboBox;
-        private System.Windows.Forms.Label brandLabel;
+        private System.Windows.Forms.Label descriptionLabel;
         private System.Windows.Forms.ComboBox categoryComboBox;
         private System.Windows.Forms.CheckBox activeStatusCheckBox;
         private System.Windows.Forms.Label categoryLabel;
         private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.TextBox descriptionTextBox;
     }
 }

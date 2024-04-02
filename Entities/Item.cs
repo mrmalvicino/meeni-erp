@@ -18,7 +18,7 @@ namespace Entities
         [DisplayName("Costo")]
         public decimal Cost { get; set; }
 
-        [DisplayName("Rubro")]
+        [DisplayName("Categoría")]
         public Category Category { get; set; }
 
         // CONSTRUCT

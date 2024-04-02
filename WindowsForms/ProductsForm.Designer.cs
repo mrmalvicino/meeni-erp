@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductsForm));
             this.actionsPanel = new System.Windows.Forms.Panel();
+            this.stockButton = new System.Windows.Forms.Button();
             this.showInactiveCheckBox = new System.Windows.Forms.CheckBox();
             this.showActiveCheckBox = new System.Windows.Forms.CheckBox();
             this.filterButton = new System.Windows.Forms.Button();
@@ -46,7 +47,6 @@
             this.modelTextBox = new System.Windows.Forms.TextBox();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.stockButton = new System.Windows.Forms.Button();
             this.actionsPanel.SuspendLayout();
             this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
@@ -70,6 +70,16 @@
             this.actionsPanel.Name = "actionsPanel";
             this.actionsPanel.Size = new System.Drawing.Size(715, 180);
             this.actionsPanel.TabIndex = 8;
+            // 
+            // stockButton
+            // 
+            this.stockButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stockButton.Location = new System.Drawing.Point(403, 40);
+            this.stockButton.Name = "stockButton";
+            this.stockButton.Size = new System.Drawing.Size(120, 35);
+            this.stockButton.TabIndex = 72;
+            this.stockButton.Text = "Stock";
+            this.stockButton.UseVisualStyleBackColor = true;
             // 
             // showInactiveCheckBox
             // 
@@ -194,7 +204,7 @@
             this.idTextBox.ReadOnly = true;
             this.idTextBox.Size = new System.Drawing.Size(300, 23);
             this.idTextBox.TabIndex = 0;
-            this.idTextBox.Text = "1";
+            this.idTextBox.Text = "Producto N⁰ 0";
             // 
             // categoryTextBox
             // 
@@ -259,16 +269,6 @@
             this.dataGridView.TabIndex = 6;
             this.dataGridView.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView_DataBindingComplete);
             this.dataGridView.SelectionChanged += new System.EventHandler(this.dataGridView_SelectionChanged);
-            // 
-            // stockButton
-            // 
-            this.stockButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stockButton.Location = new System.Drawing.Point(403, 40);
-            this.stockButton.Name = "stockButton";
-            this.stockButton.Size = new System.Drawing.Size(120, 35);
-            this.stockButton.TabIndex = 72;
-            this.stockButton.Text = "Stock";
-            this.stockButton.UseVisualStyleBackColor = true;
             // 
             // ProductsForm
             // 

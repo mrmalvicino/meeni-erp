@@ -41,11 +41,7 @@
             this.newButton = new System.Windows.Forms.Button();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.idTextBox = new System.Windows.Forms.TextBox();
-            this.adressTextBox = new System.Windows.Forms.TextBox();
-            this.emailTextBox = new System.Windows.Forms.TextBox();
-            this.phoneTextBox = new System.Windows.Forms.TextBox();
-            this.descriptionTextBox = new System.Windows.Forms.TextBox();
-            this.nameTextBox = new System.Windows.Forms.TextBox();
+            this.categoryTextBox = new System.Windows.Forms.TextBox();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.actionsPanel.SuspendLayout();
@@ -175,11 +171,7 @@
             // 
             this.mainPanel.BackColor = System.Drawing.SystemColors.Control;
             this.mainPanel.Controls.Add(this.idTextBox);
-            this.mainPanel.Controls.Add(this.adressTextBox);
-            this.mainPanel.Controls.Add(this.emailTextBox);
-            this.mainPanel.Controls.Add(this.phoneTextBox);
-            this.mainPanel.Controls.Add(this.descriptionTextBox);
-            this.mainPanel.Controls.Add(this.nameTextBox);
+            this.mainPanel.Controls.Add(this.categoryTextBox);
             this.mainPanel.Controls.Add(this.pictureBox);
             this.mainPanel.Location = new System.Drawing.Point(15, 15);
             this.mainPanel.Name = "mainPanel";
@@ -196,68 +188,20 @@
             this.idTextBox.ReadOnly = true;
             this.idTextBox.Size = new System.Drawing.Size(300, 23);
             this.idTextBox.TabIndex = 0;
-            this.idTextBox.Text = "1";
+            this.idTextBox.Text = "Servicio N⁰ 0";
             // 
-            // adressTextBox
+            // categoryTextBox
             // 
-            this.adressTextBox.BackColor = System.Drawing.SystemColors.Control;
-            this.adressTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.adressTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.adressTextBox.Location = new System.Drawing.Point(197, 143);
-            this.adressTextBox.Name = "adressTextBox";
-            this.adressTextBox.ReadOnly = true;
-            this.adressTextBox.Size = new System.Drawing.Size(300, 19);
-            this.adressTextBox.TabIndex = 5;
-            this.adressTextBox.Text = "Calle 1234, Ciudad";
-            // 
-            // emailTextBox
-            // 
-            this.emailTextBox.BackColor = System.Drawing.SystemColors.Control;
-            this.emailTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.emailTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emailTextBox.Location = new System.Drawing.Point(197, 93);
-            this.emailTextBox.Name = "emailTextBox";
-            this.emailTextBox.ReadOnly = true;
-            this.emailTextBox.Size = new System.Drawing.Size(300, 19);
-            this.emailTextBox.TabIndex = 3;
-            this.emailTextBox.Text = "mail@gmail.com";
-            // 
-            // phoneTextBox
-            // 
-            this.phoneTextBox.BackColor = System.Drawing.SystemColors.Control;
-            this.phoneTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.phoneTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.phoneTextBox.Location = new System.Drawing.Point(197, 118);
-            this.phoneTextBox.Name = "phoneTextBox";
-            this.phoneTextBox.ReadOnly = true;
-            this.phoneTextBox.Size = new System.Drawing.Size(300, 19);
-            this.phoneTextBox.TabIndex = 4;
-            this.phoneTextBox.Text = "1512345678";
-            // 
-            // descriptionTextBox
-            // 
-            this.descriptionTextBox.BackColor = System.Drawing.SystemColors.Control;
-            this.descriptionTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.descriptionTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.descriptionTextBox.Location = new System.Drawing.Point(197, 68);
-            this.descriptionTextBox.Name = "descriptionTextBox";
-            this.descriptionTextBox.ReadOnly = true;
-            this.descriptionTextBox.Size = new System.Drawing.Size(300, 19);
-            this.descriptionTextBox.TabIndex = 2;
-            this.descriptionTextBox.Text = "Descripción";
-            // 
-            // nameTextBox
-            // 
-            this.nameTextBox.BackColor = System.Drawing.SystemColors.Control;
-            this.nameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.nameTextBox.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nameTextBox.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.nameTextBox.Location = new System.Drawing.Point(197, 39);
-            this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.ReadOnly = true;
-            this.nameTextBox.Size = new System.Drawing.Size(300, 23);
-            this.nameTextBox.TabIndex = 1;
-            this.nameTextBox.Text = "Nombre";
+            this.categoryTextBox.BackColor = System.Drawing.SystemColors.Control;
+            this.categoryTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.categoryTextBox.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.categoryTextBox.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.categoryTextBox.Location = new System.Drawing.Point(197, 39);
+            this.categoryTextBox.Name = "categoryTextBox";
+            this.categoryTextBox.ReadOnly = true;
+            this.categoryTextBox.Size = new System.Drawing.Size(300, 23);
+            this.categoryTextBox.TabIndex = 1;
+            this.categoryTextBox.Text = "Categoría";
             // 
             // pictureBox
             // 
@@ -322,11 +266,7 @@
         private System.Windows.Forms.Button newButton;
         private System.Windows.Forms.Panel mainPanel;
         private System.Windows.Forms.TextBox idTextBox;
-        private System.Windows.Forms.TextBox adressTextBox;
-        private System.Windows.Forms.TextBox emailTextBox;
-        private System.Windows.Forms.TextBox phoneTextBox;
-        private System.Windows.Forms.TextBox descriptionTextBox;
-        private System.Windows.Forms.TextBox nameTextBox;
+        private System.Windows.Forms.TextBox categoryTextBox;
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.DataGridView dataGridView;
     }

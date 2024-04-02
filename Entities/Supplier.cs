@@ -8,8 +8,5 @@ namespace Entities
 
         [DisplayName("ID de proveedor")]
         public int SupplierId { get; set; }
-
-        [DisplayName("Es indispensable")]
-        public bool IsIndispensable { get; set; }
     }
 }

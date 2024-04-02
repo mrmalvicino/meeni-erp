@@ -198,7 +198,7 @@
             this.customerComboBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.customerComboBox.FormattingEnabled = true;
             this.customerComboBox.Items.AddRange(new object[] {
-            "Cancelado",
+            "Rechazado",
             "Cotizado",
             "Señado",
             "Vendido"});
@@ -262,7 +262,7 @@
             this.activeStatusComboBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.activeStatusComboBox.FormattingEnabled = true;
             this.activeStatusComboBox.Items.AddRange(new object[] {
-            "Cancelado",
+            "Rechazado",
             "Cotizado",
             "Señado",
             "Vendido"});

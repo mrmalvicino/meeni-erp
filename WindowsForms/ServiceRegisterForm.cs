@@ -1,14 +1,7 @@
-﻿using BLL;
-using Entities;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
+using BLL;
+using Entities;
 using Utilities;
 
 namespace WindowsForms
@@ -56,21 +49,11 @@ namespace WindowsForms
             categoryComboBox.DataSource = _categoriesManager.list();
             categoryComboBox.ValueMember = "CategoryId";
             categoryComboBox.DisplayMember = "Name";
-
-            brandComboBox.DataSource = _brandsManager.list();
-            brandComboBox.ValueMember = "BrandId";
-            brandComboBox.DisplayMember = "Name";
-
-            modelComboBox.DataSource = _modelsManager.list();
-            modelComboBox.ValueMember = "ModelId";
-            modelComboBox.DisplayMember = "Name";
         }
 
         private void clearComboBoxes()
         {
             categoryComboBox.SelectedIndex = -1;
-            brandComboBox.SelectedIndex = -1;
-            modelComboBox.SelectedIndex = -1;
         }
 
         private void mapItem()
@@ -84,8 +67,7 @@ namespace WindowsForms
         private void mapService()
         {
             mapItem();
-            brandComboBox.SelectedValue = _service.Brand.BrandId;
-            modelComboBox.SelectedValue = _service.Model.ModelId;
+            descriptionTextBox.Text = _service.Description;
         }
 
         private void setItem()
@@ -99,8 +81,7 @@ namespace WindowsForms
         private void setService()
         {
             setItem();
-            _service.Brand.Name = brandComboBox.Text;
-            _service.Model.Name = modelComboBox.Text;
+            _service.Description = descriptionTextBox.Text;
         }
 
         // EVENTS

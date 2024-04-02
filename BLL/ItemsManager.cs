@@ -64,7 +64,7 @@ namespace BLL
 
             try
             {
-                _database.setQuery("insert into Items (ActiveStatus, Price, Cost, CategoryId) values (@ActiveStatus, @Price, @Cost, @CategoryId)");
+                _database.setQuery("insert into Items (Price, Cost, CategoryId) values (@Price, @Cost, @CategoryId)");
                 setParameters(item);
                 _database.executeAction();
             }
@@ -98,7 +98,7 @@ namespace BLL
 
             try
             {
-                _database.setQuery("update Items set Price = @Price, Cost = @Cost, CategoryId = @CategoryId where ItemId = @ItemId");
+                _database.setQuery("update Items set ActiveStatus = @ActiveStatus, Price = @Price, Cost = @Cost, CategoryId = @CategoryId where ItemId = @ItemId");
                 _database.setParameter("@ItemId", item.ItemId);
                 setParameters(item);
                 _database.executeAction();

@@ -1,10 +1,7 @@
-﻿using DAL;
-using Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DAL;
+using Entities;
 using Utilities;
 
 namespace BLL
@@ -27,7 +24,7 @@ namespace BLL
 
             try
             {
-                _database.setQuery("select ServiceId, ModelId, ItemId from Services");
+                _database.setQuery("select ServiceId, ServiceDescription, ItemId from Services");
                 _database.executeReader();
 
                 while (_database.Reader.Read())
@@ -35,7 +32,7 @@ namespace BLL
                     Service service = new Service();
 
                     service.ServiceId = (int)_database.Reader["ServiceId"];
-                    service.Model.ModelId = (int)_database.Reader["ModelId"];
+                    service.Description = (string)_database.Reader["ServiceDescription"];
                     service.ItemId = (int)_database.Reader["ItemId"];
 
                     servicesList.Add(service);
@@ -54,9 +51,6 @@ namespace BLL
             {
                 _item = _itemsManager.read(service.ItemId);
                 Helper.assignItem(service, _item);
-                service.Model = _modelsManager.read(service.Model.ModelId);
-                service.Brand.BrandId = _modelsManager.getBrandId(service.Model);
-                service.Brand = _brandsManager.read(service.Brand.BrandId);
             }
 
             return servicesList;
@@ -68,14 +62,14 @@ namespace BLL
 
             try
             {
-                _database.setQuery("select ModelId, ItemId from Services where ServiceId = @ServiceId");
+                _database.setQuery("select ServiceDescription, ItemId from Services where ServiceId = @ServiceId");
                 _database.setParameter("@ServiceId", serviceId);
                 _database.executeReader();
 
                 if (_database.Reader.Read())
                 {
                     service.ServiceId = serviceId;
-                    service.Model.ModelId = (int)_database.Reader["ModelId"];
+                    service.Description = (string)_database.Reader["ServiceDescription"];
                     service.ItemId = (int)_database.Reader["ItemId"];
                 }
             }
@@ -90,9 +84,6 @@ namespace BLL
 
             _item = _itemsManager.read(service.ItemId);
             Helper.assignItem(service, _item);
-            service.Model = _modelsManager.read(service.Model.ModelId);
-            service.Brand.BrandId = _modelsManager.getBrandId(service.Model);
-            service.Brand = _brandsManager.read(service.Brand.BrandId);
 
             return service;
         }
@@ -102,33 +93,9 @@ namespace BLL
             _itemsManager.add(service);
             service.ItemId = Helper.getLastId("Items");
 
-            int dbBrandId = _brandsManager.getId(service.Brand);
-
-            if (dbBrandId == 0)
-            {
-                _brandsManager.add(service.Brand);
-                service.Brand.BrandId = Helper.getLastId("Brands");
-            }
-            else
-            {
-                service.Brand.BrandId = dbBrandId;
-            }
-
-            int dbModelId = _modelsManager.getId(service.Model);
-
-            if (dbModelId == 0)
-            {
-                _modelsManager.add(service.Model, service.Brand.BrandId);
-                service.Model.ModelId = Helper.getLastId("Models");
-            }
-            else
-            {
-                service.Model.ModelId = dbModelId;
-            }
-
             try
             {
-                _database.setQuery("insert into Services (ModelId, ItemId) values (@ModelId, @ItemId)");
+                _database.setQuery("insert into Services (ServiceDescription, ItemId) values (@ServiceDescription, @ItemId)");
                 setParameters(service);
                 _database.executeAction();
             }
@@ -146,41 +113,9 @@ namespace BLL
         {
             _itemsManager.edit(service);
 
-            int dbBrandId = _brandsManager.getId(service.Brand);
-
-            if (dbBrandId == 0)
-            {
-                _brandsManager.add(service.Brand);
-                service.Brand.BrandId = Helper.getLastId("Brands");
-            }
-            else if (dbBrandId == service.Brand.BrandId)
-            {
-                _brandsManager.edit(service.Brand);
-            }
-            else
-            {
-                service.Brand.BrandId = dbBrandId;
-            }
-
-            int dbModelId = _modelsManager.getId(service.Model);
-
-            if (dbModelId == 0)
-            {
-                _modelsManager.add(service.Model, service.Brand.BrandId);
-                service.Model.ModelId = Helper.getLastId("Models");
-            }
-            else if (dbModelId == service.Model.ModelId)
-            {
-                _modelsManager.edit(service.Model, service.Brand.BrandId);
-            }
-            else
-            {
-                service.Model.ModelId = dbModelId;
-            }
-
             try
             {
-                _database.setQuery("update Services set ModelId = @ModelId, ItemId = @ItemId where ServiceId = @ServiceId");
+                _database.setQuery("update Services set ServiceDescription = @ServiceDescription, ItemId = @ItemId where ServiceId = @ServiceId");
                 _database.setParameter("@ServiceId", service.ServiceId);
                 setParameters(service);
                 _database.executeAction();
@@ -217,7 +152,7 @@ namespace BLL
 
         private void setParameters(Service service)
         {
-            _database.setParameter("@ModelId", service.Model.ModelId);
+            _database.setParameter("@ServiceDescription", service.Description);
             _database.setParameter("@ItemId", service.ItemId);
         }
     }

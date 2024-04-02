@@ -2,8 +2,6 @@
 using System.Windows.Forms;
 using System.Configuration;
 using System.Collections.Generic;
-using System.Text;
-using System.IO;
 using BLL;
 using Entities;
 using Utilities;
@@ -67,7 +65,6 @@ namespace WindowsForms
                 dataGridView.Columns["Birth"].Width = 50;
                 dataGridView.Columns["PaymentMethod"].Width = 50;
                 dataGridView.Columns["InvoiceCategory"].Width = 50;
-                dataGridView.Columns["SalesAmount"].Width = 50;
 
                 dataGridView.Columns["Person"].DisplayIndex = 0;
                 dataGridView.Columns["Organization"].DisplayIndex = 1;
@@ -78,7 +75,6 @@ namespace WindowsForms
                 dataGridView.Columns["Birth"].DisplayIndex = 6;
                 dataGridView.Columns["PaymentMethod"].DisplayIndex = dataGridView.ColumnCount - 1;
                 dataGridView.Columns["InvoiceCategory"].DisplayIndex = dataGridView.ColumnCount - 1;
-                dataGridView.Columns["SalesAmount"].DisplayIndex = dataGridView.ColumnCount - 1;
 
                 dataGridView.Columns["Birth"].DefaultCellStyle.Format = "dd/mm/yy";
 
@@ -100,7 +96,7 @@ namespace WindowsForms
                 deleteButton.Enabled = false;
                 exportButton.Enabled = false;
                 loadProfile();
-                Functions.loadImage(profilePictureBox, "");
+                Functions.loadImage(pictureBox, "");
             }
         }
 
@@ -155,7 +151,7 @@ namespace WindowsForms
         {
             if (supplier != null)
             {
-                idTextBox.Text = "Cliente N⁰ " + supplier.SupplierId.ToString();
+                idTextBox.Text = "Proveedor N⁰ " + supplier.SupplierId.ToString();
                 nameTextBox.Text = supplier.ToString();
 
                 if (Validations.hasData(supplier.Organization.Description))
@@ -196,7 +192,7 @@ namespace WindowsForms
             }
             else
             {
-                idTextBox.Text = "No hay clientes disponibles";
+                idTextBox.Text = "No hay proveedores disponibles";
                 nameTextBox.Text = "";
                 descriptionTextBox.Text = "";
                 phoneTextBox.Text = "";
@@ -222,7 +218,7 @@ namespace WindowsForms
             {
                 _supplier = (Supplier)dataGridView.CurrentRow.DataBoundItem;
                 loadProfile(_supplier);
-                Functions.loadImage(profilePictureBox, _supplier.Image);
+                Functions.loadImage(pictureBox, _supplier.Image);
             }
         }
 

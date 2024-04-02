@@ -8,8 +8,5 @@ namespace Entities
 
         [DisplayName("ID de cliente")]
         public int CustomerId { get; set; }
-
-        [DisplayName("Ventas")]
-        public int SalesAmount { get; set; }
     }
 }

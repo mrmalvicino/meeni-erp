@@ -110,13 +110,13 @@ go
 
 create table Services(
 	ServiceId int primary key identity(1,1) not null,
-	ServiceName varchar(50) unique not null,
+	ServiceDescription varchar(100) unique not null,
 	ItemId int foreign key references Items(ItemId) not null
 )
 go
 
 insert into Services
-(ServiceName, ItemId)
+(ServiceDescription, ItemId)
 values
 ('Zona norte ida y vuelta', '4'),
 ('CABA Ida y vuelta', '5');
@@ -423,17 +423,16 @@ go
 
 create table Customers(
 	CustomerId int primary key identity(1,1) not null,
-	SalesAmount int null,
 	BusinessPartnerId int foreign key references BusinessPartners(BusinessPartnerId) not null
 )
 go
 
 insert into Customers
-(SalesAmount, BusinessPartnerId)
+(BusinessPartnerId)
 values
-('5', '1'),
-('3', '2'),
-('8', '3');
+('1'),
+('2'),
+('3');
 go
 
 ---------------
@@ -442,16 +441,15 @@ go
 
 create table Suppliers(
 	SupplierId int primary key identity(1,1) not null,
-	IsIndispensable bit not null default(0),
 	BusinessPartnerId int foreign key references BusinessPartners(BusinessPartnerId) not null
 )
 go
 
 insert into Suppliers
-(IsIndispensable, BusinessPartnerId)
+(BusinessPartnerId)
 values
-('true', '4'),
-('false', '5');
+('4'),
+('5');
 go
 
 -----------------
@@ -582,6 +580,41 @@ values
 ('bercar2000', '2368', '4', '2');
 go
 
+------------
+-- QUOTES --
+------------
+
+create table Quotes(
+	QuoteId int primary key identity(1,1) not null,
+	ActiveStatus varchar(20) default('Cotizado') not null,
+	VariantVersion tinyint default('1') not null,
+	JobDate datetime default(getdate()) not null,
+	CustomerId int foreign key references Customers(CustomerId) not null,
+	constraint UC_Quote unique (VariantVersion, JobDate, CustomerId)
+)
+go
+
+insert into Quotes
+(ActiveStatus, VariantVersion, JobDate, CustomerId)
+values
+('Cotizado', '1', '2024-04-06', '1'),
+('Cotizado', '2', '2024-04-06', '1'),
+('Rechazado', '1', '2024-04-13', '3');
+go
+
+----------------
+-- QUOTE ROWS --
+----------------
+
+create table QuoteRows(
+	RowIndex smallint not null,
+	Amount smallint check(0 < Amount) not null,
+	ProductId int foreign key references Products(ProductId) null,
+	ServiceId int foreign key references Services(ServiceId) null,
+	QuoteId int foreign key references Quotes(QuoteId) not null,
+	constraint UC_Row unique (Amount, QuoteId, ProductId, ServiceId)
+)
+
 ----------------
 -- CURRENCIES --
 ----------------
@@ -603,31 +636,3 @@ values
 ('ARS', 'Peso', '830', '1130'),
 ('BRL', 'Real', '5', '5');
 go
-
-------------
--- QUOTES --
-------------
-
-create table Quotes(
-	QuoteId int primary key identity(1,1) not null,
-	ActiveStatus varchar(20) default('Cotizado') not null,
-	VariantVersion tinyint default('1') not null,
-	JobDate datetime default(getdate()) not null,
-	CustomerId int foreign key references Customers(CustomerId) not null,
-	constraint UC_Quote unique (VariantVersion, JobDate, CustomerId)
-)
-go
-
-insert into Quotes
-(ActiveStatus, VariantVersion, JobDate, CustomerId)
-values
-('Cotizado', '1', '2024-04-06', '1'),
-('Cancelado', '3', '2024-04-13', '3');
-go
-
-create table QuoteRows(
-	RowDescription varchar(100) not null,
-	Amount smallint check(0 < Amount) not null,
-	Price decimal(15,2) check(0 <= Price) default(0) not null,
-	QuoteId int foreign key references Quotes(QuoteId) not null
-)

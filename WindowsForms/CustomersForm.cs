@@ -65,7 +65,6 @@ namespace WindowsForms
                 dataGridView.Columns["Birth"].Width = 50;
                 dataGridView.Columns["PaymentMethod"].Width = 50;
                 dataGridView.Columns["InvoiceCategory"].Width = 50;
-                dataGridView.Columns["SalesAmount"].Width = 50;
 
                 dataGridView.Columns["Person"].DisplayIndex = 0;
                 dataGridView.Columns["Organization"].DisplayIndex = 1;
@@ -76,7 +75,6 @@ namespace WindowsForms
                 dataGridView.Columns["Birth"].DisplayIndex = 6;
                 dataGridView.Columns["PaymentMethod"].DisplayIndex = dataGridView.ColumnCount - 1;
                 dataGridView.Columns["InvoiceCategory"].DisplayIndex = dataGridView.ColumnCount - 1;
-                dataGridView.Columns["SalesAmount"].DisplayIndex = dataGridView.ColumnCount - 1;
 
                 dataGridView.Columns["Birth"].DefaultCellStyle.Format = "dd/mm/yy";
 
@@ -98,7 +96,7 @@ namespace WindowsForms
                 deleteButton.Enabled = false;
                 exportButton.Enabled = false;
                 loadProfile();
-                Functions.loadImage(profilePictureBox, "");
+                Functions.loadImage(pictureBox, "");
             }
         }
 
@@ -220,7 +218,7 @@ namespace WindowsForms
             {
                 _customer = (Customer)dataGridView.CurrentRow.DataBoundItem;
                 loadProfile(_customer);
-                Functions.loadImage(profilePictureBox, _customer.Image);
+                Functions.loadImage(pictureBox, _customer.Image);
             }
         }
 

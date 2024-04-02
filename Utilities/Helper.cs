@@ -33,7 +33,6 @@ namespace Utilities
             if (originObject is Customer && destinyObject is Customer)
             {
                 (destinyObject as Customer).CustomerId = (originObject as Customer).CustomerId;
-                (destinyObject as Customer).SalesAmount = (originObject as Customer).SalesAmount;
             }
         }
 

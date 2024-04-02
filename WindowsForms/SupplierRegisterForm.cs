@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Configuration;
-using System.IO;
 using BLL;
 using Entities;
 using Utilities;
