@@ -19,19 +19,7 @@ namespace Utilities
             }
             catch (Exception)
             {
-                pictureBox.Load(ConfigurationManager.AppSettings["default_image"]);
-            }
-        }
-
-        public static void loadImage(PictureBox pictureBox, Image image)
-        {
-            if (image != null)
-            {
-                loadImage(pictureBox, image.Url);
-            }
-            else
-            {
-                loadImage(pictureBox, "");
+                pictureBox.Load(".\\..\\..\\..\\images\\image_not_found.png");
             }
         }
 
@@ -41,7 +29,6 @@ namespace Utilities
             {
                 using (StreamWriter sw = new StreamWriter(path, false, Encoding.UTF8))
                 {
-                    // Escribe los encabezados de las columnas
                     for (int i = 0; i < dataGridView.Columns.Count; i++)
                     {
                         sw.Write(dataGridView.Columns[i].HeaderText);
@@ -52,7 +39,6 @@ namespace Utilities
                             sw.Write(sw.NewLine);
                     }
 
-                    // Escribe los datos de cada fila
                     foreach (DataGridViewRow row in dataGridView.Rows)
                     {
                         for (int i = 0; i < dataGridView.Columns.Count; i++)

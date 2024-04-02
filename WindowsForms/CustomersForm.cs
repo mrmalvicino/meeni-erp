@@ -218,7 +218,7 @@ namespace WindowsForms
             {
                 _customer = (Customer)dataGridView.CurrentRow.DataBoundItem;
                 loadProfile(_customer);
-                Functions.loadImage(pictureBox, _customer.Image);
+                Functions.loadImage(pictureBox, _customer.Image.Url);
             }
         }
 

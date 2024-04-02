@@ -30,62 +30,58 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmployeeRegisterForm));
             this.imagePanel = new System.Windows.Forms.Panel();
-            this.pictureBox = new System.Windows.Forms.PictureBox();
-            this.loadImageButton = new System.Windows.Forms.Button();
+            this.profilePictureBox = new System.Windows.Forms.PictureBox();
             this.imageUrlLabel = new System.Windows.Forms.Label();
             this.imageUrlTextBox = new System.Windows.Forms.TextBox();
             this.contactPanel = new System.Windows.Forms.Panel();
             this.emailTextBox = new System.Windows.Forms.TextBox();
-            this.phoneCountryTextBox = new System.Windows.Forms.TextBox();
-            this.phoneNumberTextBox = new System.Windows.Forms.TextBox();
-            this.phoneAreaTextBox = new System.Windows.Forms.TextBox();
+            this.phoneTextBox = new System.Windows.Forms.TextBox();
             this.emailLabel = new System.Windows.Forms.Label();
             this.phoneLabel = new System.Windows.Forms.Label();
             this.adressPanel = new System.Windows.Forms.Panel();
-            this.adressZipCodeTextBox = new System.Windows.Forms.TextBox();
-            this.adressZipCodeLabel = new System.Windows.Forms.Label();
-            this.adressCountryTextBox = new System.Windows.Forms.TextBox();
-            this.adressFlatLabel = new System.Windows.Forms.Label();
-            this.adressProvinceTextBox = new System.Windows.Forms.TextBox();
-            this.adressCityTextBox = new System.Windows.Forms.TextBox();
-            this.adressStreetNumberLabel = new System.Windows.Forms.Label();
-            this.adressStreetTextBox = new System.Windows.Forms.TextBox();
-            this.adressStreetNumberTextBox = new System.Windows.Forms.TextBox();
-            this.adressStreetLabel = new System.Windows.Forms.Label();
-            this.adressFlatTextBox = new System.Windows.Forms.TextBox();
+            this.detailsLabel = new System.Windows.Forms.Label();
+            this.detailsTextBox = new System.Windows.Forms.TextBox();
+            this.adressCityComboBox = new System.Windows.Forms.ComboBox();
+            this.adressProvinceComboBox = new System.Windows.Forms.ComboBox();
+            this.adressCountryComboBox = new System.Windows.Forms.ComboBox();
+            this.zipCodeTextBox = new System.Windows.Forms.TextBox();
+            this.zipCodeLabel = new System.Windows.Forms.Label();
+            this.flatLabel = new System.Windows.Forms.Label();
+            this.streetNumberLabel = new System.Windows.Forms.Label();
+            this.streetNameTextBox = new System.Windows.Forms.TextBox();
+            this.streetNumberTextBox = new System.Windows.Forms.TextBox();
+            this.streetNameLabel = new System.Windows.Forms.Label();
+            this.flatTextBox = new System.Windows.Forms.TextBox();
             this.adressCountryLabel = new System.Windows.Forms.Label();
-            this.adressCityLabel = new System.Windows.Forms.Label();
+            this.cityLabel = new System.Windows.Forms.Label();
             this.adressProvinceLabel = new System.Windows.Forms.Label();
             this.mainPanel = new System.Windows.Forms.Panel();
-            this.isPersonLabel = new System.Windows.Forms.Label();
-            this.activeStatusLabel = new System.Windows.Forms.Label();
-            this.isPersonCheckBox = new System.Windows.Forms.CheckBox();
+            this.organizationNameComboBox = new System.Windows.Forms.ComboBox();
+            this.birthLabel = new System.Windows.Forms.Label();
+            this.birthDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.firstNameTextBox = new System.Windows.Forms.TextBox();
             this.lastNameTextBox = new System.Windows.Forms.TextBox();
             this.activeStatusCheckBox = new System.Windows.Forms.CheckBox();
-            this.businessNameTextBox = new System.Windows.Forms.TextBox();
-            this.businessDescriptionTextBox = new System.Windows.Forms.TextBox();
+            this.organizationDescriptionTextBox = new System.Windows.Forms.TextBox();
             this.lastNameLabel = new System.Windows.Forms.Label();
-            this.legalIdXXTextBox = new System.Windows.Forms.TextBox();
-            this.businessNameLabel = new System.Windows.Forms.Label();
-            this.legalIdLabel = new System.Windows.Forms.Label();
+            this.taxCodePrefixTextBox = new System.Windows.Forms.TextBox();
+            this.organizationNameLabel = new System.Windows.Forms.Label();
+            this.taxCodeLabel = new System.Windows.Forms.Label();
             this.firstNameLabel = new System.Windows.Forms.Label();
-            this.legalIdDNITextBox = new System.Windows.Forms.TextBox();
-            this.businessDescriptionLabel = new System.Windows.Forms.Label();
-            this.legalIdYTextBox = new System.Windows.Forms.TextBox();
-            this.acceptButton = new System.Windows.Forms.Button();
+            this.taxCodeNumberTextBox = new System.Windows.Forms.TextBox();
+            this.organizationDescriptionLabel = new System.Windows.Forms.Label();
+            this.taxCodeSuffixTextBox = new System.Windows.Forms.TextBox();
+            this.saveButton = new System.Windows.Forms.Button();
+            this.userButton = new System.Windows.Forms.Button();
             this.specialPanel = new System.Windows.Forms.Panel();
-            this.addCategoryButton = new System.Windows.Forms.Button();
             this.seniorityLabel = new System.Windows.Forms.Label();
             this.titleLabel = new System.Windows.Forms.Label();
-            this.deleteCategoryButton = new System.Windows.Forms.Button();
             this.areaLabel = new System.Windows.Forms.Label();
             this.categorySeniorityComboBox = new System.Windows.Forms.ComboBox();
             this.categoryTitleComboBox = new System.Windows.Forms.ComboBox();
             this.categoryAreaComboBox = new System.Windows.Forms.ComboBox();
-            this.userButton = new System.Windows.Forms.Button();
             this.imagePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.profilePictureBox)).BeginInit();
             this.contactPanel.SuspendLayout();
             this.adressPanel.SuspendLayout();
             this.mainPanel.SuspendLayout();
@@ -94,354 +90,316 @@
             // 
             // imagePanel
             // 
-            this.imagePanel.Controls.Add(this.pictureBox);
-            this.imagePanel.Controls.Add(this.loadImageButton);
+            this.imagePanel.Controls.Add(this.profilePictureBox);
             this.imagePanel.Controls.Add(this.imageUrlLabel);
             this.imagePanel.Controls.Add(this.imageUrlTextBox);
-            this.imagePanel.Location = new System.Drawing.Point(30, 31);
-            this.imagePanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.imagePanel.Location = new System.Drawing.Point(20, 20);
             this.imagePanel.Name = "imagePanel";
-            this.imagePanel.Size = new System.Drawing.Size(300, 462);
-            this.imagePanel.TabIndex = 3;
+            this.imagePanel.Size = new System.Drawing.Size(200, 300);
+            this.imagePanel.TabIndex = 18;
             // 
-            // pictureBox
+            // profilePictureBox
             // 
-            this.pictureBox.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox.Image")));
-            this.pictureBox.Location = new System.Drawing.Point(30, 31);
-            this.pictureBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(240, 246);
-            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox.TabIndex = 39;
-            this.pictureBox.TabStop = false;
-            // 
-            // loadImageButton
-            // 
-            this.loadImageButton.Location = new System.Drawing.Point(75, 400);
-            this.loadImageButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.loadImageButton.Name = "loadImageButton";
-            this.loadImageButton.Size = new System.Drawing.Size(150, 46);
-            this.loadImageButton.TabIndex = 0;
-            this.loadImageButton.Text = "Cargar localmente";
-            this.loadImageButton.UseVisualStyleBackColor = true;
+            this.profilePictureBox.Image = ((System.Drawing.Image)(resources.GetObject("profilePictureBox.Image")));
+            this.profilePictureBox.Location = new System.Drawing.Point(20, 20);
+            this.profilePictureBox.Name = "profilePictureBox";
+            this.profilePictureBox.Size = new System.Drawing.Size(160, 160);
+            this.profilePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.profilePictureBox.TabIndex = 39;
+            this.profilePictureBox.TabStop = false;
             // 
             // imageUrlLabel
             // 
             this.imageUrlLabel.AutoSize = true;
-            this.imageUrlLabel.Location = new System.Drawing.Point(26, 312);
-            this.imageUrlLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.imageUrlLabel.Location = new System.Drawing.Point(17, 221);
             this.imageUrlLabel.Name = "imageUrlLabel";
-            this.imageUrlLabel.Size = new System.Drawing.Size(185, 20);
+            this.imageUrlLabel.Size = new System.Drawing.Size(95, 13);
             this.imageUrlLabel.TabIndex = 41;
-            this.imageUrlLabel.Text = "URL o ruta de la imagen:";
+            this.imageUrlLabel.Text = "URL de la imagen:";
             // 
             // imageUrlTextBox
             // 
-            this.imageUrlTextBox.Location = new System.Drawing.Point(30, 337);
-            this.imageUrlTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.imageUrlTextBox.Location = new System.Drawing.Point(20, 244);
             this.imageUrlTextBox.Name = "imageUrlTextBox";
-            this.imageUrlTextBox.Size = new System.Drawing.Size(238, 26);
-            this.imageUrlTextBox.TabIndex = 1;
+            this.imageUrlTextBox.Size = new System.Drawing.Size(160, 20);
+            this.imageUrlTextBox.TabIndex = 0;
             this.imageUrlTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // contactPanel
             // 
             this.contactPanel.Controls.Add(this.emailTextBox);
-            this.contactPanel.Controls.Add(this.phoneCountryTextBox);
-            this.contactPanel.Controls.Add(this.phoneNumberTextBox);
-            this.contactPanel.Controls.Add(this.phoneAreaTextBox);
+            this.contactPanel.Controls.Add(this.phoneTextBox);
             this.contactPanel.Controls.Add(this.emailLabel);
             this.contactPanel.Controls.Add(this.phoneLabel);
-            this.contactPanel.Location = new System.Drawing.Point(360, 385);
-            this.contactPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.contactPanel.Location = new System.Drawing.Point(240, 250);
             this.contactPanel.Name = "contactPanel";
-            this.contactPanel.Size = new System.Drawing.Size(546, 108);
-            this.contactPanel.TabIndex = 1;
+            this.contactPanel.Size = new System.Drawing.Size(364, 70);
+            this.contactPanel.TabIndex = 16;
             // 
             // emailTextBox
             // 
-            this.emailTextBox.Location = new System.Drawing.Point(134, 18);
-            this.emailTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.emailTextBox.Location = new System.Drawing.Point(89, 40);
             this.emailTextBox.Name = "emailTextBox";
-            this.emailTextBox.Size = new System.Drawing.Size(373, 26);
-            this.emailTextBox.TabIndex = 0;
+            this.emailTextBox.Size = new System.Drawing.Size(250, 20);
+            this.emailTextBox.TabIndex = 1;
             this.emailTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // phoneCountryTextBox
+            // phoneTextBox
             // 
-            this.phoneCountryTextBox.Location = new System.Drawing.Point(134, 58);
-            this.phoneCountryTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.phoneCountryTextBox.Name = "phoneCountryTextBox";
-            this.phoneCountryTextBox.Size = new System.Drawing.Size(58, 26);
-            this.phoneCountryTextBox.TabIndex = 1;
-            this.phoneCountryTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // phoneNumberTextBox
-            // 
-            this.phoneNumberTextBox.Location = new System.Drawing.Point(272, 58);
-            this.phoneNumberTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.phoneNumberTextBox.Name = "phoneNumberTextBox";
-            this.phoneNumberTextBox.Size = new System.Drawing.Size(235, 26);
-            this.phoneNumberTextBox.TabIndex = 3;
-            this.phoneNumberTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // phoneAreaTextBox
-            // 
-            this.phoneAreaTextBox.Location = new System.Drawing.Point(202, 58);
-            this.phoneAreaTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.phoneAreaTextBox.Name = "phoneAreaTextBox";
-            this.phoneAreaTextBox.Size = new System.Drawing.Size(58, 26);
-            this.phoneAreaTextBox.TabIndex = 2;
-            this.phoneAreaTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.phoneTextBox.Location = new System.Drawing.Point(89, 14);
+            this.phoneTextBox.Name = "phoneTextBox";
+            this.phoneTextBox.Size = new System.Drawing.Size(250, 20);
+            this.phoneTextBox.TabIndex = 0;
+            this.phoneTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // emailLabel
             // 
             this.emailLabel.AutoSize = true;
-            this.emailLabel.Location = new System.Drawing.Point(16, 23);
-            this.emailLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.emailLabel.Location = new System.Drawing.Point(11, 42);
             this.emailLabel.Name = "emailLabel";
-            this.emailLabel.Size = new System.Drawing.Size(52, 20);
+            this.emailLabel.Size = new System.Drawing.Size(35, 13);
             this.emailLabel.TabIndex = 30;
             this.emailLabel.Text = "Email:";
             // 
             // phoneLabel
             // 
             this.phoneLabel.AutoSize = true;
-            this.phoneLabel.Location = new System.Drawing.Point(16, 63);
-            this.phoneLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.phoneLabel.Location = new System.Drawing.Point(11, 16);
             this.phoneLabel.Name = "phoneLabel";
-            this.phoneLabel.Size = new System.Drawing.Size(75, 20);
+            this.phoneLabel.Size = new System.Drawing.Size(52, 13);
             this.phoneLabel.TabIndex = 31;
             this.phoneLabel.Text = "Teléfono:";
             // 
             // adressPanel
             // 
-            this.adressPanel.Controls.Add(this.adressZipCodeTextBox);
-            this.adressPanel.Controls.Add(this.adressZipCodeLabel);
-            this.adressPanel.Controls.Add(this.adressCountryTextBox);
-            this.adressPanel.Controls.Add(this.adressFlatLabel);
-            this.adressPanel.Controls.Add(this.adressProvinceTextBox);
-            this.adressPanel.Controls.Add(this.adressCityTextBox);
-            this.adressPanel.Controls.Add(this.adressStreetNumberLabel);
-            this.adressPanel.Controls.Add(this.adressStreetTextBox);
-            this.adressPanel.Controls.Add(this.adressStreetNumberTextBox);
-            this.adressPanel.Controls.Add(this.adressStreetLabel);
-            this.adressPanel.Controls.Add(this.adressFlatTextBox);
+            this.adressPanel.Controls.Add(this.detailsLabel);
+            this.adressPanel.Controls.Add(this.detailsTextBox);
+            this.adressPanel.Controls.Add(this.adressCityComboBox);
+            this.adressPanel.Controls.Add(this.adressProvinceComboBox);
+            this.adressPanel.Controls.Add(this.adressCountryComboBox);
+            this.adressPanel.Controls.Add(this.zipCodeTextBox);
+            this.adressPanel.Controls.Add(this.zipCodeLabel);
+            this.adressPanel.Controls.Add(this.flatLabel);
+            this.adressPanel.Controls.Add(this.streetNumberLabel);
+            this.adressPanel.Controls.Add(this.streetNameTextBox);
+            this.adressPanel.Controls.Add(this.streetNumberTextBox);
+            this.adressPanel.Controls.Add(this.streetNameLabel);
+            this.adressPanel.Controls.Add(this.flatTextBox);
             this.adressPanel.Controls.Add(this.adressCountryLabel);
-            this.adressPanel.Controls.Add(this.adressCityLabel);
+            this.adressPanel.Controls.Add(this.cityLabel);
             this.adressPanel.Controls.Add(this.adressProvinceLabel);
-            this.adressPanel.Location = new System.Drawing.Point(360, 523);
-            this.adressPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.adressPanel.Location = new System.Drawing.Point(240, 340);
             this.adressPanel.Name = "adressPanel";
-            this.adressPanel.Size = new System.Drawing.Size(546, 285);
-            this.adressPanel.TabIndex = 2;
+            this.adressPanel.Size = new System.Drawing.Size(364, 185);
+            this.adressPanel.TabIndex = 17;
             // 
-            // adressZipCodeTextBox
+            // detailsLabel
             // 
-            this.adressZipCodeTextBox.Location = new System.Drawing.Point(134, 146);
-            this.adressZipCodeTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.adressZipCodeTextBox.Name = "adressZipCodeTextBox";
-            this.adressZipCodeTextBox.Size = new System.Drawing.Size(373, 26);
-            this.adressZipCodeTextBox.TabIndex = 3;
-            this.adressZipCodeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.detailsLabel.AutoSize = true;
+            this.detailsLabel.Location = new System.Drawing.Point(11, 151);
+            this.detailsLabel.Name = "detailsLabel";
+            this.detailsLabel.Size = new System.Drawing.Size(48, 13);
+            this.detailsLabel.TabIndex = 43;
+            this.detailsLabel.Text = "Detalles:";
             // 
-            // adressZipCodeLabel
+            // detailsTextBox
             // 
-            this.adressZipCodeLabel.AutoSize = true;
-            this.adressZipCodeLabel.Location = new System.Drawing.Point(16, 151);
-            this.adressZipCodeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.adressZipCodeLabel.Name = "adressZipCodeLabel";
-            this.adressZipCodeLabel.Size = new System.Drawing.Size(93, 20);
-            this.adressZipCodeLabel.TabIndex = 39;
-            this.adressZipCodeLabel.Text = "Cod. postal:";
+            this.detailsTextBox.Location = new System.Drawing.Point(89, 148);
+            this.detailsTextBox.Name = "detailsTextBox";
+            this.detailsTextBox.Size = new System.Drawing.Size(250, 20);
+            this.detailsTextBox.TabIndex = 7;
+            this.detailsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // adressCountryTextBox
+            // adressCityComboBox
             // 
-            this.adressCountryTextBox.Location = new System.Drawing.Point(134, 26);
-            this.adressCountryTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.adressCountryTextBox.Name = "adressCountryTextBox";
-            this.adressCountryTextBox.Size = new System.Drawing.Size(373, 26);
-            this.adressCountryTextBox.TabIndex = 0;
-            this.adressCountryTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.adressCityComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.adressCityComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.adressCityComboBox.FormattingEnabled = true;
+            this.adressCityComboBox.Location = new System.Drawing.Point(89, 70);
+            this.adressCityComboBox.Name = "adressCityComboBox";
+            this.adressCityComboBox.Size = new System.Drawing.Size(250, 21);
+            this.adressCityComboBox.TabIndex = 2;
             // 
-            // adressFlatLabel
+            // adressProvinceComboBox
             // 
-            this.adressFlatLabel.AutoSize = true;
-            this.adressFlatLabel.Location = new System.Drawing.Point(16, 231);
-            this.adressFlatLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.adressFlatLabel.Name = "adressFlatLabel";
-            this.adressFlatLabel.Size = new System.Drawing.Size(61, 20);
-            this.adressFlatLabel.TabIndex = 37;
-            this.adressFlatLabel.Text = "Depto.:";
+            this.adressProvinceComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.adressProvinceComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.adressProvinceComboBox.FormattingEnabled = true;
+            this.adressProvinceComboBox.Location = new System.Drawing.Point(89, 44);
+            this.adressProvinceComboBox.Name = "adressProvinceComboBox";
+            this.adressProvinceComboBox.Size = new System.Drawing.Size(250, 21);
+            this.adressProvinceComboBox.TabIndex = 1;
             // 
-            // adressProvinceTextBox
+            // adressCountryComboBox
             // 
-            this.adressProvinceTextBox.Location = new System.Drawing.Point(134, 66);
-            this.adressProvinceTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.adressProvinceTextBox.Name = "adressProvinceTextBox";
-            this.adressProvinceTextBox.Size = new System.Drawing.Size(373, 26);
-            this.adressProvinceTextBox.TabIndex = 1;
-            this.adressProvinceTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.adressCountryComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.adressCountryComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.adressCountryComboBox.FormattingEnabled = true;
+            this.adressCountryComboBox.Location = new System.Drawing.Point(89, 18);
+            this.adressCountryComboBox.Name = "adressCountryComboBox";
+            this.adressCountryComboBox.Size = new System.Drawing.Size(250, 21);
+            this.adressCountryComboBox.TabIndex = 0;
             // 
-            // adressCityTextBox
+            // zipCodeTextBox
             // 
-            this.adressCityTextBox.Location = new System.Drawing.Point(134, 106);
-            this.adressCityTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.adressCityTextBox.Name = "adressCityTextBox";
-            this.adressCityTextBox.Size = new System.Drawing.Size(373, 26);
-            this.adressCityTextBox.TabIndex = 2;
-            this.adressCityTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.zipCodeTextBox.Location = new System.Drawing.Point(89, 96);
+            this.zipCodeTextBox.Name = "zipCodeTextBox";
+            this.zipCodeTextBox.Size = new System.Drawing.Size(100, 20);
+            this.zipCodeTextBox.TabIndex = 3;
+            this.zipCodeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // adressStreetNumberLabel
+            // zipCodeLabel
             // 
-            this.adressStreetNumberLabel.AutoSize = true;
-            this.adressStreetNumberLabel.Location = new System.Drawing.Point(300, 191);
-            this.adressStreetNumberLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.adressStreetNumberLabel.Name = "adressStreetNumberLabel";
-            this.adressStreetNumberLabel.Size = new System.Drawing.Size(50, 20);
-            this.adressStreetNumberLabel.TabIndex = 36;
-            this.adressStreetNumberLabel.Text = "Núm.:";
+            this.zipCodeLabel.AutoSize = true;
+            this.zipCodeLabel.Location = new System.Drawing.Point(11, 99);
+            this.zipCodeLabel.Name = "zipCodeLabel";
+            this.zipCodeLabel.Size = new System.Drawing.Size(63, 13);
+            this.zipCodeLabel.TabIndex = 39;
+            this.zipCodeLabel.Text = "Cod. postal:";
             // 
-            // adressStreetTextBox
+            // flatLabel
             // 
-            this.adressStreetTextBox.Location = new System.Drawing.Point(134, 186);
-            this.adressStreetTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.adressStreetTextBox.Name = "adressStreetTextBox";
-            this.adressStreetTextBox.Size = new System.Drawing.Size(148, 26);
-            this.adressStreetTextBox.TabIndex = 4;
-            this.adressStreetTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.flatLabel.AutoSize = true;
+            this.flatLabel.Location = new System.Drawing.Point(193, 99);
+            this.flatLabel.Name = "flatLabel";
+            this.flatLabel.Size = new System.Drawing.Size(42, 13);
+            this.flatLabel.TabIndex = 37;
+            this.flatLabel.Text = "Depto.:";
             // 
-            // adressStreetNumberTextBox
+            // streetNumberLabel
             // 
-            this.adressStreetNumberTextBox.Location = new System.Drawing.Point(358, 186);
-            this.adressStreetNumberTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.adressStreetNumberTextBox.Name = "adressStreetNumberTextBox";
-            this.adressStreetNumberTextBox.Size = new System.Drawing.Size(148, 26);
-            this.adressStreetNumberTextBox.TabIndex = 5;
-            this.adressStreetNumberTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.streetNumberLabel.AutoSize = true;
+            this.streetNumberLabel.Location = new System.Drawing.Point(200, 125);
+            this.streetNumberLabel.Name = "streetNumberLabel";
+            this.streetNumberLabel.Size = new System.Drawing.Size(35, 13);
+            this.streetNumberLabel.TabIndex = 36;
+            this.streetNumberLabel.Text = "Núm.:";
             // 
-            // adressStreetLabel
+            // streetNameTextBox
             // 
-            this.adressStreetLabel.AutoSize = true;
-            this.adressStreetLabel.Location = new System.Drawing.Point(16, 191);
-            this.adressStreetLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.adressStreetLabel.Name = "adressStreetLabel";
-            this.adressStreetLabel.Size = new System.Drawing.Size(48, 20);
-            this.adressStreetLabel.TabIndex = 35;
-            this.adressStreetLabel.Text = "Calle:";
+            this.streetNameTextBox.Location = new System.Drawing.Point(89, 122);
+            this.streetNameTextBox.Name = "streetNameTextBox";
+            this.streetNameTextBox.Size = new System.Drawing.Size(100, 20);
+            this.streetNameTextBox.TabIndex = 5;
+            this.streetNameTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // adressFlatTextBox
+            // streetNumberTextBox
             // 
-            this.adressFlatTextBox.Location = new System.Drawing.Point(134, 226);
-            this.adressFlatTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.adressFlatTextBox.Name = "adressFlatTextBox";
-            this.adressFlatTextBox.Size = new System.Drawing.Size(373, 26);
-            this.adressFlatTextBox.TabIndex = 6;
-            this.adressFlatTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.streetNumberTextBox.Location = new System.Drawing.Point(239, 122);
+            this.streetNumberTextBox.Name = "streetNumberTextBox";
+            this.streetNumberTextBox.Size = new System.Drawing.Size(100, 20);
+            this.streetNumberTextBox.TabIndex = 6;
+            this.streetNumberTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // streetNameLabel
+            // 
+            this.streetNameLabel.AutoSize = true;
+            this.streetNameLabel.Location = new System.Drawing.Point(11, 125);
+            this.streetNameLabel.Name = "streetNameLabel";
+            this.streetNameLabel.Size = new System.Drawing.Size(33, 13);
+            this.streetNameLabel.TabIndex = 35;
+            this.streetNameLabel.Text = "Calle:";
+            // 
+            // flatTextBox
+            // 
+            this.flatTextBox.Location = new System.Drawing.Point(239, 96);
+            this.flatTextBox.Name = "flatTextBox";
+            this.flatTextBox.Size = new System.Drawing.Size(100, 20);
+            this.flatTextBox.TabIndex = 4;
+            this.flatTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // adressCountryLabel
             // 
             this.adressCountryLabel.AutoSize = true;
-            this.adressCountryLabel.Location = new System.Drawing.Point(16, 31);
-            this.adressCountryLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.adressCountryLabel.Location = new System.Drawing.Point(11, 21);
             this.adressCountryLabel.Name = "adressCountryLabel";
-            this.adressCountryLabel.Size = new System.Drawing.Size(43, 20);
+            this.adressCountryLabel.Size = new System.Drawing.Size(32, 13);
             this.adressCountryLabel.TabIndex = 32;
             this.adressCountryLabel.Text = "País:";
             // 
-            // adressCityLabel
+            // cityLabel
             // 
-            this.adressCityLabel.AutoSize = true;
-            this.adressCityLabel.Location = new System.Drawing.Point(16, 111);
-            this.adressCityLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.adressCityLabel.Name = "adressCityLabel";
-            this.adressCityLabel.Size = new System.Drawing.Size(63, 20);
-            this.adressCityLabel.TabIndex = 34;
-            this.adressCityLabel.Text = "Ciudad:";
+            this.cityLabel.AutoSize = true;
+            this.cityLabel.Location = new System.Drawing.Point(11, 73);
+            this.cityLabel.Name = "cityLabel";
+            this.cityLabel.Size = new System.Drawing.Size(43, 13);
+            this.cityLabel.TabIndex = 34;
+            this.cityLabel.Text = "Ciudad:";
             // 
             // adressProvinceLabel
             // 
             this.adressProvinceLabel.AutoSize = true;
-            this.adressProvinceLabel.Location = new System.Drawing.Point(16, 71);
-            this.adressProvinceLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.adressProvinceLabel.Location = new System.Drawing.Point(11, 47);
             this.adressProvinceLabel.Name = "adressProvinceLabel";
-            this.adressProvinceLabel.Size = new System.Drawing.Size(76, 20);
+            this.adressProvinceLabel.Size = new System.Drawing.Size(54, 13);
             this.adressProvinceLabel.TabIndex = 33;
             this.adressProvinceLabel.Text = "Provincia:";
             // 
             // mainPanel
             // 
-            this.mainPanel.Controls.Add(this.isPersonLabel);
-            this.mainPanel.Controls.Add(this.activeStatusLabel);
-            this.mainPanel.Controls.Add(this.isPersonCheckBox);
+            this.mainPanel.Controls.Add(this.organizationNameComboBox);
+            this.mainPanel.Controls.Add(this.birthLabel);
+            this.mainPanel.Controls.Add(this.birthDateTimePicker);
             this.mainPanel.Controls.Add(this.firstNameTextBox);
             this.mainPanel.Controls.Add(this.lastNameTextBox);
             this.mainPanel.Controls.Add(this.activeStatusCheckBox);
-            this.mainPanel.Controls.Add(this.businessNameTextBox);
-            this.mainPanel.Controls.Add(this.businessDescriptionTextBox);
+            this.mainPanel.Controls.Add(this.organizationDescriptionTextBox);
             this.mainPanel.Controls.Add(this.lastNameLabel);
-            this.mainPanel.Controls.Add(this.legalIdXXTextBox);
-            this.mainPanel.Controls.Add(this.businessNameLabel);
-            this.mainPanel.Controls.Add(this.legalIdLabel);
+            this.mainPanel.Controls.Add(this.taxCodePrefixTextBox);
+            this.mainPanel.Controls.Add(this.organizationNameLabel);
+            this.mainPanel.Controls.Add(this.taxCodeLabel);
             this.mainPanel.Controls.Add(this.firstNameLabel);
-            this.mainPanel.Controls.Add(this.legalIdDNITextBox);
-            this.mainPanel.Controls.Add(this.businessDescriptionLabel);
-            this.mainPanel.Controls.Add(this.legalIdYTextBox);
-            this.mainPanel.Location = new System.Drawing.Point(360, 31);
-            this.mainPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.mainPanel.Controls.Add(this.taxCodeNumberTextBox);
+            this.mainPanel.Controls.Add(this.organizationDescriptionLabel);
+            this.mainPanel.Controls.Add(this.taxCodeSuffixTextBox);
+            this.mainPanel.Location = new System.Drawing.Point(240, 20);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(546, 323);
-            this.mainPanel.TabIndex = 0;
+            this.mainPanel.Size = new System.Drawing.Size(364, 210);
+            this.mainPanel.TabIndex = 15;
             // 
-            // isPersonLabel
+            // organizationNameComboBox
             // 
-            this.isPersonLabel.AutoSize = true;
-            this.isPersonLabel.Location = new System.Drawing.Point(16, 65);
-            this.isPersonLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.isPersonLabel.Name = "isPersonLabel";
-            this.isPersonLabel.Size = new System.Drawing.Size(316, 20);
-            this.isPersonLabel.TabIndex = 46;
-            this.isPersonLabel.Text = "Destildar si es una organización o empresa:";
+            this.organizationNameComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.organizationNameComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.organizationNameComboBox.FormattingEnabled = true;
+            this.organizationNameComboBox.Location = new System.Drawing.Point(89, 146);
+            this.organizationNameComboBox.Name = "organizationNameComboBox";
+            this.organizationNameComboBox.Size = new System.Drawing.Size(250, 21);
+            this.organizationNameComboBox.TabIndex = 7;
             // 
-            // activeStatusLabel
+            // birthLabel
             // 
-            this.activeStatusLabel.AutoSize = true;
-            this.activeStatusLabel.Location = new System.Drawing.Point(16, 29);
-            this.activeStatusLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.activeStatusLabel.Name = "activeStatusLabel";
-            this.activeStatusLabel.Size = new System.Drawing.Size(222, 20);
-            this.activeStatusLabel.TabIndex = 45;
-            this.activeStatusLabel.Text = "Destildar si está dado de baja:";
+            this.birthLabel.AutoSize = true;
+            this.birthLabel.Location = new System.Drawing.Point(11, 45);
+            this.birthLabel.Name = "birthLabel";
+            this.birthLabel.Size = new System.Drawing.Size(63, 13);
+            this.birthLabel.TabIndex = 44;
+            this.birthLabel.Text = "Nacimiento:";
             // 
-            // isPersonCheckBox
+            // birthDateTimePicker
             // 
-            this.isPersonCheckBox.AutoSize = true;
-            this.isPersonCheckBox.Checked = true;
-            this.isPersonCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.isPersonCheckBox.Enabled = false;
-            this.isPersonCheckBox.Location = new System.Drawing.Point(368, 63);
-            this.isPersonCheckBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.isPersonCheckBox.Name = "isPersonCheckBox";
-            this.isPersonCheckBox.Size = new System.Drawing.Size(134, 24);
-            this.isPersonCheckBox.TabIndex = 1;
-            this.isPersonCheckBox.Text = "Persona física";
-            this.isPersonCheckBox.UseVisualStyleBackColor = true;
+            this.birthDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.birthDateTimePicker.Location = new System.Drawing.Point(89, 42);
+            this.birthDateTimePicker.MaxDate = new System.DateTime(9000, 1, 1, 0, 0, 0, 0);
+            this.birthDateTimePicker.MinDate = new System.DateTime(1800, 1, 1, 0, 0, 0, 0);
+            this.birthDateTimePicker.Name = "birthDateTimePicker";
+            this.birthDateTimePicker.Size = new System.Drawing.Size(250, 20);
+            this.birthDateTimePicker.TabIndex = 1;
+            this.birthDateTimePicker.Value = new System.DateTime(9000, 1, 1, 0, 0, 0, 0);
             // 
             // firstNameTextBox
             // 
-            this.firstNameTextBox.Location = new System.Drawing.Point(134, 145);
-            this.firstNameTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.firstNameTextBox.Location = new System.Drawing.Point(89, 94);
             this.firstNameTextBox.Name = "firstNameTextBox";
-            this.firstNameTextBox.Size = new System.Drawing.Size(373, 26);
+            this.firstNameTextBox.Size = new System.Drawing.Size(250, 20);
             this.firstNameTextBox.TabIndex = 5;
             this.firstNameTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lastNameTextBox
             // 
-            this.lastNameTextBox.Location = new System.Drawing.Point(134, 185);
-            this.lastNameTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.lastNameTextBox.Location = new System.Drawing.Point(89, 120);
             this.lastNameTextBox.Name = "lastNameTextBox";
-            this.lastNameTextBox.Size = new System.Drawing.Size(373, 26);
+            this.lastNameTextBox.Size = new System.Drawing.Size(250, 20);
             this.lastNameTextBox.TabIndex = 6;
             this.lastNameTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -450,244 +408,193 @@
             this.activeStatusCheckBox.AutoSize = true;
             this.activeStatusCheckBox.Checked = true;
             this.activeStatusCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.activeStatusCheckBox.Location = new System.Drawing.Point(368, 28);
-            this.activeStatusCheckBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.activeStatusCheckBox.Location = new System.Drawing.Point(164, 19);
             this.activeStatusCheckBox.Name = "activeStatusCheckBox";
-            this.activeStatusCheckBox.Size = new System.Drawing.Size(78, 24);
+            this.activeStatusCheckBox.Size = new System.Drawing.Size(56, 17);
             this.activeStatusCheckBox.TabIndex = 0;
             this.activeStatusCheckBox.Text = "Activo";
             this.activeStatusCheckBox.UseVisualStyleBackColor = true;
             // 
-            // businessNameTextBox
+            // organizationDescriptionTextBox
             // 
-            this.businessNameTextBox.Location = new System.Drawing.Point(134, 225);
-            this.businessNameTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.businessNameTextBox.Name = "businessNameTextBox";
-            this.businessNameTextBox.Size = new System.Drawing.Size(373, 26);
-            this.businessNameTextBox.TabIndex = 7;
-            this.businessNameTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // businessDescriptionTextBox
-            // 
-            this.businessDescriptionTextBox.Location = new System.Drawing.Point(134, 265);
-            this.businessDescriptionTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.businessDescriptionTextBox.Name = "businessDescriptionTextBox";
-            this.businessDescriptionTextBox.Size = new System.Drawing.Size(373, 26);
-            this.businessDescriptionTextBox.TabIndex = 8;
-            this.businessDescriptionTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.organizationDescriptionTextBox.Location = new System.Drawing.Point(89, 172);
+            this.organizationDescriptionTextBox.Name = "organizationDescriptionTextBox";
+            this.organizationDescriptionTextBox.Size = new System.Drawing.Size(250, 20);
+            this.organizationDescriptionTextBox.TabIndex = 8;
+            this.organizationDescriptionTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lastNameLabel
             // 
             this.lastNameLabel.AutoSize = true;
-            this.lastNameLabel.Location = new System.Drawing.Point(16, 189);
-            this.lastNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lastNameLabel.Location = new System.Drawing.Point(11, 123);
             this.lastNameLabel.Name = "lastNameLabel";
-            this.lastNameLabel.Size = new System.Drawing.Size(69, 20);
+            this.lastNameLabel.Size = new System.Drawing.Size(47, 13);
             this.lastNameLabel.TabIndex = 27;
             this.lastNameLabel.Text = "Apellido:";
             // 
-            // legalIdXXTextBox
+            // taxCodePrefixTextBox
             // 
-            this.legalIdXXTextBox.Location = new System.Drawing.Point(134, 105);
-            this.legalIdXXTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.legalIdXXTextBox.Name = "legalIdXXTextBox";
-            this.legalIdXXTextBox.Size = new System.Drawing.Size(58, 26);
-            this.legalIdXXTextBox.TabIndex = 2;
-            this.legalIdXXTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.taxCodePrefixTextBox.Location = new System.Drawing.Point(89, 68);
+            this.taxCodePrefixTextBox.Name = "taxCodePrefixTextBox";
+            this.taxCodePrefixTextBox.Size = new System.Drawing.Size(60, 20);
+            this.taxCodePrefixTextBox.TabIndex = 2;
+            this.taxCodePrefixTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // businessNameLabel
+            // organizationNameLabel
             // 
-            this.businessNameLabel.AutoSize = true;
-            this.businessNameLabel.Location = new System.Drawing.Point(16, 229);
-            this.businessNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.businessNameLabel.Name = "businessNameLabel";
-            this.businessNameLabel.Size = new System.Drawing.Size(106, 20);
-            this.businessNameLabel.TabIndex = 28;
-            this.businessNameLabel.Text = "Organización:";
+            this.organizationNameLabel.AutoSize = true;
+            this.organizationNameLabel.Location = new System.Drawing.Point(11, 149);
+            this.organizationNameLabel.Name = "organizationNameLabel";
+            this.organizationNameLabel.Size = new System.Drawing.Size(72, 13);
+            this.organizationNameLabel.TabIndex = 28;
+            this.organizationNameLabel.Text = "Organización:";
             // 
-            // legalIdLabel
+            // taxCodeLabel
             // 
-            this.legalIdLabel.AutoSize = true;
-            this.legalIdLabel.Location = new System.Drawing.Point(16, 109);
-            this.legalIdLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.legalIdLabel.Name = "legalIdLabel";
-            this.legalIdLabel.Size = new System.Drawing.Size(91, 20);
-            this.legalIdLabel.TabIndex = 42;
-            this.legalIdLabel.Text = "CUIL/CUIT:";
+            this.taxCodeLabel.AutoSize = true;
+            this.taxCodeLabel.Location = new System.Drawing.Point(11, 71);
+            this.taxCodeLabel.Name = "taxCodeLabel";
+            this.taxCodeLabel.Size = new System.Drawing.Size(64, 13);
+            this.taxCodeLabel.TabIndex = 42;
+            this.taxCodeLabel.Text = "CUIL/CUIT:";
             // 
             // firstNameLabel
             // 
             this.firstNameLabel.AutoSize = true;
-            this.firstNameLabel.Location = new System.Drawing.Point(16, 149);
-            this.firstNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.firstNameLabel.Location = new System.Drawing.Point(11, 97);
             this.firstNameLabel.Name = "firstNameLabel";
-            this.firstNameLabel.Size = new System.Drawing.Size(69, 20);
+            this.firstNameLabel.Size = new System.Drawing.Size(47, 13);
             this.firstNameLabel.TabIndex = 26;
             this.firstNameLabel.Text = "Nombre:";
             // 
-            // legalIdDNITextBox
+            // taxCodeNumberTextBox
             // 
-            this.legalIdDNITextBox.Location = new System.Drawing.Point(202, 105);
-            this.legalIdDNITextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.legalIdDNITextBox.Name = "legalIdDNITextBox";
-            this.legalIdDNITextBox.Size = new System.Drawing.Size(235, 26);
-            this.legalIdDNITextBox.TabIndex = 3;
-            this.legalIdDNITextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.taxCodeNumberTextBox.Location = new System.Drawing.Point(155, 68);
+            this.taxCodeNumberTextBox.Name = "taxCodeNumberTextBox";
+            this.taxCodeNumberTextBox.Size = new System.Drawing.Size(118, 20);
+            this.taxCodeNumberTextBox.TabIndex = 3;
+            this.taxCodeNumberTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // businessDescriptionLabel
+            // organizationDescriptionLabel
             // 
-            this.businessDescriptionLabel.AutoSize = true;
-            this.businessDescriptionLabel.Location = new System.Drawing.Point(16, 269);
-            this.businessDescriptionLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.businessDescriptionLabel.Name = "businessDescriptionLabel";
-            this.businessDescriptionLabel.Size = new System.Drawing.Size(96, 20);
-            this.businessDescriptionLabel.TabIndex = 29;
-            this.businessDescriptionLabel.Text = "Descripción:";
+            this.organizationDescriptionLabel.AutoSize = true;
+            this.organizationDescriptionLabel.Location = new System.Drawing.Point(11, 175);
+            this.organizationDescriptionLabel.Name = "organizationDescriptionLabel";
+            this.organizationDescriptionLabel.Size = new System.Drawing.Size(66, 13);
+            this.organizationDescriptionLabel.TabIndex = 29;
+            this.organizationDescriptionLabel.Text = "Descripción:";
             // 
-            // legalIdYTextBox
+            // taxCodeSuffixTextBox
             // 
-            this.legalIdYTextBox.Location = new System.Drawing.Point(448, 105);
-            this.legalIdYTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.legalIdYTextBox.Name = "legalIdYTextBox";
-            this.legalIdYTextBox.Size = new System.Drawing.Size(58, 26);
-            this.legalIdYTextBox.TabIndex = 4;
-            this.legalIdYTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.taxCodeSuffixTextBox.Location = new System.Drawing.Point(279, 68);
+            this.taxCodeSuffixTextBox.Name = "taxCodeSuffixTextBox";
+            this.taxCodeSuffixTextBox.Size = new System.Drawing.Size(60, 20);
+            this.taxCodeSuffixTextBox.TabIndex = 4;
+            this.taxCodeSuffixTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // acceptButton
+            // saveButton
             // 
-            this.acceptButton.Location = new System.Drawing.Point(786, 846);
-            this.acceptButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.acceptButton.Name = "acceptButton";
-            this.acceptButton.Size = new System.Drawing.Size(120, 46);
-            this.acceptButton.TabIndex = 5;
-            this.acceptButton.Text = "Aceptar";
-            this.acceptButton.UseVisualStyleBackColor = true;
+            this.saveButton.Location = new System.Drawing.Point(524, 550);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(80, 30);
+            this.saveButton.TabIndex = 19;
+            this.saveButton.Text = "Guardar";
+            this.saveButton.UseVisualStyleBackColor = true;
+            // 
+            // userButton
+            // 
+            this.userButton.Location = new System.Drawing.Point(60, 550);
+            this.userButton.Name = "userButton";
+            this.userButton.Size = new System.Drawing.Size(120, 30);
+            this.userButton.TabIndex = 14;
+            this.userButton.Text = "Registro de usuario";
+            this.userButton.UseVisualStyleBackColor = true;
             // 
             // specialPanel
             // 
-            this.specialPanel.Controls.Add(this.addCategoryButton);
             this.specialPanel.Controls.Add(this.seniorityLabel);
             this.specialPanel.Controls.Add(this.titleLabel);
-            this.specialPanel.Controls.Add(this.deleteCategoryButton);
             this.specialPanel.Controls.Add(this.areaLabel);
             this.specialPanel.Controls.Add(this.categorySeniorityComboBox);
             this.specialPanel.Controls.Add(this.categoryTitleComboBox);
             this.specialPanel.Controls.Add(this.categoryAreaComboBox);
-            this.specialPanel.Location = new System.Drawing.Point(30, 523);
-            this.specialPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.specialPanel.Location = new System.Drawing.Point(20, 340);
             this.specialPanel.Name = "specialPanel";
-            this.specialPanel.Size = new System.Drawing.Size(300, 285);
-            this.specialPanel.TabIndex = 4;
-            // 
-            // addCategoryButton
-            // 
-            this.addCategoryButton.Location = new System.Drawing.Point(60, 160);
-            this.addCategoryButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.addCategoryButton.Name = "addCategoryButton";
-            this.addCategoryButton.Size = new System.Drawing.Size(180, 46);
-            this.addCategoryButton.TabIndex = 3;
-            this.addCategoryButton.Text = "Agregar categoría";
-            this.addCategoryButton.UseVisualStyleBackColor = true;
+            this.specialPanel.Size = new System.Drawing.Size(200, 185);
+            this.specialPanel.TabIndex = 13;
             // 
             // seniorityLabel
             // 
             this.seniorityLabel.AutoSize = true;
-            this.seniorityLabel.Location = new System.Drawing.Point(16, 111);
-            this.seniorityLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.seniorityLabel.Location = new System.Drawing.Point(11, 125);
             this.seniorityLabel.Name = "seniorityLabel";
-            this.seniorityLabel.Size = new System.Drawing.Size(95, 20);
+            this.seniorityLabel.Size = new System.Drawing.Size(65, 13);
             this.seniorityLabel.TabIndex = 35;
             this.seniorityLabel.Text = "Experiencia:";
             // 
             // titleLabel
             // 
             this.titleLabel.AutoSize = true;
-            this.titleLabel.Location = new System.Drawing.Point(16, 71);
-            this.titleLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.titleLabel.Location = new System.Drawing.Point(11, 73);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(51, 20);
+            this.titleLabel.Size = new System.Drawing.Size(38, 13);
             this.titleLabel.TabIndex = 34;
             this.titleLabel.Text = "Título:";
-            // 
-            // deleteCategoryButton
-            // 
-            this.deleteCategoryButton.Location = new System.Drawing.Point(60, 215);
-            this.deleteCategoryButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.deleteCategoryButton.Name = "deleteCategoryButton";
-            this.deleteCategoryButton.Size = new System.Drawing.Size(180, 46);
-            this.deleteCategoryButton.TabIndex = 4;
-            this.deleteCategoryButton.Text = "Eliminar categoría";
-            this.deleteCategoryButton.UseVisualStyleBackColor = true;
             // 
             // areaLabel
             // 
             this.areaLabel.AutoSize = true;
-            this.areaLabel.Location = new System.Drawing.Point(16, 31);
-            this.areaLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.areaLabel.Location = new System.Drawing.Point(11, 21);
             this.areaLabel.Name = "areaLabel";
-            this.areaLabel.Size = new System.Drawing.Size(47, 20);
+            this.areaLabel.Size = new System.Drawing.Size(32, 13);
             this.areaLabel.TabIndex = 33;
             this.areaLabel.Text = "Área:";
             // 
             // categorySeniorityComboBox
             // 
             this.categorySeniorityComboBox.FormattingEnabled = true;
-            this.categorySeniorityComboBox.Location = new System.Drawing.Point(123, 106);
-            this.categorySeniorityComboBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.categorySeniorityComboBox.Location = new System.Drawing.Point(82, 122);
             this.categorySeniorityComboBox.Name = "categorySeniorityComboBox";
-            this.categorySeniorityComboBox.Size = new System.Drawing.Size(145, 28);
+            this.categorySeniorityComboBox.Size = new System.Drawing.Size(98, 21);
             this.categorySeniorityComboBox.TabIndex = 2;
             // 
             // categoryTitleComboBox
             // 
             this.categoryTitleComboBox.FormattingEnabled = true;
-            this.categoryTitleComboBox.Location = new System.Drawing.Point(123, 66);
-            this.categoryTitleComboBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.categoryTitleComboBox.Location = new System.Drawing.Point(82, 70);
             this.categoryTitleComboBox.Name = "categoryTitleComboBox";
-            this.categoryTitleComboBox.Size = new System.Drawing.Size(145, 28);
+            this.categoryTitleComboBox.Size = new System.Drawing.Size(98, 21);
             this.categoryTitleComboBox.TabIndex = 1;
             // 
             // categoryAreaComboBox
             // 
             this.categoryAreaComboBox.FormattingEnabled = true;
-            this.categoryAreaComboBox.Location = new System.Drawing.Point(123, 26);
-            this.categoryAreaComboBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.categoryAreaComboBox.Location = new System.Drawing.Point(82, 18);
             this.categoryAreaComboBox.Name = "categoryAreaComboBox";
-            this.categoryAreaComboBox.Size = new System.Drawing.Size(145, 28);
+            this.categoryAreaComboBox.Size = new System.Drawing.Size(98, 21);
             this.categoryAreaComboBox.TabIndex = 0;
-            // 
-            // userButton
-            // 
-            this.userButton.Location = new System.Drawing.Point(90, 846);
-            this.userButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.userButton.Name = "userButton";
-            this.userButton.Size = new System.Drawing.Size(180, 46);
-            this.userButton.TabIndex = 6;
-            this.userButton.Text = "Registro de usuario";
-            this.userButton.UseVisualStyleBackColor = true;
             // 
             // EmployeeRegisterForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(936, 925);
-            this.Controls.Add(this.userButton);
-            this.Controls.Add(this.specialPanel);
+            this.ClientSize = new System.Drawing.Size(624, 601);
             this.Controls.Add(this.imagePanel);
             this.Controls.Add(this.contactPanel);
             this.Controls.Add(this.adressPanel);
             this.Controls.Add(this.mainPanel);
-            this.Controls.Add(this.acceptButton);
+            this.Controls.Add(this.saveButton);
+            this.Controls.Add(this.userButton);
+            this.Controls.Add(this.specialPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "EmployeeRegisterForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registro de empleado";
             this.imagePanel.ResumeLayout(false);
             this.imagePanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.profilePictureBox)).EndInit();
             this.contactPanel.ResumeLayout(false);
             this.contactPanel.PerformLayout();
             this.adressPanel.ResumeLayout(false);
@@ -703,59 +610,55 @@
         #endregion
 
         private System.Windows.Forms.Panel imagePanel;
-        private System.Windows.Forms.PictureBox pictureBox;
-        private System.Windows.Forms.Button loadImageButton;
+        private System.Windows.Forms.PictureBox profilePictureBox;
         private System.Windows.Forms.Label imageUrlLabel;
         private System.Windows.Forms.TextBox imageUrlTextBox;
         private System.Windows.Forms.Panel contactPanel;
         private System.Windows.Forms.TextBox emailTextBox;
-        private System.Windows.Forms.TextBox phoneCountryTextBox;
-        private System.Windows.Forms.TextBox phoneNumberTextBox;
-        private System.Windows.Forms.TextBox phoneAreaTextBox;
+        private System.Windows.Forms.TextBox phoneTextBox;
         private System.Windows.Forms.Label emailLabel;
         private System.Windows.Forms.Label phoneLabel;
         private System.Windows.Forms.Panel adressPanel;
-        private System.Windows.Forms.TextBox adressZipCodeTextBox;
-        private System.Windows.Forms.Label adressZipCodeLabel;
-        private System.Windows.Forms.TextBox adressCountryTextBox;
-        private System.Windows.Forms.Label adressFlatLabel;
-        private System.Windows.Forms.TextBox adressProvinceTextBox;
-        private System.Windows.Forms.TextBox adressCityTextBox;
-        private System.Windows.Forms.Label adressStreetNumberLabel;
-        private System.Windows.Forms.TextBox adressStreetTextBox;
-        private System.Windows.Forms.TextBox adressStreetNumberTextBox;
-        private System.Windows.Forms.Label adressStreetLabel;
-        private System.Windows.Forms.TextBox adressFlatTextBox;
+        private System.Windows.Forms.Label detailsLabel;
+        private System.Windows.Forms.TextBox detailsTextBox;
+        private System.Windows.Forms.ComboBox adressCityComboBox;
+        private System.Windows.Forms.ComboBox adressProvinceComboBox;
+        private System.Windows.Forms.ComboBox adressCountryComboBox;
+        private System.Windows.Forms.TextBox zipCodeTextBox;
+        private System.Windows.Forms.Label zipCodeLabel;
+        private System.Windows.Forms.Label flatLabel;
+        private System.Windows.Forms.Label streetNumberLabel;
+        private System.Windows.Forms.TextBox streetNameTextBox;
+        private System.Windows.Forms.TextBox streetNumberTextBox;
+        private System.Windows.Forms.Label streetNameLabel;
+        private System.Windows.Forms.TextBox flatTextBox;
         private System.Windows.Forms.Label adressCountryLabel;
-        private System.Windows.Forms.Label adressCityLabel;
+        private System.Windows.Forms.Label cityLabel;
         private System.Windows.Forms.Label adressProvinceLabel;
         private System.Windows.Forms.Panel mainPanel;
-        private System.Windows.Forms.Label isPersonLabel;
-        private System.Windows.Forms.Label activeStatusLabel;
-        private System.Windows.Forms.CheckBox isPersonCheckBox;
+        private System.Windows.Forms.ComboBox organizationNameComboBox;
+        private System.Windows.Forms.Label birthLabel;
+        private System.Windows.Forms.DateTimePicker birthDateTimePicker;
         private System.Windows.Forms.TextBox firstNameTextBox;
         private System.Windows.Forms.TextBox lastNameTextBox;
         private System.Windows.Forms.CheckBox activeStatusCheckBox;
-        private System.Windows.Forms.TextBox businessNameTextBox;
-        private System.Windows.Forms.TextBox businessDescriptionTextBox;
+        private System.Windows.Forms.TextBox organizationDescriptionTextBox;
         private System.Windows.Forms.Label lastNameLabel;
-        private System.Windows.Forms.TextBox legalIdXXTextBox;
-        private System.Windows.Forms.Label businessNameLabel;
-        private System.Windows.Forms.Label legalIdLabel;
+        private System.Windows.Forms.TextBox taxCodePrefixTextBox;
+        private System.Windows.Forms.Label organizationNameLabel;
+        private System.Windows.Forms.Label taxCodeLabel;
         private System.Windows.Forms.Label firstNameLabel;
-        private System.Windows.Forms.TextBox legalIdDNITextBox;
-        private System.Windows.Forms.Label businessDescriptionLabel;
-        private System.Windows.Forms.TextBox legalIdYTextBox;
-        private System.Windows.Forms.Button acceptButton;
+        private System.Windows.Forms.TextBox taxCodeNumberTextBox;
+        private System.Windows.Forms.Label organizationDescriptionLabel;
+        private System.Windows.Forms.TextBox taxCodeSuffixTextBox;
+        private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.Button userButton;
         private System.Windows.Forms.Panel specialPanel;
-        private System.Windows.Forms.ComboBox categoryAreaComboBox;
         private System.Windows.Forms.Label seniorityLabel;
         private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.Label areaLabel;
         private System.Windows.Forms.ComboBox categorySeniorityComboBox;
         private System.Windows.Forms.ComboBox categoryTitleComboBox;
-        private System.Windows.Forms.Button addCategoryButton;
-        private System.Windows.Forms.Button deleteCategoryButton;
-        private System.Windows.Forms.Button userButton;
+        private System.Windows.Forms.ComboBox categoryAreaComboBox;
     }
 }
