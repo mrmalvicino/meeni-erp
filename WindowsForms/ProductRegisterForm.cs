@@ -46,7 +46,7 @@ namespace WindowsForms
 
         private void bindComboBoxes()
         {
-            categoryComboBox.DataSource = _categoriesManager.list();
+            categoryComboBox.DataSource = _categoriesManager.list(true, false);
             categoryComboBox.ValueMember = "CategoryId";
             categoryComboBox.DisplayMember = "Name";
 

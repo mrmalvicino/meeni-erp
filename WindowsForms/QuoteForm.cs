@@ -76,7 +76,7 @@ namespace WindowsForms
         {
             customerComboBox.DataSource = _customersManager.list();
             warehouseComboBox.DataSource = _warehousesManager.list();
-            productCategoryComboBox.DataSource = _categoriesManager.list();
+            productCategoryComboBox.DataSource = _categoriesManager.list(true, false);
             brandComboBox.DataSource = _brandsManager.list();
             modelComboBox.DataSource = _modelsManager.list();
         }
