@@ -21,7 +21,8 @@ values
 ('Zócalo'),
 ('Piso vinílico'),
 ('Sellador'),
-('Flete');
+('Flete'),
+('Colocación');
 go
 
 ------------
@@ -82,7 +83,8 @@ values
 ('50000', '50000', '2'),
 ('5000', '5000', '3'),
 ('40000', '40000', '4'),
-('60000', '60000', '4');
+('60000', '60000', '4'),
+('30000', '30000', '5');
 go
 
 --------------
@@ -119,7 +121,8 @@ insert into Services
 (ServiceDescription, ItemId)
 values
 ('Zona norte ida y vuelta', '4'),
-('CABA Ida y vuelta', '5');
+('CABA Ida y vuelta', '5'),
+('Piso de hasta 20 m2', '6');
 go
 
 ---------------
@@ -232,9 +235,9 @@ values
 ('false', 'Showroom Villa Adelina', '1');
 go
 
---------------------------------
--- WAREHOUSE-PRODUCT RELATION --
---------------------------------
+---------------------------------
+-- WAREHOUSE-PRODUCT RELATIONS --
+---------------------------------
 
 create table WarehouseProductRelations(
 	WarehouseId int foreign key references Warehouses(WarehouseId) not null,
@@ -277,9 +280,9 @@ values
 ('https://arcencohogar.vtexassets.com/arquivos/ids/274900/1054642.jpg?v=637651585258230000');
 go
 
-----------------------------
--- IMAGE-PRODUCT RELATION --
-----------------------------
+-----------------------------
+-- IMAGE-PRODUCT RELATIONS --
+-----------------------------
 
 create table ImageProductRelations(
 	ImageId int foreign key references Images(ImageId) not null,
@@ -598,7 +601,6 @@ insert into Quotes
 (ActiveStatus, VariantVersion, JobDate, CustomerId)
 values
 ('Cotizado', '1', '2024-04-06', '1'),
-('Cotizado', '2', '2024-04-06', '1'),
 ('Rechazado', '1', '2024-04-13', '3');
 go
 
@@ -607,13 +609,53 @@ go
 ----------------
 
 create table QuoteRows(
-	RowIndex smallint not null,
+	QuoteRowId int primary key identity(1,1) not null,
 	Amount smallint check(0 < Amount) not null,
 	ProductId int foreign key references Products(ProductId) null,
 	ServiceId int foreign key references Services(ServiceId) null,
-	QuoteId int foreign key references Quotes(QuoteId) not null,
-	constraint UC_Row unique (Amount, QuoteId, ProductId, ServiceId)
+	constraint UC_Row unique (Amount, ProductId, ServiceId)
 )
+go
+
+insert into QuoteRows
+(Amount, ProductId, ServiceId)
+values
+('1', '3', null),
+('3', '2', null),
+('3', '1', null),
+('1', null, '1'),
+('1', null, '3'),
+('2', '3', null),
+('6', '2', null),
+('6', '1', null),
+('1', null, '2');
+go
+
+-------------------------
+-- ROW-QUOTE RELATIONS --
+-------------------------
+
+create table QuoteRowQuoteRelations(
+	QuoteRowId int foreign key references QuoteRows(QuoteRowId) not null,
+	QuoteId int foreign key references Quotes(QuoteId) not null,
+	RowIndex tinyint not null
+)
+go
+
+insert into QuoteRowQuoteRelations
+(QuoteRowId, QuoteId, RowIndex)
+values
+('1', '1', '0'),
+('2', '1', '1'),
+('3', '1', '2'),
+('4', '1', '3'),
+('5', '1', '4'),
+('6', '2', '0'),
+('7', '2', '1'),
+('8', '2', '2'),
+('9', '2', '3'),
+('5', '2', '4');
+go
 
 ----------------
 -- CURRENCIES --
