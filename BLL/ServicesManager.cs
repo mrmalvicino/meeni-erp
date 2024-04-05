@@ -13,18 +13,22 @@ namespace BLL
         private Database _database = new Database();
         private Item _item;
         private ItemsManager _itemsManager = new ItemsManager();
-        private BrandsManager _brandsManager = new BrandsManager();
-        private ModelsManager _modelsManager = new ModelsManager();
 
         // METHODS
 
-        public List<Service> list()
+        public List<Service> list(int categoryId = 0)
         {
             List<Service> servicesList = new List<Service>();
+            string query = "select S.ServiceId, S.Details, S.ItemId from Services S";
+
+            if (0 < categoryId)
+            {
+                query += $" inner join Items I on I.ItemId = S.ItemId inner join Categories C on C.CategoryId = I.CategoryId where C.CategoryId = {categoryId}";
+            }
 
             try
             {
-                _database.setQuery("select ServiceId, ServiceDescription, ItemId from Services");
+                _database.setQuery(query);
                 _database.executeReader();
 
                 while (_database.Reader.Read())
@@ -32,7 +36,7 @@ namespace BLL
                     Service service = new Service();
 
                     service.ServiceId = (int)_database.Reader["ServiceId"];
-                    service.Description = (string)_database.Reader["ServiceDescription"];
+                    service.Details = (string)_database.Reader["Details"];
                     service.ItemId = (int)_database.Reader["ItemId"];
 
                     servicesList.Add(service);
@@ -58,18 +62,23 @@ namespace BLL
 
         public Service read(int serviceId)
         {
+            if (serviceId == 0)
+            {
+                return null;
+            }
+
             Service service = new Service();
 
             try
             {
-                _database.setQuery("select ServiceDescription, ItemId from Services where ServiceId = @ServiceId");
+                _database.setQuery("select Details, ItemId from Services where ServiceId = @ServiceId");
                 _database.setParameter("@ServiceId", serviceId);
                 _database.executeReader();
 
                 if (_database.Reader.Read())
                 {
                     service.ServiceId = serviceId;
-                    service.Description = (string)_database.Reader["ServiceDescription"];
+                    service.Details = (string)_database.Reader["Details"];
                     service.ItemId = (int)_database.Reader["ItemId"];
                 }
             }
@@ -95,7 +104,7 @@ namespace BLL
 
             try
             {
-                _database.setQuery("insert into Services (ServiceDescription, ItemId) values (@ServiceDescription, @ItemId)");
+                _database.setQuery("insert into Services (Details, ItemId) values (@Details, @ItemId)");
                 setParameters(service);
                 _database.executeAction();
             }
@@ -115,7 +124,7 @@ namespace BLL
 
             try
             {
-                _database.setQuery("update Services set ServiceDescription = @ServiceDescription, ItemId = @ItemId where ServiceId = @ServiceId");
+                _database.setQuery("update Services set Details = @Details, ItemId = @ItemId where ServiceId = @ServiceId");
                 _database.setParameter("@ServiceId", service.ServiceId);
                 setParameters(service);
                 _database.executeAction();
@@ -152,7 +161,7 @@ namespace BLL
 
         private void setParameters(Service service)
         {
-            _database.setParameter("@ServiceDescription", service.Description);
+            _database.setParameter("@Details", service.Details);
             _database.setParameter("@ItemId", service.ItemId);
         }
     }

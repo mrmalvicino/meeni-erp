@@ -21,23 +21,23 @@ namespace BLL
                 return null;
             }
 
-            string queryString = "select CategoryId, CategoryName from Categories";
+            string query = "select CategoryId, CategoryName from Categories";
 
             if (productCategories && !serviceCategories)
             {
-                queryString = "select distinct C.CategoryId, C.CategoryName from Categories C inner join Items I on C.CategoryId = I.CategoryId inner join Products P on I.ItemId = P.ItemId";
+                query = "select distinct C.CategoryId, C.CategoryName from Categories C inner join Items I on C.CategoryId = I.CategoryId inner join Products P on I.ItemId = P.ItemId";
             }
 
             if (!productCategories && serviceCategories)
             {
-                queryString = "select distinct C.CategoryId, C.CategoryName from Categories C inner join Items I on C.CategoryId = I.CategoryId inner join Services S on I.ItemId = S.ItemId";
+                query = "select distinct C.CategoryId, C.CategoryName from Categories C inner join Items I on C.CategoryId = I.CategoryId inner join Services S on I.ItemId = S.ItemId";
             }
 
             List<Category> categoriesList = new List<Category>();
 
             try
             {
-                _database.setQuery(queryString);
+                _database.setQuery(query);
                 _database.executeReader();
 
                 while (_database.Reader.Read())

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Collections.Generic;
 using BLL;
 using Entities;
 using Utilities;
@@ -13,8 +14,6 @@ namespace WindowsForms
         private Service _service = null;
         private ServicesManager _servicesManager = new ServicesManager();
         private CategoriesManager _categoriesManager = new CategoriesManager();
-        private BrandsManager _brandsManager = new BrandsManager();
-        private ModelsManager _modelsManager = new ModelsManager();
 
         //CONSTRUCT
 
@@ -47,13 +46,18 @@ namespace WindowsForms
         private void bindComboBoxes()
         {
             categoryComboBox.DataSource = _categoriesManager.list(false, true);
+
             categoryComboBox.ValueMember = "CategoryId";
             categoryComboBox.DisplayMember = "Name";
+
+            detailsComboBox.ValueMember = "ServiceId";
+            detailsComboBox.DisplayMember = "Details";
         }
 
         private void clearComboBoxes()
         {
             categoryComboBox.SelectedIndex = -1;
+            detailsComboBox.SelectedIndex = -1;
         }
 
         private void mapItem()
@@ -67,7 +71,7 @@ namespace WindowsForms
         private void mapService()
         {
             mapItem();
-            descriptionTextBox.Text = _service.Description;
+            detailsComboBox.Text = _service.Details;
         }
 
         private void setItem()
@@ -81,7 +85,7 @@ namespace WindowsForms
         private void setService()
         {
             setItem();
-            _service.Description = descriptionTextBox.Text;
+            _service.Details = detailsComboBox.Text;
         }
 
         // EVENTS
@@ -142,6 +146,12 @@ namespace WindowsForms
         private void imageUrlTextBox_Leave(object sender, EventArgs e)
         {
             Functions.loadImage(profilePictureBox, imageUrlTextBox.Text);
+        }
+
+        private void categoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int categoryId = _categoriesManager.getId((Category)categoryComboBox.SelectedItem);
+            detailsComboBox.DataSource = _servicesManager.list(categoryId);
         }
     }
 }

@@ -46,7 +46,7 @@ namespace WindowsForms
                 dataGridView.Columns["ServiceId"].Visible = false;
                 dataGridView.Columns["ActiveStatus"].Visible = false;
                 dataGridView.Columns["Category"].DisplayIndex = 0;
-                dataGridView.Columns["Description"].DisplayIndex = 1;
+                dataGridView.Columns["Details"].DisplayIndex = 1;
 
                 Functions.fillDataGrid(dataGridView);
             }

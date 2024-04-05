@@ -9,14 +9,14 @@ namespace Entities
         [DisplayName("ID de servicio")]
         public int ServiceId { get; set; }
 
-        [DisplayName("Descripción")]
-        public string Description { get; set; }
+        [DisplayName("Detalles")]
+        public string Details { get; set; }
 
         // METHODS
 
         public override string ToString()
         {
-            return Category + " " + Description;
+            return Category + " " + Details;
         }
     }
 }

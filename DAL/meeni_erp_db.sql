@@ -112,13 +112,13 @@ go
 
 create table Services(
 	ServiceId int primary key identity(1,1) not null,
-	ServiceDescription varchar(100) unique not null,
+	Details varchar(100) unique not null,
 	ItemId int foreign key references Items(ItemId) not null
 )
 go
 
 insert into Services
-(ServiceDescription, ItemId)
+(Details, ItemId)
 values
 ('Zona norte ida y vuelta', '4'),
 ('CABA Ida y vuelta', '5'),
@@ -611,6 +611,8 @@ go
 create table QuoteRows(
 	QuoteRowId int primary key identity(1,1) not null,
 	Amount smallint check(0 < Amount) not null,
+	RowDescription varchar(100) not null,
+	Price decimal(15,2) not null,
 	ProductId int foreign key references Products(ProductId) null,
 	ServiceId int foreign key references Services(ServiceId) null,
 	constraint UC_Row unique (Amount, ProductId, ServiceId)
@@ -618,17 +620,17 @@ create table QuoteRows(
 go
 
 insert into QuoteRows
-(Amount, ProductId, ServiceId)
+(Amount, RowDescription, Price, ProductId, ServiceId)
 values
-('1', '3', null),
-('3', '2', null),
-('3', '1', null),
-('1', null, '1'),
-('1', null, '3'),
-('2', '3', null),
-('6', '2', null),
-('6', '1', null),
-('1', null, '2');
+('1', 'Sellador Fastix Transparente 25g', '4900', '3', null),
+('3', 'Piso vinílico Harte Flooring Roble oscuro SCP 5mm caja 10u', '49000', '2', null),
+('3', 'Zócalo Boden Design Prepintado Blanco 7,5cm MDF tira 2m', '14000', '1', null),
+('1', 'Flete Zona norte ida y vuelta', '39000', null, '1'),
+('1', 'Colocación Piso de hasta 20 m2', '29000', null, '3'),
+('2', 'Sellador Fastix Transparente 25g', '4900', '3', null),
+('6', 'Piso vinílico Harte Flooring Roble oscuro SCP 5mm caja 10u', '49000', '2', null),
+('6', 'Zócalo Boden Design Prepintado Blanco 7,5cm MDF tira 2m', '14000', '1', null),
+('1', 'Flete CABA Ida y vuelta', '59000', null, '2');
 go
 
 -------------------------

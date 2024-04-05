@@ -43,6 +43,10 @@ namespace WindowsForms
             if (0 < dataGridView.RowCount)
             {
                 dataGridView.Columns["QuoteId"].Visible = false;
+                dataGridView.Columns["Customer"].DisplayIndex = 0;
+                dataGridView.Columns["JobDate"].DisplayIndex = 1;
+                dataGridView.Columns["VariantVersion"].DisplayIndex = 2;
+                dataGridView.Columns["ActiveStatus"].DisplayIndex = 3;
                 Functions.fillDataGrid(dataGridView);
             }
         }

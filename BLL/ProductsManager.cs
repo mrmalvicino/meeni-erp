@@ -18,13 +18,19 @@ namespace BLL
 
         // METHODS
 
-        public List<Product> list()
+        public List<Product> list(int categoryId = 0)
         {
             List<Product> productsList = new List<Product>();
+            string query = "select P.ProductId, P.ModelId, P.ItemId from Products P";
+
+            if (0 < categoryId)
+            {
+                query += $" inner join Items I on I.ItemId = P.ItemId inner join Categories C on C.CategoryId = I.CategoryId where C.CategoryId = {categoryId}";
+            }
 
             try
             {
-                _database.setQuery("select ProductId, ModelId, ItemId from Products");
+                _database.setQuery(query);
                 _database.executeReader();
 
                 while (_database.Reader.Read())
@@ -61,6 +67,11 @@ namespace BLL
 
         public Product read(int productId)
         {
+            if (productId == 0)
+            {
+                return null;
+            }
+
             Product product = new Product();
 
             try

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 
 namespace Entities
 {
@@ -6,23 +7,64 @@ namespace Entities
     {
         // PROPERTIES
 
-        [DisplayName("Índice")]
-        public int RowIndex { get; set; }
+        [DisplayName("ID de fila")]
+        public int QuoteRowId { get; set; }
 
-        [DisplayName("Descripción")]
-        public string RowDescription { get; set; }
+        [DisplayName("Índice")]
+        public int Index { get; set; }
 
         [DisplayName("Cantidad")]
         public int Amount { get; set; }
 
+        [DisplayName("Descripción")]
+        public string Description { get; set; }
+
         [DisplayName("Precio")]
         public decimal Price { get; set; }
+
+        [DisplayName("Producto")]
+        public Product Product { get; set; }
+
+        [DisplayName("Servicio")]
+        public Service Service { get; set; }
+
+        // CONSTRUCT
+
+        public QuoteRow()
+        {
+            Product = new Product();
+            Service = new Service();
+        }
 
         // METHODS
 
         public override string ToString()
         {
-            return Amount + " x " + RowDescription + "x $" + Price;
+            if (Product != null)
+            {
+                Description = Product.ToString();
+                Price = Product.Price;
+            }
+            else if (Service != null)
+            {
+                Description = Service.ToString();
+                Price = Service.Price;
+            }
+
+            return Amount + "\t" + Description + $"{tab(Description)}$" + Price;
+        }
+
+        private string tab(string text)
+        {
+            string space = "";
+            int tabs = 6 - text.Length / 8;
+
+            for (int i = 0; i < tabs; i ++)
+            {
+                space += "\t";
+            }
+
+            return space;
         }
     }
 }

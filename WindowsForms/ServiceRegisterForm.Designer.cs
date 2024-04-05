@@ -41,12 +41,12 @@
             this.priceLabel = new System.Windows.Forms.Label();
             this.priceTextBox = new System.Windows.Forms.TextBox();
             this.mainPanel = new System.Windows.Forms.Panel();
-            this.descriptionLabel = new System.Windows.Forms.Label();
+            this.detailsComboBox = new System.Windows.Forms.ComboBox();
+            this.detailsLabel = new System.Windows.Forms.Label();
             this.categoryComboBox = new System.Windows.Forms.ComboBox();
             this.activeStatusCheckBox = new System.Windows.Forms.CheckBox();
             this.categoryLabel = new System.Windows.Forms.Label();
             this.saveButton = new System.Windows.Forms.Button();
-            this.descriptionTextBox = new System.Windows.Forms.TextBox();
             this.imagePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.profilePictureBox)).BeginInit();
             this.valuesPanel.SuspendLayout();
@@ -160,8 +160,8 @@
             // 
             // mainPanel
             // 
-            this.mainPanel.Controls.Add(this.descriptionTextBox);
-            this.mainPanel.Controls.Add(this.descriptionLabel);
+            this.mainPanel.Controls.Add(this.detailsComboBox);
+            this.mainPanel.Controls.Add(this.detailsLabel);
             this.mainPanel.Controls.Add(this.categoryComboBox);
             this.mainPanel.Controls.Add(this.activeStatusCheckBox);
             this.mainPanel.Controls.Add(this.categoryLabel);
@@ -170,23 +170,37 @@
             this.mainPanel.Size = new System.Drawing.Size(332, 160);
             this.mainPanel.TabIndex = 40;
             // 
-            // descriptionLabel
+            // detailsComboBox
             // 
-            this.descriptionLabel.AutoSize = true;
-            this.descriptionLabel.Location = new System.Drawing.Point(19, 80);
-            this.descriptionLabel.Name = "descriptionLabel";
-            this.descriptionLabel.Size = new System.Drawing.Size(66, 13);
-            this.descriptionLabel.TabIndex = 31;
-            this.descriptionLabel.Text = "Descripción:";
+            this.detailsComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.detailsComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.detailsComboBox.FormattingEnabled = true;
+            this.detailsComboBox.Location = new System.Drawing.Point(91, 77);
+            this.detailsComboBox.Margin = new System.Windows.Forms.Padding(2);
+            this.detailsComboBox.Name = "detailsComboBox";
+            this.detailsComboBox.Size = new System.Drawing.Size(213, 21);
+            this.detailsComboBox.TabIndex = 33;
+            // 
+            // detailsLabel
+            // 
+            this.detailsLabel.AutoSize = true;
+            this.detailsLabel.Location = new System.Drawing.Point(19, 80);
+            this.detailsLabel.Name = "detailsLabel";
+            this.detailsLabel.Size = new System.Drawing.Size(48, 13);
+            this.detailsLabel.TabIndex = 31;
+            this.detailsLabel.Text = "Detalles:";
             // 
             // categoryComboBox
             // 
+            this.categoryComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.categoryComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.categoryComboBox.FormattingEnabled = true;
             this.categoryComboBox.Location = new System.Drawing.Point(91, 46);
             this.categoryComboBox.Margin = new System.Windows.Forms.Padding(2);
             this.categoryComboBox.Name = "categoryComboBox";
             this.categoryComboBox.Size = new System.Drawing.Size(213, 21);
             this.categoryComboBox.TabIndex = 14;
+            this.categoryComboBox.SelectedIndexChanged += new System.EventHandler(this.categoryComboBox_SelectedIndexChanged);
             // 
             // activeStatusCheckBox
             // 
@@ -218,13 +232,6 @@
             this.saveButton.Text = "Guardar";
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
-            // 
-            // descriptionTextBox
-            // 
-            this.descriptionTextBox.Location = new System.Drawing.Point(91, 77);
-            this.descriptionTextBox.Name = "descriptionTextBox";
-            this.descriptionTextBox.Size = new System.Drawing.Size(213, 20);
-            this.descriptionTextBox.TabIndex = 32;
             // 
             // ServiceRegisterForm
             // 
@@ -267,11 +274,11 @@
         private System.Windows.Forms.Label priceLabel;
         private System.Windows.Forms.TextBox priceTextBox;
         private System.Windows.Forms.Panel mainPanel;
-        private System.Windows.Forms.Label descriptionLabel;
+        private System.Windows.Forms.Label detailsLabel;
         private System.Windows.Forms.ComboBox categoryComboBox;
         private System.Windows.Forms.CheckBox activeStatusCheckBox;
         private System.Windows.Forms.Label categoryLabel;
         private System.Windows.Forms.Button saveButton;
-        private System.Windows.Forms.TextBox descriptionTextBox;
+        private System.Windows.Forms.ComboBox detailsComboBox;
     }
 }

@@ -49,7 +49,7 @@
             this.addingPanel = new System.Windows.Forms.Panel();
             this.serviceAmountNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.serviceAmountTextBox = new System.Windows.Forms.TextBox();
-            this.nameComboBox = new System.Windows.Forms.ComboBox();
+            this.detailsComboBox = new System.Windows.Forms.ComboBox();
             this.discountLabelTextBox = new System.Windows.Forms.TextBox();
             this.discountValueTextBox = new System.Windows.Forms.TextBox();
             this.descriptionLabelTextBox = new System.Windows.Forms.TextBox();
@@ -62,8 +62,8 @@
             this.addServiceButton = new System.Windows.Forms.Button();
             this.serviceCategoryComboBox = new System.Windows.Forms.ComboBox();
             this.serviceCategoryTextBox = new System.Windows.Forms.TextBox();
-            this.nameTextBox = new System.Windows.Forms.TextBox();
-            this.eraseAllButton = new System.Windows.Forms.Button();
+            this.detailsTextBox = new System.Windows.Forms.TextBox();
+            this.cleanButton = new System.Windows.Forms.Button();
             this.upButton = new System.Windows.Forms.Button();
             this.downButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
@@ -79,7 +79,7 @@
             // 
             // listBox
             // 
-            this.listBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBox.Font = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBox.FormattingEnabled = true;
             this.listBox.ItemHeight = 18;
             this.listBox.Location = new System.Drawing.Point(530, 107);
@@ -96,6 +96,7 @@
             this.productCategoryComboBox.Name = "productCategoryComboBox";
             this.productCategoryComboBox.Size = new System.Drawing.Size(380, 26);
             this.productCategoryComboBox.TabIndex = 3;
+            this.productCategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.productCategoryComboBox_SelectedIndexChanged);
             // 
             // brandComboBox
             // 
@@ -106,6 +107,7 @@
             this.brandComboBox.Name = "brandComboBox";
             this.brandComboBox.Size = new System.Drawing.Size(380, 26);
             this.brandComboBox.TabIndex = 4;
+            this.brandComboBox.SelectedIndexChanged += new System.EventHandler(this.brandComboBox_SelectedIndexChanged);
             // 
             // modelComboBox
             // 
@@ -116,6 +118,7 @@
             this.modelComboBox.Name = "modelComboBox";
             this.modelComboBox.Size = new System.Drawing.Size(380, 26);
             this.modelComboBox.TabIndex = 5;
+            this.modelComboBox.SelectedIndexChanged += new System.EventHandler(this.modelComboBox_SelectedIndexChanged);
             // 
             // productCategoryTextBox
             // 
@@ -184,7 +187,7 @@
             // jobDateTimePicker
             // 
             this.jobDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.jobDateTimePicker.Location = new System.Drawing.Point(355, 23);
+            this.jobDateTimePicker.Location = new System.Drawing.Point(355, 26);
             this.jobDateTimePicker.MaxDate = new System.DateTime(9000, 1, 1, 0, 0, 0, 0);
             this.jobDateTimePicker.MinDate = new System.DateTime(1800, 1, 1, 0, 0, 0, 0);
             this.jobDateTimePicker.Name = "jobDateTimePicker";
@@ -249,12 +252,12 @@
             this.quoteIdTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.quoteIdTextBox.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.quoteIdTextBox.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.quoteIdTextBox.Location = new System.Drawing.Point(25, 20);
+            this.quoteIdTextBox.Location = new System.Drawing.Point(25, 25);
             this.quoteIdTextBox.Name = "quoteIdTextBox";
             this.quoteIdTextBox.ReadOnly = true;
             this.quoteIdTextBox.Size = new System.Drawing.Size(294, 23);
             this.quoteIdTextBox.TabIndex = 1;
-            this.quoteIdTextBox.Text = "Cotización N⁰ 0";
+            this.quoteIdTextBox.Text = "Cotización";
             // 
             // activeStatusComboBox
             // 
@@ -298,7 +301,7 @@
             // 
             this.addingPanel.Controls.Add(this.serviceAmountNumericUpDown);
             this.addingPanel.Controls.Add(this.serviceAmountTextBox);
-            this.addingPanel.Controls.Add(this.nameComboBox);
+            this.addingPanel.Controls.Add(this.detailsComboBox);
             this.addingPanel.Controls.Add(this.discountLabelTextBox);
             this.addingPanel.Controls.Add(this.discountValueTextBox);
             this.addingPanel.Controls.Add(this.descriptionLabelTextBox);
@@ -311,7 +314,7 @@
             this.addingPanel.Controls.Add(this.addServiceButton);
             this.addingPanel.Controls.Add(this.serviceCategoryComboBox);
             this.addingPanel.Controls.Add(this.serviceCategoryTextBox);
-            this.addingPanel.Controls.Add(this.nameTextBox);
+            this.addingPanel.Controls.Add(this.detailsTextBox);
             this.addingPanel.Controls.Add(this.productCategoryComboBox);
             this.addingPanel.Controls.Add(this.addProductButton);
             this.addingPanel.Controls.Add(this.brandComboBox);
@@ -345,15 +348,16 @@
             this.serviceAmountTextBox.TabIndex = 31;
             this.serviceAmountTextBox.Text = "Cant.:";
             // 
-            // nameComboBox
+            // detailsComboBox
             // 
-            this.nameComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.nameComboBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nameComboBox.FormattingEnabled = true;
-            this.nameComboBox.Location = new System.Drawing.Point(95, 234);
-            this.nameComboBox.Name = "nameComboBox";
-            this.nameComboBox.Size = new System.Drawing.Size(380, 26);
-            this.nameComboBox.TabIndex = 30;
+            this.detailsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.detailsComboBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.detailsComboBox.FormattingEnabled = true;
+            this.detailsComboBox.Location = new System.Drawing.Point(95, 234);
+            this.detailsComboBox.Name = "detailsComboBox";
+            this.detailsComboBox.Size = new System.Drawing.Size(380, 26);
+            this.detailsComboBox.TabIndex = 30;
+            this.detailsComboBox.SelectedIndexChanged += new System.EventHandler(this.detailsComboBox_SelectedIndexChanged);
             // 
             // discountLabelTextBox
             // 
@@ -469,6 +473,7 @@
             this.serviceCategoryComboBox.Name = "serviceCategoryComboBox";
             this.serviceCategoryComboBox.Size = new System.Drawing.Size(380, 26);
             this.serviceCategoryComboBox.TabIndex = 17;
+            this.serviceCategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.serviceCategoryComboBox_SelectedIndexChanged);
             // 
             // serviceCategoryTextBox
             // 
@@ -482,28 +487,28 @@
             this.serviceCategoryTextBox.TabIndex = 18;
             this.serviceCategoryTextBox.Text = "Rubro:";
             // 
-            // nameTextBox
+            // detailsTextBox
             // 
-            this.nameTextBox.BackColor = System.Drawing.SystemColors.Control;
-            this.nameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.nameTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nameTextBox.Location = new System.Drawing.Point(25, 237);
-            this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.ReadOnly = true;
-            this.nameTextBox.Size = new System.Drawing.Size(64, 19);
-            this.nameTextBox.TabIndex = 16;
-            this.nameTextBox.Text = "Nombre:";
+            this.detailsTextBox.BackColor = System.Drawing.SystemColors.Control;
+            this.detailsTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.detailsTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.detailsTextBox.Location = new System.Drawing.Point(25, 237);
+            this.detailsTextBox.Name = "detailsTextBox";
+            this.detailsTextBox.ReadOnly = true;
+            this.detailsTextBox.Size = new System.Drawing.Size(64, 19);
+            this.detailsTextBox.TabIndex = 16;
+            this.detailsTextBox.Text = "Detalles:";
             // 
-            // eraseAllButton
+            // cleanButton
             // 
-            this.eraseAllButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.eraseAllButton.Location = new System.Drawing.Point(233, 20);
-            this.eraseAllButton.Name = "eraseAllButton";
-            this.eraseAllButton.Size = new System.Drawing.Size(120, 35);
-            this.eraseAllButton.TabIndex = 14;
-            this.eraseAllButton.Text = "Borrar todo";
-            this.eraseAllButton.UseVisualStyleBackColor = true;
-            this.eraseAllButton.Click += new System.EventHandler(this.eraseAllButton_Click);
+            this.cleanButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cleanButton.Location = new System.Drawing.Point(233, 20);
+            this.cleanButton.Name = "cleanButton";
+            this.cleanButton.Size = new System.Drawing.Size(120, 35);
+            this.cleanButton.TabIndex = 14;
+            this.cleanButton.Text = "Limpiar";
+            this.cleanButton.UseVisualStyleBackColor = true;
+            this.cleanButton.Click += new System.EventHandler(this.cleanButton_Click);
             // 
             // upButton
             // 
@@ -543,7 +548,7 @@
             this.actionsPanel.Controls.Add(this.saveButton);
             this.actionsPanel.Controls.Add(this.eraseButton);
             this.actionsPanel.Controls.Add(this.downButton);
-            this.actionsPanel.Controls.Add(this.eraseAllButton);
+            this.actionsPanel.Controls.Add(this.cleanButton);
             this.actionsPanel.Controls.Add(this.upButton);
             this.actionsPanel.Location = new System.Drawing.Point(530, 15);
             this.actionsPanel.Name = "actionsPanel";
@@ -602,10 +607,10 @@
         private System.Windows.Forms.TextBox quoteIdTextBox;
         private System.Windows.Forms.Button addProductButton;
         private System.Windows.Forms.Panel addingPanel;
-        private System.Windows.Forms.Button eraseAllButton;
+        private System.Windows.Forms.Button cleanButton;
         private System.Windows.Forms.ComboBox serviceCategoryComboBox;
         private System.Windows.Forms.TextBox serviceCategoryTextBox;
-        private System.Windows.Forms.TextBox nameTextBox;
+        private System.Windows.Forms.TextBox detailsTextBox;
         private System.Windows.Forms.Button downButton;
         private System.Windows.Forms.Button upButton;
         private System.Windows.Forms.Button addServiceButton;
@@ -624,7 +629,7 @@
         private System.Windows.Forms.ComboBox customerComboBox;
         private System.Windows.Forms.ComboBox activeStatusComboBox;
         private System.Windows.Forms.DateTimePicker jobDateTimePicker;
-        private System.Windows.Forms.ComboBox nameComboBox;
+        private System.Windows.Forms.ComboBox detailsComboBox;
         private System.Windows.Forms.NumericUpDown serviceAmountNumericUpDown;
         private System.Windows.Forms.TextBox serviceAmountTextBox;
         private System.Windows.Forms.NumericUpDown variantVersionNumericUpDown;

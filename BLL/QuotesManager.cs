@@ -12,6 +12,8 @@ namespace BLL
 
         private Database _database = new Database();
         private CustomersManager _customersManager = new CustomersManager();
+        private ProductsManager _productsManager = new ProductsManager();
+        private ServicesManager _servicesManager = new ServicesManager();
 
         // METHODS
 
@@ -54,23 +56,37 @@ namespace BLL
             return quotesList;
         }
 
-        public Quote read(int quoteId)
+        public List<QuoteRow> read(Quote quote)
         {
-            Quote quote = new Quote();
+            List<QuoteRow> quoteRowsList = new List<QuoteRow>();
 
             try
             {
-                _database.setQuery("select QuoteId, ActiveStatus, VariantVersion, JobDate, CustomerId from Quotes where QuoteId = @QuoteId");
-                _database.setParameter("@QuoteId", quoteId);
+                _database.setQuery("select R.QuoteRowId, R.RowIndex, W.Amount, W.RowDescription, W.Price, W.ProductId, W.ServiceId from QuoteRowQuoteRelations R inner join Quotes Q on Q.QuoteId = R.QuoteId inner join QuoteRows W on W.QuoteRowId = R.QuoteRowId where R.QuoteId = @QuoteId");
+                _database.setParameter("@QuoteId", quote.QuoteId);
                 _database.executeReader();
 
-                if (_database.Reader.Read())
+                while (_database.Reader.Read())
                 {
-                    quote.QuoteId = (int)_database.Reader["QuoteId"];
-                    quote.ActiveStatus = (string)_database.Reader["ActiveStatus"];
-                    quote.VariantVersion = Convert.ToInt32(_database.Reader["VariantVersion"]);
-                    quote.JobDate = (DateTime)_database.Reader["JobDate"];
-                    quote.Customer.CustomerId = (int)_database.Reader["CustomerId"];
+                    QuoteRow quoteRow = new QuoteRow();
+
+                    quoteRow.QuoteRowId = (int)_database.Reader["QuoteRowId"];
+                    quoteRow.Index = Convert.ToInt32(_database.Reader["RowIndex"]);
+                    quoteRow.Amount = Convert.ToInt32(_database.Reader["Amount"]);
+                    quoteRow.Description = (string)_database.Reader["RowDescription"];
+                    quoteRow.Price = (decimal)_database.Reader["Price"];
+
+                    if (!(_database.Reader["ProductId"] is DBNull))
+                    {
+                        quoteRow.Product.ProductId = (int)_database.Reader["ProductId"];
+                    }
+
+                    if (!(_database.Reader["ServiceId"] is DBNull))
+                    {
+                        quoteRow.Service.ServiceId = (int)_database.Reader["ServiceId"];
+                    }
+
+                    quoteRowsList.Add(quoteRow);
                 }
             }
             catch (Exception ex)
@@ -82,7 +98,13 @@ namespace BLL
                 _database.closeConnection();
             }
 
-            return quote;
+            foreach (QuoteRow quoteRow in quoteRowsList)
+            {
+                quoteRow.Product = _productsManager.read(quoteRow.Product.ProductId);
+                quoteRow.Service = _servicesManager.read(quoteRow.Service.ServiceId);
+            }
+
+            return quoteRowsList;
         }
 
         public void delete(Quote quote)
