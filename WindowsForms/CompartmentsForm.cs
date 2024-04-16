@@ -1,15 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using Entities;
 using System;
 using Utilities;
 using BLL;
-using System.Collections;
 using System.Configuration;
 
 namespace WindowsForms
 {
-    public partial class StockForm : Form
+    public partial class CompartmentsForm : Form
     {
         // ATTRIBUTES
 
@@ -19,12 +17,12 @@ namespace WindowsForms
 
         // CONSTRUCT
 
-        public StockForm()
+        public CompartmentsForm()
         {
             InitializeComponent();
         }
 
-        public StockForm(Warehouse warehouse = null)
+        public CompartmentsForm(Warehouse warehouse = null)
         {
             if (warehouse != null)
             {
@@ -101,6 +99,40 @@ namespace WindowsForms
             validateDataGridView();
         }
 
+        private void applyFilter()
+        {
+            string filter = filterTextBox.Text;
+            bool showActive = showActiveCheckBox.Checked;
+            bool showInactive = showInactiveCheckBox.Checked;
+
+            if (2 < filter.Length)
+            {
+                _filteredCustomers = _customersTable.FindAll(reg =>
+                    (
+                        (reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)
+                    )
+                    &&
+                    (
+                        reg.Person.ToString().ToUpper().Contains(filter.ToUpper()) ||
+                        reg.Organization.ToString().ToUpper().Contains(filter.ToUpper()) ||
+                        reg.Email.ToUpper().Contains(filter.ToUpper()) ||
+                        reg.TaxCode.ToString().Contains(filter)
+                    )
+                );
+            }
+            else
+            {
+                _filteredCustomers = _customersTable.FindAll(reg =>
+                    (reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)
+                );
+            }
+
+            dataGridView.DataSource = null;
+            dataGridView.DataSource = _filteredCustomers;
+            validateDataGridView();
+            dataGridView.DataBindingComplete += dataGridView_DataBindingComplete;
+        }
+
         private void loadProfile(Compartment compartment = null)
         {
             if (compartment != null)
@@ -147,9 +179,67 @@ namespace WindowsForms
             setupDataGridView();
         }
 
+        private void newButton_Click(object sender, EventArgs e)
+        {
+            CustomerRegisterForm registerForm = new CustomerRegisterForm();
+            registerForm.ShowDialog();
+            refreshTable();
+            applyFilter();
+        }
+
+        private void editButton_Click(object sender, EventArgs e)
+        {
+            CustomerRegisterForm registerForm = new CustomerRegisterForm(_customer);
+            registerForm.ShowDialog();
+            refreshTable();
+            applyFilter();
+        }
+
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult answer = MessageBox.Show("Esta acción no puede deshacerse. ¿Está seguro que desea continuar?", "Eliminar registro", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                if (answer == DialogResult.Yes)
+                {
+                    _customersManager.delete(_customer);
+                    refreshTable();
+                    applyFilter();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
         private void exportCSVButton_Click(object sender, EventArgs e)
         {
             Functions.exportCSV(dataGridView, ConfigurationManager.AppSettings["csv_folder"] + "Stock.csv");
+        }
+
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            filterTextBox.Text = "";
+            showActiveCheckBox.Checked = true;
+            showInactiveCheckBox.Checked = false;
+            applyFilter();
+        }
+
+        private void filterTextBox_TextChanged(object sender, EventArgs e)
+        {
+            applyFilter();
+        }
+
+        private void showActiveCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            applyFilter();
+        }
+
+        private void showInactiveCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            applyFilter();
         }
 
         private void moveButton_Click(object sender, EventArgs e)

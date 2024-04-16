@@ -1,6 +1,6 @@
 ﻿namespace WindowsForms
 {
-    partial class StockForm
+    partial class CompartmentsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StockForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CompartmentsForm));
             this.actionsPanel = new System.Windows.Forms.Panel();
             this.compartmentComboBox = new System.Windows.Forms.ComboBox();
             this.warehouseComboBox = new System.Windows.Forms.ComboBox();
@@ -269,6 +269,7 @@
             this.deleteButton.TabIndex = 76;
             this.deleteButton.Text = "Eliminar";
             this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
             // editButton
             // 
@@ -280,6 +281,7 @@
             this.editButton.TabIndex = 75;
             this.editButton.Text = "Editar";
             this.editButton.UseVisualStyleBackColor = true;
+            this.editButton.Click += new System.EventHandler(this.editButton_Click);
             // 
             // newButton
             // 
@@ -291,6 +293,7 @@
             this.newButton.TabIndex = 74;
             this.newButton.Text = "Nuevo";
             this.newButton.UseVisualStyleBackColor = true;
+            this.newButton.Click += new System.EventHandler(this.newButton_Click);
             // 
             // amountLabel
             // 
@@ -314,6 +317,7 @@
             this.showInactiveCheckBox.TabIndex = 80;
             this.showInactiveCheckBox.Text = "Inactivos";
             this.showInactiveCheckBox.UseVisualStyleBackColor = true;
+            this.showInactiveCheckBox.CheckedChanged += new System.EventHandler(this.showInactiveCheckBox_CheckedChanged);
             // 
             // showActiveCheckBox
             // 
@@ -328,6 +332,7 @@
             this.showActiveCheckBox.TabIndex = 79;
             this.showActiveCheckBox.Text = "Activos";
             this.showActiveCheckBox.UseVisualStyleBackColor = true;
+            this.showActiveCheckBox.CheckedChanged += new System.EventHandler(this.showActiveCheckBox_CheckedChanged);
             // 
             // clearButton
             // 
@@ -339,6 +344,7 @@
             this.clearButton.TabIndex = 81;
             this.clearButton.Text = "Limpiar";
             this.clearButton.UseVisualStyleBackColor = true;
+            this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
             // 
             // filterLabel
             // 
@@ -359,6 +365,7 @@
             this.filterTextBox.Name = "filterTextBox";
             this.filterTextBox.Size = new System.Drawing.Size(359, 30);
             this.filterTextBox.TabIndex = 78;
+            this.filterTextBox.TextChanged += new System.EventHandler(this.filterTextBox_TextChanged);
             // 
             // StockForm
             // 
