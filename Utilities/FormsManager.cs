@@ -6,13 +6,15 @@ namespace Utilities
     {
         // METHODS
 
-        public void loadDialogForm<FormClass>() where FormClass : Form, new()
+        public void loadDialogForm<FormClass>()
+            where FormClass : Form, new()
         {
             FormClass form = new FormClass();
             form.ShowDialog();
         }
 
-        public void loadParentForm<FormClass>(Form mdiParent) where FormClass : Form, new()
+        public void loadParentForm<FormClass>(Form mdiParent)
+            where FormClass : Form, new()
         {
             foreach (Form form in Application.OpenForms)
             {
@@ -33,7 +35,8 @@ namespace Utilities
             newForm.Show();
         }
 
-        public void closeForm<FormClass>() where FormClass : Form, new()
+        public void closeForm<FormClass>()
+            where FormClass : Form, new()
         {
             foreach (Form form in Application.OpenForms)
             {
