@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace Entities
 {
@@ -18,11 +19,15 @@ namespace Entities
         [DisplayName("Dirección")]
         public Adress Adress { get; set; }
 
+        [DisplayName("Compartimiento")]
+        public List<Compartment> Compartments { get; set; }
+
         // CONSTRUCT
 
         public Warehouse()
         {
             Adress = new Adress();
+            Compartments = new List<Compartment>();
         }
 
         // METHODS

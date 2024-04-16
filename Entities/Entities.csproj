@@ -61,7 +61,7 @@
     <Compile Include="Quote.cs" />
     <Compile Include="QuoteRow.cs" />
     <Compile Include="Seniority.cs" />
-    <Compile Include="Stock.cs" />
+    <Compile Include="Compartment.cs" />
     <Compile Include="TaxCode.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Role.cs" />

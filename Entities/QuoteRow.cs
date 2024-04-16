@@ -57,7 +57,8 @@ namespace Entities
         private string tab(string text)
         {
             string space = "";
-            int tabs = 6 - text.Length / 8;
+            int maxAmountOfTabs = 9;
+            int tabs = maxAmountOfTabs - text.Length / 8;
 
             for (int i = 0; i < tabs; i ++)
             {

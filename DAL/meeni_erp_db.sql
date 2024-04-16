@@ -235,25 +235,27 @@ values
 ('false', 'Showroom Villa Adelina', '1');
 go
 
----------------------------------
--- WAREHOUSE-PRODUCT RELATIONS --
----------------------------------
+------------------
+-- COMPARTMENTS --
+------------------
 
-create table WarehouseProductRelations(
-	WarehouseId int foreign key references Warehouses(WarehouseId) not null,
-	ProductId int foreign key references Products(ProductId) not null,
+create table Compartments(
+	CompartmentId int primary key identity(1,1) not null,
+	CompartmentName varchar(30) not null,
 	Stock int check(0 <= Stock) not null default(0),
-	primary key (WarehouseId, ProductId)
+	ProductId int foreign key references Products(ProductId) not null,
+	WarehouseId int foreign key references Warehouses(WarehouseId) not null,
+	constraint UC_Compartment unique (CompartmentName, WarehouseId)
 )
 go
 
-insert into WarehouseProductRelations
-(WarehouseId, ProductId, Stock)
+insert into Compartments
+(CompartmentName, Stock, ProductId, WarehouseId)
 values
-('1', '1', '1'),
-('1', '2', '2'),
-('2', '1', '3'),
-('2', '3', '4');
+('Primer Estante', '1', '1', '1'),
+('Segundo Estante', '2', '2', '1'),
+('Primer Estante', '3', '1', '2'),
+('Segundo Estante', '4', '3', '2');
 go
 
 ------------

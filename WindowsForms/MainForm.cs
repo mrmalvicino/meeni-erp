@@ -72,11 +72,6 @@ namespace WindowsForms
             _formsManager.loadParentForm<WarehousesForm>(this);
         }
 
-        private void stockToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            _formsManager.loadParentForm<StockForm>(this);
-        }
-
         private void productsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _formsManager.loadParentForm<ProductsForm>(this);

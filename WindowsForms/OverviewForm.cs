@@ -34,10 +34,9 @@ namespace WindowsForms
             setupStyle();
         }
 
-        private void quoteButton_Click(object sender, EventArgs e)
+        private void quotesButton_Click(object sender, EventArgs e)
         {
-            QuoteForm registerForm = new QuoteForm();
-            registerForm.ShowDialog();
+            _formsManager.loadParentForm<QuotesForm>(this.MdiParent);
         }
 
         private void customersButton_Click(object sender, EventArgs e)

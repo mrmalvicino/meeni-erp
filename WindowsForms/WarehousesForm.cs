@@ -218,5 +218,11 @@ namespace WindowsForms
         {
             applyFilter();
         }
+
+        private void stockButton_Click(object sender, EventArgs e)
+        {
+            StockForm stockForm = new StockForm(_warehouse);
+            stockForm.ShowDialog();
+        }
     }
 }

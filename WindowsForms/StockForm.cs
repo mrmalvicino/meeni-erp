@@ -13,11 +13,9 @@ namespace WindowsForms
     {
         // ATTRIBUTES
 
-        private int _warehouseIdFilter;
-        private int _stockIdFilter;
-        private Stock _stock;
-        private StockManager _stockManager = new StockManager();
-        private List<Stock> _stockList;
+        private Warehouse _warehouse;
+        private Compartment _compartment;
+        private CompartmentsManager _compartmentsManager = new CompartmentsManager();
 
         // CONSTRUCT
 
@@ -26,16 +24,11 @@ namespace WindowsForms
             InitializeComponent();
         }
 
-        public StockForm(int warehouseIdFilter = 0, int stockIdFilter = 0)
+        public StockForm(Warehouse warehouse = null)
         {
-            if (warehouseIdFilter != 0)
+            if (warehouse != null)
             {
-                _warehouseIdFilter = warehouseIdFilter;
-            }
-
-            if (stockIdFilter != 0)
-            {
-                _stockIdFilter = stockIdFilter;
+                _warehouse = warehouse;
             }
 
             InitializeComponent();
@@ -49,10 +42,14 @@ namespace WindowsForms
             mainPanel.BackColor = Palette.LightBackColor;
             actionsPanel.BackColor = Palette.LightBackColor;
             dataGridView.BackgroundColor = Palette.LightBackColor;
+            compartmentIdTextBox.ForeColor = Palette.ForeColor;
+            compartmentNameTextBox.ForeColor = Palette.ForeColor;
             productIdTextBox.ForeColor = Palette.ForeColor;
             productNameTextBox.ForeColor = Palette.ForeColor;
             warehouseIdTextBox.ForeColor = Palette.ForeColor;
             warehouseNameTextBox.ForeColor = Palette.ForeColor;
+            compartmentIdTextBox.BackColor = Palette.LightBackColor;
+            compartmentNameTextBox.BackColor = Palette.LightBackColor;
             productIdTextBox.BackColor = Palette.LightBackColor;
             productNameTextBox.BackColor = Palette.LightBackColor;
             warehouseIdTextBox.BackColor = Palette.LightBackColor;
@@ -63,10 +60,12 @@ namespace WindowsForms
         {
             if (0 < dataGridView.RowCount)
             {
-                dataGridView.Columns["Product"].Width = 500;
-                dataGridView.Columns["Warehouse"].DisplayIndex = 0;
+                dataGridView.Columns["CompartmentId"].Visible = false;
+                dataGridView.Columns["Name"].Width = 300;
+                dataGridView.Columns["Stock"].Width = 150;
+                dataGridView.Columns["Name"].DisplayIndex = 0;
                 dataGridView.Columns["Product"].DisplayIndex = 1;
-                dataGridView.Columns["Amount"].DisplayIndex = 2;
+                dataGridView.Columns["Stock"].DisplayIndex = 2;
 
                 Functions.fillDataGrid(dataGridView);
             }
@@ -93,8 +92,8 @@ namespace WindowsForms
         {
             try
             {
-                _stockList = _stockManager.list();
-                dataGridView.DataSource = _stockList;
+                _warehouse.Compartments = _compartmentsManager.list(_warehouse.WarehouseId);
+                dataGridView.DataSource = _warehouse.Compartments;
             }
             catch (Exception ex)
             {
@@ -104,18 +103,22 @@ namespace WindowsForms
             validateDataGridView();
         }
 
-        private void loadProfile(Stock stock = null)
+        private void loadProfile(Compartment compartment = null)
         {
-            if (_stock != null)
+            if (compartment != null)
             {
-                productIdTextBox.Text = "Producto N⁰ " + stock.Product.ProductId.ToString();
-                productNameTextBox.Text = stock.Product.ToString();
-                warehouseIdTextBox.Text = "Depósito N⁰ " + stock.Warehouse.WarehouseId.ToString();
-                warehouseNameTextBox.Text = stock.Warehouse.ToString();
+                compartmentIdTextBox.Text = "Compartimiento N⁰ " + compartment.CompartmentId.ToString();
+                compartmentNameTextBox.Text = compartment.Name;
+                productIdTextBox.Text = "Producto N⁰ " + compartment.Product.ProductId.ToString();
+                productNameTextBox.Text = compartment.Product.ToString();
+                warehouseIdTextBox.Text = "Depósito N⁰ " + _warehouse.WarehouseId.ToString();
+                warehouseNameTextBox.Text = _warehouse.Name;
             }
             else
             {
-                productIdTextBox.Text = "No hay productos disponibles";
+                compartmentIdTextBox.Text = "No hay compartimientos disponibles";
+                compartmentNameTextBox.Text = "";
+                productIdTextBox.Text = "";
                 productNameTextBox.Text = "";
                 warehouseIdTextBox.Text = "";
                 warehouseNameTextBox.Text = "";
@@ -136,8 +139,8 @@ namespace WindowsForms
         {
             if (dataGridView.CurrentRow != null)
             {
-                _stock = (Stock)dataGridView.CurrentRow.DataBoundItem;
-                loadProfile(_stock);
+                _compartment = (Compartment)dataGridView.CurrentRow.DataBoundItem;
+                loadProfile(_compartment);
             }
         }
 

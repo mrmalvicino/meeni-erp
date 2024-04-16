@@ -46,6 +46,7 @@
     <Compile Include="BusinessPartnersManager.cs" />
     <Compile Include="CategoriesManager.cs" />
     <Compile Include="CitiesManager.cs" />
+    <Compile Include="CompartmentsManager.cs" />
     <Compile Include="CountriesManager.cs" />
     <Compile Include="CurrenciesManager.cs" />
     <Compile Include="ImagesManager.cs" />
@@ -63,7 +64,6 @@
     <Compile Include="QuotesManager.cs" />
     <Compile Include="RolesManager.cs" />
     <Compile Include="ServicesManager.cs" />
-    <Compile Include="StockManager.cs" />
     <Compile Include="SuppliersManager.cs" />
     <Compile Include="TaxCodesManager.cs" />
     <Compile Include="UsersManager.cs" />

@@ -226,34 +226,47 @@ namespace WindowsForms
 
         private void productCategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int categoryId = _categoriesManager.getId((Category)productCategoryComboBox.SelectedItem);
-            //brandComboBox.DataSource = _productsManager.list(categoryId);
-        }
-
-        private void brandComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {/*
-            if (brandComboBox.SelectedItem != null)
+            if (productCategoryComboBox.SelectedItem != null)
             {
-                _product.Brand = (Brand)brandComboBox.SelectedItem;
-            }*/
-        }
-
-        private void modelComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {/*
-            if (modelComboBox.SelectedItem != null)
-            {
-                _product.Model = (Model)modelComboBox.SelectedItem;
+                brandComboBox.Enabled = true;
+                int categoryId = _categoriesManager.getId((Category)productCategoryComboBox.SelectedItem);
+                //brandComboBox.DataSource = _productsManager.list(categoryId);
             }
             else
             {
-                _product = null;
-            }*/
+                brandComboBox.Enabled = false;
+            }
+        }
+
+        private void brandComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (brandComboBox.SelectedItem != null)
+            {
+                modelComboBox.Enabled = true;
+            }
+            else
+            {
+                modelComboBox.Enabled= false;
+            }
+        }
+
+        private void modelComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void serviceCategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int categoryId = _categoriesManager.getId((Category)serviceCategoryComboBox.SelectedItem);
-            detailsComboBox.DataSource = _servicesManager.list(categoryId);
+            if (serviceCategoryComboBox.SelectedItem != null)
+            {
+                detailsComboBox.Enabled = true;
+                int categoryId = _categoriesManager.getId((Category)serviceCategoryComboBox.SelectedItem);
+                detailsComboBox.DataSource = _servicesManager.list(categoryId);
+            }
+            else
+            {
+                detailsComboBox.Enabled = false;
+            }
         }
 
         private void detailsComboBox_SelectedIndexChanged(object sender, EventArgs e)
