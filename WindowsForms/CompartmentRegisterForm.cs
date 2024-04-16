@@ -10,20 +10,20 @@ namespace WindowsForms
     {
         // ATTRIBUTES
 
-        private Customer _customer = null;
-        private CustomersManager _customersManager = new CustomersManager();
+        private Compartment _compartment = null;
+        private CompartmentsManager _compartmentsManager = new CompartmentsManager();
 
         //CONSTRUCT
 
-        public CustomerRegisterForm()
+        public CompartmentRegisterForm()
         {
             InitializeComponent();
         }
 
-        public CustomerRegisterForm(Customer customer)
+        public CompartmentRegisterForm(Compartment compartment)
         {
             InitializeComponent();
-            _customer = customer;
+            _compartment = compartment;
         }
 
         // METHODS
@@ -72,32 +72,32 @@ namespace WindowsForms
 
         private void mapIndividual()
         {
-            activeStatusCheckBox.Checked = _customer.ActiveStatus;
-            phoneTextBox.Text = _customer.Phone;
-            emailTextBox.Text = _customer.Email;
+            activeStatusCheckBox.Checked = _compartment.ActiveStatus;
+            phoneTextBox.Text = _compartment.Phone;
+            emailTextBox.Text = _compartment.Email;
 
-            if (birthDateTimePicker.MinDate < _customer.Birth && _customer.Birth < birthDateTimePicker.MaxDate)
+            if (birthDateTimePicker.MinDate < _compartment.Birth && _compartment.Birth < birthDateTimePicker.MaxDate)
             {
-                birthDateTimePicker.Value = DateTime.Parse(_customer.Birth.ToShortDateString());
+                birthDateTimePicker.Value = DateTime.Parse(_compartment.Birth.ToShortDateString());
             }
 
-            if (0 < _customer.TaxCode.TaxCodeId)
+            if (0 < _compartment.TaxCode.TaxCodeId)
             {
-                taxCodePrefixTextBox.Text = _customer.TaxCode.Prefix;
-                taxCodeNumberTextBox.Text = _customer.TaxCode.Number;
-                taxCodeSuffixTextBox.Text = _customer.TaxCode.Suffix;
+                taxCodePrefixTextBox.Text = _compartment.TaxCode.Prefix;
+                taxCodeNumberTextBox.Text = _compartment.TaxCode.Number;
+                taxCodeSuffixTextBox.Text = _compartment.TaxCode.Suffix;
             }
 
-            if (0 < _customer.Adress.City.CityId)
+            if (0 < _compartment.Adress.City.CityId)
             {
-                streetNameTextBox.Text = _customer.Adress.StreetName;
-                streetNumberTextBox.Text = _customer.Adress.StreetNumber;
-                flatTextBox.Text = _customer.Adress.Flat;
-                detailsTextBox.Text = _customer.Adress.Details;
-                adressCityComboBox.SelectedValue = _customer.Adress.City.CityId;
-                zipCodeTextBox.Text = _customer.Adress.City.ZipCode;
-                adressProvinceComboBox.SelectedValue = _customer.Adress.Province.ProvinceId;
-                adressCountryComboBox.SelectedValue = _customer.Adress.Country.CountryId;
+                streetNameTextBox.Text = _compartment.Adress.StreetName;
+                streetNumberTextBox.Text = _compartment.Adress.StreetNumber;
+                flatTextBox.Text = _compartment.Adress.Flat;
+                detailsTextBox.Text = _compartment.Adress.Details;
+                adressCityComboBox.SelectedValue = _compartment.Adress.City.CityId;
+                zipCodeTextBox.Text = _compartment.Adress.City.ZipCode;
+                adressProvinceComboBox.SelectedValue = _compartment.Adress.Province.ProvinceId;
+                adressCountryComboBox.SelectedValue = _compartment.Adress.Country.CountryId;
             }
             else
             {
@@ -106,115 +106,115 @@ namespace WindowsForms
                 adressCountryComboBox.SelectedIndex = -1;
             }
 
-            if (0 < _customer.Organization.OrganizationId)
+            if (0 < _compartment.Organization.OrganizationId)
             {
-                organizationNameComboBox.SelectedValue = _customer.Organization.OrganizationId;
-                organizationDescriptionTextBox.Text = _customer.Organization.Description;
+                organizationNameComboBox.SelectedValue = _compartment.Organization.OrganizationId;
+                organizationDescriptionTextBox.Text = _compartment.Organization.Description;
             }
 
-            if (0 < _customer.Person.PersonId)
+            if (0 < _compartment.Person.PersonId)
             {
-                firstNameTextBox.Text = _customer.Person.FirstName;
-                lastNameTextBox.Text = _customer.Person.LastName;
+                firstNameTextBox.Text = _compartment.Person.FirstName;
+                lastNameTextBox.Text = _compartment.Person.LastName;
             }
 
-            if (0 < _customer.Image.ImageId)
+            if (0 < _compartment.Image.ImageId)
             {
-                imageUrlTextBox.Text = _customer.Image.Url;
+                imageUrlTextBox.Text = _compartment.Image.Url;
             }
         }
 
         private void mapBusinessPartner()
         {
             mapIndividual();
-            paymentMethodComboBox.Text = _customer.PaymentMethod;
-            invoiceCategoryComboBox.Text = _customer.InvoiceCategory;
+            paymentMethodComboBox.Text = _compartment.PaymentMethod;
+            invoiceCategoryComboBox.Text = _compartment.InvoiceCategory;
         }
 
-        private void mapCustomer()
+        private void mapCompartment()
         {
             mapBusinessPartner();
         }
 
         private void setIndividual()
         {
-            _customer.ActiveStatus = activeStatusCheckBox.Checked;
-            _customer.Phone = phoneTextBox.Text;
-            _customer.Email = emailTextBox.Text;
-            _customer.Birth = birthDateTimePicker.Value;
+            _compartment.ActiveStatus = activeStatusCheckBox.Checked;
+            _compartment.Phone = phoneTextBox.Text;
+            _compartment.Email = emailTextBox.Text;
+            _compartment.Birth = birthDateTimePicker.Value;
 
             if (Validations.hasData(taxCodeNumberTextBox.Text))
             {
-                _customer.TaxCode.Prefix = taxCodePrefixTextBox.Text;
-                _customer.TaxCode.Number = taxCodeNumberTextBox.Text;
-                _customer.TaxCode.Suffix = taxCodeSuffixTextBox.Text;
+                _compartment.TaxCode.Prefix = taxCodePrefixTextBox.Text;
+                _compartment.TaxCode.Number = taxCodeNumberTextBox.Text;
+                _compartment.TaxCode.Suffix = taxCodeSuffixTextBox.Text;
             }
             else
             {
-                _customer.TaxCode = null;
+                _compartment.TaxCode = null;
             }
 
             if (Validations.hasData(adressCityComboBox.Text))
             {
-                _customer.Adress.StreetName = streetNameTextBox.Text;
-                _customer.Adress.StreetNumber = streetNumberTextBox.Text;
-                _customer.Adress.Flat = flatTextBox.Text;
-                _customer.Adress.Details = detailsTextBox.Text;
-                _customer.Adress.City.Name = adressCityComboBox.Text;
-                _customer.Adress.City.ZipCode = zipCodeTextBox.Text;
-                _customer.Adress.Province.Name = adressProvinceComboBox.Text;
-                _customer.Adress.Country.Name = adressCountryComboBox.Text;
+                _compartment.Adress.StreetName = streetNameTextBox.Text;
+                _compartment.Adress.StreetNumber = streetNumberTextBox.Text;
+                _compartment.Adress.Flat = flatTextBox.Text;
+                _compartment.Adress.Details = detailsTextBox.Text;
+                _compartment.Adress.City.Name = adressCityComboBox.Text;
+                _compartment.Adress.City.ZipCode = zipCodeTextBox.Text;
+                _compartment.Adress.Province.Name = adressProvinceComboBox.Text;
+                _compartment.Adress.Country.Name = adressCountryComboBox.Text;
             }
             else
             {
-                _customer.Adress = null;
+                _compartment.Adress = null;
             }
 
             if (Validations.hasData(firstNameTextBox.Text))
             {
-                _customer.Person.FirstName = firstNameTextBox.Text;
-                _customer.Person.LastName = lastNameTextBox.Text;
+                _compartment.Person.FirstName = firstNameTextBox.Text;
+                _compartment.Person.LastName = lastNameTextBox.Text;
             }
             else
             {
-                _customer.Person = null;
+                _compartment.Person = null;
             }
 
             if (Validations.hasData(organizationNameComboBox.Text))
             {
-                _customer.Organization.Name = organizationNameComboBox.Text;
-                _customer.Organization.Description = organizationDescriptionTextBox.Text;
+                _compartment.Organization.Name = organizationNameComboBox.Text;
+                _compartment.Organization.Description = organizationDescriptionTextBox.Text;
             }
             else
             {
-                _customer.Organization = null;
+                _compartment.Organization = null;
             }
 
             if (Validations.hasData(imageUrlTextBox.Text))
             {
-                _customer.Image.Url = imageUrlTextBox.Text;
+                _compartment.Image.Url = imageUrlTextBox.Text;
             }
             else
             {
-                _customer.Image = null;
+                _compartment.Image = null;
             }
         }
 
         private void setBusinessPartner()
         {
             setIndividual();
-            _customer.PaymentMethod = paymentMethodComboBox.Text;
-            _customer.InvoiceCategory = invoiceCategoryComboBox.Text;
+            _compartment.PaymentMethod = paymentMethodComboBox.Text;
+            _compartment.InvoiceCategory = invoiceCategoryComboBox.Text;
         }
 
-        private void setCustomer()
+        private void setCompartment()
         {
             setBusinessPartner();
         }
 
         // EVENTS
 
-        private void CustomerRegisterForm_Load(object sender, EventArgs e)
+        private void CompartmentRegisterForm_Load(object sender, EventArgs e)
         {
             setupStyle();
 
@@ -223,15 +223,15 @@ namespace WindowsForms
                 birthDateTimePicker.Value = birthDateTimePicker.MinDate;
                 bindComboBoxes();
 
-                if (_customer == null)
+                if (_compartment == null)
                 {
-                    _customer = new Customer();
+                    _compartment = new Compartment();
                     activeStatusCheckBox.Enabled = false;
                     clearComboBoxes();
                 }
                 else
                 {
-                    mapCustomer();
+                    mapCompartment();
                     Functions.loadImage(profilePictureBox, imageUrlTextBox.Text);
                 }
             }
@@ -248,15 +248,15 @@ namespace WindowsForms
 
             try
             {
-                setCustomer();
+                setCompartment();
 
-                if (0 < _customer.CustomerId)
+                if (0 < _compartment.CompartmentId)
                 {
-                    _customersManager.edit(_customer);
+                    _compartmentsManager.edit(_compartment);
                 }
                 else
                 {
-                    _customersManager.add(_customer);
+                    _compartmentsManager.add(_compartment);
                 }
 
                 MessageBox.Show("Registro guardado exitosamente.");
