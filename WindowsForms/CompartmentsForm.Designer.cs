@@ -30,6 +30,15 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CompartmentsForm));
             this.actionsPanel = new System.Windows.Forms.Panel();
+            this.showInactiveCheckBox = new System.Windows.Forms.CheckBox();
+            this.showActiveCheckBox = new System.Windows.Forms.CheckBox();
+            this.clearButton = new System.Windows.Forms.Button();
+            this.filterLabel = new System.Windows.Forms.Label();
+            this.filterTextBox = new System.Windows.Forms.TextBox();
+            this.amountLabel = new System.Windows.Forms.Label();
+            this.deleteButton = new System.Windows.Forms.Button();
+            this.editButton = new System.Windows.Forms.Button();
+            this.newButton = new System.Windows.Forms.Button();
             this.compartmentComboBox = new System.Windows.Forms.ComboBox();
             this.warehouseComboBox = new System.Windows.Forms.ComboBox();
             this.toLabel = new System.Windows.Forms.Label();
@@ -37,22 +46,13 @@
             this.moveButton = new System.Windows.Forms.Button();
             this.exportCSVButton = new System.Windows.Forms.Button();
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.compartmentNameTextBox = new System.Windows.Forms.TextBox();
+            this.compartmentIdTextBox = new System.Windows.Forms.TextBox();
             this.productNameTextBox = new System.Windows.Forms.TextBox();
             this.productIdTextBox = new System.Windows.Forms.TextBox();
             this.warehouseNameTextBox = new System.Windows.Forms.TextBox();
             this.warehouseIdTextBox = new System.Windows.Forms.TextBox();
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.compartmentIdTextBox = new System.Windows.Forms.TextBox();
-            this.compartmentNameTextBox = new System.Windows.Forms.TextBox();
-            this.deleteButton = new System.Windows.Forms.Button();
-            this.editButton = new System.Windows.Forms.Button();
-            this.newButton = new System.Windows.Forms.Button();
-            this.amountLabel = new System.Windows.Forms.Label();
-            this.showInactiveCheckBox = new System.Windows.Forms.CheckBox();
-            this.showActiveCheckBox = new System.Windows.Forms.CheckBox();
-            this.clearButton = new System.Windows.Forms.Button();
-            this.filterLabel = new System.Windows.Forms.Label();
-            this.filterTextBox = new System.Windows.Forms.TextBox();
             this.actionsPanel.SuspendLayout();
             this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
@@ -80,7 +80,115 @@
             this.actionsPanel.Margin = new System.Windows.Forms.Padding(4);
             this.actionsPanel.Name = "actionsPanel";
             this.actionsPanel.Size = new System.Drawing.Size(953, 222);
-            this.actionsPanel.TabIndex = 5;
+            this.actionsPanel.TabIndex = 2;
+            // 
+            // showInactiveCheckBox
+            // 
+            this.showInactiveCheckBox.AutoSize = true;
+            this.showInactiveCheckBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.showInactiveCheckBox.Location = new System.Drawing.Point(619, 163);
+            this.showInactiveCheckBox.Margin = new System.Windows.Forms.Padding(4);
+            this.showInactiveCheckBox.Name = "showInactiveCheckBox";
+            this.showInactiveCheckBox.Size = new System.Drawing.Size(109, 27);
+            this.showInactiveCheckBox.TabIndex = 10;
+            this.showInactiveCheckBox.Text = "Inactivos";
+            this.showInactiveCheckBox.UseVisualStyleBackColor = true;
+            this.showInactiveCheckBox.CheckedChanged += new System.EventHandler(this.showInactiveCheckBox_CheckedChanged);
+            // 
+            // showActiveCheckBox
+            // 
+            this.showActiveCheckBox.AutoSize = true;
+            this.showActiveCheckBox.Checked = true;
+            this.showActiveCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showActiveCheckBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.showActiveCheckBox.Location = new System.Drawing.Point(499, 163);
+            this.showActiveCheckBox.Margin = new System.Windows.Forms.Padding(4);
+            this.showActiveCheckBox.Name = "showActiveCheckBox";
+            this.showActiveCheckBox.Size = new System.Drawing.Size(95, 27);
+            this.showActiveCheckBox.TabIndex = 9;
+            this.showActiveCheckBox.Text = "Activos";
+            this.showActiveCheckBox.UseVisualStyleBackColor = true;
+            this.showActiveCheckBox.CheckedChanged += new System.EventHandler(this.showActiveCheckBox_CheckedChanged);
+            // 
+            // clearButton
+            // 
+            this.clearButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clearButton.Location = new System.Drawing.Point(760, 154);
+            this.clearButton.Margin = new System.Windows.Forms.Padding(4);
+            this.clearButton.Name = "clearButton";
+            this.clearButton.Size = new System.Drawing.Size(160, 43);
+            this.clearButton.TabIndex = 11;
+            this.clearButton.Text = "Limpiar";
+            this.clearButton.UseVisualStyleBackColor = true;
+            this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
+            // 
+            // filterLabel
+            // 
+            this.filterLabel.AutoSize = true;
+            this.filterLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.filterLabel.Location = new System.Drawing.Point(29, 164);
+            this.filterLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.filterLabel.Name = "filterLabel";
+            this.filterLabel.Size = new System.Drawing.Size(60, 23);
+            this.filterLabel.TabIndex = 82;
+            this.filterLabel.Text = "Filtro:";
+            // 
+            // filterTextBox
+            // 
+            this.filterTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.filterTextBox.Location = new System.Drawing.Point(115, 161);
+            this.filterTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.filterTextBox.Name = "filterTextBox";
+            this.filterTextBox.Size = new System.Drawing.Size(359, 30);
+            this.filterTextBox.TabIndex = 8;
+            this.filterTextBox.TextChanged += new System.EventHandler(this.filterTextBox_TextChanged);
+            // 
+            // amountLabel
+            // 
+            this.amountLabel.AutoSize = true;
+            this.amountLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.amountLabel.Location = new System.Drawing.Point(216, 102);
+            this.amountLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.amountLabel.Name = "amountLabel";
+            this.amountLabel.Size = new System.Drawing.Size(59, 23);
+            this.amountLabel.TabIndex = 77;
+            this.amountLabel.Text = "cant.:";
+            // 
+            // deleteButton
+            // 
+            this.deleteButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deleteButton.Location = new System.Drawing.Point(369, 31);
+            this.deleteButton.Margin = new System.Windows.Forms.Padding(4);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(160, 43);
+            this.deleteButton.TabIndex = 2;
+            this.deleteButton.Text = "Eliminar";
+            this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
+            // 
+            // editButton
+            // 
+            this.editButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.editButton.Location = new System.Drawing.Point(201, 31);
+            this.editButton.Margin = new System.Windows.Forms.Padding(4);
+            this.editButton.Name = "editButton";
+            this.editButton.Size = new System.Drawing.Size(160, 43);
+            this.editButton.TabIndex = 1;
+            this.editButton.Text = "Editar";
+            this.editButton.UseVisualStyleBackColor = true;
+            this.editButton.Click += new System.EventHandler(this.editButton_Click);
+            // 
+            // newButton
+            // 
+            this.newButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.newButton.Location = new System.Drawing.Point(33, 31);
+            this.newButton.Margin = new System.Windows.Forms.Padding(4);
+            this.newButton.Name = "newButton";
+            this.newButton.Size = new System.Drawing.Size(160, 43);
+            this.newButton.TabIndex = 0;
+            this.newButton.Text = "Nuevo";
+            this.newButton.UseVisualStyleBackColor = true;
+            this.newButton.Click += new System.EventHandler(this.newButton_Click);
             // 
             // compartmentComboBox
             // 
@@ -90,7 +198,7 @@
             this.compartmentComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.compartmentComboBox.Name = "compartmentComboBox";
             this.compartmentComboBox.Size = new System.Drawing.Size(200, 31);
-            this.compartmentComboBox.TabIndex = 14;
+            this.compartmentComboBox.TabIndex = 7;
             // 
             // warehouseComboBox
             // 
@@ -100,7 +208,7 @@
             this.warehouseComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.warehouseComboBox.Name = "warehouseComboBox";
             this.warehouseComboBox.Size = new System.Drawing.Size(200, 31);
-            this.warehouseComboBox.TabIndex = 13;
+            this.warehouseComboBox.TabIndex = 6;
             // 
             // toLabel
             // 
@@ -120,7 +228,7 @@
             this.moveTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.moveTextBox.Name = "moveTextBox";
             this.moveTextBox.Size = new System.Drawing.Size(120, 30);
-            this.moveTextBox.TabIndex = 10;
+            this.moveTextBox.TabIndex = 5;
             // 
             // moveButton
             // 
@@ -129,7 +237,7 @@
             this.moveButton.Margin = new System.Windows.Forms.Padding(4);
             this.moveButton.Name = "moveButton";
             this.moveButton.Size = new System.Drawing.Size(160, 43);
-            this.moveButton.TabIndex = 9;
+            this.moveButton.TabIndex = 4;
             this.moveButton.Text = "Mover";
             this.moveButton.UseVisualStyleBackColor = true;
             this.moveButton.Click += new System.EventHandler(this.moveButton_Click);
@@ -159,7 +267,35 @@
             this.mainPanel.Margin = new System.Windows.Forms.Padding(4);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(667, 222);
-            this.mainPanel.TabIndex = 4;
+            this.mainPanel.TabIndex = 1;
+            // 
+            // compartmentNameTextBox
+            // 
+            this.compartmentNameTextBox.BackColor = System.Drawing.SystemColors.Control;
+            this.compartmentNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.compartmentNameTextBox.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.compartmentNameTextBox.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.compartmentNameTextBox.Location = new System.Drawing.Point(13, 50);
+            this.compartmentNameTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.compartmentNameTextBox.Name = "compartmentNameTextBox";
+            this.compartmentNameTextBox.ReadOnly = true;
+            this.compartmentNameTextBox.Size = new System.Drawing.Size(392, 29);
+            this.compartmentNameTextBox.TabIndex = 1;
+            this.compartmentNameTextBox.Text = "CompartmentName";
+            // 
+            // compartmentIdTextBox
+            // 
+            this.compartmentIdTextBox.BackColor = System.Drawing.SystemColors.Control;
+            this.compartmentIdTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.compartmentIdTextBox.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.compartmentIdTextBox.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.compartmentIdTextBox.Location = new System.Drawing.Point(13, 13);
+            this.compartmentIdTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.compartmentIdTextBox.Name = "compartmentIdTextBox";
+            this.compartmentIdTextBox.ReadOnly = true;
+            this.compartmentIdTextBox.Size = new System.Drawing.Size(392, 29);
+            this.compartmentIdTextBox.TabIndex = 0;
+            this.compartmentIdTextBox.Text = "CompartmentId";
             // 
             // productNameTextBox
             // 
@@ -171,7 +307,7 @@
             this.productNameTextBox.Name = "productNameTextBox";
             this.productNameTextBox.ReadOnly = true;
             this.productNameTextBox.Size = new System.Drawing.Size(628, 23);
-            this.productNameTextBox.TabIndex = 7;
+            this.productNameTextBox.TabIndex = 3;
             this.productNameTextBox.Text = "ProductName";
             // 
             // productIdTextBox
@@ -184,7 +320,7 @@
             this.productIdTextBox.Name = "productIdTextBox";
             this.productIdTextBox.ReadOnly = true;
             this.productIdTextBox.Size = new System.Drawing.Size(628, 23);
-            this.productIdTextBox.TabIndex = 6;
+            this.productIdTextBox.TabIndex = 2;
             this.productIdTextBox.Text = "ProductId";
             // 
             // warehouseNameTextBox
@@ -210,7 +346,7 @@
             this.warehouseIdTextBox.Name = "warehouseIdTextBox";
             this.warehouseIdTextBox.ReadOnly = true;
             this.warehouseIdTextBox.Size = new System.Drawing.Size(628, 23);
-            this.warehouseIdTextBox.TabIndex = 3;
+            this.warehouseIdTextBox.TabIndex = 4;
             this.warehouseIdTextBox.Text = "WarehouseId";
             // 
             // dataGridView
@@ -227,147 +363,11 @@
             this.dataGridView.RowHeadersWidth = 62;
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView.Size = new System.Drawing.Size(1640, 498);
-            this.dataGridView.TabIndex = 3;
+            this.dataGridView.TabIndex = 0;
             this.dataGridView.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView_DataBindingComplete);
             this.dataGridView.SelectionChanged += new System.EventHandler(this.dataGridView_SelectionChanged);
             // 
-            // compartmentIdTextBox
-            // 
-            this.compartmentIdTextBox.BackColor = System.Drawing.SystemColors.Control;
-            this.compartmentIdTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.compartmentIdTextBox.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.compartmentIdTextBox.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.compartmentIdTextBox.Location = new System.Drawing.Point(13, 13);
-            this.compartmentIdTextBox.Margin = new System.Windows.Forms.Padding(4);
-            this.compartmentIdTextBox.Name = "compartmentIdTextBox";
-            this.compartmentIdTextBox.ReadOnly = true;
-            this.compartmentIdTextBox.Size = new System.Drawing.Size(392, 29);
-            this.compartmentIdTextBox.TabIndex = 10;
-            this.compartmentIdTextBox.Text = "CompartmentId";
-            // 
-            // compartmentNameTextBox
-            // 
-            this.compartmentNameTextBox.BackColor = System.Drawing.SystemColors.Control;
-            this.compartmentNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.compartmentNameTextBox.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.compartmentNameTextBox.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.compartmentNameTextBox.Location = new System.Drawing.Point(13, 50);
-            this.compartmentNameTextBox.Margin = new System.Windows.Forms.Padding(4);
-            this.compartmentNameTextBox.Name = "compartmentNameTextBox";
-            this.compartmentNameTextBox.ReadOnly = true;
-            this.compartmentNameTextBox.Size = new System.Drawing.Size(392, 29);
-            this.compartmentNameTextBox.TabIndex = 11;
-            this.compartmentNameTextBox.Text = "CompartmentName";
-            // 
-            // deleteButton
-            // 
-            this.deleteButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deleteButton.Location = new System.Drawing.Point(369, 31);
-            this.deleteButton.Margin = new System.Windows.Forms.Padding(4);
-            this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(160, 43);
-            this.deleteButton.TabIndex = 76;
-            this.deleteButton.Text = "Eliminar";
-            this.deleteButton.UseVisualStyleBackColor = true;
-            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
-            // 
-            // editButton
-            // 
-            this.editButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.editButton.Location = new System.Drawing.Point(201, 31);
-            this.editButton.Margin = new System.Windows.Forms.Padding(4);
-            this.editButton.Name = "editButton";
-            this.editButton.Size = new System.Drawing.Size(160, 43);
-            this.editButton.TabIndex = 75;
-            this.editButton.Text = "Editar";
-            this.editButton.UseVisualStyleBackColor = true;
-            this.editButton.Click += new System.EventHandler(this.editButton_Click);
-            // 
-            // newButton
-            // 
-            this.newButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.newButton.Location = new System.Drawing.Point(33, 31);
-            this.newButton.Margin = new System.Windows.Forms.Padding(4);
-            this.newButton.Name = "newButton";
-            this.newButton.Size = new System.Drawing.Size(160, 43);
-            this.newButton.TabIndex = 74;
-            this.newButton.Text = "Nuevo";
-            this.newButton.UseVisualStyleBackColor = true;
-            this.newButton.Click += new System.EventHandler(this.newButton_Click);
-            // 
-            // amountLabel
-            // 
-            this.amountLabel.AutoSize = true;
-            this.amountLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.amountLabel.Location = new System.Drawing.Point(216, 102);
-            this.amountLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.amountLabel.Name = "amountLabel";
-            this.amountLabel.Size = new System.Drawing.Size(59, 23);
-            this.amountLabel.TabIndex = 77;
-            this.amountLabel.Text = "cant.:";
-            // 
-            // showInactiveCheckBox
-            // 
-            this.showInactiveCheckBox.AutoSize = true;
-            this.showInactiveCheckBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.showInactiveCheckBox.Location = new System.Drawing.Point(619, 163);
-            this.showInactiveCheckBox.Margin = new System.Windows.Forms.Padding(4);
-            this.showInactiveCheckBox.Name = "showInactiveCheckBox";
-            this.showInactiveCheckBox.Size = new System.Drawing.Size(109, 27);
-            this.showInactiveCheckBox.TabIndex = 80;
-            this.showInactiveCheckBox.Text = "Inactivos";
-            this.showInactiveCheckBox.UseVisualStyleBackColor = true;
-            this.showInactiveCheckBox.CheckedChanged += new System.EventHandler(this.showInactiveCheckBox_CheckedChanged);
-            // 
-            // showActiveCheckBox
-            // 
-            this.showActiveCheckBox.AutoSize = true;
-            this.showActiveCheckBox.Checked = true;
-            this.showActiveCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.showActiveCheckBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.showActiveCheckBox.Location = new System.Drawing.Point(499, 163);
-            this.showActiveCheckBox.Margin = new System.Windows.Forms.Padding(4);
-            this.showActiveCheckBox.Name = "showActiveCheckBox";
-            this.showActiveCheckBox.Size = new System.Drawing.Size(95, 27);
-            this.showActiveCheckBox.TabIndex = 79;
-            this.showActiveCheckBox.Text = "Activos";
-            this.showActiveCheckBox.UseVisualStyleBackColor = true;
-            this.showActiveCheckBox.CheckedChanged += new System.EventHandler(this.showActiveCheckBox_CheckedChanged);
-            // 
-            // clearButton
-            // 
-            this.clearButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clearButton.Location = new System.Drawing.Point(760, 154);
-            this.clearButton.Margin = new System.Windows.Forms.Padding(4);
-            this.clearButton.Name = "clearButton";
-            this.clearButton.Size = new System.Drawing.Size(160, 43);
-            this.clearButton.TabIndex = 81;
-            this.clearButton.Text = "Limpiar";
-            this.clearButton.UseVisualStyleBackColor = true;
-            this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
-            // 
-            // filterLabel
-            // 
-            this.filterLabel.AutoSize = true;
-            this.filterLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.filterLabel.Location = new System.Drawing.Point(29, 164);
-            this.filterLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.filterLabel.Name = "filterLabel";
-            this.filterLabel.Size = new System.Drawing.Size(60, 23);
-            this.filterLabel.TabIndex = 82;
-            this.filterLabel.Text = "Filtro:";
-            // 
-            // filterTextBox
-            // 
-            this.filterTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.filterTextBox.Location = new System.Drawing.Point(115, 161);
-            this.filterTextBox.Margin = new System.Windows.Forms.Padding(4);
-            this.filterTextBox.Name = "filterTextBox";
-            this.filterTextBox.Size = new System.Drawing.Size(359, 30);
-            this.filterTextBox.TabIndex = 78;
-            this.filterTextBox.TextChanged += new System.EventHandler(this.filterTextBox_TextChanged);
-            // 
-            // StockForm
+            // CompartmentsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -378,7 +378,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "StockForm";
+            this.Name = "CompartmentsForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Stock";
             this.Load += new System.EventHandler(this.StockForm_Load);

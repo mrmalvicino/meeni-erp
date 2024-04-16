@@ -69,7 +69,7 @@
             this.actionsPanel.Margin = new System.Windows.Forms.Padding(4);
             this.actionsPanel.Name = "actionsPanel";
             this.actionsPanel.Size = new System.Drawing.Size(953, 222);
-            this.actionsPanel.TabIndex = 8;
+            this.actionsPanel.TabIndex = 2;
             // 
             // stockButton
             // 
@@ -78,7 +78,7 @@
             this.stockButton.Margin = new System.Windows.Forms.Padding(4);
             this.stockButton.Name = "stockButton";
             this.stockButton.Size = new System.Drawing.Size(160, 43);
-            this.stockButton.TabIndex = 71;
+            this.stockButton.TabIndex = 3;
             this.stockButton.Text = "Stock";
             this.stockButton.UseVisualStyleBackColor = true;
             this.stockButton.Click += new System.EventHandler(this.stockButton_Click);
@@ -91,7 +91,7 @@
             this.showInactiveCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.showInactiveCheckBox.Name = "showInactiveCheckBox";
             this.showInactiveCheckBox.Size = new System.Drawing.Size(109, 27);
-            this.showInactiveCheckBox.TabIndex = 6;
+            this.showInactiveCheckBox.TabIndex = 7;
             this.showInactiveCheckBox.Text = "Inactivos";
             this.showInactiveCheckBox.UseVisualStyleBackColor = true;
             this.showInactiveCheckBox.CheckedChanged += new System.EventHandler(this.showInactiveCheckBox_CheckedChanged);
@@ -106,7 +106,7 @@
             this.showActiveCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.showActiveCheckBox.Name = "showActiveCheckBox";
             this.showActiveCheckBox.Size = new System.Drawing.Size(95, 27);
-            this.showActiveCheckBox.TabIndex = 5;
+            this.showActiveCheckBox.TabIndex = 6;
             this.showActiveCheckBox.Text = "Activos";
             this.showActiveCheckBox.UseVisualStyleBackColor = true;
             this.showActiveCheckBox.CheckedChanged += new System.EventHandler(this.showActiveCheckBox_CheckedChanged);
@@ -118,7 +118,7 @@
             this.clearButton.Margin = new System.Windows.Forms.Padding(4);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(160, 43);
-            this.clearButton.TabIndex = 7;
+            this.clearButton.TabIndex = 8;
             this.clearButton.Text = "Limpiar";
             this.clearButton.UseVisualStyleBackColor = true;
             this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
@@ -141,7 +141,7 @@
             this.filterTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.filterTextBox.Name = "filterTextBox";
             this.filterTextBox.Size = new System.Drawing.Size(359, 30);
-            this.filterTextBox.TabIndex = 4;
+            this.filterTextBox.TabIndex = 5;
             this.filterTextBox.TextChanged += new System.EventHandler(this.filterTextBox_TextChanged);
             // 
             // exportButton
@@ -151,7 +151,7 @@
             this.exportButton.Margin = new System.Windows.Forms.Padding(4);
             this.exportButton.Name = "exportButton";
             this.exportButton.Size = new System.Drawing.Size(160, 43);
-            this.exportButton.TabIndex = 3;
+            this.exportButton.TabIndex = 4;
             this.exportButton.Text = "Exportar CSV";
             this.exportButton.UseVisualStyleBackColor = true;
             this.exportButton.Click += new System.EventHandler(this.exportButton_Click);
@@ -203,7 +203,7 @@
             this.mainPanel.Margin = new System.Windows.Forms.Padding(4);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(667, 222);
-            this.mainPanel.TabIndex = 7;
+            this.mainPanel.TabIndex = 1;
             // 
             // idTextBox
             // 
@@ -270,7 +270,7 @@
             this.dataGridView.RowHeadersWidth = 62;
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView.Size = new System.Drawing.Size(1640, 498);
-            this.dataGridView.TabIndex = 6;
+            this.dataGridView.TabIndex = 0;
             this.dataGridView.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView_DataBindingComplete);
             this.dataGridView.SelectionChanged += new System.EventHandler(this.dataGridView_SelectionChanged);
             // 

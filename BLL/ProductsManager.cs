@@ -223,6 +223,38 @@ namespace BLL
             _itemsManager.delete(product);
         }
 
+        public int getId(Product product)
+        {
+            if (product == null)
+            {
+                return 0;
+            }
+
+            int productId = 0;
+
+            try
+            {
+                _database.setQuery("select ProductId from Products where ModelId = @ModelId");
+                _database.setParameter("@ModelId", product.Model.ModelId);
+                _database.executeReader();
+
+                if (_database.Reader.Read())
+                {
+                    productId = (int)_database.Reader["ProductId"];
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _database.closeConnection();
+            }
+
+            return productId;
+        }
+
         private void setParameters(Product product)
         {
             _database.setParameter("@ModelId", product.Model.ModelId);

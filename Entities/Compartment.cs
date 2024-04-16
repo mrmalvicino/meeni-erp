@@ -9,6 +9,9 @@ namespace Entities
         [DisplayName("ID de compartimiento")]
         public int CompartmentId { get; set; }
 
+        [DisplayName("Estado")]
+        public bool ActiveStatus { get; set; }
+
         [DisplayName("Nombre")]
         public string Name { get; set; }
 

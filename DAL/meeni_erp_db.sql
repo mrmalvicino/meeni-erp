@@ -49,7 +49,7 @@ go
 
 create table Models(
 	ModelId int primary key identity(1,1) not null,
-	ModelName varchar(100) unique not null,
+	ModelName varchar(100) not null,
 	BrandId int foreign key references Brands(BrandId) not null,
 	constraint UC_Model unique (ModelName, BrandId)
 )
@@ -93,8 +93,8 @@ go
 
 create table Products(
 	ProductId int primary key identity(1,1) not null,
-	ModelId int foreign key references Models(ModelId) not null,
-	ItemId int foreign key references Items(ItemId) not null
+	ModelId int foreign key references Models(ModelId) unique not null,
+	ItemId int foreign key references Items(ItemId) unique not null
 )
 go
 
@@ -241,6 +241,7 @@ go
 
 create table Compartments(
 	CompartmentId int primary key identity(1,1) not null,
+	ActiveStatus bit not null default(1),
 	CompartmentName varchar(30) not null,
 	Stock int check(0 <= Stock) not null default(0),
 	ProductId int foreign key references Products(ProductId) not null,
@@ -250,12 +251,12 @@ create table Compartments(
 go
 
 insert into Compartments
-(CompartmentName, Stock, ProductId, WarehouseId)
+(ActiveStatus, CompartmentName, Stock, ProductId, WarehouseId)
 values
-('Primer Estante', '1', '1', '1'),
-('Segundo Estante', '2', '2', '1'),
-('Primer Estante', '3', '1', '2'),
-('Segundo Estante', '4', '3', '2');
+('true', 'Primer Estante', '1', '1', '1'),
+('true', 'Segundo Estante', '2', '2', '1'),
+('true', 'Primer Estante', '3', '1', '2'),
+('false', 'Segundo Estante', '4', '3', '2');
 go
 
 ------------

@@ -4,6 +4,7 @@ using System;
 using Utilities;
 using BLL;
 using System.Configuration;
+using System.Collections.Generic;
 
 namespace WindowsForms
 {
@@ -13,6 +14,7 @@ namespace WindowsForms
 
         private Warehouse _warehouse;
         private Compartment _compartment;
+        private List<Compartment> _filteredCompartments;
         private CompartmentsManager _compartmentsManager = new CompartmentsManager();
 
         // CONSTRUCT
@@ -59,6 +61,7 @@ namespace WindowsForms
             if (0 < dataGridView.RowCount)
             {
                 dataGridView.Columns["CompartmentId"].Visible = false;
+                dataGridView.Columns["ActiveStatus"].Visible = false;
                 dataGridView.Columns["Name"].Width = 300;
                 dataGridView.Columns["Stock"].Width = 150;
                 dataGridView.Columns["Name"].DisplayIndex = 0;
@@ -107,28 +110,26 @@ namespace WindowsForms
 
             if (2 < filter.Length)
             {
-                _filteredCustomers = _customersTable.FindAll(reg =>
+                _filteredCompartments = _warehouse.Compartments.FindAll(reg =>
                     (
                         (reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)
                     )
                     &&
                     (
-                        reg.Person.ToString().ToUpper().Contains(filter.ToUpper()) ||
-                        reg.Organization.ToString().ToUpper().Contains(filter.ToUpper()) ||
-                        reg.Email.ToUpper().Contains(filter.ToUpper()) ||
-                        reg.TaxCode.ToString().Contains(filter)
+                        reg.Name.ToUpper().Contains(filter.ToUpper()) ||
+                        reg.Product.ToString().ToUpper().Contains(filter.ToUpper())
                     )
                 );
             }
             else
             {
-                _filteredCustomers = _customersTable.FindAll(reg =>
+                _filteredCompartments = _warehouse.Compartments.FindAll(reg =>
                     (reg.ActiveStatus && showActive) || (!reg.ActiveStatus && showInactive)
                 );
             }
 
             dataGridView.DataSource = null;
-            dataGridView.DataSource = _filteredCustomers;
+            dataGridView.DataSource = _filteredCompartments;
             validateDataGridView();
             dataGridView.DataBindingComplete += dataGridView_DataBindingComplete;
         }
@@ -163,6 +164,7 @@ namespace WindowsForms
             setupStyle();
             refreshTable();
             dataGridView.SelectionChanged += dataGridView_SelectionChanged;
+            applyFilter();
         }
 
         private void dataGridView_SelectionChanged(object sender, EventArgs e)
@@ -181,7 +183,7 @@ namespace WindowsForms
 
         private void newButton_Click(object sender, EventArgs e)
         {
-            CustomerRegisterForm registerForm = new CustomerRegisterForm();
+            CompartmentRegisterForm registerForm = new CompartmentRegisterForm();
             registerForm.ShowDialog();
             refreshTable();
             applyFilter();
@@ -189,7 +191,7 @@ namespace WindowsForms
 
         private void editButton_Click(object sender, EventArgs e)
         {
-            CustomerRegisterForm registerForm = new CustomerRegisterForm(_customer);
+            CompartmentRegisterForm registerForm = new CompartmentRegisterForm(_compartment, _warehouse);
             registerForm.ShowDialog();
             refreshTable();
             applyFilter();
@@ -203,7 +205,7 @@ namespace WindowsForms
 
                 if (answer == DialogResult.Yes)
                 {
-                    _customersManager.delete(_customer);
+                    _compartmentsManager.delete(_compartment);
                     refreshTable();
                     applyFilter();
                 }
