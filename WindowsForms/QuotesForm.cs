@@ -182,7 +182,7 @@ namespace WindowsForms
             Functions.exportPDF();
         }
 
-        private void filterButton_Click(object sender, EventArgs e)
+        private void clearButton_Click(object sender, EventArgs e)
         {
             filterTextBox.Text = "";
             applyFilter();

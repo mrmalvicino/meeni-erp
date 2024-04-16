@@ -33,7 +33,7 @@
             this.stockButton = new System.Windows.Forms.Button();
             this.showInactiveCheckBox = new System.Windows.Forms.CheckBox();
             this.showActiveCheckBox = new System.Windows.Forms.CheckBox();
-            this.filterButton = new System.Windows.Forms.Button();
+            this.clearButton = new System.Windows.Forms.Button();
             this.filterLabel = new System.Windows.Forms.Label();
             this.filterTextBox = new System.Windows.Forms.TextBox();
             this.exportButton = new System.Windows.Forms.Button();
@@ -58,7 +58,7 @@
             this.actionsPanel.Controls.Add(this.stockButton);
             this.actionsPanel.Controls.Add(this.showInactiveCheckBox);
             this.actionsPanel.Controls.Add(this.showActiveCheckBox);
-            this.actionsPanel.Controls.Add(this.filterButton);
+            this.actionsPanel.Controls.Add(this.clearButton);
             this.actionsPanel.Controls.Add(this.filterLabel);
             this.actionsPanel.Controls.Add(this.filterTextBox);
             this.actionsPanel.Controls.Add(this.exportButton);
@@ -66,7 +66,7 @@
             this.actionsPanel.Controls.Add(this.editButton);
             this.actionsPanel.Controls.Add(this.newButton);
             this.actionsPanel.Location = new System.Drawing.Point(707, 18);
-            this.actionsPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.actionsPanel.Margin = new System.Windows.Forms.Padding(4);
             this.actionsPanel.Name = "actionsPanel";
             this.actionsPanel.Size = new System.Drawing.Size(953, 222);
             this.actionsPanel.TabIndex = 8;
@@ -75,7 +75,7 @@
             // 
             this.stockButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stockButton.Location = new System.Drawing.Point(537, 49);
-            this.stockButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.stockButton.Margin = new System.Windows.Forms.Padding(4);
             this.stockButton.Name = "stockButton";
             this.stockButton.Size = new System.Drawing.Size(160, 43);
             this.stockButton.TabIndex = 71;
@@ -88,7 +88,7 @@
             this.showInactiveCheckBox.AutoSize = true;
             this.showInactiveCheckBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.showInactiveCheckBox.Location = new System.Drawing.Point(619, 144);
-            this.showInactiveCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.showInactiveCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.showInactiveCheckBox.Name = "showInactiveCheckBox";
             this.showInactiveCheckBox.Size = new System.Drawing.Size(109, 27);
             this.showInactiveCheckBox.TabIndex = 6;
@@ -103,7 +103,7 @@
             this.showActiveCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.showActiveCheckBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.showActiveCheckBox.Location = new System.Drawing.Point(499, 144);
-            this.showActiveCheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.showActiveCheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.showActiveCheckBox.Name = "showActiveCheckBox";
             this.showActiveCheckBox.Size = new System.Drawing.Size(95, 27);
             this.showActiveCheckBox.TabIndex = 5;
@@ -111,17 +111,17 @@
             this.showActiveCheckBox.UseVisualStyleBackColor = true;
             this.showActiveCheckBox.CheckedChanged += new System.EventHandler(this.showActiveCheckBox_CheckedChanged);
             // 
-            // filterButton
+            // clearButton
             // 
-            this.filterButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.filterButton.Location = new System.Drawing.Point(760, 135);
-            this.filterButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.filterButton.Name = "filterButton";
-            this.filterButton.Size = new System.Drawing.Size(160, 43);
-            this.filterButton.TabIndex = 7;
-            this.filterButton.Text = "Restablecer";
-            this.filterButton.UseVisualStyleBackColor = true;
-            this.filterButton.Click += new System.EventHandler(this.filterButton_Click);
+            this.clearButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clearButton.Location = new System.Drawing.Point(760, 135);
+            this.clearButton.Margin = new System.Windows.Forms.Padding(4);
+            this.clearButton.Name = "clearButton";
+            this.clearButton.Size = new System.Drawing.Size(160, 43);
+            this.clearButton.TabIndex = 7;
+            this.clearButton.Text = "Limpiar";
+            this.clearButton.UseVisualStyleBackColor = true;
+            this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
             // 
             // filterLabel
             // 
@@ -138,7 +138,7 @@
             // 
             this.filterTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.filterTextBox.Location = new System.Drawing.Point(115, 142);
-            this.filterTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.filterTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.filterTextBox.Name = "filterTextBox";
             this.filterTextBox.Size = new System.Drawing.Size(359, 30);
             this.filterTextBox.TabIndex = 4;
@@ -148,7 +148,7 @@
             // 
             this.exportButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exportButton.Location = new System.Drawing.Point(760, 49);
-            this.exportButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.exportButton.Margin = new System.Windows.Forms.Padding(4);
             this.exportButton.Name = "exportButton";
             this.exportButton.Size = new System.Drawing.Size(160, 43);
             this.exportButton.TabIndex = 3;
@@ -160,7 +160,7 @@
             // 
             this.deleteButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.deleteButton.Location = new System.Drawing.Point(369, 49);
-            this.deleteButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.deleteButton.Margin = new System.Windows.Forms.Padding(4);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(160, 43);
             this.deleteButton.TabIndex = 2;
@@ -172,7 +172,7 @@
             // 
             this.editButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.editButton.Location = new System.Drawing.Point(201, 49);
-            this.editButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.editButton.Margin = new System.Windows.Forms.Padding(4);
             this.editButton.Name = "editButton";
             this.editButton.Size = new System.Drawing.Size(160, 43);
             this.editButton.TabIndex = 1;
@@ -184,7 +184,7 @@
             // 
             this.newButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.newButton.Location = new System.Drawing.Point(33, 49);
-            this.newButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.newButton.Margin = new System.Windows.Forms.Padding(4);
             this.newButton.Name = "newButton";
             this.newButton.Size = new System.Drawing.Size(160, 43);
             this.newButton.TabIndex = 0;
@@ -200,7 +200,7 @@
             this.mainPanel.Controls.Add(this.nameTextBox);
             this.mainPanel.Controls.Add(this.pictureBox);
             this.mainPanel.Location = new System.Drawing.Point(20, 18);
-            this.mainPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mainPanel.Margin = new System.Windows.Forms.Padding(4);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(667, 222);
             this.mainPanel.TabIndex = 7;
@@ -211,7 +211,7 @@
             this.idTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.idTextBox.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.idTextBox.Location = new System.Drawing.Point(263, 12);
-            this.idTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.idTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.idTextBox.Name = "idTextBox";
             this.idTextBox.ReadOnly = true;
             this.idTextBox.Size = new System.Drawing.Size(400, 29);
@@ -224,7 +224,7 @@
             this.adressTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.adressTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.adressTextBox.Location = new System.Drawing.Point(263, 84);
-            this.adressTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.adressTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.adressTextBox.Name = "adressTextBox";
             this.adressTextBox.ReadOnly = true;
             this.adressTextBox.Size = new System.Drawing.Size(400, 23);
@@ -238,7 +238,7 @@
             this.nameTextBox.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nameTextBox.ForeColor = System.Drawing.SystemColors.WindowText;
             this.nameTextBox.Location = new System.Drawing.Point(263, 48);
-            this.nameTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.nameTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.ReadOnly = true;
             this.nameTextBox.Size = new System.Drawing.Size(400, 29);
@@ -249,7 +249,7 @@
             // 
             this.pictureBox.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox.Image")));
             this.pictureBox.Location = new System.Drawing.Point(13, 12);
-            this.pictureBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(213, 197);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -264,7 +264,7 @@
             this.dataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView.GridColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.dataGridView.Location = new System.Drawing.Point(20, 258);
-            this.dataGridView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView.MultiSelect = false;
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowHeadersWidth = 62;
@@ -283,7 +283,7 @@
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.dataGridView);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "WarehousesForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -303,7 +303,7 @@
         private System.Windows.Forms.Panel actionsPanel;
         private System.Windows.Forms.CheckBox showInactiveCheckBox;
         private System.Windows.Forms.CheckBox showActiveCheckBox;
-        private System.Windows.Forms.Button filterButton;
+        private System.Windows.Forms.Button clearButton;
         private System.Windows.Forms.Label filterLabel;
         private System.Windows.Forms.TextBox filterTextBox;
         private System.Windows.Forms.Button exportButton;

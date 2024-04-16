@@ -267,7 +267,7 @@ namespace WindowsForms
             Functions.exportCSV(dataGridView, ConfigurationManager.AppSettings["csv_folder"] + "Clientes.csv");
         }
 
-        private void filterButton_Click(object sender, EventArgs e)
+        private void clearButton_Click(object sender, EventArgs e)
         {
             filterTextBox.Text = "";
             showActiveCheckBox.Checked = true;

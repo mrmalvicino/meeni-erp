@@ -30,20 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StockForm));
             this.actionsPanel = new System.Windows.Forms.Panel();
-            this.productFilterTextBox = new System.Windows.Forms.TextBox();
-            this.productFilterLabel = new System.Windows.Forms.Label();
-            this.filterButton = new System.Windows.Forms.Button();
-            this.warehouseFilterLabel = new System.Windows.Forms.Label();
-            this.warehouseFilterTextBox = new System.Windows.Forms.TextBox();
-            this.toComboBox = new System.Windows.Forms.ComboBox();
-            this.fromComboBox = new System.Windows.Forms.ComboBox();
+            this.compartmentComboBox = new System.Windows.Forms.ComboBox();
+            this.warehouseComboBox = new System.Windows.Forms.ComboBox();
             this.toLabel = new System.Windows.Forms.Label();
-            this.fromLabel = new System.Windows.Forms.Label();
             this.moveTextBox = new System.Windows.Forms.TextBox();
             this.moveButton = new System.Windows.Forms.Button();
-            this.stockTextBox = new System.Windows.Forms.TextBox();
             this.exportCSVButton = new System.Windows.Forms.Button();
-            this.stockButton = new System.Windows.Forms.Button();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.productNameTextBox = new System.Windows.Forms.TextBox();
             this.productIdTextBox = new System.Windows.Forms.TextBox();
@@ -52,6 +44,15 @@
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.compartmentIdTextBox = new System.Windows.Forms.TextBox();
             this.compartmentNameTextBox = new System.Windows.Forms.TextBox();
+            this.deleteButton = new System.Windows.Forms.Button();
+            this.editButton = new System.Windows.Forms.Button();
+            this.newButton = new System.Windows.Forms.Button();
+            this.amountLabel = new System.Windows.Forms.Label();
+            this.showInactiveCheckBox = new System.Windows.Forms.CheckBox();
+            this.showActiveCheckBox = new System.Windows.Forms.CheckBox();
+            this.clearButton = new System.Windows.Forms.Button();
+            this.filterLabel = new System.Windows.Forms.Label();
+            this.filterTextBox = new System.Windows.Forms.TextBox();
             this.actionsPanel.SuspendLayout();
             this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
@@ -60,127 +61,65 @@
             // actionsPanel
             // 
             this.actionsPanel.BackColor = System.Drawing.SystemColors.Control;
-            this.actionsPanel.Controls.Add(this.productFilterTextBox);
-            this.actionsPanel.Controls.Add(this.productFilterLabel);
-            this.actionsPanel.Controls.Add(this.filterButton);
-            this.actionsPanel.Controls.Add(this.warehouseFilterLabel);
-            this.actionsPanel.Controls.Add(this.warehouseFilterTextBox);
-            this.actionsPanel.Controls.Add(this.toComboBox);
-            this.actionsPanel.Controls.Add(this.fromComboBox);
+            this.actionsPanel.Controls.Add(this.showInactiveCheckBox);
+            this.actionsPanel.Controls.Add(this.showActiveCheckBox);
+            this.actionsPanel.Controls.Add(this.clearButton);
+            this.actionsPanel.Controls.Add(this.filterLabel);
+            this.actionsPanel.Controls.Add(this.filterTextBox);
+            this.actionsPanel.Controls.Add(this.amountLabel);
+            this.actionsPanel.Controls.Add(this.deleteButton);
+            this.actionsPanel.Controls.Add(this.editButton);
+            this.actionsPanel.Controls.Add(this.newButton);
+            this.actionsPanel.Controls.Add(this.compartmentComboBox);
+            this.actionsPanel.Controls.Add(this.warehouseComboBox);
             this.actionsPanel.Controls.Add(this.toLabel);
-            this.actionsPanel.Controls.Add(this.fromLabel);
             this.actionsPanel.Controls.Add(this.moveTextBox);
             this.actionsPanel.Controls.Add(this.moveButton);
-            this.actionsPanel.Controls.Add(this.stockTextBox);
             this.actionsPanel.Controls.Add(this.exportCSVButton);
-            this.actionsPanel.Controls.Add(this.stockButton);
             this.actionsPanel.Location = new System.Drawing.Point(707, 18);
             this.actionsPanel.Margin = new System.Windows.Forms.Padding(4);
             this.actionsPanel.Name = "actionsPanel";
             this.actionsPanel.Size = new System.Drawing.Size(953, 222);
             this.actionsPanel.TabIndex = 5;
             // 
-            // productFilterTextBox
+            // compartmentComboBox
             // 
-            this.productFilterTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productFilterTextBox.Location = new System.Drawing.Point(760, 160);
-            this.productFilterTextBox.Margin = new System.Windows.Forms.Padding(4);
-            this.productFilterTextBox.Name = "productFilterTextBox";
-            this.productFilterTextBox.Size = new System.Drawing.Size(159, 30);
-            this.productFilterTextBox.TabIndex = 75;
+            this.compartmentComboBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.compartmentComboBox.FormattingEnabled = true;
+            this.compartmentComboBox.Location = new System.Drawing.Point(720, 99);
+            this.compartmentComboBox.Margin = new System.Windows.Forms.Padding(4);
+            this.compartmentComboBox.Name = "compartmentComboBox";
+            this.compartmentComboBox.Size = new System.Drawing.Size(200, 31);
+            this.compartmentComboBox.TabIndex = 14;
             // 
-            // productFilterLabel
+            // warehouseComboBox
             // 
-            this.productFilterLabel.AutoSize = true;
-            this.productFilterLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productFilterLabel.Location = new System.Drawing.Point(567, 164);
-            this.productFilterLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.productFilterLabel.Name = "productFilterLabel";
-            this.productFilterLabel.Size = new System.Drawing.Size(182, 23);
-            this.productFilterLabel.TabIndex = 74;
-            this.productFilterLabel.Text = "por N⁰ de producto:";
-            // 
-            // filterButton
-            // 
-            this.filterButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.filterButton.Location = new System.Drawing.Point(33, 154);
-            this.filterButton.Margin = new System.Windows.Forms.Padding(4);
-            this.filterButton.Name = "filterButton";
-            this.filterButton.Size = new System.Drawing.Size(160, 43);
-            this.filterButton.TabIndex = 73;
-            this.filterButton.Text = "Filtrar";
-            this.filterButton.UseVisualStyleBackColor = true;
-            this.filterButton.Click += new System.EventHandler(this.filterButton_Click);
-            // 
-            // warehouseFilterLabel
-            // 
-            this.warehouseFilterLabel.AutoSize = true;
-            this.warehouseFilterLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.warehouseFilterLabel.Location = new System.Drawing.Point(201, 164);
-            this.warehouseFilterLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.warehouseFilterLabel.Name = "warehouseFilterLabel";
-            this.warehouseFilterLabel.Size = new System.Drawing.Size(180, 23);
-            this.warehouseFilterLabel.TabIndex = 72;
-            this.warehouseFilterLabel.Text = "por N⁰ de depósito:";
-            // 
-            // warehouseFilterTextBox
-            // 
-            this.warehouseFilterTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.warehouseFilterTextBox.Location = new System.Drawing.Point(399, 160);
-            this.warehouseFilterTextBox.Margin = new System.Windows.Forms.Padding(4);
-            this.warehouseFilterTextBox.Name = "warehouseFilterTextBox";
-            this.warehouseFilterTextBox.Size = new System.Drawing.Size(159, 30);
-            this.warehouseFilterTextBox.TabIndex = 71;
-            // 
-            // toComboBox
-            // 
-            this.toComboBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toComboBox.FormattingEnabled = true;
-            this.toComboBox.Location = new System.Drawing.Point(687, 98);
-            this.toComboBox.Margin = new System.Windows.Forms.Padding(4);
-            this.toComboBox.Name = "toComboBox";
-            this.toComboBox.Size = new System.Drawing.Size(232, 31);
-            this.toComboBox.TabIndex = 14;
-            // 
-            // fromComboBox
-            // 
-            this.fromComboBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fromComboBox.FormattingEnabled = true;
-            this.fromComboBox.Location = new System.Drawing.Point(412, 98);
-            this.fromComboBox.Margin = new System.Windows.Forms.Padding(4);
-            this.fromComboBox.Name = "fromComboBox";
-            this.fromComboBox.Size = new System.Drawing.Size(232, 31);
-            this.fromComboBox.TabIndex = 13;
+            this.warehouseComboBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.warehouseComboBox.FormattingEnabled = true;
+            this.warehouseComboBox.Location = new System.Drawing.Point(512, 99);
+            this.warehouseComboBox.Margin = new System.Windows.Forms.Padding(4);
+            this.warehouseComboBox.Name = "warehouseComboBox";
+            this.warehouseComboBox.Size = new System.Drawing.Size(200, 31);
+            this.warehouseComboBox.TabIndex = 13;
             // 
             // toLabel
             // 
             this.toLabel.AutoSize = true;
             this.toLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toLabel.Location = new System.Drawing.Point(656, 102);
+            this.toLabel.Location = new System.Drawing.Point(425, 102);
             this.toLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.toLabel.Name = "toLabel";
-            this.toLabel.Size = new System.Drawing.Size(21, 23);
+            this.toLabel.Size = new System.Drawing.Size(79, 23);
             this.toLabel.TabIndex = 12;
-            this.toLabel.Text = "a";
-            // 
-            // fromLabel
-            // 
-            this.fromLabel.AutoSize = true;
-            this.fromLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fromLabel.Location = new System.Drawing.Point(369, 102);
-            this.fromLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.fromLabel.Name = "fromLabel";
-            this.fromLabel.Size = new System.Drawing.Size(32, 23);
-            this.fromLabel.TabIndex = 11;
-            this.fromLabel.Text = "de";
+            this.toLabel.Text = "destino:";
             // 
             // moveTextBox
             // 
             this.moveTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.moveTextBox.Location = new System.Drawing.Point(201, 98);
+            this.moveTextBox.Location = new System.Drawing.Point(283, 99);
             this.moveTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.moveTextBox.Name = "moveTextBox";
-            this.moveTextBox.Size = new System.Drawing.Size(159, 30);
+            this.moveTextBox.Size = new System.Drawing.Size(120, 30);
             this.moveTextBox.TabIndex = 10;
             // 
             // moveButton
@@ -195,15 +134,6 @@
             this.moveButton.UseVisualStyleBackColor = true;
             this.moveButton.Click += new System.EventHandler(this.moveButton_Click);
             // 
-            // stockTextBox
-            // 
-            this.stockTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stockTextBox.Location = new System.Drawing.Point(201, 37);
-            this.stockTextBox.Margin = new System.Windows.Forms.Padding(4);
-            this.stockTextBox.Name = "stockTextBox";
-            this.stockTextBox.Size = new System.Drawing.Size(159, 30);
-            this.stockTextBox.TabIndex = 4;
-            // 
             // exportCSVButton
             // 
             this.exportCSVButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -215,18 +145,6 @@
             this.exportCSVButton.Text = "Exportar CSV";
             this.exportCSVButton.UseVisualStyleBackColor = true;
             this.exportCSVButton.Click += new System.EventHandler(this.exportCSVButton_Click);
-            // 
-            // stockButton
-            // 
-            this.stockButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stockButton.Location = new System.Drawing.Point(33, 31);
-            this.stockButton.Margin = new System.Windows.Forms.Padding(4);
-            this.stockButton.Name = "stockButton";
-            this.stockButton.Size = new System.Drawing.Size(160, 43);
-            this.stockButton.TabIndex = 0;
-            this.stockButton.Text = "Ajustar stock";
-            this.stockButton.UseVisualStyleBackColor = true;
-            this.stockButton.Click += new System.EventHandler(this.stockButton_Click);
             // 
             // mainPanel
             // 
@@ -341,6 +259,107 @@
             this.compartmentNameTextBox.TabIndex = 11;
             this.compartmentNameTextBox.Text = "CompartmentName";
             // 
+            // deleteButton
+            // 
+            this.deleteButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deleteButton.Location = new System.Drawing.Point(369, 31);
+            this.deleteButton.Margin = new System.Windows.Forms.Padding(4);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(160, 43);
+            this.deleteButton.TabIndex = 76;
+            this.deleteButton.Text = "Eliminar";
+            this.deleteButton.UseVisualStyleBackColor = true;
+            // 
+            // editButton
+            // 
+            this.editButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.editButton.Location = new System.Drawing.Point(201, 31);
+            this.editButton.Margin = new System.Windows.Forms.Padding(4);
+            this.editButton.Name = "editButton";
+            this.editButton.Size = new System.Drawing.Size(160, 43);
+            this.editButton.TabIndex = 75;
+            this.editButton.Text = "Editar";
+            this.editButton.UseVisualStyleBackColor = true;
+            // 
+            // newButton
+            // 
+            this.newButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.newButton.Location = new System.Drawing.Point(33, 31);
+            this.newButton.Margin = new System.Windows.Forms.Padding(4);
+            this.newButton.Name = "newButton";
+            this.newButton.Size = new System.Drawing.Size(160, 43);
+            this.newButton.TabIndex = 74;
+            this.newButton.Text = "Nuevo";
+            this.newButton.UseVisualStyleBackColor = true;
+            // 
+            // amountLabel
+            // 
+            this.amountLabel.AutoSize = true;
+            this.amountLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.amountLabel.Location = new System.Drawing.Point(216, 102);
+            this.amountLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.amountLabel.Name = "amountLabel";
+            this.amountLabel.Size = new System.Drawing.Size(59, 23);
+            this.amountLabel.TabIndex = 77;
+            this.amountLabel.Text = "cant.:";
+            // 
+            // showInactiveCheckBox
+            // 
+            this.showInactiveCheckBox.AutoSize = true;
+            this.showInactiveCheckBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.showInactiveCheckBox.Location = new System.Drawing.Point(619, 163);
+            this.showInactiveCheckBox.Margin = new System.Windows.Forms.Padding(4);
+            this.showInactiveCheckBox.Name = "showInactiveCheckBox";
+            this.showInactiveCheckBox.Size = new System.Drawing.Size(109, 27);
+            this.showInactiveCheckBox.TabIndex = 80;
+            this.showInactiveCheckBox.Text = "Inactivos";
+            this.showInactiveCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // showActiveCheckBox
+            // 
+            this.showActiveCheckBox.AutoSize = true;
+            this.showActiveCheckBox.Checked = true;
+            this.showActiveCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showActiveCheckBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.showActiveCheckBox.Location = new System.Drawing.Point(499, 163);
+            this.showActiveCheckBox.Margin = new System.Windows.Forms.Padding(4);
+            this.showActiveCheckBox.Name = "showActiveCheckBox";
+            this.showActiveCheckBox.Size = new System.Drawing.Size(95, 27);
+            this.showActiveCheckBox.TabIndex = 79;
+            this.showActiveCheckBox.Text = "Activos";
+            this.showActiveCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // clearButton
+            // 
+            this.clearButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clearButton.Location = new System.Drawing.Point(760, 154);
+            this.clearButton.Margin = new System.Windows.Forms.Padding(4);
+            this.clearButton.Name = "clearButton";
+            this.clearButton.Size = new System.Drawing.Size(160, 43);
+            this.clearButton.TabIndex = 81;
+            this.clearButton.Text = "Limpiar";
+            this.clearButton.UseVisualStyleBackColor = true;
+            // 
+            // filterLabel
+            // 
+            this.filterLabel.AutoSize = true;
+            this.filterLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.filterLabel.Location = new System.Drawing.Point(29, 164);
+            this.filterLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.filterLabel.Name = "filterLabel";
+            this.filterLabel.Size = new System.Drawing.Size(60, 23);
+            this.filterLabel.TabIndex = 82;
+            this.filterLabel.Text = "Filtro:";
+            // 
+            // filterTextBox
+            // 
+            this.filterTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.filterTextBox.Location = new System.Drawing.Point(115, 161);
+            this.filterTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.filterTextBox.Name = "filterTextBox";
+            this.filterTextBox.Size = new System.Drawing.Size(359, 30);
+            this.filterTextBox.TabIndex = 78;
+            // 
             // StockForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -369,26 +388,27 @@
 
         private System.Windows.Forms.Panel actionsPanel;
         private System.Windows.Forms.Button exportCSVButton;
-        private System.Windows.Forms.Button stockButton;
         private System.Windows.Forms.Panel mainPanel;
         private System.Windows.Forms.DataGridView dataGridView;
-        private System.Windows.Forms.TextBox stockTextBox;
         private System.Windows.Forms.Button moveButton;
         private System.Windows.Forms.TextBox moveTextBox;
-        private System.Windows.Forms.ComboBox toComboBox;
-        private System.Windows.Forms.ComboBox fromComboBox;
+        private System.Windows.Forms.ComboBox compartmentComboBox;
+        private System.Windows.Forms.ComboBox warehouseComboBox;
         private System.Windows.Forms.Label toLabel;
-        private System.Windows.Forms.Label fromLabel;
         private System.Windows.Forms.TextBox warehouseNameTextBox;
-        private System.Windows.Forms.Label warehouseFilterLabel;
-        private System.Windows.Forms.TextBox warehouseFilterTextBox;
-        private System.Windows.Forms.Button filterButton;
-        private System.Windows.Forms.Label productFilterLabel;
-        private System.Windows.Forms.TextBox productFilterTextBox;
         private System.Windows.Forms.TextBox productNameTextBox;
         private System.Windows.Forms.TextBox productIdTextBox;
         private System.Windows.Forms.TextBox warehouseIdTextBox;
         private System.Windows.Forms.TextBox compartmentIdTextBox;
         private System.Windows.Forms.TextBox compartmentNameTextBox;
+        private System.Windows.Forms.Button deleteButton;
+        private System.Windows.Forms.Button editButton;
+        private System.Windows.Forms.Button newButton;
+        private System.Windows.Forms.Label amountLabel;
+        private System.Windows.Forms.CheckBox showInactiveCheckBox;
+        private System.Windows.Forms.CheckBox showActiveCheckBox;
+        private System.Windows.Forms.Button clearButton;
+        private System.Windows.Forms.Label filterLabel;
+        private System.Windows.Forms.TextBox filterTextBox;
     }
 }

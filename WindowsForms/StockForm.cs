@@ -76,13 +76,11 @@ namespace WindowsForms
             if (0 < dataGridView.RowCount)
             {
                 exportCSVButton.Enabled = true;
-                stockButton.Enabled = true;
                 moveButton.Enabled = true;
             }
             else
             {
                 exportCSVButton.Enabled = false;
-                stockButton.Enabled = false;
                 moveButton.Enabled = false;
                 loadProfile();
             }
@@ -154,17 +152,7 @@ namespace WindowsForms
             Functions.exportCSV(dataGridView, ConfigurationManager.AppSettings["csv_folder"] + "Stock.csv");
         }
 
-        private void stockButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void moveButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void filterButton_Click(object sender, EventArgs e)
         {
 
         }
