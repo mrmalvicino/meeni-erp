@@ -50,15 +50,13 @@
             this.serviceAmountNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.serviceAmountTextBox = new System.Windows.Forms.TextBox();
             this.detailsComboBox = new System.Windows.Forms.ComboBox();
-            this.discountLabelTextBox = new System.Windows.Forms.TextBox();
-            this.discountValueTextBox = new System.Windows.Forms.TextBox();
+            this.adjustmentLabelTextBox = new System.Windows.Forms.TextBox();
+            this.adjustmentTextBox = new System.Windows.Forms.TextBox();
             this.descriptionLabelTextBox = new System.Windows.Forms.TextBox();
-            this.descriptionValueTextBox = new System.Windows.Forms.TextBox();
-            this.addDiscountButton = new System.Windows.Forms.Button();
+            this.descriptionTextBox = new System.Windows.Forms.TextBox();
+            this.addAdjustmentButton = new System.Windows.Forms.Button();
             this.productAmountNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.productAmountTextBox = new System.Windows.Forms.TextBox();
-            this.warehouseComboBox = new System.Windows.Forms.ComboBox();
-            this.warehouseTextBox = new System.Windows.Forms.TextBox();
             this.addServiceButton = new System.Windows.Forms.Button();
             this.serviceCategoryComboBox = new System.Windows.Forms.ComboBox();
             this.serviceCategoryTextBox = new System.Windows.Forms.TextBox();
@@ -83,56 +81,60 @@
             this.listBox.FormattingEnabled = true;
             this.listBox.ItemHeight = 20;
             this.listBox.Location = new System.Drawing.Point(707, 132);
-            this.listBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listBox.Margin = new System.Windows.Forms.Padding(4);
             this.listBox.Name = "listBox";
             this.listBox.Size = new System.Drawing.Size(952, 624);
             this.listBox.TabIndex = 0;
             // 
             // productCategoryComboBox
             // 
-            this.productCategoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.productCategoryComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.productCategoryComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.productCategoryComboBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.productCategoryComboBox.FormattingEnabled = true;
-            this.productCategoryComboBox.Location = new System.Drawing.Point(127, 64);
-            this.productCategoryComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.productCategoryComboBox.Location = new System.Drawing.Point(127, 22);
+            this.productCategoryComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.productCategoryComboBox.Name = "productCategoryComboBox";
             this.productCategoryComboBox.Size = new System.Drawing.Size(505, 31);
             this.productCategoryComboBox.TabIndex = 3;
             this.productCategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.productCategoryComboBox_SelectedIndexChanged);
+            this.productCategoryComboBox.TextChanged += new System.EventHandler(this.productCategoryComboBox_TextChanged);
             // 
             // brandComboBox
             // 
-            this.brandComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.brandComboBox.Enabled = false;
+            this.brandComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.brandComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.brandComboBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.brandComboBox.FormattingEnabled = true;
-            this.brandComboBox.Location = new System.Drawing.Point(127, 103);
-            this.brandComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.brandComboBox.Location = new System.Drawing.Point(127, 61);
+            this.brandComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.brandComboBox.Name = "brandComboBox";
             this.brandComboBox.Size = new System.Drawing.Size(505, 31);
             this.brandComboBox.TabIndex = 4;
             this.brandComboBox.SelectedIndexChanged += new System.EventHandler(this.brandComboBox_SelectedIndexChanged);
+            this.brandComboBox.TextChanged += new System.EventHandler(this.brandComboBox_TextChanged);
             // 
             // modelComboBox
             // 
-            this.modelComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.modelComboBox.Enabled = false;
+            this.modelComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.modelComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.modelComboBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.modelComboBox.FormattingEnabled = true;
-            this.modelComboBox.Location = new System.Drawing.Point(127, 143);
-            this.modelComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.modelComboBox.Location = new System.Drawing.Point(127, 101);
+            this.modelComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.modelComboBox.Name = "modelComboBox";
             this.modelComboBox.Size = new System.Drawing.Size(505, 31);
             this.modelComboBox.TabIndex = 5;
             this.modelComboBox.SelectedIndexChanged += new System.EventHandler(this.modelComboBox_SelectedIndexChanged);
+            this.modelComboBox.TextChanged += new System.EventHandler(this.modelComboBox_TextChanged);
             // 
             // productCategoryTextBox
             // 
             this.productCategoryTextBox.BackColor = System.Drawing.SystemColors.Control;
             this.productCategoryTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.productCategoryTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productCategoryTextBox.Location = new System.Drawing.Point(33, 68);
-            this.productCategoryTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.productCategoryTextBox.Location = new System.Drawing.Point(33, 26);
+            this.productCategoryTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.productCategoryTextBox.Name = "productCategoryTextBox";
             this.productCategoryTextBox.ReadOnly = true;
             this.productCategoryTextBox.Size = new System.Drawing.Size(85, 23);
@@ -144,8 +146,8 @@
             this.brandTextBox.BackColor = System.Drawing.SystemColors.Control;
             this.brandTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.brandTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.brandTextBox.Location = new System.Drawing.Point(33, 107);
-            this.brandTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.brandTextBox.Location = new System.Drawing.Point(33, 65);
+            this.brandTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.brandTextBox.Name = "brandTextBox";
             this.brandTextBox.ReadOnly = true;
             this.brandTextBox.Size = new System.Drawing.Size(85, 23);
@@ -157,8 +159,8 @@
             this.modelTextBox.BackColor = System.Drawing.SystemColors.Control;
             this.modelTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.modelTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.modelTextBox.Location = new System.Drawing.Point(33, 146);
-            this.modelTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.modelTextBox.Location = new System.Drawing.Point(33, 104);
+            this.modelTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.modelTextBox.Name = "modelTextBox";
             this.modelTextBox.ReadOnly = true;
             this.modelTextBox.Size = new System.Drawing.Size(85, 23);
@@ -177,7 +179,7 @@
             this.mainPanel.Controls.Add(this.activeStatusComboBox);
             this.mainPanel.Controls.Add(this.statusTextBox);
             this.mainPanel.Location = new System.Drawing.Point(20, 18);
-            this.mainPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.mainPanel.Margin = new System.Windows.Forms.Padding(4);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(667, 222);
             this.mainPanel.TabIndex = 11;
@@ -188,7 +190,7 @@
             this.customerTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.customerTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.customerTextBox.Location = new System.Drawing.Point(33, 102);
-            this.customerTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.customerTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.customerTextBox.Name = "customerTextBox";
             this.customerTextBox.ReadOnly = true;
             this.customerTextBox.Size = new System.Drawing.Size(85, 23);
@@ -199,7 +201,7 @@
             // 
             this.jobDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.jobDateTimePicker.Location = new System.Drawing.Point(473, 32);
-            this.jobDateTimePicker.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.jobDateTimePicker.Margin = new System.Windows.Forms.Padding(4);
             this.jobDateTimePicker.MaxDate = new System.DateTime(9000, 1, 1, 0, 0, 0, 0);
             this.jobDateTimePicker.MinDate = new System.DateTime(1800, 1, 1, 0, 0, 0, 0);
             this.jobDateTimePicker.Name = "jobDateTimePicker";
@@ -218,7 +220,7 @@
             "Señado",
             "Vendido"});
             this.customerComboBox.Location = new System.Drawing.Point(127, 98);
-            this.customerComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.customerComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.customerComboBox.Name = "customerComboBox";
             this.customerComboBox.Size = new System.Drawing.Size(505, 31);
             this.customerComboBox.TabIndex = 30;
@@ -227,7 +229,7 @@
             // 
             this.variantVersionNumericUpDown.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.variantVersionNumericUpDown.Location = new System.Drawing.Point(127, 138);
-            this.variantVersionNumericUpDown.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.variantVersionNumericUpDown.Margin = new System.Windows.Forms.Padding(4);
             this.variantVersionNumericUpDown.Maximum = new decimal(new int[] {
             255,
             0,
@@ -254,7 +256,7 @@
             this.versionTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.versionTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.versionTextBox.Location = new System.Drawing.Point(33, 140);
-            this.versionTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.versionTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.versionTextBox.Name = "versionTextBox";
             this.versionTextBox.ReadOnly = true;
             this.versionTextBox.Size = new System.Drawing.Size(85, 23);
@@ -268,7 +270,7 @@
             this.quoteIdTextBox.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.quoteIdTextBox.ForeColor = System.Drawing.SystemColors.WindowText;
             this.quoteIdTextBox.Location = new System.Drawing.Point(33, 31);
-            this.quoteIdTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.quoteIdTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.quoteIdTextBox.Name = "quoteIdTextBox";
             this.quoteIdTextBox.ReadOnly = true;
             this.quoteIdTextBox.Size = new System.Drawing.Size(392, 29);
@@ -286,7 +288,7 @@
             "Señado",
             "Vendido"});
             this.activeStatusComboBox.Location = new System.Drawing.Point(473, 138);
-            this.activeStatusComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.activeStatusComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.activeStatusComboBox.Name = "activeStatusComboBox";
             this.activeStatusComboBox.Size = new System.Drawing.Size(159, 31);
             this.activeStatusComboBox.TabIndex = 32;
@@ -297,7 +299,7 @@
             this.statusTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.statusTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.statusTextBox.Location = new System.Drawing.Point(380, 142);
-            this.statusTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.statusTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.statusTextBox.Name = "statusTextBox";
             this.statusTextBox.ReadOnly = true;
             this.statusTextBox.Size = new System.Drawing.Size(85, 23);
@@ -307,8 +309,8 @@
             // addProductButton
             // 
             this.addProductButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addProductButton.Location = new System.Drawing.Point(433, 182);
-            this.addProductButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.addProductButton.Location = new System.Drawing.Point(433, 140);
+            this.addProductButton.Margin = new System.Windows.Forms.Padding(4);
             this.addProductButton.Name = "addProductButton";
             this.addProductButton.Size = new System.Drawing.Size(200, 43);
             this.addProductButton.TabIndex = 13;
@@ -321,15 +323,13 @@
             this.addingPanel.Controls.Add(this.serviceAmountNumericUpDown);
             this.addingPanel.Controls.Add(this.serviceAmountTextBox);
             this.addingPanel.Controls.Add(this.detailsComboBox);
-            this.addingPanel.Controls.Add(this.discountLabelTextBox);
-            this.addingPanel.Controls.Add(this.discountValueTextBox);
+            this.addingPanel.Controls.Add(this.adjustmentLabelTextBox);
+            this.addingPanel.Controls.Add(this.adjustmentTextBox);
             this.addingPanel.Controls.Add(this.descriptionLabelTextBox);
-            this.addingPanel.Controls.Add(this.descriptionValueTextBox);
-            this.addingPanel.Controls.Add(this.addDiscountButton);
+            this.addingPanel.Controls.Add(this.descriptionTextBox);
+            this.addingPanel.Controls.Add(this.addAdjustmentButton);
             this.addingPanel.Controls.Add(this.productAmountNumericUpDown);
             this.addingPanel.Controls.Add(this.productAmountTextBox);
-            this.addingPanel.Controls.Add(this.warehouseComboBox);
-            this.addingPanel.Controls.Add(this.warehouseTextBox);
             this.addingPanel.Controls.Add(this.addServiceButton);
             this.addingPanel.Controls.Add(this.serviceCategoryComboBox);
             this.addingPanel.Controls.Add(this.serviceCategoryTextBox);
@@ -342,7 +342,7 @@
             this.addingPanel.Controls.Add(this.modelTextBox);
             this.addingPanel.Controls.Add(this.brandTextBox);
             this.addingPanel.Location = new System.Drawing.Point(20, 258);
-            this.addingPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.addingPanel.Margin = new System.Windows.Forms.Padding(4);
             this.addingPanel.Name = "addingPanel";
             this.addingPanel.Size = new System.Drawing.Size(667, 498);
             this.addingPanel.TabIndex = 14;
@@ -350,8 +350,13 @@
             // serviceAmountNumericUpDown
             // 
             this.serviceAmountNumericUpDown.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.serviceAmountNumericUpDown.Location = new System.Drawing.Point(127, 335);
-            this.serviceAmountNumericUpDown.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.serviceAmountNumericUpDown.Location = new System.Drawing.Point(127, 308);
+            this.serviceAmountNumericUpDown.Margin = new System.Windows.Forms.Padding(4);
+            this.serviceAmountNumericUpDown.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
             this.serviceAmountNumericUpDown.Name = "serviceAmountNumericUpDown";
             this.serviceAmountNumericUpDown.Size = new System.Drawing.Size(160, 30);
             this.serviceAmountNumericUpDown.TabIndex = 32;
@@ -362,8 +367,8 @@
             this.serviceAmountTextBox.BackColor = System.Drawing.SystemColors.Control;
             this.serviceAmountTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.serviceAmountTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.serviceAmountTextBox.Location = new System.Drawing.Point(33, 337);
-            this.serviceAmountTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.serviceAmountTextBox.Location = new System.Drawing.Point(33, 310);
+            this.serviceAmountTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.serviceAmountTextBox.Name = "serviceAmountTextBox";
             this.serviceAmountTextBox.ReadOnly = true;
             this.serviceAmountTextBox.Size = new System.Drawing.Size(85, 23);
@@ -372,38 +377,39 @@
             // 
             // detailsComboBox
             // 
-            this.detailsComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.detailsComboBox.Enabled = false;
+            this.detailsComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.detailsComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.detailsComboBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.detailsComboBox.FormattingEnabled = true;
-            this.detailsComboBox.Location = new System.Drawing.Point(127, 288);
-            this.detailsComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.detailsComboBox.Location = new System.Drawing.Point(127, 261);
+            this.detailsComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.detailsComboBox.Name = "detailsComboBox";
             this.detailsComboBox.Size = new System.Drawing.Size(505, 31);
             this.detailsComboBox.TabIndex = 30;
             this.detailsComboBox.SelectedIndexChanged += new System.EventHandler(this.detailsComboBox_SelectedIndexChanged);
+            this.detailsComboBox.TextChanged += new System.EventHandler(this.detailsComboBox_TextChanged);
             // 
-            // discountLabelTextBox
+            // adjustmentLabelTextBox
             // 
-            this.discountLabelTextBox.BackColor = System.Drawing.SystemColors.Control;
-            this.discountLabelTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.discountLabelTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.discountLabelTextBox.Location = new System.Drawing.Point(33, 443);
-            this.discountLabelTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.discountLabelTextBox.Name = "discountLabelTextBox";
-            this.discountLabelTextBox.ReadOnly = true;
-            this.discountLabelTextBox.Size = new System.Drawing.Size(85, 23);
-            this.discountLabelTextBox.TabIndex = 29;
-            this.discountLabelTextBox.Text = "Monto: $";
+            this.adjustmentLabelTextBox.BackColor = System.Drawing.SystemColors.Control;
+            this.adjustmentLabelTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.adjustmentLabelTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.adjustmentLabelTextBox.Location = new System.Drawing.Point(33, 443);
+            this.adjustmentLabelTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.adjustmentLabelTextBox.Name = "adjustmentLabelTextBox";
+            this.adjustmentLabelTextBox.ReadOnly = true;
+            this.adjustmentLabelTextBox.Size = new System.Drawing.Size(85, 23);
+            this.adjustmentLabelTextBox.TabIndex = 29;
+            this.adjustmentLabelTextBox.Text = "Monto: $";
             // 
-            // discountValueTextBox
+            // adjustmentTextBox
             // 
-            this.discountValueTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.discountValueTextBox.Location = new System.Drawing.Point(127, 439);
-            this.discountValueTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.discountValueTextBox.Name = "discountValueTextBox";
-            this.discountValueTextBox.Size = new System.Drawing.Size(159, 30);
-            this.discountValueTextBox.TabIndex = 28;
+            this.adjustmentTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.adjustmentTextBox.Location = new System.Drawing.Point(127, 439);
+            this.adjustmentTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.adjustmentTextBox.Name = "adjustmentTextBox";
+            this.adjustmentTextBox.Size = new System.Drawing.Size(159, 30);
+            this.adjustmentTextBox.TabIndex = 28;
             // 
             // descriptionLabelTextBox
             // 
@@ -411,39 +417,44 @@
             this.descriptionLabelTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.descriptionLabelTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.descriptionLabelTextBox.Location = new System.Drawing.Point(33, 398);
-            this.descriptionLabelTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.descriptionLabelTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.descriptionLabelTextBox.Name = "descriptionLabelTextBox";
             this.descriptionLabelTextBox.ReadOnly = true;
             this.descriptionLabelTextBox.Size = new System.Drawing.Size(85, 23);
             this.descriptionLabelTextBox.TabIndex = 27;
             this.descriptionLabelTextBox.Text = "Descrip.:";
             // 
-            // descriptionValueTextBox
+            // descriptionTextBox
             // 
-            this.descriptionValueTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.descriptionValueTextBox.Location = new System.Drawing.Point(127, 394);
-            this.descriptionValueTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.descriptionValueTextBox.Name = "descriptionValueTextBox";
-            this.descriptionValueTextBox.Size = new System.Drawing.Size(505, 30);
-            this.descriptionValueTextBox.TabIndex = 26;
+            this.descriptionTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.descriptionTextBox.Location = new System.Drawing.Point(127, 394);
+            this.descriptionTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.descriptionTextBox.Name = "descriptionTextBox";
+            this.descriptionTextBox.Size = new System.Drawing.Size(505, 30);
+            this.descriptionTextBox.TabIndex = 26;
             // 
-            // addDiscountButton
+            // addAdjustmentButton
             // 
-            this.addDiscountButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addDiscountButton.Location = new System.Drawing.Point(433, 433);
-            this.addDiscountButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.addDiscountButton.Name = "addDiscountButton";
-            this.addDiscountButton.Size = new System.Drawing.Size(200, 43);
-            this.addDiscountButton.TabIndex = 25;
-            this.addDiscountButton.Text = "Agregar descuento";
-            this.addDiscountButton.UseVisualStyleBackColor = true;
-            this.addDiscountButton.Click += new System.EventHandler(this.addDiscountButton_Click);
+            this.addAdjustmentButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addAdjustmentButton.Location = new System.Drawing.Point(433, 433);
+            this.addAdjustmentButton.Margin = new System.Windows.Forms.Padding(4);
+            this.addAdjustmentButton.Name = "addAdjustmentButton";
+            this.addAdjustmentButton.Size = new System.Drawing.Size(200, 43);
+            this.addAdjustmentButton.TabIndex = 25;
+            this.addAdjustmentButton.Text = "Agregar ajuste";
+            this.addAdjustmentButton.UseVisualStyleBackColor = true;
+            this.addAdjustmentButton.Click += new System.EventHandler(this.addAdjustmentButton_Click);
             // 
             // productAmountNumericUpDown
             // 
             this.productAmountNumericUpDown.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productAmountNumericUpDown.Location = new System.Drawing.Point(127, 190);
-            this.productAmountNumericUpDown.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.productAmountNumericUpDown.Location = new System.Drawing.Point(127, 148);
+            this.productAmountNumericUpDown.Margin = new System.Windows.Forms.Padding(4);
+            this.productAmountNumericUpDown.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
             this.productAmountNumericUpDown.Name = "productAmountNumericUpDown";
             this.productAmountNumericUpDown.Size = new System.Drawing.Size(160, 30);
             this.productAmountNumericUpDown.TabIndex = 24;
@@ -454,43 +465,19 @@
             this.productAmountTextBox.BackColor = System.Drawing.SystemColors.Control;
             this.productAmountTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.productAmountTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productAmountTextBox.Location = new System.Drawing.Point(33, 192);
-            this.productAmountTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.productAmountTextBox.Location = new System.Drawing.Point(33, 150);
+            this.productAmountTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.productAmountTextBox.Name = "productAmountTextBox";
             this.productAmountTextBox.ReadOnly = true;
             this.productAmountTextBox.Size = new System.Drawing.Size(85, 23);
             this.productAmountTextBox.TabIndex = 23;
             this.productAmountTextBox.Text = "Cant.:";
             // 
-            // warehouseComboBox
-            // 
-            this.warehouseComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.warehouseComboBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.warehouseComboBox.FormattingEnabled = true;
-            this.warehouseComboBox.Location = new System.Drawing.Point(127, 25);
-            this.warehouseComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.warehouseComboBox.Name = "warehouseComboBox";
-            this.warehouseComboBox.Size = new System.Drawing.Size(505, 31);
-            this.warehouseComboBox.TabIndex = 20;
-            // 
-            // warehouseTextBox
-            // 
-            this.warehouseTextBox.BackColor = System.Drawing.SystemColors.Control;
-            this.warehouseTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.warehouseTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.warehouseTextBox.Location = new System.Drawing.Point(33, 28);
-            this.warehouseTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.warehouseTextBox.Name = "warehouseTextBox";
-            this.warehouseTextBox.ReadOnly = true;
-            this.warehouseTextBox.Size = new System.Drawing.Size(85, 23);
-            this.warehouseTextBox.TabIndex = 21;
-            this.warehouseTextBox.Text = "Depósito:";
-            // 
             // addServiceButton
             // 
             this.addServiceButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addServiceButton.Location = new System.Drawing.Point(433, 327);
-            this.addServiceButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.addServiceButton.Location = new System.Drawing.Point(433, 300);
+            this.addServiceButton.Margin = new System.Windows.Forms.Padding(4);
             this.addServiceButton.Name = "addServiceButton";
             this.addServiceButton.Size = new System.Drawing.Size(200, 43);
             this.addServiceButton.TabIndex = 19;
@@ -500,23 +487,25 @@
             // 
             // serviceCategoryComboBox
             // 
-            this.serviceCategoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.serviceCategoryComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.serviceCategoryComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.serviceCategoryComboBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.serviceCategoryComboBox.FormattingEnabled = true;
-            this.serviceCategoryComboBox.Location = new System.Drawing.Point(127, 249);
-            this.serviceCategoryComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.serviceCategoryComboBox.Location = new System.Drawing.Point(127, 222);
+            this.serviceCategoryComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.serviceCategoryComboBox.Name = "serviceCategoryComboBox";
             this.serviceCategoryComboBox.Size = new System.Drawing.Size(505, 31);
             this.serviceCategoryComboBox.TabIndex = 17;
             this.serviceCategoryComboBox.SelectedIndexChanged += new System.EventHandler(this.serviceCategoryComboBox_SelectedIndexChanged);
+            this.serviceCategoryComboBox.TextChanged += new System.EventHandler(this.serviceCategoryComboBox_TextChanged);
             // 
             // serviceCategoryTextBox
             // 
             this.serviceCategoryTextBox.BackColor = System.Drawing.SystemColors.Control;
             this.serviceCategoryTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.serviceCategoryTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.serviceCategoryTextBox.Location = new System.Drawing.Point(33, 252);
-            this.serviceCategoryTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.serviceCategoryTextBox.Location = new System.Drawing.Point(33, 225);
+            this.serviceCategoryTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.serviceCategoryTextBox.Name = "serviceCategoryTextBox";
             this.serviceCategoryTextBox.ReadOnly = true;
             this.serviceCategoryTextBox.Size = new System.Drawing.Size(85, 23);
@@ -528,8 +517,8 @@
             this.detailsTextBox.BackColor = System.Drawing.SystemColors.Control;
             this.detailsTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.detailsTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.detailsTextBox.Location = new System.Drawing.Point(33, 292);
-            this.detailsTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.detailsTextBox.Location = new System.Drawing.Point(33, 265);
+            this.detailsTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.detailsTextBox.Name = "detailsTextBox";
             this.detailsTextBox.ReadOnly = true;
             this.detailsTextBox.Size = new System.Drawing.Size(85, 23);
@@ -540,7 +529,7 @@
             // 
             this.cleanButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cleanButton.Location = new System.Drawing.Point(311, 25);
-            this.cleanButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cleanButton.Margin = new System.Windows.Forms.Padding(4);
             this.cleanButton.Name = "cleanButton";
             this.cleanButton.Size = new System.Drawing.Size(160, 43);
             this.cleanButton.TabIndex = 14;
@@ -552,7 +541,7 @@
             // 
             this.upButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.upButton.Location = new System.Drawing.Point(33, 25);
-            this.upButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.upButton.Margin = new System.Windows.Forms.Padding(4);
             this.upButton.Name = "upButton";
             this.upButton.Size = new System.Drawing.Size(47, 43);
             this.upButton.TabIndex = 20;
@@ -564,7 +553,7 @@
             // 
             this.downButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.downButton.Location = new System.Drawing.Point(88, 25);
-            this.downButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.downButton.Margin = new System.Windows.Forms.Padding(4);
             this.downButton.Name = "downButton";
             this.downButton.Size = new System.Drawing.Size(47, 43);
             this.downButton.TabIndex = 21;
@@ -576,7 +565,7 @@
             // 
             this.saveButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveButton.Location = new System.Drawing.Point(760, 25);
-            this.saveButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.saveButton.Margin = new System.Windows.Forms.Padding(4);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(160, 43);
             this.saveButton.TabIndex = 16;
@@ -592,7 +581,7 @@
             this.actionsPanel.Controls.Add(this.cleanButton);
             this.actionsPanel.Controls.Add(this.upButton);
             this.actionsPanel.Location = new System.Drawing.Point(707, 18);
-            this.actionsPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.actionsPanel.Margin = new System.Windows.Forms.Padding(4);
             this.actionsPanel.Name = "actionsPanel";
             this.actionsPanel.Size = new System.Drawing.Size(953, 92);
             this.actionsPanel.TabIndex = 15;
@@ -601,7 +590,7 @@
             // 
             this.eraseButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.eraseButton.Location = new System.Drawing.Point(143, 25);
-            this.eraseButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.eraseButton.Margin = new System.Windows.Forms.Padding(4);
             this.eraseButton.Name = "eraseButton";
             this.eraseButton.Size = new System.Drawing.Size(160, 43);
             this.eraseButton.TabIndex = 22;
@@ -620,7 +609,7 @@
             this.Controls.Add(this.listBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "QuoteForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -660,15 +649,13 @@
         private System.Windows.Forms.Button addServiceButton;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Panel actionsPanel;
-        private System.Windows.Forms.ComboBox warehouseComboBox;
-        private System.Windows.Forms.TextBox warehouseTextBox;
         private System.Windows.Forms.TextBox productAmountTextBox;
         private System.Windows.Forms.NumericUpDown productAmountNumericUpDown;
-        private System.Windows.Forms.TextBox discountLabelTextBox;
-        private System.Windows.Forms.TextBox discountValueTextBox;
+        private System.Windows.Forms.TextBox adjustmentLabelTextBox;
+        private System.Windows.Forms.TextBox adjustmentTextBox;
         private System.Windows.Forms.TextBox descriptionLabelTextBox;
-        private System.Windows.Forms.TextBox descriptionValueTextBox;
-        private System.Windows.Forms.Button addDiscountButton;
+        private System.Windows.Forms.TextBox descriptionTextBox;
+        private System.Windows.Forms.Button addAdjustmentButton;
         private System.Windows.Forms.TextBox customerTextBox;
         private System.Windows.Forms.ComboBox customerComboBox;
         private System.Windows.Forms.ComboBox activeStatusComboBox;

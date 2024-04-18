@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace Entities
 {
@@ -22,11 +23,15 @@ namespace Entities
         [DisplayName("Cliente")]
         public Customer Customer { get; set; }
 
+        [DisplayName("Filas")]
+        public List<QuoteRow> QuoteRows { get; set; }
+
         // CONSTRUCT
 
         public Quote()
         {
             Customer = new Customer();
+            QuoteRows = new List<QuoteRow>();
         }
     }
 }
