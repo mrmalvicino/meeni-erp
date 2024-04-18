@@ -141,7 +141,6 @@
             // 
             this.categoryComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.categoryComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.categoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.categoryComboBox.FormattingEnabled = true;
             this.categoryComboBox.Location = new System.Drawing.Point(104, 24);
             this.categoryComboBox.Margin = new System.Windows.Forms.Padding(4);
@@ -149,6 +148,7 @@
             this.categoryComboBox.Size = new System.Drawing.Size(332, 24);
             this.categoryComboBox.TabIndex = 0;
             this.categoryComboBox.SelectedIndexChanged += new System.EventHandler(this.categoryComboBox_SelectedIndexChanged);
+            this.categoryComboBox.TextChanged += new System.EventHandler(this.categoryComboBox_TextChanged);
             // 
             // categoryLabel
             // 
@@ -202,7 +202,6 @@
             // 
             this.modelComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.modelComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.modelComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.modelComboBox.FormattingEnabled = true;
             this.modelComboBox.Location = new System.Drawing.Point(104, 88);
             this.modelComboBox.Margin = new System.Windows.Forms.Padding(4);
@@ -224,7 +223,6 @@
             // 
             this.brandComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.brandComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.brandComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.brandComboBox.FormattingEnabled = true;
             this.brandComboBox.Location = new System.Drawing.Point(104, 56);
             this.brandComboBox.Margin = new System.Windows.Forms.Padding(4);
@@ -232,6 +230,7 @@
             this.brandComboBox.Size = new System.Drawing.Size(332, 24);
             this.brandComboBox.TabIndex = 1;
             this.brandComboBox.SelectedIndexChanged += new System.EventHandler(this.brandComboBox_SelectedIndexChanged);
+            this.brandComboBox.TextChanged += new System.EventHandler(this.brandComboBox_TextChanged);
             // 
             // CompartmentRegisterForm
             // 

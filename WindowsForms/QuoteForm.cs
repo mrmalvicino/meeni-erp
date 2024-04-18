@@ -243,9 +243,9 @@ namespace WindowsForms
         {
             if (serviceCategoryComboBox.SelectedItem != null)
             {
+                Category category = (Category)serviceCategoryComboBox.SelectedItem;
+                detailsComboBox.DataSource = _servicesManager.list(category.CategoryId);
                 detailsComboBox.Enabled = true;
-                int categoryId = _categoriesManager.getId((Category)serviceCategoryComboBox.SelectedItem);
-                detailsComboBox.DataSource = _servicesManager.list(categoryId);
             }
             else
             {

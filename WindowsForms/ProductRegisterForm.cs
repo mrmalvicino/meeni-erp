@@ -50,10 +50,11 @@ namespace WindowsForms
             categoryComboBox.ValueMember = "CategoryId";
             categoryComboBox.DisplayMember = "Name";
 
-            brandComboBox.DataSource = _brandsManager.list();
+            bindBrandComboBox();
             brandComboBox.ValueMember = "BrandId";
             brandComboBox.DisplayMember = "Name";
 
+            bindModelComboBox();
             modelComboBox.DataSource = _modelsManager.list();
             modelComboBox.ValueMember = "ModelId";
             modelComboBox.DisplayMember = "Name";
@@ -64,6 +65,38 @@ namespace WindowsForms
             categoryComboBox.SelectedIndex = -1;
             brandComboBox.SelectedIndex = -1;
             modelComboBox.SelectedIndex = -1;
+        }
+
+        private void bindBrandComboBox()
+        {
+            if (categoryComboBox.SelectedItem != null)
+            {
+                Category category = (Category)categoryComboBox.SelectedItem;
+                brandComboBox.DataSource = _brandsManager.list(category.CategoryId);
+                brandComboBox.Enabled = true;
+            }
+            else
+            {
+                brandComboBox.SelectedIndex = -1;
+                brandComboBox.Enabled = false;
+                modelComboBox.SelectedIndex = -1;
+                modelComboBox.Enabled = false;
+            }
+        }
+
+        private void bindModelComboBox()
+        {
+            if (brandComboBox.SelectedItem != null)
+            {
+                Brand brand = (Brand)brandComboBox.SelectedItem;
+                modelComboBox.DataSource = _modelsManager.list(brand.BrandId);
+                modelComboBox.Enabled = true;
+            }
+            else
+            {
+                modelComboBox.SelectedIndex = -1;
+                modelComboBox.Enabled = false;
+            }
         }
 
         private void mapItem()
@@ -154,6 +187,26 @@ namespace WindowsForms
         private void imageUrlTextBox_Leave(object sender, EventArgs e)
         {
             Functions.loadImage(profilePictureBox, imageUrlTextBox.Text);
+        }
+
+        private void categoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bindBrandComboBox();
+        }
+
+        private void brandComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bindModelComboBox();
+        }
+
+        private void categoryComboBox_TextChanged(object sender, EventArgs e)
+        {
+            bindBrandComboBox();
+        }
+
+        private void brandComboBox_TextChanged(object sender, EventArgs e)
+        {
+            bindModelComboBox();
         }
     }
 }

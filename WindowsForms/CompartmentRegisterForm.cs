@@ -37,6 +37,24 @@ namespace WindowsForms
 
         private bool validateRegister()
         {
+            if (categoryComboBox.SelectedItem == null)
+            {
+                Validations.error("Seleccionar una categoría válida.");
+                return false;
+            }
+
+            if (brandComboBox.SelectedItem == null)
+            {
+                Validations.error("Seleccionar una marca válida.");
+                return false;
+            }
+
+            if (modelComboBox.SelectedItem == null)
+            {
+                Validations.error("Seleccionar un modelo válido.");
+                return false;
+            }
+            
             return true;
         }
 
@@ -84,7 +102,10 @@ namespace WindowsForms
             }
             else
             {
+                brandComboBox.SelectedIndex = -1;
                 brandComboBox.Enabled = false;
+                modelComboBox.SelectedIndex = -1;
+                modelComboBox.Enabled = false;
             }
         }
 
@@ -98,6 +119,7 @@ namespace WindowsForms
             }
             else
             {
+                modelComboBox.SelectedIndex = -1;
                 modelComboBox.Enabled = false;
             }
         }
@@ -183,6 +205,16 @@ namespace WindowsForms
         }
 
         private void brandComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bindModelComboBox();
+        }
+
+        private void categoryComboBox_TextChanged(object sender, EventArgs e)
+        {
+            bindBrandComboBox();
+        }
+
+        private void brandComboBox_TextChanged(object sender, EventArgs e)
         {
             bindModelComboBox();
         }

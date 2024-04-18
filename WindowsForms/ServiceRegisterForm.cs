@@ -46,10 +46,10 @@ namespace WindowsForms
         private void bindComboBoxes()
         {
             categoryComboBox.DataSource = _categoriesManager.list(false, true);
-
             categoryComboBox.ValueMember = "CategoryId";
             categoryComboBox.DisplayMember = "Name";
 
+            bindDetailsComboBox();
             detailsComboBox.ValueMember = "ServiceId";
             detailsComboBox.DisplayMember = "Details";
         }
@@ -58,6 +58,21 @@ namespace WindowsForms
         {
             categoryComboBox.SelectedIndex = -1;
             detailsComboBox.SelectedIndex = -1;
+        }
+
+        private void bindDetailsComboBox()
+        {
+            if (categoryComboBox.SelectedItem != null)
+            {
+                Category category = (Category)categoryComboBox.SelectedItem;
+                detailsComboBox.DataSource = _servicesManager.list(category.CategoryId);
+                detailsComboBox.Enabled = true;
+            }
+            else
+            {
+                detailsComboBox.SelectedIndex = -1;
+                detailsComboBox.Enabled = false;
+            }
         }
 
         private void mapItem()
@@ -150,8 +165,12 @@ namespace WindowsForms
 
         private void categoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int categoryId = _categoriesManager.getId((Category)categoryComboBox.SelectedItem);
-            detailsComboBox.DataSource = _servicesManager.list(categoryId);
+            bindDetailsComboBox();
+        }
+
+        private void categoryComboBox_TextChanged(object sender, EventArgs e)
+        {
+            bindDetailsComboBox();
         }
     }
 }
