@@ -14,13 +14,20 @@ namespace BLL
 
         // METHODS
 
-        public List<Model> list()
+        public List<Model> list(int brandId = 0)
         {
             List<Model> modelsList = new List<Model>();
+            string query = "select ModelId, ModelName from Models";
+
+            if (0 < brandId)
+            {
+                query += " where BrandId = @BrandId";
+                _database.setParameter("@BrandId", brandId);
+            }
 
             try
             {
-                _database.setQuery("select ModelId, ModelName from Models");
+                _database.setQuery(query);
                 _database.executeReader();
 
                 while (_database.Reader.Read())

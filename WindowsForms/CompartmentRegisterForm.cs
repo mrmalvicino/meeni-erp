@@ -53,15 +53,15 @@ namespace WindowsForms
             warehouseComboBox.ValueMember = "WarehouseId";
             warehouseComboBox.DisplayMember = "Name";
 
-            categoryComboBox.DataSource = _categoriesManager.list();
+            categoryComboBox.DataSource = _categoriesManager.list(true, false);
             categoryComboBox.ValueMember = "CategoryId";
             categoryComboBox.DisplayMember = "Name";
 
-            brandComboBox.DataSource = _brandsManager.list();
+            bindBrandComboBox();
             brandComboBox.ValueMember = "BrandId";
             brandComboBox.DisplayMember = "Name";
 
-            modelComboBox.DataSource = _modelsManager.list();
+            bindModelComboBox();
             modelComboBox.ValueMember = "ModelId";
             modelComboBox.DisplayMember = "Name";
         }
@@ -72,6 +72,34 @@ namespace WindowsForms
             categoryComboBox.SelectedIndex = -1;
             brandComboBox.SelectedIndex = -1;
             modelComboBox.SelectedIndex = -1;
+        }
+
+        private void bindBrandComboBox()
+        {
+            if (categoryComboBox.SelectedItem != null)
+            {
+                Category category = (Category)categoryComboBox.SelectedItem;
+                brandComboBox.DataSource = _brandsManager.list(category.CategoryId);
+                brandComboBox.Enabled = true;
+            }
+            else
+            {
+                brandComboBox.Enabled = false;
+            }
+        }
+
+        private void bindModelComboBox()
+        {
+            if (brandComboBox.SelectedItem != null)
+            {
+                Brand brand = (Brand)brandComboBox.SelectedItem;
+                modelComboBox.DataSource = _modelsManager.list(brand.BrandId);
+                modelComboBox.Enabled = true;
+            }
+            else
+            {
+                modelComboBox.Enabled = false;
+            }
         }
 
         private void mapCompartment()
@@ -148,6 +176,16 @@ namespace WindowsForms
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void categoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bindBrandComboBox();
+        }
+
+        private void brandComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bindModelComboBox();
         }
     }
 }

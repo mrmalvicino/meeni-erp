@@ -14,13 +14,20 @@ namespace BLL
 
         // METHODS
 
-        public List<Brand> list()
+        public List<Brand> list(int categoryId = 0)
         {
             List<Brand> brandsList = new List<Brand>();
+            string query = "select BrandId, BrandName from Brands";
+
+            if (0 < categoryId)
+            {
+                query = "select B.BrandId, B.BrandName from Products P inner join Items I on I.ItemId = P.ItemId inner join Categories C on C.CategoryId = I.CategoryId inner join Models M on M.ModelId = P.ModelId inner join Brands B on B.BrandId = M.BrandId where C.CategoryId = @CategoryId";
+                _database.setParameter("@CategoryId", categoryId);
+            }
 
             try
             {
-                _database.setQuery("select BrandId, BrandName from Brands");
+                _database.setQuery(query);
                 _database.executeReader();
 
                 while (_database.Reader.Read())
