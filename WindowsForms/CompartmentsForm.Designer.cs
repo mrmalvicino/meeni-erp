@@ -49,9 +49,7 @@
             this.compartmentNameTextBox = new System.Windows.Forms.TextBox();
             this.compartmentIdTextBox = new System.Windows.Forms.TextBox();
             this.productNameTextBox = new System.Windows.Forms.TextBox();
-            this.productIdTextBox = new System.Windows.Forms.TextBox();
             this.warehouseNameTextBox = new System.Windows.Forms.TextBox();
-            this.warehouseIdTextBox = new System.Windows.Forms.TextBox();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.actionsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.amountNumericUpDown)).BeginInit();
@@ -272,9 +270,7 @@
             this.mainPanel.Controls.Add(this.compartmentNameTextBox);
             this.mainPanel.Controls.Add(this.compartmentIdTextBox);
             this.mainPanel.Controls.Add(this.productNameTextBox);
-            this.mainPanel.Controls.Add(this.productIdTextBox);
             this.mainPanel.Controls.Add(this.warehouseNameTextBox);
-            this.mainPanel.Controls.Add(this.warehouseIdTextBox);
             this.mainPanel.Location = new System.Drawing.Point(20, 18);
             this.mainPanel.Margin = new System.Windows.Forms.Padding(4);
             this.mainPanel.Name = "mainPanel";
@@ -314,7 +310,7 @@
             this.productNameTextBox.BackColor = System.Drawing.SystemColors.Control;
             this.productNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.productNameTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productNameTextBox.Location = new System.Drawing.Point(13, 123);
+            this.productNameTextBox.Location = new System.Drawing.Point(13, 118);
             this.productNameTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.productNameTextBox.Name = "productNameTextBox";
             this.productNameTextBox.ReadOnly = true;
@@ -322,44 +318,18 @@
             this.productNameTextBox.TabIndex = 3;
             this.productNameTextBox.Text = "ProductName";
             // 
-            // productIdTextBox
-            // 
-            this.productIdTextBox.BackColor = System.Drawing.SystemColors.Control;
-            this.productIdTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.productIdTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productIdTextBox.Location = new System.Drawing.Point(13, 92);
-            this.productIdTextBox.Margin = new System.Windows.Forms.Padding(4);
-            this.productIdTextBox.Name = "productIdTextBox";
-            this.productIdTextBox.ReadOnly = true;
-            this.productIdTextBox.Size = new System.Drawing.Size(628, 23);
-            this.productIdTextBox.TabIndex = 2;
-            this.productIdTextBox.Text = "ProductId";
-            // 
             // warehouseNameTextBox
             // 
             this.warehouseNameTextBox.BackColor = System.Drawing.SystemColors.Control;
             this.warehouseNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.warehouseNameTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.warehouseNameTextBox.Location = new System.Drawing.Point(13, 185);
+            this.warehouseNameTextBox.Location = new System.Drawing.Point(13, 87);
             this.warehouseNameTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.warehouseNameTextBox.Name = "warehouseNameTextBox";
             this.warehouseNameTextBox.ReadOnly = true;
             this.warehouseNameTextBox.Size = new System.Drawing.Size(628, 23);
             this.warehouseNameTextBox.TabIndex = 5;
             this.warehouseNameTextBox.Text = "WarehouseName";
-            // 
-            // warehouseIdTextBox
-            // 
-            this.warehouseIdTextBox.BackColor = System.Drawing.SystemColors.Control;
-            this.warehouseIdTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.warehouseIdTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.warehouseIdTextBox.Location = new System.Drawing.Point(13, 154);
-            this.warehouseIdTextBox.Margin = new System.Windows.Forms.Padding(4);
-            this.warehouseIdTextBox.Name = "warehouseIdTextBox";
-            this.warehouseIdTextBox.ReadOnly = true;
-            this.warehouseIdTextBox.Size = new System.Drawing.Size(628, 23);
-            this.warehouseIdTextBox.TabIndex = 4;
-            this.warehouseIdTextBox.Text = "WarehouseId";
             // 
             // dataGridView
             // 
@@ -417,8 +387,6 @@
         private System.Windows.Forms.Label toLabel;
         private System.Windows.Forms.TextBox warehouseNameTextBox;
         private System.Windows.Forms.TextBox productNameTextBox;
-        private System.Windows.Forms.TextBox productIdTextBox;
-        private System.Windows.Forms.TextBox warehouseIdTextBox;
         private System.Windows.Forms.TextBox compartmentIdTextBox;
         private System.Windows.Forms.TextBox compartmentNameTextBox;
         private System.Windows.Forms.Button deleteButton;

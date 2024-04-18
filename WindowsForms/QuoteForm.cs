@@ -226,28 +226,12 @@ namespace WindowsForms
 
         private void productCategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (productCategoryComboBox.SelectedItem != null)
-            {
-                brandComboBox.Enabled = true;
-                int categoryId = _categoriesManager.getId((Category)productCategoryComboBox.SelectedItem);
-                //brandComboBox.DataSource = _productsManager.list(categoryId);
-            }
-            else
-            {
-                brandComboBox.Enabled = false;
-            }
+
         }
 
         private void brandComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (brandComboBox.SelectedItem != null)
-            {
-                modelComboBox.Enabled = true;
-            }
-            else
-            {
-                modelComboBox.Enabled= false;
-            }
+
         }
 
         private void modelComboBox_SelectedIndexChanged(object sender, EventArgs e)

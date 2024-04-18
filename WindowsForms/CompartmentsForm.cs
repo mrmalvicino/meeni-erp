@@ -45,15 +45,11 @@ namespace WindowsForms
             dataGridView.BackgroundColor = Palette.LightBackColor;
             compartmentIdTextBox.ForeColor = Palette.ForeColor;
             compartmentNameTextBox.ForeColor = Palette.ForeColor;
-            productIdTextBox.ForeColor = Palette.ForeColor;
             productNameTextBox.ForeColor = Palette.ForeColor;
-            warehouseIdTextBox.ForeColor = Palette.ForeColor;
             warehouseNameTextBox.ForeColor = Palette.ForeColor;
             compartmentIdTextBox.BackColor = Palette.LightBackColor;
             compartmentNameTextBox.BackColor = Palette.LightBackColor;
-            productIdTextBox.BackColor = Palette.LightBackColor;
             productNameTextBox.BackColor = Palette.LightBackColor;
-            warehouseIdTextBox.BackColor = Palette.LightBackColor;
             warehouseNameTextBox.BackColor = Palette.LightBackColor;
         }
 
@@ -141,9 +137,7 @@ namespace WindowsForms
             {
                 compartmentIdTextBox.Text = "Compartimiento N⁰ " + compartment.CompartmentId.ToString();
                 compartmentNameTextBox.Text = compartment.Name;
-                productIdTextBox.Text = "Producto N⁰ " + compartment.Product.ProductId.ToString();
                 productNameTextBox.Text = compartment.Product.ToString();
-                warehouseIdTextBox.Text = "Depósito N⁰ " + _warehouse.WarehouseId.ToString();
                 warehouseNameTextBox.Text = _warehouse.Name;
                 amountNumericUpDown.Maximum = compartment.Stock;
             }
@@ -151,9 +145,7 @@ namespace WindowsForms
             {
                 compartmentIdTextBox.Text = "No hay compartimientos disponibles";
                 compartmentNameTextBox.Text = "";
-                productIdTextBox.Text = "";
                 productNameTextBox.Text = "";
-                warehouseIdTextBox.Text = "";
                 warehouseNameTextBox.Text = "";
                 amountNumericUpDown.Maximum = 0;
             }
@@ -282,35 +274,37 @@ namespace WindowsForms
 
         private void moveButton_Click(object sender, EventArgs e)
         {
-            if (0 < amountNumericUpDown.Value && compartmentComboBox.SelectedItem != null)
+            if (amountNumericUpDown.Value == 0 || compartmentComboBox.SelectedItem == null)
             {
-                Warehouse warehouse = (Warehouse)warehouseComboBox.SelectedItem;
-                Compartment compartment = (Compartment)compartmentComboBox.SelectedItem;
+                return;
+            }
 
-                if (_compartment.Product.ProductId == compartment.Product.ProductId)
-                {
-                    _compartment.Stock -= (int)amountNumericUpDown.Value;
-                    compartment.Stock += (int)amountNumericUpDown.Value;
-                    _compartmentsManager.edit(_compartment, _warehouse.WarehouseId);
-                    _compartmentsManager.edit(compartment, warehouse.WarehouseId);
+            Warehouse warehouse = (Warehouse)warehouseComboBox.SelectedItem;
+            Compartment compartment = (Compartment)compartmentComboBox.SelectedItem;
 
-                    refreshTable();
-                    applyFilter();
+            if (_compartment.Product.ProductId == compartment.Product.ProductId)
+            {
+                _compartment.Stock -= (int)amountNumericUpDown.Value;
+                compartment.Stock += (int)amountNumericUpDown.Value;
+                _compartmentsManager.edit(_compartment, _warehouse.WarehouseId);
+                _compartmentsManager.edit(compartment, warehouse.WarehouseId);
 
-                    MessageBox.Show("Movimiento registrado exitosamente.");
-                }
-                else
-                {
-                    Validations.error($"Los compartimientos solo pueden guardar productos de un mismo modelo.\n" +
-                        $"\nOrigen:\n" +
-                        $"Compartimiento: {_compartment.ToString()}\n" +
-                        $"Depósito: {_warehouse.ToString()}\n" +
-                        $"Producto: {_compartment.Product.ToString()}\n" +
-                        $"\nDestino:\n" +
-                        $"Compartimiento: {compartment.ToString()}\n" +
-                        $"Depósito: {_warehouse.ToString()}\n" +
-                        $"Producto: {compartment.Product.ToString()}");
-                }
+                refreshTable();
+                applyFilter();
+
+                MessageBox.Show("Movimiento registrado exitosamente.");
+            }
+            else
+            {
+                Validations.error($"Los compartimientos pueden guardar productos de igual categoría, marca y modelo.\n" +
+                    $"\nOrigen:\n" +
+                    $"Compartimiento: {_compartment.ToString()}\n" +
+                    $"Depósito: {_warehouse.ToString()}\n" +
+                    $"Producto: {_compartment.Product.ToString()}\n" +
+                    $"\nDestino:\n" +
+                    $"Compartimiento: {compartment.ToString()}\n" +
+                    $"Depósito: {_warehouse.ToString()}\n" +
+                    $"Producto: {compartment.Product.ToString()}");
             }
         }
 
