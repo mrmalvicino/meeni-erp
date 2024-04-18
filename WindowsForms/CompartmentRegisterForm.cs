@@ -129,11 +129,10 @@ namespace WindowsForms
         private void CompartmentRegisterForm_Load(object sender, EventArgs e)
         {
             setupStyle();
+            bindComboBoxes();
 
             try
             {
-                bindComboBoxes();
-
                 if (_compartment == null)
                 {
                     _compartment = new Compartment();

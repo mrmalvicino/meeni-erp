@@ -27,5 +27,12 @@ namespace Entities
         {
             Product = new Product();
         }
+
+        // METHODS
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

@@ -16,6 +16,7 @@ namespace WindowsForms
         private Compartment _compartment;
         private List<Compartment> _filteredCompartments;
         private CompartmentsManager _compartmentsManager = new CompartmentsManager();
+        private WarehousesManager _warehousesManager = new WarehousesManager();
 
         // CONSTRUCT
 
@@ -144,6 +145,7 @@ namespace WindowsForms
                 productNameTextBox.Text = compartment.Product.ToString();
                 warehouseIdTextBox.Text = "Depósito N⁰ " + _warehouse.WarehouseId.ToString();
                 warehouseNameTextBox.Text = _warehouse.Name;
+                amountNumericUpDown.Maximum = compartment.Stock;
             }
             else
             {
@@ -153,6 +155,38 @@ namespace WindowsForms
                 productNameTextBox.Text = "";
                 warehouseIdTextBox.Text = "";
                 warehouseNameTextBox.Text = "";
+                amountNumericUpDown.Maximum = 0;
+            }
+        }
+
+        private void bindComboBoxes()
+        {
+            warehouseComboBox.DataSource = _warehousesManager.list();
+            warehouseComboBox.ValueMember = "WarehouseId";
+            warehouseComboBox.DisplayMember = "Name";
+
+            bindCompartmentComboBox();
+            compartmentComboBox.ValueMember = "CompartmentId";
+            compartmentComboBox.DisplayMember = "Name";
+        }
+
+        private void clearComboBoxes()
+        {
+            warehouseComboBox.SelectedIndex = -1;
+            compartmentComboBox.SelectedIndex = -1;
+        }
+
+        private void bindCompartmentComboBox()
+        {
+            if (warehouseComboBox.SelectedItem != null)
+            {
+                Warehouse warehouse = (Warehouse)warehouseComboBox.SelectedItem;
+                compartmentComboBox.DataSource = _compartmentsManager.list(warehouse.WarehouseId);
+                compartmentComboBox.Enabled = true;
+            }
+            else
+            {
+                compartmentComboBox.Enabled = false;
             }
         }
 
@@ -165,6 +199,8 @@ namespace WindowsForms
             refreshTable();
             dataGridView.SelectionChanged += dataGridView_SelectionChanged;
             applyFilter();
+            bindComboBoxes();
+            clearComboBoxes();
         }
 
         private void dataGridView_SelectionChanged(object sender, EventArgs e)
@@ -246,7 +282,46 @@ namespace WindowsForms
 
         private void moveButton_Click(object sender, EventArgs e)
         {
+            if (0 < amountNumericUpDown.Value && compartmentComboBox.SelectedItem != null)
+            {
+                Warehouse warehouse = (Warehouse)warehouseComboBox.SelectedItem;
+                Compartment compartment = (Compartment)compartmentComboBox.SelectedItem;
 
+                if (_compartment.Product.ProductId == compartment.Product.ProductId)
+                {
+                    _compartment.Stock -= (int)amountNumericUpDown.Value;
+                    compartment.Stock += (int)amountNumericUpDown.Value;
+                    _compartmentsManager.edit(_compartment, _warehouse.WarehouseId);
+                    _compartmentsManager.edit(compartment, warehouse.WarehouseId);
+
+                    refreshTable();
+                    applyFilter();
+
+                    MessageBox.Show("Movimiento registrado exitosamente.");
+                }
+                else
+                {
+                    Validations.error($"Los compartimientos solo pueden guardar productos de un mismo modelo.\n" +
+                        $"\nOrigen:\n" +
+                        $"Compartimiento: {_compartment.ToString()}\n" +
+                        $"Depósito: {_warehouse.ToString()}\n" +
+                        $"Producto: {_compartment.Product.ToString()}\n" +
+                        $"\nDestino:\n" +
+                        $"Compartimiento: {compartment.ToString()}\n" +
+                        $"Depósito: {_warehouse.ToString()}\n" +
+                        $"Producto: {compartment.Product.ToString()}");
+                }
+            }
+        }
+
+        private void warehouseComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bindCompartmentComboBox();
+        }
+
+        private void warehouseComboBox_TextChanged(object sender, EventArgs e)
+        {
+            bindCompartmentComboBox();
         }
     }
 }

@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CompartmentsForm));
             this.actionsPanel = new System.Windows.Forms.Panel();
+            this.amountNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.showInactiveCheckBox = new System.Windows.Forms.CheckBox();
             this.showActiveCheckBox = new System.Windows.Forms.CheckBox();
             this.clearButton = new System.Windows.Forms.Button();
@@ -42,7 +43,6 @@
             this.compartmentComboBox = new System.Windows.Forms.ComboBox();
             this.warehouseComboBox = new System.Windows.Forms.ComboBox();
             this.toLabel = new System.Windows.Forms.Label();
-            this.moveTextBox = new System.Windows.Forms.TextBox();
             this.moveButton = new System.Windows.Forms.Button();
             this.exportCSVButton = new System.Windows.Forms.Button();
             this.mainPanel = new System.Windows.Forms.Panel();
@@ -54,6 +54,7 @@
             this.warehouseIdTextBox = new System.Windows.Forms.TextBox();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.actionsPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.amountNumericUpDown)).BeginInit();
             this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
@@ -61,6 +62,7 @@
             // actionsPanel
             // 
             this.actionsPanel.BackColor = System.Drawing.SystemColors.Control;
+            this.actionsPanel.Controls.Add(this.amountNumericUpDown);
             this.actionsPanel.Controls.Add(this.showInactiveCheckBox);
             this.actionsPanel.Controls.Add(this.showActiveCheckBox);
             this.actionsPanel.Controls.Add(this.clearButton);
@@ -73,7 +75,6 @@
             this.actionsPanel.Controls.Add(this.compartmentComboBox);
             this.actionsPanel.Controls.Add(this.warehouseComboBox);
             this.actionsPanel.Controls.Add(this.toLabel);
-            this.actionsPanel.Controls.Add(this.moveTextBox);
             this.actionsPanel.Controls.Add(this.moveButton);
             this.actionsPanel.Controls.Add(this.exportCSVButton);
             this.actionsPanel.Location = new System.Drawing.Point(707, 18);
@@ -81,6 +82,20 @@
             this.actionsPanel.Name = "actionsPanel";
             this.actionsPanel.Size = new System.Drawing.Size(953, 222);
             this.actionsPanel.TabIndex = 2;
+            // 
+            // amountNumericUpDown
+            // 
+            this.amountNumericUpDown.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.amountNumericUpDown.Location = new System.Drawing.Point(298, 100);
+            this.amountNumericUpDown.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.amountNumericUpDown.Name = "amountNumericUpDown";
+            this.amountNumericUpDown.Size = new System.Drawing.Size(120, 30);
+            this.amountNumericUpDown.TabIndex = 83;
+            this.amountNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // showInactiveCheckBox
             // 
@@ -147,12 +162,12 @@
             // 
             this.amountLabel.AutoSize = true;
             this.amountLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.amountLabel.Location = new System.Drawing.Point(216, 102);
+            this.amountLabel.Location = new System.Drawing.Point(201, 102);
             this.amountLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.amountLabel.Name = "amountLabel";
-            this.amountLabel.Size = new System.Drawing.Size(59, 23);
+            this.amountLabel.Size = new System.Drawing.Size(90, 23);
             this.amountLabel.TabIndex = 77;
-            this.amountLabel.Text = "cant.:";
+            this.amountLabel.Text = "cantidad:";
             // 
             // deleteButton
             // 
@@ -192,6 +207,8 @@
             // 
             // compartmentComboBox
             // 
+            this.compartmentComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.compartmentComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.compartmentComboBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.compartmentComboBox.FormattingEnabled = true;
             this.compartmentComboBox.Location = new System.Drawing.Point(720, 99);
@@ -202,6 +219,8 @@
             // 
             // warehouseComboBox
             // 
+            this.warehouseComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.warehouseComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.warehouseComboBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.warehouseComboBox.FormattingEnabled = true;
             this.warehouseComboBox.Location = new System.Drawing.Point(512, 99);
@@ -209,6 +228,8 @@
             this.warehouseComboBox.Name = "warehouseComboBox";
             this.warehouseComboBox.Size = new System.Drawing.Size(200, 31);
             this.warehouseComboBox.TabIndex = 6;
+            this.warehouseComboBox.SelectedIndexChanged += new System.EventHandler(this.warehouseComboBox_SelectedIndexChanged);
+            this.warehouseComboBox.TextChanged += new System.EventHandler(this.warehouseComboBox_TextChanged);
             // 
             // toLabel
             // 
@@ -220,15 +241,6 @@
             this.toLabel.Size = new System.Drawing.Size(79, 23);
             this.toLabel.TabIndex = 12;
             this.toLabel.Text = "destino:";
-            // 
-            // moveTextBox
-            // 
-            this.moveTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.moveTextBox.Location = new System.Drawing.Point(283, 99);
-            this.moveTextBox.Margin = new System.Windows.Forms.Padding(4);
-            this.moveTextBox.Name = "moveTextBox";
-            this.moveTextBox.Size = new System.Drawing.Size(120, 30);
-            this.moveTextBox.TabIndex = 5;
             // 
             // moveButton
             // 
@@ -385,6 +397,7 @@
             this.Load += new System.EventHandler(this.StockForm_Load);
             this.actionsPanel.ResumeLayout(false);
             this.actionsPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.amountNumericUpDown)).EndInit();
             this.mainPanel.ResumeLayout(false);
             this.mainPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
@@ -399,7 +412,6 @@
         private System.Windows.Forms.Panel mainPanel;
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.Button moveButton;
-        private System.Windows.Forms.TextBox moveTextBox;
         private System.Windows.Forms.ComboBox compartmentComboBox;
         private System.Windows.Forms.ComboBox warehouseComboBox;
         private System.Windows.Forms.Label toLabel;
@@ -418,5 +430,6 @@
         private System.Windows.Forms.Button clearButton;
         private System.Windows.Forms.Label filterLabel;
         private System.Windows.Forms.TextBox filterTextBox;
+        private System.Windows.Forms.NumericUpDown amountNumericUpDown;
     }
 }
