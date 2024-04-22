@@ -67,7 +67,9 @@ namespace Utilities
                 database.executeReader();
 
                 if (database.Reader.Read())
+                {
                     lastId = Convert.ToInt32(database.Reader["LastId"]);
+                }
             }
             catch (Exception ex)
             {

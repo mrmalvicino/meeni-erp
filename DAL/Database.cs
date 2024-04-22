@@ -79,7 +79,11 @@ namespace DAL
 
         public void closeConnection()
         {
-            if (_reader != null) _reader.Close();
+            if (_reader != null)
+            {
+                _reader.Close();
+            }
+
             _connection.Close();
         }
     }
