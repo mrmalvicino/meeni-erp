@@ -1,7 +1,7 @@
-﻿using System;
-using System.Windows.Forms;
-using BLL;
+﻿using BLL;
 using Entities;
+using System;
+using System.Windows.Forms;
 using Utilities;
 
 namespace WindowsForms
@@ -122,7 +122,7 @@ namespace WindowsForms
             organizationNameComboBox.DataSource = _organizationsManager.list();
             organizationNameComboBox.ValueMember = "OrganizationId";
             organizationNameComboBox.DisplayMember = "Name";
-            
+
             adressCountryComboBox.DataSource = _countriesManager.list();
             adressCountryComboBox.ValueMember = "CountryId";
             adressCountryComboBox.DisplayMember = "Name";
@@ -179,7 +179,7 @@ namespace WindowsForms
                 adressProvinceComboBox.SelectedIndex = -1;
                 adressCountryComboBox.SelectedIndex = -1;
             }
-            
+
             if (0 < _customer.Organization.OrganizationId)
             {
                 organizationNameComboBox.SelectedValue = _customer.Organization.OrganizationId;
@@ -291,6 +291,7 @@ namespace WindowsForms
         private void CustomerRegisterForm_Load(object sender, EventArgs e)
         {
             setupStyle();
+            clearComboBoxes();
 
             try
             {
@@ -301,7 +302,6 @@ namespace WindowsForms
                 {
                     _customer = new Customer();
                     activeStatusCheckBox.Enabled = false;
-                    clearComboBoxes();
                 }
                 else
                 {
@@ -318,7 +318,9 @@ namespace WindowsForms
         private void saveButton_Click(object sender, EventArgs e)
         {
             if (!validateRegister())
+            {
                 return;
+            }
 
             try
             {

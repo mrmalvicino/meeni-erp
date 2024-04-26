@@ -152,6 +152,7 @@ namespace WindowsForms
         {
             setupStyle();
             bindComboBoxes();
+            clearComboBoxes();
 
             try
             {
@@ -159,7 +160,6 @@ namespace WindowsForms
                 {
                     _compartment = new Compartment();
                     activeStatusCheckBox.Enabled = false;
-                    clearComboBoxes();
                 }
                 else
                 {
@@ -175,7 +175,9 @@ namespace WindowsForms
         private void saveButton_Click(object sender, EventArgs e)
         {
             if (!validateRegister())
+            {
                 return;
+            }
 
             try
             {

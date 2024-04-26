@@ -291,6 +291,7 @@ namespace WindowsForms
         private void SupplierRegisterForm_Load(object sender, EventArgs e)
         {
             setupStyle();
+            clearComboBoxes();
 
             try
             {
@@ -301,7 +302,6 @@ namespace WindowsForms
                 {
                     _supplier = new Supplier();
                     activeStatusCheckBox.Enabled = false;
-                    clearComboBoxes();
                 }
                 else
                 {
@@ -318,7 +318,9 @@ namespace WindowsForms
         private void saveButton_Click(object sender, EventArgs e)
         {
             if (!validateRegister())
+            {
                 return;
+            }
 
             try
             {
