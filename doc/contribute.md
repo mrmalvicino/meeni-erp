@@ -48,3 +48,17 @@ All contributions that follow the conventions below will be welcome.
 
 &nbsp;
 Install the [Prettier SQL VSCode](https://marketplace.visualstudio.com/items?itemName=inferrinizzard.prettier-sql-vscode) extension for Visual Studio Code. Before each commit involving `.sql` files, open the file in VS Code, right-click on the code, and then click `Format Document`. (Any SQL code editor from any database management system can be used, but the code should be formatted with Prettier SQL VSCode afterward.)
+
+## UX/UI
+
+### Paleta de colores
+
+| Nombre | Código Hexadecimal | Vista previa | Uso sugerido |
+|-|-|-|-|
+| **Blanco Puro**  | `#FFFFFF` | ![#FFFFFF](https://via.placeholder.com/20/FFFFFF?text=+) | Fondo principal, textos claros sobre fondos oscuros. |
+| **Gris Claro** | `#F2F2F2` | ![#F2F2F2](https://via.placeholder.com/20/F2F2F2?text=+) | Fondo secundario, bordes suaves. |
+| **Gris Suave** | `#E5E5E5` | ![#E5E5E5](https://via.placeholder.com/20/E5E5E5?text=+) | Separadores, tarjetas, elementos secundarios. |
+| **Gris Medio** | `#CCCCCC` | ![#CCCCCC](https://via.placeholder.com/20/CCCCCC?text=+) | Contornos, detalles sutiles. |
+| **Gris Oscuro** | `#808080` | ![#808080](https://via.placeholder.com/20/808080?text=+) | Textos secundarios, botones inactivos. |
+| **Negro Suave** | `#333333` | ![#333333](https://via.placeholder.com/20/333333?text=+) | Textos principales, botones sobre fondos claros. |
+| **Negro Puro** | `#000000` | ![#000000](https://via.placeholder.com/20/000000?text=+) | Fondo oscuro, elementos destacados en blanco. |
