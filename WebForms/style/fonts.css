@@ -1,0 +1,19 @@
+﻿.bold-text {
+    font-weight: 800;
+}
+
+.left-text {
+    text-align: left;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.indent-text {
+    text-indent: 20px;
+}
+
+.font-size-40 {
+    font-size: 40px;
+}

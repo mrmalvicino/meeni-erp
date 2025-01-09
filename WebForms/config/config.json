@@ -1,0 +1,67 @@
+{
+  "images": [
+    {
+      "title": "Meeni ERP",
+      "alt": "Logo de Meeni ERP",
+      "src": "../images/logo.png",
+      "width": 40,
+      "height": 40,
+      "class": null,
+      "id": "logoImg"
+    },
+    {
+      "title": "Mockup",
+      "alt": "Mockup del software en laptop y smartphone",
+      "src": "../images/mockup.png",
+      "width": null,
+      "height": null,
+      "class": "fit-image",
+      "id": "mockupImg"
+    },
+    {
+      "title": "Moka by Paula Alvear",
+      "alt": "Logo de Moka by Paula Alvear",
+      "src": "https://raw.githubusercontent.com/mrmalvicino/moka-landing-page/refs/heads/main/images/logo.jpg",
+      "width": null,
+      "height": null,
+      "class": "circle-image",
+      "id": "mokaImg"
+    },
+    {
+      "title": "MMR Sonido",
+      "alt": "Logo de MMR Sonido",
+      "src": "https://static.wixstatic.com/media/ef3eed_f25e39ce631243f69f9a80f878a82a30~mv2.png/v1/crop/x_271,y_0,w_719,h_720/fill/w_135,h_134,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/MMR%20Sonido%20Logo%20C%201280x720.png",
+      "width": null,
+      "height": null,
+      "class": "circle-image",
+      "id": "MMRSonidoImg"
+    },
+    {
+      "title": "GS Electrónica",
+      "alt": "Logo de GS Electrónica",
+      "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXK-8kWTWMQVdcTZD05TnnIoA-hcQpWxKEMQ&s",
+      "width": null,
+      "height": null,
+      "class": "circle-image",
+      "id": "GSElectronicaImg"
+    },
+    {
+      "title": "Pisos Click",
+      "alt": "Logo de Pisos Click",
+      "src": "https://i.imgur.com/v2TlQCN.png",
+      "width": null,
+      "height": null,
+      "class": "circle-image",
+      "id": "pisosClickImg"
+    },
+    {
+      "title": "WhatsApp",
+      "alt": "Logo de WhatsApp",
+      "src": "https://cdn-icons-png.flaticon.com/512/733/733585.png",
+      "width": null,
+      "height": null,
+      "class": null,
+      "id": "whatsappImg"
+    }
+  ]
+}

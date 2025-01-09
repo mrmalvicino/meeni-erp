@@ -1,0 +1,116 @@
+﻿.small-primary-button {
+    margin: 0px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    background-color: var(--gray-soft);
+    color: var(--black-soft);
+    border: 2px solid var(--gray-soft);
+}
+
+    .small-primary-button:hover {
+        background-color: var(--gray-medium);
+        color: var(--black-pure);
+        border: 2px solid var(--gray-medium);
+    }
+
+.big-primary-button {
+    margin: 0px;
+    padding: 15px 30px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    background-color: var(--gray-soft);
+    color: var(--black-soft);
+    border: 2px solid var(--gray-soft);
+}
+
+    .big-primary-button:hover {
+        background-color: var(--gray-medium);
+        color: var(--black-pure);
+        border: 2px solid var(--gray-medium);
+        transform: scale(1.1);
+    }
+
+.small-secondary-button {
+    margin: 0px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    background-color: transparent;
+    color: var(--gray-light);
+    border: 2px solid var(--gray-medium);
+}
+
+    .small-secondary-button:hover {
+        background-color: var(--gray-medium);
+        color: var(--white-pure);
+    }
+
+.big-secondary-button {
+    margin: 0px;
+    padding: 15px 30px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    background-color: transparent;
+    color: var(--gray-light);
+    border: 2px solid var(--gray-medium);
+}
+
+    .big-secondary-button:hover {
+        background-color: var(--gray-medium);
+        color: var(--white-pure);
+        transform: scale(1.1);
+    }
+
+.dark-button {
+    margin: 0px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    background-color: var(--black-soft);
+    color: var(--gray-light);
+}
+
+    .dark-button:hover {
+        transform: scale(1.1);
+    }
+
+.invisible-link {
+    margin: 0px;
+    padding: 0px;
+    color: var(--gray-light);
+    display: inline-flex; /* El link toma el tamaño de su contenido. */
+}
+
+    .invisible-link:hover {
+        color: var(--gray-soft);
+    }
+
+.transition {
+    transition: background-color 0.5s ease, transform 0.5s ease;
+}
