@@ -12,7 +12,7 @@ Meeni ERP is a simple enterprise resource planning software. It performs quotati
 	- [TOC](#toc)
 	- [Features](#features)
 	- [Technical Overview](#technical-overview)
-	- [Setup and Compilation](#setup-and-compilation)
+	- [Setup instructions](#setup-instructions)
 	- [License and Contributions](#license-and-contributions)
 
 ## Features
@@ -30,7 +30,7 @@ Meeni ERP offers the following functionalities:
 - **Backend**: C# with for business logic and data management.
 - **Database**: SQL Server, structured to support multi-tenancy securely.
 
-## Setup and Compilation
+## Setup instructions
 
 1. Clone the repository:
 
@@ -38,9 +38,11 @@ Meeni ERP offers the following functionalities:
 git clone https://github.com/mrmalvicino/meeni-erp.git
 ```
 
-2. Generate the database by running the provided SQL scripts.
+2. Generate the database by running the provided [SQL scripts](./SQL).
 
-3. Create a file named `Web.config` file with your connection string and [Mailtrap](https://mailtrap.io) API token with the following code:
+3. Go to Visual Studio menu, select **Project > Manage NuGet Packages** and install the latest version of `Microsoft.CodeDom.Providers.DotNetCompilerPlatform` package.
+
+4. Create a file named `Web.config` file with your connection string and [Mailtrap](https://mailtrap.io) API token with the following code:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -99,10 +101,6 @@ git clone https://github.com/mrmalvicino/meeni-erp.git
 	</system.codedom>
 </configuration>
 ```
-
-1. Go to Visual Studio menu, select **Project > Manage NuGet Packages** and install the latest version of `Microsoft.CodeDom.Providers.DotNetCompilerPlatform` package.
-
-2. Build and deploy the application to your preferred hosting environment.
 
 ## License and Contributions
 
