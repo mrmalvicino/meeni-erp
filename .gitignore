@@ -27,6 +27,7 @@ _IISExpress/
 
 # Publish files
 .publish/
+PublishProfiles
 
 # Configuration files
 appsettings.*.json
