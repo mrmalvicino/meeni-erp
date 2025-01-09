@@ -48,6 +48,7 @@ git clone https://github.com/mrmalvicino/meeni-erp.git
 	<system.web>
 		<compilation debug="true" targetFramework="4.8" />
 		<httpRuntime targetFramework="4.8.1" />
+		<customErrors mode="Off"/>
 		<pages>
 			<namespaces>
 				<add namespace="DomainModel" />
