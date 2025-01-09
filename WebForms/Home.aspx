@@ -166,6 +166,7 @@
         </div>
     </section>
 
+    <!-- WhatsApp Button -->
     <div class="whatsapp-button">
         <a href="https://wa.me/5491159058729?text=Hola,%20quiero%20hacer%20una%20consulta sobre Meeni ERP." target="_blank">
             <img data-image-id="whatsappImg">
