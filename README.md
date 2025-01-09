@@ -9,11 +9,11 @@ Meeni ERP is a simple enterprise resource planning software. It performs quotati
 ## TOC
 
 - [Meeni ERP](#meeni-erp)
-  - [TOC](#toc)
-  - [Features](#features)
-  - [Technical Overview](#technical-overview)
-  - [Setup and Compilation](#setup-and-compilation)
-  - [License and Contributions](#license-and-contributions)
+	- [TOC](#toc)
+	- [Features](#features)
+	- [Technical Overview](#technical-overview)
+	- [Setup and Compilation](#setup-and-compilation)
+	- [License and Contributions](#license-and-contributions)
 
 ## Features
 
@@ -45,57 +45,57 @@ git clone https://github.com/mrmalvicino/meeni-erp.git
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
-  <system.web>
-    <compilation debug="true" targetFramework="4.8.1" />
-    <httpRuntime targetFramework="4.8.1" />
-    <pages>
-      <namespaces>
-        <add namespace="DomainModel" />
-      </namespaces>
-    </pages>
-  </system.web>
-  <system.webServer>
-    <defaultDocument>
-      <files>
-        <add value="Home.aspx" />
-      </files>
-    </defaultDocument>
-    <staticContent>
-      <mimeMap fileExtension=".webmanifest" mimeType="application/manifest+json" />
-    </staticContent>
-  </system.webServer>
-  <location path="Admin">
-    <system.webServer>
-      <defaultDocument>
-        <files>
-          <add value="Dashboard.aspx" />
-        </files>
-      </defaultDocument>
-    </system.webServer>
-  </location>
-  <connectionStrings>
-    <add name="SERVER_NAME" connectionString="server=SERVER_ADDRESS_OR_IP; database=meeni_erp_db; User=PASSWORD" />
-  </connectionStrings>
-  <appSettings>
-    <add key="mailtrap_token" value="Bearer API_DE_MAILTRAP" />
-    <add key="business_name" value="BUSINESS NAME" />
-    <add key="business_email" value="EMAIL@DOMINIO.com" />
-    <add key="business_url" value="BUSINESSURL.COM" />
-  </appSettings>
-  <runtime>
-    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
-      <dependentAssembly>
-        <assemblyIdentity name="System.Runtime.CompilerServices.Unsafe" publicKeyToken="b03f5f7f11d50a3a" culture="neutral" />
-        <bindingRedirect oldVersion="0.0.0.0-6.0.0.0" newVersion="6.0.0.0" />
-      </dependentAssembly>
-    </assemblyBinding>
-  </runtime>
-  <system.codedom>
-    <compilers>
-      <compiler language="c#;cs;csharp" extension=".cs" warningLevel="4" compilerOptions="/langversion:default /nowarn:1659;1699;1701;612;618" type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.CSharpCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
-      <compiler language="vb;vbs;visualbasic;vbscript" extension=".vb" warningLevel="4" compilerOptions="/langversion:default /nowarn:41008,40000,40008 /define:_MYTYPE=\&quot;Web\&quot; /optionInfer+" type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.VBCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
-    </compilers>
-  </system.codedom>
+	<system.web>
+		<compilation debug="true" targetFramework="4.8" />
+		<httpRuntime targetFramework="4.8.1" />
+		<pages>
+			<namespaces>
+				<add namespace="DomainModel" />
+			</namespaces>
+		</pages>
+	</system.web>
+	<system.webServer>
+		<defaultDocument>
+			<files>
+				<add value="Home.aspx" />
+			</files>
+		</defaultDocument>
+		<staticContent>
+			<mimeMap fileExtension=".webmanifest" mimeType="application/manifest+json" />
+		</staticContent>
+	</system.webServer>
+	<location path="Admin">
+		<system.webServer>
+			<defaultDocument>
+				<files>
+					<add value="Dashboard.aspx" />
+				</files>
+			</defaultDocument>
+		</system.webServer>
+	</location>
+	<connectionStrings>
+		<add name="SERVER_NAME" connectionString="server=SERVER_ADDRESS_OR_IP; database=meeni_erp_db; User=PASSWORD" />
+	</connectionStrings>
+	<appSettings>
+		<add key="mailtrap_token" value="Bearer API_DE_MAILTRAP" />
+		<add key="business_name" value="BUSINESS NAME" />
+		<add key="business_email" value="EMAIL@DOMINIO.com" />
+		<add key="business_url" value="BUSINESSURL.COM" />
+	</appSettings>
+	<runtime>
+		<assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+			<dependentAssembly>
+				<assemblyIdentity name="System.Runtime.CompilerServices.Unsafe" publicKeyToken="b03f5f7f11d50a3a" culture="neutral" />
+				<bindingRedirect oldVersion="0.0.0.0-6.0.0.0" newVersion="6.0.0.0" />
+			</dependentAssembly>
+		</assemblyBinding>
+	</runtime>
+	<system.codedom>
+		<compilers>
+			<compiler language="c#;cs;csharp" extension=".cs" warningLevel="4" compilerOptions="/langversion:default /nowarn:1659;1699;1701;612;618" type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.CSharpCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+			<compiler language="vb;vbs;visualbasic;vbscript" extension=".vb" warningLevel="4" compilerOptions="/langversion:default /nowarn:41008,40000,40008 /define:_MYTYPE=\&quot;Web\&quot; /optionInfer+" type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.VBCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+		</compilers>
+	</system.codedom>
 </configuration>
 ```
 
