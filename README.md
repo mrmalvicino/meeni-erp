@@ -9,11 +9,11 @@ Meeni ERP is a simple enterprise resource planning software. It performs quotati
 ## TOC
 
 - [Meeni ERP](#meeni-erp)
-	- [TOC](#toc)
-	- [Features](#features)
-	- [Technical Overview](#technical-overview)
-	- [Setup and Compilation](#setup-and-compilation)
-	- [License and Contributions](#license-and-contributions)
+  - [TOC](#toc)
+  - [Features](#features)
+  - [Technical Overview](#technical-overview)
+  - [Setup and Compilation](#setup-and-compilation)
+  - [License and Contributions](#license-and-contributions)
 
 ## Features
 
@@ -99,7 +99,9 @@ git clone https://github.com/mrmalvicino/meeni-erp.git
 </configuration>
 ```
 
-4. Build and deploy the application to your preferred hosting environment.
+4. Go to Visual Studio menu and select **Project > Manage NuGet Packages** and install the latest version of `Microsoft.CodeDom.Providers.DotNetCompilerPlatform` package.
+
+5. Build and deploy the application to your preferred hosting environment.
 
 ## License and Contributions
 
