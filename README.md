@@ -99,9 +99,9 @@ git clone https://github.com/mrmalvicino/meeni-erp.git
 </configuration>
 ```
 
-4. Go to Visual Studio menu and select **Project > Manage NuGet Packages** and install the latest version of `Microsoft.CodeDom.Providers.DotNetCompilerPlatform` package.
+1. Go to Visual Studio menu, select **Project > Manage NuGet Packages** and install the latest version of `Microsoft.CodeDom.Providers.DotNetCompilerPlatform` package.
 
-5. Build and deploy the application to your preferred hosting environment.
+2. Build and deploy the application to your preferred hosting environment.
 
 ## License and Contributions
 
