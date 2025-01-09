@@ -64,8 +64,12 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="images\favicon.ico" />
+    <Content Include="images\hero.jpg" />
     <Content Include="Home.aspx" />
+    <Content Include="images\mockup.png" />
     <Content Include="Login.aspx" />
+    <Content Include="images\logo.png" />
     <Content Include="script\load_images.js" />
     <Content Include="script\load_year.js" />
     <Content Include="Signup.aspx" />
@@ -133,9 +137,7 @@
       <Name>DomainModel</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="images\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
