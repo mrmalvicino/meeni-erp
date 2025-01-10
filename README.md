@@ -38,11 +38,11 @@ Meeni ERP offers the following functionalities:
 git clone https://github.com/mrmalvicino/meeni-erp.git
 ```
 
-2. Generate the database by running the provided [SQL scripts](./SQL).
+2. Generate the database by running the provided [SQL scripts](./SQL/).
 
 3. Go to Visual Studio menu, select **Project > Manage NuGet Packages** and install the latest version of `Microsoft.CodeDom.Providers.DotNetCompilerPlatform` package.
 
-4. Create a file named `Web.config` file with your connection string and [Mailtrap](https://mailtrap.io) API token with the following code:
+4. Create a file named `Web.config` in the [WebForms](./WebForms/) directory modifying the following template code:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -77,7 +77,8 @@ git clone https://github.com/mrmalvicino/meeni-erp.git
 		</system.webServer>
 	</location>
 	<connectionStrings>
-		<add name="SERVER_NAME" connectionString="server=SERVER_ADDRESS_OR_IP; database=meeni_erp_db; User=PASSWORD" />
+		<add name="localhost" connectionString="Data source=.\SQLEXPRESS; Initial Catalog=meeni_erp_db; integrated security=true" providerName="System.Data.SqlClient" />
+		<add name="SERVER_NAME" connectionString="Data Source=SERVER_ADDRESS_OR_IP; Initial Catalog=meeni_erp_db; User ID=USERNAME; Password=PASSWORD; Connect Timeout=30;" />
 	</connectionStrings>
 	<appSettings>
 		<add key="mailtrap_token" value="Bearer API_DE_MAILTRAP" />
@@ -101,6 +102,12 @@ git clone https://github.com/mrmalvicino/meeni-erp.git
 	</system.codedom>
 </configuration>
 ```
+
+- The line `<customErrors mode="Off"/>` can be removed to prevent sensitive data from being displayed on public servers.
+
+- If the localhost is not being used, add a custom connection string replacing the `SERVER_NAME`, `SERVER_ADDRESS_OR_IP`, `USERNAME` and `PASSWORD` attributes.
+
+- Insert the [Mailtrap](https://mailtrap.io) API token in the `appSettings` section.
 
 ## License and Contributions
 
