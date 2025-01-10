@@ -88,7 +88,7 @@
     <Content Include="style\margins.css" />
     <Content Include="style\paddings.css" />
     <Content Include="style\Signup.css" />
-    <Content Include="style\textboxes.css" />
+    <Content Include="style\inputs.css" />
     <Content Include="style\whatsapp.css" />
     <Content Include="Web.config" />
   </ItemGroup>

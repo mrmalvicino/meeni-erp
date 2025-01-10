@@ -24,10 +24,10 @@
     <link href="~/style/geometry.css" rel="stylesheet" />
     <link href="~/style/header.css" rel="stylesheet" />
     <link href="~/style/images.css" rel="stylesheet" />
+    <link href="~/style/inputs.css" rel="stylesheet" />
     <link href="~/style/justify.css" rel="stylesheet" />
     <link href="~/style/margins.css" rel="stylesheet" />
     <link href="~/style/paddings.css" rel="stylesheet" />
-    <link href="~/style/textboxes.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="HeadPlaceHolder" runat="server">
     </asp:ContentPlaceHolder>
 </head>
