@@ -1,4 +1,27 @@
-﻿.bold-text {
+﻿.jost-font {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+}
+
+.bebas-neue-font {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.open-sans-font {
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+}
+
+.uppercase-text {
+    text-transform: uppercase;
+}
+
+.bold-text {
     font-weight: 800;
 }
 
