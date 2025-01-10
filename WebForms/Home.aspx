@@ -8,7 +8,7 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
     <!-- Hero Section -->
-    <section id="heroSec" class="height-100-vh col-flex space-evenly">
+    <section id="heroSec" class="height-100-vh space-evenly">
         <div class="col-flex width-90-pct">
             <h1 class="margin-20-0-px">Software de gestión empresarial <span class="bold-text">Meeni ERP</span></h1>
             <p class="center-text margin-bottom-20-px">Una solución eficiente para gestionar tu negocio desde cualquier lugar.</p>
@@ -17,7 +17,7 @@
     </section>
 
     <!-- Sección de funcionalidades -->
-    <section id="featuresSec" class="height-100-vh col-flex space-evenly">
+    <section id="featuresSec" class="height-100-vh space-evenly">
         <div class="col-flex width-90-pct">
             <h2 class="margin-20-0-px">Simple, libre y eficaz</h2>
             <p class="center-text margin-bottom-20-px">Meeni ERP es un software de código abierto que te ayuda a gestionar tu empresa con facilidad desde cualquier dispositivo con conexión a internet.</p>
@@ -83,7 +83,7 @@
     </section>
 
     <!-- Pricing Section -->
-    <section id="pricingSec" class="height-100-vh col-flex space-evenly">
+    <section id="pricingSec" class="height-100-vh space-evenly">
         <div class="width-90-pct col-flex justify-center">
             <h2 class="margin-20-0-px">Un plan para cada organización</h2>
             <div class="width-100-pct row-flex space-evenly">
