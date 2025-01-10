@@ -84,8 +84,10 @@
     <Content Include="style\Home.css" />
     <Content Include="style\images.css" />
     <Content Include="style\justify.css" />
+    <Content Include="style\Login.css" />
     <Content Include="style\margins.css" />
     <Content Include="style\paddings.css" />
+    <Content Include="style\textboxes.css" />
     <Content Include="style\whatsapp.css" />
     <Content Include="Web.config" />
   </ItemGroup>

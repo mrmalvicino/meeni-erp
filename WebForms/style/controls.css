@@ -9,7 +9,6 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
     background-color: var(--gray-light);
     color: var(--black-soft);
 }
@@ -40,6 +39,8 @@ section {
 h1 {
     font-size: 3rem;
     text-align: center;
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
 }
 
 h2 {

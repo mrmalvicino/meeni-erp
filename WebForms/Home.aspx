@@ -10,10 +10,10 @@
     <!-- Hero Section -->
     <section id="heroSec" class="height-100-vh space-evenly">
         <div class="col-flex width-90-pct">
-            <h1 class="margin-20-0-px">Software de gestión empresarial <span class="bold-text">Meeni ERP</span></h1>
+            <h1 class="margin-20-0-px">Software de gestión&nbsp;empresarial <span class="bold-text">Meeni&nbsp;ERP</span></h1>
             <p class="center-text margin-bottom-20-px">Una solución eficiente para gestionar tu negocio desde cualquier lugar.</p>
         </div>
-        <a class="big-secondary-button transition" href="#pricingSec">Comenzá ahora</a>
+        <a class="big-transparent-button big-hover" href="#pricingSec">Comenzá ahora</a>
     </section>
 
     <!-- Sección de funcionalidades -->
@@ -110,7 +110,7 @@
                         </li>
                     </ul>
                     <h4>¡Accedé a todas las funcionalidades sin costo!</h4>
-                    <a class="dark-button transition" href="Signup.aspx">ARS $0,00 / mes</a>
+                    <a class="small-dark-button big-hover width-90-pct" href="Signup.aspx">ARS $0,00 / mes</a>
                 </div>
                 <div class="pricing-card">
                     <h3>Plan profesional</h3>
@@ -135,7 +135,7 @@
                         </li>
                     </ul>
                     <h4>¡Impulsá tu negocio en crecimiento!</h4>
-                    <a class="dark-button transition" href="Signup.aspx">ARS $20.000,00 / mes</a>
+                    <a class="small-dark-button big-hover width-90-pct" href="Signup.aspx">ARS $20.000,00 / mes</a>
                 </div>
                 <div class="pricing-card">
                     <h3>Plan empresarial</h3>
@@ -160,7 +160,7 @@
                         </li>
                     </ul>
                     <h4>¡Destacá en el mercado con funcionalidades extra!</h4>
-                    <a class="dark-button transition" href="Signup.aspx">ARS $40.000,00 / mes</a>
+                    <a class="small-dark-button big-hover width-90-pct" href="Signup.aspx">ARS $40.000,00 / mes</a>
                 </div>
             </div>
         </div>

@@ -27,21 +27,22 @@
     <link href="~/style/justify.css" rel="stylesheet" />
     <link href="~/style/margins.css" rel="stylesheet" />
     <link href="~/style/paddings.css" rel="stylesheet" />
+    <link href="~/style/textboxes.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="HeadPlaceHolder" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 
-<body>
+<body class="open-sans-font">
     <!-- Header -->
     <header>
         <nav class="header-nav">
             <a href="Home.aspx" class="width-200-px row-flex space-evenly invisible-link">
                 <img data-image-id="logoImg" />
-                <span>Meeni ERP</span>
+                <span class="jost-font">Meeni ERP</span>
             </a>
             <div>
-                <a class="small-primary-button" href="Login.aspx">Iniciar sesión</a>
-                <a class="small-secondary-button" href="Signup.aspx">Registrarse</a>
+                <a class="small-light-button" href="Login.aspx">Iniciar sesión</a>
+                <a class="small-transparent-button" href="Signup.aspx">Registrarse</a>
             </div>
         </nav>
     </header>
