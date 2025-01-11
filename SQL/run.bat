@@ -21,7 +21,7 @@ echo Choose database host:
 echo.
 echo 1- Localhost
 echo 2- Bangho
-echo 3- Docker (IP 192.168.0.156)
+echo 3- Docker
 echo.
 
 set /p choice=Enter your choice (1, 2 or 3):
@@ -53,6 +53,12 @@ if /i "%confirm%" NEQ "Y" (
     pause
     goto menu
 )
+
+cls
+echo --------------
+echo RESET DATABASE
+echo --------------
+echo.
 
 sqlcmd -S %database_host% -i delete_database.sql
 sqlcmd -S %database_host% -i create_database.sql

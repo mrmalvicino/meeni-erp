@@ -1,3 +1,17 @@
-USE meeni_erp_db;
+use meeni_erp_db;
 
-GO
+go
+insert into
+    pricing_plans (pricing_plan_name, monthly_fee)
+values
+    ('Plan gratuito', 0),
+    ('Plan profesional', 20),
+    ('Plan empresarial', 30);
+
+go
+insert into
+    roles (role_name)
+values
+    ('Administrador');
+
+go

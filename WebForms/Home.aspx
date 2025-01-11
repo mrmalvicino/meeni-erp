@@ -110,7 +110,7 @@
                         </li>
                     </ul>
                     <h4>¡Accedé a todas las funcionalidades sin costo!</h4>
-                    <a class="small-dark-button big-hover width-90-pct" href="Signup.aspx">ARS $0,00 / mes</a>
+                    <a class="small-dark-button big-hover width-90-pct" href="Signup.aspx">USD $0,00 / mes</a>
                 </div>
                 <div class="pricing-card">
                     <h3>Plan profesional</h3>
@@ -135,7 +135,7 @@
                         </li>
                     </ul>
                     <h4>¡Impulsá tu negocio en crecimiento!</h4>
-                    <a class="small-dark-button big-hover width-90-pct" href="Signup.aspx">ARS $20.000,00 / mes</a>
+                    <a class="small-dark-button big-hover width-90-pct" href="Signup.aspx">USD $20,00 / mes</a>
                 </div>
                 <div class="pricing-card">
                     <h3>Plan empresarial</h3>
@@ -160,7 +160,7 @@
                         </li>
                     </ul>
                     <h4>¡Destacá en el mercado con funcionalidades extra!</h4>
-                    <a class="small-dark-button big-hover width-90-pct" href="Signup.aspx">ARS $40.000,00 / mes</a>
+                    <a class="small-dark-button big-hover width-90-pct" href="Signup.aspx">USD $30,00 / mes</a>
                 </div>
             </div>
         </div>
