@@ -42,13 +42,13 @@ namespace WebForms
         protected global::System.Web.UI.WebControls.TextBox passwordTxt;
 
         /// <summary>
-        /// pricingPlanDDL control.
+        /// pricingPlansDDL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList pricingPlanDDL;
+        protected global::System.Web.UI.WebControls.DropDownList pricingPlansDDL;
 
         /// <summary>
         /// loginBtn control.

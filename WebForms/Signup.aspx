@@ -5,8 +5,8 @@
 </asp:Content>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
-    <section class="height-100-vh col-flex">
-        <h1>Registrar empresa</h1>
+    <section class="height-100-vh col-flex space-evenly">
+        <h1 class="margin-top-60-px">Registrar empresa</h1>
         <div class="signup-div">
             <div>
                 <label for="organizationTxt">Organización</label>
@@ -39,9 +39,9 @@
                 </asp:TextBox>
             </div>
             <div>
-                <label for="pricingPlanDDL">Plan</label>
+                <label for="pricingPlansDDL">Plan</label>
                 <asp:DropDownList
-                    ID="pricingPlanDDL"
+                    ID="pricingPlansDDL"
                     runat="server"
                     class="width-100-pct transparent-input">
                 </asp:DropDownList>

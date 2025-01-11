@@ -135,6 +135,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
+      <Project>{fb1fec52-ce39-41ab-85b5-87547607c4d7}</Project>
+      <Name>BusinessLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DomainModel\DomainModel.csproj">
       <Project>{6c49af9f-ff46-4bf1-b537-b41f3680883d}</Project>
       <Name>DomainModel</Name>
