@@ -15,13 +15,22 @@ namespace WebForms
     {
 
         /// <summary>
-        /// OrganizationTxt control.
+        /// PricingPlansDDL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox OrganizationTxt;
+        protected global::System.Web.UI.WebControls.DropDownList PricingPlansDDL;
+
+        /// <summary>
+        /// OrganizationNameTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox OrganizationNameTxt;
 
         /// <summary>
         /// UsernameTxt control.
@@ -42,21 +51,12 @@ namespace WebForms
         protected global::System.Web.UI.WebControls.TextBox PasswordTxt;
 
         /// <summary>
-        /// PricingPlansDDL control.
+        /// SignupBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList PricingPlansDDL;
-
-        /// <summary>
-        /// LoginBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button LoginBtn;
+        protected global::System.Web.UI.WebControls.Button SignupBtn;
     }
 }

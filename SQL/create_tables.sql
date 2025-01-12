@@ -39,6 +39,7 @@ create table
         activity_status bit default (1) not null,
         username varchar(50) unique null,
         user_password varchar(50) not null,
+        organization_id int foreign key references organizations (organization_id) not null
     );
 
 go

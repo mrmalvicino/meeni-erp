@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using DomainModel;
+using System;
 using System.Collections.Generic;
 
 namespace BusinessLogic
@@ -22,7 +23,14 @@ namespace BusinessLogic
 
         public List<PricingPlan> List()
         {
-            return _pricingPlansDAL.List();
+            try
+            {
+                return _pricingPlansDAL.List();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

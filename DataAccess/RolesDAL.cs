@@ -1,12 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccess
 {
     public class RolesDAL
     {
+        private Database _db;
+
+        public RolesDAL()
+        {
+            _db = new Database();
+        }
+
+        public void CreateUserRole(int userId, int roleId)
+        {
+            try
+            {
+                _db.SetProcedure("sp_create_user_role");
+                _db.SetParameter("@user_id", userId);
+                _db.SetParameter("@role_id", roleId);
+                _db.ExecuteAction();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                _db.CloseConnection();
+            }
+        }
     }
 }

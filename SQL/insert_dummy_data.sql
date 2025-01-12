@@ -14,9 +14,9 @@ values
 
 go
 insert into
-    users (username, user_password)
+    users (username, user_password, organization_id)
 values
-    ('admin', 'admin');
+    ('admin', 'admin', 1);
 
 go
 insert into

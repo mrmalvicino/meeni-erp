@@ -9,9 +9,17 @@
         <h1 class="margin-top-60-px">Registrar empresa</h1>
         <div class="signup-div">
             <div>
+                <label for="PricingPlansDDL">Plan</label>
+                <asp:DropDownList
+                    ID="PricingPlansDDL"
+                    runat="server"
+                    class="width-100-pct transparent-input">
+                </asp:DropDownList>
+            </div>
+            <div>
                 <label for="OrganizationTxt">Organización</label>
                 <asp:TextBox
-                    ID="OrganizationTxt"
+                    ID="OrganizationNameTxt"
                     runat="server"
                     TextMode="SingleLine"
                     class="width-100-pct transparent-input"
@@ -38,16 +46,8 @@
                     placeholder="Ingresá una contraseña">
                 </asp:TextBox>
             </div>
-            <div>
-                <label for="PricingPlansDDL">Plan</label>
-                <asp:DropDownList
-                    ID="PricingPlansDDL"
-                    runat="server"
-                    class="width-100-pct transparent-input">
-                </asp:DropDownList>
-            </div>
             <div class="margin-top-20-px">
-                <asp:Button ID="LoginBtn" runat="server" Text="Registrarse" class="small-dark-button width-100-pct" />
+                <asp:Button ID="SignupBtn" runat="server" Text="Registrarse" class="small-dark-button width-100-pct" OnClick="SignupBtn_Click" />
             </div>
         </div>
     </section>

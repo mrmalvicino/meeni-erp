@@ -10,6 +10,7 @@ as
 begin
     insert into
         organizations (organization_name, logo_image_id, pricing_plan_id)
+        output inserted.organization_id
     values
         (@organization_name, @logo_image_id, @pricing_plan_id);
 end;
@@ -17,14 +18,16 @@ end;
 go
 create or alter procedure sp_create_user(
     @username varchar(50),
-    @user_password varchar(50)
+    @user_password varchar(50),
+    @organization_id int
 )
 as
 begin
     insert into
-        users (username, user_password)
+        users (username, user_password, organization_id)
+        output inserted.user_id
     values
-        (@username, @user_password);
+        (@username, @user_password, @organization_id);
 end;
 
 go

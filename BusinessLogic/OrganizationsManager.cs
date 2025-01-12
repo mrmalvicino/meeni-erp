@@ -1,12 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DataAccess;
+using DomainModel;
+using System;
 
 namespace BusinessLogic
 {
     public class OrganizationsManager
     {
+        private OrganizationsDAL _organizationsDAL;
+        
+        public OrganizationsManager()
+        {
+            _organizationsDAL = new OrganizationsDAL();
+        }
+
+        public int Create(Organization organization)
+        {
+            try
+            {
+                return _organizationsDAL.Create(organization);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
