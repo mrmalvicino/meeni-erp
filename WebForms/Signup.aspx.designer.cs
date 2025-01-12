@@ -15,48 +15,48 @@ namespace WebForms
     {
 
         /// <summary>
-        /// organizationTxt control.
+        /// OrganizationTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox organizationTxt;
+        protected global::System.Web.UI.WebControls.TextBox OrganizationTxt;
 
         /// <summary>
-        /// usernameTxt control.
+        /// UsernameTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox usernameTxt;
+        protected global::System.Web.UI.WebControls.TextBox UsernameTxt;
 
         /// <summary>
-        /// passwordTxt control.
+        /// PasswordTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox passwordTxt;
+        protected global::System.Web.UI.WebControls.TextBox PasswordTxt;
 
         /// <summary>
-        /// pricingPlansDDL control.
+        /// PricingPlansDDL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList pricingPlansDDL;
+        protected global::System.Web.UI.WebControls.DropDownList PricingPlansDDL;
 
         /// <summary>
-        /// loginBtn control.
+        /// LoginBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button loginBtn;
+        protected global::System.Web.UI.WebControls.Button LoginBtn;
     }
 }

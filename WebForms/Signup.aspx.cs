@@ -14,11 +14,11 @@ namespace WebForms
 
         private void BindPricingPlansDDL()
         {
-            pricingPlansDDL.DataSource = _pricingPlansManager.List();
-            pricingPlansDDL.DataTextField = "Name";
-            pricingPlansDDL.DataValueField = "Id";
-            pricingPlansDDL.DataBind();
-            pricingPlansDDL.SelectedIndex = 0;
+            PricingPlansDDL.DataSource = _pricingPlansManager.List();
+            PricingPlansDDL.DataTextField = "Name";
+            PricingPlansDDL.DataValueField = "Id";
+            PricingPlansDDL.DataBind();
+            PricingPlansDDL.SelectedIndex = -1;
         }
 
         protected void Page_Load(object sender, EventArgs e)

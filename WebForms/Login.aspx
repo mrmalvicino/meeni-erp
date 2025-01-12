@@ -9,9 +9,9 @@
         <h1>Iniciar sesión</h1>
         <div class="login-div">
             <div>
-                <label for="usernameTxt">Usuario</label>
+                <label for="UsernameTxt">Usuario</label>
                 <asp:TextBox
-                    ID="usernameTxt"
+                    ID="UsernameTxt"
                     runat="server"
                     TextMode="SingleLine"
                     class="width-100-pct transparent-input"
@@ -19,9 +19,9 @@
                 </asp:TextBox>
             </div>
             <div>
-                <label for="passwordTxt">Contraseña</label>
+                <label for="PasswordTxt">Contraseña</label>
                 <asp:TextBox
-                    ID="passwordTxt"
+                    ID="PasswordTxt"
                     runat="server"
                     TextMode="Password"
                     class="width-100-pct transparent-input"
@@ -29,7 +29,7 @@
                 </asp:TextBox>
             </div>
             <div class="margin-top-20-px">
-                <asp:Button ID="loginBtn" runat="server" Text="Ingresar" class="small-dark-button width-100-pct" />
+                <asp:Button ID="LoginBtn" runat="server" Text="Ingresar" class="small-dark-button width-100-pct" />
             </div>
         </div>
     </section>

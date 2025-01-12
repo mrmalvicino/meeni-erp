@@ -9,9 +9,9 @@
         <h1 class="margin-top-60-px">Registrar empresa</h1>
         <div class="signup-div">
             <div>
-                <label for="organizationTxt">Organización</label>
+                <label for="OrganizationTxt">Organización</label>
                 <asp:TextBox
-                    ID="organizationTxt"
+                    ID="OrganizationTxt"
                     runat="server"
                     TextMode="SingleLine"
                     class="width-100-pct transparent-input"
@@ -19,9 +19,9 @@
                 </asp:TextBox>
             </div>
             <div>
-                <label for="usernameTxt">Usuario</label>
+                <label for="UsernameTxt">Usuario</label>
                 <asp:TextBox
-                    ID="usernameTxt"
+                    ID="UsernameTxt"
                     runat="server"
                     TextMode="SingleLine"
                     class="width-100-pct transparent-input"
@@ -29,9 +29,9 @@
                 </asp:TextBox>
             </div>
             <div>
-                <label for="passwordTxt">Contraseña</label>
+                <label for="PasswordTxt">Contraseña</label>
                 <asp:TextBox
-                    ID="passwordTxt"
+                    ID="PasswordTxt"
                     runat="server"
                     TextMode="Password"
                     class="width-100-pct transparent-input"
@@ -39,15 +39,15 @@
                 </asp:TextBox>
             </div>
             <div>
-                <label for="pricingPlansDDL">Plan</label>
+                <label for="PricingPlansDDL">Plan</label>
                 <asp:DropDownList
-                    ID="pricingPlansDDL"
+                    ID="PricingPlansDDL"
                     runat="server"
                     class="width-100-pct transparent-input">
                 </asp:DropDownList>
             </div>
             <div class="margin-top-20-px">
-                <asp:Button ID="loginBtn" runat="server" Text="Registrarse" class="small-dark-button width-100-pct" />
+                <asp:Button ID="LoginBtn" runat="server" Text="Registrarse" class="small-dark-button width-100-pct" />
             </div>
         </div>
     </section>
