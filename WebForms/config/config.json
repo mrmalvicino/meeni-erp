@@ -3,7 +3,7 @@
     {
       "title": "Meeni ERP",
       "alt": "Logo de Meeni ERP",
-      "src": "../images/logo.png",
+      "src": "https://github.com/mrmalvicino/meeni-erp/blob/main/WebForms/images/logo.png?raw=true",
       "width": 40,
       "height": 40,
       "class": null,
@@ -12,7 +12,7 @@
     {
       "title": "Mockup",
       "alt": "Mockup del software en laptop y smartphone",
-      "src": "../images/mockup.png",
+      "src": "https://github.com/mrmalvicino/meeni-erp/blob/main/WebForms/images/mockup.png?raw=true",
       "width": null,
       "height": null,
       "class": "fit-image",
