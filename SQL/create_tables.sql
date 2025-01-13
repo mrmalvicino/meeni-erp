@@ -37,7 +37,7 @@ create table
     users (
         user_id int primary key identity (1, 1) not null,
         activity_status bit default (1) not null,
-        username varchar(50) unique null,
+        username varchar(50) unique not null,
         user_password varchar(50) not null,
         organization_id int foreign key references organizations (organization_id) not null
     );

@@ -19,7 +19,7 @@ namespace WebForms
 
         private void BindPricingPlansDDL()
         {
-            PricingPlansDDL.DataSource = _appManager.GetPricingPlans();
+            PricingPlansDDL.DataSource = _appManager.PricingPlans.List();
             PricingPlansDDL.DataTextField = "Name";
             PricingPlansDDL.DataValueField = "Id";
             PricingPlansDDL.DataBind();

@@ -44,3 +44,19 @@ begin
 end;
 
 go
+create or alter procedure sp_find_user_id(
+    @username varchar(50),
+    @user_password varchar(50)
+)
+as
+begin
+    select
+        user_id
+    from
+        users
+    where
+        username = @username
+        and user_password = @user_password;
+end;
+
+go

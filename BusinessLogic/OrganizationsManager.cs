@@ -8,7 +8,7 @@ namespace BusinessLogic
     public class OrganizationsManager
     {
         private OrganizationsDAL _organizationsDAL;
-        
+
         public OrganizationsManager(Database db)
         {
             _organizationsDAL = new OrganizationsDAL(db);
@@ -19,6 +19,18 @@ namespace BusinessLogic
             try
             {
                 return _organizationsDAL.Create(organization);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex);
+            }
+        }
+
+        public Organization Read(int organizationId)
+        {
+            try
+            {
+                return _organizationsDAL.Read(organizationId);
             }
             catch (Exception ex)
             {

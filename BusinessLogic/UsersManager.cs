@@ -25,7 +25,7 @@ namespace BusinessLogic
                 {
                     user.Id = _usersDAL.Create(user, organization);
 
-                    foreach (Role role in user.Roles)
+                    foreach (Role role in user.Roles) // va en DAL? En tal caso cambiar TransactionScopeException
                     {
                         _rolesManager.CreateUserRole(user, role);
                     }
@@ -38,6 +38,42 @@ namespace BusinessLogic
             catch (Exception ex)
             {
                 throw new TransactionScopeException(ex);
+            }
+        }
+
+        public User Read(int userId)
+        {
+            try
+            {
+                return _usersDAL.Read(userId);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex);
+            }
+        }
+
+        public int FindId(User user)
+        {
+            try
+            {
+                return _usersDAL.FindId(user);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex);
+            }
+        }
+
+        public int FindOrganizationId(User user)
+        {
+            try
+            {
+                return _usersDAL.FindOrganizationId(user);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex);
             }
         }
     }
