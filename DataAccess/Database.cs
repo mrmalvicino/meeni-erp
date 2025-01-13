@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Configuration;
+using Exceptions;
 
 namespace DataAccess
 {
@@ -53,11 +54,12 @@ namespace DataAccess
                 {
                     _connection.Open();
                 }
+
                 _reader = _command.ExecuteReader();
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new DatabaseQueryException(ex);
             }
             finally
             {
@@ -76,11 +78,12 @@ namespace DataAccess
                 {
                     _connection.Open();
                 }
+
                 result = (Int32)_command.ExecuteScalar();
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new DatabaseQueryException(ex);
             }
             finally
             {
@@ -99,11 +102,12 @@ namespace DataAccess
                 {
                     _connection.Open();
                 }
+
                 _command.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new DatabaseQueryException(ex);
             }
             finally
             {

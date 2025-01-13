@@ -1,5 +1,6 @@
 ﻿using System;
 using DomainModel;
+using Exceptions;
 
 namespace DataAccess
 {
@@ -22,7 +23,7 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new DataAccessException(ex);
             }
             finally
             {

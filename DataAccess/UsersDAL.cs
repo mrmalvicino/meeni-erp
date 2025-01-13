@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Data.Common;
-using System.Data.SqlClient;
 using DomainModel;
+using Exceptions;
 
 namespace DataAccess
 {
@@ -24,7 +23,7 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new DataAccessException(ex);
             }
             finally
             {

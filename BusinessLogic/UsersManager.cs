@@ -1,6 +1,8 @@
 ﻿using DataAccess;
 using DomainModel;
+using Exceptions;
 using System;
+using System.Transactions;
 
 namespace BusinessLogic
 {
@@ -19,18 +21,23 @@ namespace BusinessLogic
         {
             try
             {
-                user.Id = _usersDAL.Create(user, organization);
-
-                foreach (Role role in user.Roles)
+                using (var scope = new TransactionScope())
                 {
-                    _rolesManager.CreateUserRole(user, role);
-                }
+                    user.Id = _usersDAL.Create(user, organization);
 
-                return user.Id;
+                    foreach (Role role in user.Roles)
+                    {
+                        _rolesManager.CreateUserRole(user, role);
+                    }
+
+                    scope.Complete();
+
+                    return user.Id;
+                }
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new TransactionScopeException(ex);
             }
         }
     }

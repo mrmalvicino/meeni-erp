@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Exceptions;
+using System;
 
 namespace DataAccess
 {
@@ -22,7 +23,7 @@ namespace DataAccess
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new DataAccessException(ex);
             }
             finally
             {

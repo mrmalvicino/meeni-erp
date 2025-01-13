@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using DomainModel;
+using Exceptions;
 using System;
 
 namespace BusinessLogic
@@ -26,7 +27,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new BusinessLogicException(ex);
             }
         }
     }

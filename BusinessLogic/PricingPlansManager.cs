@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using DomainModel;
+using Exceptions;
 using System;
 using System.Collections.Generic;
 
@@ -29,7 +30,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new BusinessLogicException(ex);
             }
         }
     }

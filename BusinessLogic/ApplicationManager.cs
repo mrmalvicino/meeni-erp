@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using DomainModel;
+using Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Transactions;
@@ -42,8 +43,7 @@ namespace BusinessLogic
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Error: {ex.Message}");
-                    throw;
+                    throw new TransactionScopeException(ex);
                 }
             }
         }
