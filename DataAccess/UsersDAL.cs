@@ -37,8 +37,6 @@ namespace DataAccess
 
         public User Read(int userId)
         {
-            User user = new User();
-
             try
             {
                 _db.SetQuery("select * from users where user_id = @user_id");
@@ -47,11 +45,12 @@ namespace DataAccess
 
                 if (_db.Reader.Read())
                 {
-                    user.Id = userId;
-                    user.ActivityStatus = (bool)_db.Reader["activity_status"];
-                    user.Username = _db.Reader["username"].ToString();
-                    user.Password = _db.Reader["user_password"].ToString();
+                    User user = new User();
+                    ReadRow(user);
+                    return user;
                 }
+
+                return null;
             }
             catch (Exception ex)
             {
@@ -61,10 +60,6 @@ namespace DataAccess
             {
                 _db.CloseConnection();
             }
-
-            // cargar roles. va en BLL?
-
-            return user;
         }
 
         public int FindId(User user)
@@ -129,6 +124,14 @@ namespace DataAccess
             _db.SetParameter("@username", user.Username);
             _db.SetParameter("@user_password", user.Password);
             _db.SetParameter("@organization_id", organizationId);
+        }
+
+        private void ReadRow(User user)
+        {
+            user.Id = Convert.ToInt32(_db.Reader["user_id"]);
+            user.ActivityStatus = (bool)_db.Reader["activity_status"];
+            user.Username = _db.Reader["username"].ToString();
+            user.Password = _db.Reader["user_password"].ToString();
         }
     }
 }

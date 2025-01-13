@@ -4,7 +4,7 @@ go
 create table
     images (
         image_id int primary key identity (1, 1) not null,
-        image_url varchar(500) not null
+        image_url varchar(500) unique not null
     );
 
 go

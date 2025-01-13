@@ -3,6 +3,7 @@ using DomainModel;
 using Exceptions;
 using System;
 using System.Collections.Generic;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace BusinessLogic
 {
@@ -20,6 +21,23 @@ namespace BusinessLogic
         public PricingPlansManager(Database db)
         {
             _pricingPlansDAL = new PricingPlansDAL(db);
+        }
+
+        public PricingPlan Read(int pricingPlanId)
+        {
+            if (pricingPlanId == 0)
+            {
+                return null;
+            }
+
+            try
+            {
+                return _pricingPlansDAL.Read(pricingPlanId);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex);
+            }
         }
 
         public List<PricingPlan> List()

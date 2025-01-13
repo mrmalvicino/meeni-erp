@@ -2,8 +2,6 @@
 using DomainModel;
 using Exceptions;
 using System;
-using System.Collections.Generic;
-using System.Data.Common;
 using System.Transactions;
 
 namespace BusinessLogic

@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Interfaces;
+using System.Collections.Generic;
 
 namespace DomainModel
 {
-    public class Organization
+    public class Organization : IIdentifiable
     {
         public int Id { get; set; }
         public bool ActivityStatus { get; set; }
@@ -10,10 +11,5 @@ namespace DomainModel
         public Image LogoImage { get; set; }
         public PricingPlan PricingPlan { get; set; }
         public List<User> Users { get; set; }
-
-        public Organization()
-        {
-            Users = new List<User>();
-        }
     }
 }

@@ -12,6 +12,10 @@ go
 insert into
     roles (role_name)
 values
-    ('Administrador');
+    ('Administrador'),
+    ('Contabilidad'),
+    ('Logística'),
+    ('RRHH'),
+    ('Ventas');
 
 go

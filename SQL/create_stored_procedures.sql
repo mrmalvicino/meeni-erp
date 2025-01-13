@@ -31,6 +31,22 @@ begin
 end;
 
 go
+create or alter procedure sp_list_user_roles(
+    @user_id int
+)
+as
+begin
+    select
+        R.role_id,
+        R.role_name
+    from
+        roles R
+        inner join user_role_rel X on R.role_id = X.role_id
+    where
+        X.user_id = @user_id;
+end;
+
+go
 create or alter procedure sp_create_user_role(
     @user_id int,
     @role_id int

@@ -1,6 +1,7 @@
 ﻿using BusinessLogic;
 using DomainModel;
 using System;
+using System.Collections.Generic;
 
 namespace WebForms
 {
@@ -36,6 +37,7 @@ namespace WebForms
 
             Role role = new Role();
             role.Id = (int)RolesManager.Ids.AdminRoleId;
+            _user.Roles = new List<Role>();
             _user.Roles.Add(role);
 
             _user.Username = UsernameTxt.Text;

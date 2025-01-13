@@ -14,6 +14,33 @@ namespace DataAccess
             _db = db;
         }
 
+        public PricingPlan Read(int pricingPlanId)
+        {
+            try
+            {
+                _db.SetQuery("select * from pricing_plans where pricing_plan_id = @pricing_plan_id");
+                _db.SetParameter("@pricing_plan_id", pricingPlanId);
+                _db.ExecuteRead();
+
+                if (_db.Reader.Read())
+                {
+                    PricingPlan pricingPlan = new PricingPlan();
+                    ReadRow(pricingPlan);
+                    return pricingPlan;
+                }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ex);
+            }
+            finally
+            {
+                _db.CloseConnection();
+            }
+        }
+
         public List<PricingPlan> List()
         {
             List<PricingPlan> pricingPlans = new List<PricingPlan>();
@@ -26,11 +53,7 @@ namespace DataAccess
                 while (_db.Reader.Read())
                 {
                     PricingPlan pricingPlan = new PricingPlan();
-
-                    pricingPlan.Id = Convert.ToInt32(_db.Reader["pricing_plan_id"]);
-                    pricingPlan.Name = _db.Reader["pricing_plan_name"].ToString();
-                    pricingPlan.MonthlyFee = _db.Reader["monthly_fee"] as decimal? ?? pricingPlan.MonthlyFee;
-
+                    ReadRow(pricingPlan);
                     pricingPlans.Add(pricingPlan);
                 }
             }
@@ -44,6 +67,13 @@ namespace DataAccess
             }
 
             return pricingPlans;
+        }
+
+        private void ReadRow(PricingPlan pricingPlan)
+        {
+            pricingPlan.Id = Convert.ToInt32(_db.Reader["pricing_plan_id"]);
+            pricingPlan.Name = _db.Reader["pricing_plan_name"].ToString();
+            pricingPlan.MonthlyFee = (decimal)_db.Reader["monthly_fee"];
         }
     }
 }

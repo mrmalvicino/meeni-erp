@@ -1,6 +1,7 @@
 ﻿using System;
 using DomainModel;
 using Exceptions;
+using Utilities;
 
 namespace DataAccess
 {
@@ -35,8 +36,6 @@ namespace DataAccess
 
         public Organization Read(int organizationId)
         {
-            Organization organization = new Organization();
-
             try
             {
                 _db.SetQuery("select * from organizations where organization_id = @organization_id");
@@ -45,10 +44,12 @@ namespace DataAccess
 
                 if (_db.Reader.Read())
                 {
-                    organization.Id = organizationId;
-                    organization.ActivityStatus = (bool)_db.Reader["activity_status"];
-                    organization.Name = _db.Reader["organization_name"].ToString();
+                    Organization organization = new Organization();
+                    ReadRow(organization);
+                    return organization;
                 }
+
+                return null;
             }
             catch (Exception ex)
             {
@@ -58,10 +59,6 @@ namespace DataAccess
             {
                 _db.CloseConnection();
             }
-
-            // cargar imagen y plan. Va en BLL?
-
-            return organization;
         }
 
         private void SetParameters(Organization organization, bool isUpdate = false)
@@ -84,6 +81,15 @@ namespace DataAccess
             }
 
             _db.SetParameter("@pricing_plan_id", organization.PricingPlan.Id);
+        }
+
+        private void ReadRow(Organization organization)
+        {
+            organization.Id = Convert.ToInt32(_db.Reader["organization_id"]);
+            organization.ActivityStatus = (bool)_db.Reader["activity_status"];
+            organization.Name = _db.Reader["organization_name"].ToString();
+            organization.LogoImage = Helper.InstantiateNull<Image>(_db.Reader["logo_image_id"]);
+            organization.PricingPlan = Helper.InstantiateNull<PricingPlan>(_db.Reader["pricing_plan_id"]);
         }
     }
 }
