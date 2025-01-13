@@ -65,13 +65,13 @@
             </div>
         </div>
         <div class="row-flex space-around width-90-pct">
-            <a href="#" class="invisible-link">
+            <a href="#" class="invisible-link margin-10-px">
                 <span>Políticas de privacidad</span>
             </a>
-            <a href="https://github.com/mrmalvicino/meeni-erp/blob/main/LICENSE" class="invisible-link">
-                <span id="year"></span>&copy; GNU General Public License
+            <a href="https://github.com/mrmalvicino/meeni-erp/blob/main/LICENSE" class="invisible-link margin-10-px">
+                <span id="year"></span>&nbsp&copy; GNU General Public License
             </a>
-            <a href="#" class="invisible-link">
+            <a href="#" class="invisible-link margin-10-px">
                 <span>Términos y condiciones</span>
             </a>
         </div>
