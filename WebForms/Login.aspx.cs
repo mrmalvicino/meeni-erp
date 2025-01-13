@@ -32,10 +32,18 @@ namespace WebForms
         {
             MapAttributes();
 
-            if (_appManager.Login(_loggedUser, _loggedOrganization))
+            try
             {
-                Session.Add("loggedUser", _loggedUser);
-                Response.Redirect("Home.aspx", false);
+                if (_appManager.Login(ref _loggedUser, ref _loggedOrganization))
+                {
+                    Session.Add("loggedUser", _loggedUser);
+                    Session.Add("loggedOrganization", _loggedOrganization);
+                    Response.Redirect("Home.aspx", false);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
     }

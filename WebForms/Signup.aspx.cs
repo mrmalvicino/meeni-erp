@@ -8,14 +8,14 @@ namespace WebForms
     public partial class Signup : System.Web.UI.Page
     {
         private ApplicationManager _appManager;
-        private Organization _organization;
-        private User _user;
+        private Organization _newOrganization;
+        private User _newUser;
 
         public Signup()
         {
             _appManager = new ApplicationManager();
-            _organization = new Organization();
-            _user = new User();
+            _newOrganization = new Organization();
+            _newUser = new User();
         }
 
         private void BindPricingPlansDDL()
@@ -29,19 +29,19 @@ namespace WebForms
 
         private void MapAttributes()
         {
-            _organization.Name = OrganizationNameTxt.Text;
+            _newOrganization.Name = OrganizationNameTxt.Text;
 
             PricingPlan pricingPlan = new PricingPlan();
             pricingPlan.Id = (int)PricingPlansManager.Ids.FreePlanId;
-            _organization.PricingPlan = pricingPlan;
+            _newOrganization.PricingPlan = pricingPlan;
 
             Role role = new Role();
             role.Id = (int)RolesManager.Ids.AdminRoleId;
-            _user.Roles = new List<Role>();
-            _user.Roles.Add(role);
+            _newUser.Roles = new List<Role>();
+            _newUser.Roles.Add(role);
 
-            _user.Username = UsernameTxt.Text;
-            _user.Password = PasswordTxt.Text;
+            _newUser.Username = UsernameTxt.Text;
+            _newUser.Password = PasswordTxt.Text;
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -58,7 +58,12 @@ namespace WebForms
 
             try
             {
-                _appManager.SignUp(_user, _organization);
+                if (_appManager.SignUp(ref _newUser, ref _newOrganization))
+                {
+                    Session.Add("loggedUser", _newUser);
+                    Session.Add("loggedOrganization", _newOrganization);
+                    Response.Redirect("Home.aspx", false);
+                }
             }
             catch (Exception ex)
             {

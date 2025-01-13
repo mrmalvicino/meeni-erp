@@ -31,7 +31,7 @@ namespace BusinessLogic
             _usersManager = new UsersManager(_db);
         }
 
-        public void SignUp(User user, Organization organization)
+        public bool SignUp(ref User user, ref Organization organization)
         {
             using (var transaction = new TransactionScope())
             {
@@ -39,7 +39,10 @@ namespace BusinessLogic
                 {
                     organization.Id = _organizationsManager.Create(organization);
                     _usersManager.Create(user, organization);
+                    user = _usersManager.Read(user.Id);
+                    organization = _organizationsManager.Read(organization.Id);
                     transaction.Complete();
+                    return true;
                 }
                 catch (Exception ex)
                 {
@@ -48,7 +51,7 @@ namespace BusinessLogic
             }
         }
 
-        public bool Login(User user, Organization organization)
+        public bool Login(ref User user, ref Organization organization)
         {
             using (var transaction = new TransactionScope())
             {
