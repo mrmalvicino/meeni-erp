@@ -16,9 +16,9 @@ namespace BusinessLogic
 
         private PricingPlansDAL _pricingPlansDAL;
 
-        public PricingPlansManager()
+        public PricingPlansManager(Database db)
         {
-            _pricingPlansDAL = new PricingPlansDAL();
+            _pricingPlansDAL = new PricingPlansDAL(db);
         }
 
         public List<PricingPlan> List()

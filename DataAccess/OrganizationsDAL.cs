@@ -7,9 +7,9 @@ namespace DataAccess
     {
         private Database _db;
 
-        public OrganizationsDAL()
+        public OrganizationsDAL(Database db)
         {
-            _db = new Database();
+            _db = db;
         }
 
         public int Create(Organization organization)

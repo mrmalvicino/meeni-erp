@@ -9,10 +9,10 @@ namespace BusinessLogic
         private UsersDAL _usersDAL;
         private RolesManager _rolesManager;
 
-        public UsersManager()
+        public UsersManager(Database db)
         {
-            _usersDAL = new UsersDAL();
-            _rolesManager = new RolesManager();
+            _usersDAL = new UsersDAL(db);
+            _rolesManager = new RolesManager(db);
         }
 
         public int Create(User user, Organization organization)

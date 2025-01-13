@@ -6,9 +6,9 @@ namespace DataAccess
     {
         private Database _db;
 
-        public RolesDAL()
+        public RolesDAL(Database db)
         {
-            _db = new Database();
+            _db = db;
         }
 
         public void CreateUserRole(int userId, int roleId)

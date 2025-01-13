@@ -6,24 +6,20 @@ namespace WebForms
 {
     public partial class Signup : System.Web.UI.Page
     {
-        private PricingPlansManager _pricingPlansManager;
-        private OrganizationsManager _organizationsManager;
-        private UsersManager _usersManager;
+        private ApplicationManager _appManager;
         private Organization _organization;
         private User _user;
 
         public Signup()
         {
-            _pricingPlansManager = new PricingPlansManager();
-            _organizationsManager = new OrganizationsManager();
-            _usersManager = new UsersManager();
+            _appManager = new ApplicationManager();
             _organization = new Organization();
             _user = new User();
         }
 
         private void BindPricingPlansDDL()
         {
-            PricingPlansDDL.DataSource = _pricingPlansManager.List();
+            PricingPlansDDL.DataSource = _appManager.GetPricingPlans();
             PricingPlansDDL.DataTextField = "Name";
             PricingPlansDDL.DataValueField = "Id";
             PricingPlansDDL.DataBind();
@@ -60,8 +56,7 @@ namespace WebForms
 
             try
             {
-                _organization.Id = _organizationsManager.Create(_organization);
-                _user.Id = _usersManager.Create(_user, _organization);
+                _appManager.SignUp(_user, _organization);
             }
             catch (Exception ex)
             {

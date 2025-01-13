@@ -13,9 +13,9 @@ namespace BusinessLogic
 
         private RolesDAL _rolesDAL;
 
-        public RolesManager()
+        public RolesManager(Database db)
         {
-            _rolesDAL = new RolesDAL();
+            _rolesDAL = new RolesDAL(db);
         }
 
         public void CreateUserRole(User user, Role role)

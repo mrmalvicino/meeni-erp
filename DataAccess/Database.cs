@@ -49,7 +49,10 @@ namespace DataAccess
 
             try
             {
-                _connection.Open();
+                if (_connection.State != System.Data.ConnectionState.Open) // Necesario para mantener la conección abierta para usar TransactionScoope 
+                {
+                    _connection.Open();
+                }
                 _reader = _command.ExecuteReader();
             }
             catch (Exception ex)
@@ -69,7 +72,10 @@ namespace DataAccess
 
             try
             {
-                _connection.Open();
+                if (_connection.State != System.Data.ConnectionState.Open) // Necesario para mantener la conección abierta para usar TransactionScoope 
+                {
+                    _connection.Open();
+                }
                 result = (Int32)_command.ExecuteScalar();
             }
             catch (Exception ex)
@@ -89,7 +95,10 @@ namespace DataAccess
 
             try
             {
-                _connection.Open();
+                if (_connection.State != System.Data.ConnectionState.Open) // Necesario para mantener la conección abierta para usar TransactionScoope 
+                {
+                    _connection.Open();
+                }
                 _command.ExecuteNonQuery();
             }
             catch (Exception ex)

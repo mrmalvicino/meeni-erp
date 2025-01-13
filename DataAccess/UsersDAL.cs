@@ -9,9 +9,9 @@ namespace DataAccess
     {
         private Database _db;
 
-        public UsersDAL()
+        public UsersDAL(Database db)
         {
-            _db = new Database();
+            _db = db;
         }
 
         public int Create(User user, Organization organization)

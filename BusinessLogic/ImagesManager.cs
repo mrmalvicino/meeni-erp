@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DataAccess;
 
 namespace BusinessLogic
 {
     public class ImagesManager
     {
+        private ImagesDAL _imagesDAL;
+
+        public ImagesManager(Database db)
+        {
+            _imagesDAL = new ImagesDAL(db);
+        }
     }
 }

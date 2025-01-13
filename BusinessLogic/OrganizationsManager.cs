@@ -8,9 +8,9 @@ namespace BusinessLogic
     {
         private OrganizationsDAL _organizationsDAL;
         
-        public OrganizationsManager()
+        public OrganizationsManager(Database db)
         {
-            _organizationsDAL = new OrganizationsDAL();
+            _organizationsDAL = new OrganizationsDAL(db);
         }
 
         public int Create(Organization organization)

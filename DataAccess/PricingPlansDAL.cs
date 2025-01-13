@@ -8,9 +8,9 @@ namespace DataAccess
     {
         private Database _db;
 
-        public PricingPlansDAL()
+        public PricingPlansDAL(Database db)
         {
-            _db = new Database();
+            _db = db;
         }
 
         public List<PricingPlan> List()
