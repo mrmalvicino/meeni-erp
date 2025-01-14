@@ -11,25 +11,25 @@ namespace WebForms
 {
 
 
-    public partial class Admin
+    public partial class Landing
     {
 
         /// <summary>
-        /// AdminHeadPlaceHolder control.
+        /// LandingHeadPlaceHolder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder AdminHeadPlaceHolder;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder LandingHeadPlaceHolder;
 
         /// <summary>
-        /// AdminMainPlaceHolder control.
+        /// LandingMainPlaceHolder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder AdminMainPlaceHolder;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder LandingMainPlaceHolder;
     }
 }

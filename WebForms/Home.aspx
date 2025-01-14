@@ -1,19 +1,21 @@
-﻿<%@ Page Title="Meeni ERP" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="WebForms.Home" %>
+﻿<%@ Page Title="Meeni ERP" Language="C#" MasterPageFile="~/Landing.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="WebForms.Home" %>
 
-<asp:Content ID="HeadContent" ContentPlaceHolderID="SiteHeadPlaceHolder" runat="server">
-    <link href="style/Home.css" rel="stylesheet" />
+<asp:Content ID="HeadContent" ContentPlaceHolderID="LandingHeadPlaceHolder" runat="server">
+    <link href="style/home-containers.css" rel="stylesheet" />
+    <link href="style/home-ids.css" rel="stylesheet" />
+    <link href="style/home-responsive.css" rel="stylesheet" />
     <link href="style/banner.css" rel="stylesheet" />
-    <link href="style/whatsapp.css" rel="stylesheet" />
+    <link href="style/whatsapp-button.css" rel="stylesheet" />
 </asp:Content>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="SiteBodyPlaceHolder" runat="server">
+<asp:Content ID="BodyContent" ContentPlaceHolderID="LandingMainPlaceHolder" runat="server">
     <!-- Hero Section -->
     <section id="heroSec" class="height-100-vh space-evenly">
         <div class="col-flex width-90-pct">
             <h1 class="margin-20-0-px">Software de gestión&nbsp;empresarial <span class="bold-text">Meeni&nbsp;ERP</span></h1>
             <p class="center-text margin-bottom-20-px">Una solución eficiente para gestionar tu negocio desde cualquier lugar.</p>
         </div>
-        <a class="big-transparent-button big-hover" href="#pricingSec">Comenzá ahora</a>
+        <a class="cta-button big-hover" href="#pricingSec">Comenzá ahora</a>
     </section>
 
     <!-- Sección de funcionalidades -->
@@ -29,21 +31,21 @@
             <div class="col-flex space-around margin-bottom-10-px">
                 <div class="feature-card">
                     <div class="row-flex justify-center width-100-pct">
-                        <i class="bi bi-cart font-size-40 margin-10-px"></i>
+                        <i class="bi bi-cart font-size-40-px margin-10-px"></i>
                         <h3>Gestión de cotizaciones</h3>
                     </div>
                     <p>Realizá cotizaciones eficientemente.</p>
                 </div>
                 <div class="feature-card">
                     <div class="row-flex justify-center width-100-pct">
-                        <i class="bi bi-truck font-size-40 margin-10-px"></i>
+                        <i class="bi bi-truck font-size-40-px margin-10-px"></i>
                         <h3>Gestión de inventarios</h3>
                     </div>
                     <p>Controlá los niveles de stock.</p>
                 </div>
                 <div class="feature-card">
                     <div class="row-flex justify-center width-100-pct">
-                        <i class="bi bi-cash font-size-40 margin-10-px"></i>
+                        <i class="bi bi-cash font-size-40-px margin-10-px"></i>
                         <h3>Registro de transacciones</h3>
                     </div>
                     <p>Monitoreá las compras y ventas.</p>
@@ -63,18 +65,23 @@
                 {
             %>
             <div class="banner-slide">
-                <div class="width-100-px margin-20-100-px">
+                <div class="width-40-px"></div>
+                <div class="width-100-px margin-20-px">
                     <img data-image-id="mokaImg" />
                 </div>
-                <div class="width-100-px margin-20-100-px">
+                <div class="width-80-px"></div>
+                <div class="width-100-px margin-20-px">
                     <img data-image-id="MMRSonidoImg" />
                 </div>
-                <div class="width-100-px margin-20-100-px">
+                <div class="width-80-px"></div>
+                <div class="width-100-px margin-20-px">
                     <img data-image-id="GSElectronicaImg" />
                 </div>
-                <div class="width-100-px margin-20-100-px">
+                <div class="width-80-px"></div>
+                <div class="width-100-px margin-20-px">
                     <img data-image-id="pisosClickImg" />
                 </div>
+                <div class="width-40-px"></div>
             </div>
             <%
                 }
@@ -110,7 +117,7 @@
                         </li>
                     </ul>
                     <h4>¡Accedé a todas las funcionalidades sin costo!</h4>
-                    <a class="small-dark-button big-hover width-90-pct" href="Signup.aspx">USD $0,00 / mes</a>
+                    <a class="dark-button big-hover width-90-pct" href="Signup.aspx">USD $0,00 / mes</a>
                 </div>
                 <div class="pricing-card">
                     <h3>Plan profesional</h3>
@@ -135,7 +142,7 @@
                         </li>
                     </ul>
                     <h4>¡Impulsá tu negocio en crecimiento!</h4>
-                    <a class="small-dark-button big-hover width-90-pct" href="Signup.aspx">USD $20,00 / mes</a>
+                    <a class="dark-button big-hover width-90-pct" href="Signup.aspx">USD $20,00 / mes</a>
                 </div>
                 <div class="pricing-card">
                     <h3>Plan empresarial</h3>
@@ -160,7 +167,7 @@
                         </li>
                     </ul>
                     <h4>¡Destacá en el mercado con funcionalidades extra!</h4>
-                    <a class="small-dark-button big-hover width-90-pct" href="Signup.aspx">USD $30,00 / mes</a>
+                    <a class="dark-button big-hover width-90-pct" href="Signup.aspx">USD $30,00 / mes</a>
                 </div>
             </div>
         </div>

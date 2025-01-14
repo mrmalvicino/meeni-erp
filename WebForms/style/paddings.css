@@ -2,12 +2,12 @@
     padding: 10px;
 }
 
-.padding-20-px {
-    padding: 20px;
-}
-
 .padding-15-px {
     padding: 15px;
+}
+
+.padding-20-px {
+    padding: 20px;
 }
 
 .padding-top-20-px {
@@ -20,4 +20,8 @@
 
 .padding-bottom-20-px {
     padding-bottom: 20px;
+}
+
+.padding-bottom-40-px {
+    padding-bottom: 40px;
 }

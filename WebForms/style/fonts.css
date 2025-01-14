@@ -37,10 +37,6 @@
     text-indent: 20px;
 }
 
-.font-size-40 {
+.font-size-40-px {
     font-size: 40px;
-}
-
-.font-color-2 {
-    color: var(--black-soft);
 }

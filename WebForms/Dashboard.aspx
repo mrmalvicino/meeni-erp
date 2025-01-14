@@ -3,6 +3,6 @@
 <asp:Content ID="HeadContent" ContentPlaceHolderID="AdminHeadPlaceHolder" runat="server">
 </asp:Content>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="AdminBodyPlaceHolder" runat="server">
-    contenido del body
+<asp:Content ID="BodyContent" ContentPlaceHolderID="AdminMainPlaceHolder" runat="server">
+    contenido del main
 </asp:Content>

@@ -1,0 +1,14 @@
+﻿@media screen and (max-width: 1200px) {
+    #featuresSec .row-flex {
+        flex-direction: column;
+    }
+
+    #featuresSec .width-50-pct {
+        width: 90%;
+        padding: 20px 0px;
+    }
+
+    #pricingSec .row-flex {
+        flex-direction: column;
+    }
+}

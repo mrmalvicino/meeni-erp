@@ -1,19 +1,19 @@
-﻿<%@ Page Title="Signup" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Signup.aspx.cs" Inherits="WebForms.Signup" %>
+﻿<%@ Page Title="Signup" Language="C#" MasterPageFile="~/Landing.Master" AutoEventWireup="true" CodeBehind="Signup.aspx.cs" Inherits="WebForms.Signup" %>
 
-<asp:Content ID="HeadContent" ContentPlaceHolderID="SiteHeadPlaceHolder" runat="server">
-    <link href="style/Signup.css" rel="stylesheet" />
+<asp:Content ID="HeadContent" ContentPlaceHolderID="LandingHeadPlaceHolder" runat="server">
 </asp:Content>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="SiteBodyPlaceHolder" runat="server">
+<asp:Content ID="BodyContent" ContentPlaceHolderID="LandingMainPlaceHolder" runat="server">
     <section class="height-100-vh col-flex space-evenly">
-        <h1 class="margin-top-60-px">Registrar empresa</h1>
-        <div class="signup-div">
+        <div class="site-menu-height"></div>
+        <h1>Registrar empresa</h1>
+        <div class="container-div width-300-px height-500-px">
             <div>
                 <label for="PricingPlansDDL">Plan</label>
                 <asp:DropDownList
                     ID="PricingPlansDDL"
                     runat="server"
-                    class="width-100-pct transparent-input">
+                    class="width-100-pct input-box">
                 </asp:DropDownList>
             </div>
             <div>
@@ -22,7 +22,7 @@
                     ID="OrganizationNameTxt"
                     runat="server"
                     TextMode="SingleLine"
-                    class="width-100-pct transparent-input"
+                    class="width-100-pct input-box"
                     placeholder="Nombre de tu empresa">
                 </asp:TextBox>
             </div>
@@ -32,7 +32,7 @@
                     ID="UsernameTxt"
                     runat="server"
                     TextMode="SingleLine"
-                    class="width-100-pct transparent-input"
+                    class="width-100-pct input-box"
                     placeholder="Ingresá un usuario">
                 </asp:TextBox>
             </div>
@@ -42,12 +42,12 @@
                     ID="PasswordTxt"
                     runat="server"
                     TextMode="Password"
-                    class="width-100-pct transparent-input"
+                    class="width-100-pct input-box"
                     placeholder="Ingresá una contraseña">
                 </asp:TextBox>
             </div>
             <div class="margin-top-20-px">
-                <asp:Button ID="SignupBtn" runat="server" Text="Registrarse" class="small-dark-button width-100-pct" OnClick="SignupBtn_Click" />
+                <asp:Button ID="SignupBtn" runat="server" Text="Registrarse" class="dark-button width-100-pct" OnClick="SignupBtn_Click" />
             </div>
         </div>
     </section>

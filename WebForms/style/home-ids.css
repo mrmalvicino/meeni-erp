@@ -1,0 +1,8 @@
+﻿#heroSec {
+    background-image: url('../images/hero.jpg'), linear-gradient(rgba(51, 51, 51, 0.4), rgba(242, 242, 242, 0.6));
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-blend-mode: overlay;
+    color: var(--white-pure);
+}

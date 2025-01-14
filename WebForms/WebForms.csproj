@@ -74,7 +74,7 @@
     <Content Include="script\load_images.js" />
     <Content Include="script\load_year.js" />
     <Content Include="Signup.aspx" />
-    <Content Include="style\admin_menu.css" />
+    <Content Include="style\admin-menu.css" />
     <Content Include="style\banner.css" />
     <Content Include="style\buttons.css" />
     <Content Include="style\colors.css" />
@@ -82,17 +82,19 @@
     <Content Include="style\controls.css" />
     <Content Include="style\flexbox.css" />
     <Content Include="style\fonts.css" />
-    <Content Include="style\geometry.css" />
-    <Content Include="style\site_menu.css" />
-    <Content Include="style\Home.css" />
+    <Content Include="style\heights.css" />
+    <Content Include="style\home-ids.css" />
+    <Content Include="style\home-responsive.css" />
+    <Content Include="style\landing-menu.css" />
+    <Content Include="style\home-containers.css" />
     <Content Include="style\images.css" />
     <Content Include="style\justify.css" />
-    <Content Include="style\Login.css" />
     <Content Include="style\margins.css" />
     <Content Include="style\paddings.css" />
-    <Content Include="style\Signup.css" />
+    <Content Include="style\containers.css" />
     <Content Include="style\inputs.css" />
-    <Content Include="style\whatsapp.css" />
+    <Content Include="style\whatsapp-button.css" />
+    <Content Include="style\widths.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -116,6 +118,13 @@
     </Compile>
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Landing.Master.cs">
+      <DependentUpon>Landing.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Landing.Master.designer.cs">
+      <DependentUpon>Landing.Master</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -144,6 +153,7 @@
     <Content Include="Site.Master" />
     <Content Include="config\config.json" />
     <Content Include="Admin.Master" />
+    <Content Include="Landing.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

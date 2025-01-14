@@ -1,4 +1,8 @@
-﻿.margin-10-px {
+﻿.margin-5-px {
+    margin: 5px;
+}
+
+.margin-10-px {
     margin: 10px;
 }
 
@@ -14,6 +18,10 @@
     margin: 5px 0px;
 }
 
+.margin-10-0-px {
+    margin: 10px 0px;
+}
+
 .margin-20-0-px {
     margin: 20px 0px;
 }
@@ -22,24 +30,28 @@
     margin: 30px 0px;
 }
 
-.margin-80-0-px {
-    margin: 80px 0px;
+.margin-0-5-px {
+    margin: 0px 5px;
 }
 
 .margin-0-10-px {
     margin: 0px 10px;
 }
 
-.margin-20-100-px {
-    margin: 20px 100px;
+.margin-0-20-px {
+    margin: 0px 20px;
+}
+
+.margin-0-30-px {
+    margin: 0px 30px;
+}
+
+.margin-top-10-px {
+    margin-top: 10px;
 }
 
 .margin-top-20-px {
     margin-top: 20px;
-}
-
-.margin-top-60-px {
-    margin-top: 60px;
 }
 
 .margin-bottom-10-px {

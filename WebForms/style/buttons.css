@@ -1,4 +1,4 @@
-﻿.small-light-button {
+﻿.light-button {
     margin: 0px;
     padding: 10px 20px;
     border-radius: 5px;
@@ -14,35 +14,32 @@
     font-family: "Open Sans", sans-serif;
 }
 
-    .small-light-button:hover {
+    .light-button:hover {
         color: var(--black-pure);
         background-color: var(--white-pure);
         border: 2px solid var(--white-pure);
     }
 
-.big-light-button {
-    margin: 0px;
-    padding: 15px 30px;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    font-size: 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    color: var(--black-soft);
-    background-color: var(--gray-soft);
-    border: 2px solid var(--gray-soft);
-    font-family: "Open Sans", sans-serif;
-}
-
-    .big-light-button:hover {
-        color: var(--black-pure);
-        background-color: var(--gray-medium);
-        border: 2px solid var(--gray-medium);
+.dark-button {
+        margin: 0px;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: none;
+        outline: none;
+        font-size: 18px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        background-color: var(--black-soft);
+        color: var(--gray-light);
+        font-family: "Open Sans", sans-serif;
     }
+    
+        .dark-button:hover {
+            background-color: var(--black-pure);
+        }
 
-.small-transparent-button {
+.transparent-button {
     margin: 0px;
     padding: 10px 20px;
     border-radius: 5px;
@@ -58,12 +55,12 @@
     font-family: "Open Sans", sans-serif;
 }
 
-    .small-transparent-button:hover {
+    .transparent-button:hover {
         color: var(--white-pure);
         background-color: var(--gray-medium);
     }
 
-.big-transparent-button {
+.cta-button {
     margin: 0px;
     padding: 15px 30px;
     border-radius: 5px;
@@ -79,28 +76,9 @@
     font-family: "Open Sans", sans-serif;
 }
 
-    .big-transparent-button:hover {
+    .cta-button:hover {
         color: var(--white-pure);
         background-color: var(--gray-medium);
-    }
-
-.small-dark-button {
-    margin: 0px;
-    padding: 10px 20px;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    font-size: 18px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    background-color: var(--black-soft);
-    color: var(--gray-light);
-    font-family: "Open Sans", sans-serif;
-}
-
-    .small-dark-button:hover {
-        background-color: var(--black-pure);
     }
 
 .invisible-link {

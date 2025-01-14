@@ -13,6 +13,7 @@
 .wrapped-flex {
     display: flex;
     flex-wrap: wrap; /* Ordenar elementos horizontalmente en varias filas si no entran en una sola. */
+    align-items: center; /* Centrar elementos con respecto al los ejes horizontales. */
 }
 
 .grid-3-cols {

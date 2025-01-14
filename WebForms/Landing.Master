@@ -1,0 +1,27 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Landing.master.cs" Inherits="WebForms.Landing" MasterPageFile="~/Site.master" %>
+
+<asp:Content ContentPlaceHolderID="SiteHeadPlaceHolder" runat="server">
+    <link href="~/style/landing_menu.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="LandingHeadPlaceHolder" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="SiteHeaderPlaceHolder" runat="server">
+    <div class="header-div">
+        <nav class="header-nav">
+            <a href="Home.aspx" class="width-200-px row-flex space-evenly invisible-link">
+                <img data-image-id="logoImg" />
+                <span class="jost-font">Meeni ERP</span>
+            </a>
+            <div>
+                <a class="light-button" href="Login.aspx">Iniciar sesión</a>
+                <a class="transparent-button" href="Signup.aspx">Registrarse</a>
+            </div>
+        </nav>
+    </div>
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="SiteMainPlaceHolder" runat="server">
+    <asp:ContentPlaceHolder ID="LandingMainPlaceHolder" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>
