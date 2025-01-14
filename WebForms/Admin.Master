@@ -1,0 +1,67 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="WebForms.Admin" MasterPageFile="~/Site.master" %>
+
+<asp:Content ContentPlaceHolderID="SiteHeadPlaceHolder" runat="server">
+    <link href="style/admin_menu.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="AdminHeadPlaceHolder" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="SiteBodyPlaceHolder" runat="server">
+    <section class="row-flex space-between">
+        <div class="admin-menu-div">
+            <nav class="width-90-pct">
+                <ul>
+                    <li>
+                        <a href="Dashboard.aspx" class="small-dark-button width-100-pct margin-5-0-px big-hover">
+                            <i class="bi bi-house"></i>&nbsp Inicio
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Users.aspx" class="small-dark-button width-100-pct margin-5-0-px big-hover">
+                            <i class="bi bi-person-badge"></i>&nbsp Usuarios
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Clients.aspx" class="small-dark-button width-100-pct margin-5-0-px big-hover">
+                            <i class="bi bi-people"></i>&nbsp Clientes
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Suppliers.aspx" class="small-dark-button width-100-pct margin-5-0-px big-hover">
+                            <i class="bi bi-truck"></i>&nbsp Proveedores
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Warehouses.aspx" class="small-dark-button width-100-pct margin-5-0-px big-hover">
+                            <i class="bi bi-buildings"></i>&nbsp Depósitos
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Products.aspx" class="small-dark-button width-100-pct margin-5-0-px big-hover">
+                            <i class="bi bi-box-seam"></i>&nbsp Productos
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Services.aspx" class="small-dark-button width-100-pct margin-5-0-px big-hover">
+                            <i class="bi bi-tools"></i>&nbsp Servicios
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Transactions.aspx" class="small-dark-button width-100-pct margin-5-0-px big-hover">
+                            <i class="bi bi-cash-coin"></i>&nbsp Transacciones
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Quotes.aspx" class="small-dark-button width-100-pct margin-5-0-px big-hover">
+                            <i class="bi-file-earmark-text"></i>&nbsp Cotizaciones
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="admin-body-div">
+            <asp:ContentPlaceHolder ID="AdminBodyPlaceHolder" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </section>
+</asp:Content>

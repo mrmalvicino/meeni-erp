@@ -1,10 +1,10 @@
 ﻿<%@ Page Title="Login" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="WebForms.Login" %>
 
-<asp:Content ID="HeadContent" ContentPlaceHolderID="HeadPlaceHolder" runat="server">
+<asp:Content ID="HeadContent" ContentPlaceHolderID="SiteHeadPlaceHolder" runat="server">
     <link href="style/Login.css" rel="stylesheet" />
 </asp:Content>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
+<asp:Content ID="BodyContent" ContentPlaceHolderID="SiteBodyPlaceHolder" runat="server">
     <section class="height-100-vh col-flex space-evenly">
         <h1>Iniciar sesión</h1>
         <div class="login-div">

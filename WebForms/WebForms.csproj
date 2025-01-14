@@ -64,6 +64,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Dashboard.aspx" />
     <Content Include="images\favicon.ico" />
     <Content Include="images\hero.jpg" />
     <Content Include="Home.aspx" />
@@ -73,14 +74,16 @@
     <Content Include="script\load_images.js" />
     <Content Include="script\load_year.js" />
     <Content Include="Signup.aspx" />
+    <Content Include="style\admin_menu.css" />
     <Content Include="style\banner.css" />
     <Content Include="style\buttons.css" />
     <Content Include="style\colors.css" />
+    <Content Include="style\constants.css" />
     <Content Include="style\controls.css" />
     <Content Include="style\flexbox.css" />
     <Content Include="style\fonts.css" />
     <Content Include="style\geometry.css" />
-    <Content Include="style\header.css" />
+    <Content Include="style\site_menu.css" />
     <Content Include="style\Home.css" />
     <Content Include="style\images.css" />
     <Content Include="style\justify.css" />
@@ -93,6 +96,20 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin.Master.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin.Master.designer.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -126,6 +143,7 @@
   <ItemGroup>
     <Content Include="Site.Master" />
     <Content Include="config\config.json" />
+    <Content Include="Admin.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

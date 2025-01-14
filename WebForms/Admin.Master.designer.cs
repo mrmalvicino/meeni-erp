@@ -11,34 +11,25 @@ namespace WebForms
 {
 
 
-    public partial class Site
+    public partial class Admin
     {
 
         /// <summary>
-        /// SiteHeadPlaceHolder control.
+        /// AdminHeadPlaceHolder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder SiteHeadPlaceHolder;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder AdminHeadPlaceHolder;
 
         /// <summary>
-        /// form control.
+        /// AdminBodyPlaceHolder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form;
-
-        /// <summary>
-        /// SiteBodyPlaceHolder control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder SiteBodyPlaceHolder;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder AdminBodyPlaceHolder;
     }
 }

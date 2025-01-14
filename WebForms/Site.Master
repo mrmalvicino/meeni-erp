@@ -16,19 +16,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="~/style/colors.css" rel="stylesheet" />
+    <link href="~/style/constants.css" rel="stylesheet" />
     <link href="~/style/buttons.css" rel="stylesheet" />
+    <link href="~/style/colors.css" rel="stylesheet" />
     <link href="~/style/controls.css" rel="stylesheet" />
     <link href="~/style/flexbox.css" rel="stylesheet" />
     <link href="~/style/fonts.css" rel="stylesheet" />
     <link href="~/style/geometry.css" rel="stylesheet" />
-    <link href="~/style/header.css" rel="stylesheet" />
     <link href="~/style/images.css" rel="stylesheet" />
     <link href="~/style/inputs.css" rel="stylesheet" />
     <link href="~/style/justify.css" rel="stylesheet" />
     <link href="~/style/margins.css" rel="stylesheet" />
     <link href="~/style/paddings.css" rel="stylesheet" />
-    <asp:ContentPlaceHolder ID="HeadPlaceHolder" runat="server">
+    <link href="~/style/site_menu.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="SiteHeadPlaceHolder" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 
@@ -50,7 +51,7 @@
     <!-- Content -->
     <form id="form" runat="server">
         <div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server">
+            <asp:ContentPlaceHolder ID="SiteBodyPlaceHolder" runat="server">
             </asp:ContentPlaceHolder>
         </div>
     </form>

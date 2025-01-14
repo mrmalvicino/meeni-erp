@@ -1,14 +1,4 @@
-﻿:root {
-    --white-pure: #FFFFFF;
-    --gray-light: #F2F2F2;
-    --gray-soft: #E5E5E5;
-    --gray-medium: #CCCCCC;
-    --gray-dark: #808080;
-    --black-soft: #333333;
-    --black-pure: #000000;
-}
-
-.background-1 {
+﻿.background-1 {
     color: var(--gray-soft);
     background-color: var(--black-soft);
 }

@@ -1,12 +1,12 @@
 ﻿<%@ Page Title="Meeni ERP" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="WebForms.Home" %>
 
-<asp:Content ID="HeadContent" ContentPlaceHolderID="HeadPlaceHolder" runat="server">
+<asp:Content ID="HeadContent" ContentPlaceHolderID="SiteHeadPlaceHolder" runat="server">
     <link href="style/Home.css" rel="stylesheet" />
     <link href="style/banner.css" rel="stylesheet" />
     <link href="style/whatsapp.css" rel="stylesheet" />
 </asp:Content>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
+<asp:Content ID="BodyContent" ContentPlaceHolderID="SiteBodyPlaceHolder" runat="server">
     <!-- Hero Section -->
     <section id="heroSec" class="height-100-vh space-evenly">
         <div class="col-flex width-90-pct">

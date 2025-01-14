@@ -1,10 +1,10 @@
 ﻿<%@ Page Title="Signup" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Signup.aspx.cs" Inherits="WebForms.Signup" %>
 
-<asp:Content ID="HeadContent" ContentPlaceHolderID="HeadPlaceHolder" runat="server">
+<asp:Content ID="HeadContent" ContentPlaceHolderID="SiteHeadPlaceHolder" runat="server">
     <link href="style/Signup.css" rel="stylesheet" />
 </asp:Content>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
+<asp:Content ID="BodyContent" ContentPlaceHolderID="SiteBodyPlaceHolder" runat="server">
     <section class="height-100-vh col-flex space-evenly">
         <h1 class="margin-top-60-px">Registrar empresa</h1>
         <div class="signup-div">

@@ -38,7 +38,7 @@ namespace WebForms
                 {
                     Session.Add("loggedUser", _loggedUser);
                     Session.Add("loggedOrganization", _loggedOrganization);
-                    Response.Redirect("Home.aspx", false);
+                    Response.Redirect("Dashboard.aspx", false);
                 }
             }
             catch (Exception ex)
