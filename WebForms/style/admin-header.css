@@ -1,0 +1,17 @@
+﻿.header-tag {
+    width: 100%;
+    height: var(--site-menu-height);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    background-color: rgba(51, 51, 51, 0.8);
+}
+
+.header-nav {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

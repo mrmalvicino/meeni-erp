@@ -74,6 +74,7 @@
     <Content Include="script\load_images.js" />
     <Content Include="script\load_year.js" />
     <Content Include="Signup.aspx" />
+    <Content Include="style\admin-header.css" />
     <Content Include="style\admin-menu.css" />
     <Content Include="style\banner.css" />
     <Content Include="style\buttons.css" />
@@ -85,7 +86,7 @@
     <Content Include="style\heights.css" />
     <Content Include="style\home-ids.css" />
     <Content Include="style\home-responsive.css" />
-    <Content Include="style\landing-menu.css" />
+    <Content Include="style\landing-header.css" />
     <Content Include="style\home-containers.css" />
     <Content Include="style\images.css" />
     <Content Include="style\justify.css" />
@@ -93,7 +94,7 @@
     <Content Include="style\paddings.css" />
     <Content Include="style\containers.css" />
     <Content Include="style\inputs.css" />
-    <Content Include="style\whatsapp-button.css" />
+    <Content Include="style\whatsapp.css" />
     <Content Include="style\widths.css" />
     <Content Include="Web.config" />
   </ItemGroup>

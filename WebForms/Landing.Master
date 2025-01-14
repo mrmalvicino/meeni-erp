@@ -1,13 +1,13 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Landing.master.cs" Inherits="WebForms.Landing" MasterPageFile="~/Site.master" %>
 
 <asp:Content ContentPlaceHolderID="SiteHeadPlaceHolder" runat="server">
-    <link href="~/style/landing_menu.css" rel="stylesheet" />
+    <link href="style/landing-header.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="LandingHeadPlaceHolder" runat="server">
     </asp:ContentPlaceHolder>
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="SiteHeaderPlaceHolder" runat="server">
-    <div class="header-div">
+    <header class="header-tag">
         <nav class="header-nav">
             <a href="Home.aspx" class="width-200-px row-flex space-evenly invisible-link">
                 <img data-image-id="logoImg" />
@@ -18,7 +18,7 @@
                 <a class="transparent-button" href="Signup.aspx">Registrarse</a>
             </div>
         </nav>
-    </div>
+    </header>
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="SiteMainPlaceHolder" runat="server">

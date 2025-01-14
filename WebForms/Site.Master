@@ -35,10 +35,8 @@
 </head>
 
 <body class="open-sans-font">
-    <header>
-        <asp:ContentPlaceHolder ID="SiteHeaderPlaceHolder" runat="server">
-        </asp:ContentPlaceHolder>
-    </header>
+    <asp:ContentPlaceHolder ID="SiteHeaderPlaceHolder" runat="server">
+    </asp:ContentPlaceHolder>
 
     <main>
         <form id="form" runat="server">

@@ -5,7 +5,7 @@
     <link href="style/home-ids.css" rel="stylesheet" />
     <link href="style/home-responsive.css" rel="stylesheet" />
     <link href="style/banner.css" rel="stylesheet" />
-    <link href="style/whatsapp-button.css" rel="stylesheet" />
+    <link href="style/whatsapp.css" rel="stylesheet" />
 </asp:Content>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="LandingMainPlaceHolder" runat="server">
