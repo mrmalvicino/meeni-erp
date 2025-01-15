@@ -27,4 +27,8 @@
     .header-nav span {
         display: none;
     }
+
+    .header-nav a {
+        width: auto;
+    }
 }

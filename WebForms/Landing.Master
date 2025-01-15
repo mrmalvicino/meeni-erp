@@ -16,12 +16,14 @@
                 <ul>
                     <li>
                         <a href="Login.aspx" class="light-button">
-                            <i class="bi bi-key"></i>&nbsp<span>Iniciar sesión</span>
+                            <i class="bi bi-key"></i>
+                            <span>Iniciar sesión</span>
                         </a>
                     </li>
                     <li>
                         <a href="Signup.aspx" class="transparent-button">
-                            <i class="bi bi-person-plus"></i>&nbsp Registrarse
+                            <i class="bi bi-person-plus"></i>
+                            <span>Registrarse</span>
                         </a>
                     </li>
                 </ul>

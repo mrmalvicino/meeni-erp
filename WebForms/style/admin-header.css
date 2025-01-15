@@ -21,3 +21,13 @@
         display: inline-block;
         margin-right: 10px;
     }
+
+@media screen and (max-width: 1200px) {
+    .header-nav span {
+        display: none;
+    }
+
+    .header-nav a {
+        width: auto;
+    }
+}

@@ -30,3 +30,22 @@
     min-height: 550px;
     width: calc(100% - var(--admin-menu-width));
 }
+
+@media screen and (max-width: 1200px) {
+    .admin-menu-div {
+        width: 80px;
+        padding: 5px;
+    }
+
+        .admin-menu-div span {
+            display: none;
+        }
+
+        .admin-menu-div a {
+            width: auto;
+        }
+
+    .admin-main-div {
+        width: calc(100% - 80px);
+    }
+}
