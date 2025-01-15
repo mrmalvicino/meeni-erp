@@ -35,40 +35,40 @@
 </head>
 
 <body class="open-sans-font">
-    <asp:ContentPlaceHolder ID="SiteHeaderPlaceHolder" runat="server">
-    </asp:ContentPlaceHolder>
+    <form id="form" runat="server">
+        <div>
+            <asp:ContentPlaceHolder ID="SiteHeaderPlaceHolder" runat="server">
+            </asp:ContentPlaceHolder>
 
-    <main>
-        <form id="form" runat="server">
-            <div>
+            <main>
                 <asp:ContentPlaceHolder ID="SiteMainPlaceHolder" runat="server">
                 </asp:ContentPlaceHolder>
-            </div>
-        </form>
-    </main>
+            </main>
 
-    <footer>
-        <div class="col-flex space-evenly height-300-px background-1">
-            <div class="row-flex justify-center width-90-pct">
-                <div class="padding-10-px">
-                    <a href="https://www.github.com/mrmalvicino/meeni-erp" class="invisible-link">
-                        <i class="bi bi-github font-size-40-px"></i>
-                    </a>
+            <footer>
+                <div class="col-flex space-evenly height-300-px background-1">
+                    <div class="row-flex justify-center width-90-pct">
+                        <div class="padding-10-px">
+                            <a href="https://www.github.com/mrmalvicino/meeni-erp" class="invisible-link">
+                                <i class="bi bi-github font-size-40-px"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row-flex space-around width-90-pct">
+                        <a href="#" class="invisible-link margin-10-px">
+                            <span>Políticas de privacidad</span>
+                        </a>
+                        <a href="https://github.com/mrmalvicino/meeni-erp/blob/main/LICENSE" class="invisible-link margin-10-px">
+                            <span id="year"></span>&nbsp&copy; GNU General Public License
+                        </a>
+                        <a href="#" class="invisible-link margin-10-px">
+                            <span>Términos y condiciones</span>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="row-flex space-around width-90-pct">
-                <a href="#" class="invisible-link margin-10-px">
-                    <span>Políticas de privacidad</span>
-                </a>
-                <a href="https://github.com/mrmalvicino/meeni-erp/blob/main/LICENSE" class="invisible-link margin-10-px">
-                    <span id="year"></span>&nbsp&copy; GNU General Public License
-                </a>
-                <a href="#" class="invisible-link margin-10-px">
-                    <span>Términos y condiciones</span>
-                </a>
-            </div>
+            </footer>
         </div>
-    </footer>
+    </form>
 </body>
 
 </html>

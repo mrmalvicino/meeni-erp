@@ -24,15 +24,6 @@ namespace WebForms
         protected global::System.Web.UI.WebControls.ContentPlaceHolder SiteHeadPlaceHolder;
 
         /// <summary>
-        /// SiteHeaderPlaceHolder control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder SiteHeaderPlaceHolder;
-
-        /// <summary>
         /// form control.
         /// </summary>
         /// <remarks>
@@ -40,6 +31,15 @@ namespace WebForms
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form;
+
+        /// <summary>
+        /// SiteHeaderPlaceHolder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder SiteHeaderPlaceHolder;
 
         /// <summary>
         /// SiteMainPlaceHolder control.

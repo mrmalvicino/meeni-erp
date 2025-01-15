@@ -14,7 +14,26 @@
                 <img data-image-id="logoImg" />
             </a>
             <div>
-                Perfil usuario | Perfil empresa | Cerrar sesión
+                <ul>
+                    <li>
+                        <a href="ViewUser.aspx" class="light-button">
+                            <i class="bi bi-person-gear"></i>
+                            <span>Perfil de usuario</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="ViewOrganization.aspx" class="light-button">
+                            <i class="bi bi-briefcase"></i>
+                            <span>Perfil de empresa</span>
+                        </a>
+                    </li>
+                    <li>
+                        <asp:LinkButton ID="logoutBtn" runat="server" class="transparent-button" OnClick="logoutBtn_Click">
+                            <i class="bi bi-box-arrow-right"></i>
+                            <span>Cerrar sesión</span>
+                        </asp:LinkButton>
+                    </li>
+                </ul>
             </div>
         </nav>
     </header>

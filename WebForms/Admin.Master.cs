@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace WebForms
 {
@@ -12,6 +7,16 @@ namespace WebForms
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        protected void logoutBtn_Click(object sender, EventArgs e)
+        {
+            var masterPage = this.Master as Site;
+
+            if (masterPage != null)
+            {
+                masterPage.Logout();
+            }
         }
     }
 }
