@@ -14,8 +14,18 @@
     width: 90%;
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: space-between;
 }
+
+    .header-nav ul li {
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .header-nav a {
+        width: 180px;
+    }
 
 @media screen and (max-width: 1200px) {
     .header-nav span {

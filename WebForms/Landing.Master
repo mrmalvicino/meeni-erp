@@ -14,8 +14,18 @@
                 <span class="jost-font">Meeni ERP</span>
             </a>
             <div>
-                <a class="light-button" href="Login.aspx">Iniciar sesión</a>
-                <a class="transparent-button" href="Signup.aspx">Registrarse</a>
+                <ul>
+                    <li>
+                        <a href="Login.aspx" class="light-button">
+                            <i class="bi bi-key"></i>&nbsp Iniciar sesión
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Signup.aspx" class="transparent-button">
+                            <i class="bi bi-person-plus"></i>&nbsp Registrarse
+                        </a>
+                    </li>
+                </ul>
             </div>
         </nav>
     </header>
