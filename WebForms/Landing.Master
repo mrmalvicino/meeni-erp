@@ -9,15 +9,14 @@
 <asp:Content ContentPlaceHolderID="SiteHeaderPlaceHolder" runat="server">
     <header class="header-tag">
         <nav class="header-nav">
-            <a href="Home.aspx" class="width-200-px row-flex space-evenly invisible-link">
+            <a href="Dashboard.aspx" class="invisible-link">
                 <img data-image-id="logoImg" />
-                <span class="jost-font">Meeni ERP</span>
             </a>
             <div>
                 <ul>
                     <li>
                         <a href="Login.aspx" class="light-button">
-                            <i class="bi bi-key"></i>&nbsp Iniciar sesión
+                            <i class="bi bi-key"></i>&nbsp<span>Iniciar sesión</span>
                         </a>
                     </li>
                     <li>

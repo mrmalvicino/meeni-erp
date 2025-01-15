@@ -23,16 +23,8 @@
         margin-right: 10px;
     }
 
-    .header-nav a {
-        width: 180px;
-    }
-
 @media screen and (max-width: 1200px) {
     .header-nav span {
         display: none;
-    }
-
-    .header-nav .width-200-px {
-        width: auto;
     }
 }

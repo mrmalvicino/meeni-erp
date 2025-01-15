@@ -8,7 +8,7 @@
 .admin-menu-div {
     height: 100vh;
     min-height: 550px;
-    width: 250px;
+    width: var(--admin-menu-width);
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -18,8 +18,15 @@
     background-color: var(--white-pure);
 }
 
+    .admin-menu-div li {
+        margin: 10px 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
 .admin-main-div {
     height: 100vh;
     min-height: 550px;
-    width: calc(100% - 250px);
+    width: calc(100% - var(--admin-menu-width));
 }

@@ -42,50 +42,50 @@
 <asp:Content ContentPlaceHolderID="SiteMainPlaceHolder" runat="server">
     <div class="site-main-div">
         <div class="admin-menu-div">
-            <nav class="width-90-pct">
+            <nav class="width-100-pct">
                 <ul>
                     <li>
-                        <a href="Dashboard.aspx" class="dark-button width-100-pct margin-5-0-px big-hover">
+                        <a href="Dashboard.aspx" class="dark-button big-hover">
                             <i class="bi bi-house"></i>&nbsp Inicio
                         </a>
                     </li>
                     <li>
-                        <a href="Users.aspx" class="dark-button width-100-pct margin-5-0-px big-hover">
+                        <a href="Users.aspx" class="dark-button big-hover">
                             <i class="bi bi-person-badge"></i>&nbsp Usuarios
                         </a>
                     </li>
                     <li>
-                        <a href="Clients.aspx" class="dark-button width-100-pct margin-5-0-px big-hover">
+                        <a href="Clients.aspx" class="dark-button big-hover">
                             <i class="bi bi-people"></i>&nbsp Clientes
                         </a>
                     </li>
                     <li>
-                        <a href="Suppliers.aspx" class="dark-button width-100-pct margin-5-0-px big-hover">
+                        <a href="Suppliers.aspx" class="dark-button big-hover">
                             <i class="bi bi-truck"></i>&nbsp Proveedores
                         </a>
                     </li>
                     <li>
-                        <a href="Warehouses.aspx" class="dark-button width-100-pct margin-5-0-px big-hover">
+                        <a href="Warehouses.aspx" class="dark-button big-hover">
                             <i class="bi bi-buildings"></i>&nbsp Depósitos
                         </a>
                     </li>
                     <li>
-                        <a href="Products.aspx" class="dark-button width-100-pct margin-5-0-px big-hover">
+                        <a href="Products.aspx" class="dark-button big-hover">
                             <i class="bi bi-box-seam"></i>&nbsp Productos
                         </a>
                     </li>
                     <li>
-                        <a href="Services.aspx" class="dark-button width-100-pct margin-5-0-px big-hover">
+                        <a href="Services.aspx" class="dark-button big-hover">
                             <i class="bi bi-tools"></i>&nbsp Servicios
                         </a>
                     </li>
                     <li>
-                        <a href="Transactions.aspx" class="dark-button width-100-pct margin-5-0-px big-hover">
-                            <i class="bi bi-cash-coin"></i>&nbsp Transacciones
+                        <a href="Transactions.aspx" class="dark-button big-hover">
+                            <i class="bi bi-cash-coin"></i>&nbsp Movimientos
                         </a>
                     </li>
                     <li>
-                        <a href="Quotes.aspx" class="dark-button width-100-pct margin-5-0-px big-hover">
+                        <a href="Quotes.aspx" class="dark-button big-hover">
                             <i class="bi-file-earmark-text"></i>&nbsp Cotizaciones
                         </a>
                     </li>
