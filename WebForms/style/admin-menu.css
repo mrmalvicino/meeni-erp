@@ -3,19 +3,16 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    background-color: var(--white-pure);
 }
 
 .admin-menu-div {
-    height: 100vh;
-    min-height: 550px;
     width: var(--admin-menu-width);
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: var(--gray-soft);
-    background-color: var(--white-pure);
 }
 
     .admin-menu-div li {
@@ -26,9 +23,13 @@
     }
 
 .admin-main-div {
-    height: 100vh;
-    min-height: 550px;
+    min-height: 100vh;
     width: calc(100% - var(--admin-menu-width));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--gray-light);
 }
 
 @media screen and (max-width: 1200px) {

@@ -25,3 +25,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
+
+.grid-1-cols {
+    display: grid;
+    grid-template-columns: 1fr;
+}
