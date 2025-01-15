@@ -10,7 +10,7 @@
 <asp:Content ContentPlaceHolderID="SiteHeaderPlaceHolder" runat="server">
     <header class="header-tag">
         <nav class="header-nav">
-            <a href="Home.aspx" class="width-200-px row-flex space-evenly invisible-link">
+            <a href="Home.aspx" class="invisible-link">
                 <img data-image-id="logoImg" />
             </a>
             <div>
@@ -21,7 +21,7 @@
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="SiteMainPlaceHolder" runat="server">
-    <section class="row-flex space-between">
+    <div class="site-main-div">
         <div class="admin-menu-div">
             <nav class="width-90-pct">
                 <ul>
@@ -73,9 +73,9 @@
                 </ul>
             </nav>
         </div>
-        <div class="admin-body-div">
+        <div class="admin-main-div">
             <asp:ContentPlaceHolder ID="AdminMainPlaceHolder" runat="server">
             </asp:ContentPlaceHolder>
         </div>
-    </section>
+    </div>
 </asp:Content>
