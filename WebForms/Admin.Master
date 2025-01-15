@@ -18,13 +18,13 @@
                     <li>
                         <a href="ViewUser.aspx" class="light-button">
                             <i class="bi bi-person-gear"></i>
-                            <span>Perfil de usuario</span>
+                            <span>Ver usuario</span>
                         </a>
                     </li>
                     <li>
                         <a href="ViewOrganization.aspx" class="light-button">
                             <i class="bi bi-briefcase"></i>
-                            <span>Perfil de empresa</span>
+                            <span>Ver empresa</span>
                         </a>
                     </li>
                     <li>
