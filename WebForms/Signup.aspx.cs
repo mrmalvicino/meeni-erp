@@ -36,7 +36,7 @@ namespace WebForms
             _newOrganization.PricingPlan = pricingPlan;
 
             Role role = new Role();
-            role.Id = (int)RolesManager.Ids.AdminRoleId;
+            role.Id = (int)RolesManager.Ids.OwnerRoleId;
             _newUser.Roles = new List<Role>();
             _newUser.Roles.Add(role);
 

@@ -10,7 +10,7 @@ namespace BusinessLogic
     {
         public enum Ids
         {
-            AdminRoleId = 1
+            OwnerRoleId = 1
         }
 
         private RolesDAL _rolesDAL;
