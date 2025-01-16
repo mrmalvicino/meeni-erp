@@ -31,7 +31,7 @@ if "%choice%"=="1" (
 ) else if "%choice%"=="2" (
     set database_host="BANGHO\SQLEXPRESS"
 ) else if "%choice%"=="3" (
-    set database_host=192.168.0.156 -U SA -P Password1234
+    set database_host=192.168.0.165 -U SA -P Password1234
 ) else (
     echo Invalid option. Please try again.
     goto menu
