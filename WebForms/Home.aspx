@@ -9,7 +9,9 @@
 </asp:Content>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="LandingMainPlaceHolder" runat="server">
+
     <!-- Hero Section -->
+
     <section id="heroSec" class="height-100-vh space-evenly">
         <div class="col-flex width-90-pct">
             <h1 class="margin-20-0-px">Software de gestión&nbsp;empresarial <span class="bold-text">Meeni&nbsp;ERP</span></h1>
@@ -19,6 +21,7 @@
     </section>
 
     <!-- Sección de funcionalidades -->
+
     <section id="featuresSec" class="height-100-vh space-evenly">
         <div class="col-flex width-90-pct">
             <h2 class="margin-20-0-px">Simple, libre y eficaz</h2>
@@ -55,6 +58,7 @@
     </section>
 
     <!-- Banner Section -->
+
     <section id="customersSec" class="background-1">
         <div class="col-flex width-90-pct padding-top-40-px">
             <h2 class="margin-20-0-px">Marcas que nos eligen</h2>
@@ -90,6 +94,7 @@
     </section>
 
     <!-- Pricing Section -->
+
     <section id="pricingSec" class="height-100-vh space-evenly">
         <div class="width-90-pct col-flex justify-center">
             <h2 class="margin-20-0-px">Un plan para cada organización</h2>
@@ -174,6 +179,7 @@
     </section>
 
     <!-- WhatsApp Button -->
+
     <div class="whatsapp-button">
         <a href="https://wa.me/5491159058729?text=Hola,%20quiero%20hacer%20una%20consulta sobre Meeni ERP." target="_blank">
             <img data-image-id="whatsappImg">
