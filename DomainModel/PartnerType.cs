@@ -2,10 +2,9 @@
 
 namespace DomainModel
 {
-    public class Seniority : IIdentifiable
+    public class PartnerType : IIdentifiable
     {
         public int Id { get; set; }
-        public bool ActivityStatus { get; set; }
         public string Name { get; set; }
     }
 }

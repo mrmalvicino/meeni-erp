@@ -42,12 +42,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Address.cs" />
+    <Compile Include="BusinessPartner.cs" />
+    <Compile Include="PartnerType.cs" />
     <Compile Include="City.cs" />
-    <Compile Include="Client.cs" />
     <Compile Include="Country.cs" />
-    <Compile Include="Department.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="Image.cs" />
+    <Compile Include="LegalEntity.cs" />
     <Compile Include="Organization.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Position.cs" />
@@ -55,8 +56,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Province.cs" />
     <Compile Include="Role.cs" />
-    <Compile Include="Seniority.cs" />
-    <Compile Include="Supplier.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
