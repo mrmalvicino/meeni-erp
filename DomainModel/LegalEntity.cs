@@ -5,7 +5,6 @@ namespace DomainModel
     public class LegalEntity : IIdentifiable
     {
         public int Id { get; set; }
-        public bool ActivityStatus { get; set; }
         public string Name { get; set; }
         public string CUIT { get; set; }
         public string Email { get; set; }

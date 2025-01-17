@@ -160,21 +160,237 @@ values
 -------------------
 go
 insert into
-    organizations (organization_id, admission_date, pricing_plan_id)
+    organizations (
+        activity_status,
+        organization_id,
+        admission_date,
+        pricing_plan_id
+    )
 values
-    (1, '2024-10-10', 1),
-    (2, '2024-11-11', 2),
-    (4, '2024-12-12', 3);
+    (true, 1, '2024-10-10', 1),
+    (true, 2, '2024-11-11', 2),
+    (false, 4, '2024-12-12', 3);
+
+------------
+-- PEOPLE --
+------------
+insert into
+    people (
+        first_name,
+        last_name,
+        dni,
+        email,
+        phone,
+        birth_date,
+        profile_image_id,
+        address_id
+    )
+values
+    (
+        'Juan',
+        'Pérez',
+        '12345678',
+        'juan.perez@email.com',
+        '011-12345678',
+        '1985-07-15',
+        4,
+        5
+    ),
+    (
+        'María',
+        'González',
+        null,
+        'maria.gonzalez@email.com',
+        null,
+        '1990-03-22',
+        null,
+        6
+    ),
+    (
+        'Pedro',
+        'Martínez',
+        '98765432',
+        'pedro.martinez@email.com',
+        '011-98765432',
+        '1987-12-30',
+        null,
+        null
+    ),
+    (
+        'Laura',
+        'Rodríguez',
+        null,
+        'laura.rodriguez@email.com',
+        '011-55667788',
+        null,
+        null,
+        null
+    ),
+    (
+        'Carlos',
+        'Fernández',
+        '11223344',
+        'carlos.fernandez@email.com',
+        null,
+        '1982-05-01',
+        null,
+        null
+    ),
+    (
+        'Ana',
+        'López',
+        '22334455',
+        'ana.lopez@email.com',
+        '011-77889900',
+        '1995-09-10',
+        null,
+        7
+    ),
+    (
+        'José',
+        'Sánchez',
+        null,
+        'jose.sanchez@email.com',
+        '011-12349876',
+        '1980-01-14',
+        null,
+        null
+    ),
+    (
+        'Lucía',
+        'Paredes',
+        '33445566',
+        'lucia.paredes@email.com',
+        '011-99887766',
+        '1992-11-20',
+        null,
+        null
+    ),
+    (
+        'Ricardo',
+        'Díaz',
+        null,
+        'ricardo.diaz@email.com',
+        null,
+        '1993-04-18',
+        null,
+        null
+    ),
+    (
+        'Patricia',
+        'Vargas',
+        '44556677',
+        'patricia.vargas@email.com',
+        '011-66554433',
+        null,
+        null,
+        null
+    ),
+    (
+        'Francisco',
+        'Gómez',
+        '55667788',
+        'francisco.gomez@email.com',
+        '011-88776655',
+        '1989-08-29',
+        null,
+        null
+    ),
+    (
+        'Julieta',
+        'Morales',
+        null,
+        'julieta.morales@email.com',
+        '011-66553322',
+        null,
+        null,
+        null
+    ),
+    (
+        'Alberto',
+        'Jiménez',
+        '66778899',
+        'alberto.jimenez@email.com',
+        null,
+        '1988-06-12',
+        null,
+        null
+    ),
+    (
+        'Roberto',
+        'Ramírez',
+        null,
+        'roberto.ramirez@email.com',
+        null,
+        null,
+        null,
+        null
+    ),
+    (
+        'Isabel',
+        'Torres',
+        '77889900',
+        'isabel.torres@email.com',
+        '011-99887766',
+        '1991-02-25',
+        null,
+        null
+    ),
+    (
+        'Santiago',
+        'Ruiz',
+        null,
+        'santiago.ruiz@email.com',
+        '011-11223344',
+        '1994-07-05',
+        null,
+        null
+    ),
+    (
+        'Mercedes',
+        'Méndez',
+        '88990011',
+        'mercedes.mendez@email.com',
+        '011-22334455',
+        null,
+        null,
+        null
+    ),
+    (
+        'Gabriel',
+        'Alvarez',
+        null,
+        'gabriel.alvarez@email.com',
+        '011-33445566',
+        '1986-09-02',
+        null,
+        null
+    ),
+    (
+        'Valentina',
+        'Ríos',
+        null,
+        'valentina.rios@email.com',
+        '011-44556677',
+        '1996-01-08',
+        null,
+        null
+    );
 
 -----------------------
 -- BUSINESS PARTNERS --
 -----------------------
 go
 insert into
-    business_partners (organization_id, activity_status, legal_entity_id)
+    business_partners (
+        organization_id,
+        activity_status,
+        legal_entity_id,
+        person_id
+    )
 values
-    (1, true, 2),
-    (1, true, 4);
+    (1, true, 2, null),
+    (1, true, 4, null);
 
 ---------------------------------------
 -- BUSINESS PARTNERS X PARTNER TYPES --
@@ -191,264 +407,15 @@ values
     (1, 1, 2),
     (1, 2, 2);
 
-------------
--- PEOPLE --
-------------
-insert into
-    people (
-        activity_status,
-        first_name,
-        last_name,
-        dni,
-        email,
-        phone,
-        birth_date,
-        profile_image_id,
-        address_id
-    )
-values
-    (
-        true,
-        'Juan',
-        'Pérez',
-        '12345678',
-        'juan.perez@email.com',
-        '011-12345678',
-        '1985-07-15',
-        4,
-        5,
-        1
-    ),
-    (
-        true,
-        'María',
-        'González',
-        null,
-        'maria.gonzalez@email.com',
-        null,
-        '1990-03-22',
-        null,
-        6,
-        1
-    ),
-    (
-        true,
-        'Pedro',
-        'Martínez',
-        '98765432',
-        'pedro.martinez@email.com',
-        '011-98765432',
-        '1987-12-30',
-        null,
-        null,
-        1
-    ),
-    (
-        false,
-        'Laura',
-        'Rodríguez',
-        null,
-        'laura.rodriguez@email.com',
-        '011-55667788',
-        null,
-        null,
-        null,
-        2
-    ),
-    (
-        true,
-        'Carlos',
-        'Fernández',
-        '11223344',
-        'carlos.fernandez@email.com',
-        null,
-        '1982-05-01',
-        null,
-        null,
-        2
-    ),
-    (
-        true,
-        'Ana',
-        'López',
-        '22334455',
-        'ana.lopez@email.com',
-        '011-77889900',
-        '1995-09-10',
-        null,
-        7,
-        null
-    ),
-    (
-        false,
-        'José',
-        'Sánchez',
-        null,
-        'jose.sanchez@email.com',
-        '011-12349876',
-        '1980-01-14',
-        null,
-        null,
-        null
-    ),
-    (
-        true,
-        'Lucía',
-        'Paredes',
-        '33445566',
-        'lucia.paredes@email.com',
-        '011-99887766',
-        '1992-11-20',
-        null,
-        null,
-        null
-    ),
-    (
-        true,
-        'Ricardo',
-        'Díaz',
-        null,
-        'ricardo.diaz@email.com',
-        null,
-        '1993-04-18',
-        null,
-        null,
-        null
-    ),
-    (
-        false,
-        'Patricia',
-        'Vargas',
-        '44556677',
-        'patricia.vargas@email.com',
-        '011-66554433',
-        null,
-        null,
-        null,
-        null
-    ),
-    (
-        true,
-        'Francisco',
-        'Gómez',
-        '55667788',
-        'francisco.gomez@email.com',
-        '011-88776655',
-        '1989-08-29',
-        null,
-        null,
-        null
-    ),
-    (
-        true,
-        'Julieta',
-        'Morales',
-        null,
-        'julieta.morales@email.com',
-        '011-66553322',
-        null,
-        null,
-        null,
-        null
-    ),
-    (
-        true,
-        'Alberto',
-        'Jiménez',
-        '66778899',
-        'alberto.jimenez@email.com',
-        null,
-        '1988-06-12',
-        null,
-        null,
-        null
-    ),
-    (
-        false,
-        'Roberto',
-        'Ramírez',
-        null,
-        'roberto.ramirez@email.com',
-        null,
-        null,
-        null,
-        null,
-        null
-    ),
-    (
-        false,
-        'Isabel',
-        'Torres',
-        '77889900',
-        'isabel.torres@email.com',
-        '011-99887766',
-        '1991-02-25',
-        null,
-        null,
-        null
-    ),
-    (
-        true,
-        'Santiago',
-        'Ruiz',
-        null,
-        'santiago.ruiz@email.com',
-        '011-11223344',
-        '1994-07-05',
-        null,
-        null,
-        null
-    ),
-    (
-        true,
-        'Mercedes',
-        'Méndez',
-        '88990011',
-        'mercedes.mendez@email.com',
-        '011-22334455',
-        null,
-        null,
-        null,
-        null
-    ),
-    (
-        false,
-        'Gabriel',
-        'Alvarez',
-        null,
-        'gabriel.alvarez@email.com',
-        '011-33445566',
-        '1986-09-02',
-        null,
-        null,
-        null
-    ),
-    (
-        true,
-        'Valentina',
-        'Ríos',
-        null,
-        'valentina.rios@email.com',
-        '011-44556677',
-        '1996-01-08',
-        null,
-        null,
-        null
-    );
-
 -----------
 -- USERS --
 -----------
 go
 insert into
-    users (
-        activity_status,
-        username,
-        user_password
-    )
+    users (activity_status, username, user_password)
 values
     (true, 'admin', 'admin'),
-    (false, 'owner', 'owner');
+    (true, 'owner', 'owner');
 
 -------------------
 -- USERS X ROLES --
@@ -468,11 +435,12 @@ insert into
     employees (
         organization_id,
         employee_id,
+        activity_status,
         admission_date,
         user_id
     )
 values
-    (1, 6, '2024-10-10', 1),
-    (1, 7, '2024-10-10', null),
-    (1, 8, '2024-10-10', null),
-    (2, 9, '2024-11-11', 2);
+    (1, 6, true, '2024-10-10', 1),
+    (1, 7, true, '2024-10-10', null),
+    (1, 8, true, '2024-10-10', null),
+    (2, 9, true, '2024-11-11', 2);
