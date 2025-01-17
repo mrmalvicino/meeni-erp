@@ -166,6 +166,31 @@ values
     (2, '2024-11-11', 2),
     (4, '2024-12-12', 3);
 
+-----------------------
+-- BUSINESS PARTNERS --
+-----------------------
+go
+insert into
+    business_partners (organization_id, activity_status, legal_entity_id)
+values
+    (1, true, 2),
+    (1, true, 4);
+
+---------------------------------------
+-- BUSINESS PARTNERS X PARTNER TYPES --
+---------------------------------------
+go
+insert into
+    partner_type_rel (
+        organization_id,
+        business_partner_id,
+        partner_type_id
+    )
+values
+    (1, 1, 1),
+    (1, 1, 2),
+    (1, 2, 2);
+
 ------------
 -- PEOPLE --
 ------------
@@ -191,7 +216,8 @@ values
         '011-12345678',
         '1985-07-15',
         4,
-        5
+        5,
+        1
     ),
     (
         true,
@@ -202,7 +228,8 @@ values
         null,
         '1990-03-22',
         null,
-        6
+        6,
+        1
     ),
     (
         true,
@@ -213,7 +240,8 @@ values
         '011-98765432',
         '1987-12-30',
         null,
-        null
+        null,
+        1
     ),
     (
         false,
@@ -224,7 +252,8 @@ values
         '011-55667788',
         null,
         null,
-        null
+        null,
+        2
     ),
     (
         true,
@@ -235,7 +264,8 @@ values
         null,
         '1982-05-01',
         null,
-        null
+        null,
+        2
     ),
     (
         true,
@@ -246,7 +276,8 @@ values
         '011-77889900',
         '1995-09-10',
         null,
-        7
+        7,
+        null
     ),
     (
         false,
@@ -256,6 +287,7 @@ values
         'jose.sanchez@email.com',
         '011-12349876',
         '1980-01-14',
+        null,
         null,
         null
     ),
@@ -268,6 +300,7 @@ values
         '011-99887766',
         '1992-11-20',
         null,
+        null,
         null
     ),
     (
@@ -279,6 +312,7 @@ values
         null,
         '1993-04-18',
         null,
+        null,
         null
     ),
     (
@@ -288,6 +322,7 @@ values
         '44556677',
         'patricia.vargas@email.com',
         '011-66554433',
+        null,
         null,
         null,
         null
@@ -301,6 +336,7 @@ values
         '011-88776655',
         '1989-08-29',
         null,
+        null,
         null
     ),
     (
@@ -310,6 +346,7 @@ values
         null,
         'julieta.morales@email.com',
         '011-66553322',
+        null,
         null,
         null,
         null
@@ -323,6 +360,7 @@ values
         null,
         '1988-06-12',
         null,
+        null,
         null
     ),
     (
@@ -331,6 +369,7 @@ values
         'Ramírez',
         null,
         'roberto.ramirez@email.com',
+        null,
         null,
         null,
         null,
@@ -345,6 +384,7 @@ values
         '011-99887766',
         '1991-02-25',
         null,
+        null,
         null
     ),
     (
@@ -356,6 +396,7 @@ values
         '011-11223344',
         '1994-07-05',
         null,
+        null,
         null
     ),
     (
@@ -365,6 +406,7 @@ values
         '88990011',
         'mercedes.mendez@email.com',
         '011-22334455',
+        null,
         null,
         null,
         null
@@ -378,6 +420,7 @@ values
         '011-33445566',
         '1986-09-02',
         null,
+        null,
         null
     ),
     (
@@ -389,43 +432,47 @@ values
         '011-44556677',
         '1996-01-08',
         null,
+        null,
         null
     );
-
------------------------
--- BUSINESS PARTNERS --
------------------------
-
----------------------------------------
--- BUSINESS PARTNERS X PARTNER TYPES --
----------------------------------------
 
 -----------
 -- USERS --
 -----------
-
 go
 insert into
-    users (username, user_password, organization_id)
+    users (
+        activity_status,
+        username,
+        user_password
+    )
 values
-    ('admin', 'admin', 1);
+    (true, 'admin', 'admin'),
+    (false, 'owner', 'owner');
 
 -------------------
 -- USERS X ROLES --
 -------------------
-
 go
 insert into
     user_role_rel (user_id, role_id)
 values
-    (1, 1);
-
-go
-
----------------
--- POSITIONS --
----------------
+    (1, 1),
+    (2, 1);
 
 ---------------
 -- EMPLOYEES --
 ---------------
+go
+insert into
+    employees (
+        organization_id,
+        employee_id,
+        admission_date,
+        user_id
+    )
+values
+    (1, 6, '2024-10-10', 1),
+    (1, 7, '2024-10-10', null),
+    (1, 8, '2024-10-10', null),
+    (2, 9, '2024-11-11', 2);

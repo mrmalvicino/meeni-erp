@@ -3,7 +3,6 @@ use meeni_erp_db;
 ---------------
 -- COUNTRIES --
 ---------------
-
 go
 insert into
     countries (country_name)
@@ -13,7 +12,6 @@ values
 ---------------
 -- PROVINCES --
 ---------------
-
 insert into
     provinces (province_name, country_id)
 values
@@ -45,7 +43,6 @@ values
 -------------------
 -- PRICING PLANS --
 -------------------
-
 go
 insert into
     pricing_plans (pricing_plan_name, monthly_fee)
@@ -57,7 +54,6 @@ values
 -------------------
 -- PARTNER TYPES --
 -------------------
-
 go
 insert into
     partner_types (partner_type_name)
@@ -68,7 +64,6 @@ values
 -----------
 -- ROLES --
 -----------
-
 go
 insert into
     roles (role_name)

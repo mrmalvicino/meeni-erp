@@ -97,26 +97,6 @@ create table
 
 go
 create table
-    people (
-        person_id int identity (1, 1) not null,
-        activity_status bit default (1) not null,
-        first_name varchar(50) not null,
-        last_name varchar(50) not null,
-        dni varchar(50) null,
-        email varchar(50) not null,
-        phone varchar(50) null,
-        birth_date date null,
-        profile_image_id int null,
-        address_id int null,
-        constraint uq_person_dni unique (dni),
-        constraint uq_person_email unique (email),
-        primary key (person_id),
-        foreign key (image_id) references images (image_id),
-        foreign key (address_id) references addresses (address_id)
-    );
-
-go
-create table
     partner_types (
         partner_type_id int identity (1, 1) not null,
         partner_type_name varchar(50) not null,
@@ -128,9 +108,10 @@ go
 create table
     business_partners (
         organization_id int not null,
-        business_partner_id int not null,
+        business_partner_id int identity (1, 1) not null,
         activity_status bit default (1) not null,
         legal_entity_id int null,
+        constraint chk_auto_reference check (organization_id != legal_entity_id),
         primary key (organization_id, business_partner_id),
         foreign key (organization_id) references organizations (organization_id),
         foreign key (legal_entity_id) references legal_entities (legal_entity_id)
@@ -150,6 +131,28 @@ create table
         foreign key (organization_id) references business_partners (organization_id),
         foreign key (business_partner_id) references business_partners (business_partner_id),
         foreign key (partner_type_id) references business_partner_types (partner_type_id)
+    );
+
+go
+create table
+    people (
+        person_id int identity (1, 1) not null,
+        activity_status bit default (1) not null,
+        first_name varchar(50) not null,
+        last_name varchar(50) not null,
+        dni varchar(50) null,
+        email varchar(50) not null,
+        phone varchar(50) null,
+        birth_date date null,
+        profile_image_id int null,
+        address_id int null,
+        business_partner_id int null,
+        constraint uq_person_dni unique (dni),
+        constraint uq_person_email unique (email),
+        primary key (person_id),
+        foreign key (image_id) references images (image_id),
+        foreign key (address_id) references addresses (address_id),
+        foreign key (business_partner_id) references business_partners (business_partner_id)
     );
 
 go
@@ -182,23 +185,14 @@ create table
 
 go
 create table
-    positions (
-        position_id int not null,
-        position_name varchar(50) not null,
-        constraint uq_position unique (position_name),
-        primary key (position_id)
-    );
-
-go
-create table
     employees (
+        organization_id int not null,
         employee_id int not null,
         admission_date date default cast(getdate () as date) not null,
-        position_id int not null,
         user_id int null,
-        primary key (employee_id),
+        primary key (organization_id, employee_id),
+        foreign key (organization_id) references organizations (organization_id),
         foreign key (employee_id) references people (person_id),
-        foreign key (position_id) references positions (position_id),
         foreign key (user_id) references users (user_id)
     );
 
