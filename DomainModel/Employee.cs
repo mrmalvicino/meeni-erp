@@ -6,6 +6,5 @@ namespace DomainModel
     {
         public bool ActivityStatus { get; set; }
         public DateTime AdmissionDate { get; set; }
-        public User User { get; set; }
     }
 }

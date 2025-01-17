@@ -52,6 +52,22 @@ values
     ('Piedras Blancas', '789', null, null, 6),
     ('Copinita', '450', null, 'Puerta verde', 7);
 
+-------------------
+-- ORGANIZATIONS --
+-------------------
+go
+insert into
+    organizations (
+        activity_status,
+        organization_id,
+        admission_date,
+        pricing_plan_id
+    )
+values
+    (true, 1, '2024-10-10', 1),
+    (true, 2, '2024-11-11', 2),
+    (false, 4, '2024-12-12', 3);
+
 --------------------
 -- LEGAL ENTITIES --
 --------------------
@@ -154,22 +170,6 @@ values
         null,
         null
     );
-
--------------------
--- ORGANIZATIONS --
--------------------
-go
-insert into
-    organizations (
-        activity_status,
-        organization_id,
-        admission_date,
-        pricing_plan_id
-    )
-values
-    (true, 1, '2024-10-10', 1),
-    (true, 2, '2024-11-11', 2),
-    (false, 4, '2024-12-12', 3);
 
 ------------
 -- PEOPLE --
@@ -407,6 +407,24 @@ values
     (1, 1, 2),
     (1, 2, 2);
 
+---------------
+-- EMPLOYEES --
+---------------
+go
+insert into
+    employees (
+        organization_id,
+        employee_id,
+        activity_status,
+        admission_date,
+        user_id
+    )
+values
+    (1, 6, true, '2024-10-10', 1),
+    (1, 7, true, '2024-10-10', null),
+    (1, 8, true, '2024-10-10', null),
+    (2, 9, true, '2024-11-11', 2);
+
 -----------
 -- USERS --
 -----------
@@ -426,21 +444,3 @@ insert into
 values
     (1, 1),
     (2, 1);
-
----------------
--- EMPLOYEES --
----------------
-go
-insert into
-    employees (
-        organization_id,
-        employee_id,
-        activity_status,
-        admission_date,
-        user_id
-    )
-values
-    (1, 6, true, '2024-10-10', 1),
-    (1, 7, true, '2024-10-10', null),
-    (1, 8, true, '2024-10-10', null),
-    (2, 9, true, '2024-11-11', 2);

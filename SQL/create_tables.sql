@@ -1,5 +1,6 @@
 use meeni_erp_db;
 
+-- DUMMY DATA
 go
 create table
     images (
@@ -9,6 +10,7 @@ create table
         primary key (image_id)
     );
 
+-- INITIAL DATA
 go
 create table
     countries (
@@ -18,6 +20,7 @@ create table
         primary key (country_id)
     );
 
+-- INITIAL DATA
 go
 create table
     provinces (
@@ -29,6 +32,7 @@ create table
         foreign key (country_id) references countries (country_id)
     );
 
+-- DUMMY DATA
 go
 create table
     cities (
@@ -41,6 +45,7 @@ create table
         foreign key (province_id) references provinces (province_id)
     );
 
+-- DUMMY DATA
 go
 create table
     addresses (
@@ -55,23 +60,7 @@ create table
         foreign key (city_id) references cities (city_id)
     );
 
-go
-create table
-    legal_entities (
-        legal_entity_id int identity (1, 1) not null,
-        legal_entity_name varchar(50) not null,
-        cuit varchar(50) null,
-        email varchar(50) not null,
-        phone varchar(50) null,
-        logo_image_id int null,
-        address_id int null,
-        constraint uq_entity_cuit unique (cuit),
-        constraint uq_entity_email unique (email),
-        primary key (legal_entity_id),
-        foreign key (address_id) references addresses (address_id),
-        foreign key (logo_image_id) references images (image_id)
-    );
-
+-- INITIAL DATA
 go
 create table
     pricing_plans (
@@ -83,6 +72,7 @@ create table
         primary key (pricing_plan_id)
     );
 
+-- DUMMY DATA
 go
 create table
     organizations (
@@ -91,29 +81,52 @@ create table
         admission_date date default cast(getdate () as date) not null,
         pricing_plan_id int not null,
         primary key (organization_id),
-        foreign key (organization_id) references legal_entities (legal_entity_id),
         foreign key (pricing_plan_id) references pricing_plans (pricing_plan_id)
     );
 
+-- DUMMY DATA
+go
+create table
+    legal_entities (
+        legal_entity_id int identity (1,1) not null,
+        cuit varchar(10) null,
+        legal_entity_name varchar(50) not null,
+        email varchar(50) null,
+        phone varchar(50) null,
+        logo_image_id int null,
+        address_id int null,
+        organization_id int not null,
+        constraint uq_entity_cuit unique (organization_id, cuit),
+        constraint uq_entity_email unique (organization_id, email),
+        primary key (legal_entity_id),
+        foreign key (logo_image_id) references images (image_id),
+        foreign key (address_id) references addresses (address_id),
+        foreign key (organization_id) references organizations (organization_id)
+    );
+
+-- DUMMY DATA
 go
 create table
     people (
         person_id int identity (1, 1) not null,
+        cuil varchar(10) null,
         first_name varchar(50) not null,
         last_name varchar(50) not null,
-        dni varchar(50) null,
-        email varchar(50) not null,
+        email varchar(50) null,
         phone varchar(50) null,
         birth_date date null,
         profile_image_id int null,
         address_id int null,
-        constraint uq_person_dni unique (dni),
-        constraint uq_person_email unique (email),
+        organization_id int not null,
+        constraint uq_person_dni unique (organization_id, dni),
+        constraint uq_person_email unique (organization_id, email),
         primary key (person_id),
-        foreign key (image_id) references images (image_id),
-        foreign key (address_id) references addresses (address_id)
+        foreign key (profile_image_id) references images (image_id),
+        foreign key (address_id) references addresses (address_id),
+        foreign key (organization_id) references organizations (organization_id)
     );
 
+-- INITIAL DATA
 go
 create table
     partner_types (
@@ -123,21 +136,25 @@ create table
         primary key (partner_type_id)
     );
 
+-- DUMMY DATA
 go
 create table
     business_partners (
-        organization_id int not null,
         business_partner_id int identity (1, 1) not null,
         activity_status bit default (1) not null,
         legal_entity_id int null,
         person_id int null,
+        organization_id int not null,
         constraint chk_auto_reference check (organization_id != legal_entity_id),
-        primary key (organization_id, business_partner_id),
-        foreign key (organization_id) references organizations (organization_id),
+        constraint uq_partner_entity unique (legal_entity_id),
+        constraint uq_partner_person unique (person_id),
+        primary key (business_partner_id),
         foreign key (legal_entity_id) references legal_entities (legal_entity_id),
-        foreign key (person_id) references people (person_id)
+        foreign key (person_id) references people (person_id),
+        foreign key (organization_id) references organizations (organization_id),
     );
 
+-- DUMMY DATA
 go
 create table
     partner_type_rel (
@@ -154,6 +171,18 @@ create table
         foreign key (partner_type_id) references business_partner_types (partner_type_id)
     );
 
+-- DUMMY DATA
+go
+create table
+    employees (
+        employee_id int not null,
+        activity_status bit default (1) not null,
+        admission_date date default cast(getdate () as date) not null,
+        primary key (employee_id),
+        foreign key (employee_id) references people (person_id)
+    );
+
+-- INITIAL DATA
 go
 create table
     roles (
@@ -163,37 +192,26 @@ create table
         primary key (role_id)
     );
 
+-- DUMMY DATA
 go
 create table
     users (
-        user_id int identity (1, 1) not null,
+        user_id int not null,
         activity_status bit default (1) not null,
         username varchar(50) not null,
         user_password varchar(50) not null,
         constraint uq_user unique (username),
-        primary key (user_id)
+        primary key (user_id),
+        foreign key (user_id) references employees (employee_id)
     );
 
+-- DUMMY DATA
 go
 create table
     user_role_rel (
         user_id int foreign key references users (user_id) not null,
         role_id int foreign key references roles (role_id) not null,
         primary key (user_id, role_id)
-    );
-
-go
-create table
-    employees (
-        organization_id int not null,
-        employee_id int not null,
-        activity_status bit default (1) not null,
-        admission_date date default cast(getdate () as date) not null,
-        user_id int null,
-        primary key (organization_id, employee_id),
-        foreign key (organization_id) references organizations (organization_id),
-        foreign key (employee_id) references people (person_id),
-        foreign key (user_id) references users (user_id)
     );
 
 go
