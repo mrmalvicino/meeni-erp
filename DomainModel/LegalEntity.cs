@@ -1,5 +1,4 @@
 ﻿using Interfaces;
-using System;
 
 namespace DomainModel
 {
@@ -11,7 +10,6 @@ namespace DomainModel
         public string CUIT { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
-        public DateTime CreationDate { get; set; }
         public Image LogoImage { get; set; }
         public Address Address { get; set; }
     }
