@@ -12,7 +12,6 @@ namespace DomainModel
         public string DNI { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
-        public DateTime BirthDate { get; set; }
         public Image ProfileImage { get; set; }
         public Address Address { get; set; }
     }

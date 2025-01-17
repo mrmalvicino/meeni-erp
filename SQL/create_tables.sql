@@ -64,7 +64,6 @@ create table
         cuit varchar(50) null,
         email varchar(50) not null,
         phone varchar(50) null,
-        creation_date date null,
         logo_image_id int null,
         address_id int null,
         constraint uq_entity_cuit unique (cuit),
@@ -89,6 +88,7 @@ go
 create table
     organizations (
         organization_id int not null,
+        admission_date date default cast(getdate () as date) not null,
         pricing_plan_id int not null,
         primary key (organization_id),
         foreign key (organization_id) references legal_entities (legal_entity_id),
@@ -193,7 +193,7 @@ go
 create table
     employees (
         employee_id int not null,
-        admission date default cast(getdate () as date) not null,
+        admission_date date default cast(getdate () as date) not null,
         position_id int not null,
         user_id int null,
         primary key (employee_id),
