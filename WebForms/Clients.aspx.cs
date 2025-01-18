@@ -9,18 +9,18 @@ namespace WebForms
     public partial class Clients : System.Web.UI.Page
     {
         private ApplicationManager _appManager;
-        private List<Client> _clients;
-        private Client _client;
+        private List<BusinessPartner> _clients;
+        private BusinessPartner _client;
 
         public Clients()
         {
             _appManager = new ApplicationManager();
-            _client = new Client();
+            _client = new BusinessPartner();
         }
 
         public void FetchClients()
         {
-            _clients = _appManager.Clients.List();
+            //_clients = _appManager.BusinessPartners.List(true, false);
         }
 
         public void BindClientsRpt()
