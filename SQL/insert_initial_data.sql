@@ -51,16 +51,6 @@ values
     ('Plan profesional', 20),
     ('Plan empresarial', 30);
 
--------------------
--- PARTNER TYPES --
--------------------
-go
-insert into
-    partner_types (partner_type_name)
-values
-    ('Cliente'),
-    ('Proveedor');
-
 -----------
 -- ROLES --
 -----------

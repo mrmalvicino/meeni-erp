@@ -148,8 +148,14 @@ create table
     business_partners (
         business_partner_id int identity (1, 1) not null,
         activity_status bit default (1) not null,
+        is_client bit not null,
+        is_supplier bit not null,
         external_organization_id int null,
         person_id int null,
+        constraint chk_both_types check (
+            is_client != 0
+            or is_supplier != 0
+        ),
         constraint chk_both_null check (
             external_organization_id is not null
             or person_id is not null
@@ -163,17 +169,6 @@ create table
         primary key (business_partner_id),
         foreign key (external_organization_id) references external_organizations (external_organization_id),
         foreign key (person_id) references people (person_id)
-    );
-
--- DUMMY DATA
-go
-create table
-    partner_type_rel (
-        business_partner_id int not null,
-        partner_type_id int not null,
-        primary key (business_partner_id, partner_type_id),
-        foreign key (business_partner_id) references business_partners (business_partner_id),
-        foreign key (partner_type_id) references partner_types (partner_type_id)
     );
 
 -- DUMMY DATA

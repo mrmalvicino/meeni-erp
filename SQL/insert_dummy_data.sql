@@ -422,54 +422,28 @@ go
 insert into
     business_partners (
         activity_status,
+        is_client,
+        is_supplier,
         external_organization_id,
         person_id
     )
 values
-    (1, 4, null),
-    (1, 5, null),
-    (1, 6, null),
-    (1, 7, null),
-    (1, 8, null),
-    (1, 9, null),
-    (1, 10, null),
-    (1, null, 4),
-    (1, null, 5),
-    (1, null, 6),
-    (1, null, 7),
-    (1, null, 8),
-    (1, null, 9),
-    (1, null, 10),
-    (1, null, 11),
-    (1, null, 12);
-
----------------------------------------
--- BUSINESS PARTNERS X PARTNER TYPES --
----------------------------------------
-go
-insert into
-    partner_type_rel (business_partner_id, partner_type_id)
-values
-    (1, 1),
-    (1, 2),
-    (2, 1),
-    (2, 2),
-    (3, 1),
-    (3, 2),
-    (4, 1),
-    (4, 2),
-    (5, 1),
-    (6, 1),
-    (7, 1),
-    (8, 1),
-    (9, 1),
-    (10, 1),
-    (11, 2),
-    (12, 1),
-    (13, 2),
-    (14, 1),
-    (15, 2),
-    (16, 1);
+    (1, 1, 1, 4, null),
+    (1, 1, 1, 5, null),
+    (1, 1, 1, 6, null),
+    (1, 1, 1, 7, null),
+    (1, 1, 0, 8, null),
+    (1, 0, 1, 9, null),
+    (1, 1, 0, 10, null),
+    (1, 0, 1, null, 4),
+    (1, 1, 0, null, 5),
+    (1, 0, 1, null, 6),
+    (1, 1, 0, null, 7),
+    (1, 0, 1, null, 8),
+    (1, 1, 0, null, 9),
+    (1, 0, 1, null, 10),
+    (1, 1, 0, null, 11),
+    (1, 0, 1, null, 12);
 
 ---------------
 -- EMPLOYEES --

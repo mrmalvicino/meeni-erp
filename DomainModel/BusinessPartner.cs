@@ -1,5 +1,4 @@
 ﻿using Interfaces;
-using System.Collections.Generic;
 
 namespace DomainModel
 {
@@ -7,8 +6,9 @@ namespace DomainModel
     {
         public int Id { get; set; }
         public bool ActivityStatus { get; set; }
+        public bool IsClient { get; set; }
+        public bool IsSupplier { get; set; }
         public ExternalOrganization ExternalOrganization { get; set; }
         public Person Person { get; set; }
-        public List<PartnerType> PartnerTypes { get; set; }
     }
 }
