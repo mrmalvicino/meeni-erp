@@ -14,7 +14,7 @@ namespace DataAccess
             _db = db;
         }
 
-        public int Create(Organization organization)
+        public int Create(InternalOrganization organization)
         {
             try
             {
@@ -34,7 +34,7 @@ namespace DataAccess
             return organization.Id;
         }
 
-        public Organization Read(int organizationId)
+        public InternalOrganization Read(int organizationId)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace DataAccess
 
                 if (_db.Reader.Read())
                 {
-                    Organization organization = new Organization();
+                    InternalOrganization organization = new InternalOrganization();
                     ReadRow(organization);
                     return organization;
                 }
@@ -61,7 +61,7 @@ namespace DataAccess
             }
         }
 
-        private void SetParameters(Organization organization, bool isUpdate = false)
+        private void SetParameters(InternalOrganization organization, bool isUpdate = false)
         {
             if (isUpdate)
             {
@@ -83,7 +83,7 @@ namespace DataAccess
             _db.SetParameter("@pricing_plan_id", organization.PricingPlan.Id);
         }
 
-        private void ReadRow(Organization organization)
+        private void ReadRow(InternalOrganization organization)
         {
             organization.Id = Convert.ToInt32(_db.Reader["organization_id"]);
             organization.ActivityStatus = (bool)_db.Reader["activity_status"];

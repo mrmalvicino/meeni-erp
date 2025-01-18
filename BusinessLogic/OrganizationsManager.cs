@@ -8,7 +8,7 @@ namespace BusinessLogic
 {
     public class OrganizationsManager
     {
-        private Organization _organization;
+        private InternalOrganization _organization;
         private OrganizationsDAL _organizationsDAL;
         private ImagesManager _imagesManager;
         private PricingPlansManager _pricingPlansManager;
@@ -20,7 +20,7 @@ namespace BusinessLogic
             _pricingPlansManager = new PricingPlansManager(db);
         }
 
-        public int Create(Organization organization)
+        public int Create(InternalOrganization organization)
         {
             try
             {
@@ -32,7 +32,7 @@ namespace BusinessLogic
             }
         }
 
-        public Organization Read(int organizationId)
+        public InternalOrganization Read(int organizationId)
         {
             if (organizationId == 0)
             {

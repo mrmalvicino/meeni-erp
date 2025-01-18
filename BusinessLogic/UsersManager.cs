@@ -18,7 +18,7 @@ namespace BusinessLogic
             _rolesManager = new RolesManager(db);
         }
 
-        public int Create(User user, Organization organization)
+        public int Create(User user, InternalOrganization organization)
         {
             try
             {

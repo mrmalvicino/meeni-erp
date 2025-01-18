@@ -31,7 +31,7 @@ namespace BusinessLogic
             _usersManager = new UsersManager(_db);
         }
 
-        public bool SignUp(ref User user, ref Organization organization)
+        public bool SignUp(ref User user, ref InternalOrganization organization)
         {
             using (var transaction = new TransactionScope())
             {
@@ -51,7 +51,7 @@ namespace BusinessLogic
             }
         }
 
-        public bool Login(ref User user, ref Organization organization)
+        public bool Login(ref User user, ref InternalOrganization organization)
         {
             using (var transaction = new TransactionScope())
             {

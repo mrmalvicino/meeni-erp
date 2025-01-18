@@ -57,16 +57,11 @@ values
 -------------------
 go
 insert into
-    organizations (
-        activity_status,
-        organization_id,
-        admission_date,
-        pricing_plan_id
-    )
+    organizations (activity_status, admission_date, pricing_plan_id)
 values
-    (true, 1, '2024-10-10', 1),
-    (true, 2, '2024-11-11', 2),
-    (false, 4, '2024-12-12', 3);
+    (true, '2024-10-10', 1),
+    (true, '2024-11-11', 2),
+    (false, '2024-12-12', 3);
 
 --------------------
 -- LEGAL ENTITIES --
@@ -74,97 +69,100 @@ values
 go
 insert into
     legal_entities (
-        legal_entity_name,
         cuit,
+        legal_entity_name,
         email,
         phone,
         logo_image_id,
-        address_id
+        address_id,
+        organization_id
     )
 values
     (
-        'Berlinguieri Co.',
         '20123456789',
+        'Berlinguieri Co.',
         'contacto@berlinguieri.com',
         '1158873478',
+        1,
         1,
         1
     ),
     (
-        'Future Archi',
         null,
+        'Future Archi',
         'contacto@futurearchi.com',
         '1112345678',
         2,
-        2
+        2,
+        int;problema
     ),
     (
-        'Industria Gamma',
         '23456789015',
+        'Industria Gamma',
         'ventas@industriagamma.com',
         null,
         null,
         3
     ),
     (
-        'El Buen Color',
         '27987654321',
+        'El Buen Color',
         'info@elbuencolor.com',
         null,
         3,
         null
     ),
     (
-        'Soluciones Omega',
         null,
+        'Soluciones Omega',
         'soporte@solucionesomega.com',
         null,
         null,
         null
     ),
     (
-        'Innovación Zeta',
         '23998877663',
+        'Innovación Zeta',
         'contacto@innovacionzeta.com',
         null,
         null,
         4
     ),
     (
-        'Corporación Delta',
         null,
+        'Corporación Delta',
         'info@corporaciondelta.com',
         '1177889900',
         null,
         null
     ),
     (
-        'Consultora Épsilon',
         null,
+        'Consultora Épsilon',
         'consultas@consultoraepsilon.com',
         null,
         null,
         null
     ),
     (
-        'Tecnología Kappa',
         null,
+        'Tecnología Kappa',
         'contacto@tecnologiakappa.com',
         null,
         null,
         null
     ),
     (
-        'Logística Lambda',
         '23556677889',
+        'Logística Lambda',
         'logistica@logisticalambda.com',
         null,
         null,
         null
     ),
     (
-        'Marketing Mu',
         null,
+        'Marketing Mu',
         'marketing@marketingmu.com',
         '1199881122',
         null,

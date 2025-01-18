@@ -8,13 +8,13 @@ namespace WebForms
     public partial class Signup : System.Web.UI.Page
     {
         private ApplicationManager _appManager;
-        private Organization _newOrganization;
+        private InternalOrganization _newOrganization;
         private User _newUser;
 
         public Signup()
         {
             _appManager = new ApplicationManager();
-            _newOrganization = new Organization();
+            _newOrganization = new InternalOrganization();
             _newUser = new User();
         }
 

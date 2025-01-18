@@ -43,13 +43,14 @@
   <ItemGroup>
     <Compile Include="Address.cs" />
     <Compile Include="BusinessPartner.cs" />
+    <Compile Include="ExternalOrganization.cs" />
     <Compile Include="PartnerType.cs" />
     <Compile Include="City.cs" />
     <Compile Include="Country.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="Image.cs" />
     <Compile Include="LegalEntity.cs" />
-    <Compile Include="Organization.cs" />
+    <Compile Include="InternalOrganization.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="PricingPlan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

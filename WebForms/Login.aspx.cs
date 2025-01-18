@@ -8,13 +8,13 @@ namespace WebForms
     {
         private ApplicationManager _appManager;
         private User _loggedUser;
-        private Organization _loggedOrganization;
+        private InternalOrganization _loggedOrganization;
 
         public Login()
         {
             _appManager = new ApplicationManager();
             _loggedUser = new User();
-            _loggedOrganization = new Organization();
+            _loggedOrganization = new InternalOrganization();
         }
 
         private void MapAttributes()

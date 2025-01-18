@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DomainModel
 {
-    public class Organization : LegalEntity
+    public class InternalOrganization : LegalEntity
     {
         public bool ActivityStatus { get; set; }
         public DateTime AdmissionDate { get; set; }
