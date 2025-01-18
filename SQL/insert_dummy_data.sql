@@ -201,7 +201,7 @@ values
         'juan.perez@email.com',
         '1182345678',
         '1985-07-15',
-        4,
+        null,
         5,
         1
     ),
@@ -478,6 +478,9 @@ go
 insert into
     employees (employee_id, activity_status, admission_date)
 values
+    (1, 1, '2024-10-10'),
+    (2, 1, '2024-10-11'),
+    (3, 1, '2024-10-12'),
     (13, 1, '2024-10-22'),
     (14, 1, '2024-10-23'),
     (15, 1, '2024-10-24'),

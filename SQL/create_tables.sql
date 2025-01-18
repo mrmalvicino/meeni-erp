@@ -154,14 +154,12 @@ create table
             external_organization_id is not null
             or person_id is not null
         ),
-        constraint chk_both_null check (
+        constraint chk_both_filled check (
             not (
                 external_organization_id is not null
                 and person_id is not null
             )
         ),
-        constraint uq_partner_external unique (external_organization_id),
-        constraint uq_partner_person unique (person_id),
         primary key (business_partner_id),
         foreign key (external_organization_id) references external_organizations (external_organization_id),
         foreign key (person_id) references people (person_id)
