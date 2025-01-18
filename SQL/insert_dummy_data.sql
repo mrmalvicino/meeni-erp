@@ -156,9 +156,9 @@ insert into
         pricing_plan_id
     )
 values
-    (1, true, '2024-10-10', 1),
-    (2, true, '2024-11-11', 2),
-    (3, true, '2024-12-12', 3);
+    (1, 1, '2024-10-10', 1),
+    (2, 1, '2024-11-11', 2),
+    (3, 1, '2024-12-12', 3);
 
 ----------------------------
 -- EXTERNAL ORGANIZATIONS --
@@ -402,33 +402,33 @@ insert into
         activity_status,
         external_organization_id,
         person_id,
-        internal_organization_id,
+        internal_organization_id
     )
 values
-    (true, 4, null, 1),
-    (true, 5, null, 1),
-    (true, 6, null, 2),
-    (true, 7, null, 2),
-    (true, 8, null, 3),
-    (true, 9, null, 3),
-    (true, 10, null, 1),
-    (true, null, 4, 1),
-    (true, null, 5, 1),
-    (true, null, 6, 1),
-    (true, null, 7, 1),
-    (true, null, 8, 2),
-    (true, null, 9, 2),
-    (true, null, 10, 2),
-    (true, null, 11, 2),
-    (true, null, 12, 3),
-    (true, null, 13, 3),
-    (true, null, 14, 3),
-    (true, null, 15, 3),
-    (true, null, 16, 1),
-    (true, null, 17, 1),
-    (true, null, 18, 1),
-    (true, null, 19, 1),
-    (true, null, 20, 1);
+    (1, 4, null, 1),
+    (1, 5, null, 1),
+    (1, 6, null, 2),
+    (1, 7, null, 2),
+    (1, 8, null, 3),
+    (1, 9, null, 3),
+    (1, 10, null, 1),
+    (1, null, 4, 1),
+    (1, null, 5, 1),
+    (1, null, 6, 1),
+    (1, null, 7, 1),
+    (1, null, 8, 2),
+    (1, null, 9, 2),
+    (1, null, 10, 2),
+    (1, null, 11, 2),
+    (1, null, 12, 3),
+    (1, null, 13, 3),
+    (1, null, 14, 3),
+    (1, null, 15, 3),
+    (1, null, 16, 1),
+    (1, null, 17, 1),
+    (1, null, 18, 1),
+    (1, null, 19, 1),
+    (1, null, 20, 1);
 
 ---------------------------------------
 -- BUSINESS PARTNERS X PARTNER TYPES --
@@ -473,26 +473,26 @@ go
 insert into
     employees (employee_id, activity_status, admission_date)
 values
-    (1, true, '2024-10-10'),
-    (2, true, '2024-10-11'),
-    (3, true, '2024-10-12'),
-    (4, true, '2024-10-13'),
-    (5, true, '2024-10-14'),
-    (6, true, '2024-10-15'),
-    (7, true, '2024-10-16'),
-    (8, true, '2024-10-17'),
-    (9, true, '2024-10-18'),
-    (10, true, '2024-10-19'),
-    (11, true, '2024-10-20'),
-    (12, true, '2024-10-21'),
-    (13, true, '2024-10-22'),
-    (14, true, '2024-10-23'),
-    (15, true, '2024-10-24'),
-    (16, true, '2024-10-25'),
-    (17, true, '2024-10-26'),
-    (18, true, '2024-10-27'),
-    (19, true, '2024-10-28'),
-    (20, true, '2024-10-29');
+    (1, 1, '2024-10-10'),
+    (2, 1, '2024-10-11'),
+    (3, 1, '2024-10-12'),
+    (4, 1, '2024-10-13'),
+    (5, 1, '2024-10-14'),
+    (6, 1, '2024-10-15'),
+    (7, 1, '2024-10-16'),
+    (8, 1, '2024-10-17'),
+    (9, 1, '2024-10-18'),
+    (10, 1, '2024-10-19'),
+    (11, 1, '2024-10-20'),
+    (12, 1, '2024-10-21'),
+    (13, 1, '2024-10-22'),
+    (14, 1, '2024-10-23'),
+    (15, 1, '2024-10-24'),
+    (16, 1, '2024-10-25'),
+    (17, 1, '2024-10-26'),
+    (18, 1, '2024-10-27'),
+    (19, 1, '2024-10-28'),
+    (20, 1, '2024-10-29');
 
 -----------
 -- USERS --
@@ -501,9 +501,9 @@ go
 insert into
     users (user_id, activity_status, username, password)
 values
-    (1, true, 'admin', 'admin'),
-    (2, true, 'admin2', 'admin2'),
-    (3, true, 'admin3', 'admin3');
+    (1, 1, 'admin', 'admin'),
+    (2, 1, 'admin2', 'admin2'),
+    (3, 1, 'admin3', 'admin3');
 
 -------------------
 -- USERS X ROLES --
