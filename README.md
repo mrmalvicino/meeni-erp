@@ -40,7 +40,7 @@ Meeni ERP offers the following functionalities:
     - If you want to use **SQL Server Management Studio** or **Azure Data Studio**, you will have to run all the SQL scripts one by one in the correct order.
     - If you are using a **localhost**, you may run [reset_database.bat](./SQL/reset_database.bat) to automate the correct excecution of the SQL scripts.
     - If you are using a local server with a custom path or an external server, you can also run the [reset_database.bat](./SQL/reset_database.bat) script but will have to set the path or address and credentials manually.
-    - If you are using an **external host** (like Docker), you can run the [run_reset.bat](./SQL/run_reset.bat) script and generate de database with one click, provided a file named `reset_input.txt` is created in the [SQL directory](./SQL/) using the following template.
+    - If you are using an **external host** (like Docker), you can run the [run_reset.bat](./SQL/run_reset.bat) script and generate the database with one click, provided a file named `reset_input.txt` is created in the [SQL directory](./SQL/) using the following template.
 		```txt
 		pause
 		3
