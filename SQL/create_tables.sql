@@ -202,7 +202,6 @@ go
 create table
     users (
         user_id int not null,
-        activity_status bit default (1) not null,
         username varchar(50) not null,
         password varchar(50) not null,
         constraint uq_user unique (username),

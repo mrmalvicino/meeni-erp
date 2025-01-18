@@ -495,11 +495,11 @@ values
 -----------
 go
 insert into
-    users (user_id, activity_status, username, password)
+    users (user_id, username, password)
 values
-    (1, 1, 'admin', 'admin'),
-    (2, 1, 'admin2', 'admin2'),
-    (3, 1, 'admin3', 'admin3');
+    (1, 'admin', 'admin'),
+    (2, 'admin2', 'admin2'),
+    (3, 'admin3', 'admin3');
 
 -------------------
 -- USERS X ROLES --
