@@ -106,8 +106,10 @@ go
 create table
     external_organizations (
         external_organization_id int not null,
+        internal_organization_id int not null,
         primary key (external_organization_id),
-        foreign key (external_organization_id) references legal_entities (legal_entity_id)
+        foreign key (external_organization_id) references legal_entities (legal_entity_id),
+        foreign key (internal_organization_id) references internal_organizations (internal_organization_id)
     );
 
 -- DUMMY DATA
@@ -148,20 +150,21 @@ create table
         activity_status bit default (1) not null,
         external_organization_id int null,
         person_id int null,
-        internal_organization_id int not null,
-        constraint chk_auto_reference check (
-            internal_organization_id != external_organization_id
-        ),
         constraint chk_both_null check (
             external_organization_id is not null
             or person_id is not null
+        ),
+        constraint chk_both_null check (
+            not (
+                external_organization_id is not null
+                and person_id is not null
+            )
         ),
         constraint uq_partner_external unique (external_organization_id),
         constraint uq_partner_person unique (person_id),
         primary key (business_partner_id),
         foreign key (external_organization_id) references external_organizations (external_organization_id),
-        foreign key (person_id) references people (person_id),
-        foreign key (internal_organization_id) references internal_organizations (internal_organization_id)
+        foreign key (person_id) references people (person_id)
     );
 
 -- DUMMY DATA
