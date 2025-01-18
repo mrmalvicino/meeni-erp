@@ -39,3 +39,7 @@ desktop.ini
 
 # macOS files
 .DS_Store
+
+# SQL scripts inputs and outputs
+reset_input.txt
+reset_output.txt
