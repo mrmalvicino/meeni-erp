@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="AddressesManager.cs" />
     <Compile Include="ApplicationManager.cs" />
+    <Compile Include="BaseManager.cs" />
     <Compile Include="CitiesManager.cs" />
     <Compile Include="CountriesManager.cs" />
     <Compile Include="EmployeesManager.cs" />

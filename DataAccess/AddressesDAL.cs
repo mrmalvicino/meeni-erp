@@ -61,6 +61,52 @@ namespace DataAccess
             }
         }
 
+        public void Update(Address address)
+        {
+            try
+            {
+                _db.SetProcedure("sp_update_address");
+                SetParameters(address, true);
+                _db.ExecuteAction();
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ex);
+            }
+            finally
+            {
+                _db.CloseConnection();
+            }
+        }
+
+        public int FindId(Address address)
+        {
+            try
+            {
+                _db.SetProcedure("sp_find_address_id");
+                _db.SetParameter("@street_name", address.StreetName);
+                _db.SetParameter("@street_number", address.StreetNumber);
+                _db.SetParameter("@flat", address.Flat);
+                _db.SetParameter("@city_id", address.City.Id);
+                _db.ExecuteRead();
+
+                if (_db.Reader.Read())
+                {
+                    return (int)_db.Reader["address_id"];
+                }
+
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ex);
+            }
+            finally
+            {
+                _db.CloseConnection();
+            }
+        }
+
         private void SetParameters(Address address, bool isUpdate = false)
         {
             if (isUpdate)

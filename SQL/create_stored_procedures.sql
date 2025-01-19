@@ -34,6 +34,20 @@ begin
         (@country_name);
 end;
 
+go
+create or alter procedure sp_find_country_id(
+    @country_name varchar(50)
+)
+as
+begin
+    select
+        country_id
+    from
+        countries
+    where
+        country_name = @country_name;
+end;
+
 ---------------
 -- PROVINCES --
 ---------------
@@ -50,6 +64,22 @@ begin
         output inserted.province_id
     values
         (@province_name, @country_id);
+end;
+
+go
+create or alter procedure sp_find_province_id(
+    @province_name varchar(50),
+    @country_id int
+)
+as
+begin
+    select
+        province_id
+    from
+        provinces
+    where
+        province_name = @province_name
+        and country_id = @country_id;
 end;
 
 ------------
@@ -71,6 +101,22 @@ begin
         (@city_name, @zip_code, @province_id);
 end;
 
+go
+create or alter procedure sp_find_city_id(
+    @city_name varchar(50),
+    @province_id int
+)
+as
+begin
+    select
+        city_id
+    from
+        cities
+    where
+        city_name = @city_name
+        and province_id = @province_id;
+end;
+
 ---------------
 -- ADDRESSES --
 ---------------
@@ -90,6 +136,48 @@ begin
         output inserted.address_id
     values
         (@street_name, @street_number, @flat, @details, @city_id);
+end;
+
+go
+create or alter procedure sp_update_address(
+    @address_id int,
+    @street_name varchar(50),
+    @street_number varchar(10),
+    @flat varchar(10),
+    @details varchar(300),
+    @city_id int
+)
+as
+begin
+    update addresses
+    set
+        street_name = @street_name,
+        street_number = @street_number,
+        flat = @flat,
+        details = @details,
+        city_id = @city_id
+    where
+        address_id = @address_id;
+end
+
+go
+create or alter procedure sp_find_address_id(
+    @street_name varchar(50),
+    @street_number varchar(10),
+    @flat varchar(10),
+    @city_id int
+)
+as
+begin
+    select
+        address_id
+    from
+        addresses
+    where
+        street_name = @street_name
+        and street_number = @street_number
+        and flat = @flat
+        and city_id = @city_id;
 end;
 
 --------------------

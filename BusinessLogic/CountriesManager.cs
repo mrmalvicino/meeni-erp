@@ -5,7 +5,7 @@ using System;
 
 namespace BusinessLogic
 {
-    public class CountriesManager
+    public class CountriesManager : BaseManager<Country>
     {
         private Country _country;
         private CountriesDAL _countriesDAL;
@@ -15,7 +15,7 @@ namespace BusinessLogic
             _countriesDAL = new CountriesDAL(db);
         }
 
-        public int Create(Country country)
+        protected override int Create(Country country)
         {
             try
             {
@@ -44,6 +44,23 @@ namespace BusinessLogic
             }
 
             return _country;
+        }
+
+        protected override void Update(Country country)
+        {
+            // Not necessary for entities in which DB tables have no fields appart from those that form a unique constraint.
+        }
+
+        protected override int FindId(Country country)
+        {
+            try
+            {
+                return _countriesDAL.FindId(country);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex);
+            }
         }
     }
 }

@@ -60,6 +60,32 @@ namespace DataAccess
             }
         }
 
+        public int FindId(City city, int provinceId)
+        {
+            try
+            {
+                _db.SetProcedure("sp_find_city_id");
+                _db.SetParameter("@city_name", city.Name);
+                _db.SetParameter("@province_id", provinceId);
+                _db.ExecuteRead();
+
+                if (_db.Reader.Read())
+                {
+                    return (int)_db.Reader["city_id"];
+                }
+
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ex);
+            }
+            finally
+            {
+                _db.CloseConnection();
+            }
+        }
+
         private void SetParameters(City city, int provinceId, bool isUpdate = false)
         {
             if (isUpdate)

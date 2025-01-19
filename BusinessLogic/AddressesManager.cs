@@ -5,7 +5,7 @@ using System;
 
 namespace BusinessLogic
 {
-    public class AddressesManager
+    public class AddressesManager : BaseManager<Address>
     {
         private Address _address;
         private AddressesDAL _addressesDAL;
@@ -15,7 +15,7 @@ namespace BusinessLogic
             _addressesDAL = new AddressesDAL(db);
         }
 
-        public int Create(Address address)
+        protected override int Create(Address address)
         {
             try
             {
@@ -44,6 +44,30 @@ namespace BusinessLogic
             }
 
             return _address;
+        }
+
+        protected override void Update(Address address)
+        {
+            try
+            {
+                _addressesDAL.Update(address);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex);
+            }
+        }
+
+        protected override int FindId(Address address)
+        {
+            try
+            {
+                return _addressesDAL.FindId(address);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex);
+            }
         }
     }
 }
