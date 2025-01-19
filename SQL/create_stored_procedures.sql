@@ -1,41 +1,82 @@
 use meeni_erp_db;
 
+------------
+-- IMAGES --
+------------
+
+---------------
+-- COUNTRIES --
+---------------
+
+---------------
+-- PROVINCES --
+---------------
+
+------------
+-- CITIES --
+------------
+
+---------------
+-- ADDRESSES --
+---------------
+
+--------------------
+-- LEGAL ENTITIES --
+--------------------
+
+-------------------
+-- PRICING PLANS --
+-------------------
+
+----------------------------
+-- INTERNAL ORGANIZATIONS --
+----------------------------
 go
-create or alter procedure sp_create_organization(
-    @organization_name varchar(50),
-    @logo_image_id int,
+create or alter procedure sp_create_internal_organization(
+    @internal_organization_id int,
     @pricing_plan_id int
 )
 as
 begin
     insert into
-        organizations (organization_name, logo_image_id, pricing_plan_id)
-        output inserted.organization_id
+        internal_organizations (internal_organization_id, pricing_plan_id)
+        output inserted.internal_organization_id
     values
-        (@organization_name, @logo_image_id, @pricing_plan_id);
+        (@internal_organization_id, @pricing_plan_id);
 end;
 
-go
-create or alter procedure sp_create_user(
-    @username varchar(50),
-    @user_password varchar(50),
-    @organization_id int
-)
-as
-begin
-    insert into
-        users (username, user_password, organization_id)
-        output inserted.user_id
-    values
-        (@username, @user_password, @organization_id);
-end;
+----------------------------
+-- EXTERNAL ORGANIZATIONS --
+----------------------------
+
+------------
+-- PEOPLE --
+------------
+
+-----------------------
+-- BUSINESS PARTNERS --
+-----------------------
+
+---------------
+-- EMPLOYEES --
+---------------
+
+-----------
+-- ROLES --
+-----------
 
 go
-create or alter procedure sp_list_user_roles(
+create or alter procedure sp_list_roles(
     @user_id int
 )
 as
 begin
+    if (@user_id = 0)
+    begin
+        select * from roles;
+        return;
+    end
+
     select
         R.role_id,
         R.role_name
@@ -45,6 +86,44 @@ begin
     where
         X.user_id = @user_id;
 end;
+
+-----------
+-- USERS --
+-----------
+go
+create or alter procedure sp_create_user(
+    @user_id int,
+    @username varchar(50),
+    @password varchar(50)
+)
+as
+begin
+    insert into
+        users (user_id, username, password)
+        output inserted.user_id
+    values
+        (@user_id, @username, @password);
+end;
+
+go
+create or alter procedure sp_find_user_id(
+    @username varchar(50),
+    @password varchar(50)
+)
+as
+begin
+    select
+        user_id
+    from
+        users
+    where
+        username = @username
+        and password = @password;
+end;
+
+-------------------
+-- USERS X ROLES --
+-------------------
 
 go
 create or alter procedure sp_create_user_role(
@@ -57,22 +136,6 @@ begin
         user_role_rel (user_id, role_id)
     values
         (@user_id, @role_id);
-end;
-
-go
-create or alter procedure sp_find_user_id(
-    @username varchar(50),
-    @user_password varchar(50)
-)
-as
-begin
-    select
-        user_id
-    from
-        users
-    where
-        username = @username
-        and user_password = @user_password;
 end;
 
 go
