@@ -1,6 +1,9 @@
 use meeni_erp_db;
 
--- DUMMY DATA
+------------
+-- IMAGES --
+------------
+-- (dummy data) --
 go
 create table
     images (
@@ -10,7 +13,10 @@ create table
         primary key (image_id)
     );
 
--- INITIAL DATA
+---------------
+-- COUNTRIES --
+---------------
+-- (initial data) --
 go
 create table
     countries (
@@ -20,7 +26,10 @@ create table
         primary key (country_id)
     );
 
--- INITIAL DATA
+---------------
+-- PROVINCES --
+---------------
+-- (initial data) --
 go
 create table
     provinces (
@@ -32,7 +41,10 @@ create table
         foreign key (country_id) references countries (country_id)
     );
 
--- DUMMY DATA
+------------
+-- CITIES --
+------------
+-- (dummy data) --
 go
 create table
     cities (
@@ -45,7 +57,10 @@ create table
         foreign key (province_id) references provinces (province_id)
     );
 
--- DUMMY DATA
+---------------
+-- ADDRESSES --
+---------------
+-- (dummy data) --
 go
 create table
     addresses (
@@ -60,7 +75,10 @@ create table
         foreign key (city_id) references cities (city_id)
     );
 
--- DUMMY DATA
+--------------------
+-- LEGAL ENTITIES --
+--------------------
+-- (dummy data) --
 go
 create table
     legal_entities (
@@ -76,7 +94,10 @@ create table
         foreign key (address_id) references addresses (address_id)
     );
 
--- INITIAL DATA
+-------------------
+-- PRICING PLANS --
+-------------------
+-- (initial data) --
 go
 create table
     pricing_plans (
@@ -88,7 +109,10 @@ create table
         primary key (pricing_plan_id)
     );
 
--- DUMMY DATA
+----------------------------
+-- INTERNAL ORGANIZATIONS --
+----------------------------
+-- (dummy data) --
 go
 create table
     internal_organizations (
@@ -101,7 +125,10 @@ create table
         foreign key (internal_organization_id) references legal_entities (legal_entity_id)
     );
 
--- DUMMY DATA
+----------------------------
+-- EXTERNAL ORGANIZATIONS --
+----------------------------
+-- (dummy data) --
 go
 create table
     external_organizations (
@@ -112,7 +139,10 @@ create table
         foreign key (internal_organization_id) references internal_organizations (internal_organization_id)
     );
 
--- DUMMY DATA
+------------
+-- PEOPLE --
+------------
+-- (dummy data) --
 go
 create table
     people (
@@ -132,17 +162,10 @@ create table
         foreign key (internal_organization_id) references internal_organizations (internal_organization_id)
     );
 
--- INITIAL DATA
-go
-create table
-    partner_types (
-        partner_type_id int identity (1, 1) not null,
-        partner_type_name varchar(20) not null,
-        constraint uq_partner_type unique (partner_type_name),
-        primary key (partner_type_id)
-    );
-
--- DUMMY DATA
+-----------------------
+-- BUSINESS PARTNERS --
+-----------------------
+-- (dummy data) --
 go
 create table
     business_partners (
@@ -171,7 +194,10 @@ create table
         foreign key (person_id) references people (person_id)
     );
 
--- DUMMY DATA
+---------------
+-- EMPLOYEES --
+---------------
+-- (dummy data) --
 go
 create table
     employees (
@@ -182,7 +208,10 @@ create table
         foreign key (employee_id) references people (person_id)
     );
 
--- INITIAL DATA
+-----------
+-- ROLES --
+-----------
+-- (initial data) --
 go
 create table
     roles (
@@ -192,7 +221,10 @@ create table
         primary key (role_id)
     );
 
--- DUMMY DATA
+-----------
+-- USERS --
+-----------
+-- (dummy data) --
 go
 create table
     users (
@@ -204,7 +236,10 @@ create table
         foreign key (user_id) references employees (employee_id)
     );
 
--- DUMMY DATA
+-------------------
+-- USERS X ROLES --
+-------------------
+-- (dummy data) --
 go
 create table
     user_role_rel (
