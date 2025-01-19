@@ -18,13 +18,13 @@ namespace BusinessLogic
             _rolesManager = new RolesManager(db);
         }
 
-        public int Create(User user, InternalOrganization organization)
+        public int Create(User user)
         {
             try
             {
                 using (var scope = new TransactionScope())
                 {
-                    user.Id = _usersDAL.Create(user, organization);
+                    user.Id = _usersDAL.Create(user);
 
                     foreach (Role role in user.Roles)
                     {
@@ -68,18 +68,6 @@ namespace BusinessLogic
             try
             {
                 return _usersDAL.FindId(user);
-            }
-            catch (Exception ex)
-            {
-                throw new BusinessLogicException(ex);
-            }
-        }
-
-        public int FindOrganizationId(User user)
-        {
-            try
-            {
-                return _usersDAL.FindOrganizationId(user);
             }
             catch (Exception ex)
             {

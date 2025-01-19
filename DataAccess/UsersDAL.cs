@@ -15,12 +15,12 @@ namespace DataAccess
             _rolesDAL = new RolesDAL(db);
         }
 
-        public int Create(User user, InternalOrganization organization)
+        public int Create(User user)
         {
             try
             {
                 _db.SetProcedure("sp_create_user");
-                SetParameters(user, organization.Id);
+                SetParameters(user);
                 user.Id = _db.ExecuteScalar();
             }
             catch (Exception ex)
@@ -88,48 +88,16 @@ namespace DataAccess
             }
         }
 
-        public int FindOrganizationId(User user)
+        private void SetParameters(User user)
         {
-            try
-            {
-                _db.SetQuery("select organization_id from users where user_id = @user_id");
-                _db.SetParameter("@user_id", user.Id);
-                _db.ExecuteRead();
-
-                if (_db.Reader.Read())
-                {
-                    return (int)_db.Reader["organization_id"];
-                }
-
-                return 0;
-            }
-            catch (Exception ex)
-            {
-                throw new DataAccessException(ex);
-            }
-            finally
-            {
-                _db.CloseConnection();
-            }
-        }
-
-        private void SetParameters(User user, int organizationId, bool isUpdate = false)
-        {
-            if (isUpdate)
-            {
-                _db.SetParameter("@user_id", user.Id);
-                _db.SetParameter("@activity_status", user.ActivityStatus);
-            }
-
+            _db.SetParameter("@user_id", user.Id);
             _db.SetParameter("@username", user.Username);
             _db.SetParameter("@user_password", user.Password);
-            _db.SetParameter("@organization_id", organizationId);
         }
 
         private void ReadRow(User user)
         {
             user.Id = Convert.ToInt32(_db.Reader["user_id"]);
-            user.ActivityStatus = (bool)_db.Reader["activity_status"];
             user.Username = _db.Reader["username"].ToString();
             user.Password = _db.Reader["user_password"].ToString();
         }

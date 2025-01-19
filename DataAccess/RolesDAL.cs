@@ -2,6 +2,7 @@
 using Exceptions;
 using System;
 using System.Collections.Generic;
+using Utilities;
 
 namespace DataAccess
 {
@@ -20,16 +21,8 @@ namespace DataAccess
 
             try
             {
-                if (user == null)
-                {
-                    _db.SetQuery("select * from roles");
-                }
-                else
-                {
-                    _db.SetProcedure("sp_list_user_roles");
-                    _db.SetParameter("@user_id", user.Id);
-                }
-
+                _db.SetProcedure("sp_list_roles");
+                _db.SetParameter("@user_id", Helper.GetId(user));
                 _db.ExecuteRead();
 
                 while (_db.Reader.Read())
