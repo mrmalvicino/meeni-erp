@@ -23,7 +23,7 @@ end;
 
 go
 create or alter procedure sp_create_country(
-    country_name varchar(50)
+    @country_name varchar(50)
 )
 as
 begin
@@ -40,8 +40,8 @@ end;
 
 go
 create or alter procedure sp_create_province(
-    province_name varchar(50),
-    country_id int
+    @province_name varchar(50),
+    @country_id int
 )
 as
 begin
