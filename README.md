@@ -39,16 +39,24 @@ Meeni ERP offers the following functionalities:
 2. Generate the database by running the provided [SQL scripts](./SQL/).
     - If you want to use **SQL Server Management Studio** or **Azure Data Studio**, you will have to run all the SQL scripts one by one in the correct order.
     - If you are using a **localhost**, you may run [reset_database.bat](./SQL/reset_database.bat) to automate the correct excecution of the SQL scripts.
-    - If you are using a local server with a custom path or an external server, you can also run the [reset_database.bat](./SQL/reset_database.bat) script but will have to set the path or address and credentials manually.
-    - If you are using an **external host** (like Docker), you can run the [run_reset.bat](./SQL/run_reset.bat) script and generate the database with one click, provided a file named `reset_input.txt` is created in the [SQL directory](./SQL/) using the following template.
-		```txt
-		pause
-		3
-		SERVER_ADDRESS_OR_IP
-		USERNAME
-		PASSWORD
-		y
-		```
+    - If you are using a **local server with a custom path** or an **external server**, you can also run the [reset_database.bat](./SQL/reset_database.bat) script but will have to set the path or address and credentials manually.
+    - You can also run the [run_reset.bat](./SQL/run_reset.bat) script and generate the database with **one click**, provided a file named `reset_input.txt` is created in the [SQL directory](./SQL/) using the following templates.
+        - Local server with custom path:
+			```txt
+			pause
+			2
+			CUSTOM_PATH
+			y
+			```
+        - External server:
+			```txt
+			pause
+			3
+			SERVER_ADDRESS_OR_IP
+			USERNAME
+			PASSWORD
+			y
+			```
 3. Go to Visual Studio menu, select **Project > Manage NuGet Packages** and install the latest version of `Microsoft.CodeDom.Providers.DotNetCompilerPlatform` package.
 4. Create a file named `Web.config` in the [WebForms](./WebForms/) directory modifying the following template code:
 	```xml
