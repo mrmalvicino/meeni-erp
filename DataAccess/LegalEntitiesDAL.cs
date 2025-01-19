@@ -123,8 +123,8 @@ namespace DataAccess
             legalEntity.Name = _db.Reader["legal_entity_name"].ToString();
             legalEntity.Email = _db.Reader["email"]?.ToString();
             legalEntity.Name = _db.Reader["phone"]?.ToString();
-            legalEntity.LogoImage = Helper.InstantiateNull<Image>(_db.Reader["logo_image_id"]);
-            legalEntity.Address = Helper.InstantiateNull<Address>(_db.Reader["address_id"]);
+            legalEntity.LogoImage = Helper.Instantiate<Image>(_db.Reader["logo_image_id"]);
+            legalEntity.Address = Helper.Instantiate<Address>(_db.Reader["address_id"]);
         }
     }
 }

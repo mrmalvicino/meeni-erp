@@ -7,12 +7,10 @@ namespace DataAccess
     public class UsersDAL
     {
         private Database _db;
-        private RolesDAL _rolesDAL;
 
         public UsersDAL(Database db)
         {
             _db = db;
-            _rolesDAL = new RolesDAL(db);
         }
 
         public int Create(User user)
@@ -68,7 +66,7 @@ namespace DataAccess
             {
                 _db.SetProcedure("sp_find_user_id");
                 _db.SetParameter("@username", user.Username);
-                _db.SetParameter("@user_password", user.Password);
+                _db.SetParameter("@password", user.Password);
                 _db.ExecuteRead();
 
                 if (_db.Reader.Read())
@@ -92,14 +90,14 @@ namespace DataAccess
         {
             _db.SetParameter("@user_id", user.Id);
             _db.SetParameter("@username", user.Username);
-            _db.SetParameter("@user_password", user.Password);
+            _db.SetParameter("@password", user.Password);
         }
 
         private void ReadRow(User user)
         {
             user.Id = Convert.ToInt32(_db.Reader["user_id"]);
             user.Username = _db.Reader["username"].ToString();
-            user.Password = _db.Reader["user_password"].ToString();
+            user.Password = _db.Reader["password"].ToString();
         }
     }
 }

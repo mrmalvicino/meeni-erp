@@ -75,9 +75,9 @@ namespace DataAccess
 
         private void ReadRow(InternalOrganization internalOrganization)
         {
-            internalOrganization.Id = Convert.ToInt32(_db.Reader["organization_id"]);
+            internalOrganization.Id = Convert.ToInt32(_db.Reader["internal_organization_id"]);
             internalOrganization.ActivityStatus = (bool)_db.Reader["activity_status"];
-            internalOrganization.PricingPlan = Helper.InstantiateNull<PricingPlan>(_db.Reader["pricing_plan_id"]);
+            internalOrganization.PricingPlan = Helper.Instantiate<PricingPlan>(_db.Reader["pricing_plan_id"]);
         }
     }
 }

@@ -46,6 +46,7 @@
     <Compile Include="ImagesDAL.cs" />
     <Compile Include="InternalOrganizationsDAL.cs" />
     <Compile Include="LegalEntitiesDAL.cs" />
+    <Compile Include="PeopleDAL.cs" />
     <Compile Include="PricingPlansDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RolesDAL.cs" />

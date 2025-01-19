@@ -46,6 +46,7 @@
     <Compile Include="ImagesManager.cs" />
     <Compile Include="InternalOrganizationsManager.cs" />
     <Compile Include="LegalEntitiesManager.cs" />
+    <Compile Include="PeopleManager.cs" />
     <Compile Include="PricingPlansManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RolesManager.cs" />
