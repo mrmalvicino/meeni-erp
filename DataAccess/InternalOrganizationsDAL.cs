@@ -1,7 +1,7 @@
-﻿using System;
-using DomainModel;
+﻿using DomainModel;
 using Exceptions;
 using Utilities;
+using System;
 
 namespace DataAccess
 {

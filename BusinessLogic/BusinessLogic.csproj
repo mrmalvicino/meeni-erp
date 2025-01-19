@@ -42,13 +42,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddressesManager.cs" />
     <Compile Include="ApplicationManager.cs" />
+    <Compile Include="CitiesManager.cs" />
+    <Compile Include="CountriesManager.cs" />
+    <Compile Include="EmployeesManager.cs" />
     <Compile Include="ImagesManager.cs" />
     <Compile Include="InternalOrganizationsManager.cs" />
     <Compile Include="LegalEntitiesManager.cs" />
     <Compile Include="PeopleManager.cs" />
     <Compile Include="PricingPlansManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProvincesManager.cs" />
     <Compile Include="RolesManager.cs" />
     <Compile Include="UsersManager.cs" />
   </ItemGroup>
