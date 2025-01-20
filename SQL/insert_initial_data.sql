@@ -58,7 +58,7 @@ go
 insert into
     roles (role_name)
 values
-    ('Dueño'),
+    ('Administrador'),
     ('Contabilidad'),
     ('Logística'),
     ('RRHH'),

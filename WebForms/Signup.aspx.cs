@@ -8,14 +8,14 @@ namespace WebForms
     public partial class Signup : System.Web.UI.Page
     {
         private ApplicationManager _appManager;
-        private InternalOrganization _newOrganization;
-        private User _newUser;
+        private InternalOrganization _internalOrganization;
+        private User _user;
 
         public Signup()
         {
             _appManager = new ApplicationManager();
-            _newOrganization = new InternalOrganization();
-            _newUser = new User();
+            _internalOrganization = new InternalOrganization();
+            _user = new User();
         }
 
         private void BindPricingPlansDDL()
@@ -29,19 +29,21 @@ namespace WebForms
 
         private void MapAttributes()
         {
-            _newOrganization.Name = OrganizationNameTxt.Text;
+            _internalOrganization.Name = OrganizationNameTxt.Text;
+            _internalOrganization.Email = OrganizationEmailTxt.Text;
 
-            PricingPlan pricingPlan = new PricingPlan();
-            pricingPlan.Id = (int)PricingPlansManager.Ids.FreePlanId;
-            _newOrganization.PricingPlan = pricingPlan;
+            int pricingPlanId = (int)PricingPlansManager.Ids.FreePlanId;
+            _internalOrganization.PricingPlan = _appManager.PricingPlans.Read(pricingPlanId);
 
             Role role = new Role();
-            role.Id = (int)RolesManager.Ids.OwnerRoleId;
-            _newUser.Roles = new List<Role>();
-            _newUser.Roles.Add(role);
+            role.Id = (int)RolesManager.Ids.AdminId;
+            _user.Roles = new List<Role>();
+            _user.Roles.Add(role);
 
-            _newUser.Username = UsernameTxt.Text;
-            _newUser.Password = PasswordTxt.Text;
+            _user.FirstName = FirstNameTxt.Text;
+            _user.LastName = LastNameTxt.Text;
+            _user.Username = OrganizationEmailTxt.Text;
+            _user.Password = PasswordTxt.Text;
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -58,10 +60,10 @@ namespace WebForms
 
             try
             {
-                if (_appManager.SignUp(ref _newUser, ref _newOrganization))
+                if (_appManager.SignUp(ref _user, ref _internalOrganization))
                 {
-                    Session.Add("loggedUser", _newUser);
-                    Session.Add("loggedOrganization", _newOrganization);
+                    Session.Add("loggedUser", _user);
+                    Session.Add("loggedOrganization", _internalOrganization);
                     Response.Redirect("Dashboard.aspx", false);
                 }
             }

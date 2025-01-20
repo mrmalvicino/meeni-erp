@@ -55,11 +55,11 @@ namespace BusinessLogic
 
             _address.City = _citiesManager.Read(_address.City.Id);
 
-            _address.Province.Id = _provincesManager.FindId(_address.City);
-            _address.Province = _provincesManager.Read(_address.Province.Id);
+            int provinceId = _provincesManager.FindId(_address.City);
+            _address.Province = _provincesManager.Read(provinceId);
 
-            _address.Country.Id = _countriesManager.FindId(_address.Province);
-            _address.Country = _countriesManager.Read(_address.Country.Id);
+            int countryId = _countriesManager.FindId(_address.Province);
+            _address.Country = _countriesManager.Read(countryId);
 
             return _address;
         }

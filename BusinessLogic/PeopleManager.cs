@@ -2,6 +2,7 @@
 using DomainModel;
 using Exceptions;
 using System;
+using Utilities;
 
 namespace BusinessLogic
 {
@@ -56,8 +57,8 @@ namespace BusinessLogic
                 throw new BusinessLogicException(ex);
             }
 
-            _person.ProfileImage = _imagesManager.Read(_person.ProfileImage.Id);
-            _person.Address = _addressesManager.Read(_person.Address.Id);
+            _person.ProfileImage = _imagesManager.Read(Helper.GetId(_person.ProfileImage));
+            _person.Address = _addressesManager.Read(Helper.GetId(_person.Address));
 
             return _person;
         }

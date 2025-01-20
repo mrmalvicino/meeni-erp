@@ -33,13 +33,31 @@ namespace WebForms
         protected global::System.Web.UI.WebControls.TextBox OrganizationNameTxt;
 
         /// <summary>
-        /// UsernameTxt control.
+        /// OrganizationEmailTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox UsernameTxt;
+        protected global::System.Web.UI.WebControls.TextBox OrganizationEmailTxt;
+
+        /// <summary>
+        /// FirstNameTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox FirstNameTxt;
+
+        /// <summary>
+        /// LastNameTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox LastNameTxt;
 
         /// <summary>
         /// PasswordTxt control.

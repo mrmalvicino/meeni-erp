@@ -147,7 +147,7 @@ namespace DataAccess
             }
 
             _db.SetParameter("@first_name", person.FirstName);
-            _db.SetParameter("@first_name", person.LastName);
+            _db.SetParameter("@last_name", person.LastName);
 
             if (person.Email != null)
             {
@@ -167,7 +167,7 @@ namespace DataAccess
                 _db.SetParameter("@phone", DBNull.Value);
             }
 
-            if (person.BirthDate != null)
+            if (person.BirthDate != null && person.BirthDate != DateTime.MinValue)
             {
                 _db.SetParameter("@birth_date", person.BirthDate);
             }
