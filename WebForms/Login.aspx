@@ -5,6 +5,7 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="LandingMainPlaceHolder" runat="server">
     <section class="height-100-vh col-flex space-evenly">
+        <div class="site-menu-height"></div>
         <h1>Iniciar sesión</h1>
         <div class="container-div width-300-px height-300-px margin-bottom-20-px">
             <div>
