@@ -19,7 +19,7 @@
                     </asp:DropDownList>
                 </div>
                 <div>
-                    <label for="OrganizationTxt">Organización</label>
+                    <label for="OrganizationNameTxt">Organización</label>
                     <asp:TextBox
                         ID="OrganizationNameTxt"
                         runat="server"
