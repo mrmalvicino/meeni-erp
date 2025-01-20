@@ -69,6 +69,31 @@ namespace DataAccess
             return pricingPlans;
         }
 
+        public int FindId(PricingPlan pricingPlan)
+        {
+            try
+            {
+                _db.SetProcedure("sp_find_pricing_plan_id");
+                _db.SetParameter("@pricing_plan_name", pricingPlan.Name);
+                _db.ExecuteRead();
+
+                if (_db.Reader.Read())
+                {
+                    return (int)_db.Reader["pricing_plan_id"];
+                }
+
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ex);
+            }
+            finally
+            {
+                _db.CloseConnection();
+            }
+        }
+
         private void ReadRow(PricingPlan pricingPlan)
         {
             pricingPlan.Id = Convert.ToInt32(_db.Reader["pricing_plan_id"]);

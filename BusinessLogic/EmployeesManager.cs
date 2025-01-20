@@ -2,6 +2,7 @@
 using DomainModel;
 using Exceptions;
 using System;
+using Utilities;
 
 namespace BusinessLogic
 {
@@ -9,14 +10,19 @@ namespace BusinessLogic
     {
         private Employee _employee;
         private EmployeesDAL _employeesDAL;
+        private Person _person;
+        private PeopleManager _peopleManager;
 
         public EmployeesManager(Database db)
         {
             _employeesDAL = new EmployeesDAL(db);
+            _peopleManager = new PeopleManager(db);
         }
 
-        public int Create(Employee employee)
+        public int Create(Employee employee, int internalOrganizationId)
         {
+            employee.Id = _peopleManager.Create(employee, internalOrganizationId);
+
             try
             {
                 return _employeesDAL.Create(employee);
@@ -43,7 +49,24 @@ namespace BusinessLogic
                 throw new BusinessLogicException(ex);
             }
 
+            _person = _peopleManager.Read(_employee.Id);
+            Helper.AssignPerson(_employee, _person);
+
             return _employee;
+        }
+
+        public void Update(Employee employee, int internalOrganizationId)
+        {
+            _peopleManager.Update(employee, internalOrganizationId);
+
+            try
+            {
+                _employeesDAL.Update(employee);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex);
+            }
         }
     }
 }

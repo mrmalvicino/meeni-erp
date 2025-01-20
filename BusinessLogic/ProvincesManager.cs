@@ -74,6 +74,18 @@ namespace BusinessLogic
             }
         }
 
+        public int FindId(City city)
+        {
+            try
+            {
+                return _provincesDAL.FindId(city);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex);
+            }
+        }
+
         public void HandleEntity(Province province, int countryId)
         {
             _countryId = countryId;

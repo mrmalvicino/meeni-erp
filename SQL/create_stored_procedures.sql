@@ -17,6 +17,20 @@ begin
         (@image_url);
 end;
 
+go
+create or alter procedure sp_find_image_id(
+    @image_url varchar(300)
+)
+as
+begin
+    select
+        image_id
+    from
+        images
+    where
+        image_url = @image_url;
+end;
+
 ---------------
 -- COUNTRIES --
 ---------------
@@ -202,9 +216,47 @@ begin
         (@cuit, @legal_entity_name, @email, @phone, @logo_image_id, @address_id);
 end;
 
+go
+create or alter procedure sp_update_legal_entity(
+    @legal_entity_id int,
+    @cuit varchar(11),
+    @legal_entity_name varchar(50),
+    @email varchar(50),
+    @phone varchar(50),
+    @logo_image_id int,
+    @address_id int
+)
+as
+begin
+    update legal_entities
+    set
+        cuit = @cuit,
+        legal_entity_name = @legal_entity_name,
+        email = @email,
+        phone = @phone,
+        logo_image_id = @logo_image_id,
+        address_id = @address_id
+    where
+        legal_entity_id = @legal_entity_id;
+end
+
 -------------------
 -- PRICING PLANS --
 -------------------
+
+go
+create or alter procedure sp_find_pricing_plan_id(
+    @pricing_plan_name varchar(50)
+)
+as
+begin
+    select
+        pricing_plan_id
+    from
+        pricing_plans
+    where
+        pricing_plan_name = @pricing_plan_name;
+end;
 
 ----------------------------
 -- INTERNAL ORGANIZATIONS --
@@ -223,6 +275,20 @@ begin
         (@internal_organization_id, @pricing_plan_id);
 end;
 
+go
+create or alter procedure sp_update_internal_organization(
+    @internal_organization_id int,
+    @pricing_plan_id int
+)
+as
+begin
+    update internal_organizations
+    set
+        pricing_plan_id = @pricing_plan_id
+    where
+        internal_organization_id = @internal_organization_id;
+end
+
 ----------------------------
 -- EXTERNAL ORGANIZATIONS --
 ----------------------------
@@ -230,6 +296,90 @@ end;
 ------------
 -- PEOPLE --
 ------------
+
+go
+create or alter procedure sp_create_person(
+    @cuil varchar(11),
+    @first_name varchar(50),
+    @last_name varchar(50),
+    @email varchar(50),
+    @phone varchar(50),
+    @birth_date date,
+    @profile_image_id int,
+    @address_id int,
+    @internal_organization_id int
+)
+as
+begin
+    insert into
+        people (
+            cuil,
+            first_name,
+            last_name,
+            email,
+            phone,
+            birth_date,
+            profile_image_id,
+            address_id,
+            internal_organization_id
+        ) output inserted.person_id
+    values
+        (
+            @cuil,
+            @first_name,
+            @last_name,
+            @email,
+            @phone,
+            @birth_date,
+            @profile_image_id,
+            @address_id,
+            @internal_organization_id
+        );
+end;
+
+go
+create or alter procedure sp_update_person(
+    @person_id int,
+    @cuil varchar(11),
+    @first_name varchar(50),
+    @last_name varchar(50),
+    @email varchar(50),
+    @phone varchar(50),
+    @birth_date date,
+    @profile_image_id int,
+    @address_id int
+)
+as
+begin
+    update people
+    set
+        cuil = @cuil,
+        first_name = @first_name,
+        last_name = @last_name,
+        email = @email,
+        phone = @phone,
+        birth_date = @birth_date,
+        profile_image_id = @profile_image_id,
+        address_id = @address_id
+    where
+        person_id = @person_id;
+end
+
+go
+create or alter procedure sp_find_person_id(
+    @cuil varchar(11),
+    @internal_organization_id int
+)
+as
+begin
+    select
+        person_id
+    from
+        people
+    where
+        cuil = @cuil
+        and internal_organization_id = @internal_organization_id;
+end;
 
 -----------------------
 -- BUSINESS PARTNERS --

@@ -61,6 +61,24 @@ namespace DataAccess
             }
         }
 
+        public void Update(InternalOrganization internalOrganization)
+        {
+            try
+            {
+                _db.SetProcedure("sp_update_internal_organization");
+                SetParameters(internalOrganization, true);
+                _db.ExecuteAction();
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ex);
+            }
+            finally
+            {
+                _db.CloseConnection();
+            }
+        }
+
         private void SetParameters(InternalOrganization internalOrganization, bool isUpdate = false)
         {
             _db.SetParameter("@internal_organization_id", internalOrganization.Id);

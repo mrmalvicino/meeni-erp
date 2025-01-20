@@ -9,19 +9,29 @@ namespace BusinessLogic
     public class ApplicationManager
     {
         private Database _db;
+        private AddressesManager _addressesManager;
+        private CitiesManager _citiesManager;
+        private CountriesManager _countriesManager;
+        private EmployeesManager _employeesManager;
         private ImagesManager _imagesManager;
         private InternalOrganizationsManager _internalOrganizationsManager;
         private LegalEntitiesManager _legalEntitiesManager;
         private PeopleManager _peopleManager;
         private PricingPlansManager _pricingPlansManager;
+        private ProvincesManager _provincesManager;
         private RolesManager _rolesManager;
         private UsersManager _usersManager;
 
+        public AddressesManager Addresses => _addressesManager;
+        public CitiesManager Cities => _citiesManager;
+        public CountriesManager Countries => _countriesManager;
+        public EmployeesManager Employees => _employeesManager;
         public ImagesManager Images => _imagesManager;
         public InternalOrganizationsManager InternalOrganizations => _internalOrganizationsManager;
         public LegalEntitiesManager LegalEntities => _legalEntitiesManager;
         public PeopleManager People => _peopleManager;
         public PricingPlansManager PricingPlans => _pricingPlansManager;
+        public ProvincesManager Provinces => _provincesManager;
         public RolesManager Roles => _rolesManager;
         public UsersManager Users => _usersManager;
 
@@ -43,10 +53,10 @@ namespace BusinessLogic
             {
                 try
                 {
-                    //internalOrganization.Id = _internalOrganizationsManager.Create(internalOrganization);
-                    //_usersManager.Create(user);
-                    //user = _usersManager.Read(user.Id);
-                    //internalOrganization = _internalOrganizationsManager.Read(internalOrganization.Id);
+                    internalOrganization.Id = _internalOrganizationsManager.Create(internalOrganization);
+                    _usersManager.Create(user, internalOrganization.Id);
+                    user = _usersManager.Read(user.Id);
+                    internalOrganization = _internalOrganizationsManager.Read(internalOrganization.Id);
                     transaction.Complete();
                     return true;
                 }

@@ -13,6 +13,26 @@ namespace DataAccess
             _db = db;
         }
 
+        public int Create(Image image)
+        {
+            try
+            {
+                _db.SetProcedure("sp_create_image");
+                SetParameters(image);
+                image.Id = _db.ExecuteScalar();
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ex);
+            }
+            finally
+            {
+                _db.CloseConnection();
+            }
+
+            return image.Id;
+        }
+
         public Image Read(int imageId)
         {
             try
@@ -38,6 +58,59 @@ namespace DataAccess
             {
                 _db.CloseConnection();
             }
+        }
+
+        public void Update(Image image)
+        {
+            try
+            {
+                _db.SetProcedure("sp_update_image");
+                SetParameters(image, true);
+                _db.ExecuteAction();
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ex);
+            }
+            finally
+            {
+                _db.CloseConnection();
+            }
+        }
+
+        public int FindId(Image image)
+        {
+            try
+            {
+                _db.SetProcedure("sp_find_image_id");
+                _db.SetParameter("@image_url", image.Url);
+                _db.ExecuteRead();
+
+                if (_db.Reader.Read())
+                {
+                    return (int)_db.Reader["image_id"];
+                }
+
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ex);
+            }
+            finally
+            {
+                _db.CloseConnection();
+            }
+        }
+
+        private void SetParameters(Image image, bool isUpdate = false)
+        {
+            if (isUpdate)
+            {
+                _db.SetParameter("@image_id", image.Id);
+            }
+
+            _db.SetParameter("@image_url", image.Url);
         }
 
         private void ReadRow(Image image)

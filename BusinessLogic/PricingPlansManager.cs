@@ -50,5 +50,17 @@ namespace BusinessLogic
                 throw new BusinessLogicException(ex);
             }
         }
+
+        public int FindId(PricingPlan pricingPlan)
+        {
+            try
+            {
+                return _pricingPlansDAL.FindId(pricingPlan);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex);
+            }
+        }
     }
 }

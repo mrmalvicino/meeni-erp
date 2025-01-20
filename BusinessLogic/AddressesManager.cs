@@ -9,14 +9,24 @@ namespace BusinessLogic
     {
         private Address _address;
         private AddressesDAL _addressesDAL;
+        private CountriesManager _countriesManager;
+        private ProvincesManager _provincesManager;
+        private CitiesManager _citiesManager;
 
         public AddressesManager(Database db)
         {
             _addressesDAL = new AddressesDAL(db);
+            _countriesManager = new CountriesManager(db);
+            _provincesManager = new ProvincesManager(db);
+            _citiesManager = new CitiesManager(db);
         }
 
         protected override int Create(Address address)
         {
+            _countriesManager.HandleEntity(address.Country);
+            _provincesManager.HandleEntity(address.Province, address.Country.Id);
+            _citiesManager.HandleEntity(address.City, address.Province.Id);
+
             try
             {
                 return _addressesDAL.Create(address);
@@ -43,11 +53,23 @@ namespace BusinessLogic
                 throw new BusinessLogicException(ex);
             }
 
+            _address.City = _citiesManager.Read(_address.City.Id);
+
+            _address.Province.Id = _provincesManager.FindId(_address.City);
+            _address.Province = _provincesManager.Read(_address.Province.Id);
+
+            _address.Country.Id = _countriesManager.FindId(_address.Province);
+            _address.Country = _countriesManager.Read(_address.Country.Id);
+
             return _address;
         }
 
         protected override void Update(Address address)
         {
+            _countriesManager.HandleEntity(address.Country);
+            _provincesManager.HandleEntity(address.Province, address.Country.Id);
+            _citiesManager.HandleEntity(address.City, address.Province.Id);
+
             try
             {
                 _addressesDAL.Update(address);

@@ -60,6 +60,24 @@ namespace DataAccess
             }
         }
 
+        public void Update(User user)
+        {
+            try
+            {
+                _db.SetProcedure("sp_update_user");
+                SetParameters(user);
+                _db.ExecuteAction();
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ex);
+            }
+            finally
+            {
+                _db.CloseConnection();
+            }
+        }
+
         public int FindId(User user)
         {
             try

@@ -61,6 +61,24 @@ namespace DataAccess
             }
         }
 
+        public void Update(LegalEntity legalEntity)
+        {
+            try
+            {
+                _db.SetProcedure("sp_update_legal_entity");
+                SetParameters(legalEntity, true);
+                _db.ExecuteAction();
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ex);
+            }
+            finally
+            {
+                _db.CloseConnection();
+            }
+        }
+
         private void SetParameters(LegalEntity legalEntity, bool isUpdate = false)
         {
             if (isUpdate)

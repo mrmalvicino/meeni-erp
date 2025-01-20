@@ -60,6 +60,24 @@ namespace DataAccess
             }
         }
 
+        public void Update(Employee employee)
+        {
+            try
+            {
+                _db.SetProcedure("sp_update_employee");
+                SetParameters(employee, true);
+                _db.ExecuteAction();
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ex);
+            }
+            finally
+            {
+                _db.CloseConnection();
+            }
+        }
+
         private void SetParameters(Employee employee, bool isUpdate = false)
         {
             _db.SetParameter("@employee_id", employee.Id);

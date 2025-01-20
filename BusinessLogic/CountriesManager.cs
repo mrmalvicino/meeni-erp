@@ -62,5 +62,17 @@ namespace BusinessLogic
                 throw new BusinessLogicException(ex);
             }
         }
+
+        public int FindId(Province province)
+        {
+            try
+            {
+                return _countriesDAL.FindId(province);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex);
+            }
+        }
     }
 }

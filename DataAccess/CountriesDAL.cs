@@ -85,6 +85,31 @@ namespace DataAccess
             }
         }
 
+        public int FindId(Province province)
+        {
+            try
+            {
+                _db.SetQuery("select country_id from provinces where province_id = @province_id");
+                _db.SetParameter("@province_id", province.Id);
+                _db.ExecuteRead();
+
+                if (_db.Reader.Read())
+                {
+                    return (int)_db.Reader["country_id"];
+                }
+
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ex);
+            }
+            finally
+            {
+                _db.CloseConnection();
+            }
+        }
+
         private void SetParameters(Country country, bool isUpdate = false)
         {
             if (isUpdate)

@@ -11,17 +11,20 @@ namespace BusinessLogic
         private LegalEntity _legalEntity;
         private LegalEntitiesDAL _legalEntitiesDAL;
         private ImagesManager _imagesManager;
-        // private AddressesManager _addressesManager;
+        private AddressesManager _addressesManager;
 
         public LegalEntitiesManager(Database db)
         {
             _legalEntitiesDAL = new LegalEntitiesDAL(db);
             _imagesManager = new ImagesManager(db);
-            // _addressesManager = new AddressesManager(db);
+            _addressesManager = new AddressesManager(db);
         }
 
         public int Create(LegalEntity legalEntity)
         {
+            _imagesManager.HandleEntity(legalEntity.LogoImage);
+            _addressesManager.HandleEntity(legalEntity.Address);
+
             try
             {
                 return _legalEntitiesDAL.Create(legalEntity);
@@ -49,9 +52,24 @@ namespace BusinessLogic
             }
 
             _legalEntity.LogoImage = _imagesManager.Read(Helper.GetId(_legalEntity.LogoImage));
-            // _legalEntity.Address = _addressesManager.Read(Helper.GetId(_legalEntity.Address));
+            _legalEntity.Address = _addressesManager.Read(Helper.GetId(_legalEntity.Address));
 
             return _legalEntity;
+        }
+
+        public void Update(LegalEntity legalEntity)
+        {
+            _imagesManager.HandleEntity(legalEntity.LogoImage);
+            _addressesManager.HandleEntity(legalEntity.Address);
+
+            try
+            {
+                _legalEntitiesDAL.Update(legalEntity);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex);
+            }
         }
     }
 }
