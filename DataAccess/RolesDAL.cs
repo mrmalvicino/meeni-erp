@@ -15,6 +15,33 @@ namespace DataAccess
             _db = db;
         }
 
+        public Role Read(int roleId)
+        {
+            try
+            {
+                _db.SetQuery("select * from roles where role_id = @role_id");
+                _db.SetParameter("@role_id", roleId);
+                _db.ExecuteRead();
+
+                if (_db.Reader.Read())
+                {
+                    Role role = new Role();
+                    ReadRow(role);
+                    return role;
+                }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ex);
+            }
+            finally
+            {
+                _db.CloseConnection();
+            }
+        }
+
         public List<Role> List(User user = null)
         {
             List<Role> roles = new List<Role>();

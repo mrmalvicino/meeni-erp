@@ -13,11 +13,31 @@ namespace BusinessLogic
             AdminId = 1
         }
 
+        private Role _role;
         private RolesDAL _rolesDAL;
 
         public RolesManager(Database db)
         {
             _rolesDAL = new RolesDAL(db);
+        }
+
+        public Role Read(int roleId)
+        {
+            if (roleId == 0)
+            {
+                return null;
+            }
+
+            try
+            {
+                _role = _rolesDAL.Read(roleId);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex);
+            }
+
+            return _role;
         }
 
         public List<Role> List(User user = null)

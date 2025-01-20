@@ -15,6 +15,7 @@ namespace BusinessLogic
             EnterprisePlanId = 3
         }
 
+        private PricingPlan _pricingPlan;
         private PricingPlansDAL _pricingPlansDAL;
 
         public PricingPlansManager(Database db)
@@ -31,12 +32,14 @@ namespace BusinessLogic
 
             try
             {
-                return _pricingPlansDAL.Read(pricingPlanId);
+                _pricingPlan = _pricingPlansDAL.Read(pricingPlanId);
             }
             catch (Exception ex)
             {
                 throw new BusinessLogicException(ex);
             }
+
+            return _pricingPlan;
         }
 
         public List<PricingPlan> List()

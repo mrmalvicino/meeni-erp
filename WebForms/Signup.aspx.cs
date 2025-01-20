@@ -35,8 +35,8 @@ namespace WebForms
             int pricingPlanId = (int)PricingPlansManager.Ids.FreePlanId;
             _internalOrganization.PricingPlan = _appManager.PricingPlans.Read(pricingPlanId);
 
-            Role role = new Role();
-            role.Id = (int)RolesManager.Ids.AdminId;
+            int roleId = (int)RolesManager.Ids.AdminId;
+            Role role = _appManager.Roles.Read(roleId);
             _user.Roles = new List<Role>();
             _user.Roles.Add(role);
 
