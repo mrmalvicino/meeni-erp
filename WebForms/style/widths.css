@@ -78,16 +78,40 @@
     width: 100px;
 }
 
+.width-120-px {
+    width: 120px;
+}
+
+.width-150-px {
+    width: 150px;
+}
+
 .width-200-px {
     width: 200px;
+}
+
+.width-250-px {
+    width: 250px;
+}
+
+.width-260-px {
+    width: 260px;
 }
 
 .width-300-px {
     width: 300px;
 }
 
+.width-350-px {
+    width: 350px;
+}
+
 .width-400-px {
     width: 400px;
+}
+
+.width-450-px {
+    width: 450px;
 }
 
 .width-500-px {

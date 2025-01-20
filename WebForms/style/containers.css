@@ -7,3 +7,15 @@
     flex-direction: column;
     justify-content: space-around;
 }
+
+.square-border {
+    border: 2px solid var(--gray-medium);
+    border-radius: 5px;
+    aspect-ratio: 1/1;
+}
+
+.circle-border {
+    border: 2px solid var(--gray-medium);
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+}
