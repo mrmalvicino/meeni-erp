@@ -72,8 +72,8 @@
     <Content Include="images\mockup.png" />
     <Content Include="Login.aspx" />
     <Content Include="images\logo.png" />
-    <Content Include="script\load_images.js" />
-    <Content Include="script\load_year.js" />
+    <Content Include="script\load-images.js" />
+    <Content Include="script\load-year.js" />
     <Content Include="script\modal.js" />
     <Content Include="Signup.aspx" />
     <Content Include="style\admin-header.css" />

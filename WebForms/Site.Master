@@ -81,8 +81,8 @@
         </div>
     </form>
 
-    <script src="script/load_images.js"></script>
-    <script src="script/load_year.js"></script>
+    <script src="script/load-images.js"></script>
+    <script src="script/load-year.js"></script>
     <script src="script/modal.js"></script>
 
 </body>
