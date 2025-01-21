@@ -21,23 +21,6 @@ namespace WebForms
             ScriptManager.RegisterStartupScript(this, typeof(Page), "ShowModal", "document.addEventListener('DOMContentLoaded', () => { showModal(); });", true);
         }
 
-        public void PrintSession()
-        {
-            System.Diagnostics.Debug.WriteLine("=== Session ===");
-
-            if (0 < Session.Count)
-            {
-                foreach (string key in Session.Keys)
-                {
-                    System.Diagnostics.Debug.WriteLine($"{key}: {Session[key]}");
-                }
-            }
-            else
-            {
-                System.Diagnostics.Debug.WriteLine("The session is empty.");
-            }
-        }
-
         protected void Page_Load(object sender, EventArgs e)
         {
 

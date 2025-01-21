@@ -91,6 +91,10 @@ namespace WebForms
             {
                 (this.Master.Master as Site)?.ShowModal(ex.Message);
             }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         protected void DeleteBtn_Click(object sender, EventArgs e)
@@ -98,10 +102,6 @@ namespace WebForms
             try
             {
 
-            }
-            catch (ValidationException ex)
-            {
-                throw ex;
             }
             catch (Exception ex)
             {

@@ -11,12 +11,7 @@ namespace WebForms
 
         protected void logoutBtn_Click(object sender, EventArgs e)
         {
-            var masterPage = this.Master as Site;
-
-            if (masterPage != null)
-            {
-                masterPage.Logout();
-            }
+            (this.Master as Site)?.Logout();
         }
     }
 }
