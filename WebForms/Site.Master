@@ -28,6 +28,7 @@
     <link href="~/style/inputs.css" rel="stylesheet" />
     <link href="~/style/justify.css" rel="stylesheet" />
     <link href="~/style/margins.css" rel="stylesheet" />
+    <link href="~/style/modal.css" rel="stylesheet" />
     <link href="~/style/paddings.css" rel="stylesheet" />
     <link href="~/style/widths.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="SiteHeadPlaceHolder" runat="server">
@@ -43,6 +44,16 @@
             <main>
                 <asp:ContentPlaceHolder ID="SiteMainPlaceHolder" runat="server">
                 </asp:ContentPlaceHolder>
+
+                <!-- Modal -->
+
+                <div id="modalDiv" class="modal-div">
+                    <div class="modal-content">
+                        <span class="close-span" onclick="closeModal()">&times;</span>
+                        <h3>Error</h3>
+                        <asp:Label ID="ModalLbl" runat="server" />
+                    </div>
+                </div>
             </main>
 
             <footer>
@@ -69,9 +80,11 @@
             </footer>
         </div>
     </form>
+
+    <script src="script/load_images.js"></script>
+    <script src="script/load_year.js"></script>
+    <script src="script/modal.js"></script>
+
 </body>
 
 </html>
-
-<script src="script/load_images.js"></script>
-<script src="script/load_year.js"></script>

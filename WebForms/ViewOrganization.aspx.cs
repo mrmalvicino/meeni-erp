@@ -2,6 +2,7 @@
 using DomainModel;
 using Utilities;
 using System;
+using Exceptions;
 
 namespace WebForms
 {
@@ -14,13 +15,11 @@ namespace WebForms
         public ViewOrganization()
         {
             _appManager = new ApplicationManager();
-            _internalOrganization = new InternalOrganization();
-            _user = new User();
         }
 
         private void LoadImage()
         {
-            if (Validator.UrlExists(ImageURLTxt.Text))
+            if (Validator.URLIsValid(ImageURLTxt.Text))
             {
                 LogoImg.ImageUrl = ImageURLTxt.Text;
                 return;
@@ -88,15 +87,26 @@ namespace WebForms
                 Session.Add("loggedOrganization", _internalOrganization);
                 Response.Redirect("Dashboard.aspx", false);
             }
-            catch (Exception ex)
+            catch (ValidationException ex)
             {
-                throw ex;
+                (this.Master.Master as Site)?.ShowModal(ex.Message);
             }
         }
 
         protected void DeleteBtn_Click(object sender, EventArgs e)
         {
+            try
+            {
 
+            }
+            catch (ValidationException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

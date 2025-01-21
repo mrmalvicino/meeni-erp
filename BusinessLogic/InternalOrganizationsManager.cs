@@ -30,7 +30,7 @@ namespace BusinessLogic
             {
                 return _internalOrganizationsDAL.Create(internalOrganization);
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!(ex is ValidationException))
             {
                 throw new BusinessLogicException(ex);
             }
@@ -69,7 +69,7 @@ namespace BusinessLogic
             {
                 _internalOrganizationsDAL.Update(internalOrganization);
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!(ex is ValidationException))
             {
                 throw new BusinessLogicException(ex);
             }

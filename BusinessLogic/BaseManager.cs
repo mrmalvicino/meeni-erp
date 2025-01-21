@@ -30,9 +30,9 @@ namespace BusinessLogic
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!(ex is ValidationException))
             {
-                throw new DataAccessException(ex);
+                throw new BusinessLogicException(ex);
             }
         }
 

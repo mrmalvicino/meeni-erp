@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web.UI;
 
 namespace WebForms
 {
@@ -12,6 +13,12 @@ namespace WebForms
             Session.Abandon();
             Response.Redirect("~/Login.aspx", false);
             Context.ApplicationInstance.CompleteRequest();
+        }
+
+        public void ShowModal(string message)
+        {
+            ModalLbl.Text = message;
+            ScriptManager.RegisterStartupScript(this, typeof(Page), "ShowModal", "document.addEventListener('DOMContentLoaded', () => { showModal(); });", true);
         }
 
         public void PrintSession()

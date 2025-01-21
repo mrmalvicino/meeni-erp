@@ -74,6 +74,7 @@
     <Content Include="images\logo.png" />
     <Content Include="script\load_images.js" />
     <Content Include="script\load_year.js" />
+    <Content Include="script\modal.js" />
     <Content Include="Signup.aspx" />
     <Content Include="style\admin-header.css" />
     <Content Include="style\admin-menu.css" />
@@ -92,6 +93,7 @@
     <Content Include="style\images.css" />
     <Content Include="style\justify.css" />
     <Content Include="style\margins.css" />
+    <Content Include="style\modal.css" />
     <Content Include="style\paddings.css" />
     <Content Include="style\containers.css" />
     <Content Include="style\inputs.css" />
@@ -187,6 +189,10 @@
     <ProjectReference Include="..\DomainModel\DomainModel.csproj">
       <Project>{6c49af9f-ff46-4bf1-b537-b41f3680883d}</Project>
       <Name>DomainModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Exceptions\Exceptions.csproj">
+      <Project>{88c15f47-936b-4d2a-9148-4facdd94e175}</Project>
+      <Name>Exceptions</Name>
     </ProjectReference>
     <ProjectReference Include="..\Utilities\Utilities.csproj">
       <Project>{1c965015-88dc-49f9-aca9-3263f6397c99}</Project>

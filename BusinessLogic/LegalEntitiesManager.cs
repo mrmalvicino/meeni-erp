@@ -29,7 +29,7 @@ namespace BusinessLogic
             {
                 return _legalEntitiesDAL.Create(legalEntity);
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!(ex is ValidationException))
             {
                 throw new BusinessLogicException(ex);
             }
@@ -66,7 +66,7 @@ namespace BusinessLogic
             {
                 _legalEntitiesDAL.Update(legalEntity);
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!(ex is ValidationException))
             {
                 throw new BusinessLogicException(ex);
             }

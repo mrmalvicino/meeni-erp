@@ -2,6 +2,7 @@
 using DomainModel;
 using Exceptions;
 using System;
+using Utilities;
 
 namespace BusinessLogic
 {
@@ -17,11 +18,13 @@ namespace BusinessLogic
 
         protected override int Create(Image image)
         {
+            Validate(image);
+
             try
             {
                 return _imagesDAL.Create(image);
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!(ex is ValidationException))
             {
                 throw new BusinessLogicException(ex);
             }
@@ -48,11 +51,13 @@ namespace BusinessLogic
 
         protected override void Update(Image image)
         {
+            Validate(image);
+
             try
             {
                 _imagesDAL.Update(image);
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!(ex is ValidationException))
             {
                 throw new BusinessLogicException(ex);
             }
@@ -67,6 +72,14 @@ namespace BusinessLogic
             catch (Exception ex)
             {
                 throw new BusinessLogicException(ex);
+            }
+        }
+
+        private void Validate(Image image)
+        {
+            if (!Validator.URLIsValid(image.URL))
+            {
+                throw new ValidationException("La URL de la imagen no es válida.");
             }
         }
     }

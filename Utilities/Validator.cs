@@ -5,9 +5,9 @@ namespace Utilities
 {
     public static class Validator
     {
-        public static bool UrlExists(string url)
+        public static bool URLIsValid(string URL)
         {
-            if (Uri.TryCreate(url, UriKind.Absolute, out Uri uriResult) &&
+            if (Uri.TryCreate(URL, UriKind.Absolute, out Uri uriResult) &&
                 (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps))
             {
                 try
