@@ -188,6 +188,10 @@
       <Project>{6c49af9f-ff46-4bf1-b537-b41f3680883d}</Project>
       <Name>DomainModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{1c965015-88dc-49f9-aca9-3263f6397c99}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

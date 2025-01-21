@@ -18,6 +18,20 @@ begin
 end;
 
 go
+create or alter procedure sp_update_image(
+    @image_id int,
+    @image_url varchar(300)
+)
+as
+begin
+    update images
+    set
+        image_url = @image_url
+    where
+        image_id = @image_id;
+end
+
+go
 create or alter procedure sp_find_image_id(
     @image_url varchar(300)
 )
@@ -278,12 +292,14 @@ end;
 go
 create or alter procedure sp_update_internal_organization(
     @internal_organization_id int,
+    @activity_status bit,
     @pricing_plan_id int
 )
 as
 begin
     update internal_organizations
     set
+        activity_status = @activity_status,
         pricing_plan_id = @pricing_plan_id
     where
         internal_organization_id = @internal_organization_id;

@@ -44,7 +44,6 @@
     <Compile Include="Address.cs" />
     <Compile Include="BusinessPartner.cs" />
     <Compile Include="ExternalOrganization.cs" />
-    <Compile Include="PartnerType.cs" />
     <Compile Include="City.cs" />
     <Compile Include="Country.cs" />
     <Compile Include="Employee.cs" />

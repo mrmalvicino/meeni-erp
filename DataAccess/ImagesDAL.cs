@@ -83,7 +83,7 @@ namespace DataAccess
             try
             {
                 _db.SetProcedure("sp_find_image_id");
-                _db.SetParameter("@image_url", image.Url);
+                _db.SetParameter("@image_url", image.URL);
                 _db.ExecuteRead();
 
                 if (_db.Reader.Read())
@@ -110,13 +110,13 @@ namespace DataAccess
                 _db.SetParameter("@image_id", image.Id);
             }
 
-            _db.SetParameter("@image_url", image.Url);
+            _db.SetParameter("@image_url", image.URL);
         }
 
         private void ReadRow(Image image)
         {
             image.Id = Convert.ToInt32(_db.Reader["image_id"]);
-            image.Url = _db.Reader["image_url"].ToString();
+            image.URL = _db.Reader["image_url"].ToString();
         }
     }
 }

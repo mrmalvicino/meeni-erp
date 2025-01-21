@@ -10,7 +10,7 @@
             <div class="container-div width-300-px height-520-px margin-10-px">
                 <p class="center-text">Logo</p>
                 <div class="width-100-pct">
-                    <asp:Image ID="LogoImg" runat="server" class="fit-image circle-border" ImageUrl="https://github.com/mrmalvicino/meeni-erp/blob/main/WebForms/images/logo.png?raw=true" />
+                    <asp:Image ID="LogoImg" runat="server" class="fit-image circle-border" />
                 </div>
                 <label for="ImageURLTxt">URL del logo</label>
                 <asp:TextBox
@@ -18,7 +18,8 @@
                     runat="server"
                     TextMode="SingleLine"
                     class="width-100-pct input-box"
-                    placeholder="URL del logo">
+                    placeholder="URL del logo"
+                    AutoPostBack="true">
                 </asp:TextBox>
             </div>
             <div class="col-flex space-between height-520-px margin-10-px">
@@ -60,7 +61,7 @@
                     <div>
                         <label for="PhoneTxt">Teléfono</label>
                         <asp:TextBox
-                            ID="PhoneTxT"
+                            ID="PhoneTxt"
                             runat="server"
                             TextMode="SingleLine"
                             class="width-100-pct input-box"
@@ -147,10 +148,10 @@
         </div>
         <div class="wrapped-flex justify-center">
             <div class="margin-10-px">
-                <asp:Button ID="DeleteBtn" runat="server" Text="Eliminar empresa" class="dark-button big-hover" />
+                <asp:Button ID="DeleteBtn" runat="server" Text="Eliminar empresa" class="dark-button big-hover" OnClick="DeleteBtn_Click" />
             </div>
             <div class="margin-10-px">
-                <asp:Button ID="SaveBtn" runat="server" Text="Guardar cambios" class="dark-button big-hover" />
+                <asp:Button ID="SaveBtn" runat="server" Text="Guardar cambios" class="dark-button big-hover" OnClick="SaveBtn_Click" />
             </div>
         </div>
     </div>

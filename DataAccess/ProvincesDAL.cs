@@ -71,7 +71,7 @@ namespace DataAccess
 
                 if (_db.Reader.Read())
                 {
-                    return (int)_db.Reader["country_id"];
+                    return (int)_db.Reader["province_id"];
                 }
 
                 return 0;
