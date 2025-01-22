@@ -18,10 +18,9 @@ namespace BusinessLogic
 
         protected override int Create(Image image)
         {
-            Validate(image);
-
             try
             {
+                Validate(image);
                 return _imagesDAL.Create(image);
             }
             catch (Exception ex) when (!(ex is ValidationException))
@@ -51,10 +50,9 @@ namespace BusinessLogic
 
         protected override void Update(Image image)
         {
-            Validate(image);
-
             try
             {
+                Validate(image);
                 _imagesDAL.Update(image);
             }
             catch (Exception ex) when (!(ex is ValidationException))

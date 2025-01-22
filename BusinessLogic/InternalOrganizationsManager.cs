@@ -3,6 +3,7 @@ using DomainModel;
 using Exceptions;
 using Utilities;
 using System;
+using System.Transactions;
 
 namespace BusinessLogic
 {
@@ -23,16 +24,20 @@ namespace BusinessLogic
 
         public int Create(InternalOrganization internalOrganization)
         {
-            internalOrganization.Id = _legalEntitiesManager.Create(internalOrganization);
-            internalOrganization.PricingPlan.Id = _pricingPlansManager.FindId(internalOrganization.PricingPlan);
-
             try
             {
-                return _internalOrganizationsDAL.Create(internalOrganization);
+                using (var transaction = new TransactionScope())
+                {
+                    internalOrganization.Id = _legalEntitiesManager.Create(internalOrganization);
+                    internalOrganization.PricingPlan.Id = _pricingPlansManager.FindId(internalOrganization.PricingPlan);
+                    internalOrganization.Id = _internalOrganizationsDAL.Create(internalOrganization);
+                    transaction.Complete();
+                    return internalOrganization.Id;
+                }
             }
             catch (Exception ex) when (!(ex is ValidationException))
             {
-                throw new BusinessLogicException(ex);
+                throw new TransactionScopeException(ex);
             }
         }
 
@@ -62,16 +67,19 @@ namespace BusinessLogic
 
         public void Update(InternalOrganization internalOrganization)
         {
-            _legalEntitiesManager.Update(internalOrganization);
-            internalOrganization.PricingPlan.Id = _pricingPlansManager.FindId(internalOrganization.PricingPlan);
-
             try
             {
-                _internalOrganizationsDAL.Update(internalOrganization);
+                using (var transaction = new TransactionScope())
+                {
+                    _legalEntitiesManager.Update(internalOrganization);
+                    internalOrganization.PricingPlan.Id = _pricingPlansManager.FindId(internalOrganization.PricingPlan);
+                    _internalOrganizationsDAL.Update(internalOrganization);
+                    transaction.Complete();
+                }
             }
             catch (Exception ex) when (!(ex is ValidationException))
             {
-                throw new BusinessLogicException(ex);
+                throw new TransactionScopeException(ex);
             }
         }
     }

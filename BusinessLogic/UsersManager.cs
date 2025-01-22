@@ -24,12 +24,11 @@ namespace BusinessLogic
 
         public int Create(User user, int internalOrganizationId)
         {
-            user.Id = _employeesManager.Create(user, internalOrganizationId);
-
             try
             {
-                using (var scope = new TransactionScope())
+                using (var transaction = new TransactionScope())
                 {
+                    user.Id = _employeesManager.Create(user, internalOrganizationId);
                     user.Id = _usersDAL.Create(user);
 
                     foreach (Role role in user.Roles)
@@ -37,12 +36,12 @@ namespace BusinessLogic
                         _rolesManager.CreateUserRole(user, role);
                     }
 
-                    scope.Complete();
+                    transaction.Complete();
 
                     return user.Id;
                 }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!(ex is ValidationException))
             {
                 throw new TransactionScopeException(ex);
             }
@@ -74,16 +73,19 @@ namespace BusinessLogic
 
         public void Update(User user, int internalOrganizationId)
         {
-            _employeesManager.Update(user, internalOrganizationId);
-
             try
             {
-                _usersDAL.Update(user);
-                // Falta editar roles de usuario
+                using (var transaction = new TransactionScope())
+                {
+                    _employeesManager.Update(user, internalOrganizationId);
+                    _usersDAL.Update(user);
+                    // Falta editar roles de usuario
+                    transaction.Complete();
+                }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!(ex is ValidationException))
             {
-                throw new BusinessLogicException(ex);
+                throw new TransactionScopeException(ex);
             }
         }
 

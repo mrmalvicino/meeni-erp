@@ -2,6 +2,7 @@
 using DomainModel;
 using Exceptions;
 using System;
+using System.Transactions;
 using Utilities;
 
 namespace BusinessLogic
@@ -21,15 +22,19 @@ namespace BusinessLogic
 
         public int Create(Employee employee, int internalOrganizationId)
         {
-            employee.Id = _peopleManager.Create(employee, internalOrganizationId);
-
             try
             {
-                return _employeesDAL.Create(employee);
+                using (var transaction = new TransactionScope())
+                {
+                    employee.Id = _peopleManager.Create(employee, internalOrganizationId);
+                    employee.Id = _employeesDAL.Create(employee);
+                    transaction.Complete();
+                    return employee.Id;
+                }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!(ex is ValidationException))
             {
-                throw new BusinessLogicException(ex);
+                throw new TransactionScopeException(ex);
             }
         }
 
@@ -57,15 +62,18 @@ namespace BusinessLogic
 
         public void Update(Employee employee, int internalOrganizationId)
         {
-            _peopleManager.Update(employee, internalOrganizationId);
-
             try
             {
-                _employeesDAL.Update(employee);
+                using (var transaction = new TransactionScope())
+                {
+                    _peopleManager.Update(employee, internalOrganizationId);
+                    _employeesDAL.Update(employee);
+                    transaction.Complete();
+                }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!(ex is ValidationException))
             {
-                throw new BusinessLogicException(ex);
+                throw new TransactionScopeException(ex);
             }
         }
     }

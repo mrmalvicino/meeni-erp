@@ -2,6 +2,7 @@
 using DomainModel;
 using Exceptions;
 using System;
+using System.Transactions;
 
 namespace BusinessLogic
 {
@@ -23,17 +24,21 @@ namespace BusinessLogic
 
         protected override int Create(Address address)
         {
-            _countriesManager.Handle(address.Country);
-            _provincesManager.Handle(address.Province, address.Country.Id);
-            _citiesManager.Handle(address.City, address.Province.Id);
-
             try
             {
-                return _addressesDAL.Create(address);
+                using (var transaction = new TransactionScope())
+                {
+                    _countriesManager.Handle(address.Country);
+                    _provincesManager.Handle(address.Province, address.Country.Id);
+                    _citiesManager.Handle(address.City, address.Province.Id);
+                    address.Id = _addressesDAL.Create(address);
+                    transaction.Complete();
+                    return address.Id;
+                }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!(ex is ValidationException))
             {
-                throw new BusinessLogicException(ex);
+                throw new TransactionScopeException(ex);
             }
         }
 
@@ -66,17 +71,20 @@ namespace BusinessLogic
 
         protected override void Update(Address address)
         {
-            _countriesManager.Handle(address.Country);
-            _provincesManager.Handle(address.Province, address.Country.Id);
-            _citiesManager.Handle(address.City, address.Province.Id);
-
             try
             {
-                _addressesDAL.Update(address);
+                using (var transaction = new TransactionScope())
+                {
+                    _countriesManager.Handle(address.Country);
+                    _provincesManager.Handle(address.Province, address.Country.Id);
+                    _citiesManager.Handle(address.City, address.Province.Id);
+                    _addressesDAL.Update(address);
+                    transaction.Complete();
+                }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!(ex is ValidationException))
             {
-                throw new BusinessLogicException(ex);
+                throw new TransactionScopeException(ex);
             }
         }
 

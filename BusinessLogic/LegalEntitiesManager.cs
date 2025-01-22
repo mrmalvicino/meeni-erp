@@ -2,6 +2,7 @@
 using DomainModel;
 using Exceptions;
 using System;
+using System.Transactions;
 using Utilities;
 
 namespace BusinessLogic
@@ -22,16 +23,20 @@ namespace BusinessLogic
 
         public int Create(LegalEntity legalEntity)
         {
-            _imagesManager.Handle(legalEntity.LogoImage);
-            _addressesManager.Handle(legalEntity.Address);
-
             try
             {
-                return _legalEntitiesDAL.Create(legalEntity);
+                using (var transaction = new TransactionScope())
+                {
+                    _imagesManager.Handle(legalEntity.LogoImage);
+                    _addressesManager.Handle(legalEntity.Address);
+                    legalEntity.Id = _legalEntitiesDAL.Create(legalEntity);
+                    transaction.Complete();
+                    return legalEntity.Id;
+                }
             }
             catch (Exception ex) when (!(ex is ValidationException))
             {
-                throw new BusinessLogicException(ex);
+                throw new TransactionScopeException(ex);
             }
         }
 
@@ -59,16 +64,19 @@ namespace BusinessLogic
 
         public void Update(LegalEntity legalEntity)
         {
-            _imagesManager.Handle(legalEntity.LogoImage);
-            _addressesManager.Handle(legalEntity.Address);
-
             try
             {
-                _legalEntitiesDAL.Update(legalEntity);
+                using (var transaction = new TransactionScope())
+                {
+                    _imagesManager.Handle(legalEntity.LogoImage);
+                    _addressesManager.Handle(legalEntity.Address);
+                    _legalEntitiesDAL.Update(legalEntity);
+                    transaction.Complete();
+                }
             }
             catch (Exception ex) when (!(ex is ValidationException))
             {
-                throw new BusinessLogicException(ex);
+                throw new TransactionScopeException(ex);
             }
         }
     }

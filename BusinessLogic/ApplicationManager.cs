@@ -54,9 +54,9 @@ namespace BusinessLogic
 
         public bool SignUp(ref User user, ref InternalOrganization internalOrganization)
         {
-            using (var transaction = new TransactionScope())
+            try
             {
-                try
+                using (var transaction = new TransactionScope())
                 {
                     internalOrganization.Id = _internalOrganizationsManager.Create(internalOrganization);
                     _usersManager.Create(user, internalOrganization.Id);
@@ -65,18 +65,18 @@ namespace BusinessLogic
                     transaction.Complete();
                     return true;
                 }
-                catch (Exception ex)
-                {
-                    throw new TransactionScopeException(ex);
-                }
+            }
+            catch (Exception ex) when (!(ex is ValidationException))
+            {
+                throw new TransactionScopeException(ex);
             }
         }
 
         public bool Login(ref User user, ref InternalOrganization internalOrganization)
         {
-            using (var transaction = new TransactionScope())
+            try
             {
-                try
+                using (var transaction = new TransactionScope())
                 {
                     user.Id = _usersManager.FindId(user);
 
@@ -91,10 +91,10 @@ namespace BusinessLogic
 
                     return false;
                 }
-                catch (Exception ex)
-                {
-                    throw new TransactionScopeException(ex);
-                }
+            }
+            catch (Exception ex) when (!(ex is ValidationException))
+            {
+                throw new TransactionScopeException(ex);
             }
         }
     }

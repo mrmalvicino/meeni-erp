@@ -27,7 +27,7 @@ namespace BusinessLogic
             {
                 return _citiesDAL.Create(city, provinceId);
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!(ex is ValidationException))
             {
                 throw new BusinessLogicException(ex);
             }

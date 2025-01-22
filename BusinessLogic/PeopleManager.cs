@@ -2,6 +2,7 @@
 using DomainModel;
 using Exceptions;
 using System;
+using System.Transactions;
 using Utilities;
 
 namespace BusinessLogic
@@ -28,16 +29,20 @@ namespace BusinessLogic
 
         public int Create(Person person, int internalOrganizationId)
         {
-            _imagesManager.Handle(person.ProfileImage);
-            _addressesManager.Handle(person.Address);
-
             try
             {
-                return _peopleDAL.Create(person, internalOrganizationId);
+                using (var transaction = new TransactionScope())
+                {
+                    _imagesManager.Handle(person.ProfileImage);
+                    _addressesManager.Handle(person.Address);
+                    int personId = _peopleDAL.Create(person, internalOrganizationId);
+                    transaction.Complete();
+                    return personId;
+                }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!(ex is ValidationException))
             {
-                throw new BusinessLogicException(ex);
+                throw new TransactionScopeException(ex);
             }
         }
 
@@ -70,16 +75,19 @@ namespace BusinessLogic
 
         public void Update(Person person, int internalOrganizationId)
         {
-            _imagesManager.Handle(person.ProfileImage);
-            _addressesManager.Handle(person.Address);
-
             try
             {
-                _peopleDAL.Update(person, internalOrganizationId);
+                using (var transaction = new TransactionScope())
+                {
+                    _imagesManager.Handle(person.ProfileImage);
+                    _addressesManager.Handle(person.Address);
+                    _peopleDAL.Update(person, internalOrganizationId);
+                    transaction.Complete();
+                }
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!(ex is ValidationException))
             {
-                throw new BusinessLogicException(ex);
+                throw new TransactionScopeException(ex);
             }
         }
 

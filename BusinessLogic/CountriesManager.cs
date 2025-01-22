@@ -21,7 +21,7 @@ namespace BusinessLogic
             {
                 return _countriesDAL.Create(country);
             }
-            catch (Exception ex)
+            catch (Exception ex) when (!(ex is ValidationException))
             {
                 throw new BusinessLogicException(ex);
             }
