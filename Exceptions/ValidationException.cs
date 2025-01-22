@@ -4,10 +4,10 @@ namespace Exceptions
 {
     public class ValidationException : Exception
     {
-        private const string _defaultMessage = "Error de validación.";
+        private const string DEFAULT_MESSAGE = "Error de validación.";
 
         public ValidationException()
-            : base(_defaultMessage)
+            : base(DEFAULT_MESSAGE)
         {
 
         }
@@ -19,7 +19,7 @@ namespace Exceptions
         }
 
         public ValidationException(Exception innerException)
-            : base(_defaultMessage, innerException)
+            : base(DEFAULT_MESSAGE, innerException)
         {
 
         }

@@ -2,12 +2,12 @@
 
 namespace Exceptions
 {
-    public class DatabaseQueryException : DataAccessException
+    public class DatabaseQueryException : Exception
     {
-        private const string _defaultMessage = "Ocurrió un error en la clase Database de la capa de acceso a datos.";
+        private const string DEFAULT_MESSAGE = "Ocurrió un error en la clase Database de la capa de acceso a datos.";
 
         public DatabaseQueryException()
-            : base(_defaultMessage)
+            : base(DEFAULT_MESSAGE)
         {
 
         }
@@ -19,7 +19,7 @@ namespace Exceptions
         }
 
         public DatabaseQueryException(Exception innerException)
-            : base(_defaultMessage, innerException)
+            : base(DEFAULT_MESSAGE, innerException)
         {
 
         }

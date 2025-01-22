@@ -2,12 +2,12 @@
 
 namespace Exceptions
 {
-    public class TransactionScopeException : BusinessLogicException
+    public class TransactionScopeException : Exception
     {
-        private const string _defaultMessage = "Ocurrió un error de transacción y las operaciones fueron revertidas.";
+        private const string DEFAULT_MESSAGE = "Ocurrió un error de transacción y las operaciones fueron revertidas.";
 
         public TransactionScopeException()
-            : base(_defaultMessage)
+            : base(DEFAULT_MESSAGE)
         {
 
         }
@@ -19,7 +19,7 @@ namespace Exceptions
         }
 
         public TransactionScopeException(Exception innerException)
-            : base(_defaultMessage, innerException)
+            : base(DEFAULT_MESSAGE, innerException)
         {
 
         }

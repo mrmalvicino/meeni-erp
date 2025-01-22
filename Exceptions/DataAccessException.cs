@@ -4,10 +4,10 @@ namespace Exceptions
 {
     public class DataAccessException : Exception
     {
-        private const string _defaultMessage = "Ocurrió un error en la capa de acceso a datos.";
+        private const string DEFAULT_MESSAGE = "Ocurrió un error en la capa de acceso a datos.";
 
         public DataAccessException()
-            : base(_defaultMessage)
+            : base(DEFAULT_MESSAGE)
         {
 
         }
@@ -19,7 +19,7 @@ namespace Exceptions
         }
 
         public DataAccessException(Exception innerException)
-            : base(_defaultMessage, innerException)
+            : base(DEFAULT_MESSAGE, innerException)
         {
 
         }

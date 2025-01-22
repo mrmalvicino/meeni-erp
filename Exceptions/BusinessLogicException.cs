@@ -4,10 +4,10 @@ namespace Exceptions
 {
     public class BusinessLogicException : Exception
     {
-        private const string _defaultMessage = "Ocurrió un error en la capa de lógica de negocio.";
+        private const string DEFAULT_MESSAGE = "Ocurrió un error en la capa de lógica de negocio.";
 
         public BusinessLogicException()
-            : base(_defaultMessage)
+            : base(DEFAULT_MESSAGE)
         {
 
         }
@@ -19,7 +19,7 @@ namespace Exceptions
         }
 
         public BusinessLogicException(Exception innerException)
-            : base(_defaultMessage, innerException)
+            : base(DEFAULT_MESSAGE, innerException)
         {
 
         }
