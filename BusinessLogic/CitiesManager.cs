@@ -74,7 +74,7 @@ namespace BusinessLogic
             }
         }
 
-        public void HandleEntity(City city, int provinceId)
+        public void Handle(City city, int provinceId)
         {
             _provinceId = provinceId;
             HandleEntity(city);

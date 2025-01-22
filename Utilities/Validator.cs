@@ -5,16 +5,6 @@ namespace Utilities
 {
     public static class Validator
     {
-        public static bool URLIsValid(string URL)
-        {
-            if (string.IsNullOrEmpty(URL))
-            {
-                return true;
-            }
-
-            return URLExists(URL);
-        }
-
         public static bool URLExists(string URL)
         {
             if (Uri.TryCreate(URL, UriKind.Absolute, out Uri uriResult) &&

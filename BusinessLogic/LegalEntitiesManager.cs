@@ -22,8 +22,8 @@ namespace BusinessLogic
 
         public int Create(LegalEntity legalEntity)
         {
-            _imagesManager.HandleEntity(legalEntity.LogoImage);
-            _addressesManager.HandleEntity(legalEntity.Address);
+            _imagesManager.Handle(legalEntity.LogoImage);
+            _addressesManager.Handle(legalEntity.Address);
 
             try
             {
@@ -59,8 +59,8 @@ namespace BusinessLogic
 
         public void Update(LegalEntity legalEntity)
         {
-            _imagesManager.HandleEntity(legalEntity.LogoImage);
-            _addressesManager.HandleEntity(legalEntity.Address);
+            _imagesManager.Handle(legalEntity.LogoImage);
+            _addressesManager.Handle(legalEntity.Address);
 
             try
             {

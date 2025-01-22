@@ -7,7 +7,7 @@ namespace BusinessLogic
     public abstract class BaseManager<T>
         where T : IIdentifiable
     {
-        public void HandleEntity(T entity)
+        protected void HandleEntity(T entity)
         {
             try
             {

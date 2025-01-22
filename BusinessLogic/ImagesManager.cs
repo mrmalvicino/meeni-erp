@@ -75,9 +75,14 @@ namespace BusinessLogic
             }
         }
 
+        public void Handle(Image image)
+        {
+            HandleEntity(image);
+        }
+
         private void Validate(Image image)
         {
-            if (!Validator.URLIsValid(image.URL))
+            if (!Validator.URLExists(image.URL))
             {
                 throw new ValidationException("La URL de la imagen no es válida.");
             }

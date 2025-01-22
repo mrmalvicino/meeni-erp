@@ -23,9 +23,9 @@ namespace BusinessLogic
 
         protected override int Create(Address address)
         {
-            _countriesManager.HandleEntity(address.Country);
-            _provincesManager.HandleEntity(address.Province, address.Country.Id);
-            _citiesManager.HandleEntity(address.City, address.Province.Id);
+            _countriesManager.Handle(address.Country);
+            _provincesManager.Handle(address.Province, address.Country.Id);
+            _citiesManager.Handle(address.City, address.Province.Id);
 
             try
             {
@@ -66,9 +66,9 @@ namespace BusinessLogic
 
         protected override void Update(Address address)
         {
-            _countriesManager.HandleEntity(address.Country);
-            _provincesManager.HandleEntity(address.Province, address.Country.Id);
-            _citiesManager.HandleEntity(address.City, address.Province.Id);
+            _countriesManager.Handle(address.Country);
+            _provincesManager.Handle(address.Province, address.Country.Id);
+            _citiesManager.Handle(address.City, address.Province.Id);
 
             try
             {
@@ -90,6 +90,11 @@ namespace BusinessLogic
             {
                 throw new BusinessLogicException(ex);
             }
+        }
+
+        public void Handle(Address address)
+        {
+            HandleEntity(address);
         }
     }
 }

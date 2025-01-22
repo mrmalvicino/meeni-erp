@@ -74,5 +74,10 @@ namespace BusinessLogic
                 throw new BusinessLogicException(ex);
             }
         }
+
+        public void Handle(Country country)
+        {
+            HandleEntity(country);
+        }
     }
 }

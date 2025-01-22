@@ -28,8 +28,8 @@ namespace BusinessLogic
 
         public int Create(Person person, int internalOrganizationId)
         {
-            _imagesManager.HandleEntity(person.ProfileImage);
-            _addressesManager.HandleEntity(person.Address);
+            _imagesManager.Handle(person.ProfileImage);
+            _addressesManager.Handle(person.Address);
 
             try
             {
@@ -70,8 +70,8 @@ namespace BusinessLogic
 
         public void Update(Person person, int internalOrganizationId)
         {
-            _imagesManager.HandleEntity(person.ProfileImage);
-            _addressesManager.HandleEntity(person.Address);
+            _imagesManager.Handle(person.ProfileImage);
+            _addressesManager.Handle(person.Address);
 
             try
             {
@@ -112,7 +112,7 @@ namespace BusinessLogic
             }
         }
 
-        public void HandleEntity(Person person, int internalOrganizationId)
+        public void Handle(Person person, int internalOrganizationId)
         {
             _internalOrganizationId = internalOrganizationId;
             HandleEntity(person);
