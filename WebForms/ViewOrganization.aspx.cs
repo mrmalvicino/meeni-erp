@@ -19,12 +19,13 @@ namespace WebForms
 
         private void LoadImage()
         {
-            if (Validator.URLIsValid(ImageURLTxt.Text))
+            if (Validator.URLExists(ImageURLTxt.Text))
             {
                 LogoImg.ImageUrl = ImageURLTxt.Text;
                 return;
             }
 
+            ImageURLTxt.Text = "";
             LogoImg.ImageUrl = "https://github.com/mrmalvicino/meeni-erp/blob/main/WebForms/images/logo.png?raw=true";
         }
 
@@ -35,18 +36,26 @@ namespace WebForms
 
         private void MapControls()
         {
-            ImageURLTxt.Text = _internalOrganization.LogoImage.URL;
+            if (_internalOrganization.LogoImage != null)
+            {
+                ImageURLTxt.Text = _internalOrganization.LogoImage.URL;
+            }
+
             OrganizationNameTxt.Text = _internalOrganization.Name;
             CUITTxt.Text = _internalOrganization.CUIT;
             EmailTxt.Text = _internalOrganization.Email;
             PhoneTxt.Text = _internalOrganization.Phone;
-            StreetNameTxt.Text = _internalOrganization.Address.StreetName;
-            StreetNumberTxt.Text = _internalOrganization.Address.StreetNumber;
-            FlatTxt.Text = _internalOrganization.Address.Flat;
-            DetailsTxt.Text = _internalOrganization.Address.Details;
-            CityTxt.Text = _internalOrganization.Address.City.Name;
-            ProvinceTxt.Text = _internalOrganization.Address.Province.Name;
-            CountryTxt.Text = _internalOrganization.Address.Country.Name;
+
+            if (_internalOrganization.Address != null)
+            {
+                StreetNameTxt.Text = _internalOrganization.Address.StreetName;
+                StreetNumberTxt.Text = _internalOrganization.Address.StreetNumber;
+                FlatTxt.Text = _internalOrganization.Address.Flat;
+                DetailsTxt.Text = _internalOrganization.Address.Details;
+                CityTxt.Text = _internalOrganization.Address.City?.Name;
+                ProvinceTxt.Text = _internalOrganization.Address.Province?.Name;
+                CountryTxt.Text = _internalOrganization.Address.Country?.Name;
+            }
         }
 
         private void MapAttributes()

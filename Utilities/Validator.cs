@@ -7,6 +7,16 @@ namespace Utilities
     {
         public static bool URLIsValid(string URL)
         {
+            if (string.IsNullOrEmpty(URL))
+            {
+                return true;
+            }
+
+            return URLExists(URL);
+        }
+
+        public static bool URLExists(string URL)
+        {
             if (Uri.TryCreate(URL, UriKind.Absolute, out Uri uriResult) &&
                 (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps))
             {
