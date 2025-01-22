@@ -38,11 +38,16 @@ namespace BusinessLogic
         public ApplicationManager()
         {
             _db = new Database();
+            _addressesManager = new AddressesManager(_db);
+            _citiesManager = new CitiesManager(_db);
+            _countriesManager = new CountriesManager(_db);
+            _employeesManager = new EmployeesManager(_db);
             _imagesManager = new ImagesManager(_db);
             _internalOrganizationsManager = new InternalOrganizationsManager(_db);
             _legalEntitiesManager = new LegalEntitiesManager(_db);
             _peopleManager = new PeopleManager(_db);
             _pricingPlansManager = new PricingPlansManager(_db);
+            _provincesManager = new ProvincesManager(_db);
             _rolesManager = new RolesManager(_db);
             _usersManager = new UsersManager(_db);
         }
