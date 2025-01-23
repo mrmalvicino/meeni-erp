@@ -3,6 +3,7 @@ using DomainModel;
 using Utilities;
 using System;
 using Exceptions;
+using System.Reflection.Emit;
 
 namespace WebForms
 {
@@ -53,8 +54,22 @@ namespace WebForms
                 FlatTxt.Text = _internalOrganization.Address.Flat;
                 DetailsTxt.Text = _internalOrganization.Address.Details;
                 CityTxt.Text = _internalOrganization.Address.City?.Name;
+                ZipCodeTxt.Text = _internalOrganization.Address.City?.ZipCode;
                 ProvinceTxt.Text = _internalOrganization.Address.Province?.Name;
                 CountryTxt.Text = _internalOrganization.Address.Country?.Name;
+            }
+        }
+
+        private void InstantiateAttributes()
+        {
+            if (_internalOrganization.LogoImage == null)
+            {
+                _internalOrganization.LogoImage = new Image();
+            }
+
+            if (_internalOrganization.Address == null)
+            {
+                _internalOrganization.Address = new Address(true);
             }
         }
 
@@ -70,6 +85,7 @@ namespace WebForms
             _internalOrganization.Address.Flat = FlatTxt.Text;
             _internalOrganization.Address.Details = DetailsTxt.Text;
             _internalOrganization.Address.City.Name = CityTxt.Text;
+            _internalOrganization.Address.City.ZipCode = ZipCodeTxt.Text;
             _internalOrganization.Address.Province.Name = ProvinceTxt.Text;
             _internalOrganization.Address.Country.Name = CountryTxt.Text;
         }
@@ -88,6 +104,7 @@ namespace WebForms
 
         protected void SaveBtn_Click(object sender, EventArgs e)
         {
+            InstantiateAttributes();
             MapAttributes();
 
             try

@@ -33,8 +33,8 @@ namespace BusinessLogic
             {
                 using (var transaction = new TransactionScope())
                 {
-                    _imagesManager.Handle(person.ProfileImage);
-                    _addressesManager.Handle(person.Address);
+                    person.ProfileImage = _imagesManager.Handle(person.ProfileImage);
+                    person.Address = _addressesManager.Handle(person.Address);
                     int personId = _peopleDAL.Create(person, internalOrganizationId);
                     transaction.Complete();
                     return personId;
@@ -79,8 +79,8 @@ namespace BusinessLogic
             {
                 using (var transaction = new TransactionScope())
                 {
-                    _imagesManager.Handle(person.ProfileImage);
-                    _addressesManager.Handle(person.Address);
+                    person.ProfileImage = _imagesManager.Handle(person.ProfileImage);
+                    person.Address = _addressesManager.Handle(person.Address);
                     _peopleDAL.Update(person, internalOrganizationId);
                     transaction.Complete();
                 }

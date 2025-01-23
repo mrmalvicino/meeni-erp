@@ -114,15 +114,27 @@
                         placeholder="Información adicional">
                     </asp:TextBox>
                 </div>
-                <div>
-                    <label for="CityTxt">Localidad</label>
-                    <asp:TextBox
-                        ID="CityTxt"
-                        runat="server"
-                        TextMode="SingleLine"
-                        class="width-100-pct input-box"
-                        placeholder="Ciudad o localidad">
-                    </asp:TextBox>
+                <div class="row-flex space-between">
+                    <div class="width-120-px">
+                        <label for="CityTxt">Localidad</label>
+                        <asp:TextBox
+                            ID="CityTxt"
+                            runat="server"
+                            TextMode="SingleLine"
+                            class="width-100-pct input-box"
+                            placeholder="Localidad">
+                        </asp:TextBox>
+                    </div>
+                    <div class="width-120-px">
+                        <label for="ZipCodeTxt">C.P.</label>
+                        <asp:TextBox
+                            ID="ZipCodeTxt"
+                            runat="server"
+                            TextMode="SingleLine"
+                            class="width-100-pct input-box"
+                            placeholder="Cód. Postal">
+                        </asp:TextBox>
+                    </div>
                 </div>
                 <div>
                     <label for="ProvinceTxt">Provincia</label>

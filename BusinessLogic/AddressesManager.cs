@@ -3,6 +3,7 @@ using DomainModel;
 using Exceptions;
 using System;
 using System.Transactions;
+using Utilities;
 
 namespace BusinessLogic
 {
@@ -100,9 +101,16 @@ namespace BusinessLogic
             }
         }
 
-        public void Handle(Address address)
+        public Address Handle(Address address)
         {
+            if ( Validator.IsEmpty(address))
+            {
+                return null;
+            }
+
             HandleEntity(address);
+
+            return address;
         }
     }
 }

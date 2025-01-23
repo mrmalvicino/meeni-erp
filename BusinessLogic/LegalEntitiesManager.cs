@@ -27,8 +27,8 @@ namespace BusinessLogic
             {
                 using (var transaction = new TransactionScope())
                 {
-                    _imagesManager.Handle(legalEntity.LogoImage);
-                    _addressesManager.Handle(legalEntity.Address);
+                    legalEntity.LogoImage = _imagesManager.Handle(legalEntity.LogoImage);
+                    legalEntity.Address = _addressesManager.Handle(legalEntity.Address);
                     legalEntity.Id = _legalEntitiesDAL.Create(legalEntity);
                     transaction.Complete();
                     return legalEntity.Id;
@@ -68,8 +68,8 @@ namespace BusinessLogic
             {
                 using (var transaction = new TransactionScope())
                 {
-                    _imagesManager.Handle(legalEntity.LogoImage);
-                    _addressesManager.Handle(legalEntity.Address);
+                    legalEntity.LogoImage = _imagesManager.Handle(legalEntity.LogoImage);
+                    legalEntity.Address = _addressesManager.Handle(legalEntity.Address);
                     _legalEntitiesDAL.Update(legalEntity);
                     transaction.Complete();
                 }

@@ -12,5 +12,17 @@ namespace DomainModel
         public City City { get; set; }
         public Province Province { get; set; }
         public Country Country { get; set; }
+
+        public Address()
+        {
+
+        }
+
+        public Address(bool instantiateProperties)
+        {
+            City = new City();
+            Province = new Province();
+            Country = new Country();
+        }
     }
 }

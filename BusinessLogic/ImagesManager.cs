@@ -73,9 +73,16 @@ namespace BusinessLogic
             }
         }
 
-        public void Handle(Image image)
+        public Image Handle(Image image)
         {
+            if (string.IsNullOrWhiteSpace(image.URL))
+            {
+                return null;
+            }
+
             HandleEntity(image);
+
+            return image;
         }
 
         private void Validate(Image image)
