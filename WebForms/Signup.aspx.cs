@@ -2,6 +2,7 @@
 using DomainModel;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebForms
 {
@@ -66,6 +67,10 @@ namespace WebForms
                     Session.Add("loggedOrganization", _internalOrganization);
                     Response.Redirect("Dashboard.aspx", false);
                 }
+            }
+            catch (ValidationException ex)
+            {
+                (this.Master.Master as Site)?.ShowModal(ex.Message);
             }
             catch (Exception ex)
             {

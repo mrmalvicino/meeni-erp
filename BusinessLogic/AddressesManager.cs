@@ -32,6 +32,7 @@ namespace BusinessLogic
                     _countriesManager.Handle(address.Country);
                     _provincesManager.Handle(address.Province, address.Country.Id);
                     _citiesManager.Handle(address.City, address.Province.Id);
+                    Validate(address);
                     address.Id = _addressesDAL.Create(address);
                     transaction.Complete();
                     return address.Id;
@@ -79,6 +80,7 @@ namespace BusinessLogic
                     _countriesManager.Handle(address.Country);
                     _provincesManager.Handle(address.Province, address.Country.Id);
                     _citiesManager.Handle(address.City, address.Province.Id);
+                    Validate(address);
                     _addressesDAL.Update(address);
                     transaction.Complete();
                 }
@@ -111,6 +113,12 @@ namespace BusinessLogic
             HandleEntity(address);
 
             return address;
+        }
+
+        private void Validate(Address address)
+        {
+            Validator.ValidateStreetName(address.StreetName);
+            Validator.ValidateStreetNumber(address.StreetNumber);
         }
     }
 }

@@ -29,6 +29,7 @@ namespace BusinessLogic
                 {
                     legalEntity.LogoImage = _imagesManager.Handle(legalEntity.LogoImage);
                     legalEntity.Address = _addressesManager.Handle(legalEntity.Address);
+                    Validate(legalEntity);
                     legalEntity.Id = _legalEntitiesDAL.Create(legalEntity);
                     transaction.Complete();
                     return legalEntity.Id;
@@ -70,6 +71,7 @@ namespace BusinessLogic
                 {
                     legalEntity.LogoImage = _imagesManager.Handle(legalEntity.LogoImage);
                     legalEntity.Address = _addressesManager.Handle(legalEntity.Address);
+                    Validate(legalEntity);
                     _legalEntitiesDAL.Update(legalEntity);
                     transaction.Complete();
                 }
@@ -77,6 +79,26 @@ namespace BusinessLogic
             catch (Exception ex) when (!(ex is ValidationException))
             {
                 throw new TransactionScopeException(ex);
+            }
+        }
+
+        private void Validate(LegalEntity legalEntity)
+        {
+            Validator.ValidateOrganizationName(legalEntity.Name);
+
+            if (!string.IsNullOrEmpty(legalEntity.CUIT))
+            {
+                Validator.ValidateCUIT(legalEntity.CUIT);
+            }
+
+            if (!string.IsNullOrEmpty(legalEntity.Email))
+            {
+                Validator.ValidateEmail(legalEntity.Email);
+            }
+
+            if (!string.IsNullOrEmpty(legalEntity.Phone))
+            {
+                Validator.ValidatePhone(legalEntity.Phone);
             }
         }
     }

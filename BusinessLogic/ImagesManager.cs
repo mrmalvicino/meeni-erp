@@ -87,10 +87,7 @@ namespace BusinessLogic
 
         private void Validate(Image image)
         {
-            if (!Validator.URLExists(image.URL))
-            {
-                throw new ValidationException("La URL de la imagen no es válida.");
-            }
+            Validator.ValidateURL(image.URL);
         }
     }
 }

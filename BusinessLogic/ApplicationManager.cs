@@ -3,6 +3,7 @@ using DomainModel;
 using Exceptions;
 using System;
 using System.Transactions;
+using Utilities;
 
 namespace BusinessLogic
 {
@@ -58,6 +59,7 @@ namespace BusinessLogic
             {
                 using (var transaction = new TransactionScope())
                 {
+                    Validate(internalOrganization);
                     internalOrganization.Id = _internalOrganizationsManager.Create(internalOrganization);
                     _usersManager.Create(user, internalOrganization.Id);
                     user = _usersManager.Read(user.Id);
@@ -96,6 +98,11 @@ namespace BusinessLogic
             {
                 throw new TransactionScopeException(ex);
             }
+        }
+
+        private void Validate(InternalOrganization internalOrganization)
+        {
+            Validator.ValidateEmail(internalOrganization.Email);
         }
     }
 }

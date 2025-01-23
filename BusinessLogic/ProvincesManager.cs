@@ -2,6 +2,7 @@
 using DomainModel;
 using Exceptions;
 using System;
+using Utilities;
 
 namespace BusinessLogic
 {
@@ -25,6 +26,7 @@ namespace BusinessLogic
         {
             try
             {
+                Validate(province);
                 return _provincesDAL.Create(province, countryId);
             }
             catch (Exception ex) when (!(ex is ValidationException))
@@ -90,6 +92,11 @@ namespace BusinessLogic
         {
             _countryId = countryId;
             HandleEntity(province);
+        }
+
+        private void Validate(Province province)
+        {
+            Validator.ValidateProvinceName(province.Name);
         }
     }
 }

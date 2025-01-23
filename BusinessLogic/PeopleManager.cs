@@ -35,6 +35,7 @@ namespace BusinessLogic
                 {
                     person.ProfileImage = _imagesManager.Handle(person.ProfileImage);
                     person.Address = _addressesManager.Handle(person.Address);
+                    Validate(person);
                     int personId = _peopleDAL.Create(person, internalOrganizationId);
                     transaction.Complete();
                     return personId;
@@ -81,6 +82,7 @@ namespace BusinessLogic
                 {
                     person.ProfileImage = _imagesManager.Handle(person.ProfileImage);
                     person.Address = _addressesManager.Handle(person.Address);
+                    Validate(person);
                     _peopleDAL.Update(person, internalOrganizationId);
                     transaction.Complete();
                 }
@@ -124,6 +126,32 @@ namespace BusinessLogic
         {
             _internalOrganizationId = internalOrganizationId;
             HandleEntity(person);
+        }
+
+        private void Validate(Person person)
+        {
+            Validator.ValidateFirstName(person.FirstName);
+            Validator.ValidateLastName(person.LastName);
+
+            if (!string.IsNullOrEmpty(person.CUIL))
+            {
+                Validator.ValidateCUIL(person.CUIL);
+            }
+
+            if (!string.IsNullOrEmpty(person.Email))
+            {
+                Validator.ValidateEmail(person.Email);
+            }
+
+            if (!string.IsNullOrEmpty(person.Phone))
+            {
+                Validator.ValidatePhone(person.Phone);
+            }
+
+            if (person.BirthDate != DateTime.MinValue)
+            {
+                Validator.ValidateBirthDate(person.BirthDate);
+            }
         }
     }
 }

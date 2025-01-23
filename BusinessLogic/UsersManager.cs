@@ -29,6 +29,7 @@ namespace BusinessLogic
                 using (var transaction = new TransactionScope())
                 {
                     user.Id = _employeesManager.Create(user, internalOrganizationId);
+                    Validate(user);
                     user.Id = _usersDAL.Create(user);
 
                     foreach (Role role in user.Roles)
@@ -78,6 +79,7 @@ namespace BusinessLogic
                 using (var transaction = new TransactionScope())
                 {
                     _employeesManager.Update(user, internalOrganizationId);
+                    Validate(user);
                     _usersDAL.Update(user);
                     // Falta editar roles de usuario
                     transaction.Complete();
@@ -99,6 +101,12 @@ namespace BusinessLogic
             {
                 throw new BusinessLogicException(ex);
             }
+        }
+
+        private void Validate(User user)
+        {
+            Validator.ValidateUsername(user.Username);
+            Validator.ValidatePassword(user.Password);
         }
     }
 }
