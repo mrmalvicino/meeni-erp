@@ -113,7 +113,7 @@ namespace BusinessLogic
         {
             if (string.IsNullOrEmpty(internalOrganization.Email))
             {
-                throw new ValidationException("Email inválido.");
+                throw new ValidationException("Ingresar el correo electrónico de la empresa.");
             }
 
             Validator.ValidateEmail(internalOrganization.Email);
