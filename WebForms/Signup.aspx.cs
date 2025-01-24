@@ -2,7 +2,7 @@
 using DomainModel;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using Exceptions;
 
 namespace WebForms
 {
@@ -28,19 +28,28 @@ namespace WebForms
             PricingPlansDDL.SelectedIndex = -1;
         }
 
+        private void InstantiateAttributes()
+        {
+            _internalOrganization.LogoImage = new Image();
+            _internalOrganization.Address = new Address(true);
+
+            int pricingPlanId = (int)PricingPlansManager.Ids.FreePlanId;
+            PricingPlan pricingPlan = _appManager.PricingPlans.Read(pricingPlanId);
+            _internalOrganization.PricingPlan = pricingPlan;
+
+            _user.ProfileImage = new Image();
+            _user.Address = new Address(true);
+            _user.Roles = new List<Role>();
+
+            int roleId = (int)RolesManager.Ids.AdminId;
+            Role role = _appManager.Roles.Read(roleId);
+            _user.Roles.Add(role);
+        }
+
         private void MapAttributes()
         {
             _internalOrganization.Name = OrganizationNameTxt.Text;
             _internalOrganization.Email = OrganizationEmailTxt.Text;
-
-            int pricingPlanId = (int)PricingPlansManager.Ids.FreePlanId;
-            _internalOrganization.PricingPlan = _appManager.PricingPlans.Read(pricingPlanId);
-
-            int roleId = (int)RolesManager.Ids.AdminId;
-            Role role = _appManager.Roles.Read(roleId);
-            _user.Roles = new List<Role>();
-            _user.Roles.Add(role);
-
             _user.FirstName = FirstNameTxt.Text;
             _user.LastName = LastNameTxt.Text;
             _user.Username = OrganizationEmailTxt.Text;
@@ -57,6 +66,7 @@ namespace WebForms
 
         protected void SignupBtn_Click(object sender, EventArgs e)
         {
+            InstantiateAttributes();
             MapAttributes();
 
             try

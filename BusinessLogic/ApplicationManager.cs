@@ -57,9 +57,10 @@ namespace BusinessLogic
         {
             try
             {
+                ValidateSignUp(internalOrganization);
+
                 using (var transaction = new TransactionScope())
                 {
-                    Validate(internalOrganization);
                     internalOrganization.Id = _internalOrganizationsManager.Create(internalOrganization);
                     _usersManager.Create(user, internalOrganization.Id);
                     user = _usersManager.Read(user.Id);
@@ -100,8 +101,13 @@ namespace BusinessLogic
             }
         }
 
-        private void Validate(InternalOrganization internalOrganization)
+        public void ValidateSignUp(InternalOrganization internalOrganization)
         {
+            if (string.IsNullOrEmpty(internalOrganization.Email))
+            {
+                throw new ValidationException("Email inválido.");
+            }
+
             Validator.ValidateEmail(internalOrganization.Email);
         }
     }
