@@ -275,6 +275,7 @@ end;
 ----------------------------
 -- INTERNAL ORGANIZATIONS --
 ----------------------------
+
 go
 create or alter procedure sp_create_internal_organization(
     @internal_organization_id int,
@@ -299,6 +300,20 @@ begin
     update internal_organizations
     set
         pricing_plan_id = @pricing_plan_id
+    where
+        internal_organization_id = @internal_organization_id;
+end
+
+go
+create or alter procedure sp_toggle_internal_organization(
+    @internal_organization_id int,
+    @activity_status bit
+)
+as
+begin
+    update internal_organizations
+    set
+        activity_status = @activity_status
     where
         internal_organization_id = @internal_organization_id;
 end
@@ -445,6 +460,7 @@ end;
 -----------
 -- USERS --
 -----------
+
 go
 create or alter procedure sp_create_user(
     @user_id int,
@@ -458,6 +474,29 @@ begin
         output inserted.user_id
     values
         (@user_id, @username, @password);
+end;
+
+go
+create or alter procedure sp_delete_user(
+    @user_id int
+)
+as
+begin
+    begin try
+        begin transaction;
+            delete from user_role_rel
+            where
+                user_id = @user_id;
+
+            delete from users
+            where
+                user_id = @user_id;
+        commit transaction;
+    end try
+    begin catch
+        rollback transaction;
+        raiserror ('Error de transacción.', 16, 1);
+    end catch;
 end;
 
 go
