@@ -105,21 +105,21 @@
                     <h3><%= PricingPlans[0].Name %></h3>
                     <ul>
                         <li>
-                            <spam>
+                            <span>
                                 <i class="bi bi-check"></i>
-                            </spam>
+                            </span>
                             Plataforma sin publicidades
                         </li>
                         <li>
-                            <spam>
+                            <span>
                                 <i class="bi bi-check"></i>
-                            </spam>
+                            </span>
                             Base de datos de 100 MB
                         </li>
                         <li>
-                            <spam>
+                            <span>
                                 <i class="bi bi-check"></i>
-                            </spam>
+                            </span>
                             Soporte para reporte de errores
                         </li>
                     </ul>
@@ -134,21 +134,21 @@
                     <h3><%= PricingPlans[1].Name %></h3>
                     <ul>
                         <li>
-                            <spam>
+                            <span>
                                 <i class="bi bi-check"></i>
-                            </spam>
+                            </span>
                             Todo lo del plan gratuito
                         </li>
                         <li>
-                            <spam>
+                            <span>
                                 <i class="bi bi-check"></i>
-                            </spam>
+                            </span>
                             Base de datos de 500 MB
                         </li>
                         <li>
-                            <spam>
+                            <span>
                                 <i class="bi bi-check"></i>
-                            </spam>
+                            </span>
                             Soporte para consultas técnicas
                         </li>
                     </ul>
@@ -163,21 +163,21 @@
                     <h3><%= PricingPlans[2].Name %></h3>
                     <ul>
                         <li>
-                            <spam>
+                            <span>
                                 <i class="bi bi-check"></i>
-                            </spam>
+                            </span>
                             Todo lo del plan profesional
                         </li>
                         <li>
-                            <spam>
+                            <span>
                                 <i class="bi bi-check"></i>
-                            </spam>
+                            </span>
                             Base de datos de 3 GB
                         </li>
                         <li>
-                            <spam>
+                            <span>
                                 <i class="bi bi-check"></i>
-                            </spam>
+                            </span>
                             Soporte para modificaciones
                         </li>
                     </ul>
