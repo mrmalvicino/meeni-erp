@@ -66,7 +66,7 @@ namespace DataAccess
             try
             {
                 _db.SetProcedure("sp_update_internal_organization");
-                SetParameters(internalOrganization, true);
+                SetParameters(internalOrganization);
                 _db.ExecuteAction();
             }
             catch (Exception ex)
@@ -79,15 +79,9 @@ namespace DataAccess
             }
         }
 
-        private void SetParameters(InternalOrganization internalOrganization, bool isUpdate = false)
+        private void SetParameters(InternalOrganization internalOrganization)
         {
             _db.SetParameter("@internal_organization_id", internalOrganization.Id);
-
-            if (isUpdate)
-            {
-                _db.SetParameter("@activity_status", internalOrganization.ActivityStatus);
-            }
-
             _db.SetParameter("@pricing_plan_id", internalOrganization.PricingPlan.Id);
         }
 

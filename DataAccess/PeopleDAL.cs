@@ -137,7 +137,7 @@ namespace DataAccess
                 _db.SetParameter("@person_id", person.Id);
             }
 
-            if (person.CUIL != null)
+            if (!string.IsNullOrEmpty(person.CUIL))
             {
                 _db.SetParameter("@cuil", person.CUIL);
             }
@@ -149,7 +149,7 @@ namespace DataAccess
             _db.SetParameter("@first_name", person.FirstName);
             _db.SetParameter("@last_name", person.LastName);
 
-            if (person.Email != null)
+            if (!string.IsNullOrEmpty(person.Email))
             {
                 _db.SetParameter("@email", person.Email);
             }
@@ -158,7 +158,7 @@ namespace DataAccess
                 _db.SetParameter("@email", DBNull.Value);
             }
 
-            if (person.Phone != null)
+            if (!string.IsNullOrEmpty(person.Phone))
             {
                 _db.SetParameter("@phone", person.Phone);
             }

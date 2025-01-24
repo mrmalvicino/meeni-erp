@@ -95,7 +95,7 @@ namespace DataAccess
 
             _db.SetParameter("@city_name", city.Name);
 
-            if (city.ZipCode != null)
+            if (!string.IsNullOrEmpty(city.ZipCode))
             {
                 _db.SetParameter("@zip_code", city.ZipCode);
             }

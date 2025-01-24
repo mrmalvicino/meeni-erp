@@ -86,7 +86,7 @@ namespace DataAccess
                 _db.SetParameter("@legal_entity_id", legalEntity.Id);
             }
 
-            if (legalEntity.CUIT != null)
+            if (!string.IsNullOrEmpty(legalEntity.CUIT))
             {
                 _db.SetParameter("@cuit", legalEntity.CUIT);
             }
@@ -97,7 +97,7 @@ namespace DataAccess
 
             _db.SetParameter("@legal_entity_name", legalEntity.Name);
 
-            if (legalEntity.Email != null)
+            if (!string.IsNullOrEmpty(legalEntity.Email))
             {
                 _db.SetParameter("@email", legalEntity.Email);
             }
@@ -106,7 +106,7 @@ namespace DataAccess
                 _db.SetParameter("@email", DBNull.Value);
             }
 
-            if (legalEntity.Phone != null)
+            if (!string.IsNullOrEmpty(legalEntity.Phone))
             {
                 _db.SetParameter("@phone", legalEntity.Phone);
             }

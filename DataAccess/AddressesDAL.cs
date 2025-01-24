@@ -117,7 +117,7 @@ namespace DataAccess
             _db.SetParameter("@street_name", address.StreetName);
             _db.SetParameter("@street_number", address.StreetNumber);
 
-            if (address.Flat != null)
+            if (!string.IsNullOrEmpty(address.Flat))
             {
                 _db.SetParameter("@flat", address.Flat);
             }
@@ -126,7 +126,7 @@ namespace DataAccess
                 _db.SetParameter("@flat", DBNull.Value);
             }
 
-            if (address.Details != null)
+            if (!string.IsNullOrEmpty(address.Details))
             {
                 _db.SetParameter("@details", address.Details);
             }

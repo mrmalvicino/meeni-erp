@@ -65,7 +65,7 @@ namespace DataAccess
             try
             {
                 _db.SetProcedure("sp_update_employee");
-                SetParameters(employee, true);
+                SetParameters(employee);
                 _db.ExecuteAction();
             }
             catch (Exception ex)
@@ -78,14 +78,9 @@ namespace DataAccess
             }
         }
 
-        private void SetParameters(Employee employee, bool isUpdate = false)
+        private void SetParameters(Employee employee)
         {
             _db.SetParameter("@employee_id", employee.Id);
-
-            if (isUpdate)
-            {
-                _db.SetParameter("@activity_status", employee.ActivityStatus);
-            }
         }
 
         private void ReadRow(Employee employee)
