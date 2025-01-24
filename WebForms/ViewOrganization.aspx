@@ -160,10 +160,21 @@
         </div>
         <div class="wrapped-flex justify-center">
             <div class="margin-10-px">
-                <asp:Button ID="DeleteBtn" runat="server" Text="Eliminar empresa" class="dark-button big-hover" OnClick="DeleteBtn_Click" />
+                <asp:Button
+                    ID="DeleteBtn"
+                    runat="server"
+                    Text="Eliminar empresa"
+                    class="dark-button big-hover"
+                    OnClientClick="return confirm('¿Estás seguro que querés eliminar la empresa?');"
+                    OnClick="DeleteBtn_Click" />
             </div>
             <div class="margin-10-px">
-                <asp:Button ID="SaveBtn" runat="server" Text="Guardar cambios" class="dark-button big-hover" OnClick="SaveBtn_Click" />
+                <asp:Button
+                    ID="SaveBtn"
+                    runat="server"
+                    Text="Guardar cambios"
+                    class="dark-button big-hover"
+                    OnClick="SaveBtn_Click" />
             </div>
         </div>
     </div>

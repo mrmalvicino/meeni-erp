@@ -126,7 +126,8 @@ namespace WebForms
         {
             try
             {
-
+                _appManager.InternalOrganizations.Toggle(_internalOrganization);
+                (this.Master.Master as Site)?.Logout();
             }
             catch (Exception ex)
             {

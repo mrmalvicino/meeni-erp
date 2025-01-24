@@ -79,6 +79,25 @@ namespace DataAccess
             }
         }
 
+        public void Toggle(InternalOrganization internalOrganization)
+        {
+            try
+            {
+                _db.SetProcedure("sp_toggle_internal_organization");
+                _db.SetParameter("@internal_organization_id", internalOrganization.Id);
+                _db.SetParameter("@activity_status", !internalOrganization.ActivityStatus);
+                _db.ExecuteAction();
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ex);
+            }
+            finally
+            {
+                _db.CloseConnection();
+            }
+        }
+
         private void SetParameters(InternalOrganization internalOrganization)
         {
             _db.SetParameter("@internal_organization_id", internalOrganization.Id);

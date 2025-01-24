@@ -82,5 +82,17 @@ namespace BusinessLogic
                 throw new TransactionScopeException(ex);
             }
         }
+
+        public void Toggle(InternalOrganization internalOrganization)
+        {
+            try
+            {
+                _internalOrganizationsDAL.Toggle(internalOrganization);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex);
+            }
+        }
     }
 }
