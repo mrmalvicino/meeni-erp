@@ -8,20 +8,20 @@ namespace WebForms
     public partial class Login : System.Web.UI.Page
     {
         private ApplicationManager _appManager;
-        private User _loggedUser;
-        private InternalOrganization _loggedOrganization;
+        private InternalOrganization _internalOrganization;
+        private User _user;
 
         public Login()
         {
             _appManager = new ApplicationManager();
-            _loggedUser = new User();
-            _loggedOrganization = new InternalOrganization();
+            _internalOrganization = new InternalOrganization();
+            _user = new User();
         }
 
         private void MapAttributes()
         {
-            _loggedUser.Username = UsernameTxt.Text;
-            _loggedUser.Password = PasswordTxt.Text;
+            _user.Username = UsernameTxt.Text;
+            _user.Password = PasswordTxt.Text;
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -35,10 +35,10 @@ namespace WebForms
 
             try
             {
-                if (_appManager.Login(ref _loggedUser, ref _loggedOrganization))
+                if (_appManager.Login(ref _user, ref _internalOrganization))
                 {
-                    Session.Add("loggedUser", _loggedUser);
-                    Session.Add("loggedOrganization", _loggedOrganization);
+                    Session.Add("loggedUser", _user);
+                    Session.Add("loggedOrganization", _internalOrganization);
                     Response.Redirect("Dashboard.aspx", false);
                 }
             }
