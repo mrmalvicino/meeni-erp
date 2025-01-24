@@ -52,7 +52,7 @@ namespace WebForms
             _internalOrganization.Email = OrganizationEmailTxt.Text;
             _user.FirstName = FirstNameTxt.Text;
             _user.LastName = LastNameTxt.Text;
-            _user.Username = OrganizationEmailTxt.Text;
+            _user.Username = UsernameTxt.Text;
             _user.Password = PasswordTxt.Text;
         }
 

@@ -103,6 +103,18 @@ namespace BusinessLogic
             }
         }
 
+        public int FindId(string username, string password)
+        {
+            try
+            {
+                return _usersDAL.FindId(username, password);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex);
+            }
+        }
+
         private void Validate(User user)
         {
             Validator.ValidateUsername(user.Username);

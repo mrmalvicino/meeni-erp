@@ -62,6 +62,16 @@
                     </asp:TextBox>
                 </div>
                 <div>
+                    <label for="UsernameTxt">Usuario</label>
+                    <asp:TextBox
+                        ID="UsernameTxt"
+                        runat="server"
+                        TextMode="SingleLine"
+                        class="width-100-pct input-box"
+                        placeholder="Creá un nombre de usuario">
+                    </asp:TextBox>
+                </div>
+                <div>
                     <label for="PasswordTxt">Contraseña</label>
                     <asp:TextBox
                         ID="PasswordTxt"

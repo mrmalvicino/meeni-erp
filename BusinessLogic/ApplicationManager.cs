@@ -57,7 +57,7 @@ namespace BusinessLogic
         {
             try
             {
-                ValidateSignUp(internalOrganization);
+                ValidateSignUp(user, internalOrganization);
 
                 using (var transaction = new TransactionScope())
                 {
@@ -83,7 +83,7 @@ namespace BusinessLogic
 
                 using (var transaction = new TransactionScope())
                 {
-                    user.Id = _usersManager.FindId(user);
+                    user.Id = _usersManager.FindId(user.Username, user.Password);
 
                     if (user.Id == 0)
                     {
@@ -109,8 +109,13 @@ namespace BusinessLogic
             }
         }
 
-        private void ValidateSignUp(InternalOrganization internalOrganization)
+        private void ValidateSignUp(User user, InternalOrganization internalOrganization)
         {
+            if (0 < _usersManager.FindId(user))
+            {
+                throw new ValidationException("Nombre de usuario no disponible.");
+            }
+
             if (string.IsNullOrEmpty(internalOrganization.Email))
             {
                 throw new ValidationException("Ingresar el correo electrónico de la empresa.");

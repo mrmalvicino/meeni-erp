@@ -82,9 +82,34 @@ namespace DataAccess
         {
             try
             {
-                _db.SetProcedure("sp_find_user_id");
+                _db.SetQuery("select user_id from users where username = @username");
                 _db.SetParameter("@username", user.Username);
-                _db.SetParameter("@password", user.Password);
+                _db.ExecuteRead();
+
+                if (_db.Reader.Read())
+                {
+                    return (int)_db.Reader["user_id"];
+                }
+
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ex);
+            }
+            finally
+            {
+                _db.CloseConnection();
+            }
+        }
+
+        public int FindId(string username, string password)
+        {
+            try
+            {
+                _db.SetProcedure("sp_find_user_id");
+                _db.SetParameter("@username", username);
+                _db.SetParameter("@password", password);
                 _db.ExecuteRead();
 
                 if (_db.Reader.Read())
