@@ -89,6 +89,8 @@
             </div>
             <%
                 }
+
+
             %>
         </div>
     </section>
@@ -100,7 +102,7 @@
             <h2 class="margin-20-0-px">Un plan para cada organización</h2>
             <div class="width-100-pct row-flex space-evenly">
                 <div class="pricing-card">
-                    <h3>Plan gratuito</h3>
+                    <h3><%= PricingPlans[0].Name %></h3>
                     <ul>
                         <li>
                             <spam>
@@ -122,16 +124,20 @@
                         </li>
                     </ul>
                     <h4>¡Accedé a todas las funcionalidades sin costo!</h4>
-                    <a class="dark-button big-hover width-90-pct" href="Signup.aspx">USD $0,00 / mes</a>
+                    <a
+                        class="dark-button big-hover width-90-pct"
+                        href="Signup.aspx?pricingPlanId=<%= PricingPlans[0].Id %>">
+                        <span>USD $<%= PricingPlans[0].MonthlyFee.ToString("F2") %> / mes</span>
+                    </a>
                 </div>
                 <div class="pricing-card">
-                    <h3>Plan profesional</h3>
+                    <h3><%= PricingPlans[1].Name %></h3>
                     <ul>
                         <li>
                             <spam>
                                 <i class="bi bi-check"></i>
                             </spam>
-                            Todo lo del plan profesional
+                            Todo lo del plan gratuito
                         </li>
                         <li>
                             <spam>
@@ -147,10 +153,14 @@
                         </li>
                     </ul>
                     <h4>¡Impulsá tu negocio en crecimiento!</h4>
-                    <a class="dark-button big-hover width-90-pct" href="Signup.aspx">USD $20,00 / mes</a>
+                    <a
+                        class="dark-button big-hover width-90-pct"
+                        href="Signup.aspx?pricingPlanId=<%= PricingPlans[1].Id %>">
+                        <span>USD $<%= PricingPlans[1].MonthlyFee.ToString("F2") %> / mes</span>
+                    </a>
                 </div>
                 <div class="pricing-card">
-                    <h3>Plan empresarial</h3>
+                    <h3><%= PricingPlans[2].Name %></h3>
                     <ul>
                         <li>
                             <spam>
@@ -172,7 +182,11 @@
                         </li>
                     </ul>
                     <h4>¡Destacá en el mercado con funcionalidades extra!</h4>
-                    <a class="dark-button big-hover width-90-pct" href="Signup.aspx">USD $30,00 / mes</a>
+                    <a
+                        class="dark-button big-hover width-90-pct"
+                        href="Signup.aspx?pricingPlanId=<%= PricingPlans[2].Id %>">
+                        <span>USD $<%= PricingPlans[2].MonthlyFee.ToString("F2") %> / mes</span>
+                    </a>
                 </div>
             </div>
         </div>

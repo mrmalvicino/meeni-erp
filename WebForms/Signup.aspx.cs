@@ -11,6 +11,7 @@ namespace WebForms
         private ApplicationManager _appManager;
         private InternalOrganization _internalOrganization;
         private User _user;
+        private string _pricingPlanId;
 
         public Signup()
         {
@@ -19,13 +20,27 @@ namespace WebForms
             _user = new User();
         }
 
-        private void BindPricingPlansDDL()
+        private void FetchURL()
+        {
+            _pricingPlanId = Request.QueryString["pricingPlanId"];
+        }
+
+        private void BindPricingPlansDDL(string selectedValue = "0")
         {
             PricingPlansDDL.DataSource = _appManager.PricingPlans.List();
             PricingPlansDDL.DataTextField = "Name";
             PricingPlansDDL.DataValueField = "Id";
             PricingPlansDDL.DataBind();
-            PricingPlansDDL.SelectedIndex = -1;
+
+            if (PricingPlansDDL.Items.FindByValue(selectedValue) != null)
+            {
+                PricingPlansDDL.SelectedValue = selectedValue;
+            }
+            else
+            {
+                PricingPlansDDL.SelectedIndex = 0;
+            }
+
         }
 
         private void InstantiateAttributes()
@@ -60,7 +75,8 @@ namespace WebForms
         {
             if (!IsPostBack)
             {
-                BindPricingPlansDDL();
+                FetchURL();
+                BindPricingPlansDDL(_pricingPlanId);
             }
         }
 
