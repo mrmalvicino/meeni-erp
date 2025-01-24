@@ -1,5 +1,6 @@
 ﻿using BusinessLogic;
 using DomainModel;
+using Exceptions;
 using System;
 
 namespace WebForms
@@ -40,6 +41,10 @@ namespace WebForms
                     Session.Add("loggedOrganization", _loggedOrganization);
                     Response.Redirect("Dashboard.aspx", false);
                 }
+            }
+            catch (ValidationException ex)
+            {
+                (this.Master.Master as Site)?.ShowModal(ex.Message);
             }
             catch (Exception ex)
             {

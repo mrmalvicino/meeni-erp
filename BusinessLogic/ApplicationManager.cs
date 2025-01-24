@@ -79,20 +79,28 @@ namespace BusinessLogic
         {
             try
             {
+                ValidateLogin(user);
+
                 using (var transaction = new TransactionScope())
                 {
                     user.Id = _usersManager.FindId(user);
 
-                    if (0 < user.Id)
+                    if (user.Id == 0)
                     {
-                        user = _usersManager.Read(user.Id);
-                        internalOrganization.Id = _peopleManager.FindInternalOrganizationId(user);
-                        internalOrganization = _internalOrganizationsManager.Read(internalOrganization.Id);
-                        transaction.Complete();
-                        return true;
+                        throw new ValidationException("Las credenciales ingresadas son inválidas.");
                     }
 
-                    return false;
+                    user = _usersManager.Read(user.Id);
+                    internalOrganization.Id = _peopleManager.FindInternalOrganizationId(user);
+                    internalOrganization = _internalOrganizationsManager.Read(internalOrganization.Id);
+
+                    if (internalOrganization.ActivityStatus == false)
+                    {
+                        throw new ValidationException("La empresa ha sido dada de baja.");
+                    }
+
+                    transaction.Complete();
+                    return true;
                 }
             }
             catch (Exception ex) when (!(ex is ValidationException))
@@ -101,7 +109,7 @@ namespace BusinessLogic
             }
         }
 
-        public void ValidateSignUp(InternalOrganization internalOrganization)
+        private void ValidateSignUp(InternalOrganization internalOrganization)
         {
             if (string.IsNullOrEmpty(internalOrganization.Email))
             {
@@ -109,6 +117,19 @@ namespace BusinessLogic
             }
 
             Validator.ValidateEmail(internalOrganization.Email);
+        }
+
+        private void ValidateLogin(User user)
+        {
+            if (string.IsNullOrEmpty(user.Username))
+            {
+                throw new ValidationException("Ingresar nombre de usuario.");
+            }
+
+            if (string.IsNullOrEmpty(user.Password))
+            {
+                throw new ValidationException("Ingresar contraseña.");
+            }
         }
     }
 }
