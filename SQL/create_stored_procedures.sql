@@ -306,14 +306,22 @@ end
 
 go
 create or alter procedure sp_toggle_internal_organization(
-    @internal_organization_id int,
-    @activity_status bit
+    @internal_organization_id int
 )
 as
 begin
+    declare @current_status int;
+
+    select
+        @current_status = activity_status
+    from
+        internal_organizations
+    where
+        internal_organization_id = @internal_organization_id;
+
     update internal_organizations
     set
-        activity_status = @activity_status
+        activity_status = case when @current_status = 1 then 0 else 1 end
     where
         internal_organization_id = @internal_organization_id;
 end
@@ -321,6 +329,20 @@ end
 ----------------------------
 -- EXTERNAL ORGANIZATIONS --
 ----------------------------
+
+go
+create or alter procedure sp_find_internal_id(
+    @external_organization_id int
+)
+as
+begin
+    select
+        internal_organization_id
+    from
+        external_organizations
+    where
+        external_organization_id = @external_organization_id;
+end;
 
 ------------
 -- PEOPLE --

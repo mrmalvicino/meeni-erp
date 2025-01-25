@@ -47,6 +47,7 @@
     <Compile Include="CountriesDAL.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="EmployeesDAL.cs" />
+    <Compile Include="ExternalOrganizationsDAL.cs" />
     <Compile Include="ImagesDAL.cs" />
     <Compile Include="InternalOrganizationsDAL.cs" />
     <Compile Include="LegalEntitiesDAL.cs" />

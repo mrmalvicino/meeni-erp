@@ -48,6 +48,7 @@
     <Compile Include="CitiesManager.cs" />
     <Compile Include="CountriesManager.cs" />
     <Compile Include="EmployeesManager.cs" />
+    <Compile Include="ExternalOrganizationsManager.cs" />
     <Compile Include="ImagesManager.cs" />
     <Compile Include="InternalOrganizationsManager.cs" />
     <Compile Include="LegalEntitiesManager.cs" />

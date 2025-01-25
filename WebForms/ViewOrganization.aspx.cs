@@ -9,8 +9,9 @@ namespace WebForms
     public partial class ViewOrganization : System.Web.UI.Page
     {
         private ApplicationManager _appManager;
-        private InternalOrganization _internalOrganization;
-        private User _user;
+        private InternalOrganization _loggedOrganization;
+        private LegalEntity _legalEntity;
+        private int _organizationId;
 
         public ViewOrganization()
         {
@@ -29,69 +30,97 @@ namespace WebForms
             LogoImg.ImageUrl = "https://github.com/mrmalvicino/meeni-erp/blob/main/WebForms/images/logo.png?raw=true";
         }
 
-        private void FetchInternalOrganization()
+        private void FetchURL()
         {
-            _internalOrganization = Session["loggedOrganization"] as InternalOrganization;
+            string organizationId = Request.QueryString["organizationId"];
+
+            if (!string.IsNullOrEmpty(organizationId))
+            {
+                _organizationId = Convert.ToInt32(organizationId);
+            }
+        }
+
+        private void FetchLoggedOrganization()
+        {
+            _loggedOrganization = Session["loggedOrganization"] as InternalOrganization;
+        }
+
+        private void FetchLegalEntity()
+        {
+            FetchURL();
+            FetchLoggedOrganization();
+
+            bool tenancy = _appManager.ExternalOrganizations.FindInternalId(_organizationId) == _loggedOrganization.Id;
+
+            if (0 < _organizationId && tenancy)
+            {
+                _legalEntity = _appManager.LegalEntities.Read(_organizationId);
+                return;
+            }
+
+            _legalEntity = _loggedOrganization;
         }
 
         private void MapControls()
         {
-            if (_internalOrganization.LogoImage != null)
+            if (_legalEntity.LogoImage != null)
             {
-                ImageURLTxt.Text = _internalOrganization.LogoImage.URL;
+                ImageURLTxt.Text = _legalEntity.LogoImage.URL;
             }
 
-            OrganizationNameTxt.Text = _internalOrganization.Name;
-            CUITTxt.Text = _internalOrganization.CUIT;
-            EmailTxt.Text = _internalOrganization.Email;
-            PhoneTxt.Text = _internalOrganization.Phone;
+            OrganizationNameTxt.Text = _legalEntity.Name;
+            CUITTxt.Text = _legalEntity.CUIT;
+            EmailTxt.Text = _legalEntity.Email;
+            PhoneTxt.Text = _legalEntity.Phone;
 
-            if (_internalOrganization.Address != null)
+            if (_legalEntity.Address != null)
             {
-                StreetNameTxt.Text = _internalOrganization.Address.StreetName;
-                StreetNumberTxt.Text = _internalOrganization.Address.StreetNumber;
-                FlatTxt.Text = _internalOrganization.Address.Flat;
-                DetailsTxt.Text = _internalOrganization.Address.Details;
-                CityTxt.Text = _internalOrganization.Address.City?.Name;
-                ZipCodeTxt.Text = _internalOrganization.Address.City?.ZipCode;
-                ProvinceTxt.Text = _internalOrganization.Address.Province?.Name;
-                CountryTxt.Text = _internalOrganization.Address.Country?.Name;
+                StreetNameTxt.Text = _legalEntity.Address.StreetName;
+                StreetNumberTxt.Text = _legalEntity.Address.StreetNumber;
+                FlatTxt.Text = _legalEntity.Address.Flat;
+                DetailsTxt.Text = _legalEntity.Address.Details;
+                CityTxt.Text = _legalEntity.Address.City?.Name;
+                ZipCodeTxt.Text = _legalEntity.Address.City?.ZipCode;
+                ProvinceTxt.Text = _legalEntity.Address.Province?.Name;
+                CountryTxt.Text = _legalEntity.Address.Country?.Name;
             }
         }
 
         private void InstantiateAttributes()
         {
-            if (_internalOrganization.LogoImage == null)
+            if (_legalEntity.LogoImage == null)
             {
-                _internalOrganization.LogoImage = new Image();
+                _legalEntity.LogoImage = new Image();
             }
 
-            if (_internalOrganization.Address == null)
+            if (_legalEntity.Address == null)
             {
-                _internalOrganization.Address = new Address(true);
+                _legalEntity.Address = new Address(true);
             }
         }
 
         private void MapAttributes()
         {
-            _internalOrganization.LogoImage.URL = ImageURLTxt.Text;
-            _internalOrganization.Name = OrganizationNameTxt.Text;
-            _internalOrganization.CUIT = CUITTxt.Text;
-            _internalOrganization.Email = EmailTxt.Text;
-            _internalOrganization.Phone = PhoneTxt.Text;
-            _internalOrganization.Address.StreetName = StreetNameTxt.Text;
-            _internalOrganization.Address.StreetNumber = StreetNumberTxt.Text;
-            _internalOrganization.Address.Flat = FlatTxt.Text;
-            _internalOrganization.Address.Details = DetailsTxt.Text;
-            _internalOrganization.Address.City.Name = CityTxt.Text;
-            _internalOrganization.Address.City.ZipCode = ZipCodeTxt.Text;
-            _internalOrganization.Address.Province.Name = ProvinceTxt.Text;
-            _internalOrganization.Address.Country.Name = CountryTxt.Text;
+            _legalEntity.LogoImage.URL = ImageURLTxt.Text;
+            _legalEntity.Name = OrganizationNameTxt.Text;
+            _legalEntity.CUIT = CUITTxt.Text;
+            _legalEntity.Email = EmailTxt.Text;
+            _legalEntity.Phone = PhoneTxt.Text;
+            _legalEntity.Address.StreetName = StreetNameTxt.Text;
+            _legalEntity.Address.StreetNumber = StreetNumberTxt.Text;
+            _legalEntity.Address.Flat = FlatTxt.Text;
+            _legalEntity.Address.Details = DetailsTxt.Text;
+            _legalEntity.Address.City.Name = CityTxt.Text;
+            _legalEntity.Address.City.ZipCode = ZipCodeTxt.Text;
+            _legalEntity.Address.Province.Name = ProvinceTxt.Text;
+            _legalEntity.Address.Country.Name = CountryTxt.Text;
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            FetchInternalOrganization();
+            (this.Master as Admin)?.CheckCredentials();
+
+            FetchLegalEntity();
 
             if (!IsPostBack)
             {
@@ -108,8 +137,8 @@ namespace WebForms
 
             try
             {
-                _appManager.InternalOrganizations.Update(_internalOrganization);
-                Session.Add("loggedOrganization", _internalOrganization);
+                _appManager.LegalEntities.Update(_legalEntity);
+                Session.Add("loggedOrganization", _legalEntity);
                 Response.Redirect("Dashboard.aspx", false);
             }
             catch (ValidationException ex)
@@ -126,8 +155,11 @@ namespace WebForms
         {
             try
             {
-                _appManager.InternalOrganizations.Toggle(_internalOrganization);
-                (this.Master.Master as Site)?.Logout();
+                if (_loggedOrganization.Id == _legalEntity.Id)
+                {
+                    _appManager.InternalOrganizations.Toggle(_loggedOrganization);
+                    (this.Master.Master as Site)?.Logout();
+                }
             }
             catch (Exception ex)
             {

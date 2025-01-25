@@ -163,7 +163,7 @@
                 <asp:Button
                     ID="DeleteBtn"
                     runat="server"
-                    Text="Eliminar empresa"
+                    Text="Dar de baja"
                     class="dark-button big-hover"
                     OnClientClick="return confirm('¿Estás seguro que querés eliminar la empresa?');"
                     OnClick="DeleteBtn_Click" />

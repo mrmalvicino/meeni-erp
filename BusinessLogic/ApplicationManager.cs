@@ -14,6 +14,7 @@ namespace BusinessLogic
         private CitiesManager _citiesManager;
         private CountriesManager _countriesManager;
         private EmployeesManager _employeesManager;
+        private ExternalOrganizationsManager _externalOrganizationsManager;
         private ImagesManager _imagesManager;
         private InternalOrganizationsManager _internalOrganizationsManager;
         private LegalEntitiesManager _legalEntitiesManager;
@@ -27,6 +28,7 @@ namespace BusinessLogic
         public CitiesManager Cities => _citiesManager;
         public CountriesManager Countries => _countriesManager;
         public EmployeesManager Employees => _employeesManager;
+        public ExternalOrganizationsManager ExternalOrganizations => _externalOrganizationsManager;
         public ImagesManager Images => _imagesManager;
         public InternalOrganizationsManager InternalOrganizations => _internalOrganizationsManager;
         public LegalEntitiesManager LegalEntities => _legalEntitiesManager;
@@ -43,6 +45,7 @@ namespace BusinessLogic
             _citiesManager = new CitiesManager(_db);
             _countriesManager = new CountriesManager(_db);
             _employeesManager = new EmployeesManager(_db);
+            _externalOrganizationsManager = new ExternalOrganizationsManager(_db);
             _imagesManager = new ImagesManager(_db);
             _internalOrganizationsManager = new InternalOrganizationsManager(_db);
             _legalEntitiesManager = new LegalEntitiesManager(_db);

@@ -85,7 +85,6 @@ namespace DataAccess
             {
                 _db.SetProcedure("sp_toggle_internal_organization");
                 _db.SetParameter("@internal_organization_id", internalOrganization.Id);
-                _db.SetParameter("@activity_status", !internalOrganization.ActivityStatus);
                 _db.ExecuteAction();
             }
             catch (Exception ex)
