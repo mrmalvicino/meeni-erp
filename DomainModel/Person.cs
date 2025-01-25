@@ -6,6 +6,7 @@ namespace DomainModel
     public class Person : IIdentifiable
     {
         public int Id { get; set; }
+        public string DNI { get; set; }
         public string CUIL { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

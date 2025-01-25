@@ -183,6 +183,7 @@ values
 ------------
 insert into
     people (
+        dni,
         cuil,
         first_name,
         last_name,
@@ -196,6 +197,7 @@ insert into
 values
     (
         '22345678',
+        '20223456789',
         'Juan',
         'Pérez',
         'juan.perez@email.com',
@@ -206,6 +208,7 @@ values
         1
     ),
     (
+        null,
         null,
         'María',
         'González',
@@ -218,6 +221,7 @@ values
     ),
     (
         '28765432',
+        '20287654329',
         'Pedro',
         'Martínez',
         'pedro.martinez@email.com',
@@ -228,6 +232,7 @@ values
         3
     ),
     (
+        null,
         null,
         'Laura',
         'Rodríguez',
@@ -240,6 +245,7 @@ values
     ),
     (
         '31223344',
+        '23312233440',
         'Carlos',
         'Fernández',
         'carlos.fernandez@email.com',
@@ -251,6 +257,7 @@ values
     ),
     (
         '22334455',
+        '20223344557',
         'Ana',
         'López',
         'ana.lopez@email.com',
@@ -261,6 +268,7 @@ values
         1
     ),
     (
+        null,
         null,
         'José',
         'Sánchez',
@@ -273,6 +281,7 @@ values
     ),
     (
         '33445566',
+        null,
         'Lucía',
         'Paredes',
         'lucia.paredes@email.com',
@@ -283,6 +292,7 @@ values
         2
     ),
     (
+        null,
         null,
         'Ricardo',
         'Díaz',
@@ -295,6 +305,7 @@ values
     ),
     (
         '14556677',
+        null,
         'Patricia',
         'Vargas',
         'patricia.vargas@email.com',
@@ -306,6 +317,7 @@ values
     ),
     (
         '15667788',
+        null,
         'Francisco',
         'Gómez',
         'francisco.gomez@email.com',
@@ -316,6 +328,7 @@ values
         3
     ),
     (
+        null,
         null,
         'Julieta',
         'Morales',
@@ -328,6 +341,7 @@ values
     ),
     (
         '26778899',
+        null,
         'Alberto',
         'Jiménez',
         'alberto.jimenez@email.com',
@@ -338,6 +352,7 @@ values
         1
     ),
     (
+        null,
         null,
         'Roberto',
         'Ramírez',
@@ -350,6 +365,7 @@ values
     ),
     (
         '17889900',
+        null,
         'Isabel',
         'Torres',
         'isabel.torres@email.com',
@@ -360,6 +376,7 @@ values
         3
     ),
     (
+        null,
         null,
         'Santiago',
         'Ruiz',
@@ -372,6 +389,7 @@ values
     ),
     (
         '18990011',
+        null,
         'Mercedes',
         'Méndez',
         'mercedes.mendez@email.com',
@@ -382,6 +400,7 @@ values
         1
     ),
     (
+        null,
         null,
         'Gabriel',
         'Álvarez',
@@ -394,6 +413,7 @@ values
     ),
     (
         null,
+        null,
         'Valentina',
         'Ríos',
         'valentina.rios@email.com',
@@ -404,6 +424,7 @@ values
         1
     ),
     (
+        null,
         null,
         'Maximiliano',
         'Álvarez',

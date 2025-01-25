@@ -147,6 +147,7 @@ go
 create table
     people (
         person_id int identity (1, 1) not null,
+        dni varchar(8) null,
         cuil varchar(11) null,
         first_name varchar(50) not null,
         last_name varchar(50) not null,

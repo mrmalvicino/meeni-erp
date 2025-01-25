@@ -350,6 +350,7 @@ end;
 
 go
 create or alter procedure sp_create_person(
+    @dni varchar(8),
     @cuil varchar(11),
     @first_name varchar(50),
     @last_name varchar(50),
@@ -364,6 +365,7 @@ as
 begin
     insert into
         people (
+            dni,
             cuil,
             first_name,
             last_name,
@@ -376,6 +378,7 @@ begin
         ) output inserted.person_id
     values
         (
+            @dni,
             @cuil,
             @first_name,
             @last_name,
@@ -391,6 +394,7 @@ end;
 go
 create or alter procedure sp_update_person(
     @person_id int,
+    @dni varchar(8),
     @cuil varchar(11),
     @first_name varchar(50),
     @last_name varchar(50),
@@ -404,6 +408,7 @@ as
 begin
     update people
     set
+        dni = @dni,
         cuil = @cuil,
         first_name = @first_name,
         last_name = @last_name,
@@ -418,7 +423,7 @@ end
 
 go
 create or alter procedure sp_find_person_id(
-    @cuil varchar(11),
+    @dni varchar(8),
     @internal_organization_id int
 )
 as
@@ -428,7 +433,7 @@ begin
     from
         people
     where
-        cuil = @cuil
+        dni = @dni
         and internal_organization_id = @internal_organization_id;
 end;
 

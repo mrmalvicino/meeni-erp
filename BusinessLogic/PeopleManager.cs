@@ -133,6 +133,11 @@ namespace BusinessLogic
             Validator.ValidateFirstName(person.FirstName);
             Validator.ValidateLastName(person.LastName);
 
+            if (!string.IsNullOrEmpty(person.DNI))
+            {
+                Validator.ValidateDNI(person.DNI);
+            }
+
             if (!string.IsNullOrEmpty(person.CUIL))
             {
                 Validator.ValidateCUIL(person.CUIL);

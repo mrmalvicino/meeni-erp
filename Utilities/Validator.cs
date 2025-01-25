@@ -221,6 +221,19 @@ namespace Utilities
             }
         }
 
+        public static void ValidateDNI(string DNI)
+        {
+            if (!IsNumber(DNI))
+            {
+                throw new ValidationException("El DNI solo puede contener números.");
+            }
+
+            if (DNI.Length != 8)
+            {
+                throw new ValidationException("El DNI debe tener 8 dígitos.");
+            }
+        }
+
         public static void ValidateCUIT(string CUIT)
         {
             if (!IsNumber(CUIT))

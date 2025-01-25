@@ -84,7 +84,7 @@ namespace DataAccess
             try
             {
                 _db.SetProcedure("sp_find_person_id");
-                _db.SetParameter("@cuil", person.CUIL);
+                _db.SetParameter("@dni", person.DNI);
                 _db.SetParameter("@internal_organization_id", internalOrganizationId);
                 _db.ExecuteRead();
 
@@ -135,6 +135,15 @@ namespace DataAccess
             if (isUpdate)
             {
                 _db.SetParameter("@person_id", person.Id);
+            }
+
+            if (!string.IsNullOrEmpty(person.DNI))
+            {
+                _db.SetParameter("@dni", person.DNI);
+            }
+            else
+            {
+                _db.SetParameter("@dni", DBNull.Value);
             }
 
             if (!string.IsNullOrEmpty(person.CUIL))
@@ -200,6 +209,7 @@ namespace DataAccess
         private void ReadRow(Person person)
         {
             person.Id = Convert.ToInt32(_db.Reader["person_id"]);
+            person.DNI = _db.Reader["dni"]?.ToString();
             person.CUIL = _db.Reader["cuil"]?.ToString();
             person.FirstName = _db.Reader["first_name"].ToString();
             person.LastName = _db.Reader["last_name"].ToString();
