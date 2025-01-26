@@ -1,83 +1,83 @@
-﻿<%@ Page Title="View Organization" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="ViewOrganization.aspx.cs" Inherits="WebForms.ViewOrganization" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="ViewEmployee.aspx.cs" Inherits="WebForms.ViewEmployee" %>
 
 <asp:Content ID="HeadContent" ContentPlaceHolderID="AdminHeadPlaceHolder" runat="server">
 </asp:Content>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="AdminMainPlaceHolder" runat="server">
     <div class="height-100-pct width-100-pct col-flex justify-center padding-10-px">
-        <h1>Datos de organización</h1>
+        <h1>Datos de empleado</h1>
         <div class="wrapped-flex justify-center">
 
-            <!-- Logo -->
+            <!-- Foto de perfil -->
 
             <div class="container-div width-300-px height-520-px margin-10-px">
-                <p class="center-text">Logo</p>
+                <p class="center-text">Foto de perfil</p>
                 <div class="width-100-pct">
-                    <asp:Image ID="LogoImg" runat="server" class="fit-image circle-border" />
+                    <asp:Image ID="ProfileImg" runat="server" class="fit-image circle-border" />
                 </div>
-                <label for="ImageURLTxt">URL del logo</label>
+                <label for="ImageURLTxt">URL de la foto</label>
                 <asp:TextBox
                     ID="ImageURLTxt"
                     runat="server"
                     TextMode="SingleLine"
                     class="width-100-pct input-box"
-                    placeholder="URL del logo"
+                    placeholder="URL de la foto"
                     AutoPostBack="true">
                 </asp:TextBox>
             </div>
 
-            <div class="col-flex space-between height-520-px margin-10-px">
+            <!-- Identificación personal -->
 
-                <!-- Identificación fiscal -->
-
-                <div class="container-div width-300-px height-250-px">
-                    <p class="center-text">Identificación fiscal</p>
-                    <div>
-                        <label for="OrganizationNameTxt">Organización</label>
-                        <asp:TextBox
-                            ID="OrganizationNameTxt"
-                            runat="server"
-                            TextMode="SingleLine"
-                            class="width-100-pct input-box"
-                            placeholder="Nombre de la empresa">
-                        </asp:TextBox>
-                    </div>
-                    <div>
-                        <label for="CUITTxt">CUIT</label>
-                        <asp:TextBox
-                            ID="CUITTxt"
-                            runat="server"
-                            TextMode="Number"
-                            class="width-100-pct input-box"
-                            placeholder="CUIT de la empresa">
-                        </asp:TextBox>
-                    </div>
+            <div class="container-div width-300-px height-520-px margin-10-px">
+                <p class="center-text">Identificación personal</p>
+                <div>
+                    <label for="DNITxt">DNI</label>
+                    <asp:TextBox
+                        ID="DNITxt"
+                        runat="server"
+                        TextMode="Number"
+                        class="width-100-pct input-box"
+                        placeholder="DNI">
+                    </asp:TextBox>
                 </div>
-
-                <!-- Contacto -->
-
-                <div class="container-div width-300-px height-250-px">
-                    <p class="center-text">Contacto</p>
-                    <div>
-                        <label for="EmailTxt">Email</label>
-                        <asp:TextBox
-                            ID="EmailTxt"
-                            runat="server"
-                            TextMode="Email"
-                            class="width-100-pct input-box"
-                            placeholder="Email de tu empresa">
-                        </asp:TextBox>
-                    </div>
-                    <div>
-                        <label for="PhoneTxt">Teléfono</label>
-                        <asp:TextBox
-                            ID="PhoneTxt"
-                            runat="server"
-                            TextMode="Number"
-                            class="width-100-pct input-box"
-                            placeholder="Teléfono de tu empresa">
-                        </asp:TextBox>
-                    </div>
+                <div>
+                    <label for="CUILTxt">CUIL</label>
+                    <asp:TextBox
+                        ID="CUILTxt"
+                        runat="server"
+                        TextMode="Number"
+                        class="width-100-pct input-box"
+                        placeholder="CUIL">
+                    </asp:TextBox>
+                </div>
+                <div>
+                    <label for="FirstNameTxt">Nombre</label>
+                    <asp:TextBox
+                        ID="FirstNameTxt"
+                        runat="server"
+                        TextMode="SingleLine"
+                        class="width-100-pct input-box"
+                        placeholder="Nombre">
+                    </asp:TextBox>
+                </div>
+                <div>
+                    <label for="LastNameTxt">Apellido</label>
+                    <asp:TextBox
+                        ID="LastNameTxt"
+                        runat="server"
+                        TextMode="SingleLine"
+                        class="width-100-pct input-box"
+                        placeholder="Apellido">
+                    </asp:TextBox>
+                </div>
+                <div>
+                    <label for="BirthDateTxt">Fecha de nacimiento</label>
+                    <asp:TextBox
+                        ID="BirthDateTxt"
+                        runat="server"
+                        TextMode="DateTimeLocal"
+                        class="width-100-pct input-box">
+                    </asp:TextBox>
                 </div>
             </div>
 
@@ -167,6 +167,32 @@
                         TextMode="SingleLine"
                         class="width-100-pct input-box"
                         placeholder="País">
+                    </asp:TextBox>
+                </div>
+            </div>
+
+            <!-- Contacto -->
+
+            <div class="container-div width-300-px margin-10-px">
+                <p class="center-text">Contacto</p>
+                <div>
+                    <label for="EmailTxt">Email</label>
+                    <asp:TextBox
+                        ID="EmailTxt"
+                        runat="server"
+                        TextMode="Email"
+                        class="width-100-pct input-box"
+                        placeholder="Email">
+                    </asp:TextBox>
+                </div>
+                <div>
+                    <label for="PhoneTxt">Teléfono</label>
+                    <asp:TextBox
+                        ID="PhoneTxt"
+                        runat="server"
+                        TextMode="Number"
+                        class="width-100-pct input-box"
+                        placeholder="Teléfono">
                     </asp:TextBox>
                 </div>
             </div>
