@@ -138,7 +138,6 @@ namespace WebForms
             try
             {
                 _appManager.LegalEntities.Update(_legalEntity);
-                Session.Add("loggedOrganization", _legalEntity);
                 Response.Redirect("Dashboard.aspx", false);
             }
             catch (ValidationException ex)

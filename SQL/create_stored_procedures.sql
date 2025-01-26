@@ -29,7 +29,7 @@ begin
         image_url = @image_url
     where
         image_id = @image_id;
-end
+end;
 
 go
 create or alter procedure sp_find_image_id(
@@ -186,7 +186,7 @@ begin
         city_id = @city_id
     where
         address_id = @address_id;
-end
+end;
 
 go
 create or alter procedure sp_find_address_id(
@@ -252,7 +252,7 @@ begin
         address_id = @address_id
     where
         legal_entity_id = @legal_entity_id;
-end
+end;
 
 -------------------
 -- PRICING PLANS --
@@ -302,7 +302,7 @@ begin
         pricing_plan_id = @pricing_plan_id
     where
         internal_organization_id = @internal_organization_id;
-end
+end;
 
 go
 create or alter procedure sp_toggle_internal_organization(
@@ -324,14 +324,14 @@ begin
         activity_status = case when @current_status = 1 then 0 else 1 end
     where
         internal_organization_id = @internal_organization_id;
-end
+end;
 
 ----------------------------
 -- EXTERNAL ORGANIZATIONS --
 ----------------------------
 
 go
-create or alter procedure sp_find_internal_id(
+create or alter procedure sp_find_organization_internal_id(
     @external_organization_id int
 )
 as
@@ -419,7 +419,7 @@ begin
         address_id = @address_id
     where
         person_id = @person_id;
-end
+end;
 
 go
 create or alter procedure sp_find_person_id(
@@ -435,6 +435,20 @@ begin
     where
         dni = @dni
         and internal_organization_id = @internal_organization_id;
+end;
+
+go
+create or alter procedure sp_find_person_internal_id(
+    @person_id int
+)
+as
+begin
+    select
+        internal_organization_id
+    from
+        people
+    where
+        person_id = @person_id;
 end;
 
 -----------------------
@@ -456,6 +470,41 @@ begin
         output inserted.employee_id
     values
         (@employee_id);
+end;
+
+go
+create or alter procedure sp_update_employee(
+    @employee_id int
+)
+as
+begin
+    update employees
+    set
+        employee_id = @employee_id
+    where
+        employee_id = @employee_id;
+end;
+
+go
+create or alter procedure sp_toggle_employee(
+    @employee_id int
+)
+as
+begin
+    declare @current_status int;
+
+    select
+        @current_status = activity_status
+    from
+        employees
+    where
+        employee_id = @employee_id;
+
+    update employees
+    set
+        activity_status = case when @current_status = 1 then 0 else 1 end
+    where
+        employee_id = @employee_id;
 end;
 
 -----------

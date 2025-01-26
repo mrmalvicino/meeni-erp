@@ -75,7 +75,7 @@
                     <asp:TextBox
                         ID="BirthDateTxt"
                         runat="server"
-                        TextMode="DateTimeLocal"
+                        TextMode="Date"
                         class="width-100-pct input-box">
                     </asp:TextBox>
                 </div>
@@ -207,7 +207,7 @@
                     runat="server"
                     Text="Dar de baja"
                     class="dark-button big-hover"
-                    OnClientClick="return confirm('¿Estás seguro que querés eliminar la empresa?');"
+                    OnClientClick="return confirm('¿Estás seguro?');"
                     OnClick="DeleteBtn_Click" />
             </div>
             <div class="margin-10-px">

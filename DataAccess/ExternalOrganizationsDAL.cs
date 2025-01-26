@@ -21,7 +21,7 @@ namespace DataAccess
         {
             try
             {
-                _db.SetProcedure("sp_find_internal_id");
+                _db.SetProcedure("sp_find_organization_internal_id");
                 _db.SetParameter("@external_organization_id", externalOrganizationId);
                 _db.ExecuteRead();
 

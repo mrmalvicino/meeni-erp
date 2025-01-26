@@ -78,6 +78,24 @@ namespace DataAccess
             }
         }
 
+        public void Toggle(Employee employee)
+        {
+            try
+            {
+                _db.SetProcedure("sp_toggle_employee");
+                _db.SetParameter("@employee_id", employee.Id);
+                _db.ExecuteAction();
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ex);
+            }
+            finally
+            {
+                _db.CloseConnection();
+            }
+        }
+
         private void SetParameters(Employee employee)
         {
             _db.SetParameter("@employee_id", employee.Id);

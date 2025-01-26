@@ -78,7 +78,7 @@ namespace BusinessLogic
             {
                 using (var transaction = new TransactionScope())
                 {
-                    _employeesManager.Update(user, internalOrganizationId);
+                    _employeesManager.Update(user);
                     Validate(user);
                     _usersDAL.Update(user);
                     // Falta editar roles de usuario

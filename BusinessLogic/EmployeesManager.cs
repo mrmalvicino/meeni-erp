@@ -60,13 +60,13 @@ namespace BusinessLogic
             return _employee;
         }
 
-        public void Update(Employee employee, int internalOrganizationId)
+        public void Update(Employee employee)
         {
             try
             {
                 using (var transaction = new TransactionScope())
                 {
-                    _peopleManager.Update(employee, internalOrganizationId);
+                    _peopleManager.CallUpdate(employee);
                     _employeesDAL.Update(employee);
                     transaction.Complete();
                 }
@@ -74,6 +74,18 @@ namespace BusinessLogic
             catch (Exception ex) when (!(ex is ValidationException))
             {
                 throw new TransactionScopeException(ex);
+            }
+        }
+
+        public void Toggle(Employee employee)
+        {
+            try
+            {
+                _employeesDAL.Toggle(employee);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex);
             }
         }
     }

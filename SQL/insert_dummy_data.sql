@@ -42,7 +42,7 @@ values
     ('Av. Inventada', '3500', '2C', null, 1),
     ('Calle Ficticia', '1200', '1D', null, 1),
     ('Av. Falsa', '5600', '4C', null, 2),
-    ('Av. Falsa', '1234', '4C', null, 2),
+    ('Av. Falsa', '1234', '4C', 'Cerca del cruce', 2),
     ('Calle Sin Salida', '200', null, null, 3),
     ('Calle De Valuada', '2975', null, null, 4),
     ('Av. del Río', '158', null, null, 5),

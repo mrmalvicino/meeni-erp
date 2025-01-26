@@ -62,6 +62,7 @@ namespace Utilities
             where OriginClass : Person, new()
         {
             destinyObject.Id = originObject.Id;
+            destinyObject.DNI = originObject.DNI;
             destinyObject.CUIL = originObject.CUIL;
             destinyObject.FirstName = originObject.FirstName;
             destinyObject.LastName = originObject.LastName;

@@ -71,10 +71,10 @@ namespace BusinessLogic
 
         protected override void Update(Person person)
         {
-            Update(person, _internalOrganizationId);
+            CallUpdate(person);
         }
 
-        public void Update(Person person, int internalOrganizationId)
+        public void CallUpdate(Person person)
         {
             try
             {
@@ -83,7 +83,7 @@ namespace BusinessLogic
                     person.ProfileImage = _imagesManager.Handle(person.ProfileImage);
                     person.Address = _addressesManager.Handle(person.Address);
                     Validate(person);
-                    _peopleDAL.Update(person, internalOrganizationId);
+                    _peopleDAL.Update(person);
                     transaction.Complete();
                 }
             }
@@ -110,11 +110,11 @@ namespace BusinessLogic
             }
         }
 
-        public int FindInternalOrganizationId(Person person)
+        public int FindInternalId(int personId)
         {
             try
             {
-                return _peopleDAL.FindInternalOrganizationId(person);
+                return _peopleDAL.FindInternalId(personId);
             }
             catch (Exception ex)
             {

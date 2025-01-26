@@ -61,12 +61,12 @@ namespace DataAccess
             }
         }
 
-        public void Update(Person person, int internalOrganizationId)
+        public void Update(Person person)
         {
             try
             {
                 _db.SetProcedure("sp_update_person");
-                SetParameters(person, internalOrganizationId, true);
+                SetParameters(person, 0, true);
                 _db.ExecuteAction();
             }
             catch (Exception ex)
@@ -105,12 +105,12 @@ namespace DataAccess
             }
         }
 
-        public int FindInternalOrganizationId(Person person)
+        public int FindInternalId(int personId)
         {
             try
             {
-                _db.SetQuery("select internal_organization_id from people where person_id = @person_id");
-                _db.SetParameter("@person_id", person.Id);
+                _db.SetProcedure("sp_find_person_internal_id");
+                _db.SetParameter("@person_id", personId);
                 _db.ExecuteRead();
 
                 if (_db.Reader.Read())
@@ -130,7 +130,7 @@ namespace DataAccess
             }
         }
 
-        private void SetParameters(Person person, int internalOrganizationId, bool isUpdate = false)
+        private void SetParameters(Person person, int internalOrganizationId = 0, bool isUpdate = false)
         {
             if (isUpdate)
             {
@@ -203,7 +203,10 @@ namespace DataAccess
                 _db.SetParameter("@address_id", DBNull.Value);
             }
 
-            _db.SetParameter("@internal_organization_id", internalOrganizationId);
+            if (!isUpdate)
+            {
+                _db.SetParameter("@internal_organization_id", internalOrganizationId);
+            }
         }
 
         private void ReadRow(Person person)
