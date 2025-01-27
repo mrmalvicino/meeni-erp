@@ -45,55 +45,55 @@
             <nav class="width-100-pct">
                 <ul>
                     <li>
-                        <a href="Dashboard.aspx" class="dark-button big-hover">
+                        <a href="Dashboard.aspx" class="dark-button big-hover justify-left">
                             <i class="bi bi-house"></i>
                             <span>Inicio</span>
                         </a>
                     </li>
                     <li>
-                        <a href="Users.aspx" class="dark-button big-hover">
+                        <a href="Users.aspx" class="dark-button big-hover justify-left">
                             <i class="bi bi-person-badge"></i>
                             <span>Usuarios</span>
                         </a>
                     </li>
                     <li>
-                        <a href="Clients.aspx" class="dark-button big-hover">
+                        <a href="Clients.aspx" class="dark-button big-hover justify-left">
                             <i class="bi bi-people"></i>
                             <span>Clientes</span>
                         </a>
                     </li>
                     <li>
-                        <a href="Suppliers.aspx" class="dark-button big-hover">
+                        <a href="Suppliers.aspx" class="dark-button big-hover justify-left">
                             <i class="bi bi-truck"></i>
                             <span>Proveedores</span>
                         </a>
                     </li>
                     <li>
-                        <a href="Warehouses.aspx" class="dark-button big-hover">
+                        <a href="Warehouses.aspx" class="dark-button big-hover justify-left">
                             <i class="bi bi-buildings"></i>
                             <span>Depósitos</span>
                         </a>
                     </li>
                     <li>
-                        <a href="Products.aspx" class="dark-button big-hover">
+                        <a href="Products.aspx" class="dark-button big-hover justify-left">
                             <i class="bi bi-box-seam"></i>
                             <span>Productos</span>
                         </a>
                     </li>
                     <li>
-                        <a href="Services.aspx" class="dark-button big-hover">
+                        <a href="Services.aspx" class="dark-button big-hover justify-left">
                             <i class="bi bi-tools"></i>
                             <span>Servicios</span>
                         </a>
                     </li>
                     <li>
-                        <a href="Transactions.aspx" class="dark-button big-hover">
+                        <a href="Transactions.aspx" class="dark-button big-hover justify-left">
                             <i class="bi bi-cash-coin"></i>
                             <span>Movimientos</span>
                         </a>
                     </li>
                     <li>
-                        <a href="Quotes.aspx" class="dark-button big-hover">
+                        <a href="Quotes.aspx" class="dark-button big-hover justify-left">
                             <i class="bi-file-earmark-text"></i>
                             <span>Cotizaciones</span>
                         </a>

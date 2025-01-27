@@ -113,3 +113,10 @@
     .big-hover:hover {
         transform: scale(1.1);
     }
+
+.justify-left {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+}
