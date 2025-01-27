@@ -84,6 +84,17 @@
         background-color: var(--gray-medium);
     }
 
+.asp-link-button {
+    margin: 5px;
+    color: var(--black-soft);
+    transition: transform 0.5s ease;
+}
+
+    .asp-link-button:hover {
+        color: var(--black-pure);
+        transform: scale(1.3);
+    }
+
 .invisible-link {
     margin: 0px;
     padding: 0px;

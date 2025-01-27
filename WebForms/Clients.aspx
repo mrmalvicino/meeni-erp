@@ -7,15 +7,54 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="AdminMainPlaceHolder" runat="server">
     <div class="height-100-pct width-100-pct col-flex justify-center padding-10-px">
         <h1>Clientes</h1>
+
+        <!-- Búsqueda y alta -->
+
         <div class="grid-1-cols width-100-pct">
-            <div class="container-div margin-10-px height-200-px">
-                Buscador y agregar cliente
+            <div class="container-div margin-10-px">
+                <div class="wrapped-flex space-between">
+                    <div class="row-flex space-between">
+                        <asp:TextBox
+                            ID="SearchTxt"
+                            runat="server"
+                            class="input-box width-250-px"
+                            placeholder="Buscar cliente...">
+                        </asp:TextBox>
+                        <asp:LinkButton
+                            ID="SearchBtn"
+                            runat="server"
+                            Text='<i class="bi bi-search"></i>'
+                            class="asp-link-button margin-20-px">
+                        </asp:LinkButton>
+                    </div>
+                    <div>
+                        <asp:DropDownList ID="ActivityStatusDDL" runat="server" class="input-box width-250-px">
+                            <asp:ListItem Text="Solo activos" Value="Active"></asp:ListItem>
+                            <asp:ListItem Text="Solo dados de baja" Value="Deleted"></asp:ListItem>
+                            <asp:ListItem Text="Ver todos" Value="All"></asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                    <div class="row-flex space-between">
+                        <asp:DropDownList ID="TypeDDL" runat="server" class="input-box width-250-px">
+                            <asp:ListItem Text="Persona física" Value="Person"></asp:ListItem>
+                            <asp:ListItem Text="Organización" Value="ExternalOrganization"></asp:ListItem>
+                        </asp:DropDownList>
+                        <asp:LinkButton
+                            ID="CreateBtn"
+                            runat="server"
+                            Text='<i class="bi bi-plus-circle"></i>'
+                            class="asp-link-button margin-20-px">
+                        </asp:LinkButton>
+                    </div>
+                </div>
             </div>
+
+            <!-- Tabla de personas físicas -->
+
             <div class="container-div margin-10-px">
                 <table>
                     <thead>
                         <tr>
-                            <th scope="col">ID</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Apellido</th>
                             <th scope="col">Acciones</th>
@@ -25,16 +64,6 @@
                         <asp:Repeater ID="HumanClientsRpt" runat="server" OnItemCommand="HumanClientsRpt_ItemCommand">
                             <ItemTemplate>
                                 <tr>
-
-                                    <!-- ID -->
-
-                                    <td scope="row">
-                                        <asp:Label
-                                            ID="IdLbl"
-                                            runat="server"
-                                            Text='<%#Eval("Id")%>'>
-                                        </asp:Label>
-                                    </td>
 
                                     <!-- Nombre -->
 
@@ -68,7 +97,7 @@
                                             CommandName="Edit"
                                             CommandArgument='<%#Eval("Id")%>'
                                             Text='<i class="bi bi-pencil-square"></i>'
-                                            class="dark-font margin-0-5-px">
+                                            class="asp-link-button">
                                         </asp:LinkButton>
 
                                         <!-- Eliminar -->
@@ -79,7 +108,7 @@
                                             CommandName="Delete"
                                             CommandArgument='<%#Eval("Id")%>'
                                             Text='<i class="bi bi-trash3"></i>'
-                                            class="dark-font margin-0-5-px">
+                                            class="asp-link-button">
                                         </asp:LinkButton>
 
                                     </td>
@@ -89,6 +118,10 @@
                     </tbody>
                 </table>
             </div>
+
+            <!-- Tabla de organizaciones externas -->
+
+
         </div>
     </div>
 </asp:Content>
