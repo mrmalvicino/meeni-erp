@@ -95,7 +95,7 @@
                                             ID="EditBtn"
                                             runat="server"
                                             CommandName="Edit"
-                                            CommandArgument='<%#Eval("Id")%>'
+                                            CommandArgument='<%#Eval("Person.Id")%>'
                                             Text='<i class="bi bi-pencil-square"></i>'
                                             class="asp-link-button">
                                         </asp:LinkButton>
@@ -106,7 +106,7 @@
                                             ID="DeleteBtn"
                                             runat="server"
                                             CommandName="Delete"
-                                            CommandArgument='<%#Eval("Id")%>'
+                                            CommandArgument='<%#Eval("Person.Id")%>'
                                             Text='<i class="bi bi-trash3"></i>'
                                             class="asp-link-button">
                                         </asp:LinkButton>
@@ -121,6 +121,62 @@
 
             <!-- Tabla de organizaciones externas -->
 
+            <div class="container-div margin-10-px">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">Organización</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <asp:Repeater ID="CorporateClientsRpt" runat="server" OnItemCommand="CorporateClientsRpt_ItemCommand">
+                            <ItemTemplate>
+                                <tr>
+
+                                    <!-- Nombre de la organización -->
+
+                                    <td scope="row">
+                                        <asp:Label
+                                            ID="NameLbl"
+                                            runat="server"
+                                            Text='<%#Eval("Organization.Name")%>'>
+                                        </asp:Label>
+                                    </td>
+
+                                    <!-- Acciones -->
+
+                                    <td class="row-flex justify-center">
+
+                                        <!-- Editar -->
+
+                                        <asp:LinkButton
+                                            ID="EditBtn"
+                                            runat="server"
+                                            CommandName="Edit"
+                                            CommandArgument='<%#Eval("Organization.Id")%>'
+                                            Text='<i class="bi bi-pencil-square"></i>'
+                                            class="asp-link-button">
+                                        </asp:LinkButton>
+
+                                        <!-- Eliminar -->
+
+                                        <asp:LinkButton
+                                            ID="DeleteBtn"
+                                            runat="server"
+                                            CommandName="Delete"
+                                            CommandArgument='<%#Eval("Organization.Id")%>'
+                                            Text='<i class="bi bi-trash3"></i>'
+                                            class="asp-link-button">
+                                        </asp:LinkButton>
+
+                                    </td>
+                                </tr>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </tbody>
+                </table>
+            </div>
 
         </div>
     </div>

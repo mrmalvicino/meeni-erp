@@ -10,11 +10,13 @@ namespace BusinessLogic
     {
         private BusinessPartner _businessPartner;
         private BusinessPartnersDAL _businesPartnersDAL;
+        private ExternalOrganizationsManager _externalOrganizationsManager;
         private PeopleManager _peopleManager;
 
         public BusinessPartnersManager(Database db)
         {
             _businesPartnersDAL = new BusinessPartnersDAL(db);
+            _externalOrganizationsManager = new ExternalOrganizationsManager(db);
             _peopleManager = new PeopleManager(db);
         }
 
@@ -65,14 +67,13 @@ namespace BusinessLogic
 
                 foreach (BusinessPartner partner in partners)
                 {
-                    if (partner.Person != null)
-                    {
-                        partner.Person = _peopleManager.Read(partner.Person.Id);
-                    }
-
                     if (partner.Organization != null)
                     {
-                        //partner.Organization = _externalOrganizationsManager.Read(partner.Organization.Id);
+                        partner.Organization = _externalOrganizationsManager.Read(partner.Organization.Id);
+                    }
+                    else if (partner.Person != null)
+                    {
+                        partner.Person = _peopleManager.Read(partner.Person.Id);
                     }
                 }
 

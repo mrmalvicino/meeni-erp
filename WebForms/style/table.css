@@ -18,5 +18,4 @@
         table tbody tr:hover {
             background: linear-gradient(to right, transparent, #FAFAFA, transparent);
             color: var(--black-pure);
-            font-weight: 500;
         }

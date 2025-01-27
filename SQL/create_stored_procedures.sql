@@ -331,6 +331,20 @@ end;
 ----------------------------
 
 go
+create or alter procedure sp_read_external_organization(
+    @external_organization_id int
+)
+as
+begin
+    select
+        *
+    from
+        external_organizations
+    where
+        external_organization_id = @external_organization_id;
+end;
+
+go
 create or alter procedure sp_find_organization_internal_id(
     @external_organization_id int
 )

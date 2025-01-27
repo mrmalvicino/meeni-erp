@@ -35,6 +35,12 @@ namespace WebForms
             HumanClientsRpt.DataBind();
         }
 
+        public void BindCorporateClientsRpt()
+        {
+            CorporateClientsRpt.DataSource = _corporateClients;
+            CorporateClientsRpt.DataBind();
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             (this.Master as Admin)?.CheckCredentials();
@@ -45,10 +51,25 @@ namespace WebForms
             {
                 FetchClients();
                 BindHumanClientsRpt();
+                BindCorporateClientsRpt();
             }
         }
 
         protected void HumanClientsRpt_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            int clientId = Convert.ToInt32(e.CommandArgument);
+
+            if (e.CommandName == "Edit")
+            {
+
+            }
+            else if (e.CommandName == "Delete")
+            {
+
+            }
+        }
+
+        protected void CorporateClientsRpt_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
             int clientId = Convert.ToInt32(e.CommandArgument);
 
