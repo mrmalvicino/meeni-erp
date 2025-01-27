@@ -28,12 +28,19 @@
                             OnClick="SearchBtn_Click">
                         </asp:LinkButton>
                     </div>
-                    <div>
+                    <div class="row-flex space-between">
                         <asp:DropDownList ID="ActivityStatusDDL" runat="server" class="input-box width-250-px">
                             <asp:ListItem Text="Solo activos" Value="Active"></asp:ListItem>
-                            <asp:ListItem Text="Solo dados de baja" Value="Deleted"></asp:ListItem>
+                            <asp:ListItem Text="Solo dados de baja" Value="Inactive"></asp:ListItem>
                             <asp:ListItem Text="Ver todos" Value="All"></asp:ListItem>
                         </asp:DropDownList>
+                        <asp:LinkButton
+                            ID="RefreshBtn"
+                            runat="server"
+                            Text='<i class="bi bi-arrow-clockwise"></i>'
+                            class="asp-link-button margin-20-px"
+                            OnClick="RefreshBtn_Click">
+                        </asp:LinkButton>
                     </div>
                     <div class="row-flex space-between">
                         <asp:DropDownList ID="TypeDDL" runat="server" class="input-box width-250-px">
@@ -44,7 +51,8 @@
                             ID="CreateBtn"
                             runat="server"
                             Text='<i class="bi bi-plus-circle"></i>'
-                            class="asp-link-button margin-20-px">
+                            class="asp-link-button margin-20-px"
+                            OnClick="CreateBtn_Click">
                         </asp:LinkButton>
                     </div>
                 </div>

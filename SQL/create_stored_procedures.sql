@@ -474,10 +474,33 @@ create or alter procedure sp_list_business_partners(
     @list_clients bit,
     @list_suppliers bit,
     @list_people bit,
-    @internal_organization_id int
+    @internal_organization_id int,
+    @list_active bit,
+    @list_inactive bit
 )
 as
 begin
+    declare @wanted_status_1 bit;
+    declare @wanted_status_2 bit;
+
+    if (@list_active = 1 and @list_inactive = 0)
+    begin
+        set @wanted_status_1 = 1;
+        set @wanted_status_2 = 1;
+    end;
+
+    if (@list_active = 0 and @list_inactive = 1)
+    begin
+        set @wanted_status_1 = 0;
+        set @wanted_status_2 = 0;
+    end;
+
+    if (@list_active = 1 and @list_inactive = 1)
+    begin
+        set @wanted_status_1 = 1;
+        set @wanted_status_2 = 0;
+    end;
+
     if (@list_people = 1)
     begin
         select
@@ -490,7 +513,11 @@ begin
             and BP.is_supplier = @list_suppliers
             and BP.external_organization_id is null
             and BP.person_id is not null
-            and P.internal_organization_id = @internal_organization_id;
+            and P.internal_organization_id = @internal_organization_id
+            and (
+                BP.activity_status = @wanted_status_1
+                or BP.activity_status = @wanted_status_2
+            );
     end;
 
     if (@list_people = 0)
@@ -505,7 +532,11 @@ begin
             and BP.is_supplier = @list_suppliers
             and BP.external_organization_id is not null
             and BP.person_id is null
-            and EO.internal_organization_id = @internal_organization_id;
+            and EO.internal_organization_id = @internal_organization_id
+            and (
+                BP.activity_status = @wanted_status_1
+                or BP.activity_status = @wanted_status_2
+            );
     end;
 end;
 

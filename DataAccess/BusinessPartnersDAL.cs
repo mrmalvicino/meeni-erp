@@ -62,7 +62,13 @@ namespace DataAccess
             }
         }
 
-        public List<BusinessPartner> List(bool listClients, bool listSuppliers, bool listPeople, int internalOrganizationId)
+        public List<BusinessPartner> List(
+            bool listClients,
+            bool listSuppliers,
+            bool listPeople,
+            int internalOrganizationId,
+            bool listActive = true,
+            bool listInactive = true)
         {
             List<BusinessPartner> businessPartners = new List<BusinessPartner>();
 
@@ -73,6 +79,8 @@ namespace DataAccess
                 _db.SetParameter("@list_suppliers", listSuppliers);
                 _db.SetParameter("@list_people", listPeople);
                 _db.SetParameter("@internal_organization_id", internalOrganizationId);
+                _db.SetParameter("@list_active", listActive);
+                _db.SetParameter("@list_inactive", listInactive);
                 _db.ExecuteRead();
 
                 while (_db.Reader.Read())

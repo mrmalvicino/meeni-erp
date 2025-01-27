@@ -26,8 +26,27 @@ namespace WebForms
 
         private void FetchClients()
         {
-            _humanClients = _appManager.BusinessPartners.List(true, false, true, _loggedOrganization.Id);
-            _corporateClients = _appManager.BusinessPartners.List(true, false, false, _loggedOrganization.Id);
+            bool listActive = true;
+            bool listInactive = true;
+
+            string selectedValue = ActivityStatusDDL.SelectedValue;
+
+            if (selectedValue == "Active")
+            {
+                listActive = true;
+                listInactive = false;
+            }
+            else if (selectedValue == "Inactive")
+            {
+                listActive = false;
+                listInactive = true;
+            }
+
+            _humanClients = _appManager.BusinessPartners.List(
+                true, false, true, _loggedOrganization.Id, listActive, listInactive);
+
+            _corporateClients = _appManager.BusinessPartners.List(
+                true, false, false, _loggedOrganization.Id, listActive, listInactive);
         }
 
         private void BindHumanClientsRpt()
@@ -54,17 +73,28 @@ namespace WebForms
                 ).ToList();
         }
 
+        private void MapControls(bool applyFilter = false)
+        {
+            FetchClients();
+
+            if (applyFilter)
+            {
+                ApplyFilter();
+            }
+
+            BindHumanClientsRpt();
+            BindCorporateClientsRpt();
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             (this.Master as Admin)?.CheckCredentials();
-
+            
             FetchLoggedOrganization();
 
             if (!IsPostBack)
             {
-                FetchClients();
-                BindHumanClientsRpt();
-                BindCorporateClientsRpt();
+                MapControls();
             }
         }
 
@@ -98,10 +128,18 @@ namespace WebForms
 
         protected void SearchBtn_Click(object sender, EventArgs e)
         {
-            FetchClients();
-            ApplyFilter();
-            BindHumanClientsRpt();
-            BindCorporateClientsRpt();
+            MapControls(true);
+        }
+
+        protected void RefreshBtn_Click(object sender, EventArgs e)
+        {
+            SearchTxt.Text = string.Empty;
+            MapControls();
+        }
+
+        protected void CreateBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

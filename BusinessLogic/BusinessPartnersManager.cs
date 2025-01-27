@@ -58,12 +58,24 @@ namespace BusinessLogic
             return _businessPartner;
         }
 
-        public List<BusinessPartner> List(bool listClients, bool listSuppliers, bool listPeople, int internalOrganizationId)
+        public List<BusinessPartner> List(
+            bool listClients,
+            bool listSuppliers,
+            bool listPeople,
+            int internalOrganizationId,
+            bool listActive = true,
+            bool listInactive = true)
         {
             try
             {
                 List<BusinessPartner> partners;
-                partners = _businesPartnersDAL.List(listClients, listSuppliers, listPeople, internalOrganizationId);
+                partners = _businesPartnersDAL.List(
+                    listClients,
+                    listSuppliers,
+                    listPeople,
+                    internalOrganizationId,
+                    listActive,
+                    listInactive);
 
                 foreach (BusinessPartner partner in partners)
                 {
