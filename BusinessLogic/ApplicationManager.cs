@@ -11,6 +11,7 @@ namespace BusinessLogic
     {
         private Database _db;
         private AddressesManager _addressesManager;
+        private BusinessPartnersManager _businessPartnersManager;
         private CitiesManager _citiesManager;
         private CountriesManager _countriesManager;
         private EmployeesManager _employeesManager;
@@ -25,6 +26,7 @@ namespace BusinessLogic
         private UsersManager _usersManager;
 
         public AddressesManager Addresses => _addressesManager;
+        public BusinessPartnersManager BusinessPartners => _businessPartnersManager;
         public CitiesManager Cities => _citiesManager;
         public CountriesManager Countries => _countriesManager;
         public EmployeesManager Employees => _employeesManager;
@@ -42,6 +44,7 @@ namespace BusinessLogic
         {
             _db = new Database();
             _addressesManager = new AddressesManager(_db);
+            _businessPartnersManager = new BusinessPartnersManager(_db);
             _citiesManager = new CitiesManager(_db);
             _countriesManager = new CountriesManager(_db);
             _employeesManager = new EmployeesManager(_db);

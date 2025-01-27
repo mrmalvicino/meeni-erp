@@ -97,6 +97,7 @@
     <Content Include="style\paddings.css" />
     <Content Include="style\containers.css" />
     <Content Include="style\inputs.css" />
+    <Content Include="style\table.css" />
     <Content Include="style\whatsapp.css" />
     <Content Include="style\widths.css" />
     <Content Include="ViewEmployee.aspx" />

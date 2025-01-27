@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="Clients" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Clients.aspx.cs" Inherits="WebForms.Clients" %>
 
 <asp:Content ID="HeadContent" ContentPlaceHolderID="AdminHeadPlaceHolder" runat="server">
+    <link href="style/table.css" rel="stylesheet" />
 </asp:Content>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="AdminMainPlaceHolder" runat="server">
@@ -14,60 +15,73 @@
                 <table>
                     <thead>
                         <tr>
+                            <th scope="col">ID</th>
                             <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <asp:Repeater ID="ClientsRpt" runat="server" OnItemCommand="ClientsRpt_ItemCommand">
+                        <asp:Repeater ID="HumanClientsRpt" runat="server" OnItemCommand="HumanClientsRpt_ItemCommand">
                             <ItemTemplate>
                                 <tr>
+
+                                    <!-- ID -->
+
+                                    <td scope="row">
+                                        <asp:Label
+                                            ID="IdLbl"
+                                            runat="server"
+                                            Text='<%#Eval("Id")%>'>
+                                        </asp:Label>
+                                    </td>
 
                                     <!-- Nombre -->
 
                                     <td scope="row">
                                         <asp:Label
-                                            ID="NameLbl"
+                                            ID="FirstNameLbl"
                                             runat="server"
-                                            Text='<%#Eval("Name")%>'>
+                                            Text='<%#Eval("Person.FirstName")%>'>
+                                        </asp:Label>
+                                    </td>
+
+                                    <!-- Apellido -->
+
+                                    <td scope="row">
+                                        <asp:Label
+                                            ID="LastNameLbl"
+                                            runat="server"
+                                            Text='<%#Eval("Person.LastName")%>'>
                                         </asp:Label>
                                     </td>
 
                                     <!-- Acciones -->
 
-                                    <td>
-                                        <div>
+                                    <td class="row-flex justify-center">
 
-                                            <!-- Ver -->
+                                        <!-- Editar -->
 
-                                            <asp:LinkButton
-                                                ID="ViewBtn"
-                                                runat="server"
-                                                CommandName="View"
-                                                CommandArgument='<%#Eval("Id")%>'
-                                                Text='<i class="bi bi-eye"></i>'>
-                                            </asp:LinkButton>
+                                        <asp:LinkButton
+                                            ID="EditBtn"
+                                            runat="server"
+                                            CommandName="Edit"
+                                            CommandArgument='<%#Eval("Id")%>'
+                                            Text='<i class="bi bi-pencil-square"></i>'
+                                            class="dark-font margin-0-5-px">
+                                        </asp:LinkButton>
 
-                                            <!-- Editar -->
+                                        <!-- Eliminar -->
 
-                                            <asp:LinkButton
-                                                ID="EditBtn"
-                                                runat="server"
-                                                CommandName="Edit"
-                                                CommandArgument='<%#Eval("Id")%>'
-                                                Text='<i class="bi bi-pencil-square"></i>'>
-                                            </asp:LinkButton>
+                                        <asp:LinkButton
+                                            ID="DeleteBtn"
+                                            runat="server"
+                                            CommandName="Delete"
+                                            CommandArgument='<%#Eval("Id")%>'
+                                            Text='<i class="bi bi-trash3"></i>'
+                                            class="dark-font margin-0-5-px">
+                                        </asp:LinkButton>
 
-                                            <!-- Eliminar -->
-
-                                            <asp:LinkButton
-                                                ID="DeleteBtn"
-                                                runat="server"
-                                                CommandName="Delete"
-                                                CommandArgument='<%#Eval("Id")%>'
-                                                Text='<i class="bi bi-trash3"></i>'>
-                                            </asp:LinkButton>
-                                        </div>
                                     </td>
                                 </tr>
                             </ItemTemplate>

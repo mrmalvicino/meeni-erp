@@ -8,7 +8,7 @@ namespace DomainModel
         public bool ActivityStatus { get; set; }
         public bool IsClient { get; set; }
         public bool IsSupplier { get; set; }
-        public ExternalOrganization ExternalOrganization { get; set; }
+        public ExternalOrganization Organization { get; set; }
         public Person Person { get; set; }
     }
 }

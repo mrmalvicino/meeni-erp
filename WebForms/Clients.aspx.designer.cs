@@ -15,12 +15,12 @@ namespace WebForms
     {
 
         /// <summary>
-        /// ClientsRpt control.
+        /// HumanClientsRpt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater ClientsRpt;
+        protected global::System.Web.UI.WebControls.Repeater HumanClientsRpt;
     }
 }

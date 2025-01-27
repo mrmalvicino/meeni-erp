@@ -2,3 +2,7 @@
     color: var(--gray-soft);
     background-color: var(--black-soft);
 }
+
+.dark-font {
+    color: var(--black-soft);
+}

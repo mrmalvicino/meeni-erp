@@ -1,0 +1,17 @@
+﻿table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+    table thead th {
+        padding: 12px 16px;
+    }
+
+    table tbody td {
+        padding: 12px 16px;
+    }
+
+    table tbody tr:hover {
+        background: linear-gradient(to right, transparent, var(--gray-light), transparent);
+        color: var(--black-pure);
+    }

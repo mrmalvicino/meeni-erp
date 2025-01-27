@@ -9,44 +9,50 @@ namespace WebForms
     public partial class Clients : System.Web.UI.Page
     {
         private ApplicationManager _appManager;
-        private List<BusinessPartner> _clients;
-        private BusinessPartner _client;
+        private List<BusinessPartner> _humanClients;
+        private List<BusinessPartner> _corporateClients;
+        private InternalOrganization _loggedOrganization;
 
         public Clients()
         {
             _appManager = new ApplicationManager();
-            _client = new BusinessPartner();
+        }
+
+        private void FetchLoggedOrganization()
+        {
+            _loggedOrganization = Session["loggedOrganization"] as InternalOrganization;
         }
 
         public void FetchClients()
         {
-            //_clients = _appManager.BusinessPartners.List(true, false);
+            _humanClients = _appManager.BusinessPartners.List(true, false, true, _loggedOrganization.Id);
+            _corporateClients = _appManager.BusinessPartners.List(true, false, false, _loggedOrganization.Id);
         }
 
-        public void BindClientsRpt()
+        public void BindHumanClientsRpt()
         {
-            ClientsRpt.DataSource = _clients;
-            ClientsRpt.DataBind();
+            HumanClientsRpt.DataSource = _humanClients;
+            HumanClientsRpt.DataBind();
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            (this.Master as Admin)?.CheckCredentials();
+
+            FetchLoggedOrganization();
+
             if (!IsPostBack)
             {
                 FetchClients();
-                BindClientsRpt();
+                BindHumanClientsRpt();
             }
         }
 
-        protected void ClientsRpt_ItemCommand(object source, RepeaterCommandEventArgs e)
+        protected void HumanClientsRpt_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-            _client.Id = Convert.ToInt32(e.CommandArgument);
+            int clientId = Convert.ToInt32(e.CommandArgument);
 
-            if (e.CommandName == "View")
-            {
-
-            }
-            else if (e.CommandName == "Edit")
+            if (e.CommandName == "Edit")
             {
 
             }

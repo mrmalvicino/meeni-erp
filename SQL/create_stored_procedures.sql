@@ -455,6 +455,46 @@ end;
 -- BUSINESS PARTNERS --
 -----------------------
 
+go
+create or alter procedure sp_list_business_partners(
+    @list_clients bit,
+    @list_suppliers bit,
+    @list_people bit,
+    @internal_organization_id int
+)
+as
+begin
+    if (@list_people = 1)
+    begin
+        select
+            *
+        from
+            business_partners BP
+            inner join people P on P.person_id = BP.person_id
+        where
+            BP.is_client = @list_clients
+            and BP.is_supplier = @list_suppliers
+            and BP.external_organization_id is null
+            and BP.person_id is not null
+            and P.internal_organization_id = @internal_organization_id;
+    end;
+
+    if (@list_people = 0)
+    begin
+        select
+            *
+        from
+            business_partners BP
+            inner join external_organizations EO on EO.external_organization_id = BP.external_organization_id
+        where
+            BP.is_client = @list_clients
+            and BP.is_supplier = @list_suppliers
+            and BP.external_organization_id is not null
+            and BP.person_id is null
+            and EO.internal_organization_id = @internal_organization_id;
+    end;
+end;
+
 ---------------
 -- EMPLOYEES --
 ---------------
