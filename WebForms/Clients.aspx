@@ -24,7 +24,8 @@
                             ID="SearchBtn"
                             runat="server"
                             Text='<i class="bi bi-search"></i>'
-                            class="asp-link-button margin-20-px">
+                            class="asp-link-button margin-20-px"
+                            OnClick="SearchBtn_Click">
                         </asp:LinkButton>
                     </div>
                     <div>

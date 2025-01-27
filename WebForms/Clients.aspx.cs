@@ -3,6 +3,7 @@ using DomainModel;
 using System;
 using System.Collections.Generic;
 using System.Web.UI.WebControls;
+using System.Linq;
 
 namespace WebForms
 {
@@ -23,22 +24,34 @@ namespace WebForms
             _loggedOrganization = Session["loggedOrganization"] as InternalOrganization;
         }
 
-        public void FetchClients()
+        private void FetchClients()
         {
             _humanClients = _appManager.BusinessPartners.List(true, false, true, _loggedOrganization.Id);
             _corporateClients = _appManager.BusinessPartners.List(true, false, false, _loggedOrganization.Id);
         }
 
-        public void BindHumanClientsRpt()
+        private void BindHumanClientsRpt()
         {
             HumanClientsRpt.DataSource = _humanClients;
             HumanClientsRpt.DataBind();
         }
 
-        public void BindCorporateClientsRpt()
+        private void BindCorporateClientsRpt()
         {
             CorporateClientsRpt.DataSource = _corporateClients;
             CorporateClientsRpt.DataBind();
+        }
+
+        private void ApplyFilter()
+        {
+            _humanClients = _humanClients.Where(
+                x => x.Person.FirstName.ToLower().Contains(SearchTxt.Text.ToLower())
+                || x.Person.LastName.ToLower().Contains(SearchTxt.Text.ToLower())
+                ).ToList();
+
+            _corporateClients = _corporateClients.Where(
+                x => x.Organization.Name.ToLower().Contains(SearchTxt.Text.ToLower())
+                ).ToList();
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -81,6 +94,14 @@ namespace WebForms
             {
 
             }
+        }
+
+        protected void SearchBtn_Click(object sender, EventArgs e)
+        {
+            FetchClients();
+            ApplyFilter();
+            BindHumanClientsRpt();
+            BindCorporateClientsRpt();
         }
     }
 }
