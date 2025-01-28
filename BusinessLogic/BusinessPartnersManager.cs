@@ -52,10 +52,28 @@ namespace BusinessLogic
                 throw new BusinessLogicException(ex);
             }
 
-            // assign person
-            // assign organization
+            if (_businessPartner.Organization != null)
+            {
+                _businessPartner.Organization = _externalOrganizationsManager.Read(_businessPartner.Organization.Id);
+            }
+            else if (_businessPartner.Person != null)
+            {
+                _businessPartner.Person = _peopleManager.Read(_businessPartner.Person.Id);
+            }
 
             return _businessPartner;
+        }
+
+        public void Toggle(BusinessPartner businessPartner)
+        {
+            try
+            {
+                _businesPartnersDAL.Toggle(businessPartner);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex);
+            }
         }
 
         public List<BusinessPartner> List(

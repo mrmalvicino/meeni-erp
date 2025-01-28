@@ -100,29 +100,29 @@ namespace WebForms
 
         protected void HumanClientsRpt_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-            int clientId = Convert.ToInt32(e.CommandArgument);
+            int personId = Convert.ToInt32(e.CommandArgument);
 
             if (e.CommandName == "Edit")
             {
-
+                Response.Redirect($"ViewPerson.aspx?id={personId}");
             }
             else if (e.CommandName == "Delete")
             {
-
+                //_appManager.BusinessPartners.Toggle();
             }
         }
 
         protected void CorporateClientsRpt_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-            int clientId = Convert.ToInt32(e.CommandArgument);
+            int externalOrganizationId = Convert.ToInt32(e.CommandArgument);
 
             if (e.CommandName == "Edit")
             {
-
+                Response.Redirect($"ViewOrganization.aspx?id={externalOrganizationId}");
             }
             else if (e.CommandName == "Delete")
             {
-
+                //_appManager.BusinessPartners.Toggle();
             }
         }
 

@@ -11,7 +11,7 @@ namespace WebForms
 {
 
 
-    public partial class ViewEmployee
+    public partial class ViewPerson
     {
 
         /// <summary>
@@ -166,15 +166,6 @@ namespace WebForms
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox PhoneTxt;
-
-        /// <summary>
-        /// DeleteBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button DeleteBtn;
 
         /// <summary>
         /// SaveBtn control.

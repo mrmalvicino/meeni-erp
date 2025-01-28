@@ -32,7 +32,7 @@ namespace WebForms
 
         private void FetchURL()
         {
-            string organizationId = Request.QueryString["organizationId"];
+            string organizationId = Request.QueryString["id"];
 
             if (!string.IsNullOrEmpty(organizationId))
             {
@@ -40,7 +40,7 @@ namespace WebForms
             }
         }
 
-        private void FetchLoggedOrganization()
+        private void FetchSession()
         {
             _loggedOrganization = Session["loggedOrganization"] as InternalOrganization;
         }
@@ -48,7 +48,7 @@ namespace WebForms
         private void FetchLegalEntity()
         {
             FetchURL();
-            FetchLoggedOrganization();
+            FetchSession();
 
             bool tenancy = _appManager.ExternalOrganizations.FindInternalId(_organizationId) == _loggedOrganization.Id;
 
@@ -143,22 +143,6 @@ namespace WebForms
             catch (ValidationException ex)
             {
                 (this.Master.Master as Site)?.ShowModal(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        protected void DeleteBtn_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (_loggedOrganization.Id == _legalEntity.Id)
-                {
-                    _appManager.InternalOrganizations.Toggle(_loggedOrganization);
-                    (this.Master.Master as Site)?.Logout();
-                }
             }
             catch (Exception ex)
             {

@@ -62,6 +62,24 @@ namespace DataAccess
             }
         }
 
+        public void Toggle(BusinessPartner businessPartner)
+        {
+            try
+            {
+                _db.SetProcedure("sp_toggle_business_partner");
+                _db.SetParameter("@business_partner_id", businessPartner.Id);
+                _db.ExecuteAction();
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ex);
+            }
+            finally
+            {
+                _db.CloseConnection();
+            }
+        }
+
         public List<BusinessPartner> List(
             bool listClients,
             bool listSuppliers,
