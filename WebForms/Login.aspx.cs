@@ -8,13 +8,13 @@ namespace WebForms
     public partial class Login : System.Web.UI.Page
     {
         private AppManager _appManager;
-        private Organization _internalOrganization;
+        private Organization _organization;
         private User _user;
 
         public Login()
         {
             _appManager = new AppManager();
-            _internalOrganization = new Organization();
+            _organization = new Organization();
             _user = new User();
         }
 
@@ -35,10 +35,10 @@ namespace WebForms
 
             try
             {
-                if (_appManager.Login(ref _user, ref _internalOrganization))
+                if (_appManager.Login(ref _user, ref _organization))
                 {
                     Session.Add("loggedUser", _user);
-                    Session.Add("loggedOrganization", _internalOrganization);
+                    Session.Add("loggedOrganization", _organization);
                     Response.Redirect("Dashboard.aspx", false);
                 }
             }

@@ -11,7 +11,7 @@ namespace WebForms
 {
 
 
-    public partial class ViewOrganization
+    public partial class EditEntity
     {
 
         /// <summary>
@@ -33,22 +33,22 @@ namespace WebForms
         protected global::System.Web.UI.WebControls.TextBox ImageURLTxt;
 
         /// <summary>
-        /// OrganizationNameTxt control.
+        /// NameTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox OrganizationNameTxt;
+        protected global::System.Web.UI.WebControls.TextBox NameTxt;
 
         /// <summary>
-        /// CUITTxt control.
+        /// TaxCodeTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CUITTxt;
+        protected global::System.Web.UI.WebControls.TextBox TaxCodeTxt;
 
         /// <summary>
         /// EmailTxt control.

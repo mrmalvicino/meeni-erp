@@ -1,4 +1,4 @@
-﻿<%@ Page Title="View Organization" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="EditEntity.aspx.cs" Inherits="WebForms.ViewOrganization" %>
+﻿<%@ Page Title="View Organization" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="EditEntity.aspx.cs" Inherits="WebForms.EditEntity" %>
 
 <asp:Content ID="HeadContent" ContentPlaceHolderID="AdminHeadPlaceHolder" runat="server">
 </asp:Content>
@@ -33,9 +33,9 @@
                 <div class="container-div width-300-px height-250-px">
                     <p class="center-text">Identificación fiscal</p>
                     <div>
-                        <label for="OrganizationNameTxt">Organización</label>
+                        <label for="NameTxt">Organización</label>
                         <asp:TextBox
-                            ID="OrganizationNameTxt"
+                            ID="NameTxt"
                             runat="server"
                             TextMode="SingleLine"
                             class="width-100-pct input-box"
@@ -43,9 +43,9 @@
                         </asp:TextBox>
                     </div>
                     <div>
-                        <label for="CUITTxt">CUIT</label>
+                        <label for="TaxCodeTxt">CUIT</label>
                         <asp:TextBox
-                            ID="CUITTxt"
+                            ID="TaxCodeTxt"
                             runat="server"
                             TextMode="Number"
                             class="width-100-pct input-box"

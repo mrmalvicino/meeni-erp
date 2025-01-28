@@ -9,14 +9,14 @@ namespace WebForms
     public partial class Signup : System.Web.UI.Page
     {
         private AppManager _appManager;
-        private Organization _internalOrganization;
+        private Organization _organization;
         private User _user;
         private string _pricingPlanId;
 
         public Signup()
         {
             _appManager = new AppManager();
-            _internalOrganization = new Organization();
+            _organization = new Organization();
             _user = new User();
         }
 
@@ -45,14 +45,14 @@ namespace WebForms
 
         private void InstantiateAttributes()
         {
-            _internalOrganization.LogoImage = new Image();
-            _internalOrganization.Address = new Address(true);
+            _organization.Image = new Image();
+            _organization.Address = new Address(true);
 
             int pricingPlanId = (int)PricingPlansManager.Ids.FreePlanId;
             PricingPlan pricingPlan = _appManager.PricingPlans.Read(pricingPlanId);
-            _internalOrganization.PricingPlan = pricingPlan;
+            _organization.PricingPlan = pricingPlan;
 
-            _user.ProfileImage = new Image();
+            _user.Image = new Image();
             _user.Address = new Address(true);
             _user.Roles = new List<Role>();
 
@@ -63,10 +63,9 @@ namespace WebForms
 
         private void MapAttributes()
         {
-            _internalOrganization.Name = OrganizationNameTxt.Text;
-            _internalOrganization.Email = OrganizationEmailTxt.Text;
-            _user.FirstName = FirstNameTxt.Text;
-            _user.LastName = LastNameTxt.Text;
+            _organization.Name = OrganizationNameTxt.Text;
+            _organization.Email = OrganizationEmailTxt.Text;
+            _user.Name = FirstNameTxt.Text;
             _user.Username = UsernameTxt.Text;
             _user.Password = PasswordTxt.Text;
         }
@@ -87,10 +86,10 @@ namespace WebForms
 
             try
             {
-                if (_appManager.SignUp(ref _user, ref _internalOrganization))
+                if (_appManager.SignUp(ref _user, ref _organization))
                 {
                     Session.Add("loggedUser", _user);
-                    Session.Add("loggedOrganization", _internalOrganization);
+                    Session.Add("loggedOrganization", _organization);
                     Response.Redirect("Dashboard.aspx", false);
                 }
             }

@@ -6,14 +6,14 @@ using System;
 
 namespace WebForms
 {
-    public partial class ViewOrganization : System.Web.UI.Page
+    public partial class EditEntity : System.Web.UI.Page
     {
         private AppManager _appManager;
         private Organization _loggedOrganization;
-        private Entity _legalEntity;
-        private int _organizationId;
+        private Entity _entity;
+        private int _entityId;
 
-        public ViewOrganization()
+        public EditEntity()
         {
             _appManager = new AppManager();
         }
@@ -36,7 +36,7 @@ namespace WebForms
 
             if (!string.IsNullOrEmpty(organizationId))
             {
-                _organizationId = Convert.ToInt32(organizationId);
+                _entityId = Convert.ToInt32(organizationId);
             }
         }
 
@@ -50,70 +50,70 @@ namespace WebForms
             FetchURL();
             FetchSession();
 
-            bool tenancy = _appManager.ExternalOrganizations.FindInternalId(_organizationId) == _loggedOrganization.Id;
+            bool tenancy = _appManager.Stakeholders.FindOrganizationId(_entityId) == _loggedOrganization.Id;
 
-            if (0 < _organizationId && tenancy)
+            if (0 < _entityId && tenancy)
             {
-                _legalEntity = _appManager.LegalEntities.Read(_organizationId);
+                _entity = _appManager.Entities.Read(_entityId);
                 return;
             }
 
-            _legalEntity = _loggedOrganization;
+            _entity = _loggedOrganization;
         }
 
         private void MapControls()
         {
-            if (_legalEntity.LogoImage != null)
+            if (_entity.Image != null)
             {
-                ImageURLTxt.Text = _legalEntity.LogoImage.URL;
+                ImageURLTxt.Text = _entity.Image.URL;
             }
 
-            OrganizationNameTxt.Text = _legalEntity.Name;
-            CUITTxt.Text = _legalEntity.CUIT;
-            EmailTxt.Text = _legalEntity.Email;
-            PhoneTxt.Text = _legalEntity.Phone;
+            NameTxt.Text = _entity.Name;
+            TaxCodeTxt.Text = _entity.TaxCode;
+            EmailTxt.Text = _entity.Email;
+            PhoneTxt.Text = _entity.Phone;
 
-            if (_legalEntity.Address != null)
+            if (_entity.Address != null)
             {
-                StreetNameTxt.Text = _legalEntity.Address.StreetName;
-                StreetNumberTxt.Text = _legalEntity.Address.StreetNumber;
-                FlatTxt.Text = _legalEntity.Address.Flat;
-                DetailsTxt.Text = _legalEntity.Address.Details;
-                CityTxt.Text = _legalEntity.Address.City?.Name;
-                ZipCodeTxt.Text = _legalEntity.Address.City?.ZipCode;
-                ProvinceTxt.Text = _legalEntity.Address.Province?.Name;
-                CountryTxt.Text = _legalEntity.Address.Country?.Name;
+                StreetNameTxt.Text = _entity.Address.StreetName;
+                StreetNumberTxt.Text = _entity.Address.StreetNumber;
+                FlatTxt.Text = _entity.Address.Flat;
+                DetailsTxt.Text = _entity.Address.Details;
+                CityTxt.Text = _entity.Address.City?.Name;
+                ZipCodeTxt.Text = _entity.Address.City?.ZipCode;
+                ProvinceTxt.Text = _entity.Address.Province?.Name;
+                CountryTxt.Text = _entity.Address.Country?.Name;
             }
         }
 
         private void InstantiateAttributes()
         {
-            if (_legalEntity.LogoImage == null)
+            if (_entity.Image == null)
             {
-                _legalEntity.LogoImage = new Image();
+                _entity.Image = new Image();
             }
 
-            if (_legalEntity.Address == null)
+            if (_entity.Address == null)
             {
-                _legalEntity.Address = new Address(true);
+                _entity.Address = new Address(true);
             }
         }
 
         private void MapAttributes()
         {
-            _legalEntity.LogoImage.URL = ImageURLTxt.Text;
-            _legalEntity.Name = OrganizationNameTxt.Text;
-            _legalEntity.CUIT = CUITTxt.Text;
-            _legalEntity.Email = EmailTxt.Text;
-            _legalEntity.Phone = PhoneTxt.Text;
-            _legalEntity.Address.StreetName = StreetNameTxt.Text;
-            _legalEntity.Address.StreetNumber = StreetNumberTxt.Text;
-            _legalEntity.Address.Flat = FlatTxt.Text;
-            _legalEntity.Address.Details = DetailsTxt.Text;
-            _legalEntity.Address.City.Name = CityTxt.Text;
-            _legalEntity.Address.City.ZipCode = ZipCodeTxt.Text;
-            _legalEntity.Address.Province.Name = ProvinceTxt.Text;
-            _legalEntity.Address.Country.Name = CountryTxt.Text;
+            _entity.Image.URL = ImageURLTxt.Text;
+            _entity.Name = NameTxt.Text;
+            _entity.TaxCode = TaxCodeTxt.Text;
+            _entity.Email = EmailTxt.Text;
+            _entity.Phone = PhoneTxt.Text;
+            _entity.Address.StreetName = StreetNameTxt.Text;
+            _entity.Address.StreetNumber = StreetNumberTxt.Text;
+            _entity.Address.Flat = FlatTxt.Text;
+            _entity.Address.Details = DetailsTxt.Text;
+            _entity.Address.City.Name = CityTxt.Text;
+            _entity.Address.City.ZipCode = ZipCodeTxt.Text;
+            _entity.Address.Province.Name = ProvinceTxt.Text;
+            _entity.Address.Country.Name = CountryTxt.Text;
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -137,7 +137,7 @@ namespace WebForms
 
             try
             {
-                _appManager.LegalEntities.Update(_legalEntity);
+                _appManager.Entities.Update(_entity);
                 Response.Redirect("Dashboard.aspx", false);
             }
             catch (ValidationException ex)

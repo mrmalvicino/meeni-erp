@@ -94,7 +94,7 @@ namespace BusinessLogic
                     }
 
                     user = _usersManager.Read(user.Id);
-                    organization.Id = _peopleManager.FindInternalId(user.Id);
+                    organization.Id = _stakeholdersManager.FindOrganizationId(user.Id);
                     organization = _organizationsManager.Read(organization.Id);
 
                     if (organization.ActivityStatus == false)

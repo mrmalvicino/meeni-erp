@@ -19,7 +19,7 @@ namespace DataAccess
         {
             try
             {
-                _db.SetProcedure("sp_create_business_partner");
+                _db.SetProcedure("sp_create_partner");
                 SetParameters(partner);
                 partner.Id = _db.ExecuteScalar();
             }
@@ -39,8 +39,8 @@ namespace DataAccess
         {
             try
             {
-                _db.SetQuery("select * from business_partners where business_partner_id = @business_partner_id");
-                _db.SetParameter("@business_partner_id", partnerId);
+                _db.SetQuery("select * from partners where partner_id = @partner_id");
+                _db.SetParameter("@partner_id", partnerId);
                 _db.ExecuteRead();
 
                 if (_db.Reader.Read())
@@ -66,8 +66,8 @@ namespace DataAccess
         {
             try
             {
-                _db.SetProcedure("sp_toggle_business_partner");
-                _db.SetParameter("@business_partner_id", partner.Id);
+                _db.SetProcedure("sp_toggle_partner");
+                _db.SetParameter("@partner_id", partner.Id);
                 _db.ExecuteAction();
             }
             catch (Exception ex)
@@ -122,7 +122,7 @@ namespace DataAccess
         {
             if (isUpdate)
             {
-                _db.SetParameter("@business_partner_id", partner.Id);
+                _db.SetParameter("@partner_id", partner.Id);
             }
 
             // agregar los otros parámetros
@@ -130,7 +130,7 @@ namespace DataAccess
 
         private void ReadRow(Partner partner)
         {
-            partner.Id = Convert.ToInt32(_db.Reader["business_partner_id"]);
+            partner.Id = Convert.ToInt32(_db.Reader["partner_id"]);
             partner.ActivityStatus = (bool)_db.Reader["activity_status"];
             partner.IsClient = (bool)_db.Reader["is_client"];
             partner.IsSupplier = (bool)_db.Reader["is_supplier"];

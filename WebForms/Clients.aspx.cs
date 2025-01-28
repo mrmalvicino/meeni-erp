@@ -10,8 +10,7 @@ namespace WebForms
     public partial class Clients : System.Web.UI.Page
     {
         private AppManager _appManager;
-        private List<Partner> _humanClients;
-        private List<Partner> _corporateClients;
+        private List<Partner> _clients;
         private Organization _loggedOrganization;
 
         public Clients()
@@ -29,47 +28,34 @@ namespace WebForms
             bool listActive = true;
             bool listInactive = true;
 
-            string selectedValue = ActivityStatusDDL.SelectedValue;
+            string activityStatusDDL = ActivityStatusDDL.SelectedValue;
 
-            if (selectedValue == "Active")
+            if (activityStatusDDL == "Active")
             {
-                listActive = true;
                 listInactive = false;
             }
-            else if (selectedValue == "Inactive")
+            else if (activityStatusDDL == "Inactive")
             {
                 listActive = false;
-                listInactive = true;
             }
 
-            _humanClients = _appManager.BusinessPartners.List(
-                true, false, true, _loggedOrganization.Id, listActive, listInactive);
-
-            _corporateClients = _appManager.BusinessPartners.List(
-                true, false, false, _loggedOrganization.Id, listActive, listInactive);
+            _clients = _appManager.Partners.List(
+                true, false, _loggedOrganization.Id, listActive, listInactive);
         }
 
-        private void BindHumanClientsRpt()
+        private void BindClientsRpt()
         {
-            HumanClientsRpt.DataSource = _humanClients;
-            HumanClientsRpt.DataBind();
-        }
-
-        private void BindCorporateClientsRpt()
-        {
-            CorporateClientsRpt.DataSource = _corporateClients;
-            CorporateClientsRpt.DataBind();
+            ClientsRpt.DataSource = _clients;
+            ClientsRpt.DataBind();
         }
 
         private void ApplyFilter()
         {
-            _humanClients = _humanClients.Where(
-                x => x.Person.FirstName.ToLower().Contains(SearchTxt.Text.ToLower())
-                || x.Person.LastName.ToLower().Contains(SearchTxt.Text.ToLower())
-                ).ToList();
-
-            _corporateClients = _corporateClients.Where(
-                x => x.Organization.Name.ToLower().Contains(SearchTxt.Text.ToLower())
+            _clients = _clients.Where(
+                x => x.Name.ToLower().Contains(SearchTxt.Text.ToLower())
+                || x.TaxCode.ToLower().Contains(SearchTxt.Text.ToLower())
+                || x.Email.ToLower().Contains(SearchTxt.Text.ToLower())
+                || x.Phone.ToLower().Contains(SearchTxt.Text.ToLower())
                 ).ToList();
         }
 
@@ -82,8 +68,7 @@ namespace WebForms
                 ApplyFilter();
             }
 
-            BindHumanClientsRpt();
-            BindCorporateClientsRpt();
+            BindClientsRpt();
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -98,31 +83,17 @@ namespace WebForms
             }
         }
 
-        protected void HumanClientsRpt_ItemCommand(object source, RepeaterCommandEventArgs e)
+        protected void ClientsRpt_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-            int personId = Convert.ToInt32(e.CommandArgument);
+            int partnerId = Convert.ToInt32(e.CommandArgument);
 
             if (e.CommandName == "Edit")
             {
-                Response.Redirect($"ViewPerson.aspx?id={personId}");
+                Response.Redirect($"ViewEntity.aspx?id={partnerId}");
             }
             else if (e.CommandName == "Delete")
             {
-                //_appManager.BusinessPartners.Toggle();
-            }
-        }
-
-        protected void CorporateClientsRpt_ItemCommand(object source, RepeaterCommandEventArgs e)
-        {
-            int externalOrganizationId = Convert.ToInt32(e.CommandArgument);
-
-            if (e.CommandName == "Edit")
-            {
-                Response.Redirect($"ViewOrganization.aspx?id={externalOrganizationId}");
-            }
-            else if (e.CommandName == "Delete")
-            {
-                //_appManager.BusinessPartners.Toggle();
+                //_appManager.Partners.Toggle(partnerId);
             }
         }
 
@@ -135,11 +106,6 @@ namespace WebForms
         {
             SearchTxt.Text = string.Empty;
             MapControls();
-        }
-
-        protected void CreateBtn_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

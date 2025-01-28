@@ -43,34 +43,26 @@
                         </asp:LinkButton>
                     </div>
                     <div class="row-flex space-between">
-                        <asp:DropDownList ID="TypeDDL" runat="server" class="input-box width-250-px">
-                            <asp:ListItem Text="Persona física" Value="Person"></asp:ListItem>
-                            <asp:ListItem Text="Organización" Value="ExternalOrganization"></asp:ListItem>
-                        </asp:DropDownList>
-                        <asp:LinkButton
-                            ID="CreateBtn"
-                            runat="server"
-                            Text='<i class="bi bi-plus-circle"></i>'
-                            class="asp-link-button margin-20-px"
-                            OnClick="CreateBtn_Click">
-                        </asp:LinkButton>
+                        <a href="AddEntity.aspx" class="light-button">
+                            <i class="bi bi-plus-circle"></i>
+                            <span>Agregar nuevo</span>
+                        </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Tabla de personas físicas -->
+            <!-- Listado -->
 
             <div class="container-div margin-10-px">
                 <table>
                     <thead>
                         <tr>
                             <th scope="col">Nombre</th>
-                            <th scope="col">Apellido</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <asp:Repeater ID="HumanClientsRpt" runat="server" OnItemCommand="HumanClientsRpt_ItemCommand">
+                        <asp:Repeater ID="ClientsRpt" runat="server" OnItemCommand="ClientsRpt_ItemCommand">
                             <ItemTemplate>
                                 <tr>
 
@@ -116,65 +108,6 @@
                                             runat="server"
                                             CommandName="Delete"
                                             CommandArgument='<%#Eval("Person.Id")%>'
-                                            Text='<i class="bi bi-trash3"></i>'
-                                            class="asp-link-button">
-                                        </asp:LinkButton>
-
-                                    </td>
-                                </tr>
-                            </ItemTemplate>
-                        </asp:Repeater>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Tabla de organizaciones externas -->
-
-            <div class="container-div margin-10-px">
-                <table>
-                    <thead>
-                        <tr>
-                            <th scope="col">Organización</th>
-                            <th scope="col">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <asp:Repeater ID="CorporateClientsRpt" runat="server" OnItemCommand="CorporateClientsRpt_ItemCommand">
-                            <ItemTemplate>
-                                <tr>
-
-                                    <!-- Nombre de la organización -->
-
-                                    <td scope="row">
-                                        <asp:Label
-                                            ID="NameLbl"
-                                            runat="server"
-                                            Text='<%#Eval("Organization.Name")%>'>
-                                        </asp:Label>
-                                    </td>
-
-                                    <!-- Acciones -->
-
-                                    <td class="row-flex justify-center">
-
-                                        <!-- Editar -->
-
-                                        <asp:LinkButton
-                                            ID="EditBtn"
-                                            runat="server"
-                                            CommandName="Edit"
-                                            CommandArgument='<%#Eval("Organization.Id")%>'
-                                            Text='<i class="bi bi-pencil-square"></i>'
-                                            class="asp-link-button">
-                                        </asp:LinkButton>
-
-                                        <!-- Eliminar -->
-
-                                        <asp:LinkButton
-                                            ID="DeleteBtn"
-                                            runat="server"
-                                            CommandName="Delete"
-                                            CommandArgument='<%#Eval("Organization.Id")%>'
                                             Text='<i class="bi bi-trash3"></i>'
                                             class="asp-link-button">
                                         </asp:LinkButton>
