@@ -14,19 +14,19 @@ namespace DataAccess
             _db = db;
         }
 
-        public Stakeholder Read(int externalOrganizationId)
+        public Stakeholder Read(int stakeholderId)
         {
             try
             {
-                _db.SetProcedure("sp_read_external_organization");
-                _db.SetParameter("@external_organization_id", externalOrganizationId);
+                _db.SetProcedure("sp_read_stakeholder");
+                _db.SetParameter("@stakeholder_id", stakeholderId);
                 _db.ExecuteRead();
 
                 if (_db.Reader.Read())
                 {
-                    Stakeholder externalOrganization = new Stakeholder();
-                    ReadRow(externalOrganization);
-                    return externalOrganization;
+                    Stakeholder stakeholder = new Stakeholder();
+                    ReadRow(stakeholder);
+                    return stakeholder;
                 }
 
                 return null;
@@ -41,17 +41,17 @@ namespace DataAccess
             }
         }
 
-        public int FindInternalId(int externalOrganizationId)
+        public int FindOrganizationId(int stakeholderId)
         {
             try
             {
-                _db.SetProcedure("sp_find_organization_internal_id");
-                _db.SetParameter("@external_organization_id", externalOrganizationId);
+                _db.SetProcedure("sp_find_organization_id");
+                _db.SetParameter("@stakeholder_id", stakeholderId);
                 _db.ExecuteRead();
 
                 if (_db.Reader.Read())
                 {
-                    return (int)_db.Reader["internal_organization_id"];
+                    return (int)_db.Reader["organization_id"];
                 }
 
                 return 0;
@@ -66,9 +66,9 @@ namespace DataAccess
             }
         }
 
-        private void ReadRow(Stakeholder externalOrganization)
+        private void ReadRow(Stakeholder stakeholder)
         {
-            externalOrganization.Id = Convert.ToInt32(_db.Reader["external_organization_id"]);
+            stakeholder.Id = Convert.ToInt32(_db.Reader["stakeholder_id"]);
         }
     }
 }

@@ -112,19 +112,19 @@ namespace BusinessLogic
             }
         }
 
-        private void ValidateSignUp(User user, Organization internalOrganization)
+        private void ValidateSignUp(User user, Organization organization)
         {
             if (0 < _usersManager.FindId(user))
             {
                 throw new ValidationException("Nombre de usuario no disponible.");
             }
 
-            if (string.IsNullOrEmpty(internalOrganization.Email))
+            if (string.IsNullOrEmpty(organization.Email))
             {
                 throw new ValidationException("Ingresar el correo electrónico de la empresa.");
             }
 
-            Validator.ValidateEmail(internalOrganization.Email);
+            Validator.ValidateEmail(organization.Email);
         }
 
         private void ValidateLogin(User user)

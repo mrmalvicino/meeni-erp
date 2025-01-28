@@ -114,7 +114,7 @@ create table
     entities (
         entity_id int identity (1, 1) not null,
         name varchar(50) not null,
-        tax_code varchar(11) null,
+        tax_code varchar(13) null,
         email varchar(50) null,
         phone varchar(50) null,
         birth_date date null,

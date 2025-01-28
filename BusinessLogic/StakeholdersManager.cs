@@ -8,44 +8,44 @@ namespace BusinessLogic
 {
     public class StakeholdersManager
     {
-        private Stakeholder _externalOrganization;
-        private StakeholdersDAL _externalOrganizationsDAL;
-        private Entity _legalEntity;
-        private EntitiesManager _legalEntitiesManager;
+        private Stakeholder _stakeholder;
+        private StakeholdersDAL _stakeholdersDAL;
+        private Entity _entity;
+        private EntitiesManager _entitiesManager;
 
         public StakeholdersManager(Database db)
         {
-            _externalOrganizationsDAL = new StakeholdersDAL(db);
-            _legalEntitiesManager = new EntitiesManager(db);
+            _stakeholdersDAL = new StakeholdersDAL(db);
+            _entitiesManager = new EntitiesManager(db);
         }
 
-        public Stakeholder Read(int externalOrganizationId)
+        public Stakeholder Read(int stakeholderId)
         {
-            if (externalOrganizationId == 0)
+            if (stakeholderId == 0)
             {
                 return null;
             }
 
             try
             {
-                _externalOrganization = _externalOrganizationsDAL.Read(externalOrganizationId);
+                _stakeholder = _stakeholdersDAL.Read(stakeholderId);
             }
             catch (Exception ex)
             {
                 throw new BusinessLogicException(ex);
             }
 
-            _legalEntity = _legalEntitiesManager.Read(_externalOrganization.Id);
-            Helper.AssignLegalEntity(_externalOrganization, _legalEntity);
+            _entity = _entitiesManager.Read(_stakeholder.Id);
+            Helper.AssignEntity(_stakeholder, _entity);
 
-            return _externalOrganization;
+            return _stakeholder;
         }
 
-        public int FindInternalId(int externalOrganizationId)
+        public int FindOrganizationId(int stakeholderId)
         {
             try
             {
-                return _externalOrganizationsDAL.FindInternalId(externalOrganizationId);
+                return _stakeholdersDAL.FindOrganizationId(stakeholderId);
             }
             catch (Exception ex)
             {

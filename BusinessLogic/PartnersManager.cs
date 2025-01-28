@@ -8,27 +8,22 @@ namespace BusinessLogic
 {
     public class PartnersManager
     {
-        private Partner _businessPartner;
+        private Partner _partner;
         private PartnersDAL _businesPartnersDAL;
-        private StakeholdersManager _externalOrganizationsManager;
-        private PeopleManager _peopleManager;
+        private StakeholdersManager _stakeholdersManager;
 
         public PartnersManager(Database db)
         {
             _businesPartnersDAL = new PartnersDAL(db);
-            _externalOrganizationsManager = new StakeholdersManager(db);
-            _peopleManager = new PeopleManager(db);
+            _stakeholdersManager = new StakeholdersManager(db);
         }
 
-        public int Create(Partner businessPartner)
+        public int Create(Partner partner)
         {
-            // handle person
-            // handle organization
-
             try
             {
-                //Validate(businessPartner);
-                return _businesPartnersDAL.Create(businessPartner);
+                //Validate(partner);
+                return _businesPartnersDAL.Create(partner);
             }
             catch (Exception ex) when (!(ex is ValidationException))
             {
@@ -36,39 +31,30 @@ namespace BusinessLogic
             }
         }
 
-        public Partner Read(int businessPartnerId)
+        public Partner Read(int partnerId)
         {
-            if (businessPartnerId == 0)
+            if (partnerId == 0)
             {
                 return null;
             }
 
             try
             {
-                _businessPartner = _businesPartnersDAL.Read(businessPartnerId);
+                _partner = _businesPartnersDAL.Read(partnerId);
             }
             catch (Exception ex)
             {
                 throw new BusinessLogicException(ex);
             }
 
-            if (_businessPartner.Organization != null)
-            {
-                _businessPartner.Organization = _externalOrganizationsManager.Read(_businessPartner.Organization.Id);
-            }
-            else if (_businessPartner.Person != null)
-            {
-                _businessPartner.Person = _peopleManager.Read(_businessPartner.Person.Id);
-            }
-
-            return _businessPartner;
+            return _partner;
         }
 
-        public void Toggle(Partner businessPartner)
+        public void Toggle(Partner partner)
         {
             try
             {
-                _businesPartnersDAL.Toggle(businessPartner);
+                _businesPartnersDAL.Toggle(partner);
             }
             catch (Exception ex)
             {
@@ -79,8 +65,7 @@ namespace BusinessLogic
         public List<Partner> List(
             bool listClients,
             bool listSuppliers,
-            bool listPeople,
-            int internalOrganizationId,
+            int organizationId,
             bool listActive = true,
             bool listInactive = true)
         {
@@ -90,22 +75,9 @@ namespace BusinessLogic
                 partners = _businesPartnersDAL.List(
                     listClients,
                     listSuppliers,
-                    listPeople,
-                    internalOrganizationId,
+                    organizationId,
                     listActive,
                     listInactive);
-
-                foreach (Partner partner in partners)
-                {
-                    if (partner.Organization != null)
-                    {
-                        partner.Organization = _externalOrganizationsManager.Read(partner.Organization.Id);
-                    }
-                    else if (partner.Person != null)
-                    {
-                        partner.Person = _peopleManager.Read(partner.Person.Id);
-                    }
-                }
 
                 return partners;
             }

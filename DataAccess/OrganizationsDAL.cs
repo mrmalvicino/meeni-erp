@@ -14,13 +14,13 @@ namespace DataAccess
             _db = db;
         }
 
-        public int Create(Organization internalOrganization)
+        public int Create(Organization organization)
         {
             try
             {
-                _db.SetProcedure("sp_create_internal_organization");
-                SetParameters(internalOrganization);
-                internalOrganization.Id = _db.ExecuteScalar();
+                _db.SetProcedure("sp_create_organization");
+                SetParameters(organization);
+                organization.Id = _db.ExecuteScalar();
             }
             catch (Exception ex)
             {
@@ -31,22 +31,22 @@ namespace DataAccess
                 _db.CloseConnection();
             }
 
-            return internalOrganization.Id;
+            return organization.Id;
         }
 
-        public Organization Read(int internalOrganizationId)
+        public Organization Read(int organizationId)
         {
             try
             {
-                _db.SetQuery("select * from internal_organizations where internal_organization_id = @internal_organization_id");
-                _db.SetParameter("@internal_organization_id", internalOrganizationId);
+                _db.SetQuery("select * from organizations where organization_id = @organization_id");
+                _db.SetParameter("@organization_id", organizationId);
                 _db.ExecuteRead();
 
                 if (_db.Reader.Read())
                 {
-                    Organization internalOrganization = new Organization();
-                    ReadRow(internalOrganization);
-                    return internalOrganization;
+                    Organization organization = new Organization();
+                    ReadRow(organization);
+                    return organization;
                 }
 
                 return null;
@@ -61,12 +61,12 @@ namespace DataAccess
             }
         }
 
-        public void Update(Organization internalOrganization)
+        public void Update(Organization organization)
         {
             try
             {
-                _db.SetProcedure("sp_update_internal_organization");
-                SetParameters(internalOrganization);
+                _db.SetProcedure("sp_update_organization");
+                SetParameters(organization);
                 _db.ExecuteAction();
             }
             catch (Exception ex)
@@ -79,12 +79,12 @@ namespace DataAccess
             }
         }
 
-        public void Toggle(Organization internalOrganization)
+        public void Toggle(Organization organization)
         {
             try
             {
-                _db.SetProcedure("sp_toggle_internal_organization");
-                _db.SetParameter("@internal_organization_id", internalOrganization.Id);
+                _db.SetProcedure("sp_toggle_organization");
+                _db.SetParameter("@organization_id", organization.Id);
                 _db.ExecuteAction();
             }
             catch (Exception ex)
@@ -97,17 +97,17 @@ namespace DataAccess
             }
         }
 
-        private void SetParameters(Organization internalOrganization)
+        private void SetParameters(Organization organization)
         {
-            _db.SetParameter("@internal_organization_id", internalOrganization.Id);
-            _db.SetParameter("@pricing_plan_id", internalOrganization.PricingPlan.Id);
+            _db.SetParameter("@organization_id", organization.Id);
+            _db.SetParameter("@pricing_plan_id", organization.PricingPlan.Id);
         }
 
-        private void ReadRow(Organization internalOrganization)
+        private void ReadRow(Organization organization)
         {
-            internalOrganization.Id = Convert.ToInt32(_db.Reader["internal_organization_id"]);
-            internalOrganization.ActivityStatus = (bool)_db.Reader["activity_status"];
-            internalOrganization.PricingPlan = Helper.Instantiate<PricingPlan>(_db.Reader["pricing_plan_id"]);
+            organization.Id = Convert.ToInt32(_db.Reader["organization_id"]);
+            organization.ActivityStatus = (bool)_db.Reader["activity_status"];
+            organization.PricingPlan = Helper.Instantiate<PricingPlan>(_db.Reader["pricing_plan_id"]);
         }
     }
 }

@@ -9,30 +9,30 @@ namespace BusinessLogic
 {
     public class OrganizationsManager
     {
-        private Organization _internalOrganization;
-        private OrganizationsDAL _internalOrganizationsDAL;
-        private Entity _legalEntity;
-        private EntitiesManager _legalEntitiesManager;
+        private Organization _organization;
+        private OrganizationsDAL _organizationsDAL;
+        private Entity _entity;
+        private EntitiesManager _entitiesManager;
         private PricingPlansManager _pricingPlansManager;
 
         public OrganizationsManager(Database db)
         {
-            _internalOrganizationsDAL = new OrganizationsDAL(db);
-            _legalEntitiesManager = new EntitiesManager(db);
+            _organizationsDAL = new OrganizationsDAL(db);
+            _entitiesManager = new EntitiesManager(db);
             _pricingPlansManager = new PricingPlansManager(db);
         }
 
-        public int Create(Organization internalOrganization)
+        public int Create(Organization organization)
         {
             try
             {
                 using (var transaction = new TransactionScope())
                 {
-                    internalOrganization.Id = _legalEntitiesManager.Create(internalOrganization);
-                    internalOrganization.PricingPlan.Id = _pricingPlansManager.FindId(internalOrganization.PricingPlan);
-                    internalOrganization.Id = _internalOrganizationsDAL.Create(internalOrganization);
+                    organization.Id = _entitiesManager.Create(organization);
+                    organization.PricingPlan.Id = _pricingPlansManager.FindId(organization.PricingPlan);
+                    organization.Id = _organizationsDAL.Create(organization);
                     transaction.Complete();
-                    return internalOrganization.Id;
+                    return organization.Id;
                 }
             }
             catch (Exception ex) when (!(ex is ValidationException))
@@ -41,39 +41,39 @@ namespace BusinessLogic
             }
         }
 
-        public Organization Read(int internalOrganizationId)
+        public Organization Read(int organizationId)
         {
-            if (internalOrganizationId == 0)
+            if (organizationId == 0)
             {
                 return null;
             }
 
             try
             {
-                _internalOrganization = _internalOrganizationsDAL.Read(internalOrganizationId);
+                _organization = _organizationsDAL.Read(organizationId);
             }
             catch (Exception ex)
             {
                 throw new BusinessLogicException(ex);
             }
 
-            _internalOrganization.PricingPlan = _pricingPlansManager.Read(Helper.GetId(_internalOrganization.PricingPlan));
+            _organization.PricingPlan = _pricingPlansManager.Read(Helper.GetId(_organization.PricingPlan));
 
-            _legalEntity = _legalEntitiesManager.Read(_internalOrganization.Id);
-            Helper.AssignLegalEntity(_internalOrganization, _legalEntity);
+            _entity = _entitiesManager.Read(_organization.Id);
+            Helper.AssignEntity(_organization, _entity);
 
-            return _internalOrganization;
+            return _organization;
         }
 
-        public void Update(Organization internalOrganization)
+        public void Update(Organization organization)
         {
             try
             {
                 using (var transaction = new TransactionScope())
                 {
-                    _legalEntitiesManager.Update(internalOrganization);
-                    internalOrganization.PricingPlan.Id = _pricingPlansManager.FindId(internalOrganization.PricingPlan);
-                    _internalOrganizationsDAL.Update(internalOrganization);
+                    _entitiesManager.Update(organization);
+                    organization.PricingPlan.Id = _pricingPlansManager.FindId(organization.PricingPlan);
+                    _organizationsDAL.Update(organization);
                     transaction.Complete();
                 }
             }
@@ -83,11 +83,11 @@ namespace BusinessLogic
             }
         }
 
-        public void Toggle(Organization internalOrganization)
+        public void Toggle(Organization organization)
         {
             try
             {
-                _internalOrganizationsDAL.Toggle(internalOrganization);
+                _organizationsDAL.Toggle(organization);
             }
             catch (Exception ex)
             {

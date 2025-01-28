@@ -9,30 +9,30 @@ namespace BusinessLogic
 {
     public class EntitiesManager
     {
-        private Entity _legalEntity;
-        private EntitiesDAL _legalEntitiesDAL;
+        private Entity _entity;
+        private EntitiesDAL _entitiesDAL;
         private ImagesManager _imagesManager;
         private AddressesManager _addressesManager;
 
         public EntitiesManager(Database db)
         {
-            _legalEntitiesDAL = new EntitiesDAL(db);
+            _entitiesDAL = new EntitiesDAL(db);
             _imagesManager = new ImagesManager(db);
             _addressesManager = new AddressesManager(db);
         }
 
-        public int Create(Entity legalEntity)
+        public int Create(Entity entity)
         {
             try
             {
                 using (var transaction = new TransactionScope())
                 {
-                    legalEntity.LogoImage = _imagesManager.Handle(legalEntity.LogoImage);
-                    legalEntity.Address = _addressesManager.Handle(legalEntity.Address);
-                    Validate(legalEntity);
-                    legalEntity.Id = _legalEntitiesDAL.Create(legalEntity);
+                    entity.LogoImage = _imagesManager.Handle(entity.LogoImage);
+                    entity.Address = _addressesManager.Handle(entity.Address);
+                    Validate(entity);
+                    entity.Id = _entitiesDAL.Create(entity);
                     transaction.Complete();
-                    return legalEntity.Id;
+                    return entity.Id;
                 }
             }
             catch (Exception ex) when (!(ex is ValidationException))
@@ -41,38 +41,38 @@ namespace BusinessLogic
             }
         }
 
-        public Entity Read(int legalEntityId)
+        public Entity Read(int entityId)
         {
-            if (legalEntityId == 0)
+            if (entityId == 0)
             {
                 return null;
             }
 
             try
             {
-                _legalEntity = _legalEntitiesDAL.Read(legalEntityId);
+                _entity = _entitiesDAL.Read(entityId);
             }
             catch (Exception ex)
             {
                 throw new BusinessLogicException(ex);
             }
 
-            _legalEntity.LogoImage = _imagesManager.Read(Helper.GetId(_legalEntity.LogoImage));
-            _legalEntity.Address = _addressesManager.Read(Helper.GetId(_legalEntity.Address));
+            _entity.LogoImage = _imagesManager.Read(Helper.GetId(_entity.LogoImage));
+            _entity.Address = _addressesManager.Read(Helper.GetId(_entity.Address));
 
-            return _legalEntity;
+            return _entity;
         }
 
-        public void Update(Entity legalEntity)
+        public void Update(Entity entity)
         {
             try
             {
                 using (var transaction = new TransactionScope())
                 {
-                    legalEntity.LogoImage = _imagesManager.Handle(legalEntity.LogoImage);
-                    legalEntity.Address = _addressesManager.Handle(legalEntity.Address);
-                    Validate(legalEntity);
-                    _legalEntitiesDAL.Update(legalEntity);
+                    entity.LogoImage = _imagesManager.Handle(entity.LogoImage);
+                    entity.Address = _addressesManager.Handle(entity.Address);
+                    Validate(entity);
+                    _entitiesDAL.Update(entity);
                     transaction.Complete();
                 }
             }
@@ -82,23 +82,23 @@ namespace BusinessLogic
             }
         }
 
-        private void Validate(Entity legalEntity)
+        private void Validate(Entity entity)
         {
-            Validator.ValidateOrganizationName(legalEntity.Name);
+            Validator.ValidateOrganizationName(entity.Name);
 
-            if (!string.IsNullOrEmpty(legalEntity.CUIT))
+            if (!string.IsNullOrEmpty(entity.CUIT))
             {
-                Validator.ValidateCUIT(legalEntity.CUIT);
+                Validator.ValidateCUIT(entity.CUIT);
             }
 
-            if (!string.IsNullOrEmpty(legalEntity.Email))
+            if (!string.IsNullOrEmpty(entity.Email))
             {
-                Validator.ValidateEmail(legalEntity.Email);
+                Validator.ValidateEmail(entity.Email);
             }
 
-            if (!string.IsNullOrEmpty(legalEntity.Phone))
+            if (!string.IsNullOrEmpty(entity.Phone))
             {
-                Validator.ValidatePhone(legalEntity.Phone);
+                Validator.ValidatePhone(entity.Phone);
             }
         }
     }

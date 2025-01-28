@@ -31,7 +31,7 @@ namespace Utilities
             return 0;
         }
 
-        public static void AssignLegalEntity<DestinyClass, OriginClass>(
+        public static void AssignEntity<DestinyClass, OriginClass>(
             DestinyClass destinyObject,
             OriginClass originObject
         )
@@ -54,12 +54,12 @@ namespace Utilities
             }
         }
 
-        public static void AssignPerson<DestinyClass, OriginClass>(
+        public static void AssignEntity<DestinyClass, OriginClass>(
             DestinyClass destinyObject,
             OriginClass originObject
         )
-            where DestinyClass : Person, new()
-            where OriginClass : Person, new()
+            where DestinyClass : Entity, new()
+            where OriginClass : Entity, new()
         {
             destinyObject.Id = originObject.Id;
             destinyObject.DNI = originObject.DNI;

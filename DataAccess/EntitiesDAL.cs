@@ -14,13 +14,13 @@ namespace DataAccess
             _db = db;
         }
 
-        public int Create(Entity legalEntity)
+        public int Create(Entity entity)
         {
             try
             {
-                _db.SetProcedure("sp_create_legal_entity");
-                SetParameters(legalEntity);
-                legalEntity.Id = _db.ExecuteScalar();
+                _db.SetProcedure("sp_create_entity");
+                SetParameters(entity);
+                entity.Id = _db.ExecuteScalar();
             }
             catch (Exception ex)
             {
@@ -31,22 +31,22 @@ namespace DataAccess
                 _db.CloseConnection();
             }
 
-            return legalEntity.Id;
+            return entity.Id;
         }
 
-        public Entity Read(int legalEntityId)
+        public Entity Read(int entityId)
         {
             try
             {
-                _db.SetQuery("select * from legal_entities where legal_entity_id = @legal_entity_id");
-                _db.SetParameter("@legal_entity_id", legalEntityId);
+                _db.SetQuery("select * from entities where entity_id = @entity_id");
+                _db.SetParameter("@entity_id", entityId);
                 _db.ExecuteRead();
 
                 if (_db.Reader.Read())
                 {
-                    Entity legalEntity = new Entity();
-                    ReadRow(legalEntity);
-                    return legalEntity;
+                    Entity entity = new Entity();
+                    ReadRow(entity);
+                    return entity;
                 }
 
                 return null;
@@ -61,12 +61,12 @@ namespace DataAccess
             }
         }
 
-        public void Update(Entity legalEntity)
+        public void Update(Entity entity)
         {
             try
             {
-                _db.SetProcedure("sp_update_legal_entity");
-                SetParameters(legalEntity, true);
+                _db.SetProcedure("sp_update_entity");
+                SetParameters(entity, true);
                 _db.ExecuteAction();
             }
             catch (Exception ex)
@@ -79,54 +79,54 @@ namespace DataAccess
             }
         }
 
-        private void SetParameters(Entity legalEntity, bool isUpdate = false)
+        private void SetParameters(Entity entity, bool isUpdate = false)
         {
             if (isUpdate)
             {
-                _db.SetParameter("@legal_entity_id", legalEntity.Id);
+                _db.SetParameter("@entity_id", entity.Id);
             }
 
-            if (!string.IsNullOrEmpty(legalEntity.CUIT))
+            if (!string.IsNullOrEmpty(entity.CUIT))
             {
-                _db.SetParameter("@cuit", legalEntity.CUIT);
+                _db.SetParameter("@cuit", entity.CUIT);
             }
             else
             {
                 _db.SetParameter("@cuit", DBNull.Value);
             }
 
-            _db.SetParameter("@legal_entity_name", legalEntity.Name);
+            _db.SetParameter("@entity_name", entity.Name);
 
-            if (!string.IsNullOrEmpty(legalEntity.Email))
+            if (!string.IsNullOrEmpty(entity.Email))
             {
-                _db.SetParameter("@email", legalEntity.Email);
+                _db.SetParameter("@email", entity.Email);
             }
             else
             {
                 _db.SetParameter("@email", DBNull.Value);
             }
 
-            if (!string.IsNullOrEmpty(legalEntity.Phone))
+            if (!string.IsNullOrEmpty(entity.Phone))
             {
-                _db.SetParameter("@phone", legalEntity.Phone);
+                _db.SetParameter("@phone", entity.Phone);
             }
             else
             {
                 _db.SetParameter("@phone", DBNull.Value);
             }
 
-            if (legalEntity.LogoImage != null)
+            if (entity.LogoImage != null)
             {
-                _db.SetParameter("@logo_image_id", legalEntity.LogoImage.Id);
+                _db.SetParameter("@logo_image_id", entity.LogoImage.Id);
             }
             else
             {
                 _db.SetParameter("@logo_image_id", DBNull.Value);
             }
 
-            if (legalEntity.Address != null)
+            if (entity.Address != null)
             {
-                _db.SetParameter("@address_id", legalEntity.Address.Id);
+                _db.SetParameter("@address_id", entity.Address.Id);
             }
             else
             {
@@ -134,15 +134,15 @@ namespace DataAccess
             }
         }
 
-        private void ReadRow(Entity legalEntity)
+        private void ReadRow(Entity entity)
         {
-            legalEntity.Id = Convert.ToInt32(_db.Reader["legal_entity_id"]);
-            legalEntity.CUIT = _db.Reader["cuit"]?.ToString();
-            legalEntity.Name = _db.Reader["legal_entity_name"].ToString();
-            legalEntity.Email = _db.Reader["email"]?.ToString();
-            legalEntity.Phone = _db.Reader["phone"]?.ToString();
-            legalEntity.LogoImage = Helper.Instantiate<Image>(_db.Reader["logo_image_id"]);
-            legalEntity.Address = Helper.Instantiate<Address>(_db.Reader["address_id"]);
+            entity.Id = Convert.ToInt32(_db.Reader["entity_id"]);
+            entity.CUIT = _db.Reader["cuit"]?.ToString();
+            entity.Name = _db.Reader["entity_name"].ToString();
+            entity.Email = _db.Reader["email"]?.ToString();
+            entity.Phone = _db.Reader["phone"]?.ToString();
+            entity.LogoImage = Helper.Instantiate<Image>(_db.Reader["logo_image_id"]);
+            entity.Address = Helper.Instantiate<Address>(_db.Reader["address_id"]);
         }
     }
 }

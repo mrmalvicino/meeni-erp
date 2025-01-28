@@ -22,13 +22,13 @@ namespace BusinessLogic
             _rolesManager = new RolesManager(db);
         }
 
-        public int Create(User user, int internalOrganizationId)
+        public int Create(User user, int organizationId)
         {
             try
             {
                 using (var transaction = new TransactionScope())
                 {
-                    user.Id = _employeesManager.Create(user, internalOrganizationId);
+                    user.Id = _employeesManager.Create(user, organizationId);
                     Validate(user);
                     user.Id = _usersDAL.Create(user);
 
@@ -67,12 +67,12 @@ namespace BusinessLogic
             _user.Roles = _rolesManager.List(_user);
 
             _employee = _employeesManager.Read(_user.Id);
-            Helper.AssignPerson(_user, _employee);
+            Helper.AssignEntity(_user, _employee);
 
             return _user;
         }
 
-        public void Update(User user, int internalOrganizationId)
+        public void Update(User user, int organizationId)
         {
             try
             {
