@@ -1,22 +1,32 @@
 use meeni_erp_db;
 
+go
 ------------
 -- IMAGES --
 ------------
+print '';
+
+print 'Inserting dummy data into images table...';
+
 go
 insert into
-    images (image_url)
+    images (url)
 values
     ('https://i.imgur.com/jOSLaMH.png'),
     ('https://i.imgur.com/NcONOVV.png'),
     ('https://i.imgur.com/vbTmUHj.png');
 
+go
 ------------
 -- CITIES --
 ------------
+print '';
+
+print 'Inserting dummy data into cities table...';
+
 go
 insert into
-    cities (city_name, zip_code, province_id)
+    cities (name, zip_code, province_id)
 values
     ('Palermo', '1414', 5),
     ('Recoleta', '1023', 5),
@@ -26,9 +36,14 @@ values
     ('Merlo', '5700', 19),
     ('Carlos Paz', '5152', 6);
 
+go
 ---------------
 -- ADDRESSES --
 ---------------
+print '';
+
+print 'Inserting dummy data into addresses table...';
+
 insert into
     addresses (
         street_name,
@@ -49,460 +64,444 @@ values
     ('Piedras Blancas', '789', null, null, 6),
     ('Copinita', '450', null, 'Puerta verde', 7);
 
---------------------
--- LEGAL ENTITIES --
---------------------
+go
+--------------
+-- ENTITIES --
+--------------
+print '';
+
+print 'Inserting dummy data into entities table...';
+
 go
 insert into
-    legal_entities (
-        cuit,
-        legal_entity_name,
+    entities (
+        name,
+        tax_code,
         email,
         phone,
-        logo_image_id,
+        birth_date,
+        image_id,
         address_id
     )
 values
     (
-        '20123456789',
         'Berlinguieri Co.',
+        '20-12345678-9',
         'contacto@berlinguieri.com',
         '1158873478',
+        '1990-12-12',
         1,
         1
     ),
     (
-        null,
         'Future Archi',
+        null,
         'contacto@futurearchi.com',
         '1112345678',
+        null,
         2,
         2
     ),
     (
-        '27987654321',
         'El Buen Color',
+        '27-98765432-1',
         'info@elbuencolor.com',
+        null,
         null,
         3,
         null
     ),
     (
-        '23456789015',
         'Industria Gamma',
+        '23-45678901-5',
         'ventas@industriagamma.com',
+        null,
         null,
         null,
         3
     ),
     (
-        null,
         'Soluciones Omega',
+        null,
         'soporte@solucionesomega.com',
+        null,
         null,
         null,
         null
     ),
     (
-        '23998877663',
         'Innovación Zeta',
+        '23-99887766-3',
         'contacto@innovacionzeta.com',
+        null,
         null,
         null,
         4
     ),
     (
-        null,
         'Corporación Delta',
+        null,
         'info@corporaciondelta.com',
         '1177889900',
         null,
+        null,
         null
     ),
     (
-        null,
         'Consultora Épsilon',
+        null,
         'consultas@consultoraepsilon.com',
         null,
         null,
+        null,
         null
     ),
     (
-        null,
         'Tecnología Kappa',
+        null,
         'contacto@tecnologiakappa.com',
         null,
         null,
+        null,
         null
     ),
     (
-        '23556677889',
         'Logística Lambda',
+        '23-55667788-9',
         'logistica@logisticalambda.com',
         null,
+        null,
+        null,
+        null
+    ),
+    (
+        'Pérez, Juán',
+        '20-22345678-9',
+        'juan.perez@email.com',
+        '1182345678',
+        '1985-07-15',
+        null,
+        5
+    ),
+    (
+        'González, María',
+        null,
+        'maria.gonzalez@email.com',
+        null,
+        '1990-03-22',
+        null,
+        6
+    ),
+    (
+        'Martínez, Pedro',
+        '20-28765432-9',
+        'pedro.martinez@email.com',
+        '1198765432',
+        '1987-12-30',
+        null,
+        null
+    ),
+    (
+        'Rodríguez, Laura',
+        null,
+        'laura.rodriguez@email.com',
+        '1155667788',
+        null,
+        null,
+        null
+    ),
+    (
+        'Fernández, Carlos',
+        '23-31223344-0',
+        'carlos.fernandez@email.com',
+        null,
+        '1982-05-01',
+        null,
+        null
+    ),
+    (
+        'López, Ana',
+        '20-22334455-7',
+        'ana.lopez@email.com',
+        '1177889900',
+        '1995-09-10',
+        null,
+        7
+    ),
+    (
+        'Sánchez, José',
+        null,
+        'jose.sanchez@email.com',
+        '1112349876',
+        '1980-01-14',
+        null,
+        null
+    ),
+    (
+        'Paredes, Lucía',
+        '33445566',
+        'lucia.paredes@email.com',
+        '1199887766',
+        '1992-11-20',
+        null,
+        null
+    ),
+    (
+        'Díaz, Ricardo',
+        null,
+        'ricardo.diaz@email.com',
+        null,
+        '1993-04-18',
+        null,
+        null
+    ),
+    (
+        'Vargas, Patricia',
+        '14556677',
+        'patricia.vargas@email.com',
+        '1166554433',
+        null,
+        null,
+        null
+    ),
+    (
+        'Gómez, Francisco',
+        '15667788',
+        'francisco.gomez@email.com',
+        '1188776655',
+        '1989-08-29',
+        null,
+        null
+    ),
+    (
+        'Morales, Julieta',
+        null,
+        'julieta.morales@email.com',
+        '1166553322',
+        null,
+        null,
+        null
+    ),
+    (
+        'Jiménez, Alberto',
+        '26778899',
+        'alberto.jimenez@email.com',
+        null,
+        '1988-06-12',
+        null,
+        null
+    ),
+    (
+        'Ramírez, Roberto',
+        null,
+        'roberto.ramirez@email.com',
+        null,
+        null,
+        null,
+        null
+    ),
+    (
+        'Torres, Isabel',
+        '17889900',
+        'isabel.torres@email.com',
+        '1199887766',
+        '1991-02-25',
+        null,
+        null
+    ),
+    (
+        'Ruiz, Santiago',
+        null,
+        'santiago.ruiz@email.com',
+        '1111223344',
+        '1994-07-05',
+        null,
+        null
+    ),
+    (
+        'Méndez, Mercedes',
+        '18990011',
+        'mercedes.mendez@email.com',
+        '1122334455',
+        null,
+        null,
+        null
+    ),
+    (
+        'Álvarez, Gabriel',
+        null,
+        'gabriel.alvarez@email.com',
+        '1133445566',
+        '1986-09-02',
+        null,
+        null
+    ),
+    (
+        'Ríos, Valentina',
+        null,
+        'valentina.rios@email.com',
+        '1144556677',
+        '1996-01-08',
+        null,
+        null
+    ),
+    (
+        'Álvarez, Maximiliano',
+        null,
+        'maxi_al@email.com',
+        '1144556677',
+        '1996-01-08',
         null,
         null
     );
 
-----------------------------
--- INTERNAL ORGANIZATIONS --
-----------------------------
+go
+-------------------
+-- ORGANIZATIONS --
+-------------------
+print '';
+
+print 'Inserting dummy data into organizations table...';
+
 go
 insert into
-    internal_organizations (
-        internal_organization_id,
+    organizations (
+        organization_id,
         activity_status,
         admission_date,
         pricing_plan_id
     )
 values
     (1, 1, '2024-10-10', 1),
-    (2, 1, '2024-11-11', 2),
+    (2, 1, '2024-11-11', 1),
     (3, 0, '2024-12-12', 3);
 
-----------------------------
--- EXTERNAL ORGANIZATIONS --
-----------------------------
+go
+------------------
+-- STAKEHOLDERS --
+------------------
+print '';
+
+print 'Inserting dummy data into stakeholders table...';
+
 go
 insert into
-    external_organizations (
-        external_organization_id,
-        internal_organization_id
-    )
+    stakeholders (stakeholder_id, organization_id)
 values
     (4, 1),
     (5, 1),
-    (6, 2),
+    (6, 1),
     (7, 2),
-    (8, 3),
-    (9, 3),
-    (10, 1);
+    (8, 2),
+    (9, 2),
+    (10, 3),
+    (11, 1),
+    (12, 1),
+    (13, 1),
+    (14, 1),
+    (15, 1),
+    (16, 2),
+    (17, 2),
+    (18, 2),
+    (19, 3),
+    (20, 3),
+    (21, 1),
+    (22, 1),
+    (23, 1),
+    (24, 1),
+    (25, 2),
+    (26, 2),
+    (27, 2),
+    (28, 3),
+    (29, 3),
+    (30, 3);
 
-------------
--- PEOPLE --
-------------
-insert into
-    people (
-        dni,
-        cuil,
-        first_name,
-        last_name,
-        email,
-        phone,
-        birth_date,
-        profile_image_id,
-        address_id,
-        internal_organization_id
-    )
-values
-    (
-        '22345678',
-        '20223456789',
-        'Juan',
-        'Pérez',
-        'juan.perez@email.com',
-        '1182345678',
-        '1985-07-15',
-        null,
-        5,
-        1
-    ),
-    (
-        null,
-        null,
-        'María',
-        'González',
-        'maria.gonzalez@email.com',
-        null,
-        '1990-03-22',
-        null,
-        6,
-        2
-    ),
-    (
-        '28765432',
-        '20287654329',
-        'Pedro',
-        'Martínez',
-        'pedro.martinez@email.com',
-        '1198765432',
-        '1987-12-30',
-        null,
-        null,
-        3
-    ),
-    (
-        null,
-        null,
-        'Laura',
-        'Rodríguez',
-        'laura.rodriguez@email.com',
-        '1155667788',
-        null,
-        null,
-        null,
-        1
-    ),
-    (
-        '31223344',
-        '23312233440',
-        'Carlos',
-        'Fernández',
-        'carlos.fernandez@email.com',
-        null,
-        '1982-05-01',
-        null,
-        null,
-        1
-    ),
-    (
-        '22334455',
-        '20223344557',
-        'Ana',
-        'López',
-        'ana.lopez@email.com',
-        '1177889900',
-        '1995-09-10',
-        null,
-        7,
-        1
-    ),
-    (
-        null,
-        null,
-        'José',
-        'Sánchez',
-        'jose.sanchez@email.com',
-        '1112349876',
-        '1980-01-14',
-        null,
-        null,
-        2
-    ),
-    (
-        '33445566',
-        null,
-        'Lucía',
-        'Paredes',
-        'lucia.paredes@email.com',
-        '1199887766',
-        '1992-11-20',
-        null,
-        null,
-        2
-    ),
-    (
-        null,
-        null,
-        'Ricardo',
-        'Díaz',
-        'ricardo.diaz@email.com',
-        null,
-        '1993-04-18',
-        null,
-        null,
-        2
-    ),
-    (
-        '14556677',
-        null,
-        'Patricia',
-        'Vargas',
-        'patricia.vargas@email.com',
-        '1166554433',
-        null,
-        null,
-        null,
-        3
-    ),
-    (
-        '15667788',
-        null,
-        'Francisco',
-        'Gómez',
-        'francisco.gomez@email.com',
-        '1188776655',
-        '1989-08-29',
-        null,
-        null,
-        3
-    ),
-    (
-        null,
-        null,
-        'Julieta',
-        'Morales',
-        'julieta.morales@email.com',
-        '1166553322',
-        null,
-        null,
-        null,
-        3
-    ),
-    (
-        '26778899',
-        null,
-        'Alberto',
-        'Jiménez',
-        'alberto.jimenez@email.com',
-        null,
-        '1988-06-12',
-        null,
-        null,
-        1
-    ),
-    (
-        null,
-        null,
-        'Roberto',
-        'Ramírez',
-        'roberto.ramirez@email.com',
-        null,
-        null,
-        null,
-        null,
-        2
-    ),
-    (
-        '17889900',
-        null,
-        'Isabel',
-        'Torres',
-        'isabel.torres@email.com',
-        '1199887766',
-        '1991-02-25',
-        null,
-        null,
-        3
-    ),
-    (
-        null,
-        null,
-        'Santiago',
-        'Ruiz',
-        'santiago.ruiz@email.com',
-        '1111223344',
-        '1994-07-05',
-        null,
-        null,
-        1
-    ),
-    (
-        '18990011',
-        null,
-        'Mercedes',
-        'Méndez',
-        'mercedes.mendez@email.com',
-        '1122334455',
-        null,
-        null,
-        null,
-        1
-    ),
-    (
-        null,
-        null,
-        'Gabriel',
-        'Álvarez',
-        'gabriel.alvarez@email.com',
-        '1133445566',
-        '1986-09-02',
-        null,
-        null,
-        1
-    ),
-    (
-        null,
-        null,
-        'Valentina',
-        'Ríos',
-        'valentina.rios@email.com',
-        '1144556677',
-        '1996-01-08',
-        null,
-        null,
-        1
-    ),
-    (
-        null,
-        null,
-        'Maximiliano',
-        'Álvarez',
-        'maxi_al@email.com',
-        '1144556677',
-        '1996-01-08',
-        null,
-        null,
-        1
-    );
+go
+--------------
+-- PARTNERS --
+--------------
+print '';
 
------------------------
--- BUSINESS PARTNERS --
------------------------
+print 'Inserting dummy data into partners table...';
+
 go
 insert into
-    business_partners (
+    partners (
+        partner_id,
         activity_status,
         is_client,
-        is_supplier,
-        external_organization_id,
-        person_id
+        is_supplier
     )
 values
-    (1, 1, 1, 4, null),
-    (1, 1, 1, 5, null),
-    (1, 1, 1, 6, null),
-    (1, 1, 1, 7, null),
-    (1, 1, 0, 8, null),
-    (1, 0, 1, 9, null),
-    (1, 1, 0, 10, null),
-    (1, 0, 1, null, 4),
-    (1, 1, 0, null, 5),
-    (1, 0, 1, null, 6),
-    (0, 1, 0, null, 7),
-    (1, 0, 1, null, 8),
-    (1, 1, 0, null, 9),
-    (1, 0, 1, null, 10),
-    (1, 1, 0, null, 11),
-    (1, 0, 1, null, 12);
+    (4, 1, 1, 1),
+    (5, 1, 1, 1),
+    (6, 0, 1, 0),
+    (7, 1, 1, 1),
+    (8, 1, 1, 1),
+    (9, 0, 0, 0),
+    (10, 1, 1, 1),
+    (11, 1, 0, 1),
+    (12, 0, 1, 0),
+    (13, 1, 0, 1),
+    (14, 1, 1, 0),
+    (15, 0, 0, 1),
+    (16, 1, 1, 0),
+    (17, 1, 0, 1),
+    (18, 0, 1, 0),
+    (19, 1, 0, 1),
+    (20, 1, 0, 1);
 
+go
 ---------------
 -- EMPLOYEES --
 ---------------
+print '';
+
+print 'Inserting dummy data into employees table...';
+
 go
 insert into
     employees (employee_id, activity_status, admission_date)
 values
-    (1, 1, '2024-10-10'),
-    (2, 1, '2024-10-11'),
-    (3, 1, '2024-10-12'),
-    (13, 1, '2024-10-22'),
-    (14, 1, '2024-10-23'),
-    (15, 1, '2024-10-24'),
-    (16, 1, '2024-11-25'),
-    (17, 1, '2024-11-26'),
-    (18, 1, '2024-11-27'),
-    (19, 1, '2024-12-28'),
-    (20, 1, '2024-12-28');
+    (21, 1, '2024-10-10'),
+    (22, 1, '2024-10-11'),
+    (23, 0, '2024-10-12'),
+    (24, 1, '2024-10-22'),
+    (25, 1, '2024-10-23'),
+    (26, 0, '2024-10-24'),
+    (27, 1, '2024-11-25'),
+    (28, 1, '2024-11-26'),
+    (29, 0, '2024-11-27'),
+    (30, 1, '2024-12-28');
 
+go
 -----------
 -- USERS --
 -----------
+print '';
+
+print 'Inserting dummy data into users table...';
+
 go
 insert into
     users (user_id, username, password)
 values
-    (1, 'admin', 'admin'),
-    (2, 'admin2', 'admin2'),
-    (3, 'admin3', 'admin3');
+    (21, 'admin', 'admin'),
+    (25, 'admin2', 'admin2'),
+    (28, 'admin3', 'admin3');
 
--------------------
--- USERS X ROLES --
--------------------
+go
+-------------------------
+-- USER-ROLE RELATIONS --
+-------------------------
+print '';
+
+print 'Inserting dummy data into user_role_rel table...';
+
 go
 insert into
     user_role_rel (user_id, role_id)
 values
-    (1, 1),
-    (2, 1),
-    (3, 1);
+    (21, 1),
+    (25, 1),
+    (28, 1);

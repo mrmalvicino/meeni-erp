@@ -1,39 +1,45 @@
 use meeni_erp_db;
 
+go
+
 ------------
 -- IMAGES --
 ------------
 
+print '';
+
+print 'Creating stored procedures related to images table...';
+
 go
 create or alter procedure sp_create_image(
-    @image_url varchar(300)
+    @url varchar(300)
 )
 as
 begin
     insert into
-        images (image_url)
+        images (url)
         output inserted.image_id
     values
-        (@image_url);
+        (@url);
 end;
 
 go
 create or alter procedure sp_update_image(
     @image_id int,
-    @image_url varchar(300)
+    @url varchar(300)
 )
 as
 begin
     update images
     set
-        image_url = @image_url
+        url = @url
     where
         image_id = @image_id;
 end;
 
 go
 create or alter procedure sp_find_image_id(
-    @image_url varchar(300)
+    @url varchar(300)
 )
 as
 begin
@@ -42,29 +48,35 @@ begin
     from
         images
     where
-        image_url = @image_url;
+        url = @url;
 end;
+
+go
 
 ---------------
 -- COUNTRIES --
 ---------------
 
+print '';
+
+print 'Creating stored procedures related to countries table...';
+
 go
 create or alter procedure sp_create_country(
-    @country_name varchar(50)
+    @name varchar(50)
 )
 as
 begin
     insert into
-        countries (country_name)
+        countries (name)
         output inserted.country_id
     values
-        (@country_name);
+        (@name);
 end;
 
 go
 create or alter procedure sp_find_country_id(
-    @country_name varchar(50)
+    @name varchar(50)
 )
 as
 begin
@@ -73,30 +85,36 @@ begin
     from
         countries
     where
-        country_name = @country_name;
+        name = @name;
 end;
+
+go
 
 ---------------
 -- PROVINCES --
 ---------------
 
+print '';
+
+print 'Creating stored procedures related to provinces table...';
+
 go
 create or alter procedure sp_create_province(
-    @province_name varchar(50),
+    @name varchar(50),
     @country_id int
 )
 as
 begin
     insert into
-        provinces (province_name, country_id)
+        provinces (name, country_id)
         output inserted.province_id
     values
-        (@province_name, @country_id);
+        (@name, @country_id);
 end;
 
 go
 create or alter procedure sp_find_province_id(
-    @province_name varchar(50),
+    @name varchar(50),
     @country_id int
 )
 as
@@ -106,32 +124,38 @@ begin
     from
         provinces
     where
-        province_name = @province_name
+        name = @name
         and country_id = @country_id;
 end;
+
+go
 
 ------------
 -- CITIES --
 ------------
 
+print '';
+
+print 'Creating stored procedures related to cities table...';
+
 go
 create or alter procedure sp_create_city(
-    @city_name varchar(50),
+    @name varchar(50),
     @zip_code varchar(10),
     @province_id int
 )
 as
 begin
     insert into
-        cities (city_name, zip_code, province_id)
+        cities (name, zip_code, province_id)
         output inserted.city_id
     values
-        (@city_name, @zip_code, @province_id);
+        (@name, @zip_code, @province_id);
 end;
 
 go
 create or alter procedure sp_find_city_id(
-    @city_name varchar(50),
+    @name varchar(50),
     @province_id int
 )
 as
@@ -141,13 +165,19 @@ begin
     from
         cities
     where
-        city_name = @city_name
+        name = @name
         and province_id = @province_id;
 end;
+
+go
 
 ---------------
 -- ADDRESSES --
 ---------------
+
+print '';
+
+print 'Creating stored procedures related to addresses table...';
 
 go
 create or alter procedure sp_create_address(
@@ -208,59 +238,74 @@ begin
         and city_id = @city_id;
 end;
 
---------------------
--- LEGAL ENTITIES --
---------------------
+go
+
+--------------
+-- ENTITIES --
+--------------
+
+print '';
+
+print 'Creating stored procedures related to entities table...';
 
 go
-create or alter procedure sp_create_legal_entity(
-    @cuit varchar(11),
-    @legal_entity_name varchar(50),
+create or alter procedure sp_create_entity(
+    @name varchar(50),
+    @tax_code varchar(11),
     @email varchar(50),
     @phone varchar(50),
-    @logo_image_id int,
+    @birth_date date,
+    @image_id int,
     @address_id int
 )
 as
 begin
     insert into
-        legal_entities (cuit, legal_entity_name, email, phone, logo_image_id, address_id)
-        output inserted.legal_entity_id
+        entities (tax_code, name, email, phone, birth_date, image_id, address_id)
+        output inserted.entity_id
     values
-        (@cuit, @legal_entity_name, @email, @phone, @logo_image_id, @address_id);
+        (@tax_code, @name, @email, @phone, @birth_date, @image_id, @address_id);
 end;
 
 go
-create or alter procedure sp_update_legal_entity(
-    @legal_entity_id int,
-    @cuit varchar(11),
-    @legal_entity_name varchar(50),
+create or alter procedure sp_update_entity(
+    @entity_id int,
+    @tax_code varchar(11),
+    @name varchar(50),
     @email varchar(50),
     @phone varchar(50),
-    @logo_image_id int,
+    @birth_date date,
+    @image_id int,
     @address_id int
 )
 as
 begin
-    update legal_entities
+    update entities
     set
-        cuit = @cuit,
-        legal_entity_name = @legal_entity_name,
+        tax_code = @tax_code,
+        name = @name,
         email = @email,
         phone = @phone,
-        logo_image_id = @logo_image_id,
+        birth_date = @birth_date,
+        image_id = @image_id,
         address_id = @address_id
     where
-        legal_entity_id = @legal_entity_id;
+        entity_id = @entity_id;
 end;
+
+go
 
 -------------------
 -- PRICING PLANS --
 -------------------
 
+print '';
+
+print 'Creating stored procedures related to pricing_plans table...';
+
 go
 create or alter procedure sp_find_pricing_plan_id(
-    @pricing_plan_name varchar(50)
+    @name varchar(50)
 )
 as
 begin
@@ -269,44 +314,50 @@ begin
     from
         pricing_plans
     where
-        pricing_plan_name = @pricing_plan_name;
+        name = @name;
 end;
 
-----------------------------
--- INTERNAL ORGANIZATIONS --
-----------------------------
+go
+
+-------------------
+-- ORGANIZATIONS --
+-------------------
+
+print '';
+
+print 'Creating stored procedures related to organizations table...';
 
 go
-create or alter procedure sp_create_internal_organization(
-    @internal_organization_id int,
+create or alter procedure sp_create_organization(
+    @organization_id int,
     @pricing_plan_id int
 )
 as
 begin
     insert into
-        internal_organizations (internal_organization_id, pricing_plan_id)
-        output inserted.internal_organization_id
+        organizations (organization_id, pricing_plan_id)
+        output inserted.organization_id
     values
-        (@internal_organization_id, @pricing_plan_id);
+        (@organization_id, @pricing_plan_id);
 end;
 
 go
-create or alter procedure sp_update_internal_organization(
-    @internal_organization_id int,
+create or alter procedure sp_update_organization(
+    @organization_id int,
     @pricing_plan_id int
 )
 as
 begin
-    update internal_organizations
+    update organizations
     set
         pricing_plan_id = @pricing_plan_id
     where
-        internal_organization_id = @internal_organization_id;
+        organization_id = @organization_id;
 end;
 
 go
-create or alter procedure sp_toggle_internal_organization(
-    @internal_organization_id int
+create or alter procedure sp_toggle_organization(
+    @organization_id int
 )
 as
 begin
@@ -315,166 +366,70 @@ begin
     select
         @current_status = activity_status
     from
-        internal_organizations
+        organizations
     where
-        internal_organization_id = @internal_organization_id;
+        organization_id = @organization_id;
 
-    update internal_organizations
+    update organizations
     set
         activity_status = case when @current_status = 1 then 0 else 1 end
     where
-        internal_organization_id = @internal_organization_id;
+        organization_id = @organization_id;
 end;
 
-----------------------------
--- EXTERNAL ORGANIZATIONS --
-----------------------------
+go
+
+------------------
+-- STAKEHOLDERS --
+------------------
+
+print '';
+
+print 'Creating stored procedures related to stakeholders table...';
 
 go
-create or alter procedure sp_read_external_organization(
-    @external_organization_id int
+create or alter procedure sp_read_stakeholder(
+    @stakeholder_id int
 )
 as
 begin
     select
         *
     from
-        external_organizations
+        stakeholders
     where
-        external_organization_id = @external_organization_id;
+        stakeholder_id = @stakeholder_id;
 end;
 
 go
-create or alter procedure sp_find_organization_internal_id(
-    @external_organization_id int
+create or alter procedure sp_find_organization_id(
+    @stakeholder_id int
 )
 as
 begin
     select
-        internal_organization_id
+        organization_id
     from
-        external_organizations
+        stakeholders
     where
-        external_organization_id = @external_organization_id;
-end;
-
-------------
--- PEOPLE --
-------------
-
-go
-create or alter procedure sp_create_person(
-    @dni varchar(8),
-    @cuil varchar(11),
-    @first_name varchar(50),
-    @last_name varchar(50),
-    @email varchar(50),
-    @phone varchar(50),
-    @birth_date date,
-    @profile_image_id int,
-    @address_id int,
-    @internal_organization_id int
-)
-as
-begin
-    insert into
-        people (
-            dni,
-            cuil,
-            first_name,
-            last_name,
-            email,
-            phone,
-            birth_date,
-            profile_image_id,
-            address_id,
-            internal_organization_id
-        ) output inserted.person_id
-    values
-        (
-            @dni,
-            @cuil,
-            @first_name,
-            @last_name,
-            @email,
-            @phone,
-            @birth_date,
-            @profile_image_id,
-            @address_id,
-            @internal_organization_id
-        );
+        stakeholder_id = @stakeholder_id;
 end;
 
 go
-create or alter procedure sp_update_person(
-    @person_id int,
-    @dni varchar(8),
-    @cuil varchar(11),
-    @first_name varchar(50),
-    @last_name varchar(50),
-    @email varchar(50),
-    @phone varchar(50),
-    @birth_date date,
-    @profile_image_id int,
-    @address_id int
-)
-as
-begin
-    update people
-    set
-        dni = @dni,
-        cuil = @cuil,
-        first_name = @first_name,
-        last_name = @last_name,
-        email = @email,
-        phone = @phone,
-        birth_date = @birth_date,
-        profile_image_id = @profile_image_id,
-        address_id = @address_id
-    where
-        person_id = @person_id;
-end;
+
+--------------
+-- PARTNERS --
+--------------
+
+print '';
+
+print 'Creating stored procedures related to partners table...';
 
 go
-create or alter procedure sp_find_person_id(
-    @dni varchar(8),
-    @internal_organization_id int
-)
-as
-begin
-    select
-        person_id
-    from
-        people
-    where
-        dni = @dni
-        and internal_organization_id = @internal_organization_id;
-end;
-
-go
-create or alter procedure sp_find_person_internal_id(
-    @person_id int
-)
-as
-begin
-    select
-        internal_organization_id
-    from
-        people
-    where
-        person_id = @person_id;
-end;
-
------------------------
--- BUSINESS PARTNERS --
------------------------
-
-go
-create or alter procedure sp_list_business_partners(
+create or alter procedure sp_list_partners(
     @list_clients bit,
     @list_suppliers bit,
-    @list_people bit,
-    @internal_organization_id int,
+    @organization_id int,
     @list_active bit,
     @list_inactive bit
 )
@@ -501,48 +456,30 @@ begin
         set @wanted_status_2 = 0;
     end;
 
-    if (@list_people = 1)
-    begin
-        select
-            *
-        from
-            business_partners BP
-            inner join people P on P.person_id = BP.person_id
-        where
-            BP.is_client = @list_clients
-            and BP.is_supplier = @list_suppliers
-            and BP.external_organization_id is null
-            and BP.person_id is not null
-            and P.internal_organization_id = @internal_organization_id
-            and (
-                BP.activity_status = @wanted_status_1
-                or BP.activity_status = @wanted_status_2
-            );
-    end;
-
-    if (@list_people = 0)
-    begin
-        select
-            *
-        from
-            business_partners BP
-            inner join external_organizations EO on EO.external_organization_id = BP.external_organization_id
-        where
-            BP.is_client = @list_clients
-            and BP.is_supplier = @list_suppliers
-            and BP.external_organization_id is not null
-            and BP.person_id is null
-            and EO.internal_organization_id = @internal_organization_id
-            and (
-                BP.activity_status = @wanted_status_1
-                or BP.activity_status = @wanted_status_2
-            );
-    end;
+    select
+        *
+    from
+        partners BP
+        inner join people P on P.person_id = BP.person_id
+    where
+        BP.is_client = @list_clients
+        and BP.is_supplier = @list_suppliers
+        and P.organization_id = @organization_id
+        and (
+            BP.activity_status = @wanted_status_1
+            or BP.activity_status = @wanted_status_2
+        );
 end;
+
+go
 
 ---------------
 -- EMPLOYEES --
 ---------------
+
+print '';
+
+print 'Creating stored procedures related to employees table...';
 
 go
 create or alter procedure sp_create_employee(
@@ -592,9 +529,15 @@ begin
         employee_id = @employee_id;
 end;
 
+go
+
 -----------
 -- ROLES --
 -----------
+
+print '';
+
+print 'Creating stored procedures related to roles table...';
 
 go
 create or alter procedure sp_list_roles(
@@ -610,7 +553,7 @@ begin
 
     select
         R.role_id,
-        R.role_name
+        R.name
     from
         roles R
         inner join user_role_rel X on R.role_id = X.role_id
@@ -618,9 +561,15 @@ begin
         X.user_id = @user_id;
 end;
 
+go
+
 -----------
 -- USERS --
 -----------
+
+print '';
+
+print 'Creating stored procedures related to users table...';
 
 go
 create or alter procedure sp_create_user(
@@ -676,9 +625,15 @@ begin
         and password = @password;
 end;
 
+go
+
 -------------------
--- USERS X ROLES --
+-- USER ROLE REL --
 -------------------
+
+print '';
+
+print 'Creating stored procedures related to user_role_rel table...';
 
 go
 create or alter procedure sp_create_user_role(

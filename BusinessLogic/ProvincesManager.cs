@@ -91,7 +91,7 @@ namespace BusinessLogic
         public void Handle(Province province, int countryId)
         {
             _countryId = countryId;
-            HandleEntity(province);
+            HandleAttribute(province);
         }
 
         private void Validate(Province province)

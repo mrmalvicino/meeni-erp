@@ -6,17 +6,17 @@ namespace WebForms
 {
     public partial class Dashboard : System.Web.UI.Page
     {
-        private ApplicationManager _appManager;
-        private InternalOrganization _internalOrganization;
+        private AppManager _appManager;
+        private Organization _internalOrganization;
 
         public Dashboard()
         {
-            _appManager = new ApplicationManager();
+            _appManager = new AppManager();
         }
 
         private void FetchInternalOrganization()
         {
-            _internalOrganization = Session["loggedOrganization"] as InternalOrganization;
+            _internalOrganization = Session["loggedOrganization"] as Organization;
         }
 
         protected void Page_Load(object sender, EventArgs e)

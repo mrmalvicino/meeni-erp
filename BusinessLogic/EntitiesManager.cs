@@ -7,21 +7,21 @@ using Utilities;
 
 namespace BusinessLogic
 {
-    public class LegalEntitiesManager
+    public class EntitiesManager
     {
-        private LegalEntity _legalEntity;
-        private LegalEntitiesDAL _legalEntitiesDAL;
+        private Entity _legalEntity;
+        private EntitiesDAL _legalEntitiesDAL;
         private ImagesManager _imagesManager;
         private AddressesManager _addressesManager;
 
-        public LegalEntitiesManager(Database db)
+        public EntitiesManager(Database db)
         {
-            _legalEntitiesDAL = new LegalEntitiesDAL(db);
+            _legalEntitiesDAL = new EntitiesDAL(db);
             _imagesManager = new ImagesManager(db);
             _addressesManager = new AddressesManager(db);
         }
 
-        public int Create(LegalEntity legalEntity)
+        public int Create(Entity legalEntity)
         {
             try
             {
@@ -41,7 +41,7 @@ namespace BusinessLogic
             }
         }
 
-        public LegalEntity Read(int legalEntityId)
+        public Entity Read(int legalEntityId)
         {
             if (legalEntityId == 0)
             {
@@ -63,7 +63,7 @@ namespace BusinessLogic
             return _legalEntity;
         }
 
-        public void Update(LegalEntity legalEntity)
+        public void Update(Entity legalEntity)
         {
             try
             {
@@ -82,7 +82,7 @@ namespace BusinessLogic
             }
         }
 
-        private void Validate(LegalEntity legalEntity)
+        private void Validate(Entity legalEntity)
         {
             Validator.ValidateOrganizationName(legalEntity.Name);
 

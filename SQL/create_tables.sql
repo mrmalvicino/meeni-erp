@@ -1,66 +1,91 @@
 use meeni_erp_db;
 
+go
 ------------
 -- IMAGES --
 ------------
 -- (dummy data) --
+print '';
+
+print 'Creating images table...';
+
 go
 create table
     images (
         image_id int identity (1, 1) not null,
-        image_url varchar(300) not null,
-        constraint uq_image unique (image_url),
+        url varchar(300) not null,
+        constraint uq_image unique (url),
         primary key (image_id)
     );
 
+go
 ---------------
 -- COUNTRIES --
 ---------------
 -- (initial data) --
+print '';
+
+print 'Creating countries table...';
+
 go
 create table
     countries (
         country_id int identity (1, 1) not null,
-        country_name varchar(50) not null,
-        constraint uq_country unique (country_name),
+        name varchar(50) not null,
+        constraint uq_country unique (name),
         primary key (country_id)
     );
 
+go
 ---------------
 -- PROVINCES --
 ---------------
 -- (initial data) --
+print '';
+
+print 'Creating provinces table...';
+
 go
 create table
     provinces (
         province_id int identity (1, 1) not null,
-        province_name varchar(50) not null,
+        name varchar(50) not null,
         country_id int not null,
-        constraint uq_province unique (province_name, country_id),
+        constraint uq_province unique (name, country_id),
         primary key (province_id),
         foreign key (country_id) references countries (country_id)
     );
 
+go
 ------------
 -- CITIES --
 ------------
 -- (dummy data) --
+print '';
+
+print 'Creating cities table...';
+
 go
 create table
     cities (
         city_id int identity (1, 1) not null,
-        city_name varchar(50) not null,
+        name varchar(50) not null,
         zip_code varchar(10) null,
         province_id int not null,
-        constraint uq_city unique (city_name, province_id),
+        constraint uq_city unique (name, province_id),
         primary key (city_id),
         foreign key (province_id) references provinces (province_id)
     );
 
+go
 ---------------
 -- ADDRESSES --
 ---------------
 -- (dummy data) --
+print '';
+
+print 'Creating addresses table...';
+
 go
 create table
     addresses (
@@ -75,130 +100,124 @@ create table
         foreign key (city_id) references cities (city_id)
     );
 
---------------------
--- LEGAL ENTITIES --
---------------------
+go
+--------------
+-- ENTITIES --
+--------------
 -- (dummy data) --
+print '';
+
+print 'Creating entities table...';
+
 go
 create table
-    legal_entities (
-        legal_entity_id int identity (1, 1) not null,
-        cuit varchar(11) null,
-        legal_entity_name varchar(50) not null,
+    entities (
+        entity_id int identity (1, 1) not null,
+        name varchar(50) not null,
+        tax_code varchar(11) null,
         email varchar(50) null,
         phone varchar(50) null,
-        logo_image_id int null,
+        birth_date date null,
+        image_id int null,
         address_id int null,
-        primary key (legal_entity_id),
-        foreign key (logo_image_id) references images (image_id),
+        primary key (entity_id),
+        foreign key (image_id) references images (image_id),
         foreign key (address_id) references addresses (address_id)
     );
 
+go
 -------------------
 -- PRICING PLANS --
 -------------------
 -- (initial data) --
+print '';
+
+print 'Creating pricing_plans table...';
+
 go
 create table
     pricing_plans (
         pricing_plan_id int identity (1, 1) not null,
-        pricing_plan_name varchar(50) not null,
+        name varchar(50) not null,
         monthly_fee money not null,
-        constraint uq_pricing_plan unique (pricing_plan_name),
+        constraint uq_pricing_plan unique (name),
         constraint chk_plan_fee check (0 <= monthly_fee),
         primary key (pricing_plan_id)
     );
 
-----------------------------
--- INTERNAL ORGANIZATIONS --
-----------------------------
+go
+-------------------
+-- ORGANIZATIONS --
+-------------------
 -- (dummy data) --
+print '';
+
+print 'Creating organizations table...';
+
 go
 create table
-    internal_organizations (
-        internal_organization_id int not null,
+    organizations (
+        organization_id int not null,
         activity_status bit default (1) not null,
         admission_date date default cast(getdate () as date) not null,
         pricing_plan_id int not null,
-        primary key (internal_organization_id),
+        primary key (organization_id),
         foreign key (pricing_plan_id) references pricing_plans (pricing_plan_id),
-        foreign key (internal_organization_id) references legal_entities (legal_entity_id)
+        foreign key (organization_id) references entities (entity_id)
     );
 
-----------------------------
--- EXTERNAL ORGANIZATIONS --
-----------------------------
+go
+------------------
+-- STAKEHOLDERS --
+------------------
 -- (dummy data) --
+print '';
+
+print 'Creating stakeholders table...';
+
 go
 create table
-    external_organizations (
-        external_organization_id int not null,
-        internal_organization_id int not null,
-        primary key (external_organization_id),
-        foreign key (external_organization_id) references legal_entities (legal_entity_id),
-        foreign key (internal_organization_id) references internal_organizations (internal_organization_id)
+    stakeholders (
+        stakeholder_id int not null,
+        organization_id int not null,
+        primary key (stakeholder_id),
+        foreign key (stakeholder_id) references entities (entity_id),
+        foreign key (organization_id) references organizations (organization_id)
     );
 
-------------
--- PEOPLE --
-------------
--- (dummy data) --
 go
-create table
-    people (
-        person_id int identity (1, 1) not null,
-        dni varchar(8) null,
-        cuil varchar(11) null,
-        first_name varchar(50) not null,
-        last_name varchar(50) not null,
-        email varchar(50) null,
-        phone varchar(50) null,
-        birth_date date null,
-        profile_image_id int null,
-        address_id int null,
-        internal_organization_id int not null,
-        primary key (person_id),
-        foreign key (profile_image_id) references images (image_id),
-        foreign key (address_id) references addresses (address_id),
-        foreign key (internal_organization_id) references internal_organizations (internal_organization_id)
-    );
+--------------
+-- PARTNERS --
+--------------
+-- (dummy data) --
+print '';
 
------------------------
--- BUSINESS PARTNERS --
------------------------
--- (dummy data) --
+print 'Creating partners table...';
+
 go
 create table
-    business_partners (
-        business_partner_id int identity (1, 1) not null,
+    partners (
+        partner_id int not null,
         activity_status bit default (1) not null,
         is_client bit not null,
         is_supplier bit not null,
-        external_organization_id int null,
-        person_id int null,
-        constraint chk_both_types check (
-            is_client != 0
-            or is_supplier != 0
+        constraint chk_is_any check (
+            is_client is not null
+            or is_supplier is not null
         ),
-        constraint chk_both_null check (
-            external_organization_id is not null
-            or person_id is not null
-        ),
-        constraint chk_both_filled check (
-            not (
-                external_organization_id is not null
-                and person_id is not null
-            )
-        ),
-        primary key (business_partner_id),
-        foreign key (external_organization_id) references external_organizations (external_organization_id),
-        foreign key (person_id) references people (person_id)
+        primary key (partner_id),
+        foreign key (partner_id) references stakeholders (stakeholder_id)
     );
 
+go
 ---------------
 -- EMPLOYEES --
 ---------------
 -- (dummy data) --
+print '';
+
+print 'Creating employees table...';
+
 go
 create table
     employees (
@@ -206,26 +225,36 @@ create table
         activity_status bit default (1) not null,
         admission_date date default cast(getdate () as date) not null,
         primary key (employee_id),
-        foreign key (employee_id) references people (person_id)
+        foreign key (employee_id) references stakeholders (stakeholder_id)
     );
 
+go
 -----------
 -- ROLES --
 -----------
 -- (initial data) --
+print '';
+
+print 'Creating roles table...';
+
 go
 create table
     roles (
         role_id int identity (1, 1) not null,
-        role_name varchar(20) not null,
-        constraint uq_role unique (role_name),
+        name varchar(20) not null,
+        constraint uq_role unique (name),
         primary key (role_id)
     );
 
+go
 -----------
 -- USERS --
 -----------
 -- (dummy data) --
+print '';
+
+print 'Creating users table...';
+
 go
 create table
     users (
@@ -237,10 +266,15 @@ create table
         foreign key (user_id) references employees (employee_id)
     );
 
--------------------
--- USERS X ROLES --
--------------------
+go
+-------------------------
+-- USER-ROLE RELATIONS --
+-------------------------
 -- (dummy data) --
+print '';
+
+print 'Creating user_role_rel table...';
+
 go
 create table
     user_role_rel (

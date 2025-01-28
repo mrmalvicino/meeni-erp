@@ -80,7 +80,7 @@ namespace BusinessLogic
                 return null;
             }
 
-            HandleEntity(image);
+            HandleAttribute(image);
 
             return image;
         }

@@ -6,20 +6,20 @@ using Utilities;
 
 namespace BusinessLogic
 {
-    public class ExternalOrganizationsManager
+    public class StakeholdersManager
     {
-        private ExternalOrganization _externalOrganization;
-        private ExternalOrganizationsDAL _externalOrganizationsDAL;
-        private LegalEntity _legalEntity;
-        private LegalEntitiesManager _legalEntitiesManager;
+        private Stakeholder _externalOrganization;
+        private StakeholdersDAL _externalOrganizationsDAL;
+        private Entity _legalEntity;
+        private EntitiesManager _legalEntitiesManager;
 
-        public ExternalOrganizationsManager(Database db)
+        public StakeholdersManager(Database db)
         {
-            _externalOrganizationsDAL = new ExternalOrganizationsDAL(db);
-            _legalEntitiesManager = new LegalEntitiesManager(db);
+            _externalOrganizationsDAL = new StakeholdersDAL(db);
+            _legalEntitiesManager = new EntitiesManager(db);
         }
 
-        public ExternalOrganization Read(int externalOrganizationId)
+        public Stakeholder Read(int externalOrganizationId)
         {
             if (externalOrganizationId == 0)
             {

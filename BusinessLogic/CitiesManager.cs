@@ -79,7 +79,7 @@ namespace BusinessLogic
         public void Handle(City city, int provinceId)
         {
             _provinceId = provinceId;
-            HandleEntity(city);
+            HandleAttribute(city);
         }
 
         private void Validate(City city)

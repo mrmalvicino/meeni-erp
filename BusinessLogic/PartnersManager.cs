@@ -6,21 +6,21 @@ using System.Collections.Generic;
 
 namespace BusinessLogic
 {
-    public class BusinessPartnersManager
+    public class PartnersManager
     {
-        private BusinessPartner _businessPartner;
-        private BusinessPartnersDAL _businesPartnersDAL;
-        private ExternalOrganizationsManager _externalOrganizationsManager;
+        private Partner _businessPartner;
+        private PartnersDAL _businesPartnersDAL;
+        private StakeholdersManager _externalOrganizationsManager;
         private PeopleManager _peopleManager;
 
-        public BusinessPartnersManager(Database db)
+        public PartnersManager(Database db)
         {
-            _businesPartnersDAL = new BusinessPartnersDAL(db);
-            _externalOrganizationsManager = new ExternalOrganizationsManager(db);
+            _businesPartnersDAL = new PartnersDAL(db);
+            _externalOrganizationsManager = new StakeholdersManager(db);
             _peopleManager = new PeopleManager(db);
         }
 
-        public int Create(BusinessPartner businessPartner)
+        public int Create(Partner businessPartner)
         {
             // handle person
             // handle organization
@@ -36,7 +36,7 @@ namespace BusinessLogic
             }
         }
 
-        public BusinessPartner Read(int businessPartnerId)
+        public Partner Read(int businessPartnerId)
         {
             if (businessPartnerId == 0)
             {
@@ -64,7 +64,7 @@ namespace BusinessLogic
             return _businessPartner;
         }
 
-        public void Toggle(BusinessPartner businessPartner)
+        public void Toggle(Partner businessPartner)
         {
             try
             {
@@ -76,7 +76,7 @@ namespace BusinessLogic
             }
         }
 
-        public List<BusinessPartner> List(
+        public List<Partner> List(
             bool listClients,
             bool listSuppliers,
             bool listPeople,
@@ -86,7 +86,7 @@ namespace BusinessLogic
         {
             try
             {
-                List<BusinessPartner> partners;
+                List<Partner> partners;
                 partners = _businesPartnersDAL.List(
                     listClients,
                     listSuppliers,
@@ -95,7 +95,7 @@ namespace BusinessLogic
                     listActive,
                     listInactive);
 
-                foreach (BusinessPartner partner in partners)
+                foreach (Partner partner in partners)
                 {
                     if (partner.Organization != null)
                     {

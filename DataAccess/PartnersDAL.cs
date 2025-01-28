@@ -6,16 +6,16 @@ using Utilities;
 
 namespace DataAccess
 {
-    public class BusinessPartnersDAL
+    public class PartnersDAL
     {
         private Database _db;
 
-        public BusinessPartnersDAL(Database db)
+        public PartnersDAL(Database db)
         {
             _db = db;
         }
 
-        public int Create(BusinessPartner businessPartner)
+        public int Create(Partner businessPartner)
         {
             try
             {
@@ -35,7 +35,7 @@ namespace DataAccess
             return businessPartner.Id;
         }
 
-        public BusinessPartner Read(int businessPartnerId)
+        public Partner Read(int businessPartnerId)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace DataAccess
 
                 if (_db.Reader.Read())
                 {
-                    BusinessPartner businessPartner = new BusinessPartner();
+                    Partner businessPartner = new Partner();
                     ReadRow(businessPartner);
                     return businessPartner;
                 }
@@ -62,7 +62,7 @@ namespace DataAccess
             }
         }
 
-        public void Toggle(BusinessPartner businessPartner)
+        public void Toggle(Partner businessPartner)
         {
             try
             {
@@ -80,7 +80,7 @@ namespace DataAccess
             }
         }
 
-        public List<BusinessPartner> List(
+        public List<Partner> List(
             bool listClients,
             bool listSuppliers,
             bool listPeople,
@@ -88,7 +88,7 @@ namespace DataAccess
             bool listActive = true,
             bool listInactive = true)
         {
-            List<BusinessPartner> businessPartners = new List<BusinessPartner>();
+            List<Partner> businessPartners = new List<Partner>();
 
             try
             {
@@ -103,7 +103,7 @@ namespace DataAccess
 
                 while (_db.Reader.Read())
                 {
-                    BusinessPartner businessPartner = new BusinessPartner();
+                    Partner businessPartner = new Partner();
                     ReadRow(businessPartner);
                     businessPartners.Add(businessPartner);
                 }
@@ -120,7 +120,7 @@ namespace DataAccess
             return businessPartners;
         }
 
-        private void SetParameters(BusinessPartner businessPartner, bool isUpdate = false)
+        private void SetParameters(Partner businessPartner, bool isUpdate = false)
         {
             if (isUpdate)
             {
@@ -130,13 +130,13 @@ namespace DataAccess
             // agregar los otros parámetros
         }
 
-        private void ReadRow(BusinessPartner businessPartner)
+        private void ReadRow(Partner businessPartner)
         {
             businessPartner.Id = Convert.ToInt32(_db.Reader["business_partner_id"]);
             businessPartner.ActivityStatus = (bool)_db.Reader["activity_status"];
             businessPartner.IsClient = (bool)_db.Reader["is_client"];
             businessPartner.IsSupplier = (bool)_db.Reader["is_supplier"];
-            businessPartner.Organization = Helper.Instantiate<ExternalOrganization>(_db.Reader["external_organization_id"]);
+            businessPartner.Organization = Helper.Instantiate<Stakeholder>(_db.Reader["external_organization_id"]);
             businessPartner.Person = Helper.Instantiate<Person>(_db.Reader["person_id"]);
         }
     }

@@ -9,19 +9,19 @@ namespace WebForms
 {
     public partial class Clients : System.Web.UI.Page
     {
-        private ApplicationManager _appManager;
-        private List<BusinessPartner> _humanClients;
-        private List<BusinessPartner> _corporateClients;
-        private InternalOrganization _loggedOrganization;
+        private AppManager _appManager;
+        private List<Partner> _humanClients;
+        private List<Partner> _corporateClients;
+        private Organization _loggedOrganization;
 
         public Clients()
         {
-            _appManager = new ApplicationManager();
+            _appManager = new AppManager();
         }
 
         private void FetchLoggedOrganization()
         {
-            _loggedOrganization = Session["loggedOrganization"] as InternalOrganization;
+            _loggedOrganization = Session["loggedOrganization"] as Organization;
         }
 
         private void FetchClients()

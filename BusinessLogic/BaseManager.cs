@@ -7,26 +7,26 @@ namespace BusinessLogic
     public abstract class BaseManager<T>
         where T : IIdentifiable
     {
-        protected void HandleEntity(T entity)
+        protected void HandleAttribute(T attribute)
         {
             try
             {
-                if (entity != null)
+                if (attribute != null)
                 {
-                    int foundId = FindId(entity);
+                    int foundId = FindId(attribute);
 
                     if (foundId == 0)
                     {
-                        entity.Id = Create(entity);
+                        attribute.Id = Create(attribute);
                     }
-                    else if (foundId == entity.Id)
+                    else if (foundId == attribute.Id)
                     {
-                        Update(entity);
+                        Update(attribute);
                     }
                     else
                     {
-                        entity.Id = foundId;
-                        Update(entity);
+                        attribute.Id = foundId;
+                        Update(attribute);
                     }
                 }
             }
@@ -36,8 +36,8 @@ namespace BusinessLogic
             }
         }
 
-        protected abstract int Create(T entity);
-        protected abstract void Update(T entity);
-        protected abstract int FindId(T entity);
+        protected abstract int Create(T attribute);
+        protected abstract void Update(T attribute);
+        protected abstract int FindId(T attribute);
     }
 }

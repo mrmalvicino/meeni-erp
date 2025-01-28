@@ -79,7 +79,7 @@ namespace BusinessLogic
 
         public void Handle(Country country)
         {
-            HandleEntity(country);
+            HandleAttribute(country);
         }
 
         private void Validate(Country country)

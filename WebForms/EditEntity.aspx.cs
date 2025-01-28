@@ -8,14 +8,14 @@ namespace WebForms
 {
     public partial class ViewOrganization : System.Web.UI.Page
     {
-        private ApplicationManager _appManager;
-        private InternalOrganization _loggedOrganization;
-        private LegalEntity _legalEntity;
+        private AppManager _appManager;
+        private Organization _loggedOrganization;
+        private Entity _legalEntity;
         private int _organizationId;
 
         public ViewOrganization()
         {
-            _appManager = new ApplicationManager();
+            _appManager = new AppManager();
         }
 
         private void LoadImage()
@@ -42,7 +42,7 @@ namespace WebForms
 
         private void FetchSession()
         {
-            _loggedOrganization = Session["loggedOrganization"] as InternalOrganization;
+            _loggedOrganization = Session["loggedOrganization"] as Organization;
         }
 
         private void FetchLegalEntity()

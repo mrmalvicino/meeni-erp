@@ -7,70 +7,67 @@ using Utilities;
 
 namespace BusinessLogic
 {
-    public class ApplicationManager
+    public class AppManager
     {
         private Database _db;
         private AddressesManager _addressesManager;
-        private BusinessPartnersManager _businessPartnersManager;
         private CitiesManager _citiesManager;
         private CountriesManager _countriesManager;
         private EmployeesManager _employeesManager;
-        private ExternalOrganizationsManager _externalOrganizationsManager;
+        private EntitiesManager _entitiesManager;
         private ImagesManager _imagesManager;
-        private InternalOrganizationsManager _internalOrganizationsManager;
-        private LegalEntitiesManager _legalEntitiesManager;
-        private PeopleManager _peopleManager;
+        private OrganizationsManager _organizationsManager;
+        private PartnersManager _partnersManager;
         private PricingPlansManager _pricingPlansManager;
         private ProvincesManager _provincesManager;
         private RolesManager _rolesManager;
+        private StakeholdersManager _stakeholdersManager;
         private UsersManager _usersManager;
 
         public AddressesManager Addresses => _addressesManager;
-        public BusinessPartnersManager BusinessPartners => _businessPartnersManager;
         public CitiesManager Cities => _citiesManager;
         public CountriesManager Countries => _countriesManager;
         public EmployeesManager Employees => _employeesManager;
-        public ExternalOrganizationsManager ExternalOrganizations => _externalOrganizationsManager;
+        public EntitiesManager Entities => _entitiesManager;
         public ImagesManager Images => _imagesManager;
-        public InternalOrganizationsManager InternalOrganizations => _internalOrganizationsManager;
-        public LegalEntitiesManager LegalEntities => _legalEntitiesManager;
-        public PeopleManager People => _peopleManager;
+        public OrganizationsManager Organizations => _organizationsManager;
+        public PartnersManager Partners => _partnersManager;
         public PricingPlansManager PricingPlans => _pricingPlansManager;
         public ProvincesManager Provinces => _provincesManager;
         public RolesManager Roles => _rolesManager;
+        public StakeholdersManager Stakeholders => _stakeholdersManager;
         public UsersManager Users => _usersManager;
 
-        public ApplicationManager()
+        public AppManager()
         {
             _db = new Database();
             _addressesManager = new AddressesManager(_db);
-            _businessPartnersManager = new BusinessPartnersManager(_db);
             _citiesManager = new CitiesManager(_db);
             _countriesManager = new CountriesManager(_db);
             _employeesManager = new EmployeesManager(_db);
-            _externalOrganizationsManager = new ExternalOrganizationsManager(_db);
+            _entitiesManager = new EntitiesManager(_db);
             _imagesManager = new ImagesManager(_db);
-            _internalOrganizationsManager = new InternalOrganizationsManager(_db);
-            _legalEntitiesManager = new LegalEntitiesManager(_db);
-            _peopleManager = new PeopleManager(_db);
+            _organizationsManager = new OrganizationsManager(_db);
+            _partnersManager = new PartnersManager(_db);
             _pricingPlansManager = new PricingPlansManager(_db);
             _provincesManager = new ProvincesManager(_db);
             _rolesManager = new RolesManager(_db);
+            _stakeholdersManager = new StakeholdersManager(_db);
             _usersManager = new UsersManager(_db);
         }
 
-        public bool SignUp(ref User user, ref InternalOrganization internalOrganization)
+        public bool SignUp(ref User user, ref Organization organization)
         {
             try
             {
-                ValidateSignUp(user, internalOrganization);
+                ValidateSignUp(user, organization);
 
                 using (var transaction = new TransactionScope())
                 {
-                    internalOrganization.Id = _internalOrganizationsManager.Create(internalOrganization);
-                    _usersManager.Create(user, internalOrganization.Id);
+                    organization.Id = _organizationsManager.Create(organization);
+                    _usersManager.Create(user, organization.Id);
                     user = _usersManager.Read(user.Id);
-                    internalOrganization = _internalOrganizationsManager.Read(internalOrganization.Id);
+                    organization = _organizationsManager.Read(organization.Id);
                     transaction.Complete();
                     return true;
                 }
@@ -81,7 +78,7 @@ namespace BusinessLogic
             }
         }
 
-        public bool Login(ref User user, ref InternalOrganization internalOrganization)
+        public bool Login(ref User user, ref Organization organization)
         {
             try
             {
@@ -97,10 +94,10 @@ namespace BusinessLogic
                     }
 
                     user = _usersManager.Read(user.Id);
-                    internalOrganization.Id = _peopleManager.FindInternalId(user.Id);
-                    internalOrganization = _internalOrganizationsManager.Read(internalOrganization.Id);
+                    organization.Id = _peopleManager.FindInternalId(user.Id);
+                    organization = _organizationsManager.Read(organization.Id);
 
-                    if (internalOrganization.ActivityStatus == false)
+                    if (organization.ActivityStatus == false)
                     {
                         throw new ValidationException("La empresa ha sido dada de baja.");
                     }
@@ -115,7 +112,7 @@ namespace BusinessLogic
             }
         }
 
-        private void ValidateSignUp(User user, InternalOrganization internalOrganization)
+        private void ValidateSignUp(User user, Organization internalOrganization)
         {
             if (0 < _usersManager.FindId(user))
             {

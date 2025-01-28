@@ -43,16 +43,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddressesDAL.cs" />
-    <Compile Include="BusinessPartnersDAL.cs" />
+    <Compile Include="PartnersDAL.cs" />
     <Compile Include="CitiesDAL.cs" />
     <Compile Include="CountriesDAL.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="EmployeesDAL.cs" />
-    <Compile Include="ExternalOrganizationsDAL.cs" />
+    <Compile Include="StakeholdersDAL.cs" />
     <Compile Include="ImagesDAL.cs" />
-    <Compile Include="InternalOrganizationsDAL.cs" />
-    <Compile Include="LegalEntitiesDAL.cs" />
-    <Compile Include="PeopleDAL.cs" />
+    <Compile Include="OrganizationsDAL.cs" />
+    <Compile Include="EntitiesDAL.cs" />
     <Compile Include="PricingPlansDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProvincesDAL.cs" />

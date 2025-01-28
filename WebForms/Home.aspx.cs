@@ -7,13 +7,13 @@ namespace WebForms
 {
     public partial class Home : System.Web.UI.Page
     {
-        private ApplicationManager _appManager;
+        private AppManager _appManager;
 
         public List<PricingPlan> PricingPlans { get; set; }
 
         public Home()
         {
-            _appManager = new ApplicationManager();
+            _appManager = new AppManager();
         }
 
         protected void Page_Load(object sender, EventArgs e)

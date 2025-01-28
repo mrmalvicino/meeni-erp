@@ -5,16 +5,16 @@ using System;
 
 namespace DataAccess
 {
-    public class LegalEntitiesDAL
+    public class EntitiesDAL
     {
         private Database _db;
 
-        public LegalEntitiesDAL(Database db)
+        public EntitiesDAL(Database db)
         {
             _db = db;
         }
 
-        public int Create(LegalEntity legalEntity)
+        public int Create(Entity legalEntity)
         {
             try
             {
@@ -34,7 +34,7 @@ namespace DataAccess
             return legalEntity.Id;
         }
 
-        public LegalEntity Read(int legalEntityId)
+        public Entity Read(int legalEntityId)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace DataAccess
 
                 if (_db.Reader.Read())
                 {
-                    LegalEntity legalEntity = new LegalEntity();
+                    Entity legalEntity = new Entity();
                     ReadRow(legalEntity);
                     return legalEntity;
                 }
@@ -61,7 +61,7 @@ namespace DataAccess
             }
         }
 
-        public void Update(LegalEntity legalEntity)
+        public void Update(Entity legalEntity)
         {
             try
             {
@@ -79,7 +79,7 @@ namespace DataAccess
             }
         }
 
-        private void SetParameters(LegalEntity legalEntity, bool isUpdate = false)
+        private void SetParameters(Entity legalEntity, bool isUpdate = false)
         {
             if (isUpdate)
             {
@@ -134,7 +134,7 @@ namespace DataAccess
             }
         }
 
-        private void ReadRow(LegalEntity legalEntity)
+        private void ReadRow(Entity legalEntity)
         {
             legalEntity.Id = Convert.ToInt32(_db.Reader["legal_entity_id"]);
             legalEntity.CUIT = _db.Reader["cuit"]?.ToString();

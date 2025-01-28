@@ -5,16 +5,16 @@ using Utilities;
 
 namespace DataAccess
 {
-    public class ExternalOrganizationsDAL
+    public class StakeholdersDAL
     {
         private Database _db;
 
-        public ExternalOrganizationsDAL(Database db)
+        public StakeholdersDAL(Database db)
         {
             _db = db;
         }
 
-        public ExternalOrganization Read(int externalOrganizationId)
+        public Stakeholder Read(int externalOrganizationId)
         {
             try
             {
@@ -24,7 +24,7 @@ namespace DataAccess
 
                 if (_db.Reader.Read())
                 {
-                    ExternalOrganization externalOrganization = new ExternalOrganization();
+                    Stakeholder externalOrganization = new Stakeholder();
                     ReadRow(externalOrganization);
                     return externalOrganization;
                 }
@@ -66,7 +66,7 @@ namespace DataAccess
             }
         }
 
-        private void ReadRow(ExternalOrganization externalOrganization)
+        private void ReadRow(Stakeholder externalOrganization)
         {
             externalOrganization.Id = Convert.ToInt32(_db.Reader["external_organization_id"]);
         }

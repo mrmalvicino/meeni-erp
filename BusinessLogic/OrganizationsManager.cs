@@ -7,22 +7,22 @@ using System.Transactions;
 
 namespace BusinessLogic
 {
-    public class InternalOrganizationsManager
+    public class OrganizationsManager
     {
-        private InternalOrganization _internalOrganization;
-        private InternalOrganizationsDAL _internalOrganizationsDAL;
-        private LegalEntity _legalEntity;
-        private LegalEntitiesManager _legalEntitiesManager;
+        private Organization _internalOrganization;
+        private OrganizationsDAL _internalOrganizationsDAL;
+        private Entity _legalEntity;
+        private EntitiesManager _legalEntitiesManager;
         private PricingPlansManager _pricingPlansManager;
 
-        public InternalOrganizationsManager(Database db)
+        public OrganizationsManager(Database db)
         {
-            _internalOrganizationsDAL = new InternalOrganizationsDAL(db);
-            _legalEntitiesManager = new LegalEntitiesManager(db);
+            _internalOrganizationsDAL = new OrganizationsDAL(db);
+            _legalEntitiesManager = new EntitiesManager(db);
             _pricingPlansManager = new PricingPlansManager(db);
         }
 
-        public int Create(InternalOrganization internalOrganization)
+        public int Create(Organization internalOrganization)
         {
             try
             {
@@ -41,7 +41,7 @@ namespace BusinessLogic
             }
         }
 
-        public InternalOrganization Read(int internalOrganizationId)
+        public Organization Read(int internalOrganizationId)
         {
             if (internalOrganizationId == 0)
             {
@@ -65,7 +65,7 @@ namespace BusinessLogic
             return _internalOrganization;
         }
 
-        public void Update(InternalOrganization internalOrganization)
+        public void Update(Organization internalOrganization)
         {
             try
             {
@@ -83,7 +83,7 @@ namespace BusinessLogic
             }
         }
 
-        public void Toggle(InternalOrganization internalOrganization)
+        public void Toggle(Organization internalOrganization)
         {
             try
             {

@@ -5,16 +5,16 @@ using System;
 
 namespace DataAccess
 {
-    public class InternalOrganizationsDAL
+    public class OrganizationsDAL
     {
         private Database _db;
 
-        public InternalOrganizationsDAL(Database db)
+        public OrganizationsDAL(Database db)
         {
             _db = db;
         }
 
-        public int Create(InternalOrganization internalOrganization)
+        public int Create(Organization internalOrganization)
         {
             try
             {
@@ -34,7 +34,7 @@ namespace DataAccess
             return internalOrganization.Id;
         }
 
-        public InternalOrganization Read(int internalOrganizationId)
+        public Organization Read(int internalOrganizationId)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace DataAccess
 
                 if (_db.Reader.Read())
                 {
-                    InternalOrganization internalOrganization = new InternalOrganization();
+                    Organization internalOrganization = new Organization();
                     ReadRow(internalOrganization);
                     return internalOrganization;
                 }
@@ -61,7 +61,7 @@ namespace DataAccess
             }
         }
 
-        public void Update(InternalOrganization internalOrganization)
+        public void Update(Organization internalOrganization)
         {
             try
             {
@@ -79,7 +79,7 @@ namespace DataAccess
             }
         }
 
-        public void Toggle(InternalOrganization internalOrganization)
+        public void Toggle(Organization internalOrganization)
         {
             try
             {
@@ -97,13 +97,13 @@ namespace DataAccess
             }
         }
 
-        private void SetParameters(InternalOrganization internalOrganization)
+        private void SetParameters(Organization internalOrganization)
         {
             _db.SetParameter("@internal_organization_id", internalOrganization.Id);
             _db.SetParameter("@pricing_plan_id", internalOrganization.PricingPlan.Id);
         }
 
-        private void ReadRow(InternalOrganization internalOrganization)
+        private void ReadRow(Organization internalOrganization)
         {
             internalOrganization.Id = Convert.ToInt32(_db.Reader["internal_organization_id"]);
             internalOrganization.ActivityStatus = (bool)_db.Reader["activity_status"];

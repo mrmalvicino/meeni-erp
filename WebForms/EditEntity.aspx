@@ -1,4 +1,4 @@
-﻿<%@ Page Title="View Organization" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="ViewOrganization.aspx.cs" Inherits="WebForms.ViewOrganization" %>
+﻿<%@ Page Title="View Organization" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="EditEntity.aspx.cs" Inherits="WebForms.ViewOrganization" %>
 
 <asp:Content ID="HeadContent" ContentPlaceHolderID="AdminHeadPlaceHolder" runat="server">
 </asp:Content>

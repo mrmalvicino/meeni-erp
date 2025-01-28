@@ -2,7 +2,7 @@
 
 namespace DomainModel
 {
-    public class Employee : Person
+    public class Employee : Stakeholder
     {
         public bool ActivityStatus { get; set; }
         public DateTime AdmissionDate { get; set; }

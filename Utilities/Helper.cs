@@ -35,8 +35,8 @@ namespace Utilities
             DestinyClass destinyObject,
             OriginClass originObject
         )
-            where DestinyClass : LegalEntity, new()
-            where OriginClass : LegalEntity, new()
+            where DestinyClass : Entity, new()
+            where OriginClass : Entity, new()
         {
             destinyObject.Id = originObject.Id;
             destinyObject.CUIT = originObject.CUIT;
@@ -46,11 +46,11 @@ namespace Utilities
             destinyObject.LogoImage = originObject.LogoImage;
             destinyObject.Address = originObject.Address;
 
-            if (originObject is InternalOrganization && destinyObject is InternalOrganization)
+            if (originObject is Organization && destinyObject is Organization)
             {
-                (destinyObject as InternalOrganization).ActivityStatus = (originObject as InternalOrganization).ActivityStatus;
-                (destinyObject as InternalOrganization).AdmissionDate = (originObject as InternalOrganization).AdmissionDate;
-                (destinyObject as InternalOrganization).PricingPlan = (originObject as InternalOrganization).PricingPlan;
+                (destinyObject as Organization).ActivityStatus = (originObject as Organization).ActivityStatus;
+                (destinyObject as Organization).AdmissionDate = (originObject as Organization).AdmissionDate;
+                (destinyObject as Organization).PricingPlan = (originObject as Organization).PricingPlan;
             }
         }
 

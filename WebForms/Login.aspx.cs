@@ -7,14 +7,14 @@ namespace WebForms
 {
     public partial class Login : System.Web.UI.Page
     {
-        private ApplicationManager _appManager;
-        private InternalOrganization _internalOrganization;
+        private AppManager _appManager;
+        private Organization _internalOrganization;
         private User _user;
 
         public Login()
         {
-            _appManager = new ApplicationManager();
-            _internalOrganization = new InternalOrganization();
+            _appManager = new AppManager();
+            _internalOrganization = new Organization();
             _user = new User();
         }
 

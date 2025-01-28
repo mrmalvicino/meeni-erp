@@ -100,8 +100,7 @@
     <Content Include="style\table.css" />
     <Content Include="style\whatsapp.css" />
     <Content Include="style\widths.css" />
-    <Content Include="ViewPerson.aspx" />
-    <Content Include="ViewOrganization.aspx" />
+    <Content Include="EditEntity.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -162,19 +161,12 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
-    <Compile Include="ViewPerson.aspx.cs">
-      <DependentUpon>ViewPerson.aspx</DependentUpon>
+    <Compile Include="EditEntity.aspx.cs">
+      <DependentUpon>EditEntity.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ViewPerson.aspx.designer.cs">
-      <DependentUpon>ViewPerson.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ViewOrganization.aspx.cs">
-      <DependentUpon>ViewOrganization.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ViewOrganization.aspx.designer.cs">
-      <DependentUpon>ViewOrganization.aspx</DependentUpon>
+    <Compile Include="EditEntity.aspx.designer.cs">
+      <DependentUpon>EditEntity.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

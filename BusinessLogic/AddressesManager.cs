@@ -110,7 +110,7 @@ namespace BusinessLogic
                 return null;
             }
 
-            HandleEntity(address);
+            HandleAttribute(address);
 
             return address;
         }
