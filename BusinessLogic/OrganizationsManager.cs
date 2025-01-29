@@ -83,11 +83,11 @@ namespace BusinessLogic
             }
         }
 
-        public void Toggle(Organization organization)
+        public void Toggle(int organizationId)
         {
             try
             {
-                _organizationsDAL.Toggle(organization);
+                _organizationsDAL.Toggle(organizationId);
             }
             catch (Exception ex)
             {

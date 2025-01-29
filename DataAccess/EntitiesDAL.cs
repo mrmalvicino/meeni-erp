@@ -147,7 +147,7 @@ namespace DataAccess
         {
             entity.Id = Convert.ToInt32(_db.Reader["entity_id"]);
             entity.TaxCode = _db.Reader["tax_code"]?.ToString();
-            entity.Name = _db.Reader["entity_name"].ToString();
+            entity.Name = _db.Reader["name"].ToString();
             entity.Email = _db.Reader["email"]?.ToString();
             entity.Phone = _db.Reader["phone"]?.ToString();
             entity.BirthDate = _db.Reader["birth_date"] as DateTime? ?? entity.BirthDate;

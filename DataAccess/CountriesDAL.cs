@@ -65,7 +65,7 @@ namespace DataAccess
             try
             {
                 _db.SetProcedure("sp_find_country_id");
-                _db.SetParameter("@country_name", country.Name);
+                _db.SetParameter("@name", country.Name);
                 _db.ExecuteRead();
 
                 if (_db.Reader.Read())
@@ -117,13 +117,13 @@ namespace DataAccess
                 _db.SetParameter("@country_id", country.Id);
             }
 
-            _db.SetParameter("@country_name", country.Name);
+            _db.SetParameter("@name", country.Name);
         }
 
         private void ReadRow(Country country)
         {
             country.Id = Convert.ToInt32(_db.Reader["country_id"]);
-            country.Name = _db.Reader["country_name"].ToString();
+            country.Name = _db.Reader["name"].ToString();
         }
     }
 }

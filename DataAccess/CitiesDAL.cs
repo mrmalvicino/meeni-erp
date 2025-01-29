@@ -65,7 +65,7 @@ namespace DataAccess
             try
             {
                 _db.SetProcedure("sp_find_city_id");
-                _db.SetParameter("@city_name", city.Name);
+                _db.SetParameter("@name", city.Name);
                 _db.SetParameter("@province_id", provinceId);
                 _db.ExecuteRead();
 
@@ -93,7 +93,7 @@ namespace DataAccess
                 _db.SetParameter("@city_id", city.Id);
             }
 
-            _db.SetParameter("@city_name", city.Name);
+            _db.SetParameter("@name", city.Name);
 
             if (!string.IsNullOrEmpty(city.ZipCode))
             {
@@ -110,7 +110,7 @@ namespace DataAccess
         private void ReadRow(City city)
         {
             city.Id = Convert.ToInt32(_db.Reader["city_id"]);
-            city.Name = _db.Reader["city_name"].ToString();
+            city.Name = _db.Reader["name"].ToString();
             city.ZipCode = _db.Reader["zip_code"]?.ToString();
         }
     }

@@ -89,11 +89,11 @@ namespace WebForms
 
             if (e.CommandName == "Edit")
             {
-                Response.Redirect($"ViewEntity.aspx?id={partnerId}");
+                Response.Redirect($"EditEntity.aspx?id={partnerId}");
             }
             else if (e.CommandName == "Delete")
             {
-                //_appManager.Partners.Toggle(partnerId);
+                _appManager.Partners.Toggle(partnerId);
             }
         }
 

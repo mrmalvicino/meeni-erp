@@ -74,7 +74,7 @@ namespace DataAccess
             try
             {
                 _db.SetProcedure("sp_find_pricing_plan_id");
-                _db.SetParameter("@pricing_plan_name", pricingPlan.Name);
+                _db.SetParameter("@name", pricingPlan.Name);
                 _db.ExecuteRead();
 
                 if (_db.Reader.Read())
@@ -97,7 +97,7 @@ namespace DataAccess
         private void ReadRow(PricingPlan pricingPlan)
         {
             pricingPlan.Id = Convert.ToInt32(_db.Reader["pricing_plan_id"]);
-            pricingPlan.Name = _db.Reader["pricing_plan_name"].ToString();
+            pricingPlan.Name = _db.Reader["name"].ToString();
             pricingPlan.MonthlyFee = (decimal)_db.Reader["monthly_fee"];
         }
     }

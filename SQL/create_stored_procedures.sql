@@ -459,15 +459,15 @@ begin
     select
         *
     from
-        partners BP
-        inner join people P on P.person_id = BP.person_id
+        partners P
+        inner join stakeholders S on S.stakeholder_id = P.partner_id
     where
-        BP.is_client = @list_clients
-        and BP.is_supplier = @list_suppliers
-        and P.organization_id = @organization_id
+        P.is_client = @list_clients
+        and P.is_supplier = @list_suppliers
+        and S.organization_id = @organization_id
         and (
-            BP.activity_status = @wanted_status_1
-            or BP.activity_status = @wanted_status_2
+            P.activity_status = @wanted_status_1
+            or P.activity_status = @wanted_status_2
         );
 end;
 

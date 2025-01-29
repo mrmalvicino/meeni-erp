@@ -93,7 +93,7 @@ namespace DataAccess
         private void ReadRow(Role role)
         {
             role.Id = Convert.ToInt32(_db.Reader["role_id"]);
-            role.Name = _db.Reader["role_name"].ToString();
+            role.Name = _db.Reader["name"].ToString();
         }
     }
 }

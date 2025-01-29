@@ -79,12 +79,12 @@ namespace DataAccess
             }
         }
 
-        public void Toggle(Organization organization)
+        public void Toggle(int organizationId)
         {
             try
             {
                 _db.SetProcedure("sp_toggle_organization");
-                _db.SetParameter("@organization_id", organization.Id);
+                _db.SetParameter("@organization_id", organizationId);
                 _db.ExecuteAction();
             }
             catch (Exception ex)

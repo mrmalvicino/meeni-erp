@@ -77,11 +77,11 @@ namespace BusinessLogic
             }
         }
 
-        public void Toggle(Employee employee)
+        public void Toggle(int employeeId)
         {
             try
             {
-                _employeesDAL.Toggle(employee);
+                _employeesDAL.Toggle(employeeId);
             }
             catch (Exception ex)
             {

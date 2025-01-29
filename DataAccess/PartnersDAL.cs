@@ -79,12 +79,12 @@ namespace DataAccess
             }
         }
 
-        public void Toggle(Partner partner)
+        public void Toggle(int partnerId)
         {
             try
             {
                 _db.SetProcedure("sp_toggle_partner");
-                _db.SetParameter("@partner_id", partner.Id);
+                _db.SetParameter("@partner_id", partnerId);
                 _db.ExecuteAction();
             }
             catch (Exception ex)
@@ -97,23 +97,18 @@ namespace DataAccess
             }
         }
 
-        public List<Partner> List(
-            bool listClients,
-            bool listSuppliers,
-            int organizationId,
-            bool listActive = true,
-            bool listInactive = true)
+        public List<Partner> List(bool clients, bool suppliers, int organizationId, bool active, bool inactive)
         {
             List<Partner> partners = new List<Partner>();
 
             try
             {
                 _db.SetProcedure("sp_list_partners");
-                _db.SetParameter("@list_clients", listClients);
-                _db.SetParameter("@list_suppliers", listSuppliers);
+                _db.SetParameter("@list_clients", clients);
+                _db.SetParameter("@list_suppliers", suppliers);
                 _db.SetParameter("@organization_id", organizationId);
-                _db.SetParameter("@list_active", listActive);
-                _db.SetParameter("@list_inactive", listInactive);
+                _db.SetParameter("@list_active", active);
+                _db.SetParameter("@list_inactive", inactive);
                 _db.ExecuteRead();
 
                 while (_db.Reader.Read())

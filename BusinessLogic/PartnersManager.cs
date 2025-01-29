@@ -4,6 +4,7 @@ using Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Transactions;
+using Utilities;
 
 namespace BusinessLogic
 {
@@ -43,6 +44,8 @@ namespace BusinessLogic
             try
             {
                 _partner = _partnersDAL.Read(partnerId);
+                _stakeholder = _stakeholdersManager.Read(_partner.Id);
+                Helper.AssignEntity(_partner, _stakeholder);
             }
             catch (Exception ex)
             {
@@ -69,11 +72,11 @@ namespace BusinessLogic
             }
         }
 
-        public void Toggle(Partner partner)
+        public void Toggle(int partnerId)
         {
             try
             {
-                _partnersDAL.Toggle(partner);
+                _partnersDAL.Toggle(partnerId);
             }
             catch (Exception ex)
             {
@@ -81,22 +84,18 @@ namespace BusinessLogic
             }
         }
 
-        public List<Partner> List(
-            bool listClients,
-            bool listSuppliers,
-            int organizationId,
-            bool listActive = true,
-            bool listInactive = true)
+        public List<Partner> List(bool clients, bool suppliers, int organizationId, bool active, bool inactive)
         {
             try
             {
                 List<Partner> partners;
-                partners = _partnersDAL.List(
-                    listClients,
-                    listSuppliers,
-                    organizationId,
-                    listActive,
-                    listInactive);
+                partners = _partnersDAL.List(clients, suppliers, organizationId, active, inactive);
+
+                foreach (var partner in partners)
+                {
+                    _stakeholder = _stakeholdersManager.Read(partner.Id);
+                    Helper.AssignEntity(partner, _stakeholder);
+                }
 
                 return partners;
             }

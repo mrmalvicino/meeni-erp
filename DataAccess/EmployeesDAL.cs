@@ -78,12 +78,12 @@ namespace DataAccess
             }
         }
 
-        public void Toggle(Employee employee)
+        public void Toggle(int employeeId)
         {
             try
             {
                 _db.SetProcedure("sp_toggle_employee");
-                _db.SetParameter("@employee_id", employee.Id);
+                _db.SetParameter("@employee_id", employeeId);
                 _db.ExecuteAction();
             }
             catch (Exception ex)
