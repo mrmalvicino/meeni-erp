@@ -5,23 +5,23 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="AdminMainPlaceHolder" runat="server">
     <div class="height-100-pct width-100-pct col-flex justify-center padding-10-px">
-        <h1>Datos corporativos</h1>
+        <h1>Datos de entidad</h1>
         <div class="wrapped-flex justify-center">
 
-            <!-- Logo -->
+            <!-- Imagen -->
 
             <div class="container-div width-300-px height-520-px margin-10-px">
-                <p class="center-text">Logo</p>
+                <p class="center-text">Imagen</p>
                 <div class="width-100-pct">
-                    <asp:Image ID="LogoImg" runat="server" class="fit-image circle-border" />
+                    <asp:Image ID="EntityImg" runat="server" class="fit-image circle-border" />
                 </div>
-                <label for="ImageURLTxt">URL del logo</label>
+                <label for="ImageURLTxt">URL de imagen</label>
                 <asp:TextBox
                     ID="ImageURLTxt"
                     runat="server"
                     TextMode="SingleLine"
                     class="width-100-pct input-box"
-                    placeholder="URL del logo"
+                    placeholder="URL de imagen"
                     AutoPostBack="true">
                 </asp:TextBox>
             </div>
@@ -33,13 +33,13 @@
                 <div class="container-div width-300-px height-250-px">
                     <p class="center-text">Identificación fiscal</p>
                     <div>
-                        <label for="NameTxt">Organización</label>
+                        <label for="NameTxt">Nombre</label>
                         <asp:TextBox
                             ID="NameTxt"
                             runat="server"
                             TextMode="SingleLine"
                             class="width-100-pct input-box"
-                            placeholder="Nombre de la empresa">
+                            placeholder="Nombre">
                         </asp:TextBox>
                     </div>
                     <div>

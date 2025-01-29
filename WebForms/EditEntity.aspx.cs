@@ -22,12 +22,12 @@ namespace WebForms
         {
             if (Validator.URLExists(ImageURLTxt.Text))
             {
-                LogoImg.ImageUrl = ImageURLTxt.Text;
+                EntityImg.ImageUrl = ImageURLTxt.Text;
                 return;
             }
 
             ImageURLTxt.Text = "";
-            LogoImg.ImageUrl = "https://github.com/mrmalvicino/meeni-erp/blob/main/WebForms/images/logo.png?raw=true";
+            EntityImg.ImageUrl = "https://github.com/mrmalvicino/meeni-erp/blob/main/WebForms/images/logo.png?raw=true";
         }
 
         private void FetchURL()

@@ -43,9 +43,9 @@
                         </asp:LinkButton>
                     </div>
                     <div class="row-flex space-between">
-                        <a href="AddEntity.aspx" class="light-button">
+                        <a href="AddEntity.aspx" class="dark-button">
                             <i class="bi bi-plus-circle"></i>
-                            <span>Agregar nuevo</span>
+                            <span>Crear nuevo</span>
                         </a>
                     </div>
                 </div>

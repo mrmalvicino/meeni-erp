@@ -15,13 +15,13 @@ namespace WebForms
     {
 
         /// <summary>
-        /// LogoImg control.
+        /// EntityImg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image LogoImg;
+        protected global::System.Web.UI.WebControls.Image EntityImg;
 
         /// <summary>
         /// ImageURLTxt control.

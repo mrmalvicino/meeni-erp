@@ -63,9 +63,9 @@
                         </a>
                     </li>
                     <li>
-                        <a href="Users.aspx" class="dark-button big-hover justify-left">
+                        <a href="Employees.aspx" class="dark-button big-hover justify-left">
                             <i class="bi bi-person-badge"></i>
-                            <span>Usuarios</span>
+                            <span>Empleados</span>
                         </a>
                     </li>
                     <li>
