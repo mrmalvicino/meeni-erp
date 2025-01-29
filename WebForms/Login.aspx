@@ -29,7 +29,12 @@
                 </asp:TextBox>
             </div>
             <div class="margin-top-20-px">
-                <asp:Button ID="LoginBtn" runat="server" Text="Ingresar" class="dark-button width-100-pct" OnClick="LoginBtn_Click" />
+                <asp:Button
+                    ID="LoginBtn"
+                    runat="server"
+                    Text="Ingresar"
+                    class="dark-button width-100-pct"
+                    OnClick="LoginBtn_Click" />
             </div>
         </div>
     </section>

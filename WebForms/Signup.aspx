@@ -84,7 +84,12 @@
             </div>
         </div>
         <div class="margin-20-px">
-            <asp:Button ID="SignupBtn" runat="server" Text="Crear empresa" class="dark-button big-hover" OnClick="SignupBtn_Click" />
+            <asp:Button
+                ID="SignupBtn"
+                runat="server"
+                Text="Crear empresa"
+                class="dark-button big-hover"
+                OnClick="SignupBtn_Click" />
         </div>
     </section>
 </asp:Content>

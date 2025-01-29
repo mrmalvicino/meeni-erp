@@ -70,19 +70,9 @@
 
                                     <td scope="row">
                                         <asp:Label
-                                            ID="FirstNameLbl"
+                                            ID="NameLbl"
                                             runat="server"
-                                            Text='<%#Eval("Person.FirstName")%>'>
-                                        </asp:Label>
-                                    </td>
-
-                                    <!-- Apellido -->
-
-                                    <td scope="row">
-                                        <asp:Label
-                                            ID="LastNameLbl"
-                                            runat="server"
-                                            Text='<%#Eval("Person.LastName")%>'>
+                                            Text='<%#Eval("Name")%>'>
                                         </asp:Label>
                                     </td>
 
@@ -96,7 +86,7 @@
                                             ID="EditBtn"
                                             runat="server"
                                             CommandName="Edit"
-                                            CommandArgument='<%#Eval("Person.Id")%>'
+                                            CommandArgument='<%#Eval("Id")%>'
                                             Text='<i class="bi bi-pencil-square"></i>'
                                             class="asp-link-button">
                                         </asp:LinkButton>
@@ -107,7 +97,7 @@
                                             ID="DeleteBtn"
                                             runat="server"
                                             CommandName="Delete"
-                                            CommandArgument='<%#Eval("Person.Id")%>'
+                                            CommandArgument='<%#Eval("Id")%>'
                                             Text='<i class="bi bi-trash3"></i>'
                                             class="asp-link-button">
                                         </asp:LinkButton>

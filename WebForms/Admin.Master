@@ -16,19 +16,31 @@
             <div>
                 <ul>
                     <li>
-                        <a href="ViewPerson.aspx" class="light-button">
+                        <asp:LinkButton
+                            ID="EditUserBtn"
+                            runat="server"
+                            class="light-button"
+                            OnClick="EditUserBtn_Click">
                             <i class="bi bi-person-gear"></i>
-                            <span>Ver usuario</span>
-                        </a>
+                            <span>Usuario</span>
+                        </asp:LinkButton>
                     </li>
                     <li>
-                        <a href="ViewOrganization.aspx" class="light-button">
+                        <asp:LinkButton
+                            ID="EditOrganizationBtn"
+                            runat="server"
+                            class="light-button"
+                            OnClick="EditOrganizationBtn_Click">
                             <i class="bi bi-briefcase"></i>
-                            <span>Ver empresa</span>
-                        </a>
+                            <span>Empresa</span>
+                        </asp:LinkButton>
                     </li>
                     <li>
-                        <asp:LinkButton ID="logoutBtn" runat="server" class="transparent-button" OnClick="logoutBtn_Click">
+                        <asp:LinkButton
+                            ID="LogoutBtn"
+                            runat="server"
+                            class="transparent-button"
+                            OnClick="LogoutBtn_Click">
                             <i class="bi bi-box-arrow-right"></i>
                             <span>Cerrar sesión</span>
                         </asp:LinkButton>
