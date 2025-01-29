@@ -1,7 +1,6 @@
 ﻿using DomainModel;
 using Exceptions;
 using System;
-using Utilities;
 
 namespace DataAccess
 {
@@ -12,6 +11,26 @@ namespace DataAccess
         public StakeholdersDAL(Database db)
         {
             _db = db;
+        }
+
+        public int Create(Stakeholder stakeholder, int organizationId)
+        {
+            try
+            {
+                _db.SetProcedure("sp_create_stakeholder");
+                SetParameters(stakeholder, organizationId);
+                stakeholder.Id = _db.ExecuteScalar();
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ex);
+            }
+            finally
+            {
+                _db.CloseConnection();
+            }
+
+            return stakeholder.Id;
         }
 
         public Stakeholder Read(int stakeholderId)
@@ -30,6 +49,24 @@ namespace DataAccess
                 }
 
                 return null;
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ex);
+            }
+            finally
+            {
+                _db.CloseConnection();
+            }
+        }
+
+        public void Update(Stakeholder stakeholder)
+        {
+            try
+            {
+                _db.SetProcedure("sp_update_stakeholder");
+                SetParameters(stakeholder);
+                _db.ExecuteAction();
             }
             catch (Exception ex)
             {
@@ -63,6 +100,16 @@ namespace DataAccess
             finally
             {
                 _db.CloseConnection();
+            }
+        }
+
+        private void SetParameters(Stakeholder stakeholder, int organizationId = 0)
+        {
+            _db.SetParameter("@stakeholder_id", stakeholder.Id);
+
+            if (0 < organizationId)
+            {
+                _db.SetParameter("@organization_id", organizationId);
             }
         }
 

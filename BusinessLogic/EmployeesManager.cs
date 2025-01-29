@@ -11,13 +11,13 @@ namespace BusinessLogic
     {
         private Employee _employee;
         private EmployeesDAL _employeesDAL;
-        private Entity _entity;
-        private EntitiesManager _entitiesManager;
+        private Stakeholder _stakeholder;
+        private StakeholdersManager _stakeholdersManager;
 
         public EmployeesManager(Database db)
         {
             _employeesDAL = new EmployeesDAL(db);
-            _entitiesManager = new EntitiesManager(db);
+            _stakeholdersManager = new StakeholdersManager(db);
         }
 
         public int Create(Employee employee, int organizationId)
@@ -26,7 +26,7 @@ namespace BusinessLogic
             {
                 using (var transaction = new TransactionScope())
                 {
-                    employee.Id = _entitiesManager.Create(employee, organizationId);
+                    employee.Id = _stakeholdersManager.Create(employee, organizationId);
                     employee.Id = _employeesDAL.Create(employee);
                     transaction.Complete();
                     return employee.Id;
@@ -54,8 +54,8 @@ namespace BusinessLogic
                 throw new BusinessLogicException(ex);
             }
 
-            _entity = _entitiesManager.Read(_employee.Id);
-            Helper.AssignEntity(_employee, _entity);
+            _stakeholder = _stakeholdersManager.Read(_employee.Id);
+            Helper.AssignEntity(_employee, _stakeholder);
 
             return _employee;
         }
@@ -66,7 +66,7 @@ namespace BusinessLogic
             {
                 using (var transaction = new TransactionScope())
                 {
-                    _entitiesManager.CallUpdate(employee);
+                    _stakeholdersManager.Update(employee);
                     _employeesDAL.Update(employee);
                     transaction.Complete();
                 }

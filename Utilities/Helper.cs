@@ -39,11 +39,12 @@ namespace Utilities
             where OriginClass : Entity, new()
         {
             destinyObject.Id = originObject.Id;
-            destinyObject.CUIT = originObject.CUIT;
+            destinyObject.TaxCode = originObject.TaxCode;
             destinyObject.Name = originObject.Name;
             destinyObject.Email = originObject.Email;
             destinyObject.Phone = originObject.Phone;
-            destinyObject.LogoImage = originObject.LogoImage;
+            destinyObject.BirthDate = originObject.BirthDate;
+            destinyObject.Image = originObject.Image;
             destinyObject.Address = originObject.Address;
 
             if (originObject is Organization && destinyObject is Organization)
@@ -52,25 +53,13 @@ namespace Utilities
                 (destinyObject as Organization).AdmissionDate = (originObject as Organization).AdmissionDate;
                 (destinyObject as Organization).PricingPlan = (originObject as Organization).PricingPlan;
             }
-        }
 
-        public static void AssignEntity<DestinyClass, OriginClass>(
-            DestinyClass destinyObject,
-            OriginClass originObject
-        )
-            where DestinyClass : Entity, new()
-            where OriginClass : Entity, new()
-        {
-            destinyObject.Id = originObject.Id;
-            destinyObject.DNI = originObject.DNI;
-            destinyObject.CUIL = originObject.CUIL;
-            destinyObject.FirstName = originObject.FirstName;
-            destinyObject.LastName = originObject.LastName;
-            destinyObject.Email = originObject.Email;
-            destinyObject.Phone = originObject.Phone;
-            destinyObject.BirthDate = originObject.BirthDate;
-            destinyObject.ProfileImage = originObject.ProfileImage;
-            destinyObject.Address = originObject.Address;
+            if (originObject is Partner && destinyObject is Partner)
+            {
+                (destinyObject as Partner).ActivityStatus = (originObject as Partner).ActivityStatus;
+                (destinyObject as Partner).IsClient = (originObject as Partner).IsClient;
+                (destinyObject as Partner).IsSupplier = (originObject as Partner).IsSupplier;
+            }
 
             if (originObject is Employee && destinyObject is Employee)
             {

@@ -27,7 +27,7 @@ namespace BusinessLogic
             {
                 using (var transaction = new TransactionScope())
                 {
-                    entity.LogoImage = _imagesManager.Handle(entity.LogoImage);
+                    entity.Image = _imagesManager.Handle(entity.Image);
                     entity.Address = _addressesManager.Handle(entity.Address);
                     Validate(entity);
                     entity.Id = _entitiesDAL.Create(entity);
@@ -57,7 +57,7 @@ namespace BusinessLogic
                 throw new BusinessLogicException(ex);
             }
 
-            _entity.LogoImage = _imagesManager.Read(Helper.GetId(_entity.LogoImage));
+            _entity.Image = _imagesManager.Read(Helper.GetId(_entity.Image));
             _entity.Address = _addressesManager.Read(Helper.GetId(_entity.Address));
 
             return _entity;
@@ -69,7 +69,7 @@ namespace BusinessLogic
             {
                 using (var transaction = new TransactionScope())
                 {
-                    entity.LogoImage = _imagesManager.Handle(entity.LogoImage);
+                    entity.Image = _imagesManager.Handle(entity.Image);
                     entity.Address = _addressesManager.Handle(entity.Address);
                     Validate(entity);
                     _entitiesDAL.Update(entity);
@@ -84,11 +84,11 @@ namespace BusinessLogic
 
         private void Validate(Entity entity)
         {
-            Validator.ValidateOrganizationName(entity.Name);
+            Validator.ValidateEntityName(entity.Name);
 
-            if (!string.IsNullOrEmpty(entity.CUIT))
+            if (!string.IsNullOrEmpty(entity.TaxCode))
             {
-                Validator.ValidateCUIT(entity.CUIT);
+                Validator.ValidateTaxCode(entity.TaxCode);
             }
 
             if (!string.IsNullOrEmpty(entity.Email))

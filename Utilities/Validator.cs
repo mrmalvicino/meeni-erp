@@ -187,76 +187,19 @@ namespace Utilities
             }
         }
 
-        public static void ValidateOrganizationName(string organizationName)
+        public static void ValidateEntityName(string name)
         {
-            if (string.IsNullOrEmpty(organizationName))
+            if (string.IsNullOrEmpty(name))
             {
                 throw new ValidationException("Nombre de la organización incompleto.");
             }
         }
 
-        public static void ValidateFirstName(string firstName)
+        public static void ValidateTaxCode(string taxCode)
         {
-            if (string.IsNullOrEmpty(firstName))
+            if (!IsNumber(taxCode))
             {
-                throw new ValidationException("Nombre incompleto.");
-            }
-
-            if (!HasOnlyLetters(firstName))
-            {
-                throw new ValidationException("El nombre solo puede contener letras.");
-            }
-        }
-
-        public static void ValidateLastName(string lastName)
-        {
-            if (string.IsNullOrEmpty(lastName))
-            {
-                throw new ValidationException("Apellido incompleto.");
-            }
-
-            if (!HasOnlyLetters(lastName))
-            {
-                throw new ValidationException("El apellido solo puede contener letras.");
-            }
-        }
-
-        public static void ValidateDNI(string DNI)
-        {
-            if (!IsNumber(DNI))
-            {
-                throw new ValidationException("El DNI solo puede contener números.");
-            }
-
-            if (DNI.Length != 8)
-            {
-                throw new ValidationException("El DNI debe tener 8 dígitos.");
-            }
-        }
-
-        public static void ValidateCUIT(string CUIT)
-        {
-            if (!IsNumber(CUIT))
-            {
-                throw new ValidationException("El CUIT solo puede contener números.");
-            }
-
-            if (CUIT.Length != 11)
-            {
-                throw new ValidationException("El CUIT debe tener 11 dígitos.");
-            }
-        }
-
-        public static void ValidateCUIL(string CUIL)
-        {
-            if (!IsNumber(CUIL))
-            {
-                throw new ValidationException("El CUIL solo puede contener números.");
-            }
-
-            if (CUIL.Length != 11)
-            {
-                throw new ValidationException("El CUIL debe tener 11 dígitos.");
+                throw new ValidationException("El DNI, CUIL o CUIT solo puede contener números.");
             }
         }
 

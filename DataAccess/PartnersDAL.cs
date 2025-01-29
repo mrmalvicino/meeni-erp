@@ -2,7 +2,6 @@
 using Exceptions;
 using System;
 using System.Collections.Generic;
-using Utilities;
 
 namespace DataAccess
 {
@@ -51,6 +50,24 @@ namespace DataAccess
                 }
 
                 return null;
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ex);
+            }
+            finally
+            {
+                _db.CloseConnection();
+            }
+        }
+
+        public void Update(Partner partner)
+        {
+            try
+            {
+                _db.SetProcedure("sp_update_partner");
+                SetParameters(partner);
+                _db.ExecuteAction();
             }
             catch (Exception ex)
             {
@@ -118,14 +135,11 @@ namespace DataAccess
             return partners;
         }
 
-        private void SetParameters(Partner partner, bool isUpdate = false)
+        private void SetParameters(Partner partner)
         {
-            if (isUpdate)
-            {
-                _db.SetParameter("@partner_id", partner.Id);
-            }
-
-            // agregar los otros parámetros
+            _db.SetParameter("@partner_id", partner.Id);
+            _db.SetParameter("@is_client", partner.IsClient);
+            _db.SetParameter("@is_supplier", partner.IsSupplier);
         }
 
         private void ReadRow(Partner partner)

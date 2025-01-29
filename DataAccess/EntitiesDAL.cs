@@ -86,16 +86,16 @@ namespace DataAccess
                 _db.SetParameter("@entity_id", entity.Id);
             }
 
-            if (!string.IsNullOrEmpty(entity.CUIT))
+            if (!string.IsNullOrEmpty(entity.TaxCode))
             {
-                _db.SetParameter("@cuit", entity.CUIT);
+                _db.SetParameter("@tax_code", entity.TaxCode);
             }
             else
             {
-                _db.SetParameter("@cuit", DBNull.Value);
+                _db.SetParameter("@tax_code", DBNull.Value);
             }
 
-            _db.SetParameter("@entity_name", entity.Name);
+            _db.SetParameter("@name", entity.Name);
 
             if (!string.IsNullOrEmpty(entity.Email))
             {
@@ -115,13 +115,22 @@ namespace DataAccess
                 _db.SetParameter("@phone", DBNull.Value);
             }
 
-            if (entity.LogoImage != null)
+            if (entity.BirthDate != null && entity.BirthDate != DateTime.MinValue)
             {
-                _db.SetParameter("@logo_image_id", entity.LogoImage.Id);
+                _db.SetParameter("@birth_date", entity.BirthDate);
             }
             else
             {
-                _db.SetParameter("@logo_image_id", DBNull.Value);
+                _db.SetParameter("@birth_date", DBNull.Value);
+            }
+
+            if (entity.Image != null)
+            {
+                _db.SetParameter("@image_id", entity.Image.Id);
+            }
+            else
+            {
+                _db.SetParameter("@image_id", DBNull.Value);
             }
 
             if (entity.Address != null)
@@ -137,11 +146,12 @@ namespace DataAccess
         private void ReadRow(Entity entity)
         {
             entity.Id = Convert.ToInt32(_db.Reader["entity_id"]);
-            entity.CUIT = _db.Reader["cuit"]?.ToString();
+            entity.TaxCode = _db.Reader["tax_code"]?.ToString();
             entity.Name = _db.Reader["entity_name"].ToString();
             entity.Email = _db.Reader["email"]?.ToString();
             entity.Phone = _db.Reader["phone"]?.ToString();
-            entity.LogoImage = Helper.Instantiate<Image>(_db.Reader["logo_image_id"]);
+            entity.BirthDate = _db.Reader["birth_date"] as DateTime? ?? entity.BirthDate;
+            entity.Image = Helper.Instantiate<Image>(_db.Reader["image_id"]);
             entity.Address = Helper.Instantiate<Address>(_db.Reader["address_id"]);
         }
     }
