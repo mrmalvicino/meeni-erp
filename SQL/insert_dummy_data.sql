@@ -14,7 +14,9 @@ insert into
 values
     ('https://i.imgur.com/jOSLaMH.png'),
     ('https://i.imgur.com/NcONOVV.png'),
-    ('https://i.imgur.com/vbTmUHj.png');
+    ('https://i.imgur.com/vbTmUHj.png'),
+    ('https://st5.depositphotos.com/1049680/64255/i/450/depositphotos_642555934-stock-photo-young-arab-man-smiling-confident.jpg'),
+    ('https://images.pexels.com/photos/1036623/pexels-photo-1036623.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');
 
 go
 ------------
@@ -60,7 +62,7 @@ values
     ('Av. Falsa', '1234', '4C', 'Cerca del cruce', 2),
     ('Calle Sin Salida', '200', null, null, 3),
     ('Calle De Valuada', '2975', null, null, 4),
-    ('Av. del Río', '158', null, null, 5),
+    ('Av. del Río', '158', '2C', 'Puerta roja', 5),
     ('Piedras Blancas', '789', null, null, 6),
     ('Copinita', '450', null, 'Puerta verde', 7);
 
@@ -270,8 +272,8 @@ values
         'francisco.gomez@email.com',
         '1188776655',
         '1989-08-29',
-        null,
-        null
+        4,
+        8
     ),
     (
         'Morales, Julieta',
@@ -306,8 +308,8 @@ values
         'isabel.torres@email.com',
         '1199887766',
         '1991-02-25',
-        null,
-        null
+        5,
+        9
     ),
     (
         'Ruiz, Santiago',
@@ -352,7 +354,7 @@ values
         '1144556677',
         '1996-01-08',
         null,
-        null
+        10
     );
 
 go
