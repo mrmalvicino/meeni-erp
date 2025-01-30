@@ -49,6 +49,7 @@ namespace WebForms
         {
             (this.Master as Admin)?.CheckCredentials();
             FetchEntity();
+            EditEntityUC.IsSwitchable = true;
         }
 
         protected void SaveBtn_Click(object sender, EventArgs e)

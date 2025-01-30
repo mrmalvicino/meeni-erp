@@ -30,7 +30,7 @@
 
 <div class="container-div width-300-px height-600-px margin-10-px">
     <p class="center-text">Identificación</p>
-    <div>
+    <div id="EntityTypeDiv" runat="server">
         <label for="EntityTypeDDL">Tipo de entidad</label>
         <asp:DropDownList
             ID="EntityTypeDDL"

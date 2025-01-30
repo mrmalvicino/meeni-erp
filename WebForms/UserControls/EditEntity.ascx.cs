@@ -16,6 +16,12 @@ namespace WebForms.UserControls
             set { _entity = value; }
         }
 
+        public bool IsSwitchable
+        {
+            get { return EntityTypeDiv.Visible; }
+            set { EntityTypeDiv.Visible = value; }
+        }
+
         private void SetAddress()
         {
             if (_entity.Address == null)
