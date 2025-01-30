@@ -17,8 +17,8 @@
 
     .light-button:hover {
         color: var(--black-pure);
-        background-color: var(--white-pure);
-        border: 2px solid var(--white-pure);
+        background-color: var(--pale-white);
+        border: 2px solid var(--pale-white);
     }
 
 .dark-button {

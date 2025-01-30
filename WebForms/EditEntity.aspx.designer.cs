@@ -33,6 +33,24 @@ namespace WebForms
         protected global::System.Web.UI.WebControls.TextBox ImageURLTxt;
 
         /// <summary>
+        /// EntityTypeDDL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList EntityTypeDDL;
+
+        /// <summary>
+        /// OrganizationNameDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl OrganizationNameDiv;
+
+        /// <summary>
         /// NameTxt control.
         /// </summary>
         /// <remarks>
@@ -42,6 +60,33 @@ namespace WebForms
         protected global::System.Web.UI.WebControls.TextBox NameTxt;
 
         /// <summary>
+        /// PersonNameDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PersonNameDiv;
+
+        /// <summary>
+        /// FirstNameTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox FirstNameTxt;
+
+        /// <summary>
+        /// LastNameTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox LastNameTxt;
+
+        /// <summary>
         /// TaxCodeTxt control.
         /// </summary>
         /// <remarks>
@@ -49,6 +94,24 @@ namespace WebForms
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TaxCodeTxt;
+
+        /// <summary>
+        /// TaxCodeDDL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList TaxCodeDDL;
+
+        /// <summary>
+        /// BirthDateTxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox BirthDateTxt;
 
         /// <summary>
         /// EmailTxt control.

@@ -10,54 +10,107 @@
 
             <!-- Imagen -->
 
-            <div class="container-div width-300-px height-520-px margin-10-px">
+            <div class="container-div width-300-px height-600-px margin-10-px">
                 <p class="center-text">Imagen</p>
                 <div class="width-100-pct">
                     <asp:Image ID="EntityImg" runat="server" class="fit-image circle-border" />
                 </div>
-                <label for="ImageURLTxt">URL de imagen</label>
-                <asp:TextBox
-                    ID="ImageURLTxt"
-                    runat="server"
-                    TextMode="SingleLine"
-                    class="width-100-pct input-box"
-                    placeholder="URL de imagen"
-                    AutoPostBack="true">
-                </asp:TextBox>
+                <div>
+                    <label for="ImageURLTxt">URL de imagen</label>
+                    <asp:TextBox
+                        ID="ImageURLTxt"
+                        runat="server"
+                        TextMode="SingleLine"
+                        class="width-100-pct input-box"
+                        placeholder="URL de la imagen"
+                        AutoPostBack="true">
+                    </asp:TextBox>
+                </div>
+                <div class="col-flex">
+                    <a href="https://imgur.com/upload" class="light-button">
+                        <i class="bi bi-upload"></i>
+                        <span>Subir a Imgur</span>
+                    </a>
+                </div>
             </div>
 
-            <div class="col-flex space-between height-520-px margin-10-px">
+            <div class="col-flex space-between height-600-px margin-10-px">
 
-                <!-- Identificación fiscal -->
+                <!-- Identificación -->
 
-                <div class="container-div width-300-px height-250-px">
-                    <p class="center-text">Identificación fiscal</p>
+                <div class="container-div width-300-px height-600-px">
+                    <p class="center-text">Identificación</p>
                     <div>
+                        <label for="EntityTypeDDL">Tipo de entidad</label>
+                        <asp:DropDownList
+                            ID="EntityTypeDDL"
+                            runat="server"
+                            class="input-box width-100-pct"
+                            AutoPostBack="true"
+                            OnSelectedIndexChanged="EntityTypeDDL_SelectedIndexChanged">
+                        </asp:DropDownList>
+                    </div>
+                    <div id="OrganizationNameDiv" runat="server">
                         <label for="NameTxt">Nombre</label>
                         <asp:TextBox
                             ID="NameTxt"
                             runat="server"
                             TextMode="SingleLine"
                             class="width-100-pct input-box"
-                            placeholder="Nombre">
+                            placeholder="Nombre de la organización">
                         </asp:TextBox>
+                    </div>
+                    <div id="PersonNameDiv" runat="server" class="row-flex space-between">
+                        <div class="width-120-px">
+                            <label for="FirstNameTxt">Nombre</label>
+                            <asp:TextBox
+                                ID="FirstNameTxt"
+                                runat="server"
+                                TextMode="SingleLine"
+                                class="width-100-pct input-box"
+                                placeholder="Nombre">
+                            </asp:TextBox>
+                        </div>
+                        <div class="width-120-px">
+                            <label for="LastNameTxt">Apellido</label>
+                            <asp:TextBox
+                                ID="LastNameTxt"
+                                runat="server"
+                                TextMode="SingleLine"
+                                class="width-100-pct input-box"
+                                placeholder="Apellido">
+                            </asp:TextBox>
+                        </div>
+                    </div>
+                    <div class="row-flex space-between">
+                        <div class="width-120-px">
+                            <label for="TaxCodeTxt">Código fiscal</label>
+                            <asp:TextBox
+                                ID="TaxCodeTxt"
+                                runat="server"
+                                TextMode="SingleLine"
+                                class="width-100-pct input-box"
+                                placeholder="Número">
+                            </asp:TextBox>
+                        </div>
+                        <div class="width-120-px">
+                            <label for="TaxCodeDDL">Tipo</label>
+                            <asp:DropDownList
+                                ID="TaxCodeDDL"
+                                runat="server"
+                                class="input-box width-100-pct">
+                            </asp:DropDownList>
+                        </div>
                     </div>
                     <div>
-                        <label for="TaxCodeTxt">CUIT</label>
+                        <label for="BirthDateTxt">Fecha de nacimiento</label>
                         <asp:TextBox
-                            ID="TaxCodeTxt"
+                            ID="BirthDateTxt"
                             runat="server"
-                            TextMode="Number"
-                            class="width-100-pct input-box"
-                            placeholder="CUIT de la empresa">
+                            TextMode="Date"
+                            class="width-100-pct input-box">
                         </asp:TextBox>
                     </div>
-                </div>
-
-                <!-- Contacto -->
-
-                <div class="container-div width-300-px height-250-px">
-                    <p class="center-text">Contacto</p>
                     <div>
                         <label for="EmailTxt">Email</label>
                         <asp:TextBox
@@ -83,7 +136,7 @@
 
             <!-- Domicilio -->
 
-            <div class="container-div width-300-px height-520-px margin-10-px">
+            <div class="container-div width-300-px height-600-px margin-10-px">
                 <p class="center-text">Domicilio</p>
                 <div>
                     <label for="StreetNameTxt">Calle</label>
