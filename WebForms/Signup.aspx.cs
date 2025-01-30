@@ -40,7 +40,6 @@ namespace WebForms
             {
                 PricingPlansDDL.SelectedIndex = 0;
             }
-
         }
 
         private void InstantiateAttributes()
