@@ -34,103 +34,100 @@
                 </div>
             </div>
 
-            <div class="col-flex space-between height-600-px margin-10-px">
+            <!-- Identificación -->
 
-                <!-- Identificación -->
-
-                <div class="container-div width-300-px height-600-px">
-                    <p class="center-text">Identificación</p>
-                    <div>
-                        <label for="EntityTypeDDL">Tipo de entidad</label>
-                        <asp:DropDownList
-                            ID="EntityTypeDDL"
-                            runat="server"
-                            class="input-box width-100-pct"
-                            AutoPostBack="true"
-                            OnSelectedIndexChanged="EntityTypeDDL_SelectedIndexChanged">
-                        </asp:DropDownList>
-                    </div>
-                    <div id="OrganizationNameDiv" runat="server">
-                        <label for="NameTxt">Nombre</label>
+            <div class="container-div width-300-px height-600-px margin-10-px">
+                <p class="center-text">Identificación</p>
+                <div>
+                    <label for="EntityTypeDDL">Tipo de entidad</label>
+                    <asp:DropDownList
+                        ID="EntityTypeDDL"
+                        runat="server"
+                        class="input-box width-100-pct"
+                        AutoPostBack="true"
+                        OnSelectedIndexChanged="EntityTypeDDL_SelectedIndexChanged">
+                    </asp:DropDownList>
+                </div>
+                <div id="OrganizationNameDiv" runat="server">
+                    <label for="NameTxt">Nombre</label>
+                    <asp:TextBox
+                        ID="NameTxt"
+                        runat="server"
+                        TextMode="SingleLine"
+                        class="width-100-pct input-box"
+                        placeholder="Nombre de la organización">
+                    </asp:TextBox>
+                </div>
+                <div id="PersonNameDiv" runat="server" class="row-flex space-between">
+                    <div class="width-120-px">
+                        <label for="FirstNameTxt">Nombre</label>
                         <asp:TextBox
-                            ID="NameTxt"
+                            ID="FirstNameTxt"
                             runat="server"
                             TextMode="SingleLine"
                             class="width-100-pct input-box"
-                            placeholder="Nombre de la organización">
+                            placeholder="Nombre">
                         </asp:TextBox>
                     </div>
-                    <div id="PersonNameDiv" runat="server" class="row-flex space-between">
-                        <div class="width-120-px">
-                            <label for="FirstNameTxt">Nombre</label>
-                            <asp:TextBox
-                                ID="FirstNameTxt"
-                                runat="server"
-                                TextMode="SingleLine"
-                                class="width-100-pct input-box"
-                                placeholder="Nombre">
-                            </asp:TextBox>
-                        </div>
-                        <div class="width-120-px">
-                            <label for="LastNameTxt">Apellido</label>
-                            <asp:TextBox
-                                ID="LastNameTxt"
-                                runat="server"
-                                TextMode="SingleLine"
-                                class="width-100-pct input-box"
-                                placeholder="Apellido">
-                            </asp:TextBox>
-                        </div>
-                    </div>
-                    <div class="row-flex space-between">
-                        <div class="width-120-px">
-                            <label for="TaxCodeTxt">Código fiscal</label>
-                            <asp:TextBox
-                                ID="TaxCodeTxt"
-                                runat="server"
-                                TextMode="SingleLine"
-                                class="width-100-pct input-box"
-                                placeholder="Número">
-                            </asp:TextBox>
-                        </div>
-                        <div class="width-120-px">
-                            <label for="TaxCodeDDL">Tipo</label>
-                            <asp:DropDownList
-                                ID="TaxCodeDDL"
-                                runat="server"
-                                class="input-box width-100-pct">
-                            </asp:DropDownList>
-                        </div>
-                    </div>
-                    <div>
-                        <label for="BirthDateTxt">Fecha de nacimiento</label>
+                    <div class="width-120-px">
+                        <label for="LastNameTxt">Apellido</label>
                         <asp:TextBox
-                            ID="BirthDateTxt"
+                            ID="LastNameTxt"
                             runat="server"
-                            TextMode="Date"
-                            class="width-100-pct input-box">
-                        </asp:TextBox>
-                    </div>
-                    <div>
-                        <label for="EmailTxt">Email</label>
-                        <asp:TextBox
-                            ID="EmailTxt"
-                            runat="server"
-                            TextMode="Email"
+                            TextMode="SingleLine"
                             class="width-100-pct input-box"
-                            placeholder="Email de tu empresa">
+                            placeholder="Apellido">
                         </asp:TextBox>
                     </div>
-                    <div>
-                        <label for="PhoneTxt">Teléfono</label>
+                </div>
+                <div class="row-flex space-between">
+                    <div class="width-120-px">
+                        <label for="TaxCodeTxt">Código fiscal</label>
                         <asp:TextBox
-                            ID="PhoneTxt"
+                            ID="TaxCodeTxt"
                             runat="server"
-                            TextMode="Number"
+                            TextMode="SingleLine"
                             class="width-100-pct input-box"
-                            placeholder="Teléfono de tu empresa">
+                            placeholder="Número">
                         </asp:TextBox>
                     </div>
+                    <div class="width-120-px">
+                        <label for="TaxCodeDDL">Tipo</label>
+                        <asp:DropDownList
+                            ID="TaxCodeDDL"
+                            runat="server"
+                            class="input-box width-100-pct">
+                        </asp:DropDownList>
+                    </div>
+                </div>
+                <div>
+                    <label for="BirthDateTxt">Fecha de nacimiento</label>
+                    <asp:TextBox
+                        ID="BirthDateTxt"
+                        runat="server"
+                        TextMode="Date"
+                        class="width-100-pct input-box">
+                    </asp:TextBox>
+                </div>
+                <div>
+                    <label for="EmailTxt">Email</label>
+                    <asp:TextBox
+                        ID="EmailTxt"
+                        runat="server"
+                        TextMode="Email"
+                        class="width-100-pct input-box"
+                        placeholder="Email de tu empresa">
+                    </asp:TextBox>
+                </div>
+                <div>
+                    <label for="PhoneTxt">Teléfono</label>
+                    <asp:TextBox
+                        ID="PhoneTxt"
+                        runat="server"
+                        TextMode="Number"
+                        class="width-100-pct input-box"
+                        placeholder="Teléfono de tu empresa">
+                    </asp:TextBox>
                 </div>
             </div>
 
