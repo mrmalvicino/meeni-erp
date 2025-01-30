@@ -197,9 +197,43 @@ namespace Utilities
 
         public static void ValidateTaxCode(string taxCode)
         {
-            if (taxCode.Length < 8)
+            string[] taxCodeArray = taxCode.Split('-');
+
+            if (taxCodeArray.Length == 1)
             {
-                throw new ValidationException("El DNI es inválido.");
+                if (!IsNumber(taxCode))
+                {
+                    throw new ValidationException("El código fiscal solo puede contener números.");
+                }
+
+                if (taxCode.Length < 8)
+                {
+                    throw new ValidationException("El DNI es inválido.");
+                }
+
+                if (8 < taxCode.Length && taxCode.Length != 11)
+                {
+                    throw new ValidationException("El CUIT/CUIL es inválido.");
+                }
+            }
+            else if (taxCodeArray.Length == 3)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    if (!IsNumber(taxCodeArray[i]))
+                    {
+                        throw new ValidationException("El CUIT/CUIL solo puede contener números.");
+                    }
+                }
+
+                if (taxCodeArray[0].Length != 2 || taxCodeArray[1].Length != 8 || taxCodeArray[2].Length != 1)
+                {
+                    throw new ValidationException("El CUIT/CUIL es inválido.");
+                }
+            }
+            else
+            {
+                throw new ValidationException("El código fiscal es inválido.");
             }
         }
 

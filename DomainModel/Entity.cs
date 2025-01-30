@@ -50,15 +50,13 @@ namespace DomainModel
 
         public void SetCUIT(string CUIT)
         {
-            TaxCode = "";
+            TaxCode = CUIT;
             string[] CUITArray = CUIT.Split('-');
 
-            if (CUIT.Length == 13 && CUITArray.Length == 3)
+            if (CUIT.Length == 11 && CUITArray.Length == 1)
             {
-                TaxCode = CUIT;
-            }
-            else if (CUIT.Length == 11 && CUITArray.Length == 1)
-            {
+                TaxCode = "";
+
                 for (int i = 0; i < 2; i++)
                 {
                     TaxCode += CUIT[i];
