@@ -75,6 +75,20 @@ begin
 end;
 
 go
+create or alter procedure sp_update_country(
+    @country_id int,
+    @name varchar(50)
+)
+as
+begin
+    update countries
+    set
+        name = @name
+    where
+        country_id = @country_id;
+end;
+
+go
 create or alter procedure sp_find_country_id(
     @name varchar(50)
 )
@@ -110,6 +124,22 @@ begin
         output inserted.province_id
     values
         (@name, @country_id);
+end;
+
+go
+create or alter procedure sp_update_province(
+    @province_id int,
+    @name varchar(50),
+    @country_id int
+)
+as
+begin
+    update provinces
+    set
+        name = @name,
+        country_id = @country_id
+    where
+        province_id = @province_id;
 end;
 
 go
@@ -151,6 +181,24 @@ begin
         output inserted.city_id
     values
         (@name, @zip_code, @province_id);
+end;
+
+go
+create or alter procedure sp_update_city(
+    @city_id int,
+    @name varchar(50),
+    @zip_code varchar(10),
+    @province_id int
+)
+as
+begin
+    update cities
+    set
+        name = @name,
+        zip_code = @zip_code,
+        province_id = @province_id
+    where
+        city_id = @city_id;
 end;
 
 go
@@ -261,17 +309,17 @@ create or alter procedure sp_create_entity(
 as
 begin
     insert into
-        entities (tax_code, name, email, phone, birth_date, image_id, address_id)
+        entities (name, tax_code, email, phone, birth_date, image_id, address_id)
         output inserted.entity_id
     values
-        (@tax_code, @name, @email, @phone, @birth_date, @image_id, @address_id);
+        (@name, @tax_code, @email, @phone, @birth_date, @image_id, @address_id);
 end;
 
 go
 create or alter procedure sp_update_entity(
     @entity_id int,
-    @tax_code varchar(11),
     @name varchar(50),
+    @tax_code varchar(11),
     @email varchar(50),
     @phone varchar(50),
     @birth_date date,
@@ -282,8 +330,8 @@ as
 begin
     update entities
     set
-        tax_code = @tax_code,
         name = @name,
+        tax_code = @tax_code,
         email = @email,
         phone = @phone,
         birth_date = @birth_date,
@@ -388,6 +436,20 @@ print '';
 print 'Creating stored procedures related to stakeholders table...';
 
 go
+create or alter procedure sp_create_stakeholder(
+    @stakeholder_id int,
+    @organization_id int
+)
+as
+begin
+    insert into
+        stakeholders (stakeholder_id, organization_id)
+        output inserted.stakeholder_id
+    values
+        (@stakeholder_id, @organization_id);
+end;
+
+go
 create or alter procedure sp_read_stakeholder(
     @stakeholder_id int
 )
@@ -424,6 +486,59 @@ go
 print '';
 
 print 'Creating stored procedures related to partners table...';
+
+go
+create or alter procedure sp_create_partner(
+    @partner_id int,
+    @is_client bit,
+    @is_supplier bit
+)
+as
+begin
+    insert into
+        partners (partner_id, is_client, is_supplier)
+        output inserted.partner_id
+    values
+        (@partner_id, @is_client, @is_supplier);
+end;
+
+go
+create or alter procedure sp_update_partner(
+    @partner_id int,
+    @is_client bit,
+    @is_supplier bit
+)
+as
+begin
+    update partners
+    set
+        is_client = @is_client,
+        is_supplier = @is_supplier
+    where
+        partner_id = @partner_id;
+end;
+
+go
+create or alter procedure sp_toggle_partner(
+    @partner_id int
+)
+as
+begin
+    declare @current_status int;
+
+    select
+        @current_status = activity_status
+    from
+        partners
+    where
+        partner_id = @partner_id;
+
+    update partners
+    set
+        activity_status = case when @current_status = 1 then 0 else 1 end
+    where
+        partner_id = @partner_id;
+end;
 
 go
 create or alter procedure sp_list_partners(
@@ -496,13 +611,14 @@ end;
 
 go
 create or alter procedure sp_update_employee(
-    @employee_id int
+    @employee_id int,
+    @admission_date date
 )
 as
 begin
     update employees
     set
-        employee_id = @employee_id
+        admission_date = @admission_date
     where
         employee_id = @employee_id;
 end;
