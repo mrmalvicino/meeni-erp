@@ -15,6 +15,15 @@ namespace WebForms
     {
 
         /// <summary>
+        /// ActivityStatusDDL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ActivityStatusDDL;
+
+        /// <summary>
         /// SearchTxt control.
         /// </summary>
         /// <remarks>
@@ -31,24 +40,6 @@ namespace WebForms
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton SearchBtn;
-
-        /// <summary>
-        /// ActivityStatusDDL control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ActivityStatusDDL;
-
-        /// <summary>
-        /// RefreshBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton RefreshBtn;
 
         /// <summary>
         /// ClientsRpt control.

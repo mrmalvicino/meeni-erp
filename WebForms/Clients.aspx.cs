@@ -94,18 +94,24 @@ namespace WebForms
             else if (e.CommandName == "Delete")
             {
                 _appManager.Partners.Toggle(partnerId);
+                MapControls();
             }
+        }
+
+        protected void ActivityStatusDDL_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SearchTxt.Text = string.Empty;
+            MapControls();
+        }
+
+        protected void SearchTxt_TextChanged(object sender, EventArgs e)
+        {
+            MapControls(true);
         }
 
         protected void SearchBtn_Click(object sender, EventArgs e)
         {
             MapControls(true);
-        }
-
-        protected void RefreshBtn_Click(object sender, EventArgs e)
-        {
-            SearchTxt.Text = string.Empty;
-            MapControls();
         }
     }
 }

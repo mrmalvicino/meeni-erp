@@ -13,37 +13,38 @@
         <div class="grid-1-cols width-100-pct">
             <div class="container-div margin-10-px">
                 <div class="wrapped-flex space-between">
-                    <div class="row-flex space-between">
-                        <asp:TextBox
-                            ID="SearchTxt"
-                            runat="server"
-                            class="input-box width-250-px"
-                            placeholder="Buscar cliente...">
-                        </asp:TextBox>
-                        <asp:LinkButton
-                            ID="SearchBtn"
-                            runat="server"
-                            Text='<i class="bi bi-search"></i>'
-                            class="asp-link-button margin-20-px"
-                            OnClick="SearchBtn_Click">
-                        </asp:LinkButton>
+                    <div class="wrapped-flex">
+                        <div>
+                            <asp:DropDownList
+                                ID="ActivityStatusDDL"
+                                runat="server"
+                                class="input-box width-250-px margin-right-20-px"
+                                AutoPostBack="true"
+                                OnSelectedIndexChanged="ActivityStatusDDL_SelectedIndexChanged">
+                                <asp:ListItem Text="Solo activos" Value="Active"></asp:ListItem>
+                                <asp:ListItem Text="Solo eliminados" Value="Inactive"></asp:ListItem>
+                                <asp:ListItem Text="Ver todos" Value="All"></asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                        <div class="row-flex space-between">
+                            <asp:TextBox
+                                ID="SearchTxt"
+                                runat="server"
+                                class="input-box width-250-px"
+                                placeholder="Buscar cliente..."
+                                OnTextChanged="SearchTxt_TextChanged">
+                            </asp:TextBox>
+                            <asp:LinkButton
+                                ID="SearchBtn"
+                                runat="server"
+                                Text='<i class="bi bi-search"></i>'
+                                class="asp-link-button margin-20-px"
+                                OnClick="SearchBtn_Click">
+                            </asp:LinkButton>
+                        </div>
                     </div>
-                    <div class="row-flex space-between">
-                        <asp:DropDownList ID="ActivityStatusDDL" runat="server" class="input-box width-250-px">
-                            <asp:ListItem Text="Solo activos" Value="Active"></asp:ListItem>
-                            <asp:ListItem Text="Solo dados de baja" Value="Inactive"></asp:ListItem>
-                            <asp:ListItem Text="Ver todos" Value="All"></asp:ListItem>
-                        </asp:DropDownList>
-                        <asp:LinkButton
-                            ID="RefreshBtn"
-                            runat="server"
-                            Text='<i class="bi bi-arrow-clockwise"></i>'
-                            class="asp-link-button margin-20-px"
-                            OnClick="RefreshBtn_Click">
-                        </asp:LinkButton>
-                    </div>
-                    <div class="row-flex space-between">
-                        <a href="AddEntity.aspx" class="dark-button">
+                    <div>
+                        <a href="AddEntity.aspx" class="dark-button margin-10-0-px">
                             <i class="bi bi-plus-circle"></i>
                             <span>Crear nuevo</span>
                         </a>
