@@ -63,21 +63,15 @@
                         </a>
                     </li>
                     <li>
+                        <a href="Partners.aspx" class="dark-button big-hover justify-left">
+                            <i class="bi bi-people"></i>
+                            <span>Agenda</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="Employees.aspx" class="dark-button big-hover justify-left">
                             <i class="bi bi-person-badge"></i>
                             <span>Empleados</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="Clients.aspx" class="dark-button big-hover justify-left">
-                            <i class="bi bi-people"></i>
-                            <span>Clientes</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="Suppliers.aspx" class="dark-button big-hover justify-left">
-                            <i class="bi bi-truck"></i>
-                            <span>Proveedores</span>
                         </a>
                     </li>
                     <li>

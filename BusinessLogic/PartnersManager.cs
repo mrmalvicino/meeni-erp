@@ -21,16 +21,21 @@ namespace BusinessLogic
             _stakeholdersManager = new StakeholdersManager(db);
         }
 
-        public int Create(Partner partner)
+        public int Create(Partner partner, int organizationId)
         {
             try
             {
-                //Validate(partner);
-                return _partnersDAL.Create(partner);
+                using (var transaction = new TransactionScope())
+                {
+                    partner.Id = _stakeholdersManager.Create(partner, organizationId);
+                    _partnersDAL.Create(partner);
+                    transaction.Complete();
+                    return partner.Id;
+                }
             }
             catch (Exception ex) when (!(ex is ValidationException))
             {
-                throw new BusinessLogicException(ex);
+                throw new TransactionScopeException(ex);
             }
         }
 
@@ -44,13 +49,14 @@ namespace BusinessLogic
             try
             {
                 _partner = _partnersDAL.Read(partnerId);
-                _stakeholder = _stakeholdersManager.Read(_partner.Id);
-                Helper.AssignEntity(_partner, _stakeholder);
             }
             catch (Exception ex)
             {
                 throw new BusinessLogicException(ex);
             }
+
+            _stakeholder = _stakeholdersManager.Read(_partner.Id);
+            Helper.AssignEntity(_partner, _stakeholder);
 
             return _partner;
         }
@@ -84,12 +90,12 @@ namespace BusinessLogic
             }
         }
 
-        public List<Partner> List(bool clients, bool suppliers, int organizationId, bool active, bool inactive)
+        public List<Partner> List(int organizationId, bool active, bool inactive)
         {
             try
             {
                 List<Partner> partners;
-                partners = _partnersDAL.List(clients, suppliers, organizationId, active, inactive);
+                partners = _partnersDAL.List(organizationId, active, inactive);
 
                 foreach (var partner in partners)
                 {

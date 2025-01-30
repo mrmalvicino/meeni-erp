@@ -542,8 +542,6 @@ end;
 
 go
 create or alter procedure sp_list_partners(
-    @list_clients bit,
-    @list_suppliers bit,
     @organization_id int,
     @list_active bit,
     @list_inactive bit
@@ -577,9 +575,7 @@ begin
         partners P
         inner join stakeholders S on S.stakeholder_id = P.partner_id
     where
-        P.is_client = @list_clients
-        and P.is_supplier = @list_suppliers
-        and S.organization_id = @organization_id
+        S.organization_id = @organization_id
         and (
             P.activity_status = @wanted_status_1
             or P.activity_status = @wanted_status_2

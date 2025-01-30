@@ -4,16 +4,17 @@ using System;
 using System.Collections.Generic;
 using System.Web.UI.WebControls;
 using System.Linq;
+using System.Web.UI.HtmlControls;
 
 namespace WebForms
 {
-    public partial class Clients : System.Web.UI.Page
+    public partial class Partners : System.Web.UI.Page
     {
         private AppManager _appManager;
-        private List<Partner> _clients;
+        private List<Partner> _partners;
         private Organization _loggedOrganization;
 
-        public Clients()
+        public Partners()
         {
             _appManager = new AppManager();
         }
@@ -23,7 +24,7 @@ namespace WebForms
             _loggedOrganization = Session["loggedOrganization"] as Organization;
         }
 
-        private void FetchClients()
+        private void FetchPartners()
         {
             bool listActive = true;
             bool listInactive = true;
@@ -39,19 +40,18 @@ namespace WebForms
                 listActive = false;
             }
 
-            _clients = _appManager.Partners.List(
-                true, false, _loggedOrganization.Id, listActive, listInactive);
+            _partners = _appManager.Partners.List(_loggedOrganization.Id, listActive, listInactive);
         }
 
-        private void BindClientsRpt()
+        private void BindPartnersRpt()
         {
-            ClientsRpt.DataSource = _clients;
-            ClientsRpt.DataBind();
+            PartnersRpt.DataSource = _partners;
+            PartnersRpt.DataBind();
         }
 
         private void ApplyFilter()
         {
-            _clients = _clients.Where(
+            _partners = _partners.Where(
                 x => x.Name.ToLower().Contains(SearchTxt.Text.ToLower())
                 || x.TaxCode.ToLower().Contains(SearchTxt.Text.ToLower())
                 || x.Email.ToLower().Contains(SearchTxt.Text.ToLower())
@@ -61,14 +61,14 @@ namespace WebForms
 
         private void MapControls(bool applyFilter = false)
         {
-            FetchClients();
+            FetchPartners();
 
             if (applyFilter)
             {
                 ApplyFilter();
             }
 
-            BindClientsRpt();
+            BindPartnersRpt();
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -83,7 +83,7 @@ namespace WebForms
             }
         }
 
-        protected void ClientsRpt_ItemCommand(object source, RepeaterCommandEventArgs e)
+        protected void PartnersRpt_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
             int partnerId = Convert.ToInt32(e.CommandArgument);
 
@@ -95,6 +95,31 @@ namespace WebForms
             {
                 _appManager.Partners.Toggle(partnerId);
                 MapControls();
+            }
+        }
+
+        protected void PartnersRpt_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                Partner partner = (Partner)e.Item.DataItem;
+                Label partnerTypeLbl = (Label)e.Item.FindControl("PartnerTypeLbl");
+
+                if (partner.IsClient && partner.IsSupplier)
+                {
+                    partnerTypeLbl.Text = "<i class='bi bi-people text-success'></i>";
+                    partnerTypeLbl.ToolTip = "Cliente y proveedor";
+                }
+                else if (partner.IsClient)
+                {
+                    partnerTypeLbl.Text = "<i class='bi bi-cart text-primary'></i>";
+                    partnerTypeLbl.ToolTip = "Cliente";
+                }
+                else if (partner.IsSupplier)
+                {
+                    partnerTypeLbl.Text = "<i class='bi bi-truck text-warning'></i>";
+                    partnerTypeLbl.ToolTip = "Proveedor";
+                }
             }
         }
 

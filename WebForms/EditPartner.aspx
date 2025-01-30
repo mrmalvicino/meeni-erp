@@ -7,9 +7,11 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="AdminMainPlaceHolder" runat="server">
     <div class="height-100-pct width-100-pct col-flex justify-center padding-10-px">
-        <h1>Datos de entidad</h1>
+        <h1>Datos del socio comercial</h1>
         <div class="wrapped-flex justify-center">
             <uc:EditEntity runat="server" ID="EditEntityUC" />
+
+
         </div>
 
         <!-- Botones -->

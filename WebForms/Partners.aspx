@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Clients" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Clients.aspx.cs" Inherits="WebForms.Clients" %>
+﻿<%@ Page Title="Partners" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Partners.aspx.cs" Inherits="WebForms.Partners" %>
 
 <asp:Content ID="HeadContent" ContentPlaceHolderID="AdminHeadPlaceHolder" runat="server">
     <link href="style/table.css" rel="stylesheet" />
@@ -6,7 +6,7 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="AdminMainPlaceHolder" runat="server">
     <div class="height-100-pct width-100-pct col-flex justify-center padding-10-px">
-        <h1>Clientes</h1>
+        <h1>Socios comerciales</h1>
 
         <!-- Búsqueda y alta -->
 
@@ -31,7 +31,7 @@
                                 ID="SearchTxt"
                                 runat="server"
                                 class="input-box width-250-px"
-                                placeholder="Buscar cliente..."
+                                placeholder="Buscar socio comercial..."
                                 OnTextChanged="SearchTxt_TextChanged">
                             </asp:TextBox>
                             <asp:LinkButton
@@ -59,11 +59,16 @@
                     <thead>
                         <tr>
                             <th scope="col">Nombre</th>
+                            <th scope="col">Tipo</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <asp:Repeater ID="ClientsRpt" runat="server" OnItemCommand="ClientsRpt_ItemCommand">
+                        <asp:Repeater
+                            ID="PartnersRpt"
+                            runat="server"
+                            OnItemCommand="PartnersRpt_ItemCommand"
+                            OnItemDataBound="PartnersRpt_ItemDataBound">
                             <ItemTemplate>
                                 <tr>
 
@@ -75,6 +80,17 @@
                                             runat="server"
                                             Text='<%#Eval("Name")%>'>
                                         </asp:Label>
+                                    </td>
+
+                                    <!-- Tipo -->
+
+                                    <td scope="row">
+                                        <div class="col-flex">
+                                            <asp:Label
+                                                ID="PartnerTypeLbl"
+                                                runat="server">
+                                            </asp:Label>
+                                        </div>
                                     </td>
 
                                     <!-- Acciones -->

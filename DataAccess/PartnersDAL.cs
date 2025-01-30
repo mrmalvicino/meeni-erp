@@ -97,15 +97,13 @@ namespace DataAccess
             }
         }
 
-        public List<Partner> List(bool clients, bool suppliers, int organizationId, bool active, bool inactive)
+        public List<Partner> List(int organizationId, bool active, bool inactive)
         {
             List<Partner> partners = new List<Partner>();
 
             try
             {
                 _db.SetProcedure("sp_list_partners");
-                _db.SetParameter("@list_clients", clients);
-                _db.SetParameter("@list_suppliers", suppliers);
                 _db.SetParameter("@organization_id", organizationId);
                 _db.SetParameter("@list_active", active);
                 _db.SetParameter("@list_inactive", inactive);

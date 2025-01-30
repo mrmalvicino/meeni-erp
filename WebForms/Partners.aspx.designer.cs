@@ -11,7 +11,7 @@ namespace WebForms
 {
 
 
-    public partial class Clients
+    public partial class Partners
     {
 
         /// <summary>
@@ -42,12 +42,12 @@ namespace WebForms
         protected global::System.Web.UI.WebControls.LinkButton SearchBtn;
 
         /// <summary>
-        /// ClientsRpt control.
+        /// PartnersRpt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater ClientsRpt;
+        protected global::System.Web.UI.WebControls.Repeater PartnersRpt;
     }
 }
