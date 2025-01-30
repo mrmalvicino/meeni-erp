@@ -299,7 +299,7 @@ print 'Creating stored procedures related to entities table...';
 go
 create or alter procedure sp_create_entity(
     @name varchar(50),
-    @tax_code varchar(11),
+    @tax_code varchar(13),
     @email varchar(50),
     @phone varchar(50),
     @birth_date date,
@@ -319,7 +319,7 @@ go
 create or alter procedure sp_update_entity(
     @entity_id int,
     @name varchar(50),
-    @tax_code varchar(11),
+    @tax_code varchar(13),
     @email varchar(50),
     @phone varchar(50),
     @birth_date date,

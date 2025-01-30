@@ -197,9 +197,9 @@ namespace Utilities
 
         public static void ValidateTaxCode(string taxCode)
         {
-            if (!IsNumber(taxCode))
+            if (taxCode.Length < 8)
             {
-                throw new ValidationException("El DNI, CUIL o CUIT solo puede contener números.");
+                throw new ValidationException("El DNI es inválido.");
             }
         }
 
