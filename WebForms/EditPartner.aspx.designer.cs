@@ -204,6 +204,15 @@ namespace WebForms
         protected global::System.Web.UI.WebControls.TextBox CountryTxt;
 
         /// <summary>
+        /// EditEntityUC control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::WebForms.UserControls.EditEntity EditEntityUC;
+
+        /// <summary>
         /// SaveBtn control.
         /// </summary>
         /// <remarks>

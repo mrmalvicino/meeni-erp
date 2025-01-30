@@ -1,4 +1,6 @@
-﻿<%@ Page Title="View Organization" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="EditEntity.aspx.cs" Inherits="WebForms.EditEntity" %>
+﻿<%@ Page Title="View Organization" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="EditPartner.aspx.cs" Inherits="WebForms.EditEntity" %>
+
+<%@ Register Src="~/UserControls/EditEntity.ascx" TagPrefix="uc" TagName="EditEntity" %>
 
 <asp:Content ID="HeadContent" ContentPlaceHolderID="AdminHeadPlaceHolder" runat="server">
 </asp:Content>
@@ -220,6 +222,9 @@
                     </asp:TextBox>
                 </div>
             </div>
+
+            <uc:EditEntity runat="server" ID="EditEntityUC" />
+
         </div>
 
         <!-- Botones -->

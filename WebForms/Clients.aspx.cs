@@ -89,7 +89,7 @@ namespace WebForms
 
             if (e.CommandName == "Edit")
             {
-                Response.Redirect($"EditEntity.aspx?id={partnerId}");
+                Response.Redirect($"EditPartner.aspx?id={partnerId}");
             }
             else if (e.CommandName == "Delete")
             {
