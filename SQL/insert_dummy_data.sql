@@ -67,6 +67,33 @@ values
     ('Copinita', '450', null, 'Puerta verde', 7);
 
 go
+---------------------
+-- IDENTIFICATIONS --
+---------------------
+print '';
+
+print 'Inserting dummy data into identifications table...';
+
+insert into
+    identifications (code, identification_type_id)
+values
+    ('20-12345678-9', '2'),
+    ('27-98765432-1', '2'),
+    ('23-45678901-5', '2'),
+    ('23-99887766-3', '2'),
+    ('23-55667788-9', '2'),
+    ('20-22345678-9', '2'),
+    ('20-28765432-9', '2'),
+    ('23-31223344-0', '2'),
+    ('20-22334455-7', '2'),
+    ('33445566', '1'), -- 10
+    ('14556677', '1'),
+    ('15667788', '2'),
+    ('26778899', '2'),
+    ('17889900', '2'),
+    ('18990011', '2');
+
+go
 --------------
 -- ENTITIES --
 --------------
@@ -78,54 +105,60 @@ go
 insert into
     entities (
         name,
-        tax_code,
+        is_organization,
         email,
         phone,
         birth_date,
         image_id,
-        address_id
+        address_id,
+        identification_id
     )
 values
     (
         'Berlinguieri Co.',
-        '20-12345678-9',
+        1,
         'contacto@berlinguieri.com',
         '1158873478',
         '1990-12-12',
+        1,
         1,
         1
     ),
     (
         'Future Archi',
-        null,
+        1,
         'contacto@futurearchi.com',
         '1112345678',
         null,
         2,
-        2
+        2,
+        null
     ),
     (
         'El Buen Color',
-        '27-98765432-1',
+        1,
         'info@elbuencolor.com',
         null,
         null,
         3,
-        null
+        null,
+        2
     ),
     (
         'Industria Gamma',
-        '23-45678901-5',
+        1,
         'ventas@industriagamma.com',
         null,
         null,
         null,
+        3,
         3
     ),
     (
         'Soluciones Omega',
-        null,
+        1,
         'soporte@solucionesomega.com',
+        null,
         null,
         null,
         null,
@@ -133,26 +166,29 @@ values
     ),
     (
         'Innovación Zeta',
-        '23-99887766-3',
+        1,
         'contacto@innovacionzeta.com',
         null,
         null,
         null,
+        4,
         4
     ),
     (
         'Corporación Delta',
-        null,
+        1,
         'info@corporaciondelta.com',
         '1177889900',
+        null,
         null,
         null,
         null
     ),
     (
         'Consultora Épsilon',
-        null,
+        1,
         'consultas@consultoraepsilon.com',
+        null,
         null,
         null,
         null,
@@ -160,8 +196,9 @@ values
     ),
     (
         'Tecnología Kappa',
-        null,
+        1,
         'contacto@tecnologiakappa.com',
+        null,
         null,
         null,
         null,
@@ -169,134 +206,149 @@ values
     ),
     (
         'Logística Lambda',
-        '23-55667788-9',
+        1,
         'logistica@logisticalambda.com',
         null,
         null,
         null,
-        null
-    ),
-    (
-        'Pérez, Juán',
-        '20-22345678-9',
-        'juan.perez@email.com',
-        '1182345678',
-        '1985-07-15',
         null,
         5
     ),
     (
-        'González, María',
+        'Pérez, Juán',
+        0,
+        'juan.perez@email.com',
+        '1182345678',
+        '1985-07-15',
         null,
+        5,
+        6
+    ),
+    (
+        'González, María',
+        0,
         'maria.gonzalez@email.com',
         null,
         '1990-03-22',
         null,
-        6
+        6,
+        null
     ),
     (
         'Martínez, Pedro',
-        '20-28765432-9',
+        0,
         'pedro.martinez@email.com',
         '1198765432',
         '1987-12-30',
         null,
-        null
+        null,
+        7
     ),
     (
         'Rodríguez, Laura',
-        null,
+        0,
         'laura.rodriguez@email.com',
         '1155667788',
+        null,
         null,
         null,
         null
     ),
     (
         'Fernández, Carlos',
-        '23-31223344-0',
+        0,
         'carlos.fernandez@email.com',
         null,
         '1982-05-01',
         null,
-        null
+        null,
+        8
     ),
     (
         'López, Ana',
-        '20-22334455-7',
+        0,
         'ana.lopez@email.com',
         '1177889900',
         '1995-09-10',
         null,
-        7
+        7,
+        9
     ),
     (
         'Sánchez, José',
-        null,
+        0,
         'jose.sanchez@email.com',
         '1112349876',
         '1980-01-14',
+        null,
         null,
         null
     ),
     (
         'Paredes, Lucía',
-        '33445566',
+        0,
         'lucia.paredes@email.com',
         '1199887766',
         '1992-11-20',
         null,
-        null
+        null,
+        10
     ),
     (
         'Díaz, Ricardo',
-        null,
+        0,
         'ricardo.diaz@email.com',
         null,
         '1993-04-18',
+        null,
         null,
         null
     ),
     (
         'Vargas, Patricia',
-        '14556677',
+        0,
         'patricia.vargas@email.com',
         '1166554433',
         null,
         null,
-        null
+        null,
+        11
     ),
     (
         'Gómez, Francisco',
-        '15667788',
+        0,
         'francisco.gomez@email.com',
         '1188776655',
         '1989-08-29',
         4,
-        8
+        8,
+        12
     ),
     (
         'Morales, Julieta',
-        null,
+        0,
         'julieta.morales@email.com',
         '1166553322',
+        null,
         null,
         null,
         null
     ),
     (
         'Jiménez, Alberto',
-        '26778899',
+        0,
         'alberto.jimenez@email.com',
         null,
         '1988-06-12',
         null,
-        null
+        null,
+        13
     ),
     (
         'Ramírez, Roberto',
-        null,
+        0,
         'roberto.ramirez@email.com',
+        null,
         null,
         null,
         null,
@@ -304,57 +356,63 @@ values
     ),
     (
         'Torres, Isabel',
-        '17889900',
+        0,
         'isabel.torres@email.com',
         '1199887766',
         '1991-02-25',
         5,
-        9
+        9,
+        14
     ),
     (
         'Ruiz, Santiago',
-        null,
+        0,
         'santiago.ruiz@email.com',
         '1111223344',
         '1994-07-05',
+        null,
         null,
         null
     ),
     (
         'Méndez, Mercedes',
-        '18990011',
+        0,
         'mercedes.mendez@email.com',
         '1122334455',
         null,
         null,
-        null
+        null,
+        15
     ),
     (
         'Álvarez, Gabriel',
-        null,
+        0,
         'gabriel.alvarez@email.com',
         '1133445566',
         '1986-09-02',
+        null,
         null,
         null
     ),
     (
         'Ríos, Valentina',
-        null,
+        0,
         'valentina.rios@email.com',
         '1144556677',
         '1996-01-08',
+        null,
         null,
         null
     ),
     (
         'Álvarez, Maximiliano',
-        null,
+        0,
         'maxi_al@email.com',
         '1144556677',
         '1996-01-08',
         null,
-        10
+        10,
+        null
     );
 
 go

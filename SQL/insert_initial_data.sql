@@ -238,6 +238,22 @@ values
     ('Tucumán', 9);
 
 go
+--------------------------
+-- IDENTIFICATION TYPES --
+--------------------------
+print '';
+
+print 'Inserting initial data into identification_types table...';
+
+go
+insert into
+    identification_types (name, country_id)
+values
+    ('DNI', 9),
+    ('CUIL/CUIT', 9),
+    ('Otro', null);
+
+go
 -------------------
 -- PRICING PLANS --
 -------------------

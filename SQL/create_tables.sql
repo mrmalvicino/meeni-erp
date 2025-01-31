@@ -101,6 +101,45 @@ create table
     );
 
 go
+--------------------------
+-- IDENTIFICATION TYPES --
+--------------------------
+-- (initial data) --
+print '';
+
+print 'Creating identification_types table...';
+
+go
+create table
+    identification_types (
+        identification_type_id int identity (1, 1) not null,
+        name varchar(50) not null,
+        country_id int null,
+        constraint uq_identification_type unique (name),
+        primary key (identification_type_id),
+        foreign key (country_id) references countries (country_id)
+    );
+
+go
+---------------------
+-- IDENTIFICATIONS --
+---------------------
+-- (dummy data) --
+print '';
+
+print 'Creating identifications table...';
+
+go
+create table
+    identifications (
+        identification_id int identity (1, 1) not null,
+        code varchar(50) not null,
+        identification_type_id int not null,
+        primary key (identification_id),
+        foreign key (identification_type_id) references identification_types (identification_type_id)
+    );
+
+go
 --------------
 -- ENTITIES --
 --------------
@@ -114,15 +153,17 @@ create table
     entities (
         entity_id int identity (1, 1) not null,
         name varchar(50) not null,
-        tax_code varchar(13) null,
+        is_organization bit default (0) not null,
         email varchar(50) null,
         phone varchar(50) null,
         birth_date date null,
         image_id int null,
         address_id int null,
+        identification_id int null,
         primary key (entity_id),
         foreign key (image_id) references images (image_id),
-        foreign key (address_id) references addresses (address_id)
+        foreign key (address_id) references addresses (address_id),
+        foreign key (identification_id) references identifications (identification_id)
     );
 
 go
