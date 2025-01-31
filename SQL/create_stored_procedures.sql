@@ -297,6 +297,20 @@ print '';
 print 'Creating stored procedures related to identification_types table...';
 
 go
+create or alter procedure sp_read_identification_type(
+    @identification_type_id int
+)
+as
+begin
+    select
+        *
+    from
+        identification_types
+    where
+        identification_type_id = @identification_type_id;
+end;
+
+go
 create or alter procedure sp_list_identification_types
 as
 begin
@@ -354,18 +368,18 @@ create or alter procedure sp_find_identification_id(
 as
 begin
     select
-            I.identification_id
-        from
-            identifications I
-            inner join entities E on E.identification_id = I.identification_id
-            left join organizations O on O.organization_id = E.entity_id
-            left join stakeholders S on S.stakeholder_id = E.entity_id
-        where
-            I.code = @code
-            and (
-                S.organization_id = @organization_id
-                or O.organization_id = @organization_id
-            );
+        I.identification_id
+    from
+        identifications I
+        inner join entities E on E.identification_id = I.identification_id
+        left join organizations O on O.organization_id = E.entity_id
+        left join stakeholders S on S.stakeholder_id = E.entity_id
+    where
+        I.code = @code
+        and (
+            S.organization_id = @organization_id
+            or O.organization_id = @organization_id
+        );
 end;
 
 go
@@ -421,6 +435,31 @@ begin
         identification_id = @identification_id
     where
         entity_id = @entity_id;
+end;
+
+go
+create or alter procedure sp_find_entity_organization_id(
+    @entity_id int
+)
+as
+begin
+    select
+        o.organization_id
+    from 
+        organizations O
+        inner join entities E on O.organization_id = E.entity_id
+    where 
+        E.entity_id = @entity_id
+
+    union
+
+    select 
+        S.organization_id
+    from 
+        stakeholders S
+        inner join entities E on S.stakeholder_id = E.entity_id
+    where
+        E.entity_id = @entity_id;
 end;
 
 go
@@ -559,7 +598,7 @@ begin
 end;
 
 go
-create or alter procedure sp_find_organization_id(
+create or alter procedure sp_find_stakeholder_organization_id(
     @stakeholder_id int
 )
 as

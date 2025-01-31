@@ -13,12 +13,14 @@ namespace BusinessLogic
         private EntitiesDAL _entitiesDAL;
         private ImagesManager _imagesManager;
         private AddressesManager _addressesManager;
+        private IdentificationsManager _identificationsManager;
 
         public EntitiesManager(Database db)
         {
             _entitiesDAL = new EntitiesDAL(db);
             _imagesManager = new ImagesManager(db);
             _addressesManager = new AddressesManager(db);
+            _identificationsManager = new IdentificationsManager(db);
         }
 
         public int Create(Entity entity)
@@ -29,6 +31,7 @@ namespace BusinessLogic
                 {
                     entity.Image = _imagesManager.Handle(entity.Image);
                     entity.Address = _addressesManager.Handle(entity.Address);
+                    entity.Identification = _identificationsManager.Handle(entity.Identification, FindOrganizationId(entity.Id));
                     Validate(entity);
                     entity.Id = _entitiesDAL.Create(entity);
                     transaction.Complete();
@@ -71,6 +74,7 @@ namespace BusinessLogic
                 {
                     entity.Image = _imagesManager.Handle(entity.Image);
                     entity.Address = _addressesManager.Handle(entity.Address);
+                    entity.Identification = _identificationsManager.Handle(entity.Identification, FindOrganizationId(entity.Id));
                     Validate(entity);
                     _entitiesDAL.Update(entity);
                     transaction.Complete();
@@ -82,14 +86,21 @@ namespace BusinessLogic
             }
         }
 
+        private int FindOrganizationId(int entityId)
+        {
+            try
+            {
+                return _entitiesDAL.FindOrganizationId(entityId);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex);
+            }
+        }
+
         private void Validate(Entity entity)
         {
             Validator.ValidateEntityName(entity.Name);
-
-            if (!string.IsNullOrEmpty(entity.TaxCode))
-            {
-                Validator.ValidateTaxCode(entity.TaxCode);
-            }
 
             if (!string.IsNullOrEmpty(entity.Email))
             {

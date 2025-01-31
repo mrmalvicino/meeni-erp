@@ -79,20 +79,36 @@ namespace DataAccess
             }
         }
 
+        public int FindOrganizationId(int entityId)
+        {
+            try
+            {
+                _db.SetProcedure("sp_find_entity_organization_id");
+                _db.SetParameter("@entity_id", entityId);
+                _db.ExecuteRead();
+
+                if (_db.Reader.Read())
+                {
+                    return (int)_db.Reader["organization_id"];
+                }
+
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ex);
+            }
+            finally
+            {
+                _db.CloseConnection();
+            }
+        }
+
         private void SetParameters(Entity entity, bool isUpdate = false)
         {
             if (isUpdate)
             {
                 _db.SetParameter("@entity_id", entity.Id);
-            }
-
-            if (!string.IsNullOrEmpty(entity.TaxCode))
-            {
-                _db.SetParameter("@tax_code", entity.TaxCode);
-            }
-            else
-            {
-                _db.SetParameter("@tax_code", DBNull.Value);
             }
 
             _db.SetParameter("@name", entity.Name);
@@ -141,18 +157,28 @@ namespace DataAccess
             {
                 _db.SetParameter("@address_id", DBNull.Value);
             }
+
+            if (entity.Identification != null)
+            {
+                _db.SetParameter("@identification_id", entity.Identification.Id);
+            }
+            else
+            {
+                _db.SetParameter("@identification_id", DBNull.Value);
+            }
         }
 
         private void ReadRow(Entity entity)
         {
             entity.Id = Convert.ToInt32(_db.Reader["entity_id"]);
-            entity.TaxCode = _db.Reader["tax_code"]?.ToString();
             entity.Name = _db.Reader["name"].ToString();
+            entity.IsOrganizaiton = Convert.ToBoolean(_db.Reader["is_organization"]);
             entity.Email = _db.Reader["email"]?.ToString();
             entity.Phone = _db.Reader["phone"]?.ToString();
             entity.BirthDate = _db.Reader["birth_date"] as DateTime? ?? entity.BirthDate;
             entity.Image = Helper.Instantiate<Image>(_db.Reader["image_id"]);
             entity.Address = Helper.Instantiate<Address>(_db.Reader["address_id"]);
+            entity.Identification = Helper.Instantiate<Identification>(_db.Reader["identification_id"]);
         }
     }
 }

@@ -43,6 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddressesDAL.cs" />
+    <Compile Include="IdentificationsDAL.cs" />
+    <Compile Include="IdentificationTypesDAL.cs" />
     <Compile Include="PartnersDAL.cs" />
     <Compile Include="CitiesDAL.cs" />
     <Compile Include="CountriesDAL.cs" />

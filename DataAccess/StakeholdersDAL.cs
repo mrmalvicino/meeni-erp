@@ -82,7 +82,7 @@ namespace DataAccess
         {
             try
             {
-                _db.SetProcedure("sp_find_organization_id");
+                _db.SetProcedure("sp_find_stakeholder_organization_id");
                 _db.SetParameter("@stakeholder_id", stakeholderId);
                 _db.ExecuteRead();
 

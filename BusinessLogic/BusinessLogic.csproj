@@ -45,6 +45,8 @@
     <Compile Include="AddressesManager.cs" />
     <Compile Include="AppManager.cs" />
     <Compile Include="BaseManager.cs" />
+    <Compile Include="IdentificationsManager.cs" />
+    <Compile Include="IdentificationTypesManager.cs" />
     <Compile Include="PartnersManager.cs" />
     <Compile Include="CitiesManager.cs" />
     <Compile Include="CountriesManager.cs" />
