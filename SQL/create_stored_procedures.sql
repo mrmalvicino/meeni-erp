@@ -288,6 +288,88 @@ end;
 
 go
 
+--------------------------
+-- IDENTIFICATION TYPES --
+--------------------------
+
+print '';
+
+print 'Creating stored procedures related to identification_types table...';
+
+go
+create or alter procedure sp_list_identification_types
+as
+begin
+    select
+        *
+    from
+        identification_types;
+end;
+
+go
+
+---------------------
+-- IDENTIFICATIONS --
+---------------------
+
+print '';
+
+print 'Creating stored procedures related to identifications table...';
+
+go
+create or alter procedure sp_create_identification(
+    @code varchar(50),
+    @identification_type_id int
+)
+as
+begin
+    insert into
+        identifications (code, identification_type_id)
+        output inserted.identification_id
+    values
+        (@code, @identification_type_id);
+end;
+
+go
+create or alter procedure sp_update_identification(
+    @identification_id int,
+    @code varchar(50),
+    @identification_type_id int
+)
+as
+begin
+    update identifications
+    set
+        code = @code,
+        identification_type_id = @identification_type_id
+    where
+        identification_id = @identification_id;
+end;
+
+go
+create or alter procedure sp_find_identification_id(
+    @code varchar(50),
+    @organization_id int
+)
+as
+begin
+    select
+            I.identification_id
+        from
+            identifications I
+            inner join entities E on E.identification_id = I.identification_id
+            left join organizations O on O.organization_id = E.entity_id
+            left join stakeholders S on S.stakeholder_id = E.entity_id
+        where
+            I.code = @code
+            and (
+                S.organization_id = @organization_id
+                or O.organization_id = @organization_id
+            );
+end;
+
+go
+
 --------------
 -- ENTITIES --
 --------------
@@ -299,44 +381,44 @@ print 'Creating stored procedures related to entities table...';
 go
 create or alter procedure sp_create_entity(
     @name varchar(50),
-    @tax_code varchar(50),
     @email varchar(50),
     @phone varchar(50),
     @birth_date date,
     @image_id int,
-    @address_id int
+    @address_id int,
+    @identification_id int
 )
 as
 begin
     insert into
-        entities (name, tax_code, email, phone, birth_date, image_id, address_id)
+        entities (name, email, phone, birth_date, image_id, address_id, identification_id)
         output inserted.entity_id
     values
-        (@name, @tax_code, @email, @phone, @birth_date, @image_id, @address_id);
+        (@name, @email, @phone, @birth_date, @image_id, @address_id, @identification_id);
 end;
 
 go
 create or alter procedure sp_update_entity(
     @entity_id int,
     @name varchar(50),
-    @tax_code varchar(50),
     @email varchar(50),
     @phone varchar(50),
     @birth_date date,
     @image_id int,
-    @address_id int
+    @address_id int,
+    @identification_id int
 )
 as
 begin
     update entities
     set
         name = @name,
-        tax_code = @tax_code,
         email = @email,
         phone = @phone,
         birth_date = @birth_date,
         image_id = @image_id,
-        address_id = @address_id
+        address_id = @address_id,
+        identification_id = @identification_id
     where
         entity_id = @entity_id;
 end;
