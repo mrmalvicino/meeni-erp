@@ -6,9 +6,8 @@ namespace WebForms.UserControls
 {
     public partial class EditEntity : System.Web.UI.UserControl
     {
-        //private EditPartner _page = new EditPartner();
         private Entity _entity;
-        private string[] _items = new string[] { "Organización", "Persona", "CUIT/CUIL", "DNI" }; // _page.AppManager.TaxCodeTypes.List();
+        private string[] _items = new string[] { "Organización", "Persona", "CUIT/CUIL", "DNI" };
 
         public Entity Entity
         {

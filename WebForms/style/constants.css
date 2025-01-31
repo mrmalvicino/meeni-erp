@@ -12,4 +12,10 @@
     --site-menu-height: 60px;
     --button-width: 180px;
     --admin-menu-width: 230px;
+    --small-box-height: 180px;
+    --mid-box-height: 280px;
+    --big-box-height: 580px;
+    --small-box-width: 300px;
+    --mid-box-width: 500px;
+    --big-box-width: 700px;
 }

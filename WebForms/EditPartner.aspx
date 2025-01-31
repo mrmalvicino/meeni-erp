@@ -11,6 +11,21 @@
         <div class="wrapped-flex justify-center">
             <uc:EditEntity runat="server" ID="EditEntityUC" />
 
+            <!-- Tipo -->
+
+            <div class="container-div small-box-width small-box-height margin-10-px">
+                <p class="center-text">Tipo de socio comercial</p>
+                <div class="padding-0-20-px">
+                    <div class="row-flex">
+                        <asp:CheckBox ID="IsClientChk" runat="server" class="input-checkbox" />
+                        <label for="IsClientChk">Cliente</label>
+                    </div>
+                    <div class="row-flex">
+                        <asp:CheckBox ID="IsSupplierChk" runat="server" class="input-checkbox" />
+                        <label for="IsSupplierChk">Proveedor</label>
+                    </div>
+                </div>
+            </div>
 
         </div>
 

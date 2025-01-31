@@ -8,12 +8,25 @@ namespace WebForms
     public partial class EditPartner : System.Web.UI.Page
     {
         private AppManager _appManager;
+        private Partner _partner;
         private Organization _loggedOrganization;
         private int _id;
 
         public EditPartner()
         {
             _appManager = new AppManager();
+        }
+
+        private void MapAttributes()
+        {
+            _partner.IsClient = IsClientChk.Checked;
+            _partner.IsSupplier = IsSupplierChk.Checked;
+        }
+
+        private void MapControls()
+        {
+            IsClientChk.Checked = _partner.IsClient;
+            IsSupplierChk.Checked = _partner.IsSupplier;
         }
 
         public void FetchSession()
@@ -41,7 +54,7 @@ namespace WebForms
 
             if (internalId == loggedId || _id == loggedId)
             {
-                EditEntityUC.Entity = _appManager.Entities.Read(_id);
+                _partner = _appManager.Partners.Read(_id);
             }
         }
 
@@ -49,16 +62,24 @@ namespace WebForms
         {
             (this.Master as Admin)?.CheckCredentials();
             FetchEntity();
+
+            if (!IsPostBack)
+            {
+                MapControls();
+            }
+
+            EditEntityUC.Entity = _partner;
             EditEntityUC.IsSwitchable = true;
         }
 
         protected void SaveBtn_Click(object sender, EventArgs e)
         {
             EditEntityUC.MapAttributes();
+            MapAttributes();
 
             try
             {
-                _appManager.Entities.Update(EditEntityUC.Entity);
+                _appManager.Partners.Update(_partner);
                 Response.Redirect("Dashboard.aspx", false);
             }
             catch (ValidationException ex)

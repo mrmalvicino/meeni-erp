@@ -1,4 +1,16 @@
-﻿.width-100-pct {
+﻿.small-box-width {
+    width: var(--small-box-width);
+}
+
+.mid-box-width {
+    width: var(--mid-box-width);
+}
+
+.big-box-width {
+    width: var(--big-box-width);
+}
+
+.width-100-pct {
     width: 100%;
 }
 

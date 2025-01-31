@@ -24,6 +24,24 @@ namespace WebForms
         protected global::WebForms.UserControls.EditEntity EditEntityUC;
 
         /// <summary>
+        /// IsClientChk control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox IsClientChk;
+
+        /// <summary>
+        /// IsSupplierChk control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox IsSupplierChk;
+
+        /// <summary>
         /// SaveBtn control.
         /// </summary>
         /// <remarks>

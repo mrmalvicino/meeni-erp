@@ -9,3 +9,10 @@
     background-color: transparent;
     border: 2px solid var(--gray-medium);
 }
+
+.input-checkbox {
+    padding: 10px;
+    transform: scale(1.3);
+    transform-origin: center;
+    accent-color: var(--black-soft);
+}

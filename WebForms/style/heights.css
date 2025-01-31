@@ -2,6 +2,18 @@
     height: var(--site-menu-height);
 }
 
+.small-box-height {
+    height: var(--small-box-height);
+}
+
+.mid-box-height {
+    height: var(--mid-box-height);
+}
+
+.big-box-height {
+    height: var(--big-box-height);
+}
+
 .height-100-pct {
     height: 100%;
 }

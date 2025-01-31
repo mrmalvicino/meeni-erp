@@ -464,6 +464,19 @@ begin
 end;
 
 go
+create or alter procedure sp_update_stakeholder(
+    @stakeholder_id int
+)
+as
+begin
+    update stakeholders
+    set
+        stakeholder_id = @stakeholder_id -- provisorio
+    where
+        stakeholder_id = @stakeholder_id;
+end;
+
+go
 create or alter procedure sp_find_organization_id(
     @stakeholder_id int
 )
