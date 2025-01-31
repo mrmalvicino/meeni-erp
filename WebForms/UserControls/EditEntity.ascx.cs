@@ -58,7 +58,7 @@ namespace WebForms.UserControls
                 _entity.Identification = new Identification(true);
             }
 
-            _entity.Identification.Code = IdentificationCodeTxt.Text;
+            _entity.Identification.Code = Validator.FormatIdentificationCode(IdentificationCodeTxt.Text);
             int id = Convert.ToInt32(IdentificationTypesDDL.SelectedValue);
             _entity.Identification.IdentificationType = _appManager.IdentificationTypes.Read(id);
         }

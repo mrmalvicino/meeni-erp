@@ -7,139 +7,6 @@ namespace Utilities
 {
     public static class Validator
     {
-        public static bool URLExists(string URL)
-        {
-            if (Uri.TryCreate(URL, UriKind.Absolute, out Uri uriResult) &&
-                (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps))
-            {
-                try
-                {
-                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uriResult);
-                    request.Method = "HEAD";
-                    request.Timeout = 5000;
-
-                    using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-                    {
-                        return response.StatusCode == HttpStatusCode.OK;
-                    }
-                }
-                catch (WebException)
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        public static int CountFilledStrings(object obj)
-        {
-            if (obj == null)
-            {
-                return 0;
-            }
-
-            int count = 0;
-
-            var props = obj.GetType().GetProperties();
-
-            foreach (var prop in props)
-            {
-                if (prop.PropertyType == typeof(string))
-                {
-                    var value = (string)prop.GetValue(obj);
-
-                    if (!string.IsNullOrEmpty(value))
-                    {
-                        count++;
-                    }
-                }
-                else if (!prop.PropertyType.IsPrimitive
-                    && !prop.PropertyType.IsEnum
-                    && prop.PropertyType != typeof(string))
-                {
-                    var subObj = prop.GetValue(obj);
-                    count += CountFilledStrings(subObj);
-                }
-            }
-
-            return count;
-        }
-
-        public static bool IsEmpty(object obj)
-        {
-            return CountFilledStrings(obj) == 0;
-        }
-
-        public static bool IsNumber(string text)
-        {
-            foreach (char c in text)
-            {
-                if (!(char.IsNumber(c)))
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        public static string RemoveSpaces(string text)
-        {
-            string temp = "";
-
-            foreach (char c in text)
-            {
-                if (!char.IsWhiteSpace(c))
-                {
-                    temp += c;
-                }
-            }
-
-            return temp;
-        }
-
-        public static bool HasSpaces(string text)
-        {
-            foreach (char c in text)
-            {
-                if (char.IsWhiteSpace(c))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        public static bool HasOnlyLetters(string text)
-        {
-            foreach (char c in RemoveSpaces(text))
-            {
-                if (!char.IsLetter(c))
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        static int CalculateAge(DateTime birthDate)
-        {
-            DateTime today = DateTime.Now;
-            int age = today.Year - birthDate.Year;
-
-            if (today.AddYears(-age) < birthDate.Date)
-            {
-                age--;
-            }
-
-            return age;
-        }
-
         public static void ValidateUsername(string username)
         {
             if (string.IsNullOrEmpty(username))
@@ -192,48 +59,6 @@ namespace Utilities
             if (string.IsNullOrEmpty(name))
             {
                 throw new ValidationException("Nombre de la organización incompleto.");
-            }
-        }
-
-        public static void ValidateTaxCode(string taxCode)
-        {
-            string[] taxCodeArray = taxCode.Split('-');
-
-            if (taxCodeArray.Length == 1)
-            {
-                if (!IsNumber(taxCode))
-                {
-                    throw new ValidationException("El código fiscal solo puede contener números.");
-                }
-
-                if (taxCode.Length < 8)
-                {
-                    throw new ValidationException("El DNI es inválido.");
-                }
-
-                if (8 < taxCode.Length && taxCode.Length != 11)
-                {
-                    throw new ValidationException("El CUIT/CUIL es inválido.");
-                }
-            }
-            else if (taxCodeArray.Length == 3)
-            {
-                for (int i = 0; i < 3; i++)
-                {
-                    if (!IsNumber(taxCodeArray[i]))
-                    {
-                        throw new ValidationException("El CUIT/CUIL solo puede contener números.");
-                    }
-                }
-
-                if (taxCodeArray[0].Length != 2 || taxCodeArray[1].Length != 8 || taxCodeArray[2].Length != 1)
-                {
-                    throw new ValidationException("El CUIT/CUIL es inválido.");
-                }
-            }
-            else
-            {
-                throw new ValidationException("El código fiscal es inválido.");
             }
         }
 
@@ -327,6 +152,176 @@ namespace Utilities
             {
                 throw new ValidationException("Nombre de la ciudad incompleto.");
             }
+        }
+
+        public static void ValidateDNI(string DNI)
+        {
+            if (8 < DNI.Length)
+            {
+                throw new ValidationException("El DNI no puede tener más de 8 caracteres.");
+            }
+
+            if (!IsNumber(DNI))
+            {
+                throw new ValidationException("El DNI solo puede contener números.");
+            }
+        }
+
+        public static void ValidateCUIT(string CUIL)
+        {
+            string[] arr = CUIL.Split('-');
+
+            if (CUIL.Length != 13 || arr.Length != 3)
+            {
+                throw new ValidationException("El CUIT tiene un formato inválido.");
+            }
+
+            for (int i = 0; i < 3; i++)
+            {
+                if (!IsNumber(arr[i]))
+                {
+                    throw new ValidationException("El CUIT solo puede tener caracteres numéricos.");
+                }
+            }
+        }
+
+        public static bool URLExists(string URL)
+        {
+            if (Uri.TryCreate(URL, UriKind.Absolute, out Uri uriResult) &&
+                (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps))
+            {
+                try
+                {
+                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uriResult);
+                    request.Method = "HEAD";
+                    request.Timeout = 5000;
+
+                    using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                    {
+                        return response.StatusCode == HttpStatusCode.OK;
+                    }
+                }
+                catch (WebException)
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static string FormatIdentificationCode(string code)
+        {
+            string[] arr = code.Split('-');
+
+            if (code.Length == 13 && arr.Length == 3)
+            {
+                return code;
+            }
+
+            if (code.Length == 11 && arr.Length == 1)
+            {
+                string CUIT = "";
+
+                for (int i = 0; i < 2; i++)
+                {
+                    CUIT += code[i];
+                }
+
+                CUIT += "-";
+
+                for (int i = 2; i < 10; i++)
+                {
+                    CUIT += code[i];
+                }
+
+                CUIT += "-";
+                CUIT += code[10];
+
+                return CUIT;
+            }
+
+            return code;
+        }
+
+        public static bool IsEmpty(object obj)
+        {
+            return CountFilledProperties(obj) == 0;
+        }
+
+        private static int CountFilledProperties(object obj)
+        {
+            if (obj == null)
+            {
+                return 0;
+            }
+
+            int count = 0;
+
+            var props = obj.GetType().GetProperties();
+
+            foreach (var prop in props)
+            {
+                if (prop.PropertyType == typeof(string))
+                {
+                    var value = (string)prop.GetValue(obj);
+
+                    if (!string.IsNullOrEmpty(value))
+                    {
+                        count++;
+                    }
+                }
+                else if (!prop.PropertyType.IsPrimitive
+                    && !prop.PropertyType.IsEnum
+                    && prop.PropertyType != typeof(string))
+                {
+                    var subObj = prop.GetValue(obj);
+                    count += CountFilledProperties(subObj);
+                }
+            }
+
+            return count;
+        }
+
+        private static bool IsNumber(string text)
+        {
+            foreach (char c in text)
+            {
+                if (!(char.IsNumber(c)))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private static bool HasSpaces(string text)
+        {
+            foreach (char c in text)
+            {
+                if (char.IsWhiteSpace(c))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private static int CalculateAge(DateTime birthDate)
+        {
+            DateTime today = DateTime.Now;
+            int age = today.Year - birthDate.Year;
+
+            if (today.AddYears(-age) < birthDate.Date)
+            {
+                age--;
+            }
+
+            return age;
         }
     }
 }

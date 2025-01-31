@@ -112,6 +112,11 @@ namespace BusinessLogic
             {
                 Validator.ValidatePhone(entity.Phone);
             }
+
+            if (entity.BirthDate != DateTime.MinValue)
+            {
+                Validator.ValidateBirthDate(entity.BirthDate);
+            }
         }
     }
 }

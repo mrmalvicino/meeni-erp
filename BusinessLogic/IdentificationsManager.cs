@@ -2,6 +2,7 @@
 using DomainModel;
 using Exceptions;
 using System;
+using Utilities;
 
 namespace BusinessLogic
 {
@@ -95,7 +96,16 @@ namespace BusinessLogic
 
         private void Validate(Identification identification)
         {
-            // TODO
+            int id = identification.IdentificationType.Id;
+
+            if (id == (int)IdentificationTypesManager.Ids.DNIId)
+            {
+                Validator.ValidateDNI(identification.Code);
+            }
+            else if (id == (int)IdentificationTypesManager.Ids.CUITId)
+            {
+                Validator.ValidateCUIT(identification.Code);
+            }
         }
     }
 }
