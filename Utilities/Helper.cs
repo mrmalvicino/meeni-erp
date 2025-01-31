@@ -40,6 +40,7 @@ namespace Utilities
         {
             destinyObject.Id = originObject.Id;
             destinyObject.Name = originObject.Name;
+            destinyObject.IsOrganization = originObject.IsOrganization;
             destinyObject.Email = originObject.Email;
             destinyObject.Phone = originObject.Phone;
             destinyObject.BirthDate = originObject.BirthDate;

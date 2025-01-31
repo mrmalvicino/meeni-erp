@@ -15,8 +15,8 @@ values
     ('https://i.imgur.com/jOSLaMH.png'),
     ('https://i.imgur.com/NcONOVV.png'),
     ('https://i.imgur.com/vbTmUHj.png'),
-    ('https://st5.depositphotos.com/1049680/64255/i/450/depositphotos_642555934-stock-photo-young-arab-man-smiling-confident.jpg'),
-    ('https://images.pexels.com/photos/1036623/pexels-photo-1036623.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');
+    ('https://i.imgur.com/zeJG0nu.jpeg'),
+    ('https://i.imgur.com/TX8pw5i.jpeg');
 
 go
 ------------

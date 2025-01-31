@@ -112,6 +112,7 @@ namespace DataAccess
             }
 
             _db.SetParameter("@name", entity.Name);
+            _db.SetParameter("@is_organization", entity.IsOrganization);
 
             if (!string.IsNullOrEmpty(entity.Email))
             {
@@ -172,7 +173,7 @@ namespace DataAccess
         {
             entity.Id = Convert.ToInt32(_db.Reader["entity_id"]);
             entity.Name = _db.Reader["name"].ToString();
-            entity.IsOrganizaiton = Convert.ToBoolean(_db.Reader["is_organization"]);
+            entity.IsOrganization = Convert.ToBoolean(_db.Reader["is_organization"]);
             entity.Email = _db.Reader["email"]?.ToString();
             entity.Phone = _db.Reader["phone"]?.ToString();
             entity.BirthDate = _db.Reader["birth_date"] as DateTime? ?? entity.BirthDate;

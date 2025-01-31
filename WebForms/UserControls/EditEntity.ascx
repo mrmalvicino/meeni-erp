@@ -30,15 +30,14 @@
 
 <div class="container-div small-box-width big-box-height margin-10-px">
     <p class="center-text">Identificación</p>
-    <div id="EntityTypeDiv" runat="server">
-        <label for="EntityTypeDDL">Tipo de entidad</label>
-        <asp:DropDownList
-            ID="EntityTypeDDL"
+    <div id="IsOrganizationDiv" runat="server" class="row-flex">
+        <asp:CheckBox
+            ID="IsOrganizationChk"
             runat="server"
-            class="input-box width-100-pct"
+            class="input-checkbox"
             AutoPostBack="true"
-            OnSelectedIndexChanged="EntityTypeDDL_SelectedIndexChanged">
-        </asp:DropDownList>
+            OnCheckedChanged="IsOrganizationChk_CheckedChanged" />
+        <label for="IsOrganizationChk">Es organización</label>
     </div>
     <div id="OrganizationNameDiv" runat="server">
         <label for="NameTxt">Nombre</label>

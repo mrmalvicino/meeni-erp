@@ -15,7 +15,7 @@
 
             <div class="container-div small-box-width small-box-height margin-10-px">
                 <p class="center-text">Tipo de socio comercial</p>
-                <div class="padding-0-20-px">
+                <div>
                     <div class="row-flex">
                         <asp:CheckBox ID="IsClientChk" runat="server" class="input-checkbox" />
                         <label for="IsClientChk">Cliente</label>

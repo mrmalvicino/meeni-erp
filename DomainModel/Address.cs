@@ -18,11 +18,14 @@ namespace DomainModel
 
         }
 
-        public Address(bool instantiateProperties)
+        public Address(bool instantiateProperties = false)
         {
-            City = new City();
-            Province = new Province();
-            Country = new Country();
+            if (instantiateProperties)
+            {
+                City = new City();
+                Province = new Province();
+                Country = new Country();
+            }
         }
     }
 }

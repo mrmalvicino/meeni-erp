@@ -62,6 +62,7 @@ namespace BusinessLogic
 
             _entity.Image = _imagesManager.Read(Helper.GetId(_entity.Image));
             _entity.Address = _addressesManager.Read(Helper.GetId(_entity.Address));
+            _entity.Identification = _identificationsManager.Read(Helper.GetId(_entity.Identification));
 
             return _entity;
         }

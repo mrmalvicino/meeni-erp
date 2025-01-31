@@ -33,22 +33,22 @@ namespace WebForms.UserControls
         protected global::System.Web.UI.WebControls.TextBox ImageURLTxt;
 
         /// <summary>
-        /// EntityTypeDiv control.
+        /// IsOrganizationDiv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl EntityTypeDiv;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl IsOrganizationDiv;
 
         /// <summary>
-        /// EntityTypeDDL control.
+        /// IsOrganizationChk control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList EntityTypeDDL;
+        protected global::System.Web.UI.WebControls.CheckBox IsOrganizationChk;
 
         /// <summary>
         /// OrganizationNameDiv control.

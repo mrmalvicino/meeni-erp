@@ -18,8 +18,8 @@ namespace WebForms.UserControls
 
         public bool IsSwitchable
         {
-            get { return EntityTypeDiv.Visible; }
-            set { EntityTypeDiv.Visible = value; }
+            get { return IsOrganizationDiv.Visible; }
+            set { IsOrganizationDiv.Visible = value; }
         }
 
         public EditEntity()
@@ -53,19 +53,19 @@ namespace WebForms.UserControls
 
         private void SetIdentification()
         {
-            if (IdentificationTypesDDL.SelectedItem.Value == "")
+            if (_entity.Identification == null)
             {
-                _entity.SetCUIT(IdentificationCodeTxt.Text);
+                _entity.Identification = new Identification(true);
             }
-            else
-            {
-                _entity.SetDNI(IdentificationCodeTxt.Text);
-            }
+
+            _entity.Identification.Code = IdentificationCodeTxt.Text;
+            int id = Convert.ToInt32(IdentificationTypesDDL.SelectedValue);
+            _entity.Identification.IdentificationType = _appManager.IdentificationTypes.Read(id);
         }
 
         private void SetName()
         {
-            if (_entity.IsOrganization())
+            if (IsOrganizationChk.Checked)
             {
                 _entity.SetOrganizationName(NameTxt.Text);
             }
@@ -89,6 +89,7 @@ namespace WebForms.UserControls
         {
             SetImage();
             SetName();
+            _entity.IsOrganization = IsOrganizationChk.Checked;
             SetIdentification();
             SetBirthDate();
             _entity.Email = EmailTxt.Text;
@@ -125,30 +126,25 @@ namespace WebForms.UserControls
 
         private void GetIdentification()
         {
-            if (_entity.IdentificationIsDNI())
+            if (_entity.Identification != null)
             {
-                IdentificationTypesDDL.SelectedIndex = 1;
-                IdentificationCodeTxt.Text = _entity.GetDNI();
-            }
-            else
-            {
-                IdentificationTypesDDL.SelectedIndex = 0;
-                IdentificationCodeTxt.Text = _entity.GetCUIT();
+                IdentificationCodeTxt.Text = _entity.Identification.Code;
+                IdentificationTypesDDL.SelectedValue = _entity.Identification.IdentificationType.Id.ToString();
             }
         }
 
         private void GetName()
         {
-            if (_entity.IsOrganization())
+            if (_entity.IsOrganization)
             {
-                EntityTypeDDL.SelectedIndex = 0;
+                IsOrganizationChk.Checked = true;
                 OrganizationNameDiv.Visible = true;
                 PersonNameDiv.Visible = false;
                 NameTxt.Text = _entity.GetOrganizationName();
             }
             else
             {
-                EntityTypeDDL.SelectedIndex = 1;
+                IsOrganizationChk.Checked = false;
                 OrganizationNameDiv.Visible = false;
                 PersonNameDiv.Visible = true;
                 FirstNameTxt.Text = _entity.GetFirstName();
@@ -168,6 +164,7 @@ namespace WebForms.UserControls
         {
             GetImage();
             GetName();
+            IsOrganizationChk.Checked = _entity.IsOrganization;
             GetIdentification();
             BirthDateTxt.Text = _entity.BirthDate.ToString("yyyy-MM-dd");
             EmailTxt.Text = _entity.Email;
@@ -194,18 +191,10 @@ namespace WebForms.UserControls
             LoadImage();
         }
 
-        protected void EntityTypeDDL_SelectedIndexChanged(object sender, EventArgs e)
+        protected void IsOrganizationChk_CheckedChanged(object sender, EventArgs e)
         {
-            if (EntityTypeDDL.SelectedItem.Value == "")
-            {
-                OrganizationNameDiv.Visible = true;
-                PersonNameDiv.Visible = false;
-            }
-            else
-            {
-                OrganizationNameDiv.Visible = false;
-                PersonNameDiv.Visible = true;
-            }
+            OrganizationNameDiv.Visible = !OrganizationNameDiv.Visible;
+            PersonNameDiv.Visible = !PersonNameDiv.Visible;
         }
     }
 }

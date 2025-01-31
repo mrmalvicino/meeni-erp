@@ -395,6 +395,7 @@ print 'Creating stored procedures related to entities table...';
 go
 create or alter procedure sp_create_entity(
     @name varchar(50),
+    @is_organization bit,
     @email varchar(50),
     @phone varchar(50),
     @birth_date date,
@@ -405,16 +406,17 @@ create or alter procedure sp_create_entity(
 as
 begin
     insert into
-        entities (name, email, phone, birth_date, image_id, address_id, identification_id)
+        entities (name, is_organization, email, phone, birth_date, image_id, address_id, identification_id)
         output inserted.entity_id
     values
-        (@name, @email, @phone, @birth_date, @image_id, @address_id, @identification_id);
+        (@name, @is_organization, @email, @phone, @birth_date, @image_id, @address_id, @identification_id);
 end;
 
 go
 create or alter procedure sp_update_entity(
     @entity_id int,
     @name varchar(50),
+    @is_organization bit,
     @email varchar(50),
     @phone varchar(50),
     @birth_date date,
@@ -427,6 +429,7 @@ begin
     update entities
     set
         name = @name,
+        is_organization = @is_organization,
         email = @email,
         phone = @phone,
         birth_date = @birth_date,
