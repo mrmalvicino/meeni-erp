@@ -53,7 +53,6 @@ namespace WebForms
         {
             _partners = _partners.Where(
                 x => x.Name.ToLower().Contains(SearchTxt.Text.ToLower())
-                || x.TaxCode.ToLower().Contains(SearchTxt.Text.ToLower())
                 || x.Email.ToLower().Contains(SearchTxt.Text.ToLower())
                 || x.Phone.ToLower().Contains(SearchTxt.Text.ToLower())
                 ).ToList();

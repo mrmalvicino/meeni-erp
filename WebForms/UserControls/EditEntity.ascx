@@ -74,9 +74,9 @@
     </div>
     <div class="row-flex space-between">
         <div class="width-120-px">
-            <label for="TaxCodeTxt">Código fiscal</label>
+            <label for="IdentificationCodeTxt">Código fiscal</label>
             <asp:TextBox
-                ID="TaxCodeTxt"
+                ID="IdentificationCodeTxt"
                 runat="server"
                 TextMode="SingleLine"
                 class="width-100-pct input-box"
@@ -84,9 +84,9 @@
             </asp:TextBox>
         </div>
         <div class="width-120-px">
-            <label for="TaxCodeDDL">Tipo</label>
+            <label for="IdentificationTypesDDL">Tipo</label>
             <asp:DropDownList
-                ID="TaxCodeDDL"
+                ID="IdentificationTypesDDL"
                 runat="server"
                 class="input-box width-100-pct">
             </asp:DropDownList>

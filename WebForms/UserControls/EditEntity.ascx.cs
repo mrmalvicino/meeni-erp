@@ -1,4 +1,5 @@
-﻿using DomainModel;
+﻿using BusinessLogic;
+using DomainModel;
 using System;
 using Utilities;
 
@@ -6,8 +7,8 @@ namespace WebForms.UserControls
 {
     public partial class EditEntity : System.Web.UI.UserControl
     {
+        private AppManager _appManager;
         private Entity _entity;
-        private string[] _items = new string[] { "Organización", "Persona", "CUIT/CUIL", "DNI" };
 
         public Entity Entity
         {
@@ -19,6 +20,11 @@ namespace WebForms.UserControls
         {
             get { return EntityTypeDiv.Visible; }
             set { EntityTypeDiv.Visible = value; }
+        }
+
+        public EditEntity()
+        {
+            _appManager = new AppManager();
         }
 
         private void SetAddress()
@@ -45,15 +51,15 @@ namespace WebForms.UserControls
             _entity.BirthDate = birthDate;
         }
 
-        private void SetTaxCode()
+        private void SetIdentification()
         {
-            if (TaxCodeDDL.SelectedItem.Value == _items[2])
+            if (IdentificationTypesDDL.SelectedItem.Value == "")
             {
-                _entity.SetCUIT(TaxCodeTxt.Text);
+                _entity.SetCUIT(IdentificationCodeTxt.Text);
             }
             else
             {
-                _entity.SetDNI(TaxCodeTxt.Text);
+                _entity.SetDNI(IdentificationCodeTxt.Text);
             }
         }
 
@@ -83,7 +89,7 @@ namespace WebForms.UserControls
         {
             SetImage();
             SetName();
-            SetTaxCode();
+            SetIdentification();
             SetBirthDate();
             _entity.Email = EmailTxt.Text;
             _entity.Phone = PhoneTxt.Text;
@@ -117,17 +123,17 @@ namespace WebForms.UserControls
             }
         }
 
-        private void GetTaxCode()
+        private void GetIdentification()
         {
-            if (_entity.TaxCodeIsDNI())
+            if (_entity.IdentificationIsDNI())
             {
-                TaxCodeDDL.SelectedIndex = 1;
-                TaxCodeTxt.Text = _entity.GetDNI();
+                IdentificationTypesDDL.SelectedIndex = 1;
+                IdentificationCodeTxt.Text = _entity.GetDNI();
             }
             else
             {
-                TaxCodeDDL.SelectedIndex = 0;
-                TaxCodeTxt.Text = _entity.GetCUIT();
+                IdentificationTypesDDL.SelectedIndex = 0;
+                IdentificationCodeTxt.Text = _entity.GetCUIT();
             }
         }
 
@@ -162,26 +168,26 @@ namespace WebForms.UserControls
         {
             GetImage();
             GetName();
-            GetTaxCode();
+            GetIdentification();
             BirthDateTxt.Text = _entity.BirthDate.ToString("yyyy-MM-dd");
             EmailTxt.Text = _entity.Email;
             PhoneTxt.Text = _entity.Phone;
             GetAddress();
         }
 
-        public void BindDDL()
+        public void BindIdentificationTypesDDL()
         {
-            EntityTypeDDL.Items.Add(new System.Web.UI.WebControls.ListItem(_items[0], _items[0]));
-            EntityTypeDDL.Items.Add(new System.Web.UI.WebControls.ListItem(_items[1], _items[1]));
-            TaxCodeDDL.Items.Add(new System.Web.UI.WebControls.ListItem(_items[2], _items[2]));
-            TaxCodeDDL.Items.Add(new System.Web.UI.WebControls.ListItem(_items[3], _items[3]));
+            IdentificationTypesDDL.DataSource = _appManager.IdentificationTypes.List();
+            IdentificationTypesDDL.DataTextField = "Name";
+            IdentificationTypesDDL.DataValueField = "Id";
+            IdentificationTypesDDL.DataBind();
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                BindDDL();
+                BindIdentificationTypesDDL();
                 MapControls();
             }
 
@@ -190,7 +196,7 @@ namespace WebForms.UserControls
 
         protected void EntityTypeDDL_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (EntityTypeDDL.SelectedItem.Value == _items[0])
+            if (EntityTypeDDL.SelectedItem.Value == "")
             {
                 OrganizationNameDiv.Visible = true;
                 PersonNameDiv.Visible = false;

@@ -96,22 +96,22 @@ namespace WebForms.UserControls
         protected global::System.Web.UI.WebControls.TextBox LastNameTxt;
 
         /// <summary>
-        /// TaxCodeTxt control.
+        /// IdentificationCodeTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TaxCodeTxt;
+        protected global::System.Web.UI.WebControls.TextBox IdentificationCodeTxt;
 
         /// <summary>
-        /// TaxCodeDDL control.
+        /// IdentificationTypesDDL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList TaxCodeDDL;
+        protected global::System.Web.UI.WebControls.DropDownList IdentificationTypesDDL;
 
         /// <summary>
         /// BirthDateTxt control.

@@ -39,13 +39,13 @@ namespace Utilities
             where OriginClass : Entity, new()
         {
             destinyObject.Id = originObject.Id;
-            destinyObject.TaxCode = originObject.TaxCode;
             destinyObject.Name = originObject.Name;
             destinyObject.Email = originObject.Email;
             destinyObject.Phone = originObject.Phone;
             destinyObject.BirthDate = originObject.BirthDate;
             destinyObject.Image = originObject.Image;
             destinyObject.Address = originObject.Address;
+            destinyObject.Identification = originObject.Identification;
 
             if (originObject is Organization && destinyObject is Organization)
             {
