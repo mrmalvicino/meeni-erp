@@ -83,6 +83,11 @@ namespace BusinessLogic
 
         public Identification Handle(Identification identification, int organizationId)
         {
+            if (identification == null)
+            {
+                return null;
+            }
+
             if (string.IsNullOrWhiteSpace(identification.Code))
             {
                 return null;

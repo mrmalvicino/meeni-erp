@@ -15,6 +15,33 @@ namespace WebForms
     {
 
         /// <summary>
+        /// title control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl title;
+
+        /// <summary>
+        /// IsOrganizationDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl IsOrganizationDiv;
+
+        /// <summary>
+        /// IsOrganizationChk control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox IsOrganizationChk;
+
+        /// <summary>
         /// EntityNameUC control.
         /// </summary>
         /// <remarks>
@@ -22,24 +49,6 @@ namespace WebForms
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::WebForms.UserControls.EntityName EntityNameUC;
-
-        /// <summary>
-        /// UsernameTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox UsernameTxt;
-
-        /// <summary>
-        /// PasswordTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox PasswordTxt;
 
         /// <summary>
         /// SaveBtn control.

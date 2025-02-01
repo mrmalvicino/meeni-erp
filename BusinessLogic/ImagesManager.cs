@@ -75,6 +75,11 @@ namespace BusinessLogic
 
         public Image Handle(Image image)
         {
+            if (image == null)
+            {
+                return null;
+            }
+
             if (string.IsNullOrWhiteSpace(image.URL))
             {
                 return null;

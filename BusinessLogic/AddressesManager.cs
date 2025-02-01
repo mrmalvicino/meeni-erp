@@ -105,7 +105,12 @@ namespace BusinessLogic
 
         public Address Handle(Address address)
         {
-            if ( Validator.IsEmpty(address))
+            if (address == null)
+            {
+                return null;
+            }
+
+            if (Validator.IsEmpty(address))
             {
                 return null;
             }
