@@ -58,7 +58,7 @@ namespace WebForms.UserControls
                 _entity.Identification = new Identification(true);
             }
 
-            _entity.Identification.Code = Validator.FormatIdentificationCode(IdentificationCodeTxt.Text);
+            _entity.Identification.Code = Formatter.FormatIdentificationCode(IdentificationCodeTxt.Text);
             int id = Convert.ToInt32(IdentificationTypesDDL.SelectedValue);
             _entity.Identification.IdentificationType = _appManager.IdentificationTypes.Read(id);
         }
@@ -67,11 +67,11 @@ namespace WebForms.UserControls
         {
             if (IsOrganizationChk.Checked)
             {
-                _entity.SetOrganizationName(NameTxt.Text);
+                _entity.SetOrganizationName(EntityNameUC.GetOrganizationName());
             }
             else
             {
-                _entity.SetPersonName(FirstNameTxt.Text, LastNameTxt.Text);
+                _entity.SetPersonName(EntityNameUC.GetFirstName(), EntityNameUC.GetLastName());
             }
         }
 
@@ -138,17 +138,14 @@ namespace WebForms.UserControls
             if (_entity.IsOrganization)
             {
                 IsOrganizationChk.Checked = true;
-                OrganizationNameDiv.Visible = true;
-                PersonNameDiv.Visible = false;
-                NameTxt.Text = _entity.GetOrganizationName();
+                EntityNameUC.ShowOrganizationName();
+                EntityNameUC.SetOrganizationName(_entity.GetOrganizationName());
             }
             else
             {
                 IsOrganizationChk.Checked = false;
-                OrganizationNameDiv.Visible = false;
-                PersonNameDiv.Visible = true;
-                FirstNameTxt.Text = _entity.GetFirstName();
-                LastNameTxt.Text = _entity.GetLastName();
+                EntityNameUC.ShowPersonName();
+                EntityNameUC.SetPersonName(_entity.GetFirstName(), _entity.GetLastName());
             }
         }
 
@@ -193,8 +190,7 @@ namespace WebForms.UserControls
 
         protected void IsOrganizationChk_CheckedChanged(object sender, EventArgs e)
         {
-            OrganizationNameDiv.Visible = !OrganizationNameDiv.Visible;
-            PersonNameDiv.Visible = !PersonNameDiv.Visible;
+            EntityNameUC.ToggleNameType();
         }
     }
 }

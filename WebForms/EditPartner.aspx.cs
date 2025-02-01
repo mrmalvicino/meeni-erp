@@ -56,6 +56,10 @@ namespace WebForms
             {
                 _partner = _appManager.Partners.Read(_id);
             }
+            else
+            {
+                Response.Redirect("~/Login.aspx", false);
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)

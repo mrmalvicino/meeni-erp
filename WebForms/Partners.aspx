@@ -44,7 +44,7 @@
                         </div>
                     </div>
                     <div>
-                        <a href="AddEntity.aspx" class="dark-button margin-10-0-px">
+                        <a href="AddEntity.aspx?class=Partner" class="dark-button margin-10-0-px">
                             <i class="bi bi-plus-circle"></i>
                             <span>Crear nuevo</span>
                         </a>

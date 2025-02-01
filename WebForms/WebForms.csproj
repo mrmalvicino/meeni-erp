@@ -64,6 +64,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AddEntity.aspx" />
     <Content Include="Partners.aspx" />
     <Content Include="Dashboard.aspx" />
     <Content Include="images\favicon.ico" />
@@ -102,9 +103,17 @@
     <Content Include="style\widths.css" />
     <Content Include="EditPartner.aspx" />
     <Content Include="UserControls\EditEntity.ascx" />
+    <Content Include="UserControls\EntityName.ascx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddEntity.aspx.cs">
+      <DependentUpon>AddEntity.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddEntity.aspx.designer.cs">
+      <DependentUpon>AddEntity.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin.Master.cs">
       <DependentUpon>Admin.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -175,6 +184,13 @@
     </Compile>
     <Compile Include="UserControls\EditEntity.ascx.designer.cs">
       <DependentUpon>EditEntity.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\EntityName.ascx.cs">
+      <DependentUpon>EntityName.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\EntityName.ascx.designer.cs">
+      <DependentUpon>EntityName.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

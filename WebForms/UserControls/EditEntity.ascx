@@ -1,5 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EditEntity.ascx.cs" Inherits="WebForms.UserControls.EditEntity" %>
 
+<%@ Register Src="~/UserControls/EntityName.ascx" TagPrefix="uc" TagName="EntityName" %>
+
 <!-- Imagen -->
 
 <div class="container-div small-box-width big-box-height margin-10-px">
@@ -39,38 +41,7 @@
             OnCheckedChanged="IsOrganizationChk_CheckedChanged" />
         <label for="IsOrganizationChk">Es organización</label>
     </div>
-    <div id="OrganizationNameDiv" runat="server">
-        <label for="NameTxt">Nombre</label>
-        <asp:TextBox
-            ID="NameTxt"
-            runat="server"
-            TextMode="SingleLine"
-            class="width-100-pct input-box"
-            placeholder="Nombre de la organización">
-        </asp:TextBox>
-    </div>
-    <div id="PersonNameDiv" runat="server" class="row-flex space-between">
-        <div class="width-120-px">
-            <label for="FirstNameTxt">Nombre</label>
-            <asp:TextBox
-                ID="FirstNameTxt"
-                runat="server"
-                TextMode="SingleLine"
-                class="width-100-pct input-box"
-                placeholder="Nombre">
-            </asp:TextBox>
-        </div>
-        <div class="width-120-px">
-            <label for="LastNameTxt">Apellido</label>
-            <asp:TextBox
-                ID="LastNameTxt"
-                runat="server"
-                TextMode="SingleLine"
-                class="width-100-pct input-box"
-                placeholder="Apellido">
-            </asp:TextBox>
-        </div>
-    </div>
+    <uc:EntityName ID="EntityNameUC" runat="server" />
     <div class="row-flex space-between">
         <div class="width-120-px">
             <label for="IdentificationCodeTxt">Código fiscal</label>

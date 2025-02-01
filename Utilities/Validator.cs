@@ -85,12 +85,12 @@ namespace Utilities
 
         public static void ValidateBirthDate(DateTime birthDate)
         {
-            if (CalculateAge(birthDate) <= 0)
+            if (Calculator.CalculateAge(birthDate) <= 0)
             {
                 throw new ValidationException("La fecha de nacimiento no puede ser en el futuro.");
             }
 
-            if (CalculateAge(birthDate) < 18)
+            if (Calculator.CalculateAge(birthDate) < 18)
             {
                 throw new ValidationException("La fecha de nacimiento no es válida porque no es posible registrar menores de 18 años.");
             }
@@ -212,78 +212,12 @@ namespace Utilities
             }
         }
 
-        public static string FormatIdentificationCode(string code)
-        {
-            string[] arr = code.Split('-');
-
-            if (code.Length == 13 && arr.Length == 3)
-            {
-                return code;
-            }
-
-            if (code.Length == 11 && arr.Length == 1)
-            {
-                string CUIT = "";
-
-                for (int i = 0; i < 2; i++)
-                {
-                    CUIT += code[i];
-                }
-
-                CUIT += "-";
-
-                for (int i = 2; i < 10; i++)
-                {
-                    CUIT += code[i];
-                }
-
-                CUIT += "-";
-                CUIT += code[10];
-
-                return CUIT;
-            }
-
-            return code;
-        }
-
         public static bool IsEmpty(object obj)
         {
-            return CountFilledProperties(obj) == 0;
+            return Calculator.CountFilledProperties(obj) == 0;
         }
 
-        private static int CountFilledProperties(object obj)
-        {
-            if (obj == null)
-            {
-                return 0;
-            }
-
-            int count = 0;
-
-            var props = obj.GetType().GetProperties();
-
-            foreach (var prop in props)
-            {
-                if (prop.PropertyType == typeof(string))
-                {
-                    var value = (string)prop.GetValue(obj);
-
-                    if (!string.IsNullOrEmpty(value))
-                    {
-                        count++;
-                    }
-                }
-                else if (!prop.PropertyType.IsPrimitive
-                    && !prop.PropertyType.IsEnum
-                    && prop.PropertyType != typeof(string))
-                {
-                    var subObj = prop.GetValue(obj);
-                    count += CountFilledProperties(subObj);
-                }
-            }
-
-            return count;
-        }
+        
 
         private static bool IsNumber(string text)
         {
@@ -309,19 +243,6 @@ namespace Utilities
             }
 
             return false;
-        }
-
-        private static int CalculateAge(DateTime birthDate)
-        {
-            DateTime today = DateTime.Now;
-            int age = today.Year - birthDate.Year;
-
-            if (today.AddYears(-age) < birthDate.Date)
-            {
-                age--;
-            }
-
-            return age;
         }
     }
 }

@@ -126,7 +126,7 @@
                     <h4>¡Accedé a todas las funcionalidades sin costo!</h4>
                     <a
                         class="dark-button big-hover width-90-pct"
-                        href="Signup.aspx?pricingPlanId=<%= PricingPlans[0].Id %>">
+                        href="Signup.aspx?id=<%= PricingPlans[0].Id %>">
                         <span>USD $<%= PricingPlans[0].MonthlyFee.ToString("F2") %> / mes</span>
                     </a>
                 </div>
@@ -155,7 +155,7 @@
                     <h4>¡Impulsá tu negocio en crecimiento!</h4>
                     <a
                         class="dark-button big-hover width-90-pct"
-                        href="Signup.aspx?pricingPlanId=<%= PricingPlans[1].Id %>">
+                        href="Signup.aspx?id=<%= PricingPlans[1].Id %>">
                         <span>USD $<%= PricingPlans[1].MonthlyFee.ToString("F2") %> / mes</span>
                     </a>
                 </div>
@@ -184,7 +184,7 @@
                     <h4>¡Destacá en el mercado con funcionalidades extra!</h4>
                     <a
                         class="dark-button big-hover width-90-pct"
-                        href="Signup.aspx?pricingPlanId=<%= PricingPlans[2].Id %>">
+                        href="Signup.aspx?id=<%= PricingPlans[2].Id %>">
                         <span>USD $<%= PricingPlans[2].MonthlyFee.ToString("F2") %> / mes</span>
                     </a>
                 </div>

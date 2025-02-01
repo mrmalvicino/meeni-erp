@@ -11,7 +11,7 @@ namespace WebForms
         private AppManager _appManager;
         private Organization _organization;
         private User _user;
-        private string _pricingPlanId;
+        private string _id;
 
         public Signup()
         {
@@ -22,7 +22,7 @@ namespace WebForms
 
         private void FetchURL()
         {
-            _pricingPlanId = Request.QueryString["pricingPlanId"];
+            _id = Request.QueryString["id"];
         }
 
         private void BindPricingPlansDDL(string selectedValue = "0")
@@ -74,7 +74,7 @@ namespace WebForms
             if (!IsPostBack)
             {
                 FetchURL();
-                BindPricingPlansDDL(_pricingPlanId);
+                BindPricingPlansDDL(_id);
             }
         }
 
