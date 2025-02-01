@@ -18,9 +18,19 @@ namespace WebForms
             _appManager = new AppManager();
         }
 
-        private void FetchLoggedOrganization()
+        private void BindPartnersRpt()
         {
-            _loggedOrganization = Session["loggedOrganization"] as Organization;
+            PartnersRpt.DataSource = _partners;
+            PartnersRpt.DataBind();
+        }
+
+        private void ApplyFilter()
+        {
+            _partners = _partners.Where(
+                x => x.Name.ToLower().Contains(SearchTxt.Text.ToLower())
+                || x.Email.ToLower().Contains(SearchTxt.Text.ToLower())
+                || x.Phone.ToLower().Contains(SearchTxt.Text.ToLower())
+                ).ToList();
         }
 
         private void FetchPartners()
@@ -42,21 +52,6 @@ namespace WebForms
             _partners = _appManager.Partners.List(_loggedOrganization.Id, listActive, listInactive);
         }
 
-        private void BindPartnersRpt()
-        {
-            PartnersRpt.DataSource = _partners;
-            PartnersRpt.DataBind();
-        }
-
-        private void ApplyFilter()
-        {
-            _partners = _partners.Where(
-                x => x.Name.ToLower().Contains(SearchTxt.Text.ToLower())
-                || x.Email.ToLower().Contains(SearchTxt.Text.ToLower())
-                || x.Phone.ToLower().Contains(SearchTxt.Text.ToLower())
-                ).ToList();
-        }
-
         private void MapControls(bool applyFilter = false)
         {
             FetchPartners();
@@ -69,6 +64,11 @@ namespace WebForms
             BindPartnersRpt();
         }
 
+        private void FetchLoggedOrganization()
+        {
+            _loggedOrganization = Session["loggedOrganization"] as Organization;
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             (this.Master as Admin)?.CheckCredentials();
@@ -79,6 +79,22 @@ namespace WebForms
             {
                 MapControls();
             }
+        }
+
+        protected void ActivityStatusDDL_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SearchTxt.Text = string.Empty;
+            MapControls();
+        }
+
+        protected void SearchTxt_TextChanged(object sender, EventArgs e)
+        {
+            MapControls(true);
+        }
+
+        protected void SearchBtn_Click(object sender, EventArgs e)
+        {
+            MapControls(true);
         }
 
         protected void PartnersRpt_ItemCommand(object source, RepeaterCommandEventArgs e)
@@ -119,22 +135,6 @@ namespace WebForms
                     partnerTypeLbl.ToolTip = "Proveedor";
                 }
             }
-        }
-
-        protected void ActivityStatusDDL_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SearchTxt.Text = string.Empty;
-            MapControls();
-        }
-
-        protected void SearchTxt_TextChanged(object sender, EventArgs e)
-        {
-            MapControls(true);
-        }
-
-        protected void SearchBtn_Click(object sender, EventArgs e)
-        {
-            MapControls(true);
         }
     }
 }
