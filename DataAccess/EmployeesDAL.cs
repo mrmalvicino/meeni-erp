@@ -1,6 +1,7 @@
 ﻿using DomainModel;
 using Exceptions;
 using System;
+using System.Collections.Generic;
 
 namespace DataAccess
 {
@@ -94,6 +95,37 @@ namespace DataAccess
             {
                 _db.CloseConnection();
             }
+        }
+
+        public List<Employee> List(int organizationId, bool active, bool inactive)
+        {
+            List<Employee> employees = new List<Employee>();
+
+            try
+            {
+                _db.SetProcedure("sp_list_employees");
+                _db.SetParameter("@organization_id", organizationId);
+                _db.SetParameter("@list_active", active);
+                _db.SetParameter("@list_inactive", inactive);
+                _db.ExecuteRead();
+
+                while (_db.Reader.Read())
+                {
+                    Employee employee = new Employee();
+                    ReadRow(employee);
+                    employees.Add(employee);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ex);
+            }
+            finally
+            {
+                _db.CloseConnection();
+            }
+
+            return employees;
         }
 
         private void SetParameters(Employee employee)

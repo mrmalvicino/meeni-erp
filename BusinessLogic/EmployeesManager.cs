@@ -2,6 +2,7 @@
 using DomainModel;
 using Exceptions;
 using System;
+using System.Collections.Generic;
 using System.Transactions;
 using Utilities;
 
@@ -82,6 +83,27 @@ namespace BusinessLogic
             try
             {
                 _employeesDAL.Toggle(employeeId);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex);
+            }
+        }
+
+        public List<Employee> List(int organizationId, bool active, bool inactive)
+        {
+            try
+            {
+                List<Employee> employees;
+                employees = _employeesDAL.List(organizationId, active, inactive);
+
+                foreach (var employee in employees)
+                {
+                    _stakeholder = _stakeholdersManager.Read(employee.Id);
+                    Helper.AssignEntity(employee, _stakeholder);
+                }
+
+                return employees;
             }
             catch (Exception ex)
             {

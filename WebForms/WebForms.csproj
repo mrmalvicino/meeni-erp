@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AddEntity.aspx" />
+    <Content Include="Employees.aspx" />
     <Content Include="Partners.aspx" />
     <Content Include="Dashboard.aspx" />
     <Content Include="images\favicon.ico" />
@@ -120,6 +121,13 @@
     </Compile>
     <Compile Include="Admin.Master.designer.cs">
       <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Employees.aspx.cs">
+      <DependentUpon>Employees.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employees.aspx.designer.cs">
+      <DependentUpon>Employees.aspx</DependentUpon>
     </Compile>
     <Compile Include="Partners.aspx.cs">
       <DependentUpon>Partners.aspx</DependentUpon>
