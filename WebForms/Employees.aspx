@@ -31,7 +31,7 @@
                                 ID="SearchTxt"
                                 runat="server"
                                 class="input-box width-250-px"
-                                placeholder="Buscar socio comercial..."
+                                placeholder="Buscar empleado..."
                                 OnTextChanged="SearchTxt_TextChanged">
                             </asp:TextBox>
                             <asp:LinkButton
