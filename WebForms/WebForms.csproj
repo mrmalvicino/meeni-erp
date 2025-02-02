@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AddEntity.aspx" />
+    <Content Include="EditEmployee.aspx" />
     <Content Include="Employees.aspx" />
     <Content Include="Partners.aspx" />
     <Content Include="Dashboard.aspx" />
@@ -121,6 +122,13 @@
     </Compile>
     <Compile Include="Admin.Master.designer.cs">
       <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="EditEmployee.aspx.cs">
+      <DependentUpon>EditEmployee.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditEmployee.aspx.designer.cs">
+      <DependentUpon>EditEmployee.aspx</DependentUpon>
     </Compile>
     <Compile Include="Employees.aspx.cs">
       <DependentUpon>Employees.aspx</DependentUpon>

@@ -131,6 +131,11 @@ namespace DataAccess
         private void SetParameters(Employee employee)
         {
             _db.SetParameter("@employee_id", employee.Id);
+
+            if (employee.AdmissionDate != null && employee.AdmissionDate != DateTime.MinValue)
+            {
+                _db.SetParameter("@admission_date", employee.AdmissionDate);
+            }
         }
 
         private void ReadRow(Employee employee)
