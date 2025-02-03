@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Interfaces;
+using System;
 
 namespace DomainModel
 {
-    public class Organization : Entity
+    public class Organization : Entity, IDispensable
     {
         public bool ActivityStatus { get; set; }
         public DateTime AdmissionDate { get; set; }
