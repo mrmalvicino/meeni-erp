@@ -16,7 +16,12 @@ values
     ('https://i.imgur.com/NcONOVV.png'),
     ('https://i.imgur.com/vbTmUHj.png'),
     ('https://i.imgur.com/zeJG0nu.jpeg'),
-    ('https://i.imgur.com/TX8pw5i.jpeg');
+    ('https://i.imgur.com/TX8pw5i.jpeg'),
+    ('https://i.imgur.com/i5w8evO.png'),
+    ('https://i.imgur.com/p4phZOf.png'),
+    ('https://i.imgur.com/ggVhuvi.png'),
+    ('https://i.imgur.com/JFYBh8h.jpeg'),
+    ('https://i.imgur.com/O9f6CrE.jpeg');
 
 go
 ------------
@@ -36,7 +41,8 @@ values
     ('La Plata', '1900', 1),
     ('Tigre', '1648', 1),
     ('Merlo', '5700', 19),
-    ('Carlos Paz', '5152', 6);
+    ('Carlos Paz', '5152', 6),
+    ('Villa Adelina', null, 1);
 
 go
 ---------------
@@ -64,7 +70,8 @@ values
     ('Calle De Valuada', '2975', null, null, 4),
     ('Av. del Río', '158', '2C', 'Puerta roja', 5),
     ('Piedras Blancas', '789', null, null, 6),
-    ('Copinita', '450', null, 'Puerta verde', 7);
+    ('Copinita', '450', null, 'Puerta verde', 7),
+    ('Piedra Mala', '546', null, null, 8);
 
 go
 ---------------------
@@ -213,7 +220,7 @@ values
         null,
         null,
         5
-    ),
+    ), -- 10
     (
         'Pérez, Juán',
         0,
@@ -313,7 +320,7 @@ values
         null,
         null,
         11
-    ),
+    ), -- 20
     (
         'Gómez, Francisco',
         0,
@@ -565,3 +572,187 @@ values
     (21, 1),
     (25, 1),
     (28, 1);
+
+go
+------------
+-- BRANDS --
+------------
+print '';
+
+print 'Inserting dummy data into brands table...';
+
+go
+insert into
+    brands (name)
+values
+    ('Boden Design'),
+    ('Harte Flooring'),
+    ('Fastix');
+
+go
+--------------
+-- PRODUCTS --
+--------------
+print '';
+
+print 'Inserting dummy data into products table...';
+
+go
+insert into
+    products (
+        activity_status,
+        is_service,
+        name,
+        description,
+        sku,
+        price,
+        cost,
+        brand_id
+    )
+values
+    (
+        1,
+        0,
+        'Zócalo Prepintado Blanco',
+        'Ancho: 7,5 cm. Largo: 2 m. Material: MDF.',
+        null,
+        4200,
+        2000,
+        1
+    ),
+    (
+        1,
+        0,
+        'Piso Roble Oscuro SCP',
+        'Grosor: 5mm. Caja de 10 u',
+        null,
+        35000,
+        20000,
+        2
+    ),
+    (
+        1,
+        0,
+        'Sellador Transparente',
+        'Contenido: 25g',
+        null,
+        5000,
+        4000,
+        3
+    ),
+    (
+        1,
+        1,
+        'Flete a CABA',
+        null,
+        null,
+        90000,
+        70000,
+        null
+    ),
+    (
+        1,
+        1,
+        'Flete a ZN',
+        null,
+        null,
+        70000,
+        50000,
+        null
+    );
+
+go
+----------------
+-- CATEGORIES --
+----------------
+print '';
+
+print 'Inserting dummy data into categories table...';
+
+go
+insert into
+    categories (name)
+values
+    ('Zócalo'),
+    ('Piso vinílico'),
+    ('Sellador'),
+    ('Pegamento');
+
+go
+--------------------------------
+-- PRODUCT-CATEGORY RELATIONS --
+--------------------------------
+print '';
+
+print 'Inserting dummy data into product_category_rel table...';
+
+go
+insert into
+    product_category_rel (product_id, category_id)
+values
+    (1, 1),
+    (2, 2),
+    (3, 3),
+    (3, 4);
+
+go
+-----------------------------
+-- PRODUCT-IMAGE RELATIONS --
+-----------------------------
+print '';
+
+print 'Inserting dummy data into product_image_rel table...';
+
+go
+insert into
+    product_image_rel (product_id, image_id)
+values
+    (1, 6),
+    (1, 7),
+    (2, 8),
+    (2, 9),
+    (3, 10);
+
+go
+----------------
+-- WAREHOUSES --
+----------------
+print '';
+
+print 'Inserting dummy data into warehouses table...';
+
+go
+insert into
+    warehouses (activity_status, name, address_id)
+values
+    (1, 'Depósito', 11),
+    (1, 'Showroom', null),
+    (0, 'Local', null);
+
+go
+------------------
+-- COMPARTMENTS --
+------------------
+print '';
+
+print 'Inserting dummy data into compartments table...';
+
+go
+insert into
+    compartments (
+        activity_status,
+        name,
+        stock,
+        product_id,
+        warehouse_id
+    )
+values
+    (1, 'Estantería A - Primer estante', 5, 1, 1),
+    (1, 'Estantería A - Segundo estante', 10, 2, 1),
+    (1, 'Estantería A - Tercer estante', 15, 3, 1),
+    (1, 'Estantería B - Primer estante', 20, 1, 1),
+    (1, 'Estantería B - Segundo estante', 30, 2, 1),
+    (1, 'Pasillo', 50, 1, 1),
+    (1, 'Esquina', 60, 2, 1);
+
+go
