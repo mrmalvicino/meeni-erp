@@ -583,11 +583,11 @@ print 'Inserting dummy data into brands table...';
 
 go
 insert into
-    brands (name)
+    brands (name, organization_id)
 values
-    ('Boden Design'),
-    ('Harte Flooring'),
-    ('Fastix');
+    ('Boden Design', 1),
+    ('Harte Flooring', 1),
+    ('Fastix', 1);
 
 go
 --------------
@@ -607,7 +607,8 @@ insert into
         sku,
         price,
         cost,
-        brand_id
+        brand_id,
+        organization_id
     )
 values
     (
@@ -618,6 +619,7 @@ values
         null,
         4200,
         2000,
+        1,
         1
     ),
     (
@@ -628,7 +630,8 @@ values
         null,
         35000,
         20000,
-        2
+        2,
+        1
     ),
     (
         1,
@@ -638,7 +641,8 @@ values
         null,
         5000,
         4000,
-        3
+        3,
+        1
     ),
     (
         1,
@@ -648,7 +652,8 @@ values
         null,
         90000,
         70000,
-        null
+        null,
+        1
     ),
     (
         1,
@@ -658,7 +663,8 @@ values
         null,
         70000,
         50000,
-        null
+        null,
+        1
     );
 
 go
@@ -671,12 +677,12 @@ print 'Inserting dummy data into categories table...';
 
 go
 insert into
-    categories (name)
+    categories (name, organization_id)
 values
-    ('Zócalo'),
-    ('Piso vinílico'),
-    ('Sellador'),
-    ('Pegamento');
+    ('Zócalo', 1),
+    ('Piso vinílico', 1),
+    ('Sellador', 1),
+    ('Pegamento', 1);
 
 go
 --------------------------------
@@ -723,11 +729,16 @@ print 'Inserting dummy data into warehouses table...';
 
 go
 insert into
-    warehouses (activity_status, name, address_id)
+    warehouses (
+        activity_status,
+        name,
+        address_id,
+        organization_id
+    )
 values
-    (1, 'Depósito', 11),
-    (1, 'Showroom', null),
-    (0, 'Local', null);
+    (1, 'Depósito', 11, 1),
+    (1, 'Showroom', null, 1),
+    (0, 'Local', null, 1);
 
 go
 ------------------
