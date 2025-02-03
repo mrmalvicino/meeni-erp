@@ -327,3 +327,146 @@ create table
     );
 
 go
+------------
+-- BRANDS --
+------------
+-- (dummy data) --
+print '';
+
+print 'Creating brands table...';
+
+go
+create table
+    brands (
+        brand_id int identity (1, 1) not null,
+        name varchar(50) not null,
+        constraint uq_brand unique (name),
+        primary key (brand_id)
+    );
+
+go
+--------------
+-- PRODUCTS --
+--------------
+-- (dummy data) --
+print '';
+
+print 'Creating products table...';
+
+go
+create table
+    products (
+        product_id int identity (1, 1) not null,
+        activity_status bit default (1) not null,
+        is_service bit default (0) not null,
+        name varchar(50) not null,
+        description varchar(300) null,
+        sku varchar(50) null,
+        price money not null,
+        cost money not null,
+        brand_id int null,
+        constraint chk_price check (0 < price),
+        constraint chk_cost check (0 <= cost),
+        primary key (product_id),
+        foreign key (brand_id) references brands (brand_id)
+    );
+
+go
+----------------
+-- CATEGORIES --
+----------------
+-- (dummy data) --
+print '';
+
+print 'Creating categories table...';
+
+go
+create table
+    categories (
+        category_id int identity (1, 1) not null,
+        name varchar(50) not null,
+        constraint uq_category unique (name),
+        primary key (category_id)
+    );
+
+go
+--------------------------------
+-- PRODUCT-CATEGORY RELATIONS --
+--------------------------------
+-- (dummy data) --
+print '';
+
+print 'Creating product_category_rel table...';
+
+go
+create table
+    product_category_rel (
+        product_id int not null,
+        category_id int not null,
+        primary key (product_id, category_id),
+        foreign key (product_id) references products (product_id),
+        foreign key (category_id) references categories (category_id)
+    );
+
+go
+-----------------------------
+-- PRODUCT-IMAGE RELATIONS --
+-----------------------------
+-- (dummy data) --
+print '';
+
+print 'Creating product_image_rel table...';
+
+go
+create table
+    product_image_rel (
+        product_id int not null,
+        image_id int not null,
+        primary key (product_id, image_id),
+        foreign key (product_id) references products (product_id),
+        foreign key (image_id) references images (image_id)
+    );
+
+go
+----------------
+-- WAREHOUSES --
+----------------
+-- (dummy data) --
+print '';
+
+print 'Creating warehouses table...';
+
+create table
+    warehouses (
+        warehouse_id int identity (1, 1) not null,
+        activity_status bit default (1) not null,
+        name varchar(50) not null,
+        address_id int null,
+        primary key (warehouse_id),
+        foreign key (address_id) references addresses (address_id)
+    );
+
+go
+------------------
+-- COMPARTMENTS --
+------------------
+-- (dummy data) --
+print '';
+
+print 'Creating compartments table...';
+
+create table
+    compartments (
+        compartment_id int identity (1, 1) not null,
+        activity_status bit default (1) not null,
+        name varchar(50) not null,
+        stock int default (0) not null,
+        product_id int not null,
+        warehouse_id int not null,
+        constraint uq_compartment unique (name, warehouse_id),
+        constraint chk_stock check (0 <= stock),
+        primary key (compartment_id),
+        foreign key (warehouse_id) references warehouses (warehouse_id)
+    );
+
+go
