@@ -104,6 +104,7 @@
     <Content Include="style\whatsapp.css" />
     <Content Include="style\widths.css" />
     <Content Include="EditPartner.aspx" />
+    <Content Include="UserControls\AddressFields.ascx" />
     <Content Include="UserControls\EditEntity.ascx" />
     <Content Include="UserControls\EntityName.ascx" />
     <Content Include="Web.config" />
@@ -193,6 +194,13 @@
     </Compile>
     <Compile Include="EditPartner.aspx.designer.cs">
       <DependentUpon>EditPartner.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AddressFields.ascx.cs">
+      <DependentUpon>AddressFields.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\AddressFields.ascx.designer.cs">
+      <DependentUpon>AddressFields.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\EditEntity.ascx.cs">
       <DependentUpon>EditEntity.ascx</DependentUpon>

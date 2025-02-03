@@ -34,14 +34,14 @@ namespace WebForms.UserControls
                 _entity.Address = new Address(true);
             }
 
-            _entity.Address.StreetName = StreetNameTxt.Text;
-            _entity.Address.StreetNumber = StreetNumberTxt.Text;
-            _entity.Address.Flat = FlatTxt.Text;
-            _entity.Address.Details = DetailsTxt.Text;
-            _entity.Address.City.Name = CityTxt.Text;
-            _entity.Address.City.ZipCode = ZipCodeTxt.Text;
-            _entity.Address.Province.Name = ProvinceTxt.Text;
-            _entity.Address.Country.Name = CountryTxt.Text;
+            _entity.Address.StreetName = AddressFieldsUC.GetStreetName();
+            _entity.Address.StreetNumber = AddressFieldsUC.GetStreetNumber();
+            _entity.Address.Flat = AddressFieldsUC.GetFlat();
+            _entity.Address.Details = AddressFieldsUC.GetDetails();
+            _entity.Address.City.Name = AddressFieldsUC.GetCityName();
+            _entity.Address.City.ZipCode = AddressFieldsUC.GetZipCode();
+            _entity.Address.Province.Name = AddressFieldsUC.GetProvinceName();
+            _entity.Address.Country.Name = AddressFieldsUC.GetCountryName();
         }
 
         private void SetBirthDate()
@@ -113,14 +113,14 @@ namespace WebForms.UserControls
         {
             if (_entity.Address != null)
             {
-                StreetNameTxt.Text = _entity.Address.StreetName;
-                StreetNumberTxt.Text = _entity.Address.StreetNumber;
-                FlatTxt.Text = _entity.Address.Flat;
-                DetailsTxt.Text = _entity.Address.Details;
-                CityTxt.Text = _entity.Address.City?.Name;
-                ZipCodeTxt.Text = _entity.Address.City?.ZipCode;
-                ProvinceTxt.Text = _entity.Address.Province?.Name;
-                CountryTxt.Text = _entity.Address.Country?.Name;
+                AddressFieldsUC.SetStreetName(_entity.Address.StreetName);
+                AddressFieldsUC.SetStreetNumber(_entity.Address.StreetNumber);
+                AddressFieldsUC.SetFlat(_entity.Address.Flat);
+                AddressFieldsUC.SetDetails(_entity.Address.Details);
+                AddressFieldsUC.SetCityName(_entity.Address.City?.Name);
+                AddressFieldsUC.SetZipCode(_entity.Address.City?.ZipCode);
+                AddressFieldsUC.SetProvinceName(_entity.Address.Province?.Name);
+                AddressFieldsUC.SetCountryName(_entity.Address.Country?.Name);
             }
         }
 
