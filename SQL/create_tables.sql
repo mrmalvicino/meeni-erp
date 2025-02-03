@@ -339,6 +339,7 @@ go
 create table
     brands (
         brand_id int identity (1, 1) not null,
+        activity_status bit default (1) not null,
         name varchar(50) not null,
         organization_id int not null,
         constraint uq_brand unique (name, organization_id),
@@ -388,6 +389,7 @@ go
 create table
     categories (
         category_id int identity (1, 1) not null,
+        activity_status bit default (1) not null,
         name varchar(50) not null,
         organization_id int not null,
         constraint uq_category unique (name, organization_id),

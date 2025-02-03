@@ -583,11 +583,11 @@ print 'Inserting dummy data into brands table...';
 
 go
 insert into
-    brands (name, organization_id)
+    brands (activity_status, name, organization_id)
 values
-    ('Boden Design', 1),
-    ('Harte Flooring', 1),
-    ('Fastix', 1);
+    (1, 'Boden Design', 1),
+    (1, 'Harte Flooring', 1),
+    (1, 'Fastix', 1);
 
 go
 --------------
@@ -677,12 +677,12 @@ print 'Inserting dummy data into categories table...';
 
 go
 insert into
-    categories (name, organization_id)
+    categories (activity_status, name, organization_id)
 values
-    ('Zócalo', 1),
-    ('Piso vinílico', 1),
-    ('Sellador', 1),
-    ('Pegamento', 1);
+    (1, 'Zócalo', 1),
+    (1, 'Piso vinílico', 1),
+    (1, 'Sellador', 1),
+    (1, 'Pegamento', 1);
 
 go
 --------------------------------
