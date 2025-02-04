@@ -107,6 +107,7 @@
     <Content Include="UserControls\AddressFields.ascx" />
     <Content Include="UserControls\EditEntity.ascx" />
     <Content Include="UserControls\EntityName.ascx" />
+    <Content Include="Warehouses.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -215,6 +216,13 @@
     </Compile>
     <Compile Include="UserControls\EntityName.ascx.designer.cs">
       <DependentUpon>EntityName.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Warehouses.aspx.cs">
+      <DependentUpon>Warehouses.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Warehouses.aspx.designer.cs">
+      <DependentUpon>Warehouses.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
