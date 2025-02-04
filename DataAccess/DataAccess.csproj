@@ -43,6 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddressesDAL.cs" />
+    <Compile Include="BrandsDAL.cs" />
+    <Compile Include="CategoriesDAL.cs" />
+    <Compile Include="CompartmentsDAL.cs" />
     <Compile Include="IdentificationsDAL.cs" />
     <Compile Include="IdentificationTypesDAL.cs" />
     <Compile Include="PartnersDAL.cs" />
@@ -50,6 +53,7 @@
     <Compile Include="CountriesDAL.cs" />
     <Compile Include="Database.cs" />
     <Compile Include="EmployeesDAL.cs" />
+    <Compile Include="ProductsDAL.cs" />
     <Compile Include="StakeholdersDAL.cs" />
     <Compile Include="ImagesDAL.cs" />
     <Compile Include="OrganizationsDAL.cs" />
@@ -59,6 +63,7 @@
     <Compile Include="ProvincesDAL.cs" />
     <Compile Include="RolesDAL.cs" />
     <Compile Include="UsersDAL.cs" />
+    <Compile Include="WarehousesDAL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DomainModel\DomainModel.csproj">
