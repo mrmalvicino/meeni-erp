@@ -28,8 +28,6 @@ namespace WebForms
         {
             _warehouses = _warehouses.Where(
                 x => x.Name.ToLower().Contains(SearchTxt.Text.ToLower())
-                || x.Address.StreetName.ToLower().Contains(SearchTxt.Text.ToLower())
-                || x.Address.City.Name.ToLower().Contains(SearchTxt.Text.ToLower())
                 ).ToList();
         }
 
