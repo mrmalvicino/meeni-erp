@@ -64,7 +64,7 @@ namespace WebForms
             BindPartnersRpt();
         }
 
-        private void FetchLoggedOrganization()
+        private void FetchSession()
         {
             _loggedOrganization = Session["loggedOrganization"] as Organization;
         }
@@ -73,7 +73,7 @@ namespace WebForms
         {
             (this.Master as Admin)?.CheckCredentials();
             
-            FetchLoggedOrganization();
+            FetchSession();
 
             if (!IsPostBack)
             {

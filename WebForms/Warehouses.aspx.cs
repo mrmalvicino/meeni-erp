@@ -62,7 +62,7 @@ namespace WebForms
             BindWarehousesRpt();
         }
 
-        private void FetchLoggedOrganization()
+        private void FetchSession()
         {
             _loggedOrganization = Session["loggedOrganization"] as Organization;
         }
@@ -71,7 +71,7 @@ namespace WebForms
         {
             (this.Master as Admin)?.CheckCredentials();
 
-            FetchLoggedOrganization();
+            FetchSession();
 
             if (!IsPostBack)
             {
@@ -101,7 +101,7 @@ namespace WebForms
 
             if (e.CommandName == "Edit")
             {
-                Response.Redirect($"Warehouse.aspx?id={warehouseId}");
+                Response.Redirect($"EditWarehouse.aspx?id={warehouseId}");
             }
             else if (e.CommandName == "Delete")
             {
