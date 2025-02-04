@@ -95,5 +95,17 @@ namespace BusinessLogic
                 throw new BusinessLogicException(ex);
             }
         }
+
+        public int FindOrganizationId(int warehouseId)
+        {
+            try
+            {
+                return _warehousesDAL.FindOrganizationId(warehouseId);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex);
+            }
+        }
     }
 }

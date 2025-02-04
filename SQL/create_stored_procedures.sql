@@ -1425,6 +1425,20 @@ begin
 end;
 
 go
+create or alter procedure sp_find_warehouse_organization_id(
+    @warehouse_id int
+)
+as
+begin
+    select
+        organization_id
+    from
+        warehouses
+    where
+        warehouse_id = @warehouse_id;
+end;
+
+go
 
 ------------------
 -- COMPARTMENTS --

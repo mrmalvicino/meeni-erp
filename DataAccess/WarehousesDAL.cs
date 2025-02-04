@@ -129,6 +129,31 @@ namespace DataAccess
             return warehouses;
         }
 
+        public int FindOrganizationId(int warehouseId)
+        {
+            try
+            {
+                _db.SetProcedure("sp_find_warehouse_organization_id");
+                _db.SetParameter("@warehouse_id", warehouseId);
+                _db.ExecuteRead();
+
+                if (_db.Reader.Read())
+                {
+                    return (int)_db.Reader["organization_id"];
+                }
+
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ex);
+            }
+            finally
+            {
+                _db.CloseConnection();
+            }
+        }
+
         private void SetParameters(Warehouse warehouse, int organizationId = 0, bool isUpdate = false)
         {
             if (isUpdate)
