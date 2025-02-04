@@ -29,6 +29,21 @@ namespace WebForms
             IsSupplierChk.Checked = _partner.IsSupplier;
         }
 
+        private void FetchEntity()
+        {
+            int internalId = _appManager.Stakeholders.FindOrganizationId(_id);
+            int loggedId = _loggedOrganization.Id;
+
+            if (internalId == loggedId || _id == loggedId)
+            {
+                _partner = _appManager.Partners.Read(_id);
+            }
+            else
+            {
+                Response.Redirect("~/Login.aspx", true);
+            }
+        }
+
         public void FetchSession()
         {
             _loggedOrganization = Session["loggedOrganization"] as Organization;
@@ -44,27 +59,12 @@ namespace WebForms
             }
         }
 
-        private void FetchEntity()
-        {
-            FetchURL();
-            FetchSession();
-
-            int internalId = _appManager.Stakeholders.FindOrganizationId(_id);
-            int loggedId = _loggedOrganization.Id;
-
-            if (internalId == loggedId || _id == loggedId)
-            {
-                _partner = _appManager.Partners.Read(_id);
-            }
-            else
-            {
-                Response.Redirect("~/Login.aspx", false);
-            }
-        }
-
         protected void Page_Load(object sender, EventArgs e)
         {
             (this.Master as Admin)?.CheckCredentials();
+
+            FetchURL();
+            FetchSession();
             FetchEntity();
 
             if (!IsPostBack)

@@ -34,6 +34,21 @@ namespace WebForms
             AdmissionDateTxt.Text = _employee.AdmissionDate.ToString("yyyy-MM-dd");
         }
 
+        private void FetchEntity()
+        {
+            int internalId = _appManager.Stakeholders.FindOrganizationId(_id);
+            int loggedId = _loggedOrganization.Id;
+
+            if (internalId == loggedId || _id == loggedId)
+            {
+                _employee = _appManager.Employees.Read(_id);
+            }
+            else
+            {
+                Response.Redirect("~/Login.aspx", true);
+            }
+        }
+
         public void FetchSession()
         {
             _loggedOrganization = Session["loggedOrganization"] as Organization;
@@ -49,27 +64,12 @@ namespace WebForms
             }
         }
 
-        private void FetchEntity()
-        {
-            FetchURL();
-            FetchSession();
-
-            int internalId = _appManager.Stakeholders.FindOrganizationId(_id);
-            int loggedId = _loggedOrganization.Id;
-
-            if (internalId == loggedId || _id == loggedId)
-            {
-                _employee = _appManager.Employees.Read(_id);
-            }
-            else
-            {
-                Response.Redirect("~/Login.aspx", false);
-            }
-        }
-
         protected void Page_Load(object sender, EventArgs e)
         {
             (this.Master as Admin)?.CheckCredentials();
+
+            FetchURL();
+            FetchSession();
             FetchEntity();
 
             if (!IsPostBack)
