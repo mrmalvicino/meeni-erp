@@ -238,7 +238,13 @@ create or alter procedure sp_create_address(
 as
 begin
     insert into
-        addresses (street_name, street_number, flat, details, city_id)
+        addresses (
+            street_name,
+            street_number,
+            flat,
+            details,
+            city_id
+        )
         output inserted.address_id
     values
         (@street_name, @street_number, @flat, @details, @city_id);
@@ -406,7 +412,16 @@ create or alter procedure sp_create_entity(
 as
 begin
     insert into
-        entities (name, is_organization, email, phone, birth_date, image_id, address_id, identification_id)
+        entities (
+            name,
+            is_organization,
+            email,
+            phone,
+            birth_date,
+            image_id,
+            address_id,
+            identification_id
+        )
         output inserted.entity_id
     values
         (@name, @is_organization, @email, @phone, @birth_date, @image_id, @address_id, @identification_id);
@@ -937,6 +952,496 @@ begin
         user_role_rel (user_id, role_id)
     values
         (@user_id, @role_id);
+end;
+
+go
+
+------------
+-- BRANDS --
+------------
+
+print '';
+
+print 'Creating stored procedures related to brands table...';
+
+go
+create or alter procedure sp_create_brand(
+    @name varchar(50),
+    @organization_id int
+)
+as
+begin
+    insert into
+        brands (name, organization_id)
+        output inserted.brand_id
+    values
+        (@name, @organization_id);
+end;
+
+go
+create or alter procedure sp_update_brand(
+    @brand_id int,
+    @name varchar(50)
+)
+as
+begin
+    update brands
+    set
+        name = @name
+    where
+        brand_id = @brand_id;
+end;
+
+go
+create or alter procedure sp_toggle_brand(
+    @brand_id int
+)
+as
+begin
+    declare @current_status int;
+
+    select
+        @current_status = activity_status
+    from
+        brands
+    where
+        brand_id = @brand_id;
+
+    update brands
+    set
+        activity_status = case when @current_status = 1 then 0 else 1 end
+    where
+        brand_id = @brand_id;
+end;
+
+go
+create or alter procedure sp_list_brands(
+    @organization_id int,
+    @list_active bit,
+    @list_inactive bit
+)
+as
+begin
+    declare @wanted_status_1 bit;
+    declare @wanted_status_2 bit;
+
+    if (@list_active = 1 and @list_inactive = 0)
+    begin
+        set @wanted_status_1 = 1;
+        set @wanted_status_2 = 1;
+    end;
+
+    if (@list_active = 0 and @list_inactive = 1)
+    begin
+        set @wanted_status_1 = 0;
+        set @wanted_status_2 = 0;
+    end;
+
+    if (@list_active = 1 and @list_inactive = 1)
+    begin
+        set @wanted_status_1 = 1;
+        set @wanted_status_2 = 0;
+    end;
+
+    select
+        *
+    from
+        brands
+    where
+        organization_id = @organization_id
+        and (
+            activity_status = @wanted_status_1
+            or activity_status = @wanted_status_2
+        );
+end;
+
+go
+
+--------------
+-- PRODUCTS --
+--------------
+
+print '';
+
+print 'Creating stored procedures related to products table...';
+
+go
+create or alter procedure sp_create_product(
+    @is_service bit,
+    @name varchar(50),
+    @description varchar(300),
+    @sku varchar(50),
+    @price money,
+    @cost money,
+    @brand_id int,
+    @organization_id int
+)
+as
+begin
+    insert into
+        products (
+            is_service,
+            name,
+            description,
+            sku,
+            price,
+            cost,
+            brand_id,
+            organization_id
+        )
+        output inserted.product_id
+    values
+        (
+            @is_service,
+            @name,
+            @description,
+            @sku,
+            @price,
+            @cost,
+            @brand_id,
+            @organization_id
+        );
+end;
+
+go
+create or alter procedure sp_update_product(
+    @product_id int,
+    @is_service bit,
+    @name varchar(50),
+    @description varchar(300),
+    @sku varchar(50),
+    @price money,
+    @cost money,
+    @brand_id int
+)
+as
+begin
+    update products
+    set
+        is_service = @is_service,
+        name = @name,
+        description = @description,
+        sku = @sku,
+        price = @price,
+        cost = @cost,
+        brand_id = @brand_id
+    where
+        product_id = @product_id;
+end;
+
+go
+create or alter procedure sp_toggle_product(
+    @product_id int
+)
+as
+begin
+    declare @current_status int;
+
+    select
+        @current_status = activity_status
+    from
+        products
+    where
+        product_id = @product_id;
+
+    update products
+    set
+        activity_status = case when @current_status = 1 then 0 else 1 end
+    where
+        product_id = @product_id;
+end;
+
+go
+
+----------------
+-- CATEGORIES --
+----------------
+
+print '';
+
+print 'Creating stored procedures related to categories table...';
+
+go
+create or alter procedure sp_create_category(
+    @name varchar(50),
+    @organization_id int
+)
+as
+begin
+    insert into
+        categories (name, organization_id)
+        output inserted.category_id
+    values
+        (@name, @organization_id);
+end;
+
+go
+create or alter procedure sp_update_category(
+    @category_id int,
+    @name varchar(50)
+)
+as
+begin
+    update categories
+    set
+        name = @name
+    where
+        category_id = @category_id;
+end;
+
+go
+create or alter procedure sp_toggle_category(
+    @category_id int
+)
+as
+begin
+    declare @current_status int;
+
+    select
+        @current_status = activity_status
+    from
+        categories
+    where
+        category_id = @category_id;
+
+    update categories
+    set
+        activity_status = case when @current_status = 1 then 0 else 1 end
+    where
+        category_id = @category_id;
+end;
+
+go
+
+--------------------------------
+-- PRODUCT-CATEGORY RELATIONS --
+--------------------------------
+
+print '';
+
+print 'Creating stored procedures related to product_category_rel table...';
+
+go
+
+-----------------------------
+-- PRODUCT-IMAGE RELATIONS --
+-----------------------------
+
+print '';
+
+print 'Creating stored procedures related to product_image_rel table...';
+
+go
+
+----------------
+-- WAREHOUSES --
+----------------
+
+print '';
+
+print 'Creating stored procedures related to warehouses table...';
+
+go
+create or alter procedure sp_create_warehouse(
+    @name varchar(50),
+    @address_id int,
+    @organization_id int
+)
+as
+begin
+    insert into
+        warehouses (name, address_id, organization_id)
+        output inserted.warehouse_id
+    values
+        (@name, @address_id, @organization_id);
+end;
+
+go
+create or alter procedure sp_update_warehouse(
+    @warehouse_id int,
+    @name varchar(50),
+    @address_id int
+)
+as
+begin
+    update warehouses
+    set
+        name = @name,
+        address_id = @address_id
+    where
+        warehouse_id = @warehouse_id;
+end;
+
+go
+create or alter procedure sp_toggle_warehouse(
+    @warehouse_id int
+)
+as
+begin
+    declare @current_status int;
+
+    select
+        @current_status = activity_status
+    from
+        warehouses
+    where
+        warehouse_id = @warehouse_id;
+
+    update warehouses
+    set
+        activity_status = case when @current_status = 1 then 0 else 1 end
+    where
+        warehouse_id = @warehouse_id;
+end;
+
+go
+create or alter procedure sp_list_warehouses(
+    @organization_id int,
+    @list_active bit,
+    @list_inactive bit
+)
+as
+begin
+    declare @wanted_status_1 bit;
+    declare @wanted_status_2 bit;
+
+    if (@list_active = 1 and @list_inactive = 0)
+    begin
+        set @wanted_status_1 = 1;
+        set @wanted_status_2 = 1;
+    end;
+
+    if (@list_active = 0 and @list_inactive = 1)
+    begin
+        set @wanted_status_1 = 0;
+        set @wanted_status_2 = 0;
+    end;
+
+    if (@list_active = 1 and @list_inactive = 1)
+    begin
+        set @wanted_status_1 = 1;
+        set @wanted_status_2 = 0;
+    end;
+
+    select
+        *
+    from
+        warehouses
+    where
+        organization_id = @organization_id
+        and (
+            activity_status = @wanted_status_1
+            or activity_status = @wanted_status_2
+        );
+end;
+
+go
+
+------------------
+-- COMPARTMENTS --
+------------------
+
+print '';
+
+print 'Creating stored procedures related to compartments table...';
+
+go
+create or alter procedure sp_create_compartment(
+    @name varchar(50),
+    @stock int,
+    @product_id int,
+    @warehouse_id int
+)
+as
+begin
+    insert into
+        compartments (name, stock, product_id, warehouse_id)
+        output inserted.compartment_id
+    values
+        (@name, @stock, @product_id, @warehouse_id);
+end;
+
+go
+create or alter procedure sp_update_compartment(
+    @compartment_id int,
+    @name varchar(50),
+    @stock int,
+    @product_id int,
+    @warehouse_id int
+)
+as
+begin
+    update compartments
+    set
+        name = @name,
+        stock = @stock,
+        product_id = @product_id,
+        warehouse_id = @warehouse_id
+    where
+        compartment_id = @compartment_id;
+end;
+
+go
+create or alter procedure sp_toggle_compartment(
+    @compartment_id int
+)
+as
+begin
+    declare @current_status int;
+
+    select
+        @current_status = activity_status
+    from
+        compartments
+    where
+        compartment_id = @compartment_id;
+
+    update compartments
+    set
+        activity_status = case when @current_status = 1 then 0 else 1 end
+    where
+        compartment_id = @compartment_id;
+end;
+
+go
+create or alter procedure sp_list_compartments(
+    @warehouse_id int,
+    @list_active bit,
+    @list_inactive bit
+)
+as
+begin
+    declare @wanted_status_1 bit;
+    declare @wanted_status_2 bit;
+
+    if (@list_active = 1 and @list_inactive = 0)
+    begin
+        set @wanted_status_1 = 1;
+        set @wanted_status_2 = 1;
+    end;
+
+    if (@list_active = 0 and @list_inactive = 1)
+    begin
+        set @wanted_status_1 = 0;
+        set @wanted_status_2 = 0;
+    end;
+
+    if (@list_active = 1 and @list_inactive = 1)
+    begin
+        set @wanted_status_1 = 1;
+        set @wanted_status_2 = 0;
+    end;
+
+    select
+        *
+    from
+        compartments
+    where
+        warehouse_id = @warehouse_id
+        and (
+            activity_status = @wanted_status_1
+            or activity_status = @wanted_status_2
+        );
 end;
 
 go
