@@ -1056,6 +1056,22 @@ begin
 end;
 
 go
+create or alter procedure sp_find_brand_id(
+    @name varchar(50),
+    @organization_id int
+)
+as
+begin
+    select
+        brand_id
+    from
+        brands
+    where
+        name = @name
+        and organization_id = @organization_id;
+end;
+
+go
 
 --------------
 -- PRODUCTS --
@@ -1152,6 +1168,20 @@ begin
 end;
 
 go
+create or alter procedure sp_find_product_organization_id(
+    @product_id int
+)
+as
+begin
+    select
+        organization_id
+    from 
+        products
+    where
+        product_id = @product_id;
+end;
+
+go
 
 ----------------
 -- CATEGORIES --
@@ -1212,6 +1242,47 @@ begin
 end;
 
 go
+create or alter procedure sp_list_categories(
+    @organization_id int,
+    @list_active bit,
+    @list_inactive bit
+)
+as
+begin
+    declare @wanted_status_1 bit;
+    declare @wanted_status_2 bit;
+
+    if (@list_active = 1 and @list_inactive = 0)
+    begin
+        set @wanted_status_1 = 1;
+        set @wanted_status_2 = 1;
+    end;
+
+    if (@list_active = 0 and @list_inactive = 1)
+    begin
+        set @wanted_status_1 = 0;
+        set @wanted_status_2 = 0;
+    end;
+
+    if (@list_active = 1 and @list_inactive = 1)
+    begin
+        set @wanted_status_1 = 1;
+        set @wanted_status_2 = 0;
+    end;
+
+    select
+        *
+    from
+        categories
+    where
+        organization_id = @organization_id
+        and (
+            activity_status = @wanted_status_1
+            or activity_status = @wanted_status_2
+        );
+end;
+
+go
 
 --------------------------------
 -- PRODUCT-CATEGORY RELATIONS --
@@ -1220,6 +1291,24 @@ go
 print '';
 
 print 'Creating stored procedures related to product_category_rel table...';
+
+go
+create or alter procedure sp_list_product_categories(
+    @product_id int
+)
+as
+begin
+    select
+        C.category_id,
+        C.activity_status,
+        C.name
+    from
+        categories C
+        inner join product_category_rel X on X.category_id = C.category_id
+    where
+        C.activity_status = 1
+        and X.product_id = @product_id;
+end;
 
 go
 
