@@ -82,14 +82,8 @@
                     </li>
                     <li>
                         <a href="Products.aspx" class="dark-button big-hover justify-left">
-                            <i class="bi bi-box-seam"></i>
-                            <span>Productos</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="Services.aspx" class="dark-button big-hover justify-left">
-                            <i class="bi bi-tools"></i>
-                            <span>Servicios</span>
+                            <i class="bi bi-tags"></i>
+                            <span>Catálogo</span>
                         </a>
                     </li>
                     <li>
