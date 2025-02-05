@@ -59,6 +59,8 @@
                     <thead>
                         <tr>
                             <th scope="col">Nombre</th>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Stock</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
@@ -76,7 +78,28 @@
                                         <asp:Label
                                             ID="NameLbl"
                                             runat="server"
-                                            Text='<%#Eval("Name")%>'></asp:Label>
+                                            Text='<%#Eval("Name")%>'>
+                                        </asp:Label>
+                                    </td>
+
+                                    <!-- Producto -->
+
+                                    <td scope="row">
+                                        <asp:Label
+                                            ID="ProductLbl"
+                                            runat="server"
+                                            Text='<%#Eval("Product.Name")%>'>
+                                        </asp:Label>
+                                    </td>
+
+                                    <!-- Stock -->
+
+                                    <td scope="row">
+                                        <asp:Label
+                                            ID="StockLbl"
+                                            runat="server"
+                                            Text='<%#Eval("Stock")%>'>
+                                        </asp:Label>
                                     </td>
 
                                     <!-- Acciones -->

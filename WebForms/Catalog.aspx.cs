@@ -115,17 +115,15 @@ namespace WebForms
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
                 Product product = (Product)e.Item.DataItem;
-                Label catalogItemTypeLbl = (Label)e.Item.FindControl("CatalogItemTypeLbl");
+                Label typeLbl = (Label)e.Item.FindControl("TypeLbl");
 
                 if (product.IsService)
                 {
-                    catalogItemTypeLbl.Text = "<i class='bi bi-lightning'></i>";
-                    catalogItemTypeLbl.ToolTip = "Servicio";
+                    typeLbl.Text = "<i class='bi bi-lightning'></i> Servicio";
                 }
                 else
                 {
-                    catalogItemTypeLbl.Text = "<i class='bi bi-box-seam'></i>";
-                    catalogItemTypeLbl.ToolTip = "Producto";
+                    typeLbl.Text = "<i class='bi bi-box-seam'></i> Producto";
                 }
             }
         }

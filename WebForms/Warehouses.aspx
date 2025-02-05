@@ -76,7 +76,8 @@
                                         <asp:Label
                                             ID="NameLbl"
                                             runat="server"
-                                            Text='<%#Eval("Name")%>'></asp:Label>
+                                            Text='<%#Eval("Name")%>'>
+                                        </asp:Label>
                                     </td>
 
                                     <!-- Acciones -->

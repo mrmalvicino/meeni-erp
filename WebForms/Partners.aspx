@@ -60,6 +60,7 @@
                         <tr>
                             <th scope="col">Nombre</th>
                             <th scope="col">Tipo</th>
+                            <th scope="col">Email</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
@@ -85,12 +86,20 @@
                                     <!-- Tipo -->
 
                                     <td scope="row">
-                                        <div class="col-flex">
-                                            <asp:Label
-                                                ID="PartnerTypeLbl"
-                                                runat="server">
-                                            </asp:Label>
-                                        </div>
+                                        <asp:Label
+                                            ID="TypeLbl"
+                                            runat="server">
+                                        </asp:Label>
+                                    </td>
+
+                                    <!-- Email -->
+
+                                    <td scope="row">
+                                        <asp:Label
+                                            ID="EmailLbl"
+                                            runat="server"
+                                            Text='<%#Eval("Email")%>'>
+                                        </asp:Label>
                                     </td>
 
                                     <!-- Acciones -->

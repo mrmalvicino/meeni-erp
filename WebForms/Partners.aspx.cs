@@ -117,22 +117,19 @@ namespace WebForms
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
                 Partner partner = (Partner)e.Item.DataItem;
-                Label partnerTypeLbl = (Label)e.Item.FindControl("PartnerTypeLbl");
+                Label typeLbl = (Label)e.Item.FindControl("TypeLbl");
 
                 if (partner.IsClient && partner.IsSupplier)
                 {
-                    partnerTypeLbl.Text = "<i class='bi bi-people text-success'></i>";
-                    partnerTypeLbl.ToolTip = "Cliente y proveedor";
+                    typeLbl.Text = "<i class='bi bi-people text-success'></i> Cli. y prov.";
                 }
                 else if (partner.IsClient)
                 {
-                    partnerTypeLbl.Text = "<i class='bi bi-cart text-primary'></i>";
-                    partnerTypeLbl.ToolTip = "Cliente";
+                    typeLbl.Text = "<i class='bi bi-cart text-primary'></i> Cliente";
                 }
                 else if (partner.IsSupplier)
                 {
-                    partnerTypeLbl.Text = "<i class='bi bi-truck text-warning'></i>";
-                    partnerTypeLbl.ToolTip = "Proveedor";
+                    typeLbl.Text = "<i class='bi bi-truck text-warning'></i> Proveedor";
                 }
             }
         }

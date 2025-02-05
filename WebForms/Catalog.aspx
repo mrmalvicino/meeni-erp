@@ -60,6 +60,8 @@
                         <tr>
                             <th scope="col">Nombre</th>
                             <th scope="col">Tipo</th>
+                            <th scope="col">Costo</th>
+                            <th scope="col">Precio</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
@@ -78,18 +80,37 @@
                                         <asp:Label
                                             ID="NameLbl"
                                             runat="server"
-                                            Text='<%#Eval("Name")%>'></asp:Label>
+                                            Text='<%#Eval("Name")%>'>
+                                        </asp:Label>
                                     </td>
 
                                     <!-- Tipo -->
 
                                     <td scope="row">
-                                        <div class="col-flex">
-                                            <asp:Label
-                                                ID="CatalogItemTypeLbl"
-                                                runat="server">
-                                            </asp:Label>
-                                        </div>
+                                        <asp:Label
+                                            ID="TypeLbl"
+                                            runat="server">
+                                        </asp:Label>
+                                    </td>
+
+                                    <!-- Costo -->
+
+                                    <td scope="row">
+                                        <asp:Label
+                                            ID="CostLbl"
+                                            runat="server"
+                                            Text='<%# String.Format("${0:N2}", Eval("Cost")) %>'>>
+                                        </asp:Label>
+                                    </td>
+
+                                    <!-- Precio -->
+
+                                    <td scope="row">
+                                        <asp:Label
+                                            ID="PriceLbl"
+                                            runat="server"
+                                            Text='<%# String.Format("${0:N2}", Eval("Price")) %>'>>
+                                        </asp:Label>
                                     </td>
 
                                     <!-- Acciones -->

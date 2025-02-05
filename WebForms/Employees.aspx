@@ -59,6 +59,7 @@
                     <thead>
                         <tr>
                             <th scope="col">Nombre</th>
+                            <th scope="col">Email</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
@@ -77,6 +78,16 @@
                                             ID="NameLbl"
                                             runat="server"
                                             Text='<%#Eval("Name")%>'>
+                                        </asp:Label>
+                                    </td>
+
+                                    <!-- Email -->
+
+                                    <td scope="row">
+                                        <asp:Label
+                                            ID="EmailLbl"
+                                            runat="server"
+                                            Text='<%#Eval("Email")%>'>
                                         </asp:Label>
                                     </td>
 
