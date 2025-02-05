@@ -700,26 +700,11 @@ create or alter procedure sp_list_partners(
 )
 as
 begin
+    declare @status_csv varchar(3) = dbo.fn_get_wanted_status(@list_active, @list_inactive);
     declare @wanted_status_1 bit;
     declare @wanted_status_2 bit;
-
-    if (@list_active = 1 and @list_inactive = 0)
-    begin
-        set @wanted_status_1 = 1;
-        set @wanted_status_2 = 1;
-    end;
-
-    if (@list_active = 0 and @list_inactive = 1)
-    begin
-        set @wanted_status_1 = 0;
-        set @wanted_status_2 = 0;
-    end;
-
-    if (@list_active = 1 and @list_inactive = 1)
-    begin
-        set @wanted_status_1 = 1;
-        set @wanted_status_2 = 0;
-    end;
+    set @wanted_status_1 = cast(substring(@status_csv, 1, 1) as bit);
+    set @wanted_status_2 = cast(substring(@status_csv, 3, 1) as bit);
 
     select
         *
@@ -801,26 +786,11 @@ create or alter procedure sp_list_employees(
 )
 as
 begin
+    declare @status_csv varchar(3) = dbo.fn_get_wanted_status(@list_active, @list_inactive);
     declare @wanted_status_1 bit;
     declare @wanted_status_2 bit;
-
-    if (@list_active = 1 and @list_inactive = 0)
-    begin
-        set @wanted_status_1 = 1;
-        set @wanted_status_2 = 1;
-    end;
-
-    if (@list_active = 0 and @list_inactive = 1)
-    begin
-        set @wanted_status_1 = 0;
-        set @wanted_status_2 = 0;
-    end;
-
-    if (@list_active = 1 and @list_inactive = 1)
-    begin
-        set @wanted_status_1 = 1;
-        set @wanted_status_2 = 0;
-    end;
+    set @wanted_status_1 = cast(substring(@status_csv, 1, 1) as bit);
+    set @wanted_status_2 = cast(substring(@status_csv, 3, 1) as bit);
 
     select
         *
@@ -1022,26 +992,11 @@ create or alter procedure sp_list_brands(
 )
 as
 begin
+    declare @status_csv varchar(3) = dbo.fn_get_wanted_status(@list_active, @list_inactive);
     declare @wanted_status_1 bit;
     declare @wanted_status_2 bit;
-
-    if (@list_active = 1 and @list_inactive = 0)
-    begin
-        set @wanted_status_1 = 1;
-        set @wanted_status_2 = 1;
-    end;
-
-    if (@list_active = 0 and @list_inactive = 1)
-    begin
-        set @wanted_status_1 = 0;
-        set @wanted_status_2 = 0;
-    end;
-
-    if (@list_active = 1 and @list_inactive = 1)
-    begin
-        set @wanted_status_1 = 1;
-        set @wanted_status_2 = 0;
-    end;
+    set @wanted_status_1 = cast(substring(@status_csv, 1, 1) as bit);
+    set @wanted_status_2 = cast(substring(@status_csv, 3, 1) as bit);
 
     select
         *
@@ -1175,26 +1130,11 @@ create or alter procedure sp_list_products(
 )
 as
 begin
+    declare @status_csv varchar(3) = dbo.fn_get_wanted_status(@list_active, @list_inactive);
     declare @wanted_status_1 bit;
     declare @wanted_status_2 bit;
-
-    if (@list_active = 1 and @list_inactive = 0)
-    begin
-        set @wanted_status_1 = 1;
-        set @wanted_status_2 = 1;
-    end;
-
-    if (@list_active = 0 and @list_inactive = 1)
-    begin
-        set @wanted_status_1 = 0;
-        set @wanted_status_2 = 0;
-    end;
-
-    if (@list_active = 1 and @list_inactive = 1)
-    begin
-        set @wanted_status_1 = 1;
-        set @wanted_status_2 = 0;
-    end;
+    set @wanted_status_1 = cast(substring(@status_csv, 1, 1) as bit);
+    set @wanted_status_2 = cast(substring(@status_csv, 3, 1) as bit);
 
     select
         *
@@ -1290,26 +1230,11 @@ create or alter procedure sp_list_categories(
 )
 as
 begin
+    declare @status_csv varchar(3) = dbo.fn_get_wanted_status(@list_active, @list_inactive);
     declare @wanted_status_1 bit;
     declare @wanted_status_2 bit;
-
-    if (@list_active = 1 and @list_inactive = 0)
-    begin
-        set @wanted_status_1 = 1;
-        set @wanted_status_2 = 1;
-    end;
-
-    if (@list_active = 0 and @list_inactive = 1)
-    begin
-        set @wanted_status_1 = 0;
-        set @wanted_status_2 = 0;
-    end;
-
-    if (@list_active = 1 and @list_inactive = 1)
-    begin
-        set @wanted_status_1 = 1;
-        set @wanted_status_2 = 0;
-    end;
+    set @wanted_status_1 = cast(substring(@status_csv, 1, 1) as bit);
+    set @wanted_status_2 = cast(substring(@status_csv, 3, 1) as bit);
 
     select
         *
@@ -1432,26 +1357,11 @@ create or alter procedure sp_list_warehouses(
 )
 as
 begin
+    declare @status_csv varchar(3) = dbo.fn_get_wanted_status(@list_active, @list_inactive);
     declare @wanted_status_1 bit;
     declare @wanted_status_2 bit;
-
-    if (@list_active = 1 and @list_inactive = 0)
-    begin
-        set @wanted_status_1 = 1;
-        set @wanted_status_2 = 1;
-    end;
-
-    if (@list_active = 0 and @list_inactive = 1)
-    begin
-        set @wanted_status_1 = 0;
-        set @wanted_status_2 = 0;
-    end;
-
-    if (@list_active = 1 and @list_inactive = 1)
-    begin
-        set @wanted_status_1 = 1;
-        set @wanted_status_2 = 0;
-    end;
+    set @wanted_status_1 = cast(substring(@status_csv, 1, 1) as bit);
+    set @wanted_status_2 = cast(substring(@status_csv, 3, 1) as bit);
 
     select
         *
@@ -1555,26 +1465,11 @@ create or alter procedure sp_list_compartments(
 )
 as
 begin
+    declare @status_csv varchar(3) = dbo.fn_get_wanted_status(@list_active, @list_inactive);
     declare @wanted_status_1 bit;
     declare @wanted_status_2 bit;
-
-    if (@list_active = 1 and @list_inactive = 0)
-    begin
-        set @wanted_status_1 = 1;
-        set @wanted_status_2 = 1;
-    end;
-
-    if (@list_active = 0 and @list_inactive = 1)
-    begin
-        set @wanted_status_1 = 0;
-        set @wanted_status_2 = 0;
-    end;
-
-    if (@list_active = 1 and @list_inactive = 1)
-    begin
-        set @wanted_status_1 = 1;
-        set @wanted_status_2 = 0;
-    end;
+    set @wanted_status_1 = cast(substring(@status_csv, 1, 1) as bit);
+    set @wanted_status_2 = cast(substring(@status_csv, 3, 1) as bit);
 
     select
         *
