@@ -86,6 +86,17 @@
                                         <!-- Editar -->
 
                                         <asp:LinkButton
+                                            ID="CompartmentsBtn"
+                                            runat="server"
+                                            CommandName="Compartments"
+                                            CommandArgument='<%#Eval("Id")%>'
+                                            Text='<i class="bi bi-box-seam"></i>'
+                                            class="asp-link-button">
+                                        </asp:LinkButton>
+
+                                        <!-- Editar -->
+
+                                        <asp:LinkButton
                                             ID="EditBtn"
                                             runat="server"
                                             CommandName="Edit"

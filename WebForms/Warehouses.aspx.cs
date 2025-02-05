@@ -99,7 +99,11 @@ namespace WebForms
         {
             int warehouseId = Convert.ToInt32(e.CommandArgument);
 
-            if (e.CommandName == "Edit")
+            if (e.CommandName == "Compartments")
+            {
+                Response.Redirect($"Compartments.aspx?id={warehouseId}");
+            }
+            else if (e.CommandName == "Edit")
             {
                 Response.Redirect($"EditWarehouse.aspx?id={warehouseId}");
             }
