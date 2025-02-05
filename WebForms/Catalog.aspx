@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Warehouses" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Warehouses.aspx.cs" Inherits="WebForms.Warehouses" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Catalog.aspx.cs" Inherits="WebForms.Catalog" %>
 
 <asp:Content ID="HeadContent" ContentPlaceHolderID="AdminHeadPlaceHolder" runat="server">
     <link href="style/table.css" rel="stylesheet" />
@@ -6,7 +6,7 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="AdminMainPlaceHolder" runat="server">
     <div class="height-100-pct width-100-pct col-flex justify-center padding-10-px">
-        <h1>Depósitos</h1>
+        <h1>Productos y servicios</h1>
 
         <!-- Búsqueda y alta -->
 
@@ -59,14 +59,16 @@
                     <thead>
                         <tr>
                             <th scope="col">Nombre</th>
+                            <th scope="col">Tipo</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <asp:Repeater
-                            ID="WarehousesRpt"
+                            ID="ProductsRpt"
                             runat="server"
-                            OnItemCommand="WarehousesRpt_ItemCommand">
+                            OnItemCommand="ProductsRpt_ItemCommand"
+                            OnItemDataBound="ProductsRpt_ItemDataBound">
                             <ItemTemplate>
                                 <tr>
 
@@ -79,20 +81,20 @@
                                             Text='<%#Eval("Name")%>'></asp:Label>
                                     </td>
 
+                                    <!-- Tipo -->
+
+                                    <td scope="row">
+                                        <div class="col-flex">
+                                            <asp:Label
+                                                ID="CatalogItemTypeLbl"
+                                                runat="server">
+                                            </asp:Label>
+                                        </div>
+                                    </td>
+
                                     <!-- Acciones -->
 
                                     <td class="row-flex justify-center">
-
-                                        <!-- Compartimientos -->
-
-                                        <asp:LinkButton
-                                            ID="CompartmentsBtn"
-                                            runat="server"
-                                            CommandName="Compartments"
-                                            CommandArgument='<%#Eval("Id")%>'
-                                            Text='<i class="bi bi-box-seam"></i>'
-                                            class="asp-link-button">
-                                        </asp:LinkButton>
 
                                         <!-- Editar -->
 

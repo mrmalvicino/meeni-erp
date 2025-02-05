@@ -4,6 +4,7 @@ using Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Transactions;
+using Utilities;
 
 namespace BusinessLogic
 {
@@ -56,7 +57,7 @@ namespace BusinessLogic
                 throw new BusinessLogicException(ex);
             }
 
-            _product.Brand = _brandsManager.Read(_product.Brand.Id);
+            _product.Brand = _brandsManager.Read(Helper.GetId(_product.Brand));
             _product.Categories = _categoriesManager.ListProductCategories(_product.Id);
 
             return _product;
@@ -101,7 +102,7 @@ namespace BusinessLogic
 
                 foreach (var product in products)
                 {
-                    product.Brand = _brandsManager.Read(product.Brand.Id);
+                    product.Brand = _brandsManager.Read(Helper.GetId(product.Brand));
                     product.Categories = _categoriesManager.ListProductCategories(product.Id);
                 }
 

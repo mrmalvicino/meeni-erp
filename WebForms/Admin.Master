@@ -81,7 +81,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="Products.aspx" class="dark-button big-hover justify-left">
+                        <a href="Catalog.aspx" class="dark-button big-hover justify-left">
                             <i class="bi bi-tags"></i>
                             <span>Catálogo</span>
                         </a>

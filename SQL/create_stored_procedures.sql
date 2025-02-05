@@ -1168,6 +1168,47 @@ begin
 end;
 
 go
+create or alter procedure sp_list_products(
+    @organization_id int,
+    @list_active bit,
+    @list_inactive bit
+)
+as
+begin
+    declare @wanted_status_1 bit;
+    declare @wanted_status_2 bit;
+
+    if (@list_active = 1 and @list_inactive = 0)
+    begin
+        set @wanted_status_1 = 1;
+        set @wanted_status_2 = 1;
+    end;
+
+    if (@list_active = 0 and @list_inactive = 1)
+    begin
+        set @wanted_status_1 = 0;
+        set @wanted_status_2 = 0;
+    end;
+
+    if (@list_active = 1 and @list_inactive = 1)
+    begin
+        set @wanted_status_1 = 1;
+        set @wanted_status_2 = 0;
+    end;
+
+    select
+        *
+    from
+        products
+    where
+        organization_id = @organization_id
+        and (
+            activity_status = @wanted_status_1
+            or activity_status = @wanted_status_2
+        );
+end;
+
+go
 create or alter procedure sp_find_product_organization_id(
     @product_id int
 )
