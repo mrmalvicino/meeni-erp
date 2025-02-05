@@ -162,7 +162,15 @@ namespace DataAccess
             }
 
             _db.SetParameter("@name", warehouse.Name);
-            _db.SetParameter("@address_id", warehouse.Address.Id);
+
+            if (warehouse.Address != null)
+            {
+                _db.SetParameter("@address_id", warehouse.Address.Id);
+            }
+            else
+            {
+                _db.SetParameter("@address_id", DBNull.Value);
+            }
 
             if (0 < organizationId)
             {

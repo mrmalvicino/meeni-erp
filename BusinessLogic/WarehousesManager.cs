@@ -3,6 +3,9 @@ using DomainModel;
 using Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
+using System.Transactions;
+using Utilities;
 
 namespace BusinessLogic
 {
@@ -10,11 +13,13 @@ namespace BusinessLogic
     {
         private Warehouse _warehouse;
         private WarehousesDAL _warehousesDAL;
+        private AddressesManager _addressesManager;
         private CompartmentsManager _compartmentsManager;
 
         public WarehousesManager(Database db)
         {
             _warehousesDAL = new WarehousesDAL(db);
+            _addressesManager = new AddressesManager(db);
             _compartmentsManager = new CompartmentsManager(db);
         }
 
@@ -22,12 +27,18 @@ namespace BusinessLogic
         {
             try
             {
-                warehouse.Id = _warehousesDAL.Create(warehouse, organizationId);
-                return warehouse.Id;
+                using (var transaction = new TransactionScope())
+                {
+                    warehouse.Address = _addressesManager.Handle(warehouse.Address);
+                    Validate(warehouse);
+                    warehouse.Id = _warehousesDAL.Create(warehouse, organizationId);
+                    transaction.Complete();
+                    return warehouse.Id;
+                }
             }
             catch (Exception ex) when (!(ex is ValidationException))
             {
-                throw new BusinessLogicException(ex);
+                throw new TransactionScopeException(ex);
             }
         }
 
@@ -47,6 +58,7 @@ namespace BusinessLogic
                 throw new BusinessLogicException(ex);
             }
 
+            _warehouse.Address = _addressesManager.Read(Helper.GetId(_warehouse.Address));
             _warehouse.Compartments = _compartmentsManager.List(_warehouse.Id, true, false);
 
             return _warehouse;
@@ -56,11 +68,17 @@ namespace BusinessLogic
         {
             try
             {
-                _warehousesDAL.Update(warehouse);
+                using (var transaction = new TransactionScope())
+                {
+                    warehouse.Address = _addressesManager.Handle(warehouse.Address);
+                    Validate(warehouse);
+                    _warehousesDAL.Update(warehouse);
+                    transaction.Complete();
+                }
             }
             catch (Exception ex) when (!(ex is ValidationException))
             {
-                throw new BusinessLogicException(ex);
+                throw new TransactionScopeException(ex);
             }
         }
 
@@ -85,6 +103,7 @@ namespace BusinessLogic
 
                 foreach (var warehouse in warehouses)
                 {
+                    warehouse.Address = _addressesManager.Read(Helper.GetId(warehouse.Address));
                     warehouse.Compartments = _compartmentsManager.List(warehouse.Id, true, false);
                 }
 
@@ -105,6 +124,14 @@ namespace BusinessLogic
             catch (Exception ex)
             {
                 throw new BusinessLogicException(ex);
+            }
+        }
+
+        private void Validate(Warehouse warehouse)
+        {
+            if (string.IsNullOrEmpty(warehouse.Name))
+            {
+                throw new ValidationException("Ingresar un nombre para el depósito.");
             }
         }
     }

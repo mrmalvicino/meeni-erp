@@ -737,7 +737,7 @@ insert into
     )
 values
     (1, 'Depósito', 11, 1),
-    (1, 'Showroom', null, 1),
+    (1, 'Showroom', null, 2),
     (0, 'Local', null, 1);
 
 go
@@ -763,7 +763,7 @@ values
     (1, 'Estantería A - Tercer estante', 15, 3, 1),
     (1, 'Estantería B - Primer estante', 20, 1, 1),
     (1, 'Estantería B - Segundo estante', 30, 2, 1),
-    (1, 'Pasillo', 50, 1, 1),
-    (1, 'Esquina', 60, 2, 1);
+    (1, 'Pasillo', 50, 1, 3),
+    (1, 'Esquina', 60, 2, 3);
 
 go
