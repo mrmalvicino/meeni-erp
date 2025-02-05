@@ -1,4 +1,4 @@
-﻿<%@ Page Title="View Organization" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="EditPartner.aspx.cs" Inherits="WebForms.EditPartner" %>
+﻿<%@ Page Title="Edit Partner" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="EditPartner.aspx.cs" Inherits="WebForms.EditPartner" %>
 
 <%@ Register Src="~/UserControls/EditEntity.ascx" TagPrefix="uc" TagName="EditEntity" %>
 

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Warehouses.aspx.cs" Inherits="WebForms.Warehouses" %>
+﻿<%@ Page Title="Warehouses" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Warehouses.aspx.cs" Inherits="WebForms.Warehouses" %>
 
 <asp:Content ID="HeadContent" ContentPlaceHolderID="AdminHeadPlaceHolder" runat="server">
     <link href="style/table.css" rel="stylesheet" />
@@ -67,7 +67,7 @@
                             ID="WarehousesRpt"
                             runat="server"
                             OnItemCommand="WarehousesRpt_ItemCommand">
-                            <itemtemplate>
+                            <ItemTemplate>
                                 <tr>
 
                                     <!-- Nombre -->
@@ -107,7 +107,7 @@
 
                                     </td>
                                 </tr>
-                            </itemtemplate>
+                            </ItemTemplate>
                         </asp:Repeater>
                     </tbody>
                 </table>
