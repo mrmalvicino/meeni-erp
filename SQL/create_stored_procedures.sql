@@ -374,10 +374,10 @@ create or alter procedure sp_find_identification_id(
 as
 begin
     select
-        I.identification_id
+        I.identification_id as identification_id
     from
         identifications I
-        inner join entities E on E.identification_id = I.identification_id
+        left join entities E on E.identification_id = I.identification_id
         left join organizations O on O.organization_id = E.entity_id
         left join stakeholders S on S.stakeholder_id = E.entity_id
     where
@@ -385,6 +385,7 @@ begin
         and (
             S.organization_id = @organization_id
             or O.organization_id = @organization_id
+            or E.entity_id is null
         );
 end;
 
