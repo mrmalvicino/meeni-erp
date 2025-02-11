@@ -15,13 +15,13 @@ namespace WebForms
     {
 
         /// <summary>
-        /// EditEntityUC control.
+        /// EntityContainersUC control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::WebForms.UserControls.EditEntity EditEntityUC;
+        protected global::WebForms.UserControls.EntityContainers EntityContainersUC;
 
         /// <summary>
         /// IsClientChk control.

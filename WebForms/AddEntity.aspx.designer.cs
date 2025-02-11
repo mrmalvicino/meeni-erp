@@ -42,13 +42,13 @@ namespace WebForms
         protected global::System.Web.UI.WebControls.CheckBox IsOrganizationChk;
 
         /// <summary>
-        /// EntityNameUC control.
+        /// EntityNameFieldsUC control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::WebForms.UserControls.EntityName EntityNameUC;
+        protected global::WebForms.UserControls.EntityNameFields EntityNameFieldsUC;
 
         /// <summary>
         /// SaveBtn control.

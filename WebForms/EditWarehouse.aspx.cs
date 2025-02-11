@@ -18,48 +18,34 @@ namespace WebForms
             _appManager = new AppManager();
         }
 
-        private void SetAddress()
+        private void MapAddressAttribute()
         {
             if (_warehouse.Address == null)
             {
                 _warehouse.Address = new Address(true);
             }
 
-            _warehouse.Address.StreetName = AddressFieldsUC.GetStreetName();
-            _warehouse.Address.StreetNumber = AddressFieldsUC.GetStreetNumber();
-            _warehouse.Address.Flat = AddressFieldsUC.GetFlat();
-            _warehouse.Address.Details = AddressFieldsUC.GetDetails();
-            _warehouse.Address.City.Name = AddressFieldsUC.GetCityName();
-            _warehouse.Address.City.ZipCode = AddressFieldsUC.GetZipCode();
-            _warehouse.Address.Province.Name = AddressFieldsUC.GetProvinceName();
-            _warehouse.Address.Country.Name = AddressFieldsUC.GetCountryName();
+            _warehouse.Address = AddressContainerUC.Address;
         }
 
         private void MapAttributes()
         {
             _warehouse.Name = NameTxt.Text;
-            SetAddress();
+            MapAddressAttribute();
         }
 
-        private void GetAddress()
+        private void MapAddressControls()
         {
             if (_warehouse.Address != null)
             {
-                AddressFieldsUC.SetStreetName(_warehouse.Address.StreetName);
-                AddressFieldsUC.SetStreetNumber(_warehouse.Address.StreetNumber);
-                AddressFieldsUC.SetFlat(_warehouse.Address.Flat);
-                AddressFieldsUC.SetDetails(_warehouse.Address.Details);
-                AddressFieldsUC.SetCityName(_warehouse.Address.City?.Name);
-                AddressFieldsUC.SetZipCode(_warehouse.Address.City?.ZipCode);
-                AddressFieldsUC.SetProvinceName(_warehouse.Address.Province?.Name);
-                AddressFieldsUC.SetCountryName(_warehouse.Address.Country?.Name);
+                AddressContainerUC.Address = _warehouse.Address;
             }
         }
 
         private void MapControls(bool applyFilter = false)
         {
             NameTxt.Text = _warehouse.Name;
-            GetAddress();
+            MapAddressControls();
         }
 
         private void FetchWarehouse()

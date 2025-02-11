@@ -33,13 +33,13 @@ namespace WebForms
         protected global::System.Web.UI.WebControls.LinkButton CompartmentsBtn;
 
         /// <summary>
-        /// AddressFieldsUC control.
+        /// AddressContainerUC control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::WebForms.UserControls.AddressFields AddressFieldsUC;
+        protected global::WebForms.UserControls.AddressContainer AddressContainerUC;
 
         /// <summary>
         /// SaveBtn control.

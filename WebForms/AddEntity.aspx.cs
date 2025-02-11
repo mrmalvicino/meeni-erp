@@ -41,17 +41,19 @@ namespace WebForms
 
                 if (_partner.IsOrganization)
                 {
-                    _partner.Name = EntityNameUC.GetOrganizationName();
+                    _partner.Name = EntityNameFieldsUC.OrganizationName;
                 }
                 else
                 {
-                    _partner.SetPersonName(EntityNameUC.GetFirstName(), EntityNameUC.GetLastName());
+                    _partner.FirstName = EntityNameFieldsUC.FirstName;
+                    _partner.LastName = EntityNameFieldsUC.LastName;
                 }
             }
             else if (_employee != null)
             {
                 _employee.IsOrganization = false;
-                _employee.SetPersonName(EntityNameUC.GetFirstName(), EntityNameUC.GetLastName());
+                _employee.FirstName = EntityNameFieldsUC.FirstName;
+                _employee.LastName = EntityNameFieldsUC.LastName;
             }
         }
 
@@ -101,13 +103,13 @@ namespace WebForms
             if (!IsPostBack)
             {
                 MapControls();
-                EntityNameUC.ShowPersonName();
+                EntityNameFieldsUC.ShowPersonName();
             }
         }
 
         protected void IsOrganizationChk_CheckedChanged(object sender, EventArgs e)
         {
-            EntityNameUC.ToggleNameType();
+            EntityNameFieldsUC.ToggleNameType();
         }
 
         protected void SaveBtn_Click(object sender, EventArgs e)

@@ -77,13 +77,13 @@ namespace WebForms
                 MapControls();
             }
 
-            EditEntityUC.Entity = _employee;
-            EditEntityUC.IsSwitchable = false;
+            EntityContainersUC.Entity = _employee;
+            EntityContainersUC.IsOrganizationVisibility = false;
         }
 
         protected void SaveBtn_Click(object sender, EventArgs e)
         {
-            EditEntityUC.MapAttributes();
+            EntityContainersUC.MapAttributes();
             MapAttributes();
 
             try

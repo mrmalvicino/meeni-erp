@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="Edit Warehouse" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="EditWarehouse.aspx.cs" Inherits="WebForms.EditWarehouse" %>
 
-<%@ Register Src="~/UserControls/AddressFields.ascx" TagPrefix="uc" TagName="AddressFields" %>
+<%@ Register Src="~/UserControls/AddressContainer.ascx" TagPrefix="uc" TagName="AddressContainer" %>
 
 <asp:Content ID="HeadContent" ContentPlaceHolderID="AdminHeadPlaceHolder" runat="server">
     <link href="style/table.css" rel="stylesheet" />
@@ -45,7 +45,7 @@
                 </div>
             </div>
 
-            <uc:AddressFields ID="AddressFieldsUC" runat="server" />
+            <uc:AddressContainer ID="AddressContainerUC" runat="server" />
         </div>
 
         <!-- Botones -->

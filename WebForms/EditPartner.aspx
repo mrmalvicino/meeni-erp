@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="Edit Partner" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="EditPartner.aspx.cs" Inherits="WebForms.EditPartner" %>
 
-<%@ Register Src="~/UserControls/EditEntity.ascx" TagPrefix="uc" TagName="EditEntity" %>
+<%@ Register Src="~/UserControls/EntityContainers.ascx" TagPrefix="uc" TagName="EntityContainers" %>
 
 <asp:Content ID="HeadContent" ContentPlaceHolderID="AdminHeadPlaceHolder" runat="server">
 </asp:Content>
@@ -9,7 +9,7 @@
     <div class="height-100-pct width-100-pct col-flex justify-center padding-10-px">
         <h1>Datos del socio comercial</h1>
         <div class="wrapped-flex justify-center">
-            <uc:EditEntity ID="EditEntityUC" runat="server" />
+            <uc:EntityContainers ID="EntityContainersUC" runat="server" />
 
             <!-- Tipo -->
 

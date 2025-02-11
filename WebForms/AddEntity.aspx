@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="Add Entity" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="AddEntity.aspx.cs" Inherits="WebForms.AddEntity" %>
 
-<%@ Register Src="~/UserControls/EntityName.ascx" TagPrefix="uc" TagName="EntityName" %>
+<%@ Register Src="~/UserControls/EntityNameFields.ascx" TagPrefix="uc" TagName="EntityNameFields" %>
 
 <asp:Content ID="HeadContent" ContentPlaceHolderID="AdminHeadPlaceHolder" runat="server">
 </asp:Content>
@@ -18,7 +18,7 @@
                     OnCheckedChanged="IsOrganizationChk_CheckedChanged" />
                 <label for="IsOrganizationChk">Es organización</label>
             </div>
-            <uc:EntityName ID="EntityNameUC" runat="server" />
+            <uc:EntityNameFields ID="EntityNameFieldsUC" runat="server" />
             <div class="margin-top-20-px">
                 <asp:Button
                     ID="SaveBtn"
