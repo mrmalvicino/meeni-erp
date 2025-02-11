@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="AddressFields.ascx.cs" Inherits="WebForms.UserControls.AddressFields" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="AddressContainer.ascx.cs" Inherits="WebForms.UserControls.AddressContainer" %>
 
 <div class="container-div small-box-width big-box-height margin-10-px">
     <p class="center-text">Domicilio</p>

@@ -11,26 +11,17 @@ namespace WebForms.UserControls
 {
 
 
-    public partial class EditEntity
+    public partial class EntityContainers
     {
 
         /// <summary>
-        /// EntityImg control.
+        /// ImageContainerUC control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image EntityImg;
-
-        /// <summary>
-        /// ImageURLTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ImageURLTxt;
+        protected global::WebForms.UserControls.ImageContainer ImageContainerUC;
 
         /// <summary>
         /// IsOrganizationDiv control.
@@ -51,31 +42,22 @@ namespace WebForms.UserControls
         protected global::System.Web.UI.WebControls.CheckBox IsOrganizationChk;
 
         /// <summary>
-        /// EntityNameUC control.
+        /// EntityNameFieldsUC control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::WebForms.UserControls.EntityName EntityNameUC;
+        protected global::WebForms.UserControls.EntityNameFields EntityNameFieldsUC;
 
         /// <summary>
-        /// IdentificationCodeTxt control.
+        /// IdentificationFieldsUC control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox IdentificationCodeTxt;
-
-        /// <summary>
-        /// IdentificationTypesDDL control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList IdentificationTypesDDL;
+        protected global::WebForms.UserControls.IdentificationFields IdentificationFieldsUC;
 
         /// <summary>
         /// BirthDateTxt control.
@@ -87,30 +69,21 @@ namespace WebForms.UserControls
         protected global::System.Web.UI.WebControls.TextBox BirthDateTxt;
 
         /// <summary>
-        /// EmailTxt control.
+        /// ContactFieldsUC control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox EmailTxt;
+        protected global::WebForms.UserControls.ContactFields ContactFieldsUC;
 
         /// <summary>
-        /// PhoneTxt control.
+        /// AddressContainerUC control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox PhoneTxt;
-
-        /// <summary>
-        /// AddressFieldsUC control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::WebForms.UserControls.AddressFields AddressFieldsUC;
+        protected global::WebForms.UserControls.AddressContainer AddressContainerUC;
     }
 }

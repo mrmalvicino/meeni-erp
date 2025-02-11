@@ -107,9 +107,12 @@
     <Content Include="style\whatsapp.css" />
     <Content Include="style\widths.css" />
     <Content Include="EditPartner.aspx" />
-    <Content Include="UserControls\AddressFields.ascx" />
-    <Content Include="UserControls\EditEntity.ascx" />
-    <Content Include="UserControls\EntityName.ascx" />
+    <Content Include="UserControls\AddressContainer.ascx" />
+    <Content Include="UserControls\ContactFields.ascx" />
+    <Content Include="UserControls\EntityContainers.ascx" />
+    <Content Include="UserControls\EntityNameFields.ascx" />
+    <Content Include="UserControls\IdentificationFields.ascx" />
+    <Content Include="UserControls\ImageContainer.ascx" />
     <Content Include="Warehouses.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -220,26 +223,47 @@
     <Compile Include="EditPartner.aspx.designer.cs">
       <DependentUpon>EditPartner.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\AddressFields.ascx.cs">
-      <DependentUpon>AddressFields.ascx</DependentUpon>
+    <Compile Include="UserControls\AddressContainer.ascx.cs">
+      <DependentUpon>AddressContainer.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="UserControls\AddressFields.ascx.designer.cs">
-      <DependentUpon>AddressFields.ascx</DependentUpon>
+    <Compile Include="UserControls\AddressContainer.ascx.designer.cs">
+      <DependentUpon>AddressContainer.ascx</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\EditEntity.ascx.cs">
-      <DependentUpon>EditEntity.ascx</DependentUpon>
+    <Compile Include="UserControls\ContactFields.ascx.cs">
+      <DependentUpon>ContactFields.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="UserControls\EditEntity.ascx.designer.cs">
-      <DependentUpon>EditEntity.ascx</DependentUpon>
+    <Compile Include="UserControls\ContactFields.ascx.designer.cs">
+      <DependentUpon>ContactFields.ascx</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\EntityName.ascx.cs">
-      <DependentUpon>EntityName.ascx</DependentUpon>
+    <Compile Include="UserControls\EntityContainers.ascx.cs">
+      <DependentUpon>EntityContainers.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="UserControls\EntityName.ascx.designer.cs">
-      <DependentUpon>EntityName.ascx</DependentUpon>
+    <Compile Include="UserControls\EntityContainers.ascx.designer.cs">
+      <DependentUpon>EntityContainers.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\EntityNameFields.ascx.cs">
+      <DependentUpon>EntityNameFields.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\EntityNameFields.ascx.designer.cs">
+      <DependentUpon>EntityNameFields.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\IdentificationFields.ascx.cs">
+      <DependentUpon>IdentificationFields.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\IdentificationFields.ascx.designer.cs">
+      <DependentUpon>IdentificationFields.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ImageContainer.ascx.cs">
+      <DependentUpon>ImageContainer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\ImageContainer.ascx.designer.cs">
+      <DependentUpon>ImageContainer.ascx</DependentUpon>
     </Compile>
     <Compile Include="Warehouses.aspx.cs">
       <DependentUpon>Warehouses.aspx</DependentUpon>

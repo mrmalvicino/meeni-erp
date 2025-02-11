@@ -11,7 +11,7 @@ namespace WebForms.UserControls
 {
 
 
-    public partial class AddressFields
+    public partial class AddressContainer
     {
 
         /// <summary>

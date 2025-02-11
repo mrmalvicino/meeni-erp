@@ -2,32 +2,24 @@
 
 namespace WebForms.UserControls
 {
-    public partial class EntityName : System.Web.UI.UserControl
+    public partial class EntityNameFields : System.Web.UI.UserControl
     {
-        public string GetOrganizationName()
+        public string OrganizationName
         {
-            return OrganizationNameTxt.Text;
+            get { return OrganizationNameTxt.Text; }
+            set { OrganizationNameTxt.Text = value; }
         }
 
-        public string GetFirstName()
+        public string FirstName
         {
-            return FirstNameTxt.Text;
+            get { return FirstNameTxt.Text; }
+            set { FirstNameTxt.Text = value; }
         }
 
-        public string GetLastName()
+        public string LastName
         {
-            return LastNameTxt.Text;
-        }
-
-        public void SetOrganizationName(string name)
-        {
-            OrganizationNameTxt.Text = name;
-        }
-
-        public void SetPersonName(string firstName, string lastName)
-        {
-            FirstNameTxt.Text = firstName;
-            LastNameTxt.Text = lastName;
+            get { return LastNameTxt.Text; }
+            set { LastNameTxt.Text = value; }
         }
 
         public void ShowOrganizationName()

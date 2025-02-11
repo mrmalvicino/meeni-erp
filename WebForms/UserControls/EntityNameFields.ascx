@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EntityName.ascx.cs" Inherits="WebForms.UserControls.EntityName" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="EntityNameFields.ascx.cs" Inherits="WebForms.UserControls.EntityNameFields" %>
 
 <div id="OrganizationNameDiv" runat="server">
     <label for="NameTxt">Nombre</label>

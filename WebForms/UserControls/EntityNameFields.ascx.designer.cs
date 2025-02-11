@@ -11,7 +11,7 @@ namespace WebForms.UserControls
 {
 
 
-    public partial class EntityName
+    public partial class EntityNameFields
     {
 
         /// <summary>
