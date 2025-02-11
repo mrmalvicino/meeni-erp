@@ -1,7 +1,9 @@
 ﻿using Interfaces;
+using System;
 
 namespace DomainModel
 {
+    [Serializable]
     public class Address : IIdentifiable
     {
         public int Id { get; set; }
