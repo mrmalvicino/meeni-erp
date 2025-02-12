@@ -62,9 +62,11 @@ namespace WebForms
 
         private void MapAttributes()
         {
+            _organization.IsOrganization = true;
             _organization.Name = OrganizationNameTxt.Text;
             _organization.Email = OrganizationEmailTxt.Text;
-            _user.Name = FirstNameTxt.Text;
+            _user.FirstName = EntityNameFieldsUC.FirstName;
+            _user.LastName = EntityNameFieldsUC.LastName;
             _user.Username = UsernameTxt.Text;
             _user.Password = PasswordTxt.Text;
         }
@@ -76,6 +78,8 @@ namespace WebForms
                 FetchURL();
                 BindPricingPlansDDL(_id);
             }
+
+            EntityNameFieldsUC.ShowPersonName();
         }
 
         protected void SignupBtn_Click(object sender, EventArgs e)

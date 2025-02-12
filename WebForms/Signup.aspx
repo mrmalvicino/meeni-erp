@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="Signup" Language="C#" MasterPageFile="~/Landing.Master" AutoEventWireup="true" CodeBehind="Signup.aspx.cs" Inherits="WebForms.Signup" %>
 
+<%@ Register Src="~/UserControls/EntityNameFields.ascx" TagPrefix="uc" TagName="EntityNameFields" %>
+
 <asp:Content ID="HeadContent" ContentPlaceHolderID="LandingHeadPlaceHolder" runat="server">
 </asp:Content>
 
@@ -8,7 +10,7 @@
         <div class="site-menu-height"></div>
         <h1>Registrar empresa</h1>
         <div class="wrapped-flex justify-center">
-            <div class="container-div width-300-px height-400-px margin-10-px">
+            <div class="container-div width-300-px height-350-px margin-10-px">
                 <p class="center-text">Datos de la empresa</p>
                 <div>
                     <label for="PricingPlansDDL">Plan</label>
@@ -39,28 +41,11 @@
                     </asp:TextBox>
                 </div>
             </div>
-            <div class="container-div width-300-px height-400-px margin-10-px">
+            <div class="container-div width-300-px height-350-px margin-10-px">
                 <p class="center-text">Datos del administrador</p>
-                <div>
-                    <label for="FirstNameTxt">Nombre</label>
-                    <asp:TextBox
-                        ID="FirstNameTxt"
-                        runat="server"
-                        TextMode="SingleLine"
-                        class="width-100-pct input-box"
-                        placeholder="Tu nombre">
-                    </asp:TextBox>
-                </div>
-                <div>
-                    <label for="LastNameTxt">Apellido</label>
-                    <asp:TextBox
-                        ID="LastNameTxt"
-                        runat="server"
-                        TextMode="SingleLine"
-                        class="width-100-pct input-box"
-                        placeholder="Tu apellido">
-                    </asp:TextBox>
-                </div>
+
+                <uc:EntityNameFields ID="EntityNameFieldsUC" runat="server" />
+
                 <div>
                     <label for="UsernameTxt">Usuario</label>
                     <asp:TextBox

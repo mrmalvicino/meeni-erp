@@ -42,22 +42,13 @@ namespace WebForms
         protected global::System.Web.UI.WebControls.TextBox OrganizationEmailTxt;
 
         /// <summary>
-        /// FirstNameTxt control.
+        /// EntityNameFieldsUC control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox FirstNameTxt;
-
-        /// <summary>
-        /// LastNameTxt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox LastNameTxt;
+        protected global::WebForms.UserControls.EntityNameFields EntityNameFieldsUC;
 
         /// <summary>
         /// UsernameTxt control.
