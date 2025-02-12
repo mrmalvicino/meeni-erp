@@ -52,12 +52,14 @@
 
         <div class="wrapped-flex justify-center">
             <div class="margin-10-px">
-                <asp:Button
+                <asp:LinkButton
                     ID="SaveBtn"
                     runat="server"
-                    Text="Guardar cambios"
                     class="dark-button big-hover"
-                    OnClick="SaveBtn_Click" />
+                    OnClick="SaveBtn_Click">
+                    <i class="bi bi-floppy"></i>
+                    <span>Guardar</span>
+                </asp:LinkButton>
             </div>
         </div>
     </div>

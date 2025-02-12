@@ -69,12 +69,14 @@
             </div>
         </div>
         <div class="margin-20-px">
-            <asp:Button
+            <asp:LinkButton
                 ID="SignupBtn"
                 runat="server"
-                Text="Crear empresa"
                 class="dark-button big-hover"
-                OnClick="SignupBtn_Click" />
+                OnClick="SignupBtn_Click">
+                <i class="bi bi-person-plus"></i>
+                <span>Registrar</span>
+            </asp:LinkButton>
         </div>
     </section>
 </asp:Content>

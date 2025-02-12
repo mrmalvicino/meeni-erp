@@ -29,12 +29,14 @@
                 </asp:TextBox>
             </div>
             <div class="margin-top-20-px">
-                <asp:Button
+                <asp:LinkButton
                     ID="LoginBtn"
                     runat="server"
-                    Text="Ingresar"
                     class="dark-button width-100-pct"
-                    OnClick="LoginBtn_Click" />
+                    OnClick="LoginBtn_Click">
+                    <i class="bi bi-key"></i>
+                    <span>Ingresar</span>
+                </asp:LinkButton>
             </div>
         </div>
     </section>

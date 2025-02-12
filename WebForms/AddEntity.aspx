@@ -20,12 +20,14 @@
             </div>
             <uc:EntityNameFields ID="EntityNameFieldsUC" runat="server" />
             <div class="margin-top-20-px">
-                <asp:Button
+                <asp:LinkButton
                     ID="SaveBtn"
                     runat="server"
-                    Text="Guardar"
                     class="dark-button width-100-pct"
-                    OnClick="SaveBtn_Click" />
+                    OnClick="SaveBtn_Click">
+                    <i class="bi bi-floppy"></i>
+                    <span>Guardar</span>
+                </asp:LinkButton>
             </div>
         </div>
     </div>
