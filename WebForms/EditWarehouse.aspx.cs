@@ -2,7 +2,6 @@
 using DomainModel;
 using Exceptions;
 using System;
-using WebForms.UserControls;
 
 namespace WebForms
 {
@@ -18,34 +17,16 @@ namespace WebForms
             _appManager = new AppManager();
         }
 
-        private void MapAddressAttribute()
-        {
-            if (_warehouse.Address == null)
-            {
-                _warehouse.Address = new Address(true);
-            }
-
-            _warehouse.Address = AddressContainerUC.Address;
-        }
-
         private void MapAttributes()
         {
             _warehouse.Name = NameTxt.Text;
-            MapAddressAttribute();
-        }
-
-        private void MapAddressControls()
-        {
-            if (_warehouse.Address != null)
-            {
-                AddressContainerUC.Address = _warehouse.Address;
-            }
+            _warehouse.Address = AddressContainerUC.Address;
         }
 
         private void MapControls(bool applyFilter = false)
         {
             NameTxt.Text = _warehouse.Name;
-            MapAddressControls();
+            AddressContainerUC.Address = _warehouse.Address;
         }
 
         private void FetchWarehouse()

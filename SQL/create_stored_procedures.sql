@@ -288,7 +288,11 @@ begin
     where
         street_name = @street_name
         and street_number = @street_number
-        and flat = @flat
+        and (
+            flat = @flat or (
+                flat is null and (@flat is null or @flat = '')
+            )
+        )
         and city_id = @city_id;
 end;
 
