@@ -28,7 +28,8 @@ namespace WebForms
         {
             _warehouse.Compartments = _warehouse.Compartments.Where(
                 x => x.Name.ToLower().Contains(SearchTxt.Text.ToLower())
-                ).ToList();
+                || (x.Product?.Name?.ToLower().Contains(SearchTxt.Text.ToLower()) ?? false)
+            ).ToList();
         }
 
         private void FetchCompartments()
