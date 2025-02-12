@@ -41,12 +41,31 @@
         background-color: var(--black-pure);
     }
 
-.transparent-button {
+.danger-button {
     width: var(--button-width);
     margin: 0px;
     padding: 10px 20px;
     border-radius: 5px;
     border: none;
+    outline: none;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    background-color: #8B0000;
+    color: var(--gray-light);
+    font-family: "Open Sans", sans-serif;
+}
+
+    .danger-button:hover {
+        background-color: #C62828;
+    }
+
+.transparent-button {
+    width: var(--button-width);
+    margin: 0px;
+    padding: 10px 20px;
+    border-radius: 5px;
     outline: none;
     font-size: 18px;
     text-align: center;

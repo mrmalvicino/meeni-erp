@@ -43,7 +43,7 @@ namespace WebForms
         protected void EditOrganizationBtn_Click(object sender, EventArgs e)
         {
             FetchSession();
-            Response.Redirect($"EditEntity.aspx?id={_loggedOrganization.Id}");
+            Response.Redirect($"Settings.aspx");
         }
 
         protected void LogoutBtn_Click(object sender, EventArgs e)

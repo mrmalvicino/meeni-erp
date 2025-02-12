@@ -78,9 +78,11 @@
     <Content Include="images\mockup.png" />
     <Content Include="Login.aspx" />
     <Content Include="images\logo.png" />
+    <Content Include="script\confirmation.js" />
     <Content Include="script\load-images.js" />
     <Content Include="script\load-year.js" />
     <Content Include="script\modal.js" />
+    <Content Include="Settings.aspx" />
     <Content Include="Signup.aspx" />
     <Content Include="style\admin-header.css" />
     <Content Include="style\admin-menu.css" />
@@ -202,6 +204,13 @@
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.aspx.cs">
+      <DependentUpon>Settings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Settings.aspx.designer.cs">
+      <DependentUpon>Settings.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Signup.aspx.cs">
       <DependentUpon>Signup.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
