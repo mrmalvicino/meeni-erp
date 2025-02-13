@@ -41,27 +41,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Address.cs" />
-    <Compile Include="Brand.cs" />
-    <Compile Include="Category.cs" />
-    <Compile Include="Compartment.cs" />
-    <Compile Include="Identification.cs" />
-    <Compile Include="IdentificationType.cs" />
-    <Compile Include="Partner.cs" />
-    <Compile Include="Product.cs" />
-    <Compile Include="Stakeholder.cs" />
-    <Compile Include="City.cs" />
-    <Compile Include="Country.cs" />
-    <Compile Include="Employee.cs" />
-    <Compile Include="Image.cs" />
-    <Compile Include="Entity.cs" />
-    <Compile Include="Organization.cs" />
-    <Compile Include="PricingPlan.cs" />
+    <Compile Include="Locations\Address.cs" />
+    <Compile Include="Products\Brand.cs" />
+    <Compile Include="Products\Category.cs" />
+    <Compile Include="Inventory\Compartment.cs" />
+    <Compile Include="Base\Identification.cs" />
+    <Compile Include="Base\IdentificationType.cs" />
+    <Compile Include="Stakeholders\Partner.cs" />
+    <Compile Include="Products\Product.cs" />
+    <Compile Include="Stakeholders\Stakeholder.cs" />
+    <Compile Include="Locations\City.cs" />
+    <Compile Include="Locations\Country.cs" />
+    <Compile Include="Stakeholders\Employee.cs" />
+    <Compile Include="Common\Image.cs" />
+    <Compile Include="Base\Entity.cs" />
+    <Compile Include="Organizations\Organization.cs" />
+    <Compile Include="Organizations\PricingPlan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Province.cs" />
-    <Compile Include="Role.cs" />
-    <Compile Include="User.cs" />
-    <Compile Include="Warehouse.cs" />
+    <Compile Include="Locations\Province.cs" />
+    <Compile Include="Users\Role.cs" />
+    <Compile Include="Users\User.cs" />
+    <Compile Include="Inventory\Warehouse.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Interfaces\Interfaces.csproj">

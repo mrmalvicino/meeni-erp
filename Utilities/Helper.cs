@@ -1,5 +1,8 @@
 ﻿using Interfaces;
-using DomainModel;
+using DomainModel.Base;
+using DomainModel.Organizations;
+using DomainModel.Stakeholders;
+using DomainModel.Users;
 
 namespace Utilities
 {

@@ -1,5 +1,5 @@
-﻿using BusinessLogic;
-using DomainModel;
+﻿using DomainModel.Base;
+using BusinessLogic;
 using System;
 using Utilities;
 

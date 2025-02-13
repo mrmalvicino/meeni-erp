@@ -1,5 +1,14 @@
 ﻿using DataAccess;
-using DomainModel;
+using BusinessLogic.Base;
+using BusinessLogic.Common;
+using BusinessLogic.Inventory;
+using BusinessLogic.Locations;
+using BusinessLogic.Organizations;
+using BusinessLogic.Products;
+using BusinessLogic.Stakeholders;
+using BusinessLogic.Users;
+using DomainModel.Users;
+using DomainModel.Organizations;
 using Exceptions;
 using System;
 using System.Transactions;

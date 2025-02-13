@@ -1,5 +1,10 @@
-﻿using BusinessLogic;
-using DomainModel;
+﻿using DomainModel.Common;
+using DomainModel.Locations;
+using DomainModel.Organizations;
+using DomainModel.Users;
+using BusinessLogic;
+using BusinessLogic.Organizations;
+using BusinessLogic.Users;
 using System;
 using System.Collections.Generic;
 using Exceptions;

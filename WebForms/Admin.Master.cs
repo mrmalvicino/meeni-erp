@@ -1,4 +1,5 @@
-﻿using DomainModel;
+﻿using DomainModel.Organizations;
+using DomainModel.Users;
 using System;
 
 namespace WebForms

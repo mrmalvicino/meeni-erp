@@ -1,5 +1,6 @@
-﻿using BusinessLogic;
-using DomainModel;
+﻿using DomainModel.Stakeholders;
+using DomainModel.Organizations;
+using BusinessLogic;
 using System;
 using System.Collections.Generic;
 using System.Web.UI.WebControls;

@@ -1,5 +1,5 @@
-﻿using BusinessLogic;
-using DomainModel;
+﻿using DomainModel.Organizations;
+using BusinessLogic;
 using Exceptions;
 using System;
 

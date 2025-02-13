@@ -42,28 +42,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddressesDAL.cs" />
-    <Compile Include="BrandsDAL.cs" />
-    <Compile Include="CategoriesDAL.cs" />
-    <Compile Include="CompartmentsDAL.cs" />
-    <Compile Include="IdentificationsDAL.cs" />
-    <Compile Include="IdentificationTypesDAL.cs" />
-    <Compile Include="PartnersDAL.cs" />
-    <Compile Include="CitiesDAL.cs" />
-    <Compile Include="CountriesDAL.cs" />
+    <Compile Include="Locations\AddressesDAL.cs" />
+    <Compile Include="Products\BrandsDAL.cs" />
+    <Compile Include="Products\CategoriesDAL.cs" />
+    <Compile Include="Inventory\CompartmentsDAL.cs" />
+    <Compile Include="Base\IdentificationsDAL.cs" />
+    <Compile Include="Base\IdentificationTypesDAL.cs" />
+    <Compile Include="Stakeholders\PartnersDAL.cs" />
+    <Compile Include="Locations\CitiesDAL.cs" />
+    <Compile Include="Locations\CountriesDAL.cs" />
     <Compile Include="Database.cs" />
-    <Compile Include="EmployeesDAL.cs" />
-    <Compile Include="ProductsDAL.cs" />
-    <Compile Include="StakeholdersDAL.cs" />
-    <Compile Include="ImagesDAL.cs" />
-    <Compile Include="OrganizationsDAL.cs" />
-    <Compile Include="EntitiesDAL.cs" />
-    <Compile Include="PricingPlansDAL.cs" />
+    <Compile Include="Stakeholders\EmployeesDAL.cs" />
+    <Compile Include="Products\ProductsDAL.cs" />
+    <Compile Include="Stakeholders\StakeholdersDAL.cs" />
+    <Compile Include="Common\ImagesDAL.cs" />
+    <Compile Include="Organizations\OrganizationsDAL.cs" />
+    <Compile Include="Base\EntitiesDAL.cs" />
+    <Compile Include="Organizations\PricingPlansDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ProvincesDAL.cs" />
-    <Compile Include="RolesDAL.cs" />
-    <Compile Include="UsersDAL.cs" />
-    <Compile Include="WarehousesDAL.cs" />
+    <Compile Include="Locations\ProvincesDAL.cs" />
+    <Compile Include="Users\RolesDAL.cs" />
+    <Compile Include="Users\UsersDAL.cs" />
+    <Compile Include="Inventory\WarehousesDAL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DomainModel\DomainModel.csproj">

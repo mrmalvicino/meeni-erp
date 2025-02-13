@@ -1,4 +1,4 @@
-﻿using DomainModel;
+﻿using DomainModel.Locations;
 using System;
 
 namespace WebForms.UserControls

@@ -1,5 +1,6 @@
-﻿using BusinessLogic;
-using DomainModel;
+﻿using DomainModel.Organizations;
+using DomainModel.Inventory;
+using BusinessLogic;
 using System;
 using System.Web.UI.WebControls;
 using System.Linq;

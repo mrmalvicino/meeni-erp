@@ -1,4 +1,4 @@
-﻿using DomainModel;
+﻿using DomainModel.Common;
 using Utilities;
 using System;
 
