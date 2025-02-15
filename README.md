@@ -178,4 +178,4 @@ In order to install the packages using Visual Studio interface, open the [soluti
 &nbsp;
 This is an open source project licensed under the [General GNU Public License](./LICENSE).
 Contributions are welcome! Please fork the repository and create a pull request with your improvements or suggestions.
-Make sure to check the [contibution guide](./doc/CONTRIBUTING.md) before.
+Make sure to check the [contibution guide](./CONTRIBUTING.md) before.
