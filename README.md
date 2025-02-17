@@ -120,7 +120,9 @@ Create a file named `Web.config` in the [WebForms](./WebForms/) directory modify
 		<add name="EXTERNAL_SERVER_NAME" connectionString="Data Source=SERVER_ADDRESS_OR_IP; Initial Catalog=meeni_erp_db; User ID=USERNAME; Password=PASSWORD; Connect Timeout=30;" />
 	</connectionStrings>
 	<appSettings>
-		<add key="mailtrap_token" value="Bearer MAILTRAP_API_TOKEN" />
+		<add key="mailing_api_url" value="https://send.api.mailtrap.io/api/send" />
+		<add key="mailing_api_token" value="MAILING_API_TOKEN" />
+		<add key="welcome_template_uuid" value="WELCOME_TEMPLATE_UUID" />
 		<add key="business_email" value="EMAIL@DOMAIN.COM" />
 		<add key="business_url" value="BUSINESSURL.COM" />
 	</appSettings>
@@ -156,7 +158,8 @@ The following table details the parameters which need to be modified:
 | `SERVER_ADDRESS_OR_IP` | connectionStrings | URL address or IP of the external server. |
 | `USERNAME` | connectionStrings | Username to access the external server. |
 | `PASSWORD` | connectionStrings | Password to access the external server. |
-| `MAILTRAP_API_TOKEN` | appSettings | [Mailtrap](https://mailtrap.io) API token. |
+| `MAILING_API_TOKEN` | appSettings | [Mailtrap](https://mailtrap.io) API token. |
+| `WELCOME_TEMPLATE_UUID` | appSettings | Universal Unique Identifier for Mailtrap Welcome Email Template. |
 | `EMAIL@DOMAIN.COM` | appSettings | Email address that Mailtrap will use to send emails. |
 | `BUSINESSURL.COM` | appSettings | URL where the website is hosted. |
 
@@ -169,6 +172,7 @@ Install each of the following **NuGet Packages** for the respective projects acc
 | Projects | NuGet Package | Purpose |
 |-|-|-|
 | WebForms | [Microsoft.CodeDom.Providers.DotNetCompilerPlatform](https://www.nuget.org/packages/Microsoft.CodeDom.Providers.DotNetCompilerPlatform/) | Compiles C# in ASPX pages. |
+| DomainModel, BusinessLogic | [RestSharp](https://www.nuget.org/packages/RestSharp/) | Converts C# objects to JSON strings. |
 
 &nbsp;
 In order to install the packages using Visual Studio interface, open the [solution](./MeeniERP.sln), right click the project, select `Manage NuGet Packages...` (or select the project, go to Visual Studio menu, and select `Project > Manage NuGet Packages`) and install the latest version of each package.
