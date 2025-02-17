@@ -9,10 +9,15 @@ using BusinessLogic.Stakeholders;
 using BusinessLogic.Users;
 using DomainModel.Users;
 using DomainModel.Organizations;
+using DomainModel.Mailing;
+using Utilities;
 using Exceptions;
 using System;
 using System.Transactions;
-using Utilities;
+using System.Configuration;
+using System.Collections.Generic;
+using RestSharp;
+using System.Text.Json;
 
 namespace BusinessLogic
 {
@@ -167,6 +172,72 @@ namespace BusinessLogic
             if (string.IsNullOrEmpty(user.Password))
             {
                 throw new ValidationException("Ingresar contraseña.");
+            }
+        }
+
+        public void SendWelcomeEmail(User user, Organization organization)
+        {
+            string mailingApiURL = ConfigurationManager.AppSettings["mailing_api_url"];
+            string mailingApiToken = ConfigurationManager.AppSettings["mailing_api_token"];
+            string welcomeTemplateUUId = ConfigurationManager.AppSettings["welcome_template_uuid"];
+            string businessEmail = ConfigurationManager.AppSettings["business_email"];
+            string businessUrl = ConfigurationManager.AppSettings["business_url"];
+
+            var client = new RestClient(mailingApiURL);
+            var request = new RestRequest();
+
+            request.AddHeader("Authorization", $"Bearer {mailingApiToken}");
+            request.AddHeader("Content-Type", "application/json");
+
+            var emailRequest = new DomainModel.Mailing.EmailRequest<WelcomeEmailVariables>
+            {
+                From = new Sender
+                {
+                    EmailAddress = businessEmail,
+                    Name = "Meeni ERP"
+                },
+                To = new List<Recipient>
+                {
+                    new Recipient
+                    {
+                        EmailAddress = organization.Email
+                    }
+                },
+                TemplateUUId = welcomeTemplateUUId,
+                TemplateVariables = new WelcomeEmailVariables
+                {
+                    BusinessURL = businessUrl,
+                    LoginURL = businessUrl + "/Login.aspx",
+                    OrganizationName = organization.Name,
+                    PrivacyPoliciesURL = "https://github.com/mrmalvicino/meeni-erp/",
+                    LicenseURL = "https://github.com/mrmalvicino/meeni-erp/blob/main/LICENSE",
+                    TermsURL = "https://github.com/mrmalvicino/meeni-erp/"
+                }
+            };
+
+            var options = new JsonSerializerOptions
+            {
+                WriteIndented = false,
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull
+            };
+
+            string jsonParameters = JsonSerializer.Serialize(emailRequest, options);
+            request.AddParameter("application/json", jsonParameters, ParameterType.RequestBody);
+
+            try
+            {
+                var response = client.Post(request);
+
+                if (!response.IsSuccessful)
+                {
+                    throw new Exception(response.Content);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occurred: " + ex.Message);
+                Console.WriteLine(ex.StackTrace);
             }
         }
     }
