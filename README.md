@@ -96,6 +96,18 @@ Create a file named `Web.config` in the [WebForms](./WebForms/) directory modify
 		</pages>
 	</system.web>
 	<system.webServer>
+		<httpCompression>
+			<dynamicTypes>
+				<add mimeType="text/*" enabled="true" />
+				<add mimeType="application/javascript" enabled="true" />
+				<add mimeType="application/json" enabled="true" />
+			</dynamicTypes>
+			<staticTypes>
+				<add mimeType="text/*" enabled="true" />
+				<add mimeType="application/javascript" enabled="true" />
+				<add mimeType="image/svg+xml" enabled="true" />
+			</staticTypes>
+		</httpCompression>
 		<defaultDocument>
 			<files>
 				<add value="Home.aspx" />
