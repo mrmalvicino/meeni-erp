@@ -98,6 +98,7 @@ namespace WebForms
                 {
                     Session.Add("loggedUser", _user);
                     Session.Add("loggedOrganization", _organization);
+                    _appManager.SendWelcomeEmail(_user, _organization);
                     Response.Redirect("Dashboard.aspx", false);
                 }
             }
